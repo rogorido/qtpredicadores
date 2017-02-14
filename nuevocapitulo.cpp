@@ -9,11 +9,6 @@
 #include <QMessageBox>
 #include <QInputDialog>
 
-/*
-#include <QSqlRecord>
-#include <QSqlQuery>
-*/
-
 NuevoCapitulo::NuevoCapitulo(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::NuevoCapitulo)
