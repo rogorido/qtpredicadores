@@ -20,6 +20,7 @@ public:
 
 private slots:
     void aceptarCapitulo();
+    void fechaCambiada();
 
 private:
     Ui::NuevoCapitulo *ui;
@@ -33,6 +34,13 @@ private:
      * el modelo al salir?
      */
     QSqlQueryModel *lugar_query;
+
+    /*
+     * esto es una pequeña cutrada: lo uso para que solo si se ha
+     * cambiado la fecha se meta, pq si no enteindo que mete la que viene
+     * ya originalmente...
+     */
+    bool bDateChanged;
 
     void cargarCompleters();
 

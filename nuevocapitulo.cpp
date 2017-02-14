@@ -22,12 +22,15 @@ NuevoCapitulo::NuevoCapitulo(QWidget *parent) :
 
     connect(ui->btCancel, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarCapitulo()));
+    connect(ui->dtInicial, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaCambiada()));
 
     ui->dtFinal->calendarPopup();
 
     ui->cboTipoCapitulo->addItem("General");
     ui->cboTipoCapitulo->addItem("Provincial");
     ui->cboTipoCapitulo->setCurrentIndex(-1);
+
+    bDateChanged = false;
 
     cargarCompleters();
 }
@@ -52,8 +55,10 @@ void NuevoCapitulo::aceptarCapitulo(){
     QVariant lugar;
     QString maestrogeneral;
     QString tipo;
-    QDate fechainicial;
-    QDate fechafinal;
+    QVariant fechainicial;
+    QVariant fechafinal;
+    //QDate fechainicial;
+    //QDate fechafinal;
     QString tomo;
     QString paginas;
     QString notas;
@@ -81,8 +86,15 @@ void NuevoCapitulo::aceptarCapitulo(){
     (!ui->cboTipoCapitulo->currentText().isEmpty()) ?
                 tipo = ui->cboTipoCapitulo->currentText() : tipo = "";
 
-    fechainicial = ui->dtInicial->date();
-    fechafinal = ui->dtFinal->date();
+    /*
+     * suponemos que siempre lo pongo...
+     * aq tvz sería mejor con QVariant para que sea NULL
+     * pero no me queda claro cómo hacerlo...
+     */
+    if (bDateChanged){
+        fechainicial = ui->dtInicial->date();
+        fechafinal = ui->dtFinal->date();
+    }
 
     if (!ui->txtLugar->text().isEmpty()){
                 lugar = extraerLugar(ui->txtLugar->text());
@@ -92,27 +104,19 @@ void NuevoCapitulo::aceptarCapitulo(){
     }
 
     QSqlQuery query;
-    //query.prepare("INSERT INTO capitulos(nombregeneral, lugar, fechainicio, fechafinal, tipo, maestrogeneral, asistentes, tomo, paginas, notas) "
-      //            "VALUES(:nombre, :lugar, :fechainicio, :fechafinal, :tipo, :maestro, :asistentes, :tomo, :paginas, :notas)" );
-    query.prepare("INSERT INTO capitulos(nombregeneral, lugar, tipo, maestrogeneral, asistentes, tomo, paginas, notas) "
-                  "VALUES(:nombre, :lugar, :tipo, :maestro, :asistentes, :tomo, :paginas, :notas)" );
+    query.prepare("INSERT INTO capitulos(nombregeneral, lugar, fechainicio, fechafinal, tipo, maestrogeneral, asistentes, tomo, paginas, notas) "
+                  "VALUES(:nombre, :lugar, :fechainicio, :fechafinal, :tipo, :maestro, :asistentes, :tomo, :paginas, :notas)" );
     query.bindValue(":nombre", titulogeneral);
     query.bindValue(":lugar", lugar);
     query.bindValue(":tipo", tipo);
     query.bindValue(":maestro", maestrogeneral);
     query.bindValue(":asistentes", asistentes);
-    //query.bindValue(":fechainicio", fechainicial);
-    //query.bindValue(":fechafinal", fechafinal);
+    query.bindValue(":fechainicio", fechainicial);
+    query.bindValue(":fechafinal", fechafinal);
     query.bindValue(":tomo", tomo);
     query.bindValue(":paginas", paginas);
     query.bindValue(":notas", notas);
-
-    if (query.exec()){
-        qDebug("Titulo: " + titulogeneral.toUtf8());
-        //qDebug("EXECUTED "+query.executedQuery().toAscii());
-        qDebug("EXECUTED "+query.executedQuery().toUtf8());
-        //qDebug("ultimo error: " + query.lastError().toUtf8);
-    }
+    query.exec();
 
 }
 
@@ -140,11 +144,16 @@ int NuevoCapitulo::extraerLugar(QString lugar){
     int valor;
 
     QSqlQuery query(QString("SELECT lugar_id FROM lugares WHERE lugar='%1'").arg(lugar));
-    qDebug("EXECUTED "+query.executedQuery().toUtf8());
     query.first();
 
     valor = query.value(0).toInt();
 
     return valor;
+
+}
+
+void NuevoCapitulo::fechaCambiada(){
+    // cuando cambia la fecha activamos esto para que luego la meta en la base de datos
+    bDateChanged = true;
 
 }
