@@ -45,7 +45,11 @@ void NuevoCapitulo::aceptarCapitulo(){
     }
 
     QString titulogeneral;
-    QString lugar;
+    /*
+     * Atención: lugar es QVariant pq eso permite que sea NULL
+     * que es lo que hace falta cuando no hay una ciudad
+     */
+    QVariant lugar;
     QString maestrogeneral;
     QString tipo;
     QDate fechainicial;
@@ -58,8 +62,6 @@ void NuevoCapitulo::aceptarCapitulo(){
     titulogeneral = ui->txtNombreGeneral->text();
 
     /* vamos extrayendo todos los datos */
-    (!ui->txtLugar->text().isEmpty()) ?
-                lugar = ui->txtLugar->text() : lugar = "";
 
     (!ui->txtMaestroGeneral->text().isEmpty()) ?
                 maestrogeneral = ui->txtMaestroGeneral->text() : maestrogeneral = "";
@@ -82,6 +84,12 @@ void NuevoCapitulo::aceptarCapitulo(){
     fechainicial = ui->dtInicial->date();
     fechafinal = ui->dtFinal->date();
 
+    if (!ui->txtLugar->text().isEmpty()){
+                lugar = extraerLugar(ui->txtLugar->text());
+    }
+    else{
+        qDebug("está vacío");
+    }
 
     QSqlQuery query;
     //query.prepare("INSERT INTO capitulos(nombregeneral, lugar, fechainicio, fechafinal, tipo, maestrogeneral, asistentes, tomo, paginas, notas) "
@@ -89,7 +97,7 @@ void NuevoCapitulo::aceptarCapitulo(){
     query.prepare("INSERT INTO capitulos(nombregeneral, lugar, tipo, maestrogeneral, asistentes, tomo, paginas, notas) "
                   "VALUES(:nombre, :lugar, :tipo, :maestro, :asistentes, :tomo, :paginas, :notas)" );
     query.bindValue(":nombre", titulogeneral);
-    query.bindValue(":lugar", 1);
+    query.bindValue(":lugar", lugar);
     query.bindValue(":tipo", tipo);
     query.bindValue(":maestro", maestrogeneral);
     query.bindValue(":asistentes", asistentes);
@@ -122,3 +130,21 @@ void NuevoCapitulo::cargarCompleters(){
 
 }
 
+int NuevoCapitulo::extraerLugar(QString lugar){
+    /*
+     * Extraemos de la table lugares el id del
+     * lugar escogido. Probablemente habría que
+     * hacerlo mejor con un modelo o algo...
+     */
+
+    int valor;
+
+    QSqlQuery query(QString("SELECT lugar_id FROM lugares WHERE lugar='%1'").arg(lugar));
+    qDebug("EXECUTED "+query.executedQuery().toUtf8());
+    query.first();
+
+    valor = query.value(0).toInt();
+
+    return valor;
+
+}

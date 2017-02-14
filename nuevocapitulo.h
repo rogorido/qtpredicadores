@@ -36,6 +36,8 @@ private:
 
     void cargarCompleters();
 
+    int extraerLugar(QString lugar);
+
 
 
 };
