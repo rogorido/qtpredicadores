@@ -1,0 +1,7 @@
+
+* Organización
+
+** Formulario de NuevoCapítulo
+
+habría que mejroar la función esa de extraerLugar, para que compruebe
+que realmente hay un nombre...

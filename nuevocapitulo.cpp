@@ -82,9 +82,9 @@ void NuevoCapitulo::aceptarCapitulo(){
                 tipo = ui->cboTipoCapitulo->currentText() : tipo = "";
 
     /*
-     * suponemos que siempre lo pongo...
-     * aq tvz sería mejor con QVariant para que sea NULL
-     * pero no me queda claro cómo hacerlo...
+     * si la fecha ha cambiado, meteremos la fecha
+     * y para ello lo transformamos (entiendo que implícitamente)
+     * de un QVariant (que estaría NULL) a un QDate
      */
     if (bDateChanged){
         fechainicial = ui->dtInicial->date();
