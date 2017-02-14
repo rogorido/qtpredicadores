@@ -17,7 +17,8 @@ NuevoCapitulo::NuevoCapitulo(QWidget *parent) :
 
     connect(ui->btCancel, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarCapitulo()));
-    connect(ui->dtInicial, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaCambiada()));
+    connect(ui->dtInicial, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaInicialCambiada()));
+    connect(ui->dtFinal, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaFinalCambiada()));
 
     ui->dtFinal->calendarPopup();
 
@@ -25,7 +26,8 @@ NuevoCapitulo::NuevoCapitulo(QWidget *parent) :
     ui->cboTipoCapitulo->addItem("Provincial");
     ui->cboTipoCapitulo->setCurrentIndex(-1);
 
-    bDateChanged = false;
+    bFechaInicialModificada = false;
+    bFechaFinalModificada = false;
 
     cargarCompleters();
 }
@@ -86,8 +88,11 @@ void NuevoCapitulo::aceptarCapitulo(){
      * y para ello lo transformamos (entiendo que implícitamente)
      * de un QVariant (que estaría NULL) a un QDate
      */
-    if (bDateChanged){
+    if (bFechaInicialModificada){
         fechainicial = ui->dtInicial->date();
+    }
+
+    if (bFechaFinalModificada){
         fechafinal = ui->dtFinal->date();
     }
 
@@ -147,8 +152,14 @@ int NuevoCapitulo::extraerLugar(QString lugar){
 
 }
 
-void NuevoCapitulo::fechaCambiada(){
+void NuevoCapitulo::fechaInicialCambiada(){
     // cuando cambia la fecha activamos esto para que luego la meta en la base de datos
-    bDateChanged = true;
+    bFechaInicialModificada = true;
+
+}
+
+void NuevoCapitulo::fechaFinalCambiada(){
+    // cuando cambia la fecha activamos esto para que luego la meta en la base de datos
+    bFechaFinalModificada = true;
 
 }

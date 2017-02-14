@@ -20,7 +20,8 @@ public:
 
 private slots:
     void aceptarCapitulo();
-    void fechaCambiada();
+    void fechaInicialCambiada();
+    void fechaFinalCambiada();
 
 private:
     Ui::NuevoCapitulo *ui;
@@ -40,7 +41,8 @@ private:
      * cambiado la fecha se meta, pq si no enteindo que mete la que viene
      * ya originalmente...
      */
-    bool bDateChanged;
+    bool bFechaInicialModificada;
+    bool bFechaFinalModificada;
 
     void cargarCompleters();
 
