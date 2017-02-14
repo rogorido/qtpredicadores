@@ -19,6 +19,7 @@ NuevoCapitulo::NuevoCapitulo(QWidget *parent) :
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarCapitulo()));
     connect(ui->dtInicial, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaInicialCambiada()));
     connect(ui->dtFinal, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaFinalCambiada()));
+    connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(anadirLugar()));
 
     ui->dtFinal->calendarPopup();
 
@@ -29,6 +30,8 @@ NuevoCapitulo::NuevoCapitulo(QWidget *parent) :
     bFechaInicialModificada = false;
     bFechaFinalModificada = false;
 
+    lugar_query = new QSqlQueryModel(this);
+    lugar_completer = new QCompleter(this);
     cargarCompleters();
 }
 
@@ -122,10 +125,9 @@ void NuevoCapitulo::aceptarCapitulo(){
 
 void NuevoCapitulo::cargarCompleters(){
 
-    lugar_query = new QSqlQueryModel(this);
+
     lugar_query->setQuery("SELECT DISTINCT lugar FROM lugares WHERE lugar IS NOT NULL ORDER BY lugar");
 
-    lugar_completer = new QCompleter(this);
     lugar_completer->setModel(lugar_query);
     lugar_completer->setCompletionColumn(0);
     lugar_completer->setCaseSensitivity(Qt::CaseInsensitive);
@@ -161,5 +163,28 @@ void NuevoCapitulo::fechaInicialCambiada(){
 void NuevoCapitulo::fechaFinalCambiada(){
     // cuando cambia la fecha activamos esto para que luego la meta en la base de datos
     bFechaFinalModificada = true;
+
+}
+
+void NuevoCapitulo::anadirLugar(){
+
+    QString lugar;
+
+    lugar = QInputDialog::getText(this, "Introduzca un nuevo lugar", "Lugar (nombre,país) ");
+
+    if (!lugar.isEmpty())
+    {
+        QStringList campos = lugar.split(',');
+
+        QSqlQuery query;
+
+        query.prepare("INSERT INTO lugares(lugar, pais) "
+                            "VALUES(:lugar, :pais)");
+        query.bindValue(":lugar", campos[0]);
+        query.bindValue(":pais", campos[1]);
+        query.exec();
+
+        cargarCompleters();
+    }
 
 }

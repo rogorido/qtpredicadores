@@ -22,6 +22,7 @@ private slots:
     void aceptarCapitulo();
     void fechaInicialCambiada();
     void fechaFinalCambiada();
+    void anadirLugar();
 
 private:
     Ui::NuevoCapitulo *ui;
