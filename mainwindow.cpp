@@ -32,6 +32,8 @@ MainWindow::MainWindow(QWidget *parent) :
      if (db.open())
          qDebug() << "Abierta";
 
+     cargarConexiones();
+
 }
 
 MainWindow::~MainWindow()
@@ -41,4 +43,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::nuevoCapitulo(){
     // probando
+}
+
+void MainWindow::cargarConexiones(){
+    connect(ui->btNuevoCapitulo, SIGNAL(clicked()), this, SLOT(nuevoCapitulo()));
 }
