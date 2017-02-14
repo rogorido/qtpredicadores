@@ -1,13 +1,13 @@
 #ifndef NUEVOCAPITULO_H
 #define NUEVOCAPITULO_H
 
-#include <QWidget>
+#include <QDialog>
 
 namespace Ui {
 class NuevoCapitulo;
 }
 
-class NuevoCapitulo : public QWidget
+class NuevoCapitulo : public QDialog
 {
     Q_OBJECT
 

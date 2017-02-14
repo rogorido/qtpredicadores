@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QSqlDatabase>
 
+class NuevoCapitulo;
+
 namespace Ui {
 class MainWindow;
 }
@@ -23,6 +25,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
+
+    NuevoCapitulo *Capitulo;
 
     void cargarConexiones();
 };

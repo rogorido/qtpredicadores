@@ -16,6 +16,9 @@
 #include <QLabel>
 
 */
+
+#include "nuevocapitulo.h"
+
 const int STATUSBAR_TIMEOUT = 1000;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -43,6 +46,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::nuevoCapitulo(){
     // probando
+
+    Capitulo = new NuevoCapitulo(this);
+
+    Capitulo->show();
+    //Capitulo->activateWindow();
 }
 
 void MainWindow::cargarConexiones(){

@@ -2,7 +2,7 @@
 #include "ui_nuevocapitulo.h"
 
 NuevoCapitulo::NuevoCapitulo(QWidget *parent) :
-    QWidget(parent),
+    QDialog(parent),
     ui(new Ui::NuevoCapitulo)
 {
     ui->setupUi(this);
