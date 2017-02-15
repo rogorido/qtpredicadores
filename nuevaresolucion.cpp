@@ -23,9 +23,17 @@ NuevaResolucion::NuevaResolucion(Temas *temas, Lugares *lugares, QWidget *parent
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
 
     QTreeWidgetItem *itemnivelcero = new QTreeWidgetItem(ui->treeDetalles);
-    itemnivelcero->setText(0, "Nivel 0");
+    /*
+     * realmente esto es una cutrada.. habría que ponerlo solo si
+     * hay algo, pero bueno, ya lo corregiré...
+     */
+    itemnivelcero->setText(0, "Datos 0");
 
-    nivelactivo = new QTreeWidgetItem(ui->treeDetalles);
+    /*
+     * convertimos el QtreeWidgetItem que acabamos de meter
+     * en el "activo" al que tienen que ir los children
+     */
+    nivelactivo = new QTreeWidgetItem();
     nivelactivo = itemnivelcero;
 }
 
@@ -145,7 +153,8 @@ void NuevaResolucion::nuevoJson(){
     jsondetalles.clear();
 
     QTreeWidgetItem *itemnivelcero = new QTreeWidgetItem(ui->treeDetalles);
-    itemnivelcero->setText(0, "Nivel 1");
+    int nivel = jsondetalles_lista.count();
+    itemnivelcero->setText(0, QString("Datos %1").arg(nivel));
 
     nivelactivo = itemnivelcero;
 }
@@ -164,7 +173,8 @@ void NuevaResolucion::generarJson(){
      * ponemos esto pq si hay un jsondetalles que no se ha metido
      * se perdería, pero hay que encontrar un sistema mejor
      */
-    nuevoJson();
+    if (!jsondetalles.isEmpty())
+        jsondetalles_lista.append(jsondetalles);
 
     for (int var = 0; var < jsondetalles_lista.size(); ++var) {
 

@@ -41,6 +41,12 @@ private:
     Temas *m_temas;
     Lugares *m_lugares;
 
+    /*
+     * esto no sé si es una chapuza, pero por ahora funciona.
+     * metemos en esta variable el item del treeDetalles
+     * debajo del cual hay que ir metiendo children
+     * que serían los datos concretos del json
+     */
     QTreeWidgetItem *nivelactivo;
 
     struct elementopareado{
