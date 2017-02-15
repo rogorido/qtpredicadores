@@ -11,6 +11,9 @@ Lugares::Lugares(QObject *parent) :
 
 void Lugares::AnadirLugar(const QString lugar){
 
+    /*
+     * TODO: habría que comprobar que siemrpe hay país...
+     */
     QSqlQuery query;
     QStringList campos = lugar.split(',');
 
