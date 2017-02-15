@@ -17,6 +17,10 @@ public:
     explicit NuevaResolucion(Temas *temas, QWidget *parent = 0);
     ~NuevaResolucion();
 
+private slots:
+
+    void on_btNuevoTema_clicked();
+
 private:
     Ui::NuevaResolucion *ui;
 
@@ -24,6 +28,8 @@ private:
     /* no me acordaba q esto hay que hacerlo así... */
 
     Temas *m_temas;
+
+    void rellenarCombos();
 };
 
 #endif // NUEVARESOLUCION_H

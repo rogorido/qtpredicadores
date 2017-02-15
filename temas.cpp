@@ -14,4 +14,6 @@ void Temas::AnadirTema(const QString tema){
     query.prepare("INSERT INTO temas(tema) VALUES(:tema)");
     query.bindValue(":tema", tema);
     query.exec();
+
+    this->select();
 }
