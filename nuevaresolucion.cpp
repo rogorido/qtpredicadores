@@ -17,6 +17,9 @@ NuevaResolucion::NuevaResolucion(Temas *temas, Lugares *lugares, QWidget *parent
     ui->setupUi(this);
 
     rellenarCombos();
+
+    connect(ui->btNuevoJson, SIGNAL(clicked()), this, SLOT(nuevoJson()));
+    connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
 }
 
 NuevaResolucion::~NuevaResolucion()
@@ -96,7 +99,7 @@ void NuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
     jsondetalles.insert("Tipo", valor);
 
     qDebug() << "Entradas: " << int(jsondetalles.count());
-
+    qDebug() << "JSONs: " << int(jsondetalles_lista.count());
 }
 
 void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
@@ -105,5 +108,67 @@ void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
     jsondetalles.insert("Lugar", valor);
 
     qDebug() << "Entradas: " << int(jsondetalles.count());
+    qDebug() << "JSONs: " << int(jsondetalles_lista.count());
 
 }
+
+void NuevaResolucion::nuevoJson(){
+    /*
+     * esto se llama cuando queremos meter otro bloque
+     * de datos en json
+     */
+
+    /*
+     * en ppo lo primero que hacemos es comprobar si
+     * jsondetalles está vacío pues si no lo está quiere decir
+     * que ya hemos estado metiendo cosas SIN pasarlas a
+     * jsondetalles_lista...
+     * pero tiene que haber una manera mejor!
+     */
+
+    if (!jsondetalles.isEmpty())
+        jsondetalles_lista.append(jsondetalles);
+
+    jsondetalles.clear();
+}
+
+void NuevaResolucion::aceptarResolucion(){
+
+    generarJson();
+
+}
+
+void NuevaResolucion::generarJson(){
+    QString json;
+
+    /*
+     * ponemos esto pq si hay un jsondetalles que no se ha metido
+     * se perdería, pero hay que encontrar un sistema mejor
+     */
+    nuevoJson();
+
+    for (int var = 0; var < jsondetalles_lista.size(); ++var) {
+
+        /*
+         * metemos en una variable temporal el QMultiMap
+         * correspondiente a este elemento de la lista
+         */
+        QMultiMap<QString, QVariant> jsontemporal;
+        jsontemporal = jsondetalles_lista.at(var);
+
+        json = "{";
+
+        QMapIterator<QString, QVariant> i(jsontemporal);
+        while (i.hasNext()) {
+            i.next();
+            json += "\"" + i.key() + "\" : \"" + i.value().toString() + "\", ";
+        }
+        json += "}";
+
+        qDebug() << "Este es json: " << json;
+    }
+}
+
+
+
+

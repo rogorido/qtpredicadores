@@ -27,6 +27,9 @@ private slots:
     void on_btJsonAnadirDescripcion_clicked();
     void on_btJsonAnadirLugar_clicked();
 
+    void nuevoJson();
+    void aceptarResolucion(); // btOK
+
 private:
     Ui::NuevaResolucion *ui;
 
@@ -50,10 +53,16 @@ private:
      * y cuando ya esté listo se meten en jsondetalles_lista
      */
     //QVariantMap jsondetalles;
+    /*
+     * al final uso QMultiMap pq permite que haya varios
+     * values por key, pues el peligro es que quiera meter
+     * pej varios lugares en el json
+     */
     QMultiMap<QString, QVariant> jsondetalles;
     QList<QMultiMap<QString, QVariant>> jsondetalles_lista;
 
     void rellenarCombos();
+    void generarJson();
 };
 
 #endif // NUEVARESOLUCION_H
