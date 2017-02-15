@@ -3,10 +3,10 @@
 
 //#include <QTableView>
 #include <QDebug>
+#include <QSqlTableModel>
 /*
 #include <QSqlRelationalTableModel>
 #include <QSortFilterProxyModel>
-#include <QSqlTableModel>
 #include <QSqlRecord>
 #include <QSqlQuery>
 #include <QtGui>
@@ -18,6 +18,7 @@
 */
 
 #include "nuevocapitulo.h"
+#include "temas.h"
 
 const int STATUSBAR_TIMEOUT = 1000;
 
@@ -36,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
          qDebug() << "Abierta";
 
      cargarConexiones();
+     cargarModelos();
 
 }
 
@@ -45,7 +47,6 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::nuevoCapitulo(){
-    // probando
 
     Capitulo = new NuevoCapitulo(this);
 
@@ -55,4 +56,12 @@ void MainWindow::nuevoCapitulo(){
 
 void MainWindow::cargarConexiones(){
     connect(ui->btNuevoCapitulo, SIGNAL(clicked()), this, SLOT(nuevoCapitulo()));
+}
+
+void MainWindow::cargarModelos(){
+
+    m_temas = new Temas(this);
+    // esto no habría que ponerlo en el constructor de la clase?
+    m_temas->setSort(1, Qt::AscendingOrder);
+    m_temas->select();
 }

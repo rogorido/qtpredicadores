@@ -103,6 +103,70 @@
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="tabTemas">
+    <attribute name="title">
+     <string>Temas</string>
+    </attribute>
+    <widget class="QTableView" name="twTemas">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>381</width>
+       <height>241</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="cboTemas">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>20</y>
+       <width>161</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btAnadirTema">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>50</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Añadir tema</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btQuitarTema">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>80</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Borrar tema</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btNuevoTema">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>220</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Nuevo tema</string>
+     </property>
+    </widget>
+   </widget>
    <widget class="QWidget" name="tabOtros">
     <attribute name="title">
      <string>Otros</string>

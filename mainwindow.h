@@ -6,6 +6,8 @@
 
 class NuevoCapitulo;
 
+class Temas;
+
 namespace Ui {
 class MainWindow;
 }
@@ -28,7 +30,10 @@ private:
 
     NuevoCapitulo *Capitulo;
 
+    Temas *m_temas;
+
     void cargarConexiones();
+    void cargarModelos();
 };
 
 #endif // MAINWINDOW_H
