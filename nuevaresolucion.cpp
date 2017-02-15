@@ -169,8 +169,6 @@ void NuevaResolucion::generarJson(){
         json.chop(2);
         json += "}";
 
-        qDebug() << "Este es json: " << json;
-
         query.prepare("INSERT INTO resoluciones_detalles(resolucion_id, detalle) VALUES(1, :json)");
         query.bindValue(":json", json);
         query.exec();

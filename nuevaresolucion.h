@@ -57,6 +57,8 @@ private:
      * al final uso QMultiMap pq permite que haya varios
      * values por key, pues el peligro es que quiera meter
      * pej varios lugares en el json
+     * PERO: aunque postgresql los reconoce, no funciona luego
+     * con las funciones para sacar los datos!
      */
     QMultiMap<QString, QVariant> jsondetalles;
     QList<QMultiMap<QString, QVariant>> jsondetalles_lista;
