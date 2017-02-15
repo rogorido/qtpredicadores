@@ -50,8 +50,8 @@ private:
      * y cuando ya esté listo se meten en jsondetalles_lista
      */
     //QVariantMap jsondetalles;
-    QMap<QString, QVariant> jsondetalles;
-    QList<QMap<QString, QVariant>> jsondetalles_lista;
+    QMultiMap<QString, QVariant> jsondetalles;
+    QList<QMultiMap<QString, QVariant>> jsondetalles_lista;
 
     void rellenarCombos();
 };

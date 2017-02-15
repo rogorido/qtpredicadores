@@ -95,7 +95,7 @@ void NuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
 
     jsondetalles.insert("Tipo", valor);
 
-    //qDebug() << "Entradas: " << int(jsondetalles.count());
+    qDebug() << "Entradas: " << int(jsondetalles.count());
 
 }
 
@@ -104,6 +104,6 @@ void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
 
     jsondetalles.insert("Lugar", valor);
 
-    //qDebug() << "Entradas: " << int(jsondetalles.count());
+    qDebug() << "Entradas: " << int(jsondetalles.count());
 
 }
