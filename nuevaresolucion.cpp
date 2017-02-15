@@ -8,10 +8,11 @@
 #include <QDebug>
 
 #include "temas.h"
+#include "lugares.h"
 
-NuevaResolucion::NuevaResolucion(Temas *temas, QWidget *parent) :
+NuevaResolucion::NuevaResolucion(Temas *temas, Lugares *lugares, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NuevaResolucion), m_temas(temas)
+    ui(new Ui::NuevaResolucion), m_temas(temas), m_lugares(lugares)
 {
     ui->setupUi(this);
 
@@ -30,6 +31,11 @@ void NuevaResolucion::rellenarCombos(){
     ui->cboTemas->setModelColumn(1);
 
     ui->cboDescripcion->addItem("Nombramiento");
+    ui->cboDescripcion->setCurrentIndex(-1);
+
+    ui->cboLugares->setModel(m_lugares);
+    ui->cboLugares->setCurrentIndex(-1);
+    ui->cboLugares->setModelColumn(1);
 
 }
 
@@ -89,11 +95,15 @@ void NuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
 
     jsondetalles.insert("Tipo", valor);
 
+    //qDebug() << "Entradas: " << int(jsondetalles.count());
+
 }
 
 void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
     QString valor = ui->cboLugares->currentText();
 
     jsondetalles.insert("Lugar", valor);
+
+    //qDebug() << "Entradas: " << int(jsondetalles.count());
 
 }

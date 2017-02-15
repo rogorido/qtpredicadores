@@ -6,7 +6,6 @@ Lugares::Lugares(QObject *parent) :
     QSqlTableModel(parent)
 {
     this->setTable("lugares");
-
 }
 
 void Lugares::AnadirLugar(const QString lugar){

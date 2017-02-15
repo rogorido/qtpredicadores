@@ -71,12 +71,12 @@ void MainWindow::cargarModelos(){
 
     m_lugares = new Lugares(this);
     m_lugares->setSort(1, Qt::AscendingOrder);
-    m_temas->select();
+    m_lugares->select();
 }
 
 void MainWindow::nuevaResolucion(){
 
-    Resolucion = new NuevaResolucion(m_temas, this);
+    Resolucion = new NuevaResolucion(m_temas, m_lugares, this);
 
     Resolucion->show();
 

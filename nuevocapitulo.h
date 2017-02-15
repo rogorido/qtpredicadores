@@ -56,8 +56,6 @@ private:
 
     int extraerLugar(QString lugar);
 
-
-
 };
 
 #endif // NUEVOCAPITULO_H

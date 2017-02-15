@@ -5,6 +5,7 @@
 #include <QMap>
 
 class Temas;
+class Lugares;
 
 namespace Ui {
 class NuevaResolucion;
@@ -15,7 +16,7 @@ class NuevaResolucion : public QDialog
     Q_OBJECT
 
 public:
-    explicit NuevaResolucion(Temas *temas, QWidget *parent = 0);
+    explicit NuevaResolucion(Temas *temas, Lugares *lugares, QWidget *parent = 0);
     ~NuevaResolucion();
 
 private slots:
@@ -33,6 +34,7 @@ private:
     /* no me acordaba q esto hay que hacerlo así... */
 
     Temas *m_temas;
+    Lugares *m_lugares;
 
     struct elementopareado{
       int id;
