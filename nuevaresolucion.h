@@ -7,6 +7,8 @@
 class Temas;
 class Lugares;
 
+class QTreeWidgetItem;
+
 namespace Ui {
 class NuevaResolucion;
 }
@@ -38,6 +40,8 @@ private:
 
     Temas *m_temas;
     Lugares *m_lugares;
+
+    QTreeWidgetItem *nivelactivo;
 
     struct elementopareado{
       int id;

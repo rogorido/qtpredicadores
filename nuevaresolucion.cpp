@@ -21,6 +21,12 @@ NuevaResolucion::NuevaResolucion(Temas *temas, Lugares *lugares, QWidget *parent
 
     connect(ui->btNuevoJson, SIGNAL(clicked()), this, SLOT(nuevoJson()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
+
+    QTreeWidgetItem *itemnivelcero = new QTreeWidgetItem(ui->treeDetalles);
+    itemnivelcero->setText(0, "Nivel 0");
+
+    nivelactivo = new QTreeWidgetItem(ui->treeDetalles);
+    nivelactivo = itemnivelcero;
 }
 
 NuevaResolucion::~NuevaResolucion()
@@ -108,6 +114,12 @@ void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
 
     jsondetalles.insert("Lugar", valor);
 
+
+    QTreeWidgetItem *itemniveluno = new QTreeWidgetItem();
+    itemniveluno->setText(0, "Lugar");
+    itemniveluno->setText(1, valor);
+    nivelactivo->addChild(itemniveluno);
+
     qDebug() << "Entradas: " << int(jsondetalles.count());
     qDebug() << "JSONs: " << int(jsondetalles_lista.count());
 
@@ -131,6 +143,11 @@ void NuevaResolucion::nuevoJson(){
         jsondetalles_lista.append(jsondetalles);
 
     jsondetalles.clear();
+
+    QTreeWidgetItem *itemnivelcero = new QTreeWidgetItem(ui->treeDetalles);
+    itemnivelcero->setText(0, "Nivel 1");
+
+    nivelactivo = itemnivelcero;
 }
 
 void NuevaResolucion::aceptarResolucion(){
