@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 
 class NuevoCapitulo;
+class NuevaResolucion;
 
 class Temas;
 
@@ -23,12 +24,14 @@ public:
 private slots:
 
     void nuevoCapitulo();
+    void nuevaResolucion();
 
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
 
     NuevoCapitulo *Capitulo;
+    NuevaResolucion *Resolucion;
 
     Temas *m_temas;
 

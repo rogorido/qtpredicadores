@@ -18,6 +18,7 @@
 */
 
 #include "nuevocapitulo.h"
+#include "nuevaresolucion.h"
 #include "temas.h"
 
 const int STATUSBAR_TIMEOUT = 1000;
@@ -56,6 +57,8 @@ void MainWindow::nuevoCapitulo(){
 
 void MainWindow::cargarConexiones(){
     connect(ui->btNuevoCapitulo, SIGNAL(clicked()), this, SLOT(nuevoCapitulo()));
+    connect(ui->btNuevaResolucion, SIGNAL(clicked(bool)), this, SLOT(nuevaResolucion()));
+
 }
 
 void MainWindow::cargarModelos(){
@@ -64,4 +67,12 @@ void MainWindow::cargarModelos(){
     // esto no habría que ponerlo en el constructor de la clase?
     m_temas->setSort(1, Qt::AscendingOrder);
     m_temas->select();
+}
+
+void MainWindow::nuevaResolucion(){
+
+    Resolucion = new NuevaResolucion(this);
+
+    Resolucion->show();
+
 }
