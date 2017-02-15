@@ -112,6 +112,7 @@ void NuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
     QString valor = ui->cboDescripcion->currentText();
 
     jsondetalles.insert("Tipo", valor);
+    anadirTreeChildItem("Tipo", valor);
 
     qDebug() << "Entradas: " << int(jsondetalles.count());
     qDebug() << "JSONs: " << int(jsondetalles_lista.count());
@@ -121,12 +122,7 @@ void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
     QString valor = ui->cboLugares->currentText();
 
     jsondetalles.insert("Lugar", valor);
-
-
-    QTreeWidgetItem *itemniveluno = new QTreeWidgetItem();
-    itemniveluno->setText(0, "Lugar");
-    itemniveluno->setText(1, valor);
-    nivelactivo->addChild(itemniveluno);
+    anadirTreeChildItem("Lugar", valor);
 
     qDebug() << "Entradas: " << int(jsondetalles.count());
     qDebug() << "JSONs: " << int(jsondetalles_lista.count());
@@ -202,6 +198,13 @@ void NuevaResolucion::generarJson(){
     }
 }
 
+void NuevaResolucion::anadirTreeChildItem(const QString key, const QString value){
 
+    QTreeWidgetItem *itemniveluno = new QTreeWidgetItem();
+    itemniveluno->setText(0, key);
+    itemniveluno->setText(1, value);
+    nivelactivo->addChild(itemniveluno);
+
+}
 
 

@@ -75,6 +75,7 @@ private:
 
     void rellenarCombos();
     void generarJson();
+    void anadirTreeChildItem(const QString key, const QString value); // los elms del json van como children del QTreeWidget
 };
 
 #endif // NUEVARESOLUCION_H
