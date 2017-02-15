@@ -2,6 +2,7 @@
 #define NUEVARESOLUCION_H
 
 #include <QDialog>
+#include <QMap>
 
 class Temas;
 
@@ -22,6 +23,8 @@ private slots:
     void on_btNuevoTema_clicked();
     void on_btAnadirTema_clicked();
     void on_btQuitarTema_clicked();
+    void on_btJsonAnadirDescripcion_clicked();
+    void on_btJsonAnadirLugar_clicked();
 
 private:
     Ui::NuevaResolucion *ui;
@@ -37,6 +40,16 @@ private:
     };
 
     QList<elementopareado> temas_lista;
+
+    /*
+     * QVariantMap es realmente un sinónimo de:
+     * QMap<QString, QVariant>
+     * La idea es meter los datos temporalmente en jsondetalles
+     * y cuando ya esté listo se meten en jsondetalles_lista
+     */
+    //QVariantMap jsondetalles;
+    QMap<QString, QVariant> jsondetalles;
+    QList<QMap<QString, QVariant>> jsondetalles_lista;
 
     void rellenarCombos();
 };

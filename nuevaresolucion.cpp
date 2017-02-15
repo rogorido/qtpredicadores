@@ -29,6 +29,8 @@ void NuevaResolucion::rellenarCombos(){
     ui->cboTemas->setCurrentIndex(-1);
     ui->cboTemas->setModelColumn(1);
 
+    ui->cboDescripcion->addItem("Nombramiento");
+
 }
 
 void NuevaResolucion::on_btNuevoTema_clicked(){
@@ -79,5 +81,19 @@ void NuevaResolucion::on_btQuitarTema_clicked(){
       }
      }
 
-    qDebug("Número total: " + temas_lista.size());
+}
+
+void NuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
+
+    QString valor = ui->cboDescripcion->currentText();
+
+    jsondetalles.insert("Tipo", valor);
+
+}
+
+void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
+    QString valor = ui->cboLugares->currentText();
+
+    jsondetalles.insert("Lugar", valor);
+
 }
