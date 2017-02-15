@@ -6,6 +6,8 @@
 
 class Temas;
 class Lugares;
+class Casas;
+class Personas;
 
 class QTreeWidgetItem;
 
@@ -18,7 +20,11 @@ class NuevaResolucion : public QDialog
     Q_OBJECT
 
 public:
-    explicit NuevaResolucion(Temas *temas, Lugares *lugares, QWidget *parent = 0);
+    explicit NuevaResolucion(Temas *temas,
+                             Lugares *lugares,
+                             Personas *personas,
+                             Casas *casas,
+                             QWidget *parent = 0);
     ~NuevaResolucion();
 
 private slots:
@@ -28,6 +34,8 @@ private slots:
     void on_btQuitarTema_clicked();
     void on_btJsonAnadirDescripcion_clicked();
     void on_btJsonAnadirLugar_clicked();
+    void on_btJsonAnadirPersona_clicked();
+    void on_btJsonAnadirCasa_clicked();
 
     void nuevoJson();
     void aceptarResolucion(); // btOK
@@ -40,6 +48,8 @@ private:
 
     Temas *m_temas;
     Lugares *m_lugares;
+    Personas *m_personas;
+    Casas *m_casas;
 
     /*
      * esto no sé si es una chapuza, pero por ahora funciona.

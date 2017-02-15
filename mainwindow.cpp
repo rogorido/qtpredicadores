@@ -1,26 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-//#include <QTableView>
 #include <QDebug>
 #include <QSqlTableModel>
-/*
-#include <QSqlRelationalTableModel>
-#include <QSortFilterProxyModel>
-#include <QSqlRecord>
-#include <QSqlQuery>
-#include <QtGui>
-#include <QMessageBox>
-#include <QInputDialog>
-
-#include <QLabel>
-
-*/
 
 #include "nuevocapitulo.h"
 #include "nuevaresolucion.h"
 #include "temas.h"
 #include "lugares.h"
+#include "personas.h"
+#include "casas.h"
 
 const int STATUSBAR_TIMEOUT = 1000;
 
@@ -72,11 +61,19 @@ void MainWindow::cargarModelos(){
     m_lugares = new Lugares(this);
     m_lugares->setSort(1, Qt::AscendingOrder);
     m_lugares->select();
+
+    m_personas = new Personas(this);
+    m_personas->setSort(1, Qt::AscendingOrder);
+    m_personas->select();
+
+    m_casas = new Casas(this);
+    m_casas->setSort(1, Qt::AscendingOrder);
+    m_casas->select();
 }
 
 void MainWindow::nuevaResolucion(){
 
-    Resolucion = new NuevaResolucion(m_temas, m_lugares, this);
+    Resolucion = new NuevaResolucion(m_temas, m_lugares, m_personas, m_casas, this);
 
     Resolucion->show();
 

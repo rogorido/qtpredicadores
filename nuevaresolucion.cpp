@@ -10,10 +10,16 @@
 
 #include "temas.h"
 #include "lugares.h"
+#include "personas.h"
+#include "casas.h"
 
-NuevaResolucion::NuevaResolucion(Temas *temas, Lugares *lugares, QWidget *parent) :
+NuevaResolucion::NuevaResolucion(Temas *temas,
+                                 Lugares *lugares,
+                                 Personas *personas,
+                                 Casas *casas,
+                                 QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NuevaResolucion), m_temas(temas), m_lugares(lugares)
+    ui(new Ui::NuevaResolucion), m_temas(temas), m_lugares(lugares), m_personas(personas), m_casas(casas)
 {
     ui->setupUi(this);
 
@@ -54,6 +60,14 @@ void NuevaResolucion::rellenarCombos(){
     ui->cboLugares->setModel(m_lugares);
     ui->cboLugares->setCurrentIndex(-1);
     ui->cboLugares->setModelColumn(1);
+
+    ui->cboPersonas->setModel(m_personas);
+    ui->cboPersonas->setCurrentIndex(-1);
+    ui->cboPersonas->setModelColumn(1);
+
+    ui->cboCasas->setModel(m_casas);
+    ui->cboCasas->setCurrentIndex(-1);
+    ui->cboCasas->setModelColumn(1);
 
 }
 
@@ -111,21 +125,31 @@ void NuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
 
     QString valor = ui->cboDescripcion->currentText();
 
-    jsondetalles.insert("Tipo", valor);
-    anadirTreeChildItem("Tipo", valor);
+    if (!valor.isEmpty()){
+        jsondetalles.insert("Tipo", valor);
+        anadirTreeChildItem("Tipo", valor);
+    }
 
-    qDebug() << "Entradas: " << int(jsondetalles.count());
-    qDebug() << "JSONs: " << int(jsondetalles_lista.count());
 }
 
 void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
     QString valor = ui->cboLugares->currentText();
 
-    jsondetalles.insert("Lugar", valor);
-    anadirTreeChildItem("Lugar", valor);
+    if (!valor.isEmpty()){
+        jsondetalles.insert("Lugar", valor);
+        anadirTreeChildItem("Lugar", valor);
+    }
 
-    qDebug() << "Entradas: " << int(jsondetalles.count());
-    qDebug() << "JSONs: " << int(jsondetalles_lista.count());
+}
+
+void NuevaResolucion::on_btJsonAnadirPersona_clicked(){
+
+    QString valor = ui->cboPersonas->currentText();
+
+    if (!valor.isEmpty()){
+        jsondetalles.insert("Persona", valor);
+        anadirTreeChildItem("Persona", valor);
+    }
 
 }
 

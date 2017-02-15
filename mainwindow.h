@@ -9,6 +9,8 @@ class NuevaResolucion;
 
 class Temas;
 class Lugares;
+class Personas;
+class Casas;
 
 namespace Ui {
 class MainWindow;
@@ -36,6 +38,8 @@ private:
 
     Temas *m_temas;
     Lugares *m_lugares;
+    Personas *m_personas;
+    Casas *m_casas;
 
     void cargarConexiones();
     void cargarModelos();
