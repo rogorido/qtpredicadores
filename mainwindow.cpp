@@ -20,6 +20,7 @@
 #include "nuevocapitulo.h"
 #include "nuevaresolucion.h"
 #include "temas.h"
+#include "lugares.h"
 
 const int STATUSBAR_TIMEOUT = 1000;
 
@@ -49,7 +50,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::nuevoCapitulo(){
 
-    Capitulo = new NuevoCapitulo(this);
+    Capitulo = new NuevoCapitulo(m_lugares, this);
 
     Capitulo->show();
     //Capitulo->activateWindow();
@@ -66,6 +67,10 @@ void MainWindow::cargarModelos(){
     m_temas = new Temas(this);
     // esto no habría que ponerlo en el constructor de la clase?
     m_temas->setSort(1, Qt::AscendingOrder);
+    m_temas->select();
+
+    m_lugares = new Lugares(this);
+    m_lugares->setSort(1, Qt::AscendingOrder);
     m_temas->select();
 }
 

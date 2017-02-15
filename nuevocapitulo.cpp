@@ -9,9 +9,11 @@
 #include <QMessageBox>
 #include <QInputDialog>
 
-NuevoCapitulo::NuevoCapitulo(QWidget *parent) :
+#include "lugares.h"
+
+NuevoCapitulo::NuevoCapitulo(Lugares *lugares, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NuevoCapitulo)
+    ui(new Ui::NuevoCapitulo), m_lugares(lugares)
 {
     ui->setupUi(this);
 
@@ -125,7 +127,10 @@ void NuevoCapitulo::aceptarCapitulo(){
 
 void NuevoCapitulo::cargarCompleters(){
 
-
+    /*
+     * TODO: esto entiendo que se puede cambiar al nuevo
+     *  clase Lugares que tengo...
+     */
     lugar_query->setQuery("SELECT DISTINCT lugar FROM lugares WHERE lugar IS NOT NULL ORDER BY lugar");
 
     lugar_completer->setModel(lugar_query);
@@ -172,18 +177,8 @@ void NuevoCapitulo::anadirLugar(){
 
     lugar = QInputDialog::getText(this, "Introduzca un nuevo lugar", "Lugar (nombre,país) ");
 
-    if (!lugar.isEmpty())
-    {
-        QStringList campos = lugar.split(',');
-
-        QSqlQuery query;
-
-        query.prepare("INSERT INTO lugares(lugar, pais) "
-                            "VALUES(:lugar, :pais)");
-        query.bindValue(":lugar", campos[0]);
-        query.bindValue(":pais", campos[1]);
-        query.exec();
-
+    if (!lugar.isEmpty()){
+        m_lugares->AnadirLugar(lugar);
         cargarCompleters();
     }
 

@@ -10,10 +10,13 @@ Lugares::Lugares(QObject *parent) :
 }
 
 void Lugares::AnadirLugar(const QString lugar){
-    QSqlQuery query;
 
-    query.prepare("INSERT INTO lugares(lugar) VALUES(:lugar)");
-    query.bindValue(":lugar", lugar);
+    QSqlQuery query;
+    QStringList campos = lugar.split(',');
+
+    query.prepare("INSERT INTO lugares(lugar, pais) VALUES(:lugar, :pais)");
+    query.bindValue(":lugar", campos[0]);
+    query.bindValue(":pais", campos[1]);
     query.exec();
 
     this->select();
