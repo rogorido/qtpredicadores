@@ -20,6 +20,7 @@ public:
 private slots:
 
     void on_btNuevoTema_clicked();
+    void on_btAnadirTema_clicked();
 
 private:
     Ui::NuevaResolucion *ui;

@@ -107,16 +107,6 @@
     <attribute name="title">
      <string>Temas</string>
     </attribute>
-    <widget class="QTableView" name="twTemas">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>381</width>
-       <height>241</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QComboBox" name="cboTemas">
      <property name="geometry">
       <rect>
@@ -165,6 +155,20 @@
      <property name="text">
       <string>Nuevo tema</string>
      </property>
+    </widget>
+    <widget class="QTableWidget" name="twTemas">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>256</width>
+       <height>192</height>
+      </rect>
+     </property>
+     <property name="columnCount">
+      <number>1</number>
+     </property>
+     <column/>
     </widget>
    </widget>
    <widget class="QWidget" name="tabOtros">

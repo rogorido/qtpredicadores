@@ -2,6 +2,10 @@
 #include "ui_nuevaresolucion.h"
 
 #include <QInputDialog>
+#include <QSqlRecord>
+#include <QTableWidget>
+
+#include <QDebug>
 
 #include "temas.h"
 
@@ -36,4 +40,23 @@ void NuevaResolucion::on_btNuevoTema_clicked(){
     if (!tema.isEmpty())
         m_temas->AnadirTema(tema);
 
+}
+
+void NuevaResolucion::on_btAnadirTema_clicked(){
+    /* sacamos el record del combobox */
+
+    QSqlRecord record = m_temas->record(ui->cboTemas->currentIndex());
+    int id = record.value(0).toInt();
+    QString tema = ui->cboTemas->currentText();
+
+    /* creamos un nuevo struct y lo añadimos a la lista */
+
+    /* añadimos un elem a la tabla */
+    QTableWidgetItem *item = new QTableWidgetItem(tema);
+    //this will give the present number of rows available.
+    int insertRow = ui->twTemas->rowCount();
+    //insert the row at the bottom of the table widget - using.
+    ui->twTemas->insertRow(insertRow);
+
+    ui->twTemas->setItem(insertRow, 0, item);
 }
