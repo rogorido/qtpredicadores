@@ -50,6 +50,10 @@ void NuevaResolucion::on_btAnadirTema_clicked(){
     QString tema = ui->cboTemas->currentText();
 
     /* creamos un nuevo struct y lo añadimos a la lista */
+    elementopareado nuevo;
+    nuevo.id = id;
+    nuevo.elemento = tema;
+    temas_lista.append(nuevo);
 
     /* añadimos un elem a la tabla */
     QTableWidgetItem *item = new QTableWidgetItem(tema);
@@ -59,4 +63,21 @@ void NuevaResolucion::on_btAnadirTema_clicked(){
     ui->twTemas->insertRow(insertRow);
 
     ui->twTemas->setItem(insertRow, 0, item);
+}
+
+void NuevaResolucion::on_btQuitarTema_clicked(){
+
+    QString valor = ui->twTemas->currentIndex().data().toString();
+
+    int row = ui->twTemas->currentRow();
+    ui->twTemas->removeRow(row);
+
+    for (int i = 0; i < temas_lista.size(); ++i) {
+      if(temas_lista.at(i).elemento == valor){
+        temas_lista.removeAt(i);
+        break;
+      }
+     }
+
+    qDebug("Número total: " + temas_lista.size());
 }
