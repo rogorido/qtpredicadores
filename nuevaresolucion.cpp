@@ -3,6 +3,7 @@
 
 #include <QInputDialog>
 #include <QSqlRecord>
+#include <QSqlQuery>
 #include <QTableWidget>
 
 #include <QDebug>
@@ -140,6 +141,7 @@ void NuevaResolucion::aceptarResolucion(){
 
 void NuevaResolucion::generarJson(){
     QString json;
+    QSqlQuery query;
 
     /*
      * ponemos esto pq si hay un jsondetalles que no se ha metido
@@ -163,9 +165,15 @@ void NuevaResolucion::generarJson(){
             i.next();
             json += "\"" + i.key() + "\" : \"" + i.value().toString() + "\", ";
         }
+
+        json.chop(2);
         json += "}";
 
         qDebug() << "Este es json: " << json;
+
+        query.prepare("INSERT INTO resoluciones_detalles(resolucion_id, detalle) VALUES(1, :json)");
+        query.bindValue(":json", json);
+        query.exec();
     }
 }
 
