@@ -227,6 +227,20 @@ void NuevaResolucion::on_btJsonAnadirCasa_clicked(){
     }
 }
 
+void NuevaResolucion::on_btJsonAnadirLibre_clicked(){
+    QString key = ui->txtKey->text();
+    QString value = ui->txtValue->text();
+
+    if (!key.isEmpty() && !value.isEmpty()){
+        jsondetalles.insert(key, value);
+        anadirTreeChildItem(key, value);
+
+        ui->txtKey->setText("");
+        ui->txtValue->setText("");
+    }
+
+}
+
 void NuevaResolucion::nuevoJson(){
     /*
      * esto se llama cuando queremos meter otro bloque

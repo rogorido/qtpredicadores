@@ -38,6 +38,7 @@ private slots:
     void on_btJsonAnadirLugar_clicked();
     void on_btJsonAnadirPersona_clicked();
     void on_btJsonAnadirCasa_clicked();
+    void on_btJsonAnadirLibre_clicked();
 
     void nuevoJson();
     void aceptarResolucion(); // btOK
