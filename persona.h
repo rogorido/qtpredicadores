@@ -20,17 +20,23 @@ public:
     void setViaflink(QString vl);
     void setNacimiento(QString nac);
     void setMuerte(QString m);
+    void setOtrosnombres(QString o);
+    void setOtrosdatos(QString o);
+    void setNotas(QString n);
 
     //getters
-    QString getNombre() const;
-    QString getApellidos() const;
-    bool getBuscado() const;
-    bool getWiki() const;
-    bool getViaf() const;
-    QString getWikilink() const;
-    QString getViaflink() const;
-    QString getNacimiento() const;
-    QString getMuerte() const;
+    QString getNombre() const {return nombre;}
+    QString getApellidos() const {return apellidos;}
+    bool getBuscado() const {return buscado;}
+    bool getWiki() const {return wiki;}
+    bool getViaf() const {return viaf;}
+    QString getWikilink() const {return wikilink;}
+    QString getViaflink() const {return viaflink;}
+    QString getNacimiento() const {return nacimiento;}
+    QString getMuerte() const {return muerte;}
+    QString getOtrosNombres() const {return otrosnombres;}
+    QString getOtrosDatos() const {return otrosdatos;}
+    QString getNotas() const {return notas;}
 
 private:
 
@@ -43,6 +49,10 @@ private:
     QString viaflink;
     QString nacimiento;
     QString muerte;
+    // estos dos sería interesantes hacerlos QJson...
+    QString otrosnombres;
+    QString otrosdatos;
+    QString notas;
 
 };
 

@@ -15,6 +15,9 @@ public:
     explicit NuevaPersona(QWidget *parent = 0);
     ~NuevaPersona();
 
+private slots:
+    void aceptarPersona();
+
 private:
     Ui::NuevaPersona *ui;
 };
