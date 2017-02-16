@@ -9,9 +9,9 @@
 #include <QMessageBox>
 #include <QInputDialog>
 
-#include "lugares.h"
+#include "lugaresmodel.h"
 
-NuevoCapitulo::NuevoCapitulo(Lugares *lugares, QWidget *parent) :
+NuevoCapitulo::NuevoCapitulo(LugaresModel *lugares, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::NuevoCapitulo), m_lugares(lugares)
 {

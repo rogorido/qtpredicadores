@@ -9,7 +9,7 @@ class NuevaResolucion;
 class NuevaPersona;
 
 class TemasModel;
-class Lugares;
+class LugaresModel;
 class PersonasModel;
 class CasasModel;
 
@@ -40,7 +40,7 @@ private:
     NuevaPersona *Persona;
 
     TemasModel *m_temas;
-    Lugares *m_lugares;
+    LugaresModel *m_lugares;
     PersonasModel *m_personas;
     CasasModel *m_casas;
 

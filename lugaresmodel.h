@@ -1,14 +1,14 @@
-#ifndef LUGARES_H
-#define LUGARES_H
+#ifndef LUGARESMODEL_H
+#define LUGARESMODEL_H
 
 #include <QSqlTableModel>
 
-class Lugares : public QSqlTableModel
+class LugaresModel : public QSqlTableModel
 {
     Q_OBJECT
 
 public:
-    explicit Lugares(QObject *parent = 0);
+    explicit LugaresModel(QObject *parent = 0);
 
     void AnadirLugar(const QString lugar);
 
@@ -17,4 +17,4 @@ signals:
 public slots:
 };
 
-#endif // LUGARES_H
+#endif // LUGARESMODEL_H

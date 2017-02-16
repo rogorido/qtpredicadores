@@ -5,7 +5,7 @@
 #include <QMap>
 
 class TemasModel;
-class Lugares;
+class LugaresModel;
 class CasasModel;
 class PersonasModel;
 
@@ -23,7 +23,7 @@ class NuevaResolucion : public QDialog
 
 public:
     explicit NuevaResolucion(TemasModel *temas,
-                             Lugares *lugares,
+                             LugaresModel *lugares,
                              PersonasModel *personas,
                              CasasModel *casas,
                              QWidget *parent = 0);
@@ -51,7 +51,7 @@ private:
     /* no me acordaba q esto hay que hacerlo así... */
 
     TemasModel *m_temas;
-    Lugares *m_lugares;
+    LugaresModel *m_lugares;
     PersonasModel *m_personas;
     CasasModel *m_casas;
 

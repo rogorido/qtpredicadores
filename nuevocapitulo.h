@@ -6,7 +6,7 @@
 class QCompleter;
 class QSqlQueryModel;
 
-class Lugares;
+class LugaresModel;
 
 namespace Ui {
 class NuevoCapitulo;
@@ -17,7 +17,7 @@ class NuevoCapitulo : public QDialog
     Q_OBJECT
 
 public:
-    explicit NuevoCapitulo(Lugares *lugares, QWidget *parent = 0);
+    explicit NuevoCapitulo(LugaresModel *lugares, QWidget *parent = 0);
     ~NuevoCapitulo();
 
 private slots:
@@ -42,7 +42,7 @@ private:
     /* pointers para los modelos de MainWindow */
     /* no me acordaba q esto hay que hacerlo así... */
 
-    Lugares *m_lugares;
+    LugaresModel *m_lugares;
 
     /*
      * esto es una pequeña cutrada: lo uso para que solo si se ha

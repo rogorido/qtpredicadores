@@ -8,7 +8,7 @@
 #include "nuevaresolucion.h"
 #include "nuevapersona.h"
 #include "temasmodel.h"
-#include "lugares.h"
+#include "lugaresmodel.h"
 #include "personasmodel.h"
 #include "casasmodel.h"
 
@@ -60,7 +60,7 @@ void MainWindow::cargarModelos(){
     m_temas->setSort(1, Qt::AscendingOrder);
     m_temas->select();
 
-    m_lugares = new Lugares(this);
+    m_lugares = new LugaresModel(this);
     m_lugares->setSort(1, Qt::AscendingOrder);
     m_lugares->select();
 

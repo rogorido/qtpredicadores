@@ -1,14 +1,14 @@
-#include "lugares.h"
+#include "lugaresmodel.h"
 
 #include <QSqlQuery>
 
-Lugares::Lugares(QObject *parent) :
+LugaresModel::LugaresModel(QObject *parent) :
     QSqlTableModel(parent)
 {
     this->setTable("lugares");
 }
 
-void Lugares::AnadirLugar(const QString lugar){
+void LugaresModel::AnadirLugar(const QString lugar){
 
     /*
      * TODO: habría que comprobar que siemrpe hay país...
