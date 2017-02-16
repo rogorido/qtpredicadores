@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>NuevaCasa</class>
  <widget class="QDialog" name="NuevaCasa">
@@ -5,13 +6,134 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>500</width>
+    <height>340</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <widget class="QLineEdit" name="txtNombre">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>20</y>
+     <width>161</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>58</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nombre</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cboLugares">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>20</y>
+     <width>79</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>30</y>
+     <width>58</width>
+     <height>14</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Lugar</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="ckBuscado">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>60</y>
+     <width>84</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Buscado</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="ckWiki">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>60</y>
+     <width>84</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Wikipedia</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="ckStudium">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>60</y>
+     <width>84</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Studium generale</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="txtNotas">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>90</y>
+     <width>451</width>
+     <height>211</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btCancelar">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>310</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancelar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btOK">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>310</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Aceptar</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
