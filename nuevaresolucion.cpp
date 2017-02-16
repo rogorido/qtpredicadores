@@ -4,6 +4,8 @@
 #include <QInputDialog>
 #include <QSqlRecord>
 #include <QSqlQuery>
+//#include <qsqlquerymodel.h>
+#include <QCompleter>
 #include <QTableWidget>
 
 #include <QDebug>
@@ -24,9 +26,12 @@ NuevaResolucion::NuevaResolucion(Temas *temas,
     ui->setupUi(this);
 
     rellenarCombos();
+    cargarModelos();
 
     connect(ui->btNuevoJson, SIGNAL(clicked()), this, SLOT(nuevoJson()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
+    // señal de que se ha metido un texto en el campo "key" libre
+    connect(ui->txtKey, SIGNAL(editingFinished()), this, SLOT(actualizarCompleterValues()));
 
     QTreeWidgetItem *itemnivelcero = new QTreeWidgetItem(ui->treeDetalles);
     /*
@@ -69,6 +74,38 @@ void NuevaResolucion::rellenarCombos(){
     ui->cboCasas->setCurrentIndex(-1);
     ui->cboCasas->setModelColumn(1);
 
+}
+
+void NuevaResolucion::cargarModelos(){
+
+    /*
+     * TODO: tal y como está esto estos completers no se van a actualizar
+     * hasta que no se meta algo en la base de datos (bueno, ahora creo que ni con eso)
+     * pero no pej cuando vaya metiendo cosas.
+     * La posible solución sería pasar los datos del QSqlQueryModel
+     * a un QStringList(model?) y añadir luego cosas nuevas a ese modelo
+     */
+
+    m_keys = new QSqlQueryModel(this);
+    m_keys->setQuery("SELECT DISTINCT json_object_keys(detalle) FROM resoluciones_detalles ORDER BY json_object_keys(detalle);");
+
+    keys_completer = new QCompleter(this);
+    keys_completer->setModel(m_keys);
+    keys_completer->setCompletionColumn(0);
+    keys_completer->setCaseSensitivity(Qt::CaseInsensitive);
+
+    ui->txtKey->setCompleter(keys_completer);
+
+    m_values = new QSqlQueryModel(this);
+    // ponemos una cosa general que luego habrá que precisar
+    m_values->setQuery("SELECT DISTINCT value from resoluciones_detalles, json_each_text(detalle) ORDER BY value;");
+
+    values_completer = new QCompleter(this);
+    values_completer->setModel(m_values);
+    values_completer->setCompletionColumn(0);
+    values_completer->setCaseSensitivity(Qt::CaseInsensitive);
+
+    ui->txtValue->setCompleter(values_completer);
 }
 
 void NuevaResolucion::on_btNuevoTema_clicked(){
@@ -265,6 +302,16 @@ void NuevaResolucion::anadirTreeChildItem(const QString key, const QString value
     itemniveluno->setText(0, key);
     itemniveluno->setText(1, value);
     nivelactivo->addChild(itemniveluno);
+
+}
+
+void NuevaResolucion::actualizarCompleterValues(){
+    QString key;
+
+    key = ui->txtKey->text();
+    m_values->setQuery(QString("SELECT DISTINCT value from resoluciones_detalles, json_each_text(detalle) "
+                               "WHERE key='%1' ORDER BY value;").arg(key));
+
 
 }
 

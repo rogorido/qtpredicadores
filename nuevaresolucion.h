@@ -10,6 +10,8 @@ class Casas;
 class Personas;
 
 class QTreeWidgetItem;
+class QSqlQueryModel;
+class QCompleter;
 
 namespace Ui {
 class NuevaResolucion;
@@ -39,6 +41,7 @@ private slots:
 
     void nuevoJson();
     void aceptarResolucion(); // btOK
+    void actualizarCompleterValues(); // cuando cambia el campo key de json libre
 
 private:
     Ui::NuevaResolucion *ui;
@@ -50,6 +53,13 @@ private:
     Lugares *m_lugares;
     Personas *m_personas;
     Casas *m_casas;
+
+    /* estos son modelos solo de este form */
+    QSqlQueryModel *m_keys;
+    QSqlQueryModel *m_values;
+
+    QCompleter *keys_completer;
+    QCompleter *values_completer;
 
     /*
      * esto no sé si es una chapuza, pero por ahora funciona.
@@ -84,6 +94,7 @@ private:
     QList<QMultiMap<QString, QVariant>> jsondetalles_lista;
 
     void rellenarCombos();
+    void cargarModelos();
     void generarJson();
     void anadirTreeChildItem(const QString key, const QString value); // los elms del json van como children del QTreeWidget
 };
