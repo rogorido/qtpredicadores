@@ -126,6 +126,7 @@ void NuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
     QString valor = ui->cboDescripcion->currentText();
 
     if (!valor.isEmpty()){
+
         jsondetalles.insert("Tipo", valor);
         anadirTreeChildItem("Tipo", valor);
     }
@@ -136,7 +137,16 @@ void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
     QString valor = ui->cboLugares->currentText();
 
     if (!valor.isEmpty()){
-        jsondetalles.insert("Lugar", valor);
+        /*
+         * extraemos el id del combo
+         * dado que esto se repite se podría hacer un método
+         * al que pasamos el modelo y el combo y devuelve un int
+         * pero sinceramente ahora no me acuerdo cómo se hace...
+         */
+        QSqlRecord record = m_lugares->record(ui->cboLugares->currentIndex());
+        int id = record.value(0).toInt();
+
+        jsondetalles.insert("Lugar", id);
         anadirTreeChildItem("Lugar", valor);
     }
 
@@ -147,10 +157,37 @@ void NuevaResolucion::on_btJsonAnadirPersona_clicked(){
     QString valor = ui->cboPersonas->currentText();
 
     if (!valor.isEmpty()){
-        jsondetalles.insert("Persona", valor);
+        /*
+         * extraemos el id del combo
+         * dado que esto se repite se podría hacer un método
+         * al que pasamos el modelo y el combo y devuelve un int
+         * pero sinceramente ahora no me acuerdo cómo se hace...
+         */
+        QSqlRecord record = m_personas->record(ui->cboPersonas->currentIndex());
+        int id = record.value(0).toInt();
+
+        jsondetalles.insert("Persona", id);
         anadirTreeChildItem("Persona", valor);
     }
 
+}
+
+void NuevaResolucion::on_btJsonAnadirCasa_clicked(){
+    QString valor = ui->cboCasas->currentText();
+
+    if (!valor.isEmpty()){
+        /*
+         * extraemos el id del combo
+         * dado que esto se repite se podría hacer un método
+         * al que pasamos el modelo y el combo y devuelve un int
+         * pero sinceramente ahora no me acuerdo cómo se hace...
+         */
+        QSqlRecord record = m_casas->record(ui->cboCasas->currentIndex());
+        int id = record.value(0).toInt();
+
+        jsondetalles.insert("Casa", id);
+        anadirTreeChildItem("Casa", valor);
+    }
 }
 
 void NuevaResolucion::nuevoJson(){
@@ -213,7 +250,7 @@ void NuevaResolucion::generarJson(){
             json += "\"" + i.key() + "\" : \"" + i.value().toString() + "\", ";
         }
 
-        json.chop(2);
+        json.chop(2); // quitamos la última coma
         json += "}";
 
         query.prepare("INSERT INTO resoluciones_detalles(resolucion_id, detalle) VALUES(1, :json)");
