@@ -2,6 +2,7 @@
 #include "ui_nuevacasa.h"
 
 #include <QSqlRecord>
+#include <QInputDialog>
 
 #include "lugaresmodel.h"
 #include "casa.h"
@@ -15,6 +16,7 @@ NuevaCasa::NuevaCasa(CasasModel *casas, LugaresModel *lugares, QWidget *parent) 
 
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarCasa()));
+    connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(anadirLugar()));
 
     ui->cboLugares->setModel(m_lugares);
     ui->cboLugares->setCurrentIndex(-1);
@@ -51,4 +53,16 @@ void NuevaCasa::aceptarCasa(){
     casa->setStudiumgenerale(studiumgenerale);
 
     m_casas->AnadirCasa(casa);
+}
+
+void NuevaCasa::anadirLugar(){
+
+    QString lugar;
+
+    lugar = QInputDialog::getText(this, "Introduzca un nuevo lugar", "Lugar (nombre,país) ");
+
+    if (!lugar.isEmpty()){
+        m_lugares->AnadirLugar(lugar);
+    }
+
 }

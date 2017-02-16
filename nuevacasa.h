@@ -21,6 +21,7 @@ public:
 private slots:
 
     void aceptarCasa();
+    void anadirLugar();
 
 private:
     Ui::NuevaCasa *ui;
