@@ -10,7 +10,7 @@
 #include "temasmodel.h"
 #include "lugares.h"
 #include "personas.h"
-#include "casas.h"
+#include "casasmodel.h"
 
 const int STATUSBAR_TIMEOUT = 1000;
 
@@ -68,7 +68,7 @@ void MainWindow::cargarModelos(){
     m_personas->setSort(1, Qt::AscendingOrder);
     m_personas->select();
 
-    m_casas = new Casas(this);
+    m_casas = new CasasModel(this);
     m_casas->setSort(1, Qt::AscendingOrder);
     m_casas->select();
 }

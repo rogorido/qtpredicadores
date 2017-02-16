@@ -1,14 +1,14 @@
-#ifndef CASAS_H
-#define CASAS_H
+#ifndef CASASMODEL_H
+#define CASASMODEL_H
 
 #include <QSqlTableModel>
 
-class Casas : public QSqlTableModel
+class CasasModel : public QSqlTableModel
 {
     Q_OBJECT
 
 public:
-    explicit Casas(QObject *parent = 0);
+    explicit CasasModel(QObject *parent = 0);
 
     void AnadirCasa(const QString casa);
 
@@ -17,4 +17,4 @@ signals:
 public slots:
 };
 
-#endif // CASAS_H
+#endif // CASASMODEL_H
