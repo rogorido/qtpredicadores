@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QMap>
 
-class Temas;
+class TemasModel;
 class Lugares;
 class Casas;
 class Personas;
@@ -22,7 +22,7 @@ class NuevaResolucion : public QDialog
     Q_OBJECT
 
 public:
-    explicit NuevaResolucion(Temas *temas,
+    explicit NuevaResolucion(TemasModel *temas,
                              Lugares *lugares,
                              Personas *personas,
                              Casas *casas,
@@ -50,7 +50,7 @@ private:
     /* pointers para los modelos de MainWindow */
     /* no me acordaba q esto hay que hacerlo así... */
 
-    Temas *m_temas;
+    TemasModel *m_temas;
     Lugares *m_lugares;
     Personas *m_personas;
     Casas *m_casas;

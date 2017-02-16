@@ -1,14 +1,14 @@
-#include "temas.h"
+#include "temasmodel.h"
 
 #include <QSqlQuery>
 
-Temas::Temas(QObject *parent) :
+TemasModel::TemasModel(QObject *parent) :
     QSqlTableModel(parent)
 {
     this->setTable("temas");
 }
 
-void Temas::AnadirTema(const QString tema){
+void TemasModel::AnadirTema(const QString tema){
     QSqlQuery query;
 
     query.prepare("INSERT INTO temas(tema) VALUES(:tema)");

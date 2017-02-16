@@ -10,12 +10,12 @@
 
 #include <QDebug>
 
-#include "temas.h"
+#include "temasmodel.h"
 #include "lugares.h"
 #include "personas.h"
 #include "casas.h"
 
-NuevaResolucion::NuevaResolucion(Temas *temas,
+NuevaResolucion::NuevaResolucion(TemasModel *temas,
                                  Lugares *lugares,
                                  Personas *personas,
                                  Casas *casas,

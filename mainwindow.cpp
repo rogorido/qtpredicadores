@@ -7,7 +7,7 @@
 #include "nuevocapitulo.h"
 #include "nuevaresolucion.h"
 #include "nuevapersona.h"
-#include "temas.h"
+#include "temasmodel.h"
 #include "lugares.h"
 #include "personas.h"
 #include "casas.h"
@@ -55,7 +55,7 @@ void MainWindow::cargarConexiones(){
 
 void MainWindow::cargarModelos(){
 
-    m_temas = new Temas(this);
+    m_temas = new TemasModel(this);
     // esto no habría que ponerlo en el constructor de la clase?
     m_temas->setSort(1, Qt::AscendingOrder);
     m_temas->select();
