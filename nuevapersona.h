@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+class Personas;
+
 namespace Ui {
 class NuevaPersona;
 }
@@ -12,7 +14,7 @@ class NuevaPersona : public QDialog
     Q_OBJECT
 
 public:
-    explicit NuevaPersona(QWidget *parent = 0);
+    explicit NuevaPersona(Personas *m_personas, QWidget *parent = 0);
     ~NuevaPersona();
 
 private slots:
@@ -20,6 +22,8 @@ private slots:
 
 private:
     Ui::NuevaPersona *ui;
+
+    Personas *m_personas;
 };
 
 #endif // NUEVAPERSONA_H

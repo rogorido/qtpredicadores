@@ -40,6 +40,19 @@
      <string>Nueva resolución</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btPersona">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>100</y>
+      <width>80</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Nueva pesona</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

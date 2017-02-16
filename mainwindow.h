@@ -6,6 +6,7 @@
 
 class NuevoCapitulo;
 class NuevaResolucion;
+class NuevaPersona;
 
 class Temas;
 class Lugares;
@@ -28,6 +29,7 @@ private slots:
 
     void nuevoCapitulo();
     void nuevaResolucion();
+    void nuevaPersona();
 
 private:
     Ui::MainWindow *ui;
@@ -35,6 +37,7 @@ private:
 
     NuevoCapitulo *Capitulo;
     NuevaResolucion *Resolucion;
+    NuevaPersona *Persona;
 
     Temas *m_temas;
     Lugares *m_lugares;

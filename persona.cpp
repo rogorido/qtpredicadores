@@ -6,12 +6,12 @@ Persona::Persona()
 }
 
 void Persona::setNombre(QString n){
-    if (n.isEmpty())
+    if (!n.isEmpty())
         nombre = n;
 }
 
 void Persona::setApellidos(QString a){
-    if (a.isEmpty())
+    if (!a.isEmpty())
         apellidos = a;
 }
 

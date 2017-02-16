@@ -6,6 +6,7 @@
 
 #include "nuevocapitulo.h"
 #include "nuevaresolucion.h"
+#include "nuevapersona.h"
 #include "temas.h"
 #include "lugares.h"
 #include "personas.h"
@@ -48,6 +49,7 @@ void MainWindow::nuevoCapitulo(){
 void MainWindow::cargarConexiones(){
     connect(ui->btNuevoCapitulo, SIGNAL(clicked()), this, SLOT(nuevoCapitulo()));
     connect(ui->btNuevaResolucion, SIGNAL(clicked(bool)), this, SLOT(nuevaResolucion()));
+    connect(ui->btPersona, SIGNAL(clicked()), this, SLOT(nuevaPersona()));
 
 }
 
@@ -78,3 +80,10 @@ void MainWindow::nuevaResolucion(){
     Resolucion->show();
 
 }
+
+void MainWindow::nuevaPersona(){
+    Persona = new NuevaPersona(m_personas, this);
+
+    Persona->show();
+}
+
