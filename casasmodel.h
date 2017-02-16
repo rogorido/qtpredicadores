@@ -3,6 +3,8 @@
 
 #include <QSqlTableModel>
 
+class Casa;
+
 class CasasModel : public QSqlTableModel
 {
     Q_OBJECT
@@ -10,7 +12,7 @@ class CasasModel : public QSqlTableModel
 public:
     explicit CasasModel(QObject *parent = 0);
 
-    void AnadirCasa(const QString casa);
+    void AnadirCasa(const Casa *casa);
 
 signals:
 
