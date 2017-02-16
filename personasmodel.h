@@ -1,16 +1,16 @@
-#ifndef PERSONAS_H
-#define PERSONAS_H
+#ifndef PERSONASMODEL_H
+#define PERSONASMODEL_H
 
 #include <QSqlTableModel>
 
 class Persona;
 
-class Personas : public QSqlTableModel
+class PersonasModel : public QSqlTableModel
 {
     Q_OBJECT
 
 public:
-    explicit Personas(QObject *parent = 0);
+    explicit PersonasModel(QObject *parent = 0);
 
     void AnadirPersona(const Persona *persona);
 
@@ -19,4 +19,4 @@ signals:
 public slots:
 };
 
-#endif // PERSONAS_H
+#endif // PERSONASMODEL_H

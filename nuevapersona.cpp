@@ -4,9 +4,9 @@
 #include <QDebug>
 
 #include "persona.h"
-#include "personas.h"
+#include "personasmodel.h"
 
-NuevaPersona::NuevaPersona(Personas *personas, QWidget *parent) :
+NuevaPersona::NuevaPersona(PersonasModel *personas, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::NuevaPersona), m_personas(personas)
 {

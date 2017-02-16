@@ -12,12 +12,12 @@
 
 #include "temasmodel.h"
 #include "lugares.h"
-#include "personas.h"
+#include "personasmodel.h"
 #include "casasmodel.h"
 
 NuevaResolucion::NuevaResolucion(TemasModel *temas,
                                  Lugares *lugares,
-                                 Personas *personas,
+                                 PersonasModel *personas,
                                  CasasModel *casas,
                                  QWidget *parent) :
     QDialog(parent),

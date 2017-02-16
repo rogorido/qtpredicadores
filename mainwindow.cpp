@@ -9,7 +9,7 @@
 #include "nuevapersona.h"
 #include "temasmodel.h"
 #include "lugares.h"
-#include "personas.h"
+#include "personasmodel.h"
 #include "casasmodel.h"
 
 const int STATUSBAR_TIMEOUT = 1000;
@@ -64,7 +64,7 @@ void MainWindow::cargarModelos(){
     m_lugares->setSort(1, Qt::AscendingOrder);
     m_lugares->select();
 
-    m_personas = new Personas(this);
+    m_personas = new PersonasModel(this);
     m_personas->setSort(1, Qt::AscendingOrder);
     m_personas->select();
 

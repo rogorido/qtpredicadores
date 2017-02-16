@@ -10,7 +10,7 @@ class NuevaPersona;
 
 class TemasModel;
 class Lugares;
-class Personas;
+class PersonasModel;
 class CasasModel;
 
 namespace Ui {
@@ -41,7 +41,7 @@ private:
 
     TemasModel *m_temas;
     Lugares *m_lugares;
-    Personas *m_personas;
+    PersonasModel *m_personas;
     CasasModel *m_casas;
 
     void cargarConexiones();

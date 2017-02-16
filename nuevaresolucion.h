@@ -7,7 +7,7 @@
 class TemasModel;
 class Lugares;
 class CasasModel;
-class Personas;
+class PersonasModel;
 
 class QTreeWidgetItem;
 class QSqlQueryModel;
@@ -24,7 +24,7 @@ class NuevaResolucion : public QDialog
 public:
     explicit NuevaResolucion(TemasModel *temas,
                              Lugares *lugares,
-                             Personas *personas,
+                             PersonasModel *personas,
                              CasasModel *casas,
                              QWidget *parent = 0);
     ~NuevaResolucion();
@@ -52,7 +52,7 @@ private:
 
     TemasModel *m_temas;
     Lugares *m_lugares;
-    Personas *m_personas;
+    PersonasModel *m_personas;
     CasasModel *m_casas;
 
     /* estos son modelos solo de este form */

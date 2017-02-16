@@ -1,17 +1,17 @@
-#include "personas.h"
+#include "personasmodel.h"
 
 #include <QSqlQuery>
 
 #include "persona.h"
 
-Personas::Personas(QObject *parent) :
+PersonasModel::PersonasModel(QObject *parent) :
     QSqlTableModel(parent)
 {
     this->setTable("personas");
 
 }
 
-void Personas::AnadirPersona(const Persona *persona){
+void PersonasModel::AnadirPersona(const Persona *persona){
     QSqlQuery query;
 
     QString nombre = persona->getNombre();
