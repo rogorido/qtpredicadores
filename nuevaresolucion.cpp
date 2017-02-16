@@ -323,9 +323,10 @@ void NuevaResolucion::actualizarCompleterValues(){
     QString key;
 
     key = ui->txtKey->text();
-    m_values->setQuery(QString("SELECT DISTINCT value from resoluciones_detalles, json_each_text(detalle) "
-                               "WHERE key='%1' ORDER BY value;").arg(key));
 
+    if (!key.isEmpty())
+        m_values->setQuery(QString("SELECT DISTINCT value from resoluciones_detalles, json_each_text(detalle) "
+                               "WHERE key='%1' ORDER BY value;").arg(key));
 
 }
 
