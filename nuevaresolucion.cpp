@@ -7,6 +7,7 @@
 //#include <qsqlquerymodel.h>
 #include <QCompleter>
 #include <QTableWidget>
+#include <QMessageBox>
 
 #include <QDebug>
 
@@ -22,9 +23,10 @@ NuevaResolucion::NuevaResolucion(TemasModel *temas,
                                  LugaresModel *lugares,
                                  PersonasModel *personas,
                                  CasasModel *casas,
+                                 int capitulo,
                                  QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NuevaResolucion), m_temas(temas), m_lugares(lugares), m_personas(personas), m_casas(casas)
+    ui(new Ui::NuevaResolucion), m_temas(temas), m_lugares(lugares), m_personas(personas), m_casas(casas), capitulo_origen(capitulo)
 {
     ui->setupUi(this);
 
@@ -49,6 +51,12 @@ NuevaResolucion::NuevaResolucion(TemasModel *temas,
      */
     nivelactivo = new QTreeWidgetItem();
     nivelactivo = itemnivelcero;
+
+    /*
+     * si capitulo !=0 entonces es que venimos del form Capitulos
+     */
+    if (capitulo > 0)
+        origen = true;
 }
 
 NuevaResolucion::~NuevaResolucion()
@@ -272,11 +280,54 @@ void NuevaResolucion::nuevoJson(){
 
 void NuevaResolucion::aceptarResolucion(){
 
-    generarJson();
+    QString resolucion;
 
+    resolucion = ui->txtResolucion->toPlainText();
+
+    if (resolucion.isEmpty()){
+        int ret = QMessageBox::warning(this, "No hay texto en la resolución general",
+                                       "Introduzca por favor texto en la resolución");
+        return;
+    }
+
+    QString resolucion_resumen = ui->txtResolucionResumen->toPlainText();
+    QString resolucion_trad = ui->txtResolucionTraduccion->toPlainText();
+    QString epigrafe = ui->txtEpigrafe->text();
+    QString notas = ui->txtResolucionNotas->toPlainText();
+    int interesante = ui->spInteresante->value();
+    bool entendida = ui->chEntendida->checkState();
+    bool volveramirar = ui->chVolverMirar->checkState();
+    bool traducida = ui->chTradudida->checkState();
+
+    QSqlQuery query;
+
+    query.prepare("INSERT INTO resoluciones(resolucion_texto, resolucion_traduccion, resolucion_resumen, capitulo, "
+		  "epigrafe, entendida, volveramirar, traducida, interesante, notas) "
+		  "VALUES(:resolucion_texto, :resolucion_traduccion, :resolucion_resumen, :capitulo, "
+		  ":epigrafe, :entendida, :volveramirar, :traducida, :interesante, :notas)");
+    query.bindValue(":resolucion_texto", resolucion);
+    query.bindValue(":resolucion_traduccion", resolucion_trad);
+    query.bindValue(":resolucion_resumen", resolucion_resumen);
+    query.bindValue(":capitulo", capitulo_origen);
+    query.bindValue(":epigrafe", epigrafe);
+    query.bindValue(":entendida", entendida);
+    query.bindValue(":volveramirar", volveramirar);
+    query.bindValue(":traducida", traducida);
+    query.bindValue(":interesante", interesante);
+    query.bindValue(":notas", notas);
+
+    if (query.exec()){
+
+      QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
+      lastid.first();
+      int id = lastid.value(0).toInt();
+
+      introducirJson(id);
+      introducirTemas(id);
+    }
 }
 
-void NuevaResolucion::generarJson(){
+void NuevaResolucion::introducirJson(const int id){
     QString json;
     QSqlQuery query;
 
@@ -307,10 +358,23 @@ void NuevaResolucion::generarJson(){
         json.chop(2); // quitamos la última coma
         json += "}";
 
-        query.prepare("INSERT INTO resoluciones_detalles(resolucion_id, detalle) VALUES(1, :json)");
+        query.prepare("INSERT INTO resoluciones_detalles(resolucion_id, detalle) VALUES(:resolucionid, :json)");
+        query.bindValue(":resolucionid", id);
         query.bindValue(":json", json);
         query.exec();
     }
+}
+
+void NuevaResolucion::introducirTemas(const int id){
+    for (int i = 0; i < temas_lista.size(); ++i) {
+
+        QSqlQuery query;
+        query.prepare("INSERT INTO temas_resoluciones(tema_id, resolucion_id) VALUES (:tema, :resolucion)");
+        query.bindValue(":tema", temas_lista.at(i).id);
+        query.bindValue(":resolucion", id);
+        query.exec();
+    }
+
 }
 
 void NuevaResolucion::anadirTreeChildItem(const QString key, const QString value){

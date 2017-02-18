@@ -26,6 +26,7 @@ public:
                              LugaresModel *lugares,
                              PersonasModel *personas,
                              CasasModel *casas,
+                             int capitulo,
                              QWidget *parent = 0);
     ~NuevaResolucion();
 
@@ -99,8 +100,16 @@ private:
 
     void rellenarCombos();
     void cargarModelos();
-    void generarJson();
+    void introducirJson(const int id);
+    void introducirTemas(const int id);
     void anadirTreeChildItem(const QString key, const QString value); // los elms del json van como children del QTreeWidget
+
+    /*
+     * esto se usa cuando abrimos el formulario
+     * desde el formulario de capítulo
+     */
+    int capitulo_origen;
+    bool origen;
 };
 
 #endif // NUEVARESOLUCION_H

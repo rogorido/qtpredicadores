@@ -46,7 +46,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>4</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="tabResolucion">
     <attribute name="title">
@@ -73,9 +73,9 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tabTraduccion">
+   <widget class="QWidget" name="tabResumen">
     <attribute name="title">
-     <string>Traducción</string>
+     <string>Resumen</string>
     </attribute>
     <widget class="QTextEdit" name="txtResolucionResumen">
      <property name="geometry">

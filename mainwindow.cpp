@@ -88,7 +88,7 @@ void MainWindow::cargarModelos(){
 
 void MainWindow::nuevaResolucion(){
 
-    Resolucion = new NuevaResolucion(m_temas, m_lugares, m_personas, m_casas, this);
+    Resolucion = new NuevaResolucion(m_temas, m_lugares, m_personas, m_casas, 0, this);
 
     Resolucion->show();
 
