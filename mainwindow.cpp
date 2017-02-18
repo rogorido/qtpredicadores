@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QtGui>
 #include <QDebug>
 #include <QSqlTableModel>
 
@@ -12,6 +13,7 @@
 #include "lugaresmodel.h"
 #include "personasmodel.h"
 #include "casasmodel.h"
+#include "dlgcapitulos.h"
 
 const int STATUSBAR_TIMEOUT = 1000;
 
@@ -31,12 +33,21 @@ MainWindow::MainWindow(QWidget *parent) :
 
      cargarConexiones();
      cargarModelos();
+     cargarMenues();
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::cargarMenues(){
+    connect(ui->actionNuevoCapitulo, SIGNAL(triggered()), this, SLOT(nuevoCapitulo()));
+    connect(ui->actionCapitulos, SIGNAL(triggered()), this, SLOT(Capitulos()));
+    connect(ui->actionNuevaCasa, SIGNAL(triggered()), this, SLOT(nuevaCasa()));
+    connect(ui->actionNuevaPersona, SIGNAL(triggered()), this, SLOT(nuevaPersona()));
+    connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
 void MainWindow::nuevoCapitulo(){
@@ -95,3 +106,8 @@ void MainWindow::nuevaCasa(){
     Casa->show();
 }
 
+void MainWindow::Capitulos(){
+    FormCapitulos = new DlgCapitulos(this);
+
+    FormCapitulos->show();
+}

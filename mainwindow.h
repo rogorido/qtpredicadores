@@ -8,6 +8,7 @@ class NuevoCapitulo;
 class NuevaResolucion;
 class NuevaPersona;
 class NuevaCasa;
+class DlgCapitulos;
 
 class TemasModel;
 class LugaresModel;
@@ -33,14 +34,18 @@ private slots:
     void nuevaPersona();
     void nuevaCasa();
 
+    void Capitulos();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
 
+    /* esto son formularios */
     NuevoCapitulo *Capitulo;
     NuevaResolucion *Resolucion;
     NuevaPersona *Persona;
     NuevaCasa *Casa;
+    DlgCapitulos *FormCapitulos;
 
     TemasModel *m_temas;
     LugaresModel *m_lugares;
@@ -49,6 +54,7 @@ private:
 
     void cargarConexiones();
     void cargarModelos();
+    void cargarMenues();
 };
 
 #endif // MAINWINDOW_H

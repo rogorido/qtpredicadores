@@ -76,6 +76,18 @@
      <height>19</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuGeneral">
+    <property name="title">
+     <string>General</string>
+    </property>
+    <addaction name="actionCapitulos"/>
+    <addaction name="actionNuevaPersona"/>
+    <addaction name="actionNuevaCasa"/>
+    <addaction name="actionNuevoCapitulo"/>
+    <addaction name="separator"/>
+    <addaction name="actionSalir"/>
+   </widget>
+   <addaction name="menuGeneral"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -86,6 +98,31 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionCapitulos">
+   <property name="text">
+    <string>Capítulos</string>
+   </property>
+  </action>
+  <action name="actionNuevoCapitulo">
+   <property name="text">
+    <string>Nuevo capítulo</string>
+   </property>
+  </action>
+  <action name="actionSalir">
+   <property name="text">
+    <string>Salir</string>
+   </property>
+  </action>
+  <action name="actionNuevaCasa">
+   <property name="text">
+    <string>Nueva casa</string>
+   </property>
+  </action>
+  <action name="actionNuevaPersona">
+   <property name="text">
+    <string>Nueva persona</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
