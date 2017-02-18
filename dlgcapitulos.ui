@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>DlgCapitulos</class>
  <widget class="QDialog" name="DlgCapitulos">
@@ -5,13 +6,33 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>651</width>
+    <height>435</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <widget class="QTableView" name="twCapitulos">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>601</width>
+     <height>211</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTableView" name="twResoluciones">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>240</y>
+     <width>611</width>
+     <height>181</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

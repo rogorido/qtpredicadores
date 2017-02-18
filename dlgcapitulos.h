@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+class QSqlTableModel;
+
 namespace Ui {
 class DlgCapitulos;
 }
@@ -17,6 +19,8 @@ public:
 
 private:
     Ui::DlgCapitulos *ui;
+
+    QSqlTableModel *m_capitulos;
 };
 
 #endif // DLGCAPITULOS_H
