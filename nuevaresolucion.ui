@@ -413,6 +413,54 @@
       <string>Libre</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="btNuevoLugar">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>70</y>
+       <width>51</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::TabFocus</enum>
+     </property>
+     <property name="text">
+      <string>+</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btNuevaPersona">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>110</y>
+       <width>51</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::TabFocus</enum>
+     </property>
+     <property name="text">
+      <string>+</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btNuevaCasa">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>150</y>
+       <width>51</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::TabFocus</enum>
+     </property>
+     <property name="text">
+      <string>+</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tabOtros">
     <attribute name="title">

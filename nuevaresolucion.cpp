@@ -15,6 +15,9 @@
 #include "personasmodel.h"
 #include "casasmodel.h"
 
+#include "nuevacasa.h"
+#include "nuevapersona.h"
+
 NuevaResolucion::NuevaResolucion(TemasModel *temas,
                                  LugaresModel *lugares,
                                  PersonasModel *personas,
@@ -330,4 +333,28 @@ void NuevaResolucion::actualizarCompleterValues(){
 
 }
 
+void NuevaResolucion::on_btNuevaPersona_clicked(){
 
+    NuevaPersona *persona = new NuevaPersona(m_personas, this);
+
+    persona->show();
+}
+
+void NuevaResolucion::on_btNuevaCasa_clicked(){
+
+    NuevaCasa *casa = new NuevaCasa(m_casas, m_lugares, this);
+
+    casa->show();
+
+}
+
+void NuevaResolucion::on_btNuevoLugar_clicked(){
+
+    QString lugar;
+
+    lugar = QInputDialog::getText(this, "Introduzca un nuevo lugar", "Lugar (nombre,país) ");
+
+    if (!lugar.isEmpty()){
+        m_lugares->AnadirLugar(lugar);
+    }
+}
