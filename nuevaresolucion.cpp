@@ -312,8 +312,7 @@ void NuevaResolucion::aceptarResolucion(){
     query.bindValue(":resolucion_texto", resolucion);
     query.bindValue(":resolucion_traduccion", resolucion_trad);
     query.bindValue(":resolucion_resumen", resolucion_resumen);
-    //query.bindValue(":capitulo", capitulo_origen);
-    query.bindValue(":capitulo", 1);
+    query.bindValue(":capitulo", capitulo_origen);
     query.bindValue(":epigrafe", epigrafe);
     query.bindValue(":entendida", entendida);
     query.bindValue(":volveramirar", volveramirar);
@@ -337,7 +336,7 @@ void NuevaResolucion::aceptarResolucion(){
 }
 
 void NuevaResolucion::introducirJson(const int id){
-    QString json;
+
     QSqlQuery query;
 
     /*
@@ -355,8 +354,6 @@ void NuevaResolucion::introducirJson(const int id){
          *    a una cadena de texto con toJson()
          * 3. lo metemos en una puta variable, pq si no no funciona....
          */
-        //QJsonObject jsontemporal;
-        //jsontemporal = jsondetalles_lista.at(var);
         QJsonDocument jsondoc(jsondetalles_lista.at(var));
         QString jsonfinal = jsondoc.toJson(QJsonDocument::Compact);
 
