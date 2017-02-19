@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QMap>
+#include <QJsonObject>
 
 class TemasModel;
 class LugaresModel;
@@ -95,8 +96,14 @@ private:
      * PERO: aunque postgresql los reconoce, no funciona luego
      * con las funciones para sacar los datos!
      */
-    QMultiMap<QString, QVariant> jsondetalles;
-    QList<QMultiMap<QString, QVariant>> jsondetalles_lista;
+    //QMultiMap<QString, QVariant> jsondetalles;
+
+    /*
+     * al final uso QJsonObject. PERO: hay que tener en cuenta
+     * que no permite repetir keys!
+     */
+    QJsonObject jsondetalles;
+    QList<QJsonObject> jsondetalles_lista;
 
     void rellenarCombos();
     void cargarModelos();

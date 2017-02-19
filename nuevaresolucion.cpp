@@ -9,6 +9,9 @@
 #include <QTableWidget>
 #include <QMessageBox>
 
+#include <QJsonDocument>
+#include <QSqlError>
+
 #include <QDebug>
 
 #include "temasmodel.h"
@@ -175,7 +178,7 @@ void NuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
 
     if (!valor.isEmpty()){
 
-        jsondetalles.insert("Tipo", valor);
+        jsondetalles["Tipo"]= valor;
         anadirTreeChildItem("Tipo", valor);
     }
 
@@ -194,7 +197,7 @@ void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
         QSqlRecord record = m_lugares->record(ui->cboLugares->currentIndex());
         int id = record.value(0).toInt();
 
-        jsondetalles.insert("Lugar", id);
+        jsondetalles["Lugar"] = id;
         anadirTreeChildItem("Lugar", valor);
     }
 
@@ -214,7 +217,7 @@ void NuevaResolucion::on_btJsonAnadirPersona_clicked(){
         QSqlRecord record = m_personas->record(ui->cboPersonas->currentIndex());
         int id = record.value(0).toInt();
 
-        jsondetalles.insert("Persona", id);
+        jsondetalles["Persona"] = id;
         anadirTreeChildItem("Persona", valor);
     }
 
@@ -233,7 +236,7 @@ void NuevaResolucion::on_btJsonAnadirCasa_clicked(){
         QSqlRecord record = m_casas->record(ui->cboCasas->currentIndex());
         int id = record.value(0).toInt();
 
-        jsondetalles.insert("Casa", id);
+        jsondetalles["Casa"]=id;
         anadirTreeChildItem("Casa", valor);
     }
 }
@@ -243,7 +246,7 @@ void NuevaResolucion::on_btJsonAnadirLibre_clicked(){
     QString value = ui->txtValue->text();
 
     if (!key.isEmpty() && !value.isEmpty()){
-        jsondetalles.insert(key, value);
+        jsondetalles[key] = value;
         anadirTreeChildItem(key, value);
 
         ui->txtKey->setText("");
@@ -269,7 +272,8 @@ void NuevaResolucion::nuevoJson(){
     if (!jsondetalles.isEmpty())
         jsondetalles_lista.append(jsondetalles);
 
-    jsondetalles.clear();
+    // borramos el contenido de este objeto
+    jsondetalles = QJsonObject();
 
     QTreeWidgetItem *itemnivelcero = new QTreeWidgetItem(ui->treeDetalles);
     int nivel = jsondetalles_lista.count();
@@ -308,7 +312,8 @@ void NuevaResolucion::aceptarResolucion(){
     query.bindValue(":resolucion_texto", resolucion);
     query.bindValue(":resolucion_traduccion", resolucion_trad);
     query.bindValue(":resolucion_resumen", resolucion_resumen);
-    query.bindValue(":capitulo", capitulo_origen);
+    //query.bindValue(":capitulo", capitulo_origen);
+    query.bindValue(":capitulo", 1);
     query.bindValue(":epigrafe", epigrafe);
     query.bindValue(":entendida", entendida);
     query.bindValue(":volveramirar", volveramirar);
@@ -318,9 +323,13 @@ void NuevaResolucion::aceptarResolucion(){
 
     if (query.exec()){
 
-      QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
+      //QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
+      QSqlQuery lastid("select max(resolucion_id) from resoluciones");
+
       lastid.first();
       int id = lastid.value(0).toInt();
+
+      qDebug() << "El valor del capitulo es: " << id;
 
       introducirJson(id);
       introducirTemas(id);
@@ -341,26 +350,19 @@ void NuevaResolucion::introducirJson(const int id){
     for (int var = 0; var < jsondetalles_lista.size(); ++var) {
 
         /*
-         * metemos en una variable temporal el QMultiMap
-         * correspondiente a este elemento de la lista
+         * el asunto es el siguiente:
+         * 1. construimos un QJsonDocument con ese QJsonobject de la lista, pq eso permite luego pasarlo
+         *    a una cadena de texto con toJson()
+         * 3. lo metemos en una puta variable, pq si no no funciona....
          */
-        QMultiMap<QString, QVariant> jsontemporal;
-        jsontemporal = jsondetalles_lista.at(var);
-
-        json = "{";
-
-        QMapIterator<QString, QVariant> i(jsontemporal);
-        while (i.hasNext()) {
-            i.next();
-            json += "\"" + i.key() + "\" : \"" + i.value().toString() + "\", ";
-        }
-
-        json.chop(2); // quitamos la última coma
-        json += "}";
+        //QJsonObject jsontemporal;
+        //jsontemporal = jsondetalles_lista.at(var);
+        QJsonDocument jsondoc(jsondetalles_lista.at(var));
+        QString jsonfinal = jsondoc.toJson(QJsonDocument::Compact);
 
         query.prepare("INSERT INTO resoluciones_detalles(resolucion_id, detalle) VALUES(:resolucionid, :json)");
         query.bindValue(":resolucionid", id);
-        query.bindValue(":json", json);
+        query.bindValue(":json", jsonfinal);
         query.exec();
     }
 }
