@@ -10,13 +10,19 @@ class CasasModel : public QSqlTableModel
     Q_OBJECT
 
 public:
-    explicit CasasModel(QObject *parent = 0);
+    static CasasModel *InstanceModel();
 
     void AnadirCasa(const Casa *casa);
 
-signals:
+protected:
+    CasasModel();
+    CasasModel(const CasasModel &);
+    CasasModel &operator =(const CasasModel &);
 
-public slots:
+private:
+    static CasasModel *pInstance;
+    static void DestroyMe();
+
 };
 
 #endif // CASASMODEL_H

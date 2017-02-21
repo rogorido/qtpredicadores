@@ -24,7 +24,6 @@ class NuevaResolucion : public QDialog
 
 public:
     explicit NuevaResolucion(PersonasModel *personas,
-                             CasasModel *casas,
                              int capitulo,
                              QWidget *parent = 0);
     ~NuevaResolucion();

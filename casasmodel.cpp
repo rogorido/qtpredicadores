@@ -4,11 +4,26 @@
 
 #include "casa.h"
 
-CasasModel::CasasModel(QObject *parent) :
-    QSqlTableModel(parent)
+CasasModel *CasasModel::pInstance = 0;
+
+CasasModel::CasasModel() :
+    QSqlTableModel()
 {
     this->setTable("casas");
 
+}
+
+CasasModel *CasasModel::InstanceModel(){
+    if (pInstance == 0){
+        pInstance = new CasasModel();
+        atexit(&DestroyMe);
+    }
+
+    return pInstance;
+}
+
+void CasasModel::DestroyMe(){
+    if (pInstance != NULL) delete pInstance;
 }
 
 void CasasModel::AnadirCasa(const Casa *casa){

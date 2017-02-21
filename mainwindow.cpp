@@ -81,14 +81,14 @@ void MainWindow::cargarModelos(){
     m_personas->setSort(1, Qt::AscendingOrder);
     m_personas->select();
 
-    m_casas = new CasasModel(this);
+    m_casas = CasasModel::InstanceModel();
     m_casas->setSort(1, Qt::AscendingOrder);
     m_casas->select();
 }
 
 void MainWindow::nuevaResolucion(){
 
-    Resolucion = new NuevaResolucion(m_personas, m_casas, 0, this);
+    Resolucion = new NuevaResolucion(m_personas, 0, this);
 
     Resolucion->show();
 
