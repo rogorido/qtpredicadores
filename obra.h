@@ -20,7 +20,7 @@ public:
     void setNumeroPags(QString np);
     void setImpreso(bool i);
     void setTalVezImpreso(bool i);
-    void setManuscrito(QString m);
+    void setManuscrito(bool m);
     void setLugarOriginal(QString l);
     void setLugar(int l);
     void setFecha(QString f);

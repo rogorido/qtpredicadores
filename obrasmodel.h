@@ -5,14 +5,14 @@
 
 class Obra;
 
-class CasasModel : public QSqlTableModel
+class ObrasModel : public QSqlTableModel
 {
     Q_OBJECT
 
 public:
     static ObrasModel *InstanceModel();
 
-    void AnadirCasa(const Obra *obra);
+    void AnadirObra(const Obra *obra);
 
 protected:
     ObrasModel();
