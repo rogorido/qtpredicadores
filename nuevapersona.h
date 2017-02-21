@@ -14,7 +14,7 @@ class NuevaPersona : public QDialog
     Q_OBJECT
 
 public:
-    explicit NuevaPersona(PersonasModel *m_personas, QWidget *parent = 0);
+    explicit NuevaPersona(QWidget *parent = 0);
     ~NuevaPersona();
 
 private slots:

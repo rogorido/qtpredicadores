@@ -95,7 +95,7 @@ void MainWindow::nuevaResolucion(){
 }
 
 void MainWindow::nuevaPersona(){
-    Persona = new NuevaPersona(m_personas, this);
+    Persona = new NuevaPersona(this);
 
     Persona->show();
 }

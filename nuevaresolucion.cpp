@@ -399,7 +399,7 @@ void NuevaResolucion::actualizarCompleterValues(){
 
 void NuevaResolucion::on_btNuevaPersona_clicked(){
 
-    NuevaPersona *persona = new NuevaPersona(m_personas, this);
+    NuevaPersona *persona = new NuevaPersona(this);
 
     persona->show();
 }

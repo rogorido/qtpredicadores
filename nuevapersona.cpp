@@ -6,11 +6,13 @@
 #include "persona.h"
 #include "personasmodel.h"
 
-NuevaPersona::NuevaPersona(PersonasModel *personas, QWidget *parent) :
+NuevaPersona::NuevaPersona(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NuevaPersona), m_personas(personas)
+    ui(new Ui::NuevaPersona)
 {
     ui->setupUi(this);
+
+    m_personas = PersonasModel::InstanceModel();
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarPersona()));
