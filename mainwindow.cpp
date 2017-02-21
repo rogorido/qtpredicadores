@@ -52,7 +52,7 @@ void MainWindow::cargarMenues(){
 
 void MainWindow::nuevoCapitulo(){
 
-    Capitulo = new NuevoCapitulo(m_lugares, this);
+    Capitulo = new NuevoCapitulo(this);
 
     Capitulo->show();
     //Capitulo->activateWindow();
@@ -73,7 +73,7 @@ void MainWindow::cargarModelos(){
     m_temas->setSort(1, Qt::AscendingOrder);
     m_temas->select();
 
-    m_lugares = new LugaresModel(this);
+    m_lugares = LugaresModel::InstanceModel();
     m_lugares->setSort(1, Qt::AscendingOrder);
     m_lugares->select();
 

@@ -2,10 +2,26 @@
 
 #include <QSqlQuery>
 
-LugaresModel::LugaresModel(QObject *parent) :
-    QSqlTableModel(parent)
+LugaresModel * LugaresModel::pInstance = 0;
+
+LugaresModel::LugaresModel() :
+    QSqlTableModel()
 {
     this->setTable("lugares");
+}
+
+LugaresModel *LugaresModel::InstanceModel(){
+
+    if (pInstance == 0){
+        pInstance = new LugaresModel();
+        atexit(&DestroyMe);
+    }
+
+    return pInstance;
+}
+
+void LugaresModel::DestroyMe(){
+    if (pInstance != NULL) delete pInstance;
 }
 
 void LugaresModel::AnadirLugar(const QString lugar){

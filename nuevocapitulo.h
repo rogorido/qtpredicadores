@@ -17,7 +17,7 @@ class NuevoCapitulo : public QDialog
     Q_OBJECT
 
 public:
-    explicit NuevoCapitulo(LugaresModel *lugares, QWidget *parent = 0);
+    explicit NuevoCapitulo(QWidget *parent = 0);
     ~NuevoCapitulo();
 
 private slots:

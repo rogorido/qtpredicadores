@@ -8,13 +8,18 @@ class LugaresModel : public QSqlTableModel
     Q_OBJECT
 
 public:
-    explicit LugaresModel(QObject *parent = 0);
+    static LugaresModel *InstanceModel();
 
     void AnadirLugar(const QString lugar);
 
-signals:
+protected:
+    LugaresModel();
+    LugaresModel(const LugaresModel &);
+    LugaresModel &operator=(const LugaresModel &);
 
-public slots:
+private:
+    static LugaresModel *pInstance;
+    static void DestroyMe();
 };
 
 #endif // LUGARESMODEL_H

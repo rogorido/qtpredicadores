@@ -11,9 +11,9 @@
 
 #include "lugaresmodel.h"
 
-NuevoCapitulo::NuevoCapitulo(LugaresModel *lugares, QWidget *parent) :
+NuevoCapitulo::NuevoCapitulo(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NuevoCapitulo), m_lugares(lugares)
+    ui(new Ui::NuevoCapitulo)
 {
     ui->setupUi(this);
 
@@ -31,6 +31,8 @@ NuevoCapitulo::NuevoCapitulo(LugaresModel *lugares, QWidget *parent) :
 
     bFechaInicialModificada = false;
     bFechaFinalModificada = false;
+
+    m_lugares = LugaresModel::InstanceModel();
 
     lugar_query = new QSqlQueryModel(this);
     lugar_completer = new QCompleter(this);
