@@ -77,7 +77,7 @@ void MainWindow::cargarModelos(){
     m_lugares->setSort(1, Qt::AscendingOrder);
     m_lugares->select();
 
-    m_personas = new PersonasModel(this);
+    m_personas = PersonasModel::InstanceModel();
     m_personas->setSort(1, Qt::AscendingOrder);
     m_personas->select();
 
@@ -88,7 +88,7 @@ void MainWindow::cargarModelos(){
 
 void MainWindow::nuevaResolucion(){
 
-    Resolucion = new NuevaResolucion(m_personas, 0, this);
+    Resolucion = new NuevaResolucion(0, this);
 
     Resolucion->show();
 

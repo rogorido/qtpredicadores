@@ -4,11 +4,27 @@
 
 #include "persona.h"
 
-PersonasModel::PersonasModel(QObject *parent) :
-    QSqlTableModel(parent)
+PersonasModel *PersonasModel::pInstance = 0;
+
+PersonasModel::PersonasModel() :
+    QSqlTableModel()
 {
     this->setTable("personas");
 
+}
+
+PersonasModel *PersonasModel::InstanceModel(){
+
+    if (pInstance == 0){
+        pInstance = new PersonasModel();
+        atexit(&DestroyMe);
+    }
+
+    return pInstance;
+}
+
+void PersonasModel::DestroyMe(){
+    if (pInstance != NULL) delete pInstance;
 }
 
 void PersonasModel::AnadirPersona(const Persona *persona){

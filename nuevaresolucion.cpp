@@ -22,17 +22,17 @@
 #include "nuevacasa.h"
 #include "nuevapersona.h"
 
-NuevaResolucion::NuevaResolucion(PersonasModel *personas,
-                                 int capitulo,
+NuevaResolucion::NuevaResolucion(int capitulo,
                                  QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NuevaResolucion), m_personas(personas), capitulo_origen(capitulo)
+    ui(new Ui::NuevaResolucion), capitulo_origen(capitulo)
 {
     ui->setupUi(this);
 
     m_temas = TemasModel::InstanceModel();
     m_lugares = LugaresModel::InstanceModel();
     m_casas = CasasModel::InstanceModel();
+    m_personas = PersonasModel::InstanceModel();
 
     rellenarCombos();
     cargarModelos();

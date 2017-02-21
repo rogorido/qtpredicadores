@@ -10,13 +10,18 @@ class PersonasModel : public QSqlTableModel
     Q_OBJECT
 
 public:
-    explicit PersonasModel(QObject *parent = 0);
+    static PersonasModel *InstanceModel();
 
     void AnadirPersona(const Persona *persona);
 
-signals:
+protected:
+    PersonasModel();
+    PersonasModel(const PersonasModel &);
+    PersonasModel &operator =(const PersonasModel &);
 
-public slots:
+private:
+    static PersonasModel *pInstance;
+    static void DestroyMe();
 };
 
 #endif // PERSONASMODEL_H

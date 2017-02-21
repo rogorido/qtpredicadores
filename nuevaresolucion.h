@@ -23,8 +23,7 @@ class NuevaResolucion : public QDialog
     Q_OBJECT
 
 public:
-    explicit NuevaResolucion(PersonasModel *personas,
-                             int capitulo,
+    explicit NuevaResolucion(int capitulo,
                              QWidget *parent = 0);
     ~NuevaResolucion();
 
