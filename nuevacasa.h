@@ -15,7 +15,7 @@ class NuevaCasa : public QDialog
     Q_OBJECT
 
 public:
-    explicit NuevaCasa(CasasModel *casas, LugaresModel *lugares, QWidget *parent = 0);
+    explicit NuevaCasa(QWidget *parent = 0);
     ~NuevaCasa();
 
 private slots:

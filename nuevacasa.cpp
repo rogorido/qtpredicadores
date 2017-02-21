@@ -8,11 +8,14 @@
 #include "casa.h"
 #include "casasmodel.h"
 
-NuevaCasa::NuevaCasa(CasasModel *casas, LugaresModel *lugares, QWidget *parent) :
+NuevaCasa::NuevaCasa(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NuevaCasa), m_lugares(lugares), m_casas(casas)
+    ui(new Ui::NuevaCasa)
 {
     ui->setupUi(this);
+
+    m_lugares = LugaresModel::InstanceModel();
+    m_casas = CasasModel::InstanceModel();
 
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarCasa()));

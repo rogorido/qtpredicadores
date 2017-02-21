@@ -101,7 +101,7 @@ void MainWindow::nuevaPersona(){
 }
 
 void MainWindow::nuevaCasa(){
-    Casa = new NuevaCasa(m_casas, m_lugares, this);
+    Casa = new NuevaCasa(this);
 
     Casa->show();
 }

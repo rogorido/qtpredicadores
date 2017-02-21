@@ -406,7 +406,7 @@ void NuevaResolucion::on_btNuevaPersona_clicked(){
 
 void NuevaResolucion::on_btNuevaCasa_clicked(){
 
-    NuevaCasa *casa = new NuevaCasa(m_casas, m_lugares, this);
+    NuevaCasa *casa = new NuevaCasa(this);
 
     casa->show();
 
