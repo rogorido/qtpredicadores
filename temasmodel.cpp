@@ -24,7 +24,7 @@ void TemasModel::DestroyMe(){
 }
 
 
-void TemasModel::AnadirTema(const QString tema){
+void TemasModel::AnadirTema(const QString &tema){
     QSqlQuery query;
 
     query.prepare("INSERT INTO temas(tema) VALUES(:tema)");

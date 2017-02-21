@@ -10,7 +10,7 @@ class TemasModel : public QSqlTableModel
 public:
     static TemasModel *InstanceModel();
 
-    void AnadirTema(const QString tema);
+    void AnadirTema(const QString &tema);
 
 protected:
     TemasModel();

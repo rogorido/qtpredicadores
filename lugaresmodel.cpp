@@ -24,7 +24,7 @@ void LugaresModel::DestroyMe(){
     if (pInstance != NULL) delete pInstance;
 }
 
-void LugaresModel::AnadirLugar(const QString lugar){
+void LugaresModel::AnadirLugar(const QString &lugar){
 
     /*
      * TODO: habría que comprobar que siemrpe hay país...
