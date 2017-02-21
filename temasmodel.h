@@ -8,14 +8,18 @@ class TemasModel : public QSqlTableModel
     Q_OBJECT
 
 public:
-    explicit TemasModel(QObject *parent = 0);
+    static TemasModel *InstanceModel();
 
     void AnadirTema(const QString tema);
 
-signals:
+protected:
+    TemasModel();
+    TemasModel(const TemasModel &);
+    TemasModel &operator =(const TemasModel &);
 
-public slots:
-
+private:
+    static TemasModel *pInstance;
+    static void DestroyMe();
 };
 
 #endif // TEMASMODEL_H

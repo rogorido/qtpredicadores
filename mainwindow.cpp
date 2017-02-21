@@ -68,7 +68,7 @@ void MainWindow::cargarConexiones(){
 
 void MainWindow::cargarModelos(){
 
-    m_temas = new TemasModel(this);
+    m_temas = TemasModel::InstanceModel();
     // esto no habría que ponerlo en el constructor de la clase?
     m_temas->setSort(1, Qt::AscendingOrder);
     m_temas->select();
@@ -88,7 +88,7 @@ void MainWindow::cargarModelos(){
 
 void MainWindow::nuevaResolucion(){
 
-    Resolucion = new NuevaResolucion(m_temas, m_lugares, m_personas, m_casas, 0, this);
+    Resolucion = new NuevaResolucion(m_personas, m_casas, 0, this);
 
     Resolucion->show();
 
