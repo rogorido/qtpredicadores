@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "estructuras.h"
+#include "persona.h"
 
 class PersonasModel;
 class QSqlTableModel;
@@ -28,7 +28,7 @@ private slots:
     void aceptar();
 
 signals:
-    void personaEscogida(AutorStruct autor);
+    void personaEscogida(Persona autor);
 
 private:
     Ui::dlgSeleccionarPersona *ui;
@@ -37,8 +37,6 @@ private:
     ProxyNombres *m_nombres_proxy;
 
     PersonasModel *m_personas;
-
-    AutorStruct autorfinal;
 
     void cargarModelo();
 };

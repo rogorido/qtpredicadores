@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "estructuras.h"
+#include "persona.h"
 
 class LugaresModel;
 class QCompleter;
@@ -27,7 +27,7 @@ private slots:
 
     void on_pushButton_clicked();
 
-    void actualizarPersona(AutorStruct autor);
+    void actualizarPersona(Persona autor);
 
 private:
     Ui::dlgNuevaObra *ui;
@@ -51,7 +51,8 @@ private:
     /*
      * conclusión: al final meto el valor en una int normal
      */
-    int autorescogido;
+    //int autorescogido;
+    Persona *autorescogido;
 
     void cargarCompleters();
     void cargarCombos();

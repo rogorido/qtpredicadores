@@ -71,7 +71,7 @@ void dlgSeleccionarPersona::actualizarFiltro(const QString filtro){
 
 void dlgSeleccionarPersona::aceptar(){
 
-    //AutorStruct autor;
+    Persona autor;
 
     // tiene que haber otra manera de hacer esto...
     QModelIndex idx0 = m_nombres_proxy->index(ui->twPersonas->currentIndex().row(), 0);
@@ -82,12 +82,13 @@ void dlgSeleccionarPersona::aceptar(){
         return;
 
     int id = m_nombres->data(m_nombres_proxy->mapToSource(idx0), Qt::DisplayRole).toInt();
-    QString nombre = m_nombres->data(m_nombres_proxy->mapToSource(idx1), Qt::DisplayRole).toString() +
-            ' ' + m_nombres->data(m_nombres_proxy->mapToSource(idx2), Qt::DisplayRole).toString();
+    QString nombre = m_nombres->data(m_nombres_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
+    QString apellidos = m_nombres->data(m_nombres_proxy->mapToSource(idx2), Qt::DisplayRole).toString();
 
-    autorfinal.id = id;
-    autorfinal.nombre = nombre;
+    autor.setId(id);
+    autor.setNombre(nombre);
+    autor.setApellidos(apellidos);
 
-    emit(personaEscogida(autorfinal));
+    emit(personaEscogida(autor));
     close();
 }

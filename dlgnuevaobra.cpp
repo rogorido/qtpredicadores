@@ -80,14 +80,20 @@ void dlgNuevaObra::on_pushButton_clicked()
     dlgSeleccionarPersona *seleccionarpersona = new dlgSeleccionarPersona(this);
     seleccionarpersona->show();
 
-    connect(seleccionarpersona, SIGNAL(personaEscogida(AutorStruct)), this, SLOT(actualizarPersona(AutorStruct)));
+    connect(seleccionarpersona, SIGNAL(personaEscogida(Persona)), this, SLOT(actualizarPersona(Persona)));
 
 }
 
-void dlgNuevaObra::actualizarPersona(AutorStruct autor){
+void dlgNuevaObra::actualizarPersona(Persona autor){
 
-    autorescogido = autor.id;
+    autorescogido = new Persona();
 
-    ui->txtAutor->setText(autor.nombre);
+    autorescogido->setId(autor.getId());
+    autorescogido->setNombre(autor.getNombre());
+    autorescogido->setApellidos(autor.getApellidos());
+
+    QString nombre = autorescogido->getNombre() + ' ' + autorescogido->getApellidos();
+
+    ui->txtAutor->setText(nombre);
 
 }

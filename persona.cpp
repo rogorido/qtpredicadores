@@ -5,6 +5,10 @@ Persona::Persona()
 
 }
 
+void Persona::setId(int i){
+    id = i;
+}
+
 void Persona::setNombre(QString n){
     if (!n.isEmpty())
         nombre = n;

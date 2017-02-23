@@ -11,6 +11,7 @@ public:
     Persona();
 
     // setters
+    void setId(int i);
     void setNombre(QString n);
     void setApellidos(QString a);
     void setBuscado(bool b);
@@ -25,6 +26,7 @@ public:
     void setNotas(QString n);
 
     //getters
+    int getId() const {return id;}
     QString getNombre() const {return nombre;}
     QString getApellidos() const {return apellidos;}
     bool getBuscado() const {return buscado;}
@@ -40,6 +42,7 @@ public:
 
 private:
 
+    int id;
     QString nombre;
     QString apellidos;
     bool buscado;
