@@ -22,6 +22,7 @@ dlgSeleccionarPersona::dlgSeleccionarPersona(QWidget *parent) :
     connect(ui->btAnadirPersona, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
     connect(ui->txtFiltroPersona, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
+    connect(ui->twPersonas, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(aceptar()));
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
 
     cargarModelo();
