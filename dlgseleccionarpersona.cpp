@@ -4,7 +4,6 @@
 #include <QSqlQueryModel>
 #include <QSqlTableModel>
 #include <QRegExp>
-#include <QSqlRecord>
 #include <QDebug>
 
 #include "personasmodel.h"
@@ -45,7 +44,7 @@ void dlgSeleccionarPersona::cargarModelo(){
     m_nombres->setTable("vistas.nombres_alternativas");
     m_nombres->select();
 
-    m_nombres_proxy = new ProxyNombres(this);
+    m_nombres_proxy = new ProxyNombres(0, this);
     m_nombres_proxy->setSourceModel(m_nombres);
 
     ui->twPersonas->setModel(m_nombres_proxy);

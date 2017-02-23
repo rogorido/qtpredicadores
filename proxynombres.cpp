@@ -1,13 +1,16 @@
 #include "proxynombres.h"
 
-ProxyNombres::ProxyNombres(QObject *parent)
-    : QSortFilterProxyModel(parent)
+ProxyNombres::ProxyNombres(int tipo, QObject *parent)
+  : QSortFilterProxyModel(parent), tipoproxy(tipo)
 {
 }
 
 bool ProxyNombres::filterAcceptsRow(int sourceRow,
         const QModelIndex &sourceParent) const
 {
+
+  switch(tipoproxy) {
+  case 0:
     QModelIndex index1 = sourceModel()->index(sourceRow, 1, sourceParent);
     QModelIndex index2 = sourceModel()->index(sourceRow, 2, sourceParent);
     QModelIndex index3 = sourceModel()->index(sourceRow, 3, sourceParent);
@@ -23,5 +26,8 @@ bool ProxyNombres::filterAcceptsRow(int sourceRow,
             || sourceModel()->data(index5).toString().contains(filterRegExp())
             || sourceModel()->data(index6).toString().contains(filterRegExp())
             || sourceModel()->data(index7).toString().contains(filterRegExp());
+  case 1:
+
+  }
 
 }
