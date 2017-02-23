@@ -33,6 +33,7 @@ private slots:
     void nuevaResolucion();
     void nuevaPersona();
     void nuevaCasa();
+    void nuevaObra();
 
     void Capitulos();
 

@@ -14,6 +14,7 @@
 #include "personasmodel.h"
 #include "casasmodel.h"
 #include "dlgcapitulos.h"
+#include "dlgnuevaobra.h"
 
 const int STATUSBAR_TIMEOUT = 1000;
 
@@ -47,6 +48,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionCapitulos, SIGNAL(triggered()), this, SLOT(Capitulos()));
     connect(ui->actionNuevaCasa, SIGNAL(triggered()), this, SLOT(nuevaCasa()));
     connect(ui->actionNuevaPersona, SIGNAL(triggered()), this, SLOT(nuevaPersona()));
+    connect(ui->actionNuevaObra, SIGNAL(triggered()), this, SLOT(nuevaObra()));
     connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
@@ -110,4 +112,10 @@ void MainWindow::Capitulos(){
     FormCapitulos = new DlgCapitulos(this);
 
     FormCapitulos->show();
+}
+
+void MainWindow::nuevaObra(){
+
+    dlgNuevaObra *nuevaObra = new dlgNuevaObra(this);
+    nuevaObra->show();
 }

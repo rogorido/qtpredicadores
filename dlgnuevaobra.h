@@ -21,7 +21,9 @@ public:
 
 private slots:
     void on_btAnadirLugar_clicked();
-    void on_txtAutor_doubleclicked();
+    //void on_txtAutor_doubleclicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::dlgNuevaObra *ui;

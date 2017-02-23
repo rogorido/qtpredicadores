@@ -84,6 +84,7 @@
     <addaction name="actionNuevaPersona"/>
     <addaction name="actionNuevaCasa"/>
     <addaction name="actionNuevoCapitulo"/>
+    <addaction name="actionNuevaObra"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
@@ -127,6 +128,11 @@
   <action name="actionNuevaPersona">
    <property name="text">
     <string>Nueva persona</string>
+   </property>
+  </action>
+  <action name="actionNuevaObra">
+   <property name="text">
+    <string>Nueva obra</string>
    </property>
   </action>
  </widget>

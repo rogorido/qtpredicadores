@@ -2,6 +2,7 @@
 #include "ui_dlgnuevaobra.h"
 
 #include "lugaresmodel.h"
+#include "dlgseleccionarpersona.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -71,4 +72,11 @@ void dlgNuevaObra::on_btAnadirLugar_clicked(){
         m_lugares->AnadirLugar(lugar);
         cargarCompleters();
     }
+}
+
+void dlgNuevaObra::on_pushButton_clicked()
+{
+    dlgSeleccionarPersona *seleccionarpersona = new dlgSeleccionarPersona(this);
+    seleccionarpersona->show();
+
 }
