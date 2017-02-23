@@ -7,6 +7,7 @@
 
 #include <QSqlQueryModel>
 #include <QSqlTableModel>
+#include <QRegExp>
 
 dlgSeleccionarPersona::dlgSeleccionarPersona(QWidget *parent) :
     QDialog(parent),
@@ -19,6 +20,8 @@ dlgSeleccionarPersona::dlgSeleccionarPersona(QWidget *parent) :
     connect(ui->btAnadirPersona, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->txtFiltroPersona, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
+
+    cargarModelo();
 }
 
 dlgSeleccionarPersona::~dlgSeleccionarPersona()
@@ -47,6 +50,10 @@ void dlgSeleccionarPersona::cargarModelo(){
 void dlgSeleccionarPersona::actualizarFiltro(const QString filtro){
 
     if (filtro.length() > 3) {
-        m_nombres_proxy->setFilterFixedString(filtro);
+        m_nombres_proxy->setFilterRegExp(QRegExp(filtro, Qt::CaseInsensitive, QRegExp::FixedString));
+    }
+    else
+    {
+        m_nombres_proxy->setFilterRegExp(QRegExp("", Qt::CaseInsensitive, QRegExp::FixedString));
     }
 }
