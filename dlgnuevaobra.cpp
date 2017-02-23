@@ -7,6 +7,7 @@
 #include <QSqlQueryModel>
 #include <QCompleter>
 #include <QInputDialog>
+#include <QDebug>
 
 dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     QDialog(parent),
@@ -84,7 +85,9 @@ void dlgNuevaObra::on_pushButton_clicked()
 }
 
 void dlgNuevaObra::actualizarPersona(AutorStruct autor){
+
+    autorescogido = autor.id;
+
     ui->txtAutor->setText(autor.nombre);
-    // atención: hace falta meter esos datos en un puntero
-    // sobre todo por el id; que luego hay que añadir en la query...
+
 }

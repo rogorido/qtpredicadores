@@ -38,6 +38,8 @@ private:
 
     PersonasModel *m_personas;
 
+    AutorStruct autorfinal;
+
     void cargarModelo();
 };
 
