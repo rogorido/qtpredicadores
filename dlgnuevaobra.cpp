@@ -79,4 +79,12 @@ void dlgNuevaObra::on_pushButton_clicked()
     dlgSeleccionarPersona *seleccionarpersona = new dlgSeleccionarPersona(this);
     seleccionarpersona->show();
 
+    connect(seleccionarpersona, SIGNAL(personaEscogida(AutorStruct)), this, SLOT(actualizarPersona(AutorStruct)));
+
+}
+
+void dlgNuevaObra::actualizarPersona(AutorStruct autor){
+    ui->txtAutor->setText(autor.nombre);
+    // atención: hace falta meter esos datos en un puntero
+    // sobre todo por el id; que luego hay que añadir en la query...
 }

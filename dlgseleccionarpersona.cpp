@@ -1,13 +1,15 @@
 #include "dlgseleccionarpersona.h"
 #include "ui_dlgseleccionarpersona.h"
 
-#include "personasmodel.h"
-#include "nuevapersona.h"
-#include "proxynombres.h"
-
 #include <QSqlQueryModel>
 #include <QSqlTableModel>
 #include <QRegExp>
+#include <QSqlRecord>
+#include <QDebug>
+
+#include "personasmodel.h"
+#include "nuevapersona.h"
+#include "proxynombres.h"
 
 dlgSeleccionarPersona::dlgSeleccionarPersona(QWidget *parent) :
     QDialog(parent),
@@ -18,8 +20,9 @@ dlgSeleccionarPersona::dlgSeleccionarPersona(QWidget *parent) :
     m_personas = PersonasModel::InstanceModel();
 
     connect(ui->btAnadirPersona, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->txtFiltroPersona, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
+    connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
 
     cargarModelo();
 }
@@ -64,4 +67,27 @@ void dlgSeleccionarPersona::actualizarFiltro(const QString filtro){
     {
         m_nombres_proxy->setFilterRegExp(QRegExp("", Qt::CaseInsensitive, QRegExp::FixedString));
     }
+}
+
+void dlgSeleccionarPersona::aceptar(){
+
+    AutorStruct autor;
+
+    // tiene que haber otra manera de hacer esto...
+    QModelIndex idx0 = m_nombres_proxy->index(ui->twPersonas->currentIndex().row(), 0);
+    QModelIndex idx1 = m_nombres_proxy->index(ui->twPersonas->currentIndex().row(), 1);
+    QModelIndex idx2 = m_nombres_proxy->index(ui->twPersonas->currentIndex().row(), 2);
+
+    if (!idx0.isValid())
+        return;
+
+    int id = m_nombres->data(m_nombres_proxy->mapToSource(idx0), Qt::DisplayRole).toInt();
+    QString nombre = m_nombres->data(m_nombres_proxy->mapToSource(idx1), Qt::DisplayRole).toString() +
+            ' ' + m_nombres->data(m_nombres_proxy->mapToSource(idx2), Qt::DisplayRole).toString();
+
+    autor.id = id;
+    autor.nombre = nombre;
+
+    emit(personaEscogida(autor));
+    close();
 }

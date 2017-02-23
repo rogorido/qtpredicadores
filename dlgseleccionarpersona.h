@@ -3,9 +3,10 @@
 
 #include <QDialog>
 
+#include "estructuras.h"
+
 class PersonasModel;
 class QSqlTableModel;
-class QSortFilterProxyModel;
 class ProxyNombres;
 
 namespace Ui {
@@ -24,6 +25,10 @@ private slots:
 
     void anadirPersona();
     void actualizarFiltro(const QString filtro);
+    void aceptar();
+
+signals:
+    void personaEscogida(AutorStruct autor);
 
 private:
     Ui::dlgSeleccionarPersona *ui;

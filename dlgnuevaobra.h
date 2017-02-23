@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "estructuras.h"
+
 class LugaresModel;
 class QCompleter;
 class QSqlQueryModel;
@@ -24,6 +26,8 @@ private slots:
     //void on_txtAutor_doubleclicked();
 
     void on_pushButton_clicked();
+
+    void actualizarPersona(AutorStruct autor);
 
 private:
     Ui::dlgNuevaObra *ui;
