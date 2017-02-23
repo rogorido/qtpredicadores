@@ -40,7 +40,7 @@ void ObrasModel::AnadirObra(const Obra *obra){
     bool manuscrito = obra->getManuscrito();
     QString lugaroriginal = obra->getLugarOriginal();
     int lugar = obra->getLugar();
-    QString fecha = obra->getFecha();
+    int fecha = obra->getFecha();
     QString editor = obra->getEditor();
     bool refs = obra->getReferencias();
     bool tituloreducido = obra->getTituloReducido();

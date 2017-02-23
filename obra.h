@@ -23,7 +23,7 @@ public:
     void setManuscrito(bool m);
     void setLugarOriginal(QString l);
     void setLugar(int l);
-    void setFecha(QString f);
+    void setFecha(int f);
     void setEditor(QString e);
     void setReferencias(bool r);
     void setTituloReducido(bool t);
@@ -47,7 +47,7 @@ public:
     bool getManuscrito() const {return manuscrito;}
     QString getLugarOriginal() const {return lugaroriginal;}
     int getLugar() const {return lugar;}
-    QString getFecha() const {return fecha;}
+    int getFecha() const {return fecha;}
     QString getEditor() const {return editor;}
     bool getReferencias() const {return refs;}
     bool getTituloReducido() const {return tituloreducido;}
@@ -72,7 +72,7 @@ private:
     bool manuscrito;
     QString lugaroriginal;
     int lugar;
-    QString fecha;
+    int fecha;
     QString editor;
     bool refs;
     bool tituloreducido;
