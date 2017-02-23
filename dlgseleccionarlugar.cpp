@@ -5,6 +5,7 @@
 #include <QSqlTableModel>
 #include <QRegExp>
 
+#include "lugar.h"
 #include "lugaresmodel.h"
 #include "proxynombres.h"
 
@@ -32,8 +33,7 @@ dlgSeleccionarLugar::~dlgSeleccionarLugar()
 
 void dlgSeleccionarLugar::anadirLugar(){
 
-    NuevaLugar *persona = new NuevaLugar(this);
-    persona->show();
+    
 }
 
 void dlgSeleccionarLugar::cargarModelo(){
@@ -69,24 +69,21 @@ void dlgSeleccionarLugar::actualizarFiltro(const QString filtro){
 
 void dlgSeleccionarLugar::aceptar(){
 
-    Lugar autor;
+    Lugar lugar;
 
     // tiene que haber otra manera de hacer esto...
     QModelIndex idx0 = m_lugares_proxy->index(ui->twLugares->currentIndex().row(), 0);
     QModelIndex idx1 = m_lugares_proxy->index(ui->twLugares->currentIndex().row(), 1);
-    QModelIndex idx2 = m_lugares_proxy->index(ui->twLugares->currentIndex().row(), 2);
 
     if (!idx0.isValid())
         return;
 
     int id = m_lugares_base->data(m_lugares_proxy->mapToSource(idx0), Qt::DisplayRole).toInt();
-    QString nombre = m_lugares_base->data(m_lugares_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
-    QString apellidos = m_lugares_base->data(m_lugares_proxy->mapToSource(idx2), Qt::DisplayRole).toString();
+    QString lugarnombre = m_lugares_base->data(m_lugares_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
 
-    autor.setId(id);
-    autor.setNombre(nombre);
-    autor.setApellidos(apellidos);
+    lugar.setId(id);
+    lugar.setLugar(lugarnombre);
 
-    emit(personaEscogida(autor));
+    emit(lugarEscogido(lugar));
     close();
 }

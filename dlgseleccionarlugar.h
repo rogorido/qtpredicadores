@@ -6,6 +6,7 @@
 class LugaresModel;
 class QSqlTableModel;
 class ProxyNombres;
+class Lugar;
 
 namespace Ui {
 class dlgSeleccionarLugar;
@@ -26,7 +27,7 @@ private slots:
     void aceptar();
 
 signals:
-    void lugarEscogido(Persona autor);
+    void lugarEscogido(Lugar lugar);
 
 private:
     Ui::dlgSeleccionarLugar *ui;

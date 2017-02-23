@@ -2,6 +2,6 @@
 
 Lugar::Lugar() { }
 
-void setId(int i) {id = i;}
-void setLugar(QString l) {lugar = l;}
-void setPais(QString p) {pais = p;}
+void Lugar::setId(int i) {id = i;}
+void Lugar::setLugar(QString l) {lugar = l;}
+void Lugar::setPais(QString p) {pais = p;}

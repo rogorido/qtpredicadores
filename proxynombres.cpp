@@ -26,7 +26,7 @@ bool ProxyNombres::filterAcceptsRow(int sourceRow,
             || sourceModel()->data(index5).toString().contains(filterRegExp())
             || sourceModel()->data(index6).toString().contains(filterRegExp())
             || sourceModel()->data(index7).toString().contains(filterRegExp());
-  case 1:
+    break;
 
   }
 
