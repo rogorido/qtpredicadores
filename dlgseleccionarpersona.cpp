@@ -45,6 +45,14 @@ void dlgSeleccionarPersona::cargarModelo(){
     m_nombres_proxy->setSourceModel(m_nombres);
 
     ui->twPersonas->setModel(m_nombres_proxy);
+    ui->twPersonas->hideColumn(0);
+    ui->twPersonas->setAlternatingRowColors(true);
+    ui->twPersonas->resizeColumnsToContents();
+    ui->twPersonas->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    // escogemos la primera línea...
+    QModelIndex index = m_nombres_proxy->index(0,0);
+    ui->twPersonas->setCurrentIndex(index);
 }
 
 void dlgSeleccionarPersona::actualizarFiltro(const QString filtro){
