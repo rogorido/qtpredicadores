@@ -3,6 +3,10 @@
 
 #include <QDialog>
 
+class LugaresModel;
+class QCompleter;
+class QSqlQueryModel;
+
 namespace Ui {
 class dlgNuevaObra;
 }
@@ -17,6 +21,19 @@ public:
 
 private:
     Ui::dlgNuevaObra *ui;
+
+    QSqlQueryModel *m_lugaresoriginales;
+    QSqlQueryModel *m_idiomas;
+    QSqlQueryModel *m_editores;
+
+    QCompleter *c_lugaresoriginales;
+    QCompleter *c_idiomas;
+    QCompleter *c_editor;
+
+    LugaresModel *m_lugares;
+
+    void cargarCompleters();
+
 };
 
 #endif // DLGNUEVAOBRA_H
