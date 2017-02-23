@@ -3,6 +3,7 @@
 
 #include "lugaresmodel.h"
 #include "dlgseleccionarpersona.h"
+#include "dlgseleccionarlugar.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -20,7 +21,6 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(on_btAnadirLugar_clicked()));
 
     cargarCompleters();
-    cargarCombos();
 }
 
 dlgNuevaObra::~dlgNuevaObra()
@@ -56,14 +56,6 @@ void dlgNuevaObra::cargarCompleters(){
 
 }
 
-void dlgNuevaObra::cargarCombos(){
-
-    ui->cbLugarImpresion->setModel(m_lugares);
-    ui->cbLugarImpresion->setCurrentIndex(-1);
-    ui->cbLugarImpresion->setModelColumn(1);
-
-}
-
 void dlgNuevaObra::on_btAnadirLugar_clicked(){
     QString lugar;
 
@@ -96,4 +88,22 @@ void dlgNuevaObra::actualizarPersona(Persona autor){
 
     ui->txtAutor->setText(nombre);
 
+}
+
+void dlgNuevaObra::on_btIntroducirLugar_clicked()
+{
+    dlgSeleccionarLugar *seleccionarlugar = new dlgSeleccionarLugar(this);
+    seleccionarlugar->show();
+
+    connect(seleccionarlugar, SIGNAL(lugarEscogido(Lugar)), this, SLOT(actualizarLugar(Lugar)));
+}
+
+void dlgNuevaObra::actualizarLugar(Lugar lugar){
+
+    lugarescogido = new Lugar();
+
+    lugarescogido->setId(lugar.getId());
+    lugarescogido->setLugar(lugar.getLugar());
+
+    ui->txtLugar->setText(lugarescogido->getLugar());
 }

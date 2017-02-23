@@ -4,6 +4,7 @@
 #include <QDialog>
 
 #include "persona.h"
+#include "lugar.h"
 
 class LugaresModel;
 class QCompleter;
@@ -28,6 +29,9 @@ private slots:
     void on_pushButton_clicked();
 
     void actualizarPersona(Persona autor);
+    void actualizarLugar(Lugar lugar);
+
+    void on_btIntroducirLugar_clicked();
 
 private:
     Ui::dlgNuevaObra *ui;
@@ -42,20 +46,10 @@ private:
 
     LugaresModel *m_lugares;
 
-    /*
-     * no sé por qué cojones esto da un error, o un crash
-     * o todo tipo de cosas... he probado todo: declararlo como pointer
-     * normal, etc. etc. y nada, no hay manera...
-     */
-    //AutorStruct autorescogido;
-    /*
-     * conclusión: al final meto el valor en una int normal
-     */
-    //int autorescogido;
     Persona *autorescogido;
+    Lugar *lugarescogido;
 
     void cargarCompleters();
-    void cargarCombos();
 
 };
 
