@@ -19,6 +19,9 @@ public:
     explicit dlgNuevaObra(QWidget *parent = 0);
     ~dlgNuevaObra();
 
+private slots:
+    void on_btAnadirLugar_clicked();
+
 private:
     Ui::dlgNuevaObra *ui;
 

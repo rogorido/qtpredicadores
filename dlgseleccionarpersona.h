@@ -3,6 +3,10 @@
 
 #include <QDialog>
 
+class PersonasModel;
+class QSqlTableModel;
+class QSortFilterProxyModel;
+
 namespace Ui {
 class dlgSeleccionarPersona;
 }
@@ -15,8 +19,19 @@ public:
     explicit dlgSeleccionarPersona(QWidget *parent = 0);
     ~dlgSeleccionarPersona();
 
+private slots:
+
+    void anadirPersona();
+
 private:
     Ui::dlgSeleccionarPersona *ui;
+
+    QSqlTableModel *m_nombres;
+    QSortFilterProxyModel *m_nombres_proxy;
+
+    PersonasModel *m_personas;
+
+    void cargarModelo();
 };
 
 #endif // DLGSELECCIONARPERSONA_H

@@ -5,6 +5,7 @@
 
 #include <QSqlQueryModel>
 #include <QCompleter>
+#include <QInputDialog>
 
 dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     QDialog(parent),
@@ -13,6 +14,8 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     ui->setupUi(this);
 
     m_lugares = LugaresModel::InstanceModel();
+
+    connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(on_btAnadirLugar_clicked()));
 
     cargarCompleters();
     cargarCombos();
@@ -57,4 +60,15 @@ void dlgNuevaObra::cargarCombos(){
     ui->cbLugarImpresion->setCurrentIndex(-1);
     ui->cbLugarImpresion->setModelColumn(1);
 
+}
+
+void dlgNuevaObra::on_btAnadirLugar_clicked(){
+    QString lugar;
+
+    lugar = QInputDialog::getText(this, "Introduzca un nuevo lugar", "Lugar (nombre,país) ");
+
+    if (!lugar.isEmpty()){
+        m_lugares->AnadirLugar(lugar);
+        cargarCompleters();
+    }
 }

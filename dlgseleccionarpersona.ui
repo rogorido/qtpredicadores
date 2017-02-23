@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QTableView" name="tableView">
+  <widget class="QTableView" name="twPersonas">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -23,7 +23,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="txtFiltroPersona">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -33,7 +33,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="btAnadirPersona">
    <property name="geometry">
     <rect>
      <x>309</x>
@@ -46,7 +46,7 @@
     <string>Añadir persona</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="btCancelar">
    <property name="geometry">
     <rect>
      <x>420</x>
@@ -59,7 +59,7 @@
     <string>Cancelar</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="btOK">
    <property name="geometry">
     <rect>
      <x>510</x>

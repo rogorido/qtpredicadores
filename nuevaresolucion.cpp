@@ -400,22 +400,18 @@ void NuevaResolucion::actualizarCompleterValues(){
 void NuevaResolucion::on_btNuevaPersona_clicked(){
 
     NuevaPersona *persona = new NuevaPersona(this);
-
     persona->show();
 }
 
 void NuevaResolucion::on_btNuevaCasa_clicked(){
 
     NuevaCasa *casa = new NuevaCasa(this);
-
     casa->show();
-
 }
 
 void NuevaResolucion::on_btNuevoLugar_clicked(){
 
     QString lugar;
-
     lugar = QInputDialog::getText(this, "Introduzca un nuevo lugar", "Lugar (nombre,país) ");
 
     if (!lugar.isEmpty()){
