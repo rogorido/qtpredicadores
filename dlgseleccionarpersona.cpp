@@ -3,10 +3,10 @@
 
 #include "personasmodel.h"
 #include "nuevapersona.h"
+#include "proxynombres.h"
 
 #include <QSqlQueryModel>
 #include <QSqlTableModel>
-#include <QSortFilterProxyModel>
 
 dlgSeleccionarPersona::dlgSeleccionarPersona(QWidget *parent) :
     QDialog(parent),
@@ -38,4 +38,7 @@ void dlgSeleccionarPersona::cargarModelo(){
     m_nombres = new QSqlTableModel(this);
     m_nombres->setTable("vistas.nombres_alternativas");
     m_nombres->select();
+
+    m_nombres_proxy = new ProxyNombres(this);
+    m_nombres_proxy->setSourceModel(m_nombres);
 }

@@ -6,6 +6,7 @@
 class PersonasModel;
 class QSqlTableModel;
 class QSortFilterProxyModel;
+class ProxyNombres;
 
 namespace Ui {
 class dlgSeleccionarPersona;
@@ -27,7 +28,7 @@ private:
     Ui::dlgSeleccionarPersona *ui;
 
     QSqlTableModel *m_nombres;
-    QSortFilterProxyModel *m_nombres_proxy;
+    ProxyNombres *m_nombres_proxy;
 
     PersonasModel *m_personas;
 
