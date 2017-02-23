@@ -30,31 +30,33 @@ public:
     void setContenido(bool c);
     void setInteresante(int i);
     void setDudoso(bool d);
+    void setExpurgable(bool e);
     void setFiabilidad(int f);
     void setNotas(QString n);
 
     //getters
-    QString getTitulo() {return titulo;}
-    QString getIdioma() {return idioma;}
-    int getAutor() {return autor;}
-    QString getTipo() {return tipo;}
-    QString getFormato() {return formato;}
-    int getTomos() {return tomos;}
-    QString getNumeroPags() {return numeropags;}
-    bool getImpreso() {return impreso;}
-    bool getTalVezImpreso() {return talvez_impreso;}
-    bool getManuscrito() {return manuscrito;}
-    QString getLugarOriginal() {return lugaroriginal;}
-    int getLugar() {return lugar;}
-    QString getFecha() {return fecha;}
-    QString getEditor() {return editor;}
-    bool getReferencias() {return refs;}
-    bool getTituloReducido() {return tituloreducido;}
-    bool getContenido() {return contenido;}
-    int getInteresante() {return interesante;}
-    bool getDudoso() {return dudoso;}
-    int getFiabilidad() {return fiabilidad;}
-    QString getNotas() {return notas;}
+    QString getTitulo() const {return titulo;}
+    QString getIdioma() const {return idioma;}
+    int getAutor() const {return autor;}
+    QString getTipo() const {return tipo;}
+    QString getFormato() const {return formato;}
+    int getTomos() const {return tomos;}
+    QString getNumeroPags() const {return numeropags;}
+    bool getImpreso() const {return impreso;}
+    bool getTalVezImpreso() const {return talvez_impreso;}
+    bool getManuscrito() const {return manuscrito;}
+    QString getLugarOriginal() const {return lugaroriginal;}
+    int getLugar() const {return lugar;}
+    QString getFecha() const {return fecha;}
+    QString getEditor() const {return editor;}
+    bool getReferencias() const {return refs;}
+    bool getTituloReducido() const {return tituloreducido;}
+    bool getContenido() const {return contenido;}
+    int getInteresante() const {return interesante;}
+    bool getDudoso() const {return dudoso;}
+    bool getExpurgable() const {return expurgable;}
+    int getFiabilidad() const {return fiabilidad;}
+    QString getNotas() const {return notas;}
 
 private:
 
@@ -77,6 +79,7 @@ private:
     bool contenido;
     int interesante;
     bool dudoso;
+    bool expurgable;
     int fiabilidad;
     QString notas;
 

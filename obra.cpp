@@ -21,5 +21,6 @@ void Obra::setTituloReducido(bool t) {tituloreducido = t;}
 void Obra::setContenido(bool c) {contenido = c;}
 void Obra::setInteresante(int i) {interesante = i;}
 void Obra::setDudoso(bool d) {dudoso = d;}
+void Obra::setExpurgable(bool e) {expurgable = e;}
 void Obra::setFiabilidad(int f) {fiabilidad = f;}
 void Obra::setNotas(QString n) {notas = n;}
