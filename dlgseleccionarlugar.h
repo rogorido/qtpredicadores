@@ -3,10 +3,11 @@
 
 #include <QDialog>
 
+#include "lugar.h"
+
 class LugaresModel;
 class QSqlTableModel;
 class ProxyNombres;
-class Lugar;
 
 namespace Ui {
 class dlgSeleccionarLugar;

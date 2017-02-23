@@ -5,7 +5,6 @@
 #include <QSqlTableModel>
 #include <QRegExp>
 
-#include "lugar.h"
 #include "lugaresmodel.h"
 #include "proxynombres.h"
 
