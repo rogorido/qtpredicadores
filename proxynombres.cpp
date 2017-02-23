@@ -25,8 +25,3 @@ bool ProxyNombres::filterAcceptsRow(int sourceRow,
             || sourceModel()->data(index7).toString().contains(filterRegExp());
 
 }
-
-bool ProxyNombres::lessThan(const QModelIndex &left,
-                                      const QModelIndex &right) const
-{
-}
