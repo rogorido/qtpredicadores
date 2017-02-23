@@ -1,6 +1,8 @@
 #include "dlgnuevaobra.h"
 #include "ui_dlgnuevaobra.h"
 
+#include "lugaresmodel.h"
+
 #include <QSqlQueryModel>
 #include <QCompleter>
 
@@ -9,6 +11,11 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     ui(new Ui::dlgNuevaObra)
 {
     ui->setupUi(this);
+
+    m_lugares = LugaresModel::InstanceModel();
+
+    cargarCompleters();
+    cargarCombos();
 }
 
 dlgNuevaObra::~dlgNuevaObra()
@@ -42,5 +49,12 @@ void dlgNuevaObra::cargarCompleters(){
     c_idiomas->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtIdioma->setCompleter(c_idiomas);
 
+}
+
+void dlgNuevaObra::cargarCombos(){
+
+    ui->cbLugarImpresion->setModel(m_lugares);
+    ui->cbLugarImpresion->setCurrentIndex(-1);
+    ui->cbLugarImpresion->setModelColumn(1);
 
 }

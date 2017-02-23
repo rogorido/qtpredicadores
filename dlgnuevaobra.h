@@ -33,6 +33,7 @@ private:
     LugaresModel *m_lugares;
 
     void cargarCompleters();
+    void cargarCombos();
 
 };
 
