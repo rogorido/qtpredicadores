@@ -18,8 +18,7 @@ dlgSeleccionarPersona::dlgSeleccionarPersona(QWidget *parent) :
 
     connect(ui->btAnadirPersona, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
-
-    cargarModelo();
+    connect(ui->txtFiltroPersona, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
 }
 
 dlgSeleccionarPersona::~dlgSeleccionarPersona()
@@ -41,4 +40,13 @@ void dlgSeleccionarPersona::cargarModelo(){
 
     m_nombres_proxy = new ProxyNombres(this);
     m_nombres_proxy->setSourceModel(m_nombres);
+
+    ui->twPersonas->setModel(m_nombres_proxy);
+}
+
+void dlgSeleccionarPersona::actualizarFiltro(const QString filtro){
+
+    if (filtro.length() > 3) {
+        m_nombres_proxy->setFilterFixedString(filtro);
+    }
 }

@@ -23,6 +23,7 @@ public:
 private slots:
 
     void anadirPersona();
+    void actualizarFiltro(const QString filtro);
 
 private:
     Ui::dlgSeleccionarPersona *ui;
