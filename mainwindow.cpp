@@ -5,7 +5,7 @@
 #include <QDebug>
 #include <QSqlTableModel>
 
-#include "nuevocapitulo.h"
+#include "dlgnuevocapitulo.h"
 #include "nuevaresolucion.h"
 #include "dlgnuevapersona.h"
 #include "dlgnuevacasa.h"
@@ -54,9 +54,9 @@ void MainWindow::cargarMenues(){
 
 void MainWindow::nuevoCapitulo(){
 
-    Capitulo = new NuevoCapitulo(this);
+    dlgCapitulo = new dlgNuevoCapitulo(this);
 
-    Capitulo->show();
+    dlgCapitulo->show();
     //Capitulo->activateWindow();
 }
 

@@ -1,5 +1,5 @@
-#include "nuevocapitulo.h"
-#include "ui_nuevocapitulo.h"
+#include "dlgnuevocapitulo.h"
+#include "ui_dlgnuevocapitulo.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -11,9 +11,9 @@
 
 #include "lugaresmodel.h"
 
-NuevoCapitulo::NuevoCapitulo(QWidget *parent) :
+dlgNuevoCapitulo::dlgNuevoCapitulo(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NuevoCapitulo)
+    ui(new Ui::dlgNuevoCapitulo)
 {
     ui->setupUi(this);
 
@@ -39,12 +39,12 @@ NuevoCapitulo::NuevoCapitulo(QWidget *parent) :
     cargarCompleters();
 }
 
-NuevoCapitulo::~NuevoCapitulo()
+dlgNuevoCapitulo::~dlgNuevoCapitulo()
 {
     delete ui;
 }
 
-void NuevoCapitulo::aceptarCapitulo(){
+void dlgNuevoCapitulo::aceptarCapitulo(){
 
     if (ui->txtNombreGeneral->text().isEmpty()){
         int ret = QMessageBox::warning(this, "No hay título general", "Introduzca por favor un título general");
@@ -127,7 +127,7 @@ void NuevoCapitulo::aceptarCapitulo(){
 
 }
 
-void NuevoCapitulo::cargarCompleters(){
+void dlgNuevoCapitulo::cargarCompleters(){
 
     /*
      * TODO: esto entiendo que se puede cambiar al nuevo
@@ -143,7 +143,7 @@ void NuevoCapitulo::cargarCompleters(){
 
 }
 
-int NuevoCapitulo::extraerLugar(QString lugar){
+int dlgNuevoCapitulo::extraerLugar(QString lugar){
     /*
      * Extraemos de la table lugares el id del
      * lugar escogido. Probablemente habría que
@@ -161,19 +161,19 @@ int NuevoCapitulo::extraerLugar(QString lugar){
 
 }
 
-void NuevoCapitulo::fechaInicialCambiada(){
+void dlgNuevoCapitulo::fechaInicialCambiada(){
     // cuando cambia la fecha activamos esto para que luego la meta en la base de datos
     bFechaInicialModificada = true;
 
 }
 
-void NuevoCapitulo::fechaFinalCambiada(){
+void dlgNuevoCapitulo::fechaFinalCambiada(){
     // cuando cambia la fecha activamos esto para que luego la meta en la base de datos
     bFechaFinalModificada = true;
 
 }
 
-void NuevoCapitulo::anadirLugar(){
+void dlgNuevoCapitulo::anadirLugar(){
 
     QString lugar;
 

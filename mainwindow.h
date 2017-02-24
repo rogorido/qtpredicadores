@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QSqlDatabase>
 
-class NuevoCapitulo;
+class dlgNuevoCapitulo;
 class NuevaResolucion;
 class dlgNuevaPersona;
 class dlgNuevaCasa;
@@ -42,7 +42,7 @@ private:
     QSqlDatabase db;
 
     /* esto son formularios */
-    NuevoCapitulo *Capitulo;
+    dlgNuevoCapitulo *dlgCapitulo;
     NuevaResolucion *Resolucion;
     dlgNuevaPersona *dlgPersona;
     dlgNuevaCasa *dlgCasa;

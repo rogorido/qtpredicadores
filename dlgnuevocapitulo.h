@@ -1,5 +1,5 @@
-#ifndef NUEVOCAPITULO_H
-#define NUEVOCAPITULO_H
+#ifndef DLGNUEVOCAPITULO_H
+#define DLGNUEVOCAPITULO_H
 
 #include <QDialog>
 
@@ -9,16 +9,16 @@ class QSqlQueryModel;
 class LugaresModel;
 
 namespace Ui {
-class NuevoCapitulo;
+class dlgNuevoCapitulo;
 }
 
-class NuevoCapitulo : public QDialog
+class dlgNuevoCapitulo : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit NuevoCapitulo(QWidget *parent = 0);
-    ~NuevoCapitulo();
+    explicit dlgNuevoCapitulo(QWidget *parent = 0);
+    ~dlgNuevoCapitulo();
 
 private slots:
     void aceptarCapitulo();
@@ -27,7 +27,7 @@ private slots:
     void anadirLugar();
 
 private:
-    Ui::NuevoCapitulo *ui;
+    Ui::dlgNuevoCapitulo *ui;
 
     QCompleter *lugar_completer;
 
@@ -58,4 +58,4 @@ private:
 
 };
 
-#endif // NUEVOCAPITULO_H
+#endif // DLGNUEVOCAPITULO_H
