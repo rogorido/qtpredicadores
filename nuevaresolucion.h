@@ -47,6 +47,8 @@ private slots:
 
     void on_btBorrarElemento_clicked();
 
+    void on_btModificarDetalles_toggled(bool checked);
+
 private:
     Ui::NuevaResolucion *ui;
 

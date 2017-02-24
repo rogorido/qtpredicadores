@@ -276,7 +276,8 @@ void NuevaResolucion::aceptarResolucion(){
     query.bindValue(":resolucion_texto", resolucion);
     query.bindValue(":resolucion_traduccion", resolucion_trad);
     query.bindValue(":resolucion_resumen", resolucion_resumen);
-    query.bindValue(":capitulo", capitulo_origen);
+    //query.bindValue(":capitulo", capitulo_origen);
+    query.bindValue(":capitulo", 1);
     query.bindValue(":epigrafe", epigrafe);
     query.bindValue(":entendida", entendida);
     query.bindValue(":volveramirar", volveramirar);
@@ -367,4 +368,13 @@ void NuevaResolucion::on_btBorrarElemento_clicked()
 {
 
     jsongestor->eliminarElemento();
+}
+
+void NuevaResolucion::on_btModificarDetalles_toggled(bool checked)
+{
+    if (checked){
+        ui->btModificarDetalles->setText("Modificando");
+    }
+    else
+        ui->btModificarDetalles->setText("Añadiendo");
 }

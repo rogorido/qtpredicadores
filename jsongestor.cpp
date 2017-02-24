@@ -159,27 +159,24 @@ void JsonGestor::eliminarElemento(){
     /*
      * lo primero que hacemos es mirar si es un elemento padre
      * pq entonces tenemos que actuar de otra forma. El asunto es un lío
-     * pq tenemos que mirar:
-     * 1. que no haya td nada en m_json_general
-     * 2. que sí lo haya pero que el nuevo m_json_activo no esté metido
-     * 3. otros casos
+     * pq tenemos que coger un índice para sacar la row, pues de la otra
+     * forma no lo consigo. Luego usamos eso como índice para acceder al
+     * QJsonObject que está en esa posición en el QList m_json_gerenal
+     * para borrarlo... y si nos hemos quedado sin elementos añadimos
+     * un itemroot.
      */
-    qDebug() << "tamano de la qlist: " << m_json_general.size();
+
     if (!padre){
         QModelIndex idx = tree_original->currentIndex();
         pos = idx.row();
+        m_json_general.removeAt(pos);
+        delete item;
 
-            //pos = tree_original->indexOfTopLevelItem(padre);
-            qDebug() << "el indice es: " << pos;
-            m_json_general.removeAt(pos);
-            delete item;
-
-            qDebug() << "tamano de la qlist: " << m_json_general.size();
-            if (m_json_general.size() == 0){
-                        crearItemRootGeneral();
+        if (m_json_general.size() == 0){
+            crearItemRootGeneral();
                     }
 
-            return;
+        return;
         }
 
 
@@ -219,8 +216,16 @@ void JsonGestor::modificandoDatos(bool checked){
         return;
     }
 
-    QTreeWidgetItem *item = tree_original->currentItem();
-    QTreeWidgetItem *padre = item->parent();
+    QTreeWidgetItem *item;
+    QTreeWidgetItem *padre;
+
+    // hay que mirar si realmente hay un item escogido...
+    item = tree_original->currentItem();
+    if (!item){
+        return;}
+    else{
+        padre = item->parent();
+    }
 
     // guardamos por si hay algo sin guardar...
     // aunque esto hay que pensarlo.
@@ -230,7 +235,8 @@ void JsonGestor::modificandoDatos(bool checked){
     if (!padre){
         // cogemos la posición y convertimos el item en activo
         // si ya es dle nivel 1
-        posicion = tree_original->indexOfTopLevelItem(item);
+        QModelIndex idx = tree_original->currentIndex();
+        posicion = idx.row();
         item_activo = item;
         }
     else {
