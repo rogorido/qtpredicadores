@@ -303,24 +303,14 @@ void NuevaResolucion::aceptarResolucion(){
 void NuevaResolucion::introducirJson(const int id){
 
     QSqlQuery query;
+    int totaljson;
 
-    /*
-     * ponemos esto pq si hay un jsondetalles que no se ha metido
-     * se perdería, pero hay que encontrar un sistema mejor
-     */
-    if (!jsondetalles.isEmpty())
-        jsondetalles_lista.append(jsondetalles);
+    jsongestor->actualizarPrevioIntroducir();
+    totaljson = jsongestor->getSize();
 
-    for (int var = 0; var < jsondetalles_lista.size(); ++var) {
+    for (int var = 0; var < totaljson; ++var) {
 
-        /*
-         * el asunto es el siguiente:
-         * 1. construimos un QJsonDocument con ese QJsonobject de la lista, pq eso permite luego pasarlo
-         *    a una cadena de texto con toJson()
-         * 3. lo metemos en una puta variable, pq si no no funciona....
-         */
-        QJsonDocument jsondoc(jsondetalles_lista.at(var));
-        QString jsonfinal = jsondoc.toJson(QJsonDocument::Compact);
+        QString jsonfinal = jsongestor->getJsonString(var);
 
         query.prepare("INSERT INTO resoluciones_detalles(resolucion_id, detalle) VALUES(:resolucionid, :json)");
         query.bindValue(":resolucionid", id);

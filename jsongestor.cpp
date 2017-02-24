@@ -3,6 +3,8 @@
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 
+#include <QJsonDocument>
+
 JsonGestor::JsonGestor(QTreeWidget *tree)
 {
     tree_original = new QTreeWidget(tree);
@@ -69,4 +71,31 @@ void JsonGestor::nuevoBloqueJson(){
     itemnivelcero->setText(0, QString("Datos %1").arg(nivel));
 
     item_activo = itemnivelcero;
+}
+
+void JsonGestor::actualizarPrevioIntroducir(){
+
+    if (!m_json_activo.isEmpty())
+        m_json_general.append(m_json_activo);
+
+}
+
+int JsonGestor::getSize(){
+    return m_json_general.size();
+}
+
+QString JsonGestor::getJsonString(int i){
+
+    /*
+     * el asunto es el siguiente:
+     * 1. construimos un QJsonDocument con ese QJsonobject de la lista, pq eso permite luego pasarlo
+     *    a una cadena de texto con toJson()
+     * 3. lo metemos en una puta variable, pq si no no funciona....
+     */
+    QJsonDocument jsondoc(m_json_general.at(i));
+    QString jsonfinal;
+
+    jsonfinal = jsondoc.toJson(QJsonDocument::Compact);
+
+    return jsonfinal;
 }

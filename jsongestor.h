@@ -23,6 +23,16 @@ public:
     void anadirValor(const QString &key, const QString &value, int id);
 
     void nuevoBloqueJson();
+    /*
+     * esto es una tontería que habría que hacerlo de otra forma
+     * pero consiste en que meta el último m_json_activo en la lista
+     * general antes de pasar a introducir los datos en la bd
+     */
+    void actualizarPrevioIntroducir();
+
+    int getSize();
+
+    QString getJsonString(int i);
 
 private:
 
