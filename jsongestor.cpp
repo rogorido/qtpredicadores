@@ -39,10 +39,10 @@ void JsonGestor::anadirValor(const QString &key, const QJsonValue &value){
 
     if (bloqueadaEntrada) {
         QMessageBox msgBox;
-        msgBox.setText("The document has been modified.");
-        msgBox.setInformativeText("Do you want to save your changes?");
-        msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-        msgBox.setDefaultButton(QMessageBox::Save);
+        msgBox.setText("Entrada bloqueda.");
+        msgBox.setInformativeText("Hay que añadir un nuevo bloque.");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
         int ret = msgBox.exec();
         return;
     }
@@ -55,10 +55,10 @@ void JsonGestor::anadirValor(const QString &key, const QString &value, int id){
 
     if (bloqueadaEntrada) {
         QMessageBox msgBox;
-        msgBox.setText("The document has been modified.");
-        msgBox.setInformativeText("Do you want to save your changes?");
-        msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-        msgBox.setDefaultButton(QMessageBox::Save);
+        msgBox.setText("Entrada bloqueda.");
+        msgBox.setInformativeText("Hay que añadir un nuevo bloque.");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
         int ret = msgBox.exec();
         return;
     }
