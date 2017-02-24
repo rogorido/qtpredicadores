@@ -2,12 +2,16 @@
 
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
+#include <QMessageBox>
 
 #include <QJsonDocument>
 #include <QDebug>
 
-JsonGestor::JsonGestor(QTreeWidget *tree)
+JsonGestor::JsonGestor(QTreeWidget *tree, QObject *parent) : QObject(parent)
 {
+    modificando = false;
+    bloqueadaEntrada = false;
+
     tree_original = new QTreeWidget(tree);
     tree_original->setColumnCount(2);
 
@@ -32,11 +36,31 @@ void JsonGestor::crearItemRootGeneral(){
 
 void JsonGestor::anadirValor(const QString &key, const QJsonValue &value){
 
+    if (bloqueadaEntrada) {
+        QMessageBox msgBox;
+        msgBox.setText("The document has been modified.");
+        msgBox.setInformativeText("Do you want to save your changes?");
+        msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Save);
+        int ret = msgBox.exec();
+        return;
+    }
+
     m_json_activo.insert(key, value);
     anadirChildItem(key, value.toString());
 }
 
 void JsonGestor::anadirValor(const QString &key, const QString &value, int id){
+
+    if (bloqueadaEntrada) {
+        QMessageBox msgBox;
+        msgBox.setText("The document has been modified.");
+        msgBox.setInformativeText("Do you want to save your changes?");
+        msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Save);
+        int ret = msgBox.exec();
+        return;
+    }
 
     m_json_activo.insert(key, QJsonValue(id));
     anadirChildItem(key, value);
@@ -48,6 +72,7 @@ void JsonGestor::anadirChildItem(const QString &key, const QString &value){
     itemniveluno->setText(0, key);
     itemniveluno->setText(1, value);
     item_activo->addChild(itemniveluno);
+
 }
 
 void JsonGestor::nuevoBloqueJson(){
@@ -70,6 +95,13 @@ void JsonGestor::nuevoBloqueJson(){
     // borramos el contenido de este objeto
     m_json_activo = QJsonObject();
 
+    bloqueadaEntrada = false;
+
+    anadirItemNivelCero();
+
+}
+
+void JsonGestor::anadirItemNivelCero(){
     QTreeWidgetItem *itemnivelcero = new QTreeWidgetItem(tree_original);
     int nivel = m_json_general.count();
     itemnivelcero->setText(0, QString("Datos %1").arg(nivel));
@@ -112,6 +144,16 @@ void JsonGestor::eliminarElemento(){
     QVariant key;
 
     /*
+     * metemos lo que haya en m_json_activo y bloqueamos
+     * después la entrada de datos
+     */
+    if (!m_json_activo.isEmpty())
+        m_json_general.append(m_json_activo);
+
+    // bloqueamos la entrada...
+    bloqueadaEntrada = true;
+
+    /*
      * lo primero que hacemos es mirar si es un elemento padre
      * pq entonces tenemos que actuar de otra forma. El asunto es un lío
      * pq tenemos que mirar:
@@ -120,49 +162,73 @@ void JsonGestor::eliminarElemento(){
      * 3. otros casos
      */
     if (!padre){
-        if (m_json_general.size() == 0){
-            m_json_activo = QJsonObject();
-            delete item;
-            crearItemRootGeneral();
-        }
-        else if (!m_json_activo.isEmpty()) {
-            m_json_activo = QJsonObject();
-            delete item;
-        }
-        else {
             pos = tree_original->indexOfTopLevelItem(padre);
             m_json_general.removeAt(pos);
             delete item;
+
+            if (m_json_general.size() == 0){
+                        crearItemRootGeneral();
+                    }
+
+            return;
         }
 
-        return;
-    }
 
     /*
      * cogemos la posición en la que está pq es la que se corresponde
      * con la QList m_json_general
      */
-    if (padre)
-        pos = tree_original->indexOfTopLevelItem(padre);
-
-    /*
-     * la cuestión es la siguiente: tal y como está ahora
-     * m_json_general está vacío hasta que no se meta el 2º elemento
-     * por lo que hacemos esta comprobación
-     */
+    pos = tree_original->indexOfTopLevelItem(padre);
 
     key = item->data(0, Qt::DisplayRole);
 
-    if (m_json_general.size() == 0){
-        m_json_activo.remove(key.toString());
-    }
-    else {
-        QJsonObject jsontemporal = m_json_general.at(pos);
-        jsontemporal.remove(key.toString());
-        m_json_general.replace(pos, jsontemporal);
-    }
+    QJsonObject jsontemporal = m_json_general.at(pos);
+    jsontemporal.remove(key.toString());
+    m_json_general.replace(pos, jsontemporal);
 
     // borramos el item, curiosamente se hace así...
     if (item)
         delete item;
+}
+
+void JsonGestor::modificandoDatos(bool checked){
+
+
+    if (modificando == true && checked == false) {
+        /*
+         * en este caso entiendo que vengo de modificar algo
+         * por lo que hay q introducir los datos...
+         * esto es un puto lío del carajo...
+         */
+
+        m_json_general.replace(posicion, m_json_activo);
+        m_json_activo = QJsonObject();
+
+        // y añadimos uno... aunque no sé si tiene mucho sentido...
+        anadirItemNivelCero();
+        modificando = false;
+        return;
+    }
+
+    QTreeWidgetItem *item = tree_original->currentItem();
+    QTreeWidgetItem *padre = item->parent();
+
+    // guardamos por si hay algo sin guardar...
+    // aunque esto hay que pensarlo.
+    if (!m_json_activo.isEmpty())
+        m_json_general.append(m_json_activo);
+
+    if (!padre){
+        // cogemos la posición y convertimos el item en activo
+        // si ya es dle nivel 1
+        posicion = tree_original->indexOfTopLevelItem(item);
+        item_activo = item;
+        }
+    else {
+        posicion = tree_original->indexOfTopLevelItem(padre);
+        item_activo = padre;
+    }
+
+    m_json_activo = m_json_general.at(posicion);
+    modificando = true;
 }

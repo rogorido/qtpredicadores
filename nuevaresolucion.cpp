@@ -35,6 +35,8 @@ NuevaResolucion::NuevaResolucion(int capitulo,
     m_casas = CasasModel::InstanceModel();
     m_personas = PersonasModel::InstanceModel();
 
+    jsongestor = new JsonGestor(ui->treeDetalles, this);
+
     rellenarCombos();
     cargarModelos();
 
@@ -42,8 +44,8 @@ NuevaResolucion::NuevaResolucion(int capitulo,
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
     // señal de que se ha metido un texto en el campo "key" libre
     connect(ui->txtKey, SIGNAL(editingFinished()), this, SLOT(actualizarCompleterValues()));
+    connect(ui->btModificarDetalles, SIGNAL(toggled(bool)), jsongestor, SLOT(modificandoDatos(bool)));
 
-    jsongestor = new JsonGestor(ui->treeDetalles);
 
     /*
      * si capitulo !=0 entonces es que venimos del form Capitulos

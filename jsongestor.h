@@ -10,10 +10,13 @@
 class QTreeWidget;
 class QTreeWidgetItem;
 
-class JsonGestor
+class JsonGestor : public QObject
 {
+
+    Q_OBJECT
+
 public:
-    JsonGestor(QTreeWidget *tree);
+    JsonGestor(QTreeWidget *tree, QObject *parent = 0);
 
     void crearItemRootGeneral();
 
@@ -25,6 +28,8 @@ public:
     void anadirValor(const QString &key, const QString &value, int id);
 
     void nuevoBloqueJson();
+    void anadirItemNivelCero();
+
     /*
      * esto es una tontería que habría que hacerlo de otra forma
      * pero consiste en que meta el último m_json_activo en la lista
@@ -36,7 +41,13 @@ public:
 
     void eliminarElemento();
 
+
     QString getJsonString(int i);
+
+public slots:
+
+    void modificandoDatos(bool checked);
+
 
 private:
 
@@ -45,6 +56,16 @@ private:
 
     QJsonObject m_json_activo;
     QList<QJsonObject> m_json_general;
+
+    /*
+     * estas variables sirven para controlar si vamos a meter
+     * datos nuevos o a modificar existentes. Es una cutrada, pero
+     * por ahora no se me ocurre nada mejor..
+     */
+    bool modificando;
+    int posicion;
+
+    bool bloqueadaEntrada;
 
     void anadirChildItem(const QString &key, const QString &value);
 };
