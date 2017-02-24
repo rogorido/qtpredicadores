@@ -1,5 +1,5 @@
-#include "nuevacasa.h"
-#include "ui_nuevacasa.h"
+#include "dlgnuevacasa.h"
+#include "ui_dlgnuevacasa.h"
 
 #include <QSqlRecord>
 #include <QInputDialog>
@@ -8,9 +8,9 @@
 #include "casa.h"
 #include "casasmodel.h"
 
-NuevaCasa::NuevaCasa(QWidget *parent) :
+dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NuevaCasa)
+    ui(new Ui::dlgNuevaCasa)
 {
     ui->setupUi(this);
 
@@ -27,12 +27,12 @@ NuevaCasa::NuevaCasa(QWidget *parent) :
 
 }
 
-NuevaCasa::~NuevaCasa()
+dlgNuevaCasa::~dlgNuevaCasa()
 {
     delete ui;
 }
 
-void NuevaCasa::aceptarCasa(){
+void dlgNuevaCasa::aceptarCasa(){
 
     Casa *casa = new Casa();
 
@@ -58,7 +58,7 @@ void NuevaCasa::aceptarCasa(){
     m_casas->AnadirCasa(casa);
 }
 
-void NuevaCasa::anadirLugar(){
+void dlgNuevaCasa::anadirLugar(){
 
     QString lugar;
 

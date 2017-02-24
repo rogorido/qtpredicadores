@@ -8,7 +8,7 @@
 #include "nuevocapitulo.h"
 #include "nuevaresolucion.h"
 #include "dlgnuevapersona.h"
-#include "nuevacasa.h"
+#include "dlgnuevacasa.h"
 #include "temasmodel.h"
 #include "lugaresmodel.h"
 #include "personasmodel.h"
@@ -89,28 +89,22 @@ void MainWindow::cargarModelos(){
 }
 
 void MainWindow::nuevaResolucion(){
-
     Resolucion = new NuevaResolucion(0, this);
-
     Resolucion->show();
-
 }
 
 void MainWindow::nuevaPersona(){
-    Persona = new dlgNuevaPersona(this);
-
-    Persona->show();
+    dlgPersona = new dlgNuevaPersona(this);
+    dlgPersona->show();
 }
 
 void MainWindow::nuevaCasa(){
-    Casa = new NuevaCasa(this);
-
-    Casa->show();
+    dlgCasa = new dlgNuevaCasa(this);
+    dlgCasa->show();
 }
 
 void MainWindow::Capitulos(){
     FormCapitulos = new DlgCapitulos(this);
-
     FormCapitulos->show();
 }
 

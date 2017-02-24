@@ -18,7 +18,7 @@
 #include "personasmodel.h"
 #include "casasmodel.h"
 
-#include "nuevacasa.h"
+#include "dlgnuevacasa.h"
 #include "dlgnuevapersona.h"
 
 #include "jsongestor.h"
@@ -356,8 +356,8 @@ void NuevaResolucion::on_btNuevaPersona_clicked(){
 }
 
 void NuevaResolucion::on_btNuevaCasa_clicked(){
-
-    NuevaCasa *casa = new NuevaCasa(this);
+  
+    dlgNuevaCasa *casa = new dlgNuevaCasa(this);
     casa->show();
 }
 

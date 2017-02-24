@@ -7,7 +7,7 @@
 class NuevoCapitulo;
 class NuevaResolucion;
 class dlgNuevaPersona;
-class NuevaCasa;
+class dlgNuevaCasa;
 class DlgCapitulos;
 
 class TemasModel;
@@ -44,8 +44,8 @@ private:
     /* esto son formularios */
     NuevoCapitulo *Capitulo;
     NuevaResolucion *Resolucion;
-    dlgNuevaPersona *Persona;
-    NuevaCasa *Casa;
+    dlgNuevaPersona *dlgPersona;
+    dlgNuevaCasa *dlgCasa;
     DlgCapitulos *FormCapitulos;
 
     TemasModel *m_temas;

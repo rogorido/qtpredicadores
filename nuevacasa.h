@@ -1,5 +1,5 @@
-#ifndef NUEVACASA_H
-#define NUEVACASA_H
+#ifndef DLGNUEVACASA_H
+#define DLGNUEVACASA_H
 
 #include <QDialog>
 
@@ -7,16 +7,16 @@ class LugaresModel;
 class CasasModel;
 
 namespace Ui {
-class NuevaCasa;
+class dlgNuevaCasa;
 }
 
-class NuevaCasa : public QDialog
+class dlgNuevaCasa : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit NuevaCasa(QWidget *parent = 0);
-    ~NuevaCasa();
+    explicit dlgNuevaCasa(QWidget *parent = 0);
+    ~dlgNuevaCasa();
 
 private slots:
 
@@ -24,10 +24,10 @@ private slots:
     void anadirLugar();
 
 private:
-    Ui::NuevaCasa *ui;
+    Ui::dlgNuevaCasa *ui;
 
     LugaresModel *m_lugares;
     CasasModel *m_casas;
 };
 
-#endif // NUEVACASA_H
+#endif // DLGNUEVACASA_H
