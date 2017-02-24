@@ -22,7 +22,7 @@ public:
     void anadirValor(const QString &key, const QJsonValue &value);
     void anadirValor(const QString &key, const QString &value, int id);
 
-    void setTreeView(QTreeWidget * tree);
+    void nuevoBloqueJson();
 
 private:
 

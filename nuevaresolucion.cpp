@@ -242,30 +242,9 @@ void NuevaResolucion::on_btJsonAnadirLibre_clicked(){
 }
 
 void NuevaResolucion::nuevoJson(){
-    /*
-     * esto se llama cuando queremos meter otro bloque
-     * de datos en json
-     */
 
-    /*
-     * en ppo lo primero que hacemos es comprobar si
-     * jsondetalles está vacío pues si no lo está quiere decir
-     * que ya hemos estado metiendo cosas SIN pasarlas a
-     * jsondetalles_lista...
-     * pero tiene que haber una manera mejor!
-     */
+    jsongestor->nuevoBloqueJson();
 
-    if (!jsondetalles.isEmpty())
-        jsondetalles_lista.append(jsondetalles);
-
-    // borramos el contenido de este objeto
-    jsondetalles = QJsonObject();
-
-    QTreeWidgetItem *itemnivelcero = new QTreeWidgetItem(ui->treeDetalles);
-    int nivel = jsondetalles_lista.count();
-    itemnivelcero->setText(0, QString("Datos %1").arg(nivel));
-
-    nivelactivo = itemnivelcero;
 }
 
 void NuevaResolucion::aceptarResolucion(){
