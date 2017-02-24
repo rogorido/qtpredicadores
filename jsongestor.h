@@ -6,6 +6,7 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QList>
+#include <QVector>
 
 class QTreeWidget;
 class QTreeWidgetItem;
@@ -55,7 +56,7 @@ private:
     QTreeWidgetItem *item_activo;
 
     QJsonObject m_json_activo;
-    QList<QJsonObject> m_json_general;
+    QVector<QJsonObject> m_json_general;
 
     /*
      * estas variables sirven para controlar si vamos a meter

@@ -3,6 +3,7 @@
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <QMessageBox>
+#include <QModelIndex>
 
 #include <QJsonDocument>
 #include <QDebug>
@@ -147,8 +148,10 @@ void JsonGestor::eliminarElemento(){
      * metemos lo que haya en m_json_activo y bloqueamos
      * después la entrada de datos
      */
-    if (!m_json_activo.isEmpty())
+    if (!m_json_activo.isEmpty()){
         m_json_general.append(m_json_activo);
+        m_json_activo = QJsonObject();
+    }
 
     // bloqueamos la entrada...
     bloqueadaEntrada = true;
@@ -161,11 +164,17 @@ void JsonGestor::eliminarElemento(){
      * 2. que sí lo haya pero que el nuevo m_json_activo no esté metido
      * 3. otros casos
      */
+    qDebug() << "tamano de la qlist: " << m_json_general.size();
     if (!padre){
-            pos = tree_original->indexOfTopLevelItem(padre);
+        QModelIndex idx = tree_original->currentIndex();
+        pos = idx.row();
+
+            //pos = tree_original->indexOfTopLevelItem(padre);
+            qDebug() << "el indice es: " << pos;
             m_json_general.removeAt(pos);
             delete item;
 
+            qDebug() << "tamano de la qlist: " << m_json_general.size();
             if (m_json_general.size() == 0){
                         crearItemRootGeneral();
                     }
