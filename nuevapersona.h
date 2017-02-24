@@ -1,29 +1,29 @@
-#ifndef NUEVAPERSONA_H
-#define NUEVAPERSONA_H
+#ifndef DLGNUEVAPERSONA_H
+#define DLGNUEVAPERSONA_H
 
 #include <QDialog>
 
 class PersonasModel;
 
 namespace Ui {
-class NuevaPersona;
+class dlgNuevaPersona;
 }
 
-class NuevaPersona : public QDialog
+class dlgNuevaPersona : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit NuevaPersona(QWidget *parent = 0);
-    ~NuevaPersona();
+    explicit dlgNuevaPersona(QWidget *parent = 0);
+    ~dlgNuevaPersona();
 
 private slots:
     void aceptarPersona();
 
 private:
-    Ui::NuevaPersona *ui;
+    Ui::dlgNuevaPersona *ui;
 
     PersonasModel *m_personas;
 };
 
-#endif // NUEVAPERSONA_H
+#endif // DLGNUEVAPERSONA_H

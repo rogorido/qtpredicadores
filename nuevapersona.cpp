@@ -1,14 +1,14 @@
-#include "nuevapersona.h"
-#include "ui_nuevapersona.h"
+#include "dlgnuevapersona.h"
+#include "ui_dlgnuevapersona.h"
 
 #include <QDebug>
 
 #include "persona.h"
 #include "personasmodel.h"
 
-NuevaPersona::NuevaPersona(QWidget *parent) :
+dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NuevaPersona)
+    ui(new Ui::dlgNuevaPersona)
 {
     ui->setupUi(this);
 
@@ -19,12 +19,12 @@ NuevaPersona::NuevaPersona(QWidget *parent) :
 
 }
 
-NuevaPersona::~NuevaPersona()
+dlgNuevaPersona::~dlgNuevaPersona()
 {
     delete ui;
 }
 
-void NuevaPersona::aceptarPersona(){
+void dlgNuevaPersona::aceptarPersona(){
 
     Persona *persona = new Persona();
 
