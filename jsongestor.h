@@ -15,7 +15,13 @@ class JsonGestor
 public:
     JsonGestor(QTreeWidget *tree);
 
+    /*
+     * hay una función overloaded pq a veces en el QJsonObject metemos
+     * el id mientras en el treewidget metemos pej el nombre de la ciudad
+     */
     void anadirValor(const QString &key, const QJsonValue &value);
+    void anadirValor(const QString &key, const QString &value, int id);
+
     void setTreeView(QTreeWidget * tree);
 
 private:
@@ -25,6 +31,8 @@ private:
 
     QJsonObject m_json_activo;
     QList<QJsonObject> m_json_general;
+
+    void anadirChildItem(const QString &key, const QString &value);
 };
 
 #endif // JSONGESTOR_H

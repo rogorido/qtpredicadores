@@ -6,6 +6,7 @@
 JsonGestor::JsonGestor(QTreeWidget *tree)
 {
     tree_original = new QTreeWidget(tree);
+    tree_original->setColumnCount(2);
 
     QTreeWidgetItem *itemnivelcero = new QTreeWidgetItem(tree_original);
     /*
@@ -32,9 +33,19 @@ void JsonGestor::setTreeView(QTreeWidget *tree){
 void JsonGestor::anadirValor(const QString &key, const QJsonValue &value){
 
     m_json_activo.insert(key, value);
+    anadirChildItem(key, value.toString());
+}
+
+void JsonGestor::anadirValor(const QString &key, const QString &value, int id){
+
+    m_json_activo.insert(key, QJsonValue(id));
+    anadirChildItem(key, value);
+}
+
+void JsonGestor::anadirChildItem(const QString &key, const QString &value){
 
     QTreeWidgetItem *itemniveluno = new QTreeWidgetItem();
     itemniveluno->setText(0, key);
-    itemniveluno->setText(1, value.toString());
+    itemniveluno->setText(1, value);
     item_activo->addChild(itemniveluno);
 }

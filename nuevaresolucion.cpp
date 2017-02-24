@@ -10,6 +10,7 @@
 #include <QMessageBox>
 
 #include <QJsonDocument>
+#include <QJsonValue>
 #include <QSqlError>
 
 #include <QDebug>
@@ -188,8 +189,10 @@ void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
         QSqlRecord record = m_lugares->record(ui->cboLugares->currentIndex());
         int id = record.value(0).toInt();
 
-        jsondetalles["Lugar"] = id;
-        anadirTreeChildItem("Lugar", valor);
+        jsongestor->anadirValor("Lugar", QJsonValue(valor));
+
+        //jsondetalles["Lugar"] = id;
+        //anadirTreeChildItem("Lugar", valor);
     }
 
 }
