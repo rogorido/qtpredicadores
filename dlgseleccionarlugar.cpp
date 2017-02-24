@@ -38,7 +38,7 @@ void dlgSeleccionarLugar::anadirLugar(){
 void dlgSeleccionarLugar::cargarModelo(){
 
     m_lugares_base = new QSqlTableModel(this);
-    m_lugares_base->setTable("vistas.nombres_alternativas");
+    m_lugares_base->setTable("vistas.lugares_alternativas");
     m_lugares_base->select();
 
     m_lugares_proxy = new ProxyNombres(1, this);
