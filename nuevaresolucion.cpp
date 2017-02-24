@@ -4,12 +4,10 @@
 #include <QInputDialog>
 #include <QSqlRecord>
 #include <QSqlQuery>
-//#include <qsqlquerymodel.h>
 #include <QCompleter>
 #include <QTableWidget>
 #include <QMessageBox>
 
-#include <QJsonDocument>
 #include <QJsonValue>
 #include <QSqlError>
 
@@ -187,8 +185,7 @@ void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
         int id = record.value(0).toInt();
 
         jsongestor->anadirValor("Lugar", valor, id);
-
-    }
+   }
 
 }
 
@@ -328,15 +325,6 @@ void NuevaResolucion::introducirTemas(const int id){
         query.bindValue(":resolucion", id);
         query.exec();
     }
-
-}
-
-void NuevaResolucion::anadirTreeChildItem(const QString key, const QString value){
-
-    QTreeWidgetItem *itemniveluno = new QTreeWidgetItem();
-    itemniveluno->setText(0, key);
-    itemniveluno->setText(1, value);
-    nivelactivo->addChild(itemniveluno);
 
 }
 

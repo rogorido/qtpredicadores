@@ -11,7 +11,6 @@ class CasasModel;
 class PersonasModel;
 class JsonGestor;
 
-class QTreeWidgetItem;
 class QSqlQueryModel;
 class QCompleter;
 
@@ -66,14 +65,6 @@ private:
 
     JsonGestor *jsongestor;
 
-    /*
-     * esto no sé si es una chapuza, pero por ahora funciona.
-     * metemos en esta variable el item del treeDetalles
-     * debajo del cual hay que ir metiendo children
-     * que serían los datos concretos del json
-     */
-    QTreeWidgetItem *nivelactivo;
-
     struct elementopareado{
       int id;
       QString elemento;
@@ -81,34 +72,10 @@ private:
 
     QList<elementopareado> temas_lista;
 
-    /*
-     * QVariantMap es realmente un sinónimo de:
-     * QMap<QString, QVariant>
-     * La idea es meter los datos temporalmente en jsondetalles
-     * y cuando ya esté listo se meten en jsondetalles_lista
-     */
-    //QVariantMap jsondetalles;
-    /*
-     * al final uso QMultiMap pq permite que haya varios
-     * values por key, pues el peligro es que quiera meter
-     * pej varios lugares en el json
-     * PERO: aunque postgresql los reconoce, no funciona luego
-     * con las funciones para sacar los datos!
-     */
-    //QMultiMap<QString, QVariant> jsondetalles;
-
-    /*
-     * al final uso QJsonObject. PERO: hay que tener en cuenta
-     * que no permite repetir keys!
-     */
-    QJsonObject jsondetalles;
-    QList<QJsonObject> jsondetalles_lista;
-
     void rellenarCombos();
     void cargarModelos();
     void introducirJson(const int id);
     void introducirTemas(const int id);
-    void anadirTreeChildItem(const QString key, const QString value); // los elms del json van como children del QTreeWidget
 
     /*
      * esto se usa cuando abrimos el formulario
