@@ -484,7 +484,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Modificar</string>
+      <string>Añadiendo</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
