@@ -7,7 +7,7 @@
 
 #include "nuevocapitulo.h"
 #include "nuevaresolucion.h"
-#include "nuevapersona.h"
+#include "dlgnuevapersona.h"
 #include "nuevacasa.h"
 #include "temasmodel.h"
 #include "lugaresmodel.h"
@@ -97,7 +97,7 @@ void MainWindow::nuevaResolucion(){
 }
 
 void MainWindow::nuevaPersona(){
-    Persona = new NuevaPersona(this);
+    Persona = new dlgNuevaPersona(this);
 
     Persona->show();
 }

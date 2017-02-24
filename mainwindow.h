@@ -6,7 +6,7 @@
 
 class NuevoCapitulo;
 class NuevaResolucion;
-class NuevaPersona;
+class dlgNuevaPersona;
 class NuevaCasa;
 class DlgCapitulos;
 
@@ -44,7 +44,7 @@ private:
     /* esto son formularios */
     NuevoCapitulo *Capitulo;
     NuevaResolucion *Resolucion;
-    NuevaPersona *Persona;
+    dlgNuevaPersona *Persona;
     NuevaCasa *Casa;
     DlgCapitulos *FormCapitulos;
 

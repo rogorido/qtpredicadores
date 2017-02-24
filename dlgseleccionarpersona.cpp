@@ -7,7 +7,7 @@
 #include <QDebug>
 
 #include "personasmodel.h"
-#include "nuevapersona.h"
+#include "dlgnuevapersona.h"
 #include "proxynombres.h"
 
 dlgSeleccionarPersona::dlgSeleccionarPersona(QWidget *parent) :
@@ -34,7 +34,7 @@ dlgSeleccionarPersona::~dlgSeleccionarPersona()
 
 void dlgSeleccionarPersona::anadirPersona(){
 
-    NuevaPersona *persona = new NuevaPersona(this);
+    dlgNuevaPersona *persona = new dlgNuevaPersona(this);
     persona->show();
 }
 

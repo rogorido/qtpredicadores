@@ -19,7 +19,7 @@
 #include "casasmodel.h"
 
 #include "nuevacasa.h"
-#include "nuevapersona.h"
+#include "dlgnuevapersona.h"
 
 #include "jsongestor.h"
 
@@ -351,7 +351,7 @@ void NuevaResolucion::actualizarCompleterValues(){
 
 void NuevaResolucion::on_btNuevaPersona_clicked(){
 
-    NuevaPersona *persona = new NuevaPersona(this);
+    dlgNuevaPersona *persona = new dlgNuevaPersona(this);
     persona->show();
 }
 
