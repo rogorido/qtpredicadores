@@ -168,11 +168,8 @@ void NuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
 
     QString valor = ui->cboDescripcion->currentText();
 
-    if (!valor.isEmpty()){
-
-        jsondetalles["Tipo"]= valor;
-        anadirTreeChildItem("Tipo", valor);
-    }
+    if (!valor.isEmpty())
+        jsongestor->anadirValor("Tipo", QJsonValue(valor));
 
 }
 
@@ -189,10 +186,8 @@ void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
         QSqlRecord record = m_lugares->record(ui->cboLugares->currentIndex());
         int id = record.value(0).toInt();
 
-        jsongestor->anadirValor("Lugar", QJsonValue(valor));
+        jsongestor->anadirValor("Lugar", valor, id);
 
-        //jsondetalles["Lugar"] = id;
-        //anadirTreeChildItem("Lugar", valor);
     }
 
 }
@@ -211,8 +206,7 @@ void NuevaResolucion::on_btJsonAnadirPersona_clicked(){
         QSqlRecord record = m_personas->record(ui->cboPersonas->currentIndex());
         int id = record.value(0).toInt();
 
-        jsondetalles["Persona"] = id;
-        anadirTreeChildItem("Persona", valor);
+        jsongestor->anadirValor("Persona", valor, id);
     }
 
 }
@@ -230,8 +224,7 @@ void NuevaResolucion::on_btJsonAnadirCasa_clicked(){
         QSqlRecord record = m_casas->record(ui->cboCasas->currentIndex());
         int id = record.value(0).toInt();
 
-        jsondetalles["Casa"]=id;
-        anadirTreeChildItem("Casa", valor);
+        jsongestor->anadirValor("Casa", valor, id);
     }
 }
 
@@ -240,8 +233,7 @@ void NuevaResolucion::on_btJsonAnadirLibre_clicked(){
     QString value = ui->txtValue->text();
 
     if (!key.isEmpty() && !value.isEmpty()){
-        jsondetalles[key] = value;
-        anadirTreeChildItem(key, value);
+        jsongestor->anadirValor(key, value);
 
         ui->txtKey->setText("");
         ui->txtValue->setText("");
