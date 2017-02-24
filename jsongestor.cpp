@@ -139,10 +139,18 @@ QString JsonGestor::getJsonString(int i){
 
 void JsonGestor::eliminarElemento(){
 
-    QTreeWidgetItem *item = tree_original->currentItem();
-    QTreeWidgetItem *padre = item->parent();
+    QTreeWidgetItem *item;
+    QTreeWidgetItem *padre;
     int pos;
     QVariant key;
+
+    item = tree_original->currentItem();
+    if (!item){
+        return;
+    }
+    else {
+        padre = item->parent();
+    }
 
     /*
      * metemos lo que haya en m_json_activo y bloqueamos
