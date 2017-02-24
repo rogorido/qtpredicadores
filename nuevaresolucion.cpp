@@ -308,6 +308,9 @@ void NuevaResolucion::introducirJson(const int id){
     jsongestor->actualizarPrevioIntroducir();
     totaljson = jsongestor->getSize();
 
+    if (totaljson == 0)
+        return;
+
     for (int var = 0; var < totaljson; ++var) {
 
         QString jsonfinal = jsongestor->getJsonString(var);
@@ -320,6 +323,10 @@ void NuevaResolucion::introducirJson(const int id){
 }
 
 void NuevaResolucion::introducirTemas(const int id){
+
+    if (temas_lista.size() == 0)
+        return;
+
     for (int i = 0; i < temas_lista.size(); ++i) {
 
         QSqlQuery query;
