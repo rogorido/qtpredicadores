@@ -6,7 +6,7 @@
 #include <QSqlTableModel>
 
 #include "dlgnuevocapitulo.h"
-#include "nuevaresolucion.h"
+#include "dlgnuevaresolucion.h"
 #include "dlgnuevapersona.h"
 #include "dlgnuevacasa.h"
 #include "temasmodel.h"
@@ -89,8 +89,8 @@ void MainWindow::cargarModelos(){
 }
 
 void MainWindow::nuevaResolucion(){
-    Resolucion = new NuevaResolucion(0, this);
-    Resolucion->show();
+    dlgResolucion = new dlgNuevaResolucion(0, this);
+    dlgResolucion->show();
 }
 
 void MainWindow::nuevaPersona(){

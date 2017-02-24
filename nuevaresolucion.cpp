@@ -1,5 +1,5 @@
-#include "nuevaresolucion.h"
-#include "ui_nuevaresolucion.h"
+#include "dlgnuevaresolucion.h"
+#include "ui_dlgnuevaresolucion.h"
 
 #include <QInputDialog>
 #include <QSqlRecord>
@@ -23,10 +23,10 @@
 
 #include "jsongestor.h"
 
-NuevaResolucion::NuevaResolucion(int capitulo,
+dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
                                  QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NuevaResolucion), capitulo_origen(capitulo)
+    ui(new Ui::dlgNuevaResolucion), capitulo_origen(capitulo)
 {
     ui->setupUi(this);
 
@@ -54,12 +54,12 @@ NuevaResolucion::NuevaResolucion(int capitulo,
         origen = true;
 }
 
-NuevaResolucion::~NuevaResolucion()
+dlgNuevaResolucion::~dlgNuevaResolucion()
 {
     delete ui;
 }
 
-void NuevaResolucion::rellenarCombos(){
+void dlgNuevaResolucion::rellenarCombos(){
 
     ui->cboTemas->setModel(m_temas);
     ui->cboTemas->setCurrentIndex(-1);
@@ -82,7 +82,7 @@ void NuevaResolucion::rellenarCombos(){
 
 }
 
-void NuevaResolucion::cargarModelos(){
+void dlgNuevaResolucion::cargarModelos(){
 
     /*
      * TODO: tal y como está esto estos completers no se van a actualizar
@@ -114,7 +114,7 @@ void NuevaResolucion::cargarModelos(){
     ui->txtValue->setCompleter(values_completer);
 }
 
-void NuevaResolucion::on_btNuevoTema_clicked(){
+void dlgNuevaResolucion::on_btNuevoTema_clicked(){
 
     QString tema;
 
@@ -125,7 +125,7 @@ void NuevaResolucion::on_btNuevoTema_clicked(){
 
 }
 
-void NuevaResolucion::on_btAnadirTema_clicked(){
+void dlgNuevaResolucion::on_btAnadirTema_clicked(){
     /* sacamos el record del combobox */
 
     QSqlRecord record = m_temas->record(ui->cboTemas->currentIndex());
@@ -148,7 +148,7 @@ void NuevaResolucion::on_btAnadirTema_clicked(){
     ui->twTemas->setItem(insertRow, 0, item);
 }
 
-void NuevaResolucion::on_btQuitarTema_clicked(){
+void dlgNuevaResolucion::on_btQuitarTema_clicked(){
 
     QString valor = ui->twTemas->currentIndex().data().toString();
 
@@ -164,7 +164,7 @@ void NuevaResolucion::on_btQuitarTema_clicked(){
 
 }
 
-void NuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
+void dlgNuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
 
     QString valor = ui->cboDescripcion->currentText();
 
@@ -173,7 +173,7 @@ void NuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
 
 }
 
-void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
+void dlgNuevaResolucion::on_btJsonAnadirLugar_clicked(){
     QString valor = ui->cboLugares->currentText();
 
     if (!valor.isEmpty()){
@@ -191,7 +191,7 @@ void NuevaResolucion::on_btJsonAnadirLugar_clicked(){
 
 }
 
-void NuevaResolucion::on_btJsonAnadirPersona_clicked(){
+void dlgNuevaResolucion::on_btJsonAnadirPersona_clicked(){
 
     QString valor = ui->cboPersonas->currentText();
 
@@ -210,7 +210,7 @@ void NuevaResolucion::on_btJsonAnadirPersona_clicked(){
 
 }
 
-void NuevaResolucion::on_btJsonAnadirCasa_clicked(){
+void dlgNuevaResolucion::on_btJsonAnadirCasa_clicked(){
     QString valor = ui->cboCasas->currentText();
 
     if (!valor.isEmpty()){
@@ -227,7 +227,7 @@ void NuevaResolucion::on_btJsonAnadirCasa_clicked(){
     }
 }
 
-void NuevaResolucion::on_btJsonAnadirLibre_clicked(){
+void dlgNuevaResolucion::on_btJsonAnadirLibre_clicked(){
     QString key = ui->txtKey->text();
     QString value = ui->txtValue->text();
 
@@ -240,13 +240,13 @@ void NuevaResolucion::on_btJsonAnadirLibre_clicked(){
 
 }
 
-void NuevaResolucion::nuevoJson(){
+void dlgNuevaResolucion::nuevoJson(){
 
     jsongestor->nuevoBloqueJson();
 
 }
 
-void NuevaResolucion::aceptarResolucion(){
+void dlgNuevaResolucion::aceptarResolucion(){
 
     QString resolucion;
 
@@ -300,7 +300,7 @@ void NuevaResolucion::aceptarResolucion(){
     }
 }
 
-void NuevaResolucion::introducirJson(const int id){
+void dlgNuevaResolucion::introducirJson(const int id){
 
     QSqlQuery query;
     int totaljson;
@@ -322,7 +322,7 @@ void NuevaResolucion::introducirJson(const int id){
     }
 }
 
-void NuevaResolucion::introducirTemas(const int id){
+void dlgNuevaResolucion::introducirTemas(const int id){
 
     if (temas_lista.size() == 0)
         return;
@@ -338,7 +338,7 @@ void NuevaResolucion::introducirTemas(const int id){
 
 }
 
-void NuevaResolucion::actualizarCompleterValues(){
+void dlgNuevaResolucion::actualizarCompleterValues(){
     QString key;
 
     key = ui->txtKey->text();
@@ -349,19 +349,19 @@ void NuevaResolucion::actualizarCompleterValues(){
 
 }
 
-void NuevaResolucion::on_btNuevaPersona_clicked(){
+void dlgNuevaResolucion::on_btNuevaPersona_clicked(){
 
     dlgNuevaPersona *persona = new dlgNuevaPersona(this);
     persona->show();
 }
 
-void NuevaResolucion::on_btNuevaCasa_clicked(){
+void dlgNuevaResolucion::on_btNuevaCasa_clicked(){
   
     dlgNuevaCasa *casa = new dlgNuevaCasa(this);
     casa->show();
 }
 
-void NuevaResolucion::on_btNuevoLugar_clicked(){
+void dlgNuevaResolucion::on_btNuevoLugar_clicked(){
 
     QString lugar;
     lugar = QInputDialog::getText(this, "Introduzca un nuevo lugar", "Lugar (nombre,país) ");
@@ -371,13 +371,13 @@ void NuevaResolucion::on_btNuevoLugar_clicked(){
     }
 }
 
-void NuevaResolucion::on_btBorrarElemento_clicked()
+void dlgNuevaResolucion::on_btBorrarElemento_clicked()
 {
 
     jsongestor->eliminarElemento();
 }
 
-void NuevaResolucion::on_btModificarDetalles_toggled(bool checked)
+void dlgNuevaResolucion::on_btModificarDetalles_toggled(bool checked)
 {
     if (checked){
         ui->btModificarDetalles->setText("Modificando");

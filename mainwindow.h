@@ -5,7 +5,7 @@
 #include <QSqlDatabase>
 
 class dlgNuevoCapitulo;
-class NuevaResolucion;
+class dlgNuevaResolucion;
 class dlgNuevaPersona;
 class dlgNuevaCasa;
 class DlgCapitulos;
@@ -43,7 +43,7 @@ private:
 
     /* esto son formularios */
     dlgNuevoCapitulo *dlgCapitulo;
-    NuevaResolucion *Resolucion;
+    dlgNuevaResolucion *dlgResolucion;
     dlgNuevaPersona *dlgPersona;
     dlgNuevaCasa *dlgCasa;
     DlgCapitulos *FormCapitulos;

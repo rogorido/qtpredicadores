@@ -1,5 +1,5 @@
-#ifndef NUEVARESOLUCION_H
-#define NUEVARESOLUCION_H
+#ifndef DLGNUEVARESOLUCION_H
+#define DLGNUEVARESOLUCION_H
 
 #include <QDialog>
 #include <QMap>
@@ -15,17 +15,17 @@ class QSqlQueryModel;
 class QCompleter;
 
 namespace Ui {
-class NuevaResolucion;
+class dlgNuevaResolucion;
 }
 
-class NuevaResolucion : public QDialog
+class dlgNuevaResolucion : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit NuevaResolucion(int capitulo,
+    explicit dlgNuevaResolucion(int capitulo,
                              QWidget *parent = 0);
-    ~NuevaResolucion();
+    ~dlgNuevaResolucion();
 
 private slots:
 
@@ -50,7 +50,7 @@ private slots:
     void on_btModificarDetalles_toggled(bool checked);
 
 private:
-    Ui::NuevaResolucion *ui;
+    Ui::dlgNuevaResolucion *ui;
 
     /* pointers para los modelos de MainWindow */
     /* no me acordaba q esto hay que hacerlo así... */
@@ -89,4 +89,4 @@ private:
     bool origen;
 };
 
-#endif // NUEVARESOLUCION_H
+#endif // DLGNUEVARESOLUCION_H

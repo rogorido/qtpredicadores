@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>NuevaResolucion</class>
- <widget class="QDialog" name="NuevaResolucion">
+ <class>dlgNuevaResolucion</class>
+ <widget class="QDialog" name="dlgNuevaResolucion">
   <property name="geometry">
    <rect>
     <x>0</x>
