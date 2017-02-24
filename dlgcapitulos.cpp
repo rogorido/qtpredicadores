@@ -5,9 +5,9 @@
 #include <QSortFilterProxyModel>
 #include <QDebug>
 
-DlgCapitulos::DlgCapitulos(QWidget *parent) :
+dlgCapitulos::dlgCapitulos(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::DlgCapitulos)
+    ui(new Ui::dlgCapitulos)
 {
     ui->setupUi(this);
 
@@ -46,12 +46,12 @@ DlgCapitulos::DlgCapitulos(QWidget *parent) :
 
 }
 
-DlgCapitulos::~DlgCapitulos()
+dlgCapitulos::~dlgCapitulos()
 {
     delete ui;
 }
 
-void DlgCapitulos::escogidoCapitulo(const QModelIndex &idx){
+void dlgCapitulos::escogidoCapitulo(const QModelIndex &idx){
     /* sacamos el id */
     QModelIndex indice = idx.model()->index(idx.row(), 0);
     int id = m_capitulos->data(indice, Qt::DisplayRole).toInt();

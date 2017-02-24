@@ -104,7 +104,7 @@ void MainWindow::nuevaCasa(){
 }
 
 void MainWindow::Capitulos(){
-    FormCapitulos = new DlgCapitulos(this);
+    FormCapitulos = new dlgCapitulos(this);
     FormCapitulos->show();
 }
 

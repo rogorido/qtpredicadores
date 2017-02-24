@@ -8,7 +8,7 @@ class dlgNuevoCapitulo;
 class dlgNuevaResolucion;
 class dlgNuevaPersona;
 class dlgNuevaCasa;
-class DlgCapitulos;
+class dlgCapitulos;
 
 class TemasModel;
 class LugaresModel;
@@ -46,7 +46,7 @@ private:
     dlgNuevaResolucion *dlgResolucion;
     dlgNuevaPersona *dlgPersona;
     dlgNuevaCasa *dlgCasa;
-    DlgCapitulos *FormCapitulos;
+    dlgCapitulos *FormCapitulos;
 
     TemasModel *m_temas;
     LugaresModel *m_lugares;

@@ -8,22 +8,22 @@ class QSortFilterProxyModel;
 class QModelIndex;
 
 namespace Ui {
-class DlgCapitulos;
+class dlgCapitulos;
 }
 
-class DlgCapitulos : public QDialog
+class dlgCapitulos : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit DlgCapitulos(QWidget *parent = 0);
-    ~DlgCapitulos();
+    explicit dlgCapitulos(QWidget *parent = 0);
+    ~dlgCapitulos();
 
 private slots:
     void escogidoCapitulo(const QModelIndex &idx);
 
 private:
-    Ui::DlgCapitulos *ui;
+    Ui::dlgCapitulos *ui;
 
     QSqlTableModel *m_capitulos;
     QSqlTableModel *m_resoluciones;
