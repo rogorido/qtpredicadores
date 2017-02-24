@@ -22,6 +22,8 @@
 #include "nuevacasa.h"
 #include "nuevapersona.h"
 
+#include "jsongestor.h"
+
 NuevaResolucion::NuevaResolucion(int capitulo,
                                  QWidget *parent) :
     QDialog(parent),
@@ -42,19 +44,7 @@ NuevaResolucion::NuevaResolucion(int capitulo,
     // señal de que se ha metido un texto en el campo "key" libre
     connect(ui->txtKey, SIGNAL(editingFinished()), this, SLOT(actualizarCompleterValues()));
 
-    QTreeWidgetItem *itemnivelcero = new QTreeWidgetItem(ui->treeDetalles);
-    /*
-     * realmente esto es una cutrada.. habría que ponerlo solo si
-     * hay algo, pero bueno, ya lo corregiré...
-     */
-    itemnivelcero->setText(0, "Datos 0");
-
-    /*
-     * convertimos el QtreeWidgetItem que acabamos de meter
-     * en el "activo" al que tienen que ir los children
-     */
-    nivelactivo = new QTreeWidgetItem();
-    nivelactivo = itemnivelcero;
+    jsongestor = new JsonGestor(ui->treeDetalles);
 
     /*
      * si capitulo !=0 entonces es que venimos del form Capitulos

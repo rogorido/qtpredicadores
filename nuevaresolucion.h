@@ -9,6 +9,7 @@ class TemasModel;
 class LugaresModel;
 class CasasModel;
 class PersonasModel;
+class JsonGestor;
 
 class QTreeWidgetItem;
 class QSqlQueryModel;
@@ -62,6 +63,8 @@ private:
 
     QCompleter *keys_completer;
     QCompleter *values_completer;
+
+    JsonGestor *jsongestor;
 
     /*
      * esto no sé si es una chapuza, pero por ahora funciona.
