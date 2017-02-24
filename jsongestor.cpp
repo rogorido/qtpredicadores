@@ -124,10 +124,8 @@ int JsonGestor::getSize(){
 QString JsonGestor::getJsonString(int i){
 
     /*
-     * el asunto es el siguiente:
-     * 1. construimos un QJsonDocument con ese QJsonobject de la lista, pq eso permite luego pasarlo
+     * construimos un QJsonDocument con ese QJsonobject de la lista, pq eso permite luego pasarlo
      *    a una cadena de texto con toJson()
-     * 3. lo metemos en una puta variable, pq si no no funciona....
      */
     QJsonDocument jsondoc(m_json_general.at(i));
     QString jsonfinal;

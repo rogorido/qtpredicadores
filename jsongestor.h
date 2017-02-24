@@ -66,6 +66,13 @@ private:
     bool modificando;
     int posicion;
 
+    /*
+     * esta variable sirve para bloquear la entrada cuando hemos
+     * borrado algo. La verdad es que es una chapuza. La razón es que al
+     * borrar deja de haber un m_json_activo y un item_activo claro.
+     * Pero esto es la clave de todo la clase y habría que pensarlo mejor.
+     * Al añadir un nuevo bloque se desbloquea...
+     */
     bool bloqueadaEntrada;
 
     void anadirChildItem(const QString &key, const QString &value);
