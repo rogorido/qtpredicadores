@@ -360,3 +360,9 @@ void NuevaResolucion::on_btNuevoLugar_clicked(){
         m_lugares->AnadirLugar(lugar);
     }
 }
+
+void NuevaResolucion::on_btBorrarElemento_clicked()
+{
+
+    jsongestor->eliminarElemento();
+}

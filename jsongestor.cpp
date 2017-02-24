@@ -4,12 +4,17 @@
 #include <QTreeWidgetItem>
 
 #include <QJsonDocument>
+#include <QDebug>
 
 JsonGestor::JsonGestor(QTreeWidget *tree)
 {
     tree_original = new QTreeWidget(tree);
     tree_original->setColumnCount(2);
 
+    crearItemRootGeneral();
+}
+
+void JsonGestor::crearItemRootGeneral(){
     QTreeWidgetItem *itemnivelcero = new QTreeWidgetItem(tree_original);
     /*
      * realmente esto es una cutrada.. habría que ponerlo solo si
@@ -23,7 +28,6 @@ JsonGestor::JsonGestor(QTreeWidget *tree)
      */
     item_activo = new QTreeWidgetItem();
     item_activo = itemnivelcero;
-
 }
 
 void JsonGestor::anadirValor(const QString &key, const QJsonValue &value){
@@ -98,4 +102,67 @@ QString JsonGestor::getJsonString(int i){
     jsonfinal = jsondoc.toJson(QJsonDocument::Compact);
 
     return jsonfinal;
+}
+
+void JsonGestor::eliminarElemento(){
+
+    QTreeWidgetItem *item = tree_original->currentItem();
+    QTreeWidgetItem *padre = item->parent();
+    int pos;
+    QVariant key;
+
+    /*
+     * lo primero que hacemos es mirar si es un elemento padre
+     * pq entonces tenemos que actuar de otra forma. El asunto es un lío
+     * pq tenemos que mirar:
+     * 1. que no haya td nada en m_json_general
+     * 2. que sí lo haya pero que el nuevo m_json_activo no esté metido
+     * 3. otros casos
+     */
+    if (!padre){
+        if (m_json_general.size() == 0){
+            m_json_activo = QJsonObject();
+            delete item;
+            crearItemRootGeneral();
+        }
+        else if (!m_json_activo.isEmpty()) {
+            m_json_activo = QJsonObject();
+            delete item;
+        }
+        else {
+            pos = tree_original->indexOfTopLevelItem(padre);
+            m_json_general.removeAt(pos);
+            delete item;
+        }
+
+        return;
+    }
+
+    /*
+     * cogemos la posición en la que está pq es la que se corresponde
+     * con la QList m_json_general
+     */
+    if (padre)
+        pos = tree_original->indexOfTopLevelItem(padre);
+
+    /*
+     * la cuestión es la siguiente: tal y como está ahora
+     * m_json_general está vacío hasta que no se meta el 2º elemento
+     * por lo que hacemos esta comprobación
+     */
+
+    key = item->data(0, Qt::DisplayRole);
+
+    if (m_json_general.size() == 0){
+        m_json_activo.remove(key.toString());
+    }
+    else {
+        QJsonObject jsontemporal = m_json_general.at(pos);
+        jsontemporal.remove(key.toString());
+        m_json_general.replace(pos, jsontemporal);
+    }
+
+    // borramos el item, curiosamente se hace así...
+    if (item)
+        delete item;
 }

@@ -15,6 +15,8 @@ class JsonGestor
 public:
     JsonGestor(QTreeWidget *tree);
 
+    void crearItemRootGeneral();
+
     /*
      * hay una función overloaded pq a veces en el QJsonObject metemos
      * el id mientras en el treewidget metemos pej el nombre de la ciudad
@@ -31,6 +33,8 @@ public:
     void actualizarPrevioIntroducir();
 
     int getSize();
+
+    void eliminarElemento();
 
     QString getJsonString(int i);
 

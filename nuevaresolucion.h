@@ -45,6 +45,8 @@ private slots:
     void aceptarResolucion(); // btOK
     void actualizarCompleterValues(); // cuando cambia el campo key de json libre
 
+    void on_btBorrarElemento_clicked();
+
 private:
     Ui::NuevaResolucion *ui;
 
