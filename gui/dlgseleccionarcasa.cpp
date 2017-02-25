@@ -41,7 +41,7 @@ void dlgSeleccionarCasa::anadirCasa(){
 void dlgSeleccionarCasa::cargarModelo(){
 
     m_nombres = new QSqlTableModel(this);
-    m_nombres->setTable("vistas.nombres_alternativas");
+    m_nombres->setTable("vistas.casas_alternativas");
     m_nombres->select();
 
     m_nombres_proxy = new ProxyNombres(0, this);
@@ -71,22 +71,41 @@ void dlgSeleccionarCasa::actualizarFiltro(const QString filtro){
 
 void dlgSeleccionarCasa::aceptar(){
 
-    Casa casa;
+    /*
+     * en teoría habría que emitir una casa, pero debido a que quiero construir
+     * el nombre con la provincia, etc. sería más lío pq en el objeto Casa
+     * tengo que poner lugar/provincia/etc. como int y luego tendría que convertirlo
+     * en algún sitio a QString... por eso paso por ahora.
+     */
 
     // tiene que haber otra manera de hacer esto...
     QModelIndex idx0 = m_nombres_proxy->index(ui->twCasas->currentIndex().row(), 0);
     QModelIndex idx1 = m_nombres_proxy->index(ui->twCasas->currentIndex().row(), 1);
     QModelIndex idx2 = m_nombres_proxy->index(ui->twCasas->currentIndex().row(), 2);
+    QModelIndex idx3 = m_nombres_proxy->index(ui->twCasas->currentIndex().row(), 3);
+    QModelIndex idx4 = m_nombres_proxy->index(ui->twCasas->currentIndex().row(), 4);
 
     if (!idx0.isValid())
         return;
 
     int id = m_nombres->data(m_nombres_proxy->mapToSource(idx0), Qt::DisplayRole).toInt();
     QString nombre = m_nombres->data(m_nombres_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
+    QString lugar = m_nombres->data(m_nombres_proxy->mapToSource(idx2), Qt::DisplayRole).toString();
+    QString provincia = m_nombres->data(m_nombres_proxy->mapToSource(idx3), Qt::DisplayRole).toString();
+    QString advocacion = m_nombres->data(m_nombres_proxy->mapToSource(idx4), Qt::DisplayRole).toString();
 
-    casa.setId(id);
-    casa.setNombre(nombre);
+    QString valor;
 
-    emit(casaEscogida(casa));
+    // lo construimos de forma un poco cutre; esto habría que mejorarlo...
+    valor = nombre;
+    if (!lugar.isEmpty())
+        valor += '-' + lugar;
+    if (!provincia.isEmpty())
+        valor += '-' + provincia;
+    if (!advocacion.isEmpty())
+        valor += '-' + advocacion;
+
+
+    emit(casaEscogida(id, valor));
     close();
 }

@@ -3,8 +3,6 @@
 
 #include <QDialog>
 
-#include "objs/casa.h"
-
 class CasasModel;
 class QSqlTableModel;
 class ProxyNombres;
@@ -28,7 +26,7 @@ private slots:
     void aceptar();
 
 signals:
-    void casaEscogida(Casa casa);
+    void casaEscogida(int id, QString nombres);
 
 private:
     Ui::dlgSeleccionarCasa *ui;
