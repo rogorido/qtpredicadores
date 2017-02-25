@@ -32,12 +32,7 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
 
     rellenarCombos();
 
-    connect(ui->btNuevoJson, SIGNAL(clicked()), this, SLOT(nuevoJson()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
-    // señal de que se ha metido un texto en el campo "key" libre
-    connect(ui->txtKey, SIGNAL(editingFinished()), this, SLOT(actualizarCompleterValues()));
-    connect(ui->btModificarDetalles, SIGNAL(toggled(bool)), jsongestor, SLOT(modificandoDatos(bool)));
-
 
     /*
      * si capitulo !=0 entonces es que venimos del form Capitulos
@@ -57,10 +52,6 @@ void dlgNuevaResolucion::rellenarCombos(){
     ui->cboTemas->setModel(m_temas);
     ui->cboTemas->setCurrentIndex(-1);
     ui->cboTemas->setModelColumn(1);
-
-    ui->cboDescripcion->addItem("Nombramiento");
-    ui->cboDescripcion->setCurrentIndex(-1);
-
 }
 
 void dlgNuevaResolucion::on_btNuevoTema_clicked(){
