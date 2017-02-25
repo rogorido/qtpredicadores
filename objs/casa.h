@@ -11,6 +11,7 @@ public:
     Casa();
 
     // setters
+    void setId(int i);
     void setNombre(QString n);
     void setLugar(int l);
     void setBuscado(bool b);
@@ -20,6 +21,7 @@ public:
     void setNotas(QString n);
 
     //getters
+    int getId() const {return id;}
     QString getNombre() const {return nombre;}
     int getLugar() const {return lugar;}
     bool getBuscado() const {return buscado;}
@@ -30,6 +32,7 @@ public:
 
 private:
 
+    int id;
     QString nombre;
     int lugar;
     bool buscado;

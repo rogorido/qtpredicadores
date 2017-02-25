@@ -5,6 +5,10 @@ Casa::Casa()
 
 }
 
+void Casa::setId(int i){
+    id = i;
+}
+
 void Casa::setNombre(QString n){
     if (!n.isEmpty())
         nombre = n;
