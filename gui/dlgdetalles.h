@@ -4,6 +4,7 @@
 #include <QDialog>
 
 #include "objs/persona.h"
+#include "objs/lugar.h"
 
 class JsonGestor;
 
@@ -21,7 +22,10 @@ public:
 
 private slots:
     void recibirPersona(Persona persona);
+    void recibirLugar(Lugar lugar);
     void on_btPersona_clicked();
+
+    void on_btLugar_clicked();
 
 private:
     Ui::dlgDetalles *ui;

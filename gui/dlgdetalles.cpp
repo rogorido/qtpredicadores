@@ -3,6 +3,7 @@
 
 #include "objs/jsongestor.h"
 #include "dlgseleccionarpersona.h"
+#include "dlgseleccionarlugar.h"
 
 dlgDetalles::dlgDetalles(JsonGestor *json, QWidget *parent) :
     QDialog(parent),
@@ -31,6 +32,16 @@ void dlgDetalles::recibirPersona(Persona persona){
     jsondetalles->anadirValor("Persona", valor, id);
 }
 
+void dlgDetalles::recibirLugar(Lugar lugar){
+    int id;
+    QString valor;
+
+    id = lugar.getId();
+    valor = lugar.getLugar();
+
+    jsondetalles->anadirValor("Lugar", valor, id);
+}
+
 
 void dlgDetalles::on_btPersona_clicked()
 {
@@ -38,5 +49,14 @@ void dlgDetalles::on_btPersona_clicked()
     dlgPersona->show();
 
     connect(dlgPersona, SIGNAL(personaEscogida(Persona)), this, SLOT(recibirPersona(Persona)));
+
+}
+
+void dlgDetalles::on_btLugar_clicked()
+{
+    dlgSeleccionarLugar *dlgLugar = new dlgSeleccionarLugar(this);
+    dlgLugar->show();
+
+    connect(dlgLugar, SIGNAL(lugarEscogido(Lugar)), this, SLOT(recibirLugar(Lugar)));
 
 }
