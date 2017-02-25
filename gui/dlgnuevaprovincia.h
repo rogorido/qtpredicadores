@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+class ProvinciasModel;
+
 namespace Ui {
 class dlgNuevaProvincia;
 }
@@ -15,8 +17,14 @@ public:
     explicit dlgNuevaProvincia(QWidget *parent = 0);
     ~dlgNuevaProvincia();
 
+private slots:
+
+    void aceptarProvincia();
+
 private:
     Ui::dlgNuevaProvincia *ui;
+
+    ProvinciasModel *m_provincias;
 };
 
 #endif // DLGNUEVAPROVINCIA_H

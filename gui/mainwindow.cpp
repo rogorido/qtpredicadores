@@ -9,13 +9,17 @@
 #include "dlgnuevaresolucion.h"
 #include "dlgnuevapersona.h"
 #include "dlgnuevacasa.h"
+#include "dlgnuevaobra.h"
+#include "dlgnuevaprovincia.h"
+
 #include "models/temasmodel.h"
 #include "models/lugaresmodel.h"
 #include "models/personasmodel.h"
 #include "models/casasmodel.h"
 #include "models/provinciasmodel.h"
+
 #include "dlgcapitulos.h"
-#include "dlgnuevaobra.h"
+
 
 const int STATUSBAR_TIMEOUT = 1000;
 
@@ -50,15 +54,14 @@ void MainWindow::cargarMenues(){
     connect(ui->actionNuevaCasa, SIGNAL(triggered()), this, SLOT(nuevaCasa()));
     connect(ui->actionNuevaPersona, SIGNAL(triggered()), this, SLOT(nuevaPersona()));
     connect(ui->actionNuevaObra, SIGNAL(triggered()), this, SLOT(nuevaObra()));
+    connect(ui->actionNuevaProvincia, SIGNAL(triggered()), this, SLOT(nuevaProvincia()));
     connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
 void MainWindow::nuevoCapitulo(){
 
     dlgCapitulo = new dlgNuevoCapitulo(this);
-
     dlgCapitulo->show();
-    //Capitulo->activateWindow();
 }
 
 void MainWindow::cargarConexiones(){
@@ -118,4 +121,9 @@ void MainWindow::nuevaObra(){
 
     dlgNuevaObra *nuevaObra = new dlgNuevaObra(this);
     nuevaObra->show();
+}
+
+void MainWindow::nuevaProvincia(){
+    dlgNuevaProvincia *dlgprovincia = new dlgNuevaProvincia(this);
+    dlgprovincia->show();
 }

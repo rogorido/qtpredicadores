@@ -35,6 +35,7 @@ private slots:
     void nuevaPersona();
     void nuevaCasa();
     void nuevaObra();
+    void nuevaProvincia();
 
     void Capitulos();
 
