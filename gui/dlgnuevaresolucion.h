@@ -2,8 +2,6 @@
 #define DLGNUEVARESOLUCION_H
 
 #include <QDialog>
-#include <QMap>
-#include <QJsonObject>
 
 class TemasModel;
 class JsonGestor;
@@ -27,16 +25,12 @@ private slots:
     void on_btNuevoTema_clicked();
     void on_btAnadirTema_clicked();
     void on_btQuitarTema_clicked();
+    void on_btDetalles_clicked();
 
     void aceptarResolucion(); // btOK
 
-    void on_btBorrarElemento_clicked();
-    void on_btModificarDetalles_toggled(bool checked);
-    void on_btDetalles_clicked();
-
 private:
     Ui::dlgNuevaResolucion *ui;
-
 
     TemasModel *m_temas;
     JsonGestor *jsongestor;

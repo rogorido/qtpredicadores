@@ -31,6 +31,7 @@ private slots:
     void on_btLugar_clicked();
     void on_btJsonAnadirLibre_clicked();
     void on_btJsonAnadirDescripcion_clicked();
+    void on_btModificarDetalles_toggled(bool checked);
 
 private:
     Ui::dlgDetalles *ui;

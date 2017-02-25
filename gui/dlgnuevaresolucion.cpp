@@ -205,22 +205,6 @@ void dlgNuevaResolucion::introducirTemas(const int id){
 
 }
 
-
-void dlgNuevaResolucion::on_btBorrarElemento_clicked()
-{
-
-    jsongestor->eliminarElemento();
-}
-
-void dlgNuevaResolucion::on_btModificarDetalles_toggled(bool checked)
-{
-    if (checked){
-        ui->btModificarDetalles->setText("Modificando");
-    }
-    else
-        ui->btModificarDetalles->setText("Añadiendo");
-}
-
 void dlgNuevaResolucion::on_btDetalles_clicked()
 {
     dlgdetalles->show();

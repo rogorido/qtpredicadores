@@ -18,6 +18,7 @@ dlgDetalles::dlgDetalles(JsonGestor *json, QWidget *parent) :
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(hide()));
     connect(ui->btNuevoBloque, SIGNAL(clicked(bool)), jsondetalles, SLOT(nuevoBloqueJson()));
+    connect(ui->btBorrarElemento, SIGNAL(clicked(bool)), jsondetalles, SLOT(eliminarElemento()));
     connect(ui->txtKey, SIGNAL(editingFinished()), this, SLOT(actualizarCompleterValues()));
 
     cargarModelos();
@@ -123,4 +124,13 @@ void dlgDetalles::on_btJsonAnadirDescripcion_clicked(){
     if (!valor.isEmpty())
         jsondetalles->anadirValor("Tipo", QJsonValue(valor));
 
+}
+
+void dlgDetalles::on_btModificarDetalles_toggled(bool checked)
+{
+    if (checked){
+        ui->btModificarDetalles->setText("Modificando");
+    }
+    else
+        ui->btModificarDetalles->setText("Añadiendo");
 }

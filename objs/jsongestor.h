@@ -40,15 +40,13 @@ public:
 
     int getSize();
 
-    void eliminarElemento();
-
-
     QString getJsonString(int i);
 
 public slots:
 
     void modificandoDatos(bool checked);
     void nuevoBloqueJson();
+    void eliminarElemento();
 
 private:
 
