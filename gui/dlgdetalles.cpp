@@ -102,3 +102,25 @@ void dlgDetalles::cargarModelos(){
 
     ui->txtValue->setCompleter(values_completer);
 }
+
+void dlgDetalles::on_btJsonAnadirLibre_clicked()
+{
+    QString key = ui->txtKey->text();
+    QString value = ui->txtValue->text();
+
+    if (!key.isEmpty() && !value.isEmpty()){
+        jsondetalles->anadirValor(key, value);
+
+        ui->txtKey->setText("");
+        ui->txtValue->setText("");
+    }
+}
+
+void dlgDetalles::on_btJsonAnadirDescripcion_clicked(){
+
+    QString valor = ui->cboDescripcion->currentText();
+
+    if (!valor.isEmpty())
+        jsondetalles->anadirValor("Tipo", QJsonValue(valor));
+
+}

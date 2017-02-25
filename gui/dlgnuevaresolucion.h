@@ -34,15 +34,7 @@ private slots:
     void on_btNuevoTema_clicked();
     void on_btAnadirTema_clicked();
     void on_btQuitarTema_clicked();
-    void on_btJsonAnadirDescripcion_clicked();
-    void on_btJsonAnadirPersona_clicked();
-    void on_btJsonAnadirCasa_clicked();
-    void on_btJsonAnadirLibre_clicked();
-    void on_btNuevoLugar_clicked();
-    void on_btNuevaPersona_clicked();
-    void on_btNuevaCasa_clicked();
 
-    void nuevoJson();
     void aceptarResolucion(); // btOK
 
     void on_btBorrarElemento_clicked();

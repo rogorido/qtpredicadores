@@ -135,70 +135,6 @@ void dlgNuevaResolucion::on_btQuitarTema_clicked(){
 
 }
 
-void dlgNuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
-
-    QString valor = ui->cboDescripcion->currentText();
-
-    if (!valor.isEmpty())
-        jsongestor->anadirValor("Tipo", QJsonValue(valor));
-
-}
-
-void dlgNuevaResolucion::on_btJsonAnadirPersona_clicked(){
-
-    QString valor = ui->cboPersonas->currentText();
-
-    if (!valor.isEmpty()){
-        /*
-         * extraemos el id del combo
-         * dado que esto se repite se podría hacer un método
-         * al que pasamos el modelo y el combo y devuelve un int
-         * pero sinceramente ahora no me acuerdo cómo se hace...
-         */
-        QSqlRecord record = m_personas->record(ui->cboPersonas->currentIndex());
-        int id = record.value(0).toInt();
-
-        jsongestor->anadirValor("Persona", valor, id);
-    }
-
-}
-
-void dlgNuevaResolucion::on_btJsonAnadirCasa_clicked(){
-    QString valor = ui->cboCasas->currentText();
-
-    if (!valor.isEmpty()){
-        /*
-         * extraemos el id del combo
-         * dado que esto se repite se podría hacer un método
-         * al que pasamos el modelo y el combo y devuelve un int
-         * pero sinceramente ahora no me acuerdo cómo se hace...
-         */
-        QSqlRecord record = m_casas->record(ui->cboCasas->currentIndex());
-        int id = record.value(0).toInt();
-
-        jsongestor->anadirValor("Casa", valor, id);
-    }
-}
-
-void dlgNuevaResolucion::on_btJsonAnadirLibre_clicked(){
-    QString key = ui->txtKey->text();
-    QString value = ui->txtValue->text();
-
-    if (!key.isEmpty() && !value.isEmpty()){
-        jsongestor->anadirValor(key, value);
-
-        ui->txtKey->setText("");
-        ui->txtValue->setText("");
-    }
-
-}
-
-void dlgNuevaResolucion::nuevoJson(){
-
-    jsongestor->nuevoBloqueJson();
-
-}
-
 void dlgNuevaResolucion::aceptarResolucion(){
 
     QString resolucion;
@@ -291,27 +227,6 @@ void dlgNuevaResolucion::introducirTemas(const int id){
 
 }
 
-void dlgNuevaResolucion::on_btNuevaPersona_clicked(){
-
-    dlgNuevaPersona *persona = new dlgNuevaPersona(this);
-    persona->show();
-}
-
-void dlgNuevaResolucion::on_btNuevaCasa_clicked(){
-  
-    dlgNuevaCasa *casa = new dlgNuevaCasa(this);
-    casa->show();
-}
-
-void dlgNuevaResolucion::on_btNuevoLugar_clicked(){
-
-    QString lugar;
-    lugar = QInputDialog::getText(this, "Introduzca un nuevo lugar", "Lugar (nombre,país) ");
-
-    if (!lugar.isEmpty()){
-        m_lugares->AnadirLugar(lugar);
-    }
-}
 
 void dlgNuevaResolucion::on_btBorrarElemento_clicked()
 {
