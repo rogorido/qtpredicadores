@@ -25,6 +25,7 @@ public:
 private slots:
     void recibirPersona(Persona persona);
     void recibirLugar(Lugar lugar);
+    void recibirCasa(int id, QString nombres);
     void actualizarCompleterValues(); // cuando cambia el campo key de json libre
 
     void on_btPersona_clicked();
@@ -32,6 +33,8 @@ private slots:
     void on_btJsonAnadirLibre_clicked();
     void on_btJsonAnadirDescripcion_clicked();
     void on_btModificarDetalles_toggled(bool checked);
+
+    void on_btCasa_clicked();
 
 private:
     Ui::dlgDetalles *ui;

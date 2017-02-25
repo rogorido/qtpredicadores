@@ -4,6 +4,7 @@
 #include "objs/jsongestor.h"
 #include "dlgseleccionarpersona.h"
 #include "dlgseleccionarlugar.h"
+#include "dlgseleccionarcasa.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -46,6 +47,10 @@ void dlgDetalles::recibirLugar(Lugar lugar){
     jsondetalles->anadirValor("Lugar", valor, id);
 }
 
+void dlgDetalles::recibirCasa(int id, QString valor){
+    jsondetalles->anadirValor("Casa", valor, id);
+}
+
 void dlgDetalles::actualizarCompleterValues(){
     QString key;
 
@@ -72,6 +77,15 @@ void dlgDetalles::on_btLugar_clicked()
     dlgLugar->show();
 
     connect(dlgLugar, SIGNAL(lugarEscogido(Lugar)), this, SLOT(recibirLugar(Lugar)));
+
+}
+
+void dlgDetalles::on_btCasa_clicked()
+{
+    dlgSeleccionarCasa *dlgCasa = new dlgSeleccionarCasa(this);
+    dlgCasa->show();
+
+    connect(dlgCasa, SIGNAL(casaEscogida(int,QString)), this, SLOT(recibirCasa(int,QString)));
 
 }
 
@@ -137,3 +151,6 @@ void dlgDetalles::on_btModificarDetalles_toggled(bool checked)
     else
         ui->btModificarDetalles->setText("Añadiendo");
 }
+
+
+

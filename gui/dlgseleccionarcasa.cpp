@@ -44,7 +44,7 @@ void dlgSeleccionarCasa::cargarModelo(){
     m_nombres->setTable("vistas.casas_alternativas");
     m_nombres->select();
 
-    m_nombres_proxy = new ProxyNombres(0, this);
+    m_nombres_proxy = new ProxyNombres(2, this);
     m_nombres_proxy->setSourceModel(m_nombres);
 
     ui->twCasas->setModel(m_nombres_proxy);
