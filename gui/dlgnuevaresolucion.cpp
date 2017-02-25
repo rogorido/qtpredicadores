@@ -20,6 +20,7 @@
 
 #include "dlgnuevacasa.h"
 #include "dlgnuevapersona.h"
+#include "dlgdetalles.h"
 
 #include "objs/jsongestor.h"
 
@@ -35,7 +36,9 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     m_casas = CasasModel::InstanceModel();
     m_personas = PersonasModel::InstanceModel();
 
-    jsongestor = new JsonGestor(ui->treeDetalles, this);
+    jsongestor = new JsonGestor(this);
+
+    dlgdetalles = new dlgDetalles(jsongestor, this);
 
     rellenarCombos();
     cargarModelos();
@@ -384,4 +387,9 @@ void dlgNuevaResolucion::on_btModificarDetalles_toggled(bool checked)
     }
     else
         ui->btModificarDetalles->setText("Añadiendo");
+}
+
+void dlgNuevaResolucion::on_btDetalles_clicked()
+{
+    dlgdetalles->show();
 }

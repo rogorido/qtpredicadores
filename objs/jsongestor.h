@@ -17,8 +17,9 @@ class JsonGestor : public QObject
     Q_OBJECT
 
 public:
-    JsonGestor(QTreeWidget *tree, QObject *parent = 0);
+    JsonGestor(QObject *parent = 0);
 
+    void setTreeWidget(QTreeWidget *tree);
     void crearItemRootGeneral();
 
     /*

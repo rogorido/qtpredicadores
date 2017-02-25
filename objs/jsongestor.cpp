@@ -8,11 +8,14 @@
 #include <QJsonDocument>
 #include <QDebug>
 
-JsonGestor::JsonGestor(QTreeWidget *tree, QObject *parent) : QObject(parent)
+JsonGestor::JsonGestor(QObject *parent) : QObject(parent)
 {
     modificando = false;
     bloqueadaEntrada = false;
 
+}
+
+void JsonGestor::setTreeWidget(QTreeWidget *tree){
     tree_original = new QTreeWidget(tree);
     tree_original->setColumnCount(2);
 

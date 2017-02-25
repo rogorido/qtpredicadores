@@ -11,6 +11,8 @@ class CasasModel;
 class PersonasModel;
 class JsonGestor;
 
+class dlgDetalles;
+
 class QSqlQueryModel;
 class QCompleter;
 
@@ -49,8 +51,12 @@ private slots:
 
     void on_btModificarDetalles_toggled(bool checked);
 
+    void on_btDetalles_clicked();
+
 private:
     Ui::dlgNuevaResolucion *ui;
+
+    dlgDetalles *dlgdetalles;
 
     /* pointers para los modelos de MainWindow */
     /* no me acordaba q esto hay que hacerlo así... */
