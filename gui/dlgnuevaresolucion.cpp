@@ -32,9 +32,6 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     ui->setupUi(this);
 
     m_temas = TemasModel::InstanceModel();
-    m_lugares = LugaresModel::InstanceModel();
-    m_casas = CasasModel::InstanceModel();
-    m_personas = PersonasModel::InstanceModel();
 
     jsongestor = new JsonGestor(this);
 
@@ -70,18 +67,6 @@ void dlgNuevaResolucion::rellenarCombos(){
 
     ui->cboDescripcion->addItem("Nombramiento");
     ui->cboDescripcion->setCurrentIndex(-1);
-
-    ui->cboLugares->setModel(m_lugares);
-    ui->cboLugares->setCurrentIndex(-1);
-    ui->cboLugares->setModelColumn(1);
-
-    ui->cboPersonas->setModel(m_personas);
-    ui->cboPersonas->setCurrentIndex(-1);
-    ui->cboPersonas->setModelColumn(1);
-
-    ui->cboCasas->setModel(m_casas);
-    ui->cboCasas->setCurrentIndex(-1);
-    ui->cboCasas->setModelColumn(1);
 
 }
 

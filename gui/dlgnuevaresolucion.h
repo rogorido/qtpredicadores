@@ -46,17 +46,10 @@ private slots:
 private:
     Ui::dlgNuevaResolucion *ui;
 
-    dlgDetalles *dlgdetalles;
-
-    /* pointers para los modelos de MainWindow */
-    /* no me acordaba q esto hay que hacerlo así... */
 
     TemasModel *m_temas;
-    LugaresModel *m_lugares;
-    PersonasModel *m_personas;
-    CasasModel *m_casas;
-
     JsonGestor *jsongestor;
+    dlgDetalles *dlgdetalles;
 
     struct elementopareado{
       int id;
