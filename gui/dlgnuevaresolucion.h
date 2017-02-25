@@ -6,15 +6,8 @@
 #include <QJsonObject>
 
 class TemasModel;
-class LugaresModel;
-class CasasModel;
-class PersonasModel;
 class JsonGestor;
-
 class dlgDetalles;
-
-class QSqlQueryModel;
-class QCompleter;
 
 namespace Ui {
 class dlgNuevaResolucion;
@@ -38,9 +31,7 @@ private slots:
     void aceptarResolucion(); // btOK
 
     void on_btBorrarElemento_clicked();
-
     void on_btModificarDetalles_toggled(bool checked);
-
     void on_btDetalles_clicked();
 
 private:
