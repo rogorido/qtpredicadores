@@ -1,7 +1,7 @@
 #include "dlgnuevaobra.h"
 #include "ui_dlgnuevaobra.h"
 
-#include "lugaresmodel.h"
+#include "models/lugaresmodel.h"
 #include "dlgseleccionarpersona.h"
 #include "dlgseleccionarlugar.h"
 

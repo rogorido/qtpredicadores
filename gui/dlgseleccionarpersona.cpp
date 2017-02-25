@@ -6,9 +6,9 @@
 #include <QRegExp>
 #include <QDebug>
 
-#include "personasmodel.h"
+#include "models/personasmodel.h"
 #include "dlgnuevapersona.h"
-#include "proxynombres.h"
+#include "objs/proxynombres.h"
 
 dlgSeleccionarPersona::dlgSeleccionarPersona(QWidget *parent) :
     QDialog(parent),

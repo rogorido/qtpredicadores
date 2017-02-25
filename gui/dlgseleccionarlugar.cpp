@@ -5,8 +5,8 @@
 #include <QSqlTableModel>
 #include <QRegExp>
 
-#include "lugaresmodel.h"
-#include "proxynombres.h"
+#include "models/lugaresmodel.h"
+#include "objs/proxynombres.h"
 
 dlgSeleccionarLugar::dlgSeleccionarLugar(QWidget *parent) :
     QDialog(parent),

@@ -3,8 +3,8 @@
 
 #include <QDialog>
 
-#include "persona.h"
-#include "lugar.h"
+#include "objs/persona.h"
+#include "objs/lugar.h"
 
 class LugaresModel;
 class QCompleter;

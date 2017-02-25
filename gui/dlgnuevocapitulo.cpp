@@ -9,7 +9,7 @@
 #include <QMessageBox>
 #include <QInputDialog>
 
-#include "lugaresmodel.h"
+#include "models/lugaresmodel.h"
 
 dlgNuevoCapitulo::dlgNuevoCapitulo(QWidget *parent) :
     QDialog(parent),

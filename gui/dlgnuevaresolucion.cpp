@@ -13,15 +13,15 @@
 
 #include <QDebug>
 
-#include "temasmodel.h"
-#include "lugaresmodel.h"
-#include "personasmodel.h"
-#include "casasmodel.h"
+#include "models/temasmodel.h"
+#include "models/lugaresmodel.h"
+#include "models/personasmodel.h"
+#include "models/casasmodel.h"
 
 #include "dlgnuevacasa.h"
 #include "dlgnuevapersona.h"
 
-#include "jsongestor.h"
+#include "objs/jsongestor.h"
 
 dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
                                  QWidget *parent) :

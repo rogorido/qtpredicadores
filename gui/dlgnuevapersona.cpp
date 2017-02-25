@@ -3,8 +3,8 @@
 
 #include <QDebug>
 
-#include "persona.h"
-#include "personasmodel.h"
+#include "objs/persona.h"
+#include "models/personasmodel.h"
 
 dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
     QDialog(parent),

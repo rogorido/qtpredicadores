@@ -4,9 +4,9 @@
 #include <QSqlRecord>
 #include <QInputDialog>
 
-#include "lugaresmodel.h"
-#include "casa.h"
-#include "casasmodel.h"
+#include "models/lugaresmodel.h"
+#include "objs/casa.h"
+#include "models/casasmodel.h"
 
 dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
     QDialog(parent),

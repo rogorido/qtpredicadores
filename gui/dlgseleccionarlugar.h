@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "lugar.h"
+#include "objs/lugar.h"
 
 class LugaresModel;
 class QSqlTableModel;

@@ -2,7 +2,7 @@
 
 #include <QSqlQuery>
 
-#include "casa.h"
+#include "objs/casa.h"
 
 CasasModel *CasasModel::pInstance = 0;
 

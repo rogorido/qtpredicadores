@@ -2,7 +2,7 @@
 
 #include <QSqlQuery>
 
-#include "persona.h"
+#include "objs/persona.h"
 
 PersonasModel *PersonasModel::pInstance = 0;
 

@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "persona.h"
+#include "objs/persona.h"
 
 class PersonasModel;
 class QSqlTableModel;

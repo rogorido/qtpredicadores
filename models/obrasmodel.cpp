@@ -2,7 +2,7 @@
 
 #include <QSqlQuery>
 
-#include "obra.h"
+#include "objs/obra.h"
 
 ObrasModel *ObrasModel::pInstance = 0;
 
