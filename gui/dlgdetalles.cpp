@@ -21,6 +21,9 @@ dlgDetalles::dlgDetalles(JsonGestor *json, QWidget *parent) :
     connect(ui->btBorrarElemento, SIGNAL(clicked(bool)), jsondetalles, SLOT(eliminarElemento()));
     connect(ui->txtKey, SIGNAL(editingFinished()), this, SLOT(actualizarCompleterValues()));
 
+    ui->cboDescripcion->addItem("Nombramiento");
+    ui->cboDescripcion->setCurrentIndex(-1);
+
     cargarModelos();
 }
 
