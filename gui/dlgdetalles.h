@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "objs/persona.h"
+
 class JsonGestor;
 
 namespace Ui {
@@ -18,7 +20,8 @@ public:
     ~dlgDetalles();
 
 private slots:
-
+    void recibirPersona(Persona persona);
+    void on_btPersona_clicked();
 
 private:
     Ui::dlgDetalles *ui;

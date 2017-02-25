@@ -2,9 +2,7 @@
 #include "ui_dlgdetalles.h"
 
 #include "objs/jsongestor.h"
-#include "objs/persona.h"
 #include "dlgseleccionarpersona.h"
-
 
 dlgDetalles::dlgDetalles(JsonGestor *json, QWidget *parent) :
     QDialog(parent),
@@ -23,10 +21,22 @@ dlgDetalles::~dlgDetalles()
     delete ui;
 }
 
+void dlgDetalles::recibirPersona(Persona persona){
+    int id;
+    QString valor;
+
+    id = persona.getId();
+    valor = persona.getNombre() + ' ' + persona.getApellidos();
+
+    jsondetalles->anadirValor("Persona", valor, id);
+}
+
 
 void dlgDetalles::on_btPersona_clicked()
 {
-    dlgSeleccionarPersona dlgPersona;
+    dlgSeleccionarPersona *dlgPersona = new dlgSeleccionarPersona(this);
+    dlgPersona->show();
 
+    connect(dlgPersona, SIGNAL(personaEscogida(Persona)), this, SLOT(recibirPersona(Persona)));
 
 }
