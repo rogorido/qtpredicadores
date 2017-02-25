@@ -13,6 +13,7 @@
 #include "models/lugaresmodel.h"
 #include "models/personasmodel.h"
 #include "models/casasmodel.h"
+#include "models/provinciasmodel.h"
 #include "dlgcapitulos.h"
 #include "dlgnuevaobra.h"
 
@@ -86,6 +87,11 @@ void MainWindow::cargarModelos(){
     m_casas = CasasModel::InstanceModel();
     m_casas->setSort(1, Qt::AscendingOrder);
     m_casas->select();
+
+    m_provincias = ProvinciasModel::InstanceModel();
+    m_provincias->setSort(1, Qt::AscendingOrder);
+    m_provincias->select();
+
 }
 
 void MainWindow::nuevaResolucion(){

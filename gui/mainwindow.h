@@ -14,6 +14,7 @@ class TemasModel;
 class LugaresModel;
 class PersonasModel;
 class CasasModel;
+class ProvinciasModel;
 
 namespace Ui {
 class MainWindow;
@@ -52,6 +53,7 @@ private:
     LugaresModel *m_lugares;
     PersonasModel *m_personas;
     CasasModel *m_casas;
+    ProvinciasModel *m_provincias;
 
     void cargarConexiones();
     void cargarModelos();
