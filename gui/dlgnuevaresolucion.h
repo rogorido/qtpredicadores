@@ -35,7 +35,6 @@ private slots:
     void on_btAnadirTema_clicked();
     void on_btQuitarTema_clicked();
     void on_btJsonAnadirDescripcion_clicked();
-    void on_btJsonAnadirLugar_clicked();
     void on_btJsonAnadirPersona_clicked();
     void on_btJsonAnadirCasa_clicked();
     void on_btJsonAnadirLibre_clicked();
@@ -45,7 +44,6 @@ private slots:
 
     void nuevoJson();
     void aceptarResolucion(); // btOK
-    void actualizarCompleterValues(); // cuando cambia el campo key de json libre
 
     void on_btBorrarElemento_clicked();
 
@@ -66,13 +64,6 @@ private:
     PersonasModel *m_personas;
     CasasModel *m_casas;
 
-    /* estos son modelos solo de este form */
-    QSqlQueryModel *m_keys;
-    QSqlQueryModel *m_values;
-
-    QCompleter *keys_completer;
-    QCompleter *values_completer;
-
     JsonGestor *jsongestor;
 
     struct elementopareado{
@@ -83,7 +74,6 @@ private:
     QList<elementopareado> temas_lista;
 
     void rellenarCombos();
-    void cargarModelos();
     void introducirJson(const int id);
     void introducirTemas(const int id);
 

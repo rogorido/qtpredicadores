@@ -41,7 +41,6 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     dlgdetalles = new dlgDetalles(jsongestor, this);
 
     rellenarCombos();
-    cargarModelos();
 
     connect(ui->btNuevoJson, SIGNAL(clicked()), this, SLOT(nuevoJson()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
@@ -62,8 +61,9 @@ dlgNuevaResolucion::~dlgNuevaResolucion()
     delete ui;
 }
 
-void dlgNuevaResolucion::rellenarCombos(){
 
+void dlgNuevaResolucion::rellenarCombos(){
+// TODO: modificar
     ui->cboTemas->setModel(m_temas);
     ui->cboTemas->setCurrentIndex(-1);
     ui->cboTemas->setModelColumn(1);
@@ -83,38 +83,6 @@ void dlgNuevaResolucion::rellenarCombos(){
     ui->cboCasas->setCurrentIndex(-1);
     ui->cboCasas->setModelColumn(1);
 
-}
-
-void dlgNuevaResolucion::cargarModelos(){
-
-    /*
-     * TODO: tal y como está esto estos completers no se van a actualizar
-     * hasta que no se meta algo en la base de datos (bueno, ahora creo que ni con eso)
-     * pero no pej cuando vaya metiendo cosas.
-     * La posible solución sería pasar los datos del QSqlQueryModel
-     * a un QStringList(model?) y añadir luego cosas nuevas a ese modelo
-     */
-
-    m_keys = new QSqlQueryModel(this);
-    m_keys->setQuery("SELECT DISTINCT json_object_keys(detalle) FROM resoluciones_detalles ORDER BY json_object_keys(detalle);");
-
-    keys_completer = new QCompleter(this);
-    keys_completer->setModel(m_keys);
-    keys_completer->setCompletionColumn(0);
-    keys_completer->setCaseSensitivity(Qt::CaseInsensitive);
-
-    ui->txtKey->setCompleter(keys_completer);
-
-    m_values = new QSqlQueryModel(this);
-    // ponemos una cosa general que luego habrá que precisar
-    m_values->setQuery("SELECT DISTINCT value from resoluciones_detalles, json_each_text(detalle) ORDER BY value;");
-
-    values_completer = new QCompleter(this);
-    values_completer->setModel(m_values);
-    values_completer->setCompletionColumn(0);
-    values_completer->setCaseSensitivity(Qt::CaseInsensitive);
-
-    ui->txtValue->setCompleter(values_completer);
 }
 
 void dlgNuevaResolucion::on_btNuevoTema_clicked(){
@@ -173,24 +141,6 @@ void dlgNuevaResolucion::on_btJsonAnadirDescripcion_clicked(){
 
     if (!valor.isEmpty())
         jsongestor->anadirValor("Tipo", QJsonValue(valor));
-
-}
-
-void dlgNuevaResolucion::on_btJsonAnadirLugar_clicked(){
-    QString valor = ui->cboLugares->currentText();
-
-    if (!valor.isEmpty()){
-        /*
-         * extraemos el id del combo
-         * dado que esto se repite se podría hacer un método
-         * al que pasamos el modelo y el combo y devuelve un int
-         * pero sinceramente ahora no me acuerdo cómo se hace...
-         */
-        QSqlRecord record = m_lugares->record(ui->cboLugares->currentIndex());
-        int id = record.value(0).toInt();
-
-        jsongestor->anadirValor("Lugar", valor, id);
-   }
 
 }
 
@@ -338,17 +288,6 @@ void dlgNuevaResolucion::introducirTemas(const int id){
         query.bindValue(":resolucion", id);
         query.exec();
     }
-
-}
-
-void dlgNuevaResolucion::actualizarCompleterValues(){
-    QString key;
-
-    key = ui->txtKey->text();
-
-    if (!key.isEmpty())
-        m_values->setQuery(QString("SELECT DISTINCT value from resoluciones_detalles, json_each_text(detalle) "
-                               "WHERE key='%1' ORDER BY value;").arg(key));
 
 }
 

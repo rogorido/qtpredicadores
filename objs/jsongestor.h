@@ -29,7 +29,6 @@ public:
     void anadirValor(const QString &key, const QJsonValue &value);
     void anadirValor(const QString &key, const QString &value, int id);
 
-    void nuevoBloqueJson();
     void anadirItemNivelCero();
 
     /*
@@ -49,7 +48,7 @@ public:
 public slots:
 
     void modificandoDatos(bool checked);
-
+    void nuevoBloqueJson();
 
 private:
 
