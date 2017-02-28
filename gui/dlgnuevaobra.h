@@ -25,13 +25,11 @@ public:
 private slots:
     void on_btAnadirLugar_clicked();
     //void on_txtAutor_doubleclicked();
-
     void on_pushButton_clicked();
+    void on_btIntroducirLugar_clicked();
 
     void actualizarPersona(Persona autor);
     void actualizarLugar(Lugar lugar);
-
-    void on_btIntroducirLugar_clicked();
 
 private:
     Ui::dlgNuevaObra *ui;
