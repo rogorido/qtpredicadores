@@ -52,6 +52,7 @@ void dlgSeleccionarPersona::cargarModelo(){
     ui->twPersonas->setAlternatingRowColors(true);
     ui->twPersonas->resizeColumnsToContents();
     ui->twPersonas->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twPersonas->resizeRowsToContents();
 
     // escogemos la primera línea...
     QModelIndex index = m_nombres_proxy->index(0,0);
@@ -60,12 +61,14 @@ void dlgSeleccionarPersona::cargarModelo(){
 
 void dlgSeleccionarPersona::actualizarFiltro(const QString filtro){
 
-    if (filtro.length() > 3) {
+    if (filtro.length() > 2) {
         m_nombres_proxy->setFilterRegExp(QRegExp(filtro, Qt::CaseInsensitive, QRegExp::FixedString));
+        ui->twPersonas->resizeRowsToContents();
     }
     else
     {
         m_nombres_proxy->setFilterRegExp(QRegExp("", Qt::CaseInsensitive, QRegExp::FixedString));
+        ui->twPersonas->resizeRowsToContents();
     }
 }
 

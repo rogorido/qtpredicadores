@@ -49,6 +49,7 @@ void dlgSeleccionarLugar::cargarModelo(){
     ui->twLugares->setAlternatingRowColors(true);
     ui->twLugares->resizeColumnsToContents();
     ui->twLugares->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twLugares->resizeRowsToContents();
 
     // escogemos la primera línea...
     QModelIndex index = m_lugares_proxy->index(0,0);
@@ -57,12 +58,14 @@ void dlgSeleccionarLugar::cargarModelo(){
 
 void dlgSeleccionarLugar::actualizarFiltro(const QString filtro){
 
-    if (filtro.length() > 3) {
+    if (filtro.length() > 2) {
         m_lugares_proxy->setFilterRegExp(QRegExp(filtro, Qt::CaseInsensitive, QRegExp::FixedString));
+        ui->twLugares->resizeRowsToContents();
     }
     else
     {
         m_lugares_proxy->setFilterRegExp(QRegExp("", Qt::CaseInsensitive, QRegExp::FixedString));
+        ui->twLugares->resizeRowsToContents();
     }
 }
 
