@@ -2,9 +2,7 @@
 #include "ui_dlgdetalles.h"
 
 #include "objs/jsongestor.h"
-#include "dlgseleccionarpersona.h"
-#include "dlgseleccionarlugar.h"
-#include "dlgseleccionarcasa.h"
+#include "dlgseleccionargeneral.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -64,28 +62,28 @@ void dlgDetalles::actualizarCompleterValues(){
 
 void dlgDetalles::on_btPersona_clicked()
 {
-    dlgSeleccionarPersona *dlgPersona = new dlgSeleccionarPersona(this);
-    dlgPersona->show();
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgSeleccionar->show();
 
-    connect(dlgPersona, SIGNAL(personaEscogida(Persona)), this, SLOT(recibirPersona(Persona)));
+    connect(dlgSeleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirPersona(Persona)));
 
 }
 
 void dlgDetalles::on_btLugar_clicked()
 {
-    dlgSeleccionarLugar *dlgLugar = new dlgSeleccionarLugar(this);
-    dlgLugar->show();
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionar->show();
 
-    connect(dlgLugar, SIGNAL(lugarEscogido(Lugar)), this, SLOT(recibirLugar(Lugar)));
+    connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));
 
 }
 
 void dlgDetalles::on_btCasa_clicked()
 {
-    dlgSeleccionarCasa *dlgCasa = new dlgSeleccionarCasa(this);
-    dlgCasa->show();
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(CASA, this);
+    dlgSeleccionar->show();
 
-    connect(dlgCasa, SIGNAL(casaEscogida(int,QString)), this, SLOT(recibirCasa(int,QString)));
+    connect(dlgSeleccionar, SIGNAL(casaEscogidaSignal(int,QString)), this, SLOT(recibirCasa(int,QString)));
 
 }
 
