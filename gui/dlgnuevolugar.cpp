@@ -28,6 +28,19 @@ dlgNuevoLugar::~dlgNuevoLugar()
 
 void dlgNuevoLugar::aceptar(){
 
+    QString lugar;
+    QString pais;
+    QString nombres;
+
+    lugar = ui->txtLugar->text();
+    pais = ui->txtPais->text();
+
+    if (otrosnombres->getSize() > 0){
+        nombres = otrosnombres->getJsonString(1);
+    }
+
+    m_lugares->AnadirLugar(lugar, pais);
+
 }
 
 void dlgNuevoLugar::cargarModelos(){

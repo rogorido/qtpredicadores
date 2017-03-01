@@ -4,6 +4,7 @@
 #include "models/lugaresmodel.h"
 #include "dlgseleccionarpersona.h"
 #include "dlgseleccionarlugar.h"
+#include "dlgnuevolugar.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -57,14 +58,10 @@ void dlgNuevaObra::cargarCompleters(){
 }
 
 void dlgNuevaObra::on_btAnadirLugar_clicked(){
-    QString lugar;
 
-    lugar = QInputDialog::getText(this, "Introduzca un nuevo lugar", "Lugar (nombre,país) ");
-
-    if (!lugar.isEmpty()){
-        m_lugares->AnadirLugar(lugar);
-        cargarCompleters();
-    }
+    dlgNuevoLugar *dlglugar = new dlgNuevoLugar(this);
+    dlglugar->show();
+    cargarCompleters();
 }
 
 void dlgNuevaObra::on_pushButton_clicked()

@@ -10,6 +10,7 @@
 #include <QInputDialog>
 
 #include "models/lugaresmodel.h"
+#include "gui/dlgnuevolugar.h"
 
 dlgNuevoCapitulo::dlgNuevoCapitulo(QWidget *parent) :
     QDialog(parent),
@@ -175,13 +176,8 @@ void dlgNuevoCapitulo::fechaFinalCambiada(){
 
 void dlgNuevoCapitulo::anadirLugar(){
 
-    QString lugar;
-
-    lugar = QInputDialog::getText(this, "Introduzca un nuevo lugar", "Lugar (nombre,país) ");
-
-    if (!lugar.isEmpty()){
-        m_lugares->AnadirLugar(lugar);
-        cargarCompleters();
-    }
+    dlgNuevoLugar *dlglugar = new dlgNuevoLugar(this);
+    dlglugar->show();
+    cargarCompleters();
 
 }

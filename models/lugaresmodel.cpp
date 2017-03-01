@@ -24,17 +24,13 @@ void LugaresModel::DestroyMe(){
     if (pInstance != NULL) delete pInstance;
 }
 
-void LugaresModel::AnadirLugar(const QString &lugar){
+void LugaresModel::AnadirLugar(const QString &lugar, const QString &pais){
 
-    /*
-     * TODO: habría que comprobar que siemrpe hay país...
-     */
     QSqlQuery query;
-    QStringList campos = lugar.split(',');
 
     query.prepare("INSERT INTO lugares(lugar, pais) VALUES(:lugar, :pais)");
-    query.bindValue(":lugar", campos[0]);
-    query.bindValue(":pais", campos[1]);
+    query.bindValue(":lugar", lugar);
+    query.bindValue(":pais", pais);
     query.exec();
 
     this->select();
