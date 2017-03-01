@@ -10,7 +10,7 @@ class LugaresModel : public QSqlTableModel
 public:
     static LugaresModel *InstanceModel();
 
-    void AnadirLugar(const QString &lugar, const QString &pais);
+    void AnadirLugar(const QString &lugar, const QString &pais, const QString &otrosnombres);
 
 protected:
     LugaresModel();

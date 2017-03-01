@@ -7,6 +7,7 @@ class JsonGestor;
 class LugaresModel;
 class QSqlQueryModel;
 class QCompleter;
+class dlgDetalles;
 
 namespace Ui {
 class dlgNuevoLugar;
@@ -26,6 +27,8 @@ private slots:
 
 private:
     Ui::dlgNuevoLugar *ui;
+
+    dlgDetalles *dlgdetalles;
 
     JsonGestor *otrosnombres;
     LugaresModel *m_lugares;

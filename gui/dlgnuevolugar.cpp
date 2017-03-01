@@ -6,6 +6,7 @@
 
 #include "objs/jsongestor.h"
 #include "models/lugaresmodel.h"
+#include "dlgdetalles.h"
 
 dlgNuevoLugar::dlgNuevoLugar(QWidget *parent) :
     QDialog(parent),
@@ -36,10 +37,13 @@ void dlgNuevoLugar::aceptar(){
     pais = ui->txtPais->text();
 
     if (otrosnombres->getSize() > 0){
-        nombres = otrosnombres->getJsonString(1);
+        // entiendo q solo puede haber un elemento en la Qlist...
+        nombres = otrosnombres->getJsonString(0);
     }
+    else
+        nombres = "";
 
-    m_lugares->AnadirLugar(lugar, pais);
+    m_lugares->AnadirLugar(lugar, pais, nombres);
 
 }
 
@@ -51,5 +55,7 @@ void dlgNuevoLugar::cargarModelos(){
 
     m_paises->setQuery("SELECT DISTINCT pais FROM lugares ORDER BY pais");
     m_paises_completer->setModel(m_paises);
+
+    dlgdetalles = new dlgDetalles(otrosnombres, this);
 
 }
