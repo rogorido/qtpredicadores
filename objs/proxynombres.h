@@ -2,13 +2,14 @@
 #define PROXYNOMBRES_H
 
 #include <QSortFilterProxyModel>
+#include "objs/variados.h"
 
 class ProxyNombres : public QSortFilterProxyModel
 {
     Q_OBJECT
 
 public:
-    ProxyNombres(int tipo, QObject *parent = 0);
+    ProxyNombres(tiposeleccionar tipo, QObject *parent = 0);
 
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;

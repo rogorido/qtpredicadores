@@ -1,6 +1,6 @@
 #include "proxynombres.h"
 
-ProxyNombres::ProxyNombres(int tipo, QObject *parent)
+ProxyNombres::ProxyNombres(tiposeleccionar tipo, QObject *parent)
   : QSortFilterProxyModel(parent), tipoproxy(tipo)
 {
 }
@@ -17,7 +17,7 @@ bool ProxyNombres::filterAcceptsRow(int sourceRow,
     QModelIndex index7 = sourceModel()->index(sourceRow, 7, sourceParent);
 
   switch(tipoproxy) {
-  case 0:
+  case PERSONA:
 
     return sourceModel()->data(index1).toString().contains(filterRegExp())
             || sourceModel()->data(index2).toString().contains(filterRegExp())
@@ -28,7 +28,7 @@ bool ProxyNombres::filterAcceptsRow(int sourceRow,
             || sourceModel()->data(index7).toString().contains(filterRegExp());
     break;
 
-  case 1:
+  case LUGAR:
 
       return sourceModel()->data(index1).toString().contains(filterRegExp())
               || sourceModel()->data(index2).toString().contains(filterRegExp())
@@ -38,7 +38,7 @@ bool ProxyNombres::filterAcceptsRow(int sourceRow,
               || sourceModel()->data(index6).toString().contains(filterRegExp());
       break;
 
-  case 2: // Casas
+  case CASA:
       return sourceModel()->data(index1).toString().contains(filterRegExp())
               || sourceModel()->data(index2).toString().contains(filterRegExp())
               || sourceModel()->data(index3).toString().contains(filterRegExp())
@@ -46,6 +46,15 @@ bool ProxyNombres::filterAcceptsRow(int sourceRow,
               || sourceModel()->data(index5).toString().contains(filterRegExp());
       break;
 
+  case PROVINCIA:
+      return sourceModel()->data(index1).toString().contains(filterRegExp())
+              || sourceModel()->data(index2).toString().contains(filterRegExp())
+              || sourceModel()->data(index3).toString().contains(filterRegExp())
+              || sourceModel()->data(index4).toString().contains(filterRegExp())
+              || sourceModel()->data(index5).toString().contains(filterRegExp())
+              || sourceModel()->data(index6).toString().contains(filterRegExp())
+              || sourceModel()->data(index7).toString().contains(filterRegExp());
+      break;
 
   }
 

@@ -38,23 +38,26 @@ void dlgSeleccionarGeneral::cargarTipo(){
     m_objeto = new QSqlTableModel(this);
 
     switch (tipo_seleccionado) {
-    case CASA:
+    case CASA:{
         m_casas = CasasModel::InstanceModel();
         m_objeto->setTable("vistas.casas_alternativas");
         ui->btAnadir->setText("Añadir casa");
-        break;
-    case LUGAR:
+        break;}
+    case LUGAR:{
         m_lugares = LugaresModel::InstanceModel();
         m_objeto->setTable("vistas.lugares_alternativas");
         ui->btAnadir->setText("Añadir lugar");
-    case PROVINCIA:
+        break;}
+    case PROVINCIA:{
         m_provincias = ProvinciasModel::InstanceModel();
         m_objeto->setTable("vistas.provincias_alternativas");
         ui->btAnadir->setText("Añadir provincia");
-    case PERSONA:
+        break;}
+    case PERSONA:{
         m_personas = PersonasModel::InstanceModel();
         m_objeto->setTable("vistas.personas_alternativas");
         ui->btAnadir->setText("Añadir persona");
+        break;}
     default:
         break;
     }

@@ -4,6 +4,7 @@
 #include "models/lugaresmodel.h"
 #include "dlgseleccionargeneral.h"
 #include "dlgnuevolugar.h"
+#include "objs/variados.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
