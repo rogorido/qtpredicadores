@@ -186,3 +186,25 @@ void dlgSeleccionarGeneral::persona(){
     emit(personaEscogidaSignal(autor));
     close();
 }
+
+void dlgSeleccionarGeneral::provincia(){
+
+    Provincia provincia;
+
+    // tiene que haber otra manera de hacer esto...
+    QModelIndex idx0 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 0);
+    QModelIndex idx1 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 1);
+
+    if (!idx0.isValid())
+        return;
+
+    int id = m_objeto->data(m_objeto_proxy->mapToSource(idx0), Qt::DisplayRole).toInt();
+    QString nombre = m_objeto->data(m_objeto_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
+
+    provincia.setId(id);
+    provincia.setNombre(nombre);
+
+    emit(provinciaEscogidaSignal(provincia));
+    close();
+
+}
