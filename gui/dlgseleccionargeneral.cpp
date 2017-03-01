@@ -14,20 +14,14 @@ dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *par
 {
     ui->setupUi(this);
 
-    // cargamos todos... aunque habría tal vez que hacerlo más profesional
-    m_personas = PersonasModel::InstanceModel();
-    m_casas = CasasModel::InstanceModel();
-    m_lugares = LugaresModel::InstanceModel();
-    m_provincias = ProvinciasModel::InstanceModel();
-
     connect(ui->btAnadir, SIGNAL(clicked(bool)), this, SLOT(anadirObjeto()));
     connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->twSeleccionar, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(aceptar()));
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
 
+    cargarTipo();
     cargarModelo();
-
 }
 
 dlgSeleccionarGeneral::~dlgSeleccionarGeneral()
@@ -35,27 +29,39 @@ dlgSeleccionarGeneral::~dlgSeleccionarGeneral()
     delete ui;
 }
 
-void dlgSeleccionarGeneral::cargarModelo(){
-
+void dlgSeleccionarGeneral::cargarTipo(){
     m_objeto = new QSqlTableModel(this);
 
     switch (tipo_seleccionado) {
     case CASA:
+        m_casas = CasasModel::InstanceModel();
         m_objeto->setTable("vistas.casas_alternativas");
+        ui->btAnadir->setText("Añadir casa");
         break;
     case LUGAR:
+        m_lugares = LugaresModel::InstanceModel();
         m_objeto->setTable("vistas.lugares_alternativas");
+        ui->btAnadir->setText("Añadir lugar");
     case PROVINCIA:
+        m_provincias = ProvinciasModel::InstanceModel();
         m_objeto->setTable("vistas.provincias_alternativas");
+        ui->btAnadir->setText("Añadir provincia");
     case PERSONA:
+        m_personas = PersonasModel::InstanceModel();
         m_objeto->setTable("vistas.personas_alternativas");
+        ui->btAnadir->setText("Añadir persona");
     default:
         break;
     }
 
     m_objeto->select();
+}
 
-    m_objeto_proxy = new ProxyNombres(2, this);
+void dlgSeleccionarGeneral::cargarModelo(){
+
+
+
+    m_objeto_proxy = new ProxyNombres(tipo_seleccionado, this);
     m_objeto_proxy->setSourceModel(m_objeto);
 
     ui->twSeleccionar->setModel(m_objeto_proxy);

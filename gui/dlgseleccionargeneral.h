@@ -50,6 +50,7 @@ private:
     ProvinciasModel *m_provincias;
 
     void cargarModelo();
+    void cargarTipo();
 
     // esto es un poco absurdo, tiene que haber otra manera...
     // pq esto lo q hace es llamar a las signals...
