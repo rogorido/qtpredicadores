@@ -5,10 +5,12 @@
 #include "objs/variados.h"
 #include "objs/persona.h"
 #include "objs/lugar.h"
+#include "objs/provincia.h"
 
 class CasasModel;
 class PersonasModel;
 class LugaresModel;
+class ProvinciasModel;
 class QSqlTableModel;
 class ProxyNombres;
 
@@ -31,22 +33,30 @@ private slots:
     void aceptar();
 
 signals:
-    void casaEscogida(int id, QString nombres);
-    void personaEscogida(Persona autor);
-    void lugarEscogido(Lugar lugar);
+    void casaEscogidaSignal(int id, QString nombres);
+    void personaEscogidaSignal(Persona autor);
+    void lugarEscogidoSignal(Lugar lugar);
+    void provinciaEscogidaSignal(Provincia provincia);
 
 private:
     Ui::dlgSeleccionarGeneral *ui;
 
-    QSqlTableModel *m_nombres;
-    ProxyNombres *m_nombres_proxy;
+    QSqlTableModel *m_objeto;
+    ProxyNombres *m_objeto_proxy;
 
     CasasModel *m_casas;
     LugaresModel *m_lugares;
     PersonasModel *m_personas;
+    ProvinciasModel *m_provincias;
 
     void cargarModelo();
 
+    void casa();
+    void provincia();
+    void persona();
+    void lugar();
+
+    tiposeleccionar tipo_seleccionado;
 
 };
 
