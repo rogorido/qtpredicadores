@@ -22,8 +22,9 @@ dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
 
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarCasa()));
-    connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(anadirLugar()));
+    connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(anadirLugar()));
     connect(ui->btQuitarLugar, SIGNAL(clicked()), this, SLOT(quitarLugar()));
+    connect(ui->txtProvincia, SIGNAL(dobleclick()), this, SLOT(anadirProvincia()));
 
 }
 
