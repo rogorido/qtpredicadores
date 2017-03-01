@@ -8,6 +8,10 @@
 
 #include "objs/proxynombres.h"
 
+#include "gui/dlgnuevacasa.h"
+#include "gui/dlgnuevapersona.h"
+#include "gui/dlgnuevaprovincia.h"
+
 dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgSeleccionarGeneral), tipo_seleccionado(valor)
@@ -212,5 +216,26 @@ void dlgSeleccionarGeneral::provincia(){
 
     emit(provinciaEscogidaSignal(provincia));
     close();
+
+}
+
+void dlgSeleccionarGeneral::anadirObjeto(){
+
+    switch (tipo_seleccionado) {
+    case CASA:
+        dlgNuevaCasa *dlgcasa = new dlgNuevaCasa(this);
+        dlgcasa->show();
+        break;
+    case LUGAR:
+        break;
+    case PROVINCIA:
+        dlgNuevaProvincia *dlgprovincia = new dlgNuevaProvincia(this);
+        dlgprovincia->show();
+    case PERSONA:
+        dlgNuevaPersona *dlgpersona = new dlgNuevaPersona(this);
+        dlgpersona->show();
+    default:
+        break;
+    }
 
 }

@@ -44,6 +44,7 @@ private:
     };
 
     elementopareado lugar_struct;
+    elementopareado provincia_struct;
 };
 
 #endif // DLGNUEVACASA_H

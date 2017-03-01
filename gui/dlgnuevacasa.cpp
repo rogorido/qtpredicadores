@@ -8,7 +8,8 @@
 #include "models/casasmodel.h"
 #include "models/provinciasmodel.h"
 #include "objs/casa.h"
-#include "gui/dlgseleccionarlugar.h"
+#include "objs/variados.h"
+#include "gui/dlgseleccionargeneral.h"
 
 dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
     QDialog(parent),
@@ -59,11 +60,10 @@ void dlgNuevaCasa::aceptarCasa(){
 
 void dlgNuevaCasa::anadirLugar(){
 
-    dlgSeleccionarLugar *dlgLugar = new dlgSeleccionarLugar(this);
-    dlgLugar->show();
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionar->show();
 
-    connect(dlgLugar, SIGNAL(lugarEscogido(Lugar)), this, SLOT(recibirLugar(Lugar)));
-
+    connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));
 }
 
 void dlgNuevaCasa::recibirLugar(Lugar lugarescogido){
@@ -78,4 +78,24 @@ void dlgNuevaCasa::recibirLugar(Lugar lugarescogido){
 void dlgNuevaCasa::quitarLugar(){
 
     lugar_struct = elementopareado();
+}
+
+void dlgNuevaCasa::anadirProvincia(){
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgSeleccionar->show();
+
+    connect(dlgSeleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
+}
+
+void dlgNuevaCasa::recibirProvincia(Provincia provincia){
+
+    provincia_struct.id = provincia.getId();
+    provincia_struct.elemento = provincia.getNombre();
+
+    ui->txtProvincia->setText(provincia_struct.elemento);
+}
+
+void dlgNuevaCasa::quitarProvincia(){
+
+    provincia_struct = elementopareado();
 }
