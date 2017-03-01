@@ -1,7 +1,7 @@
 #include "dlgseleccionargeneral.h"
 #include "ui_dlgseleccionargeneral.h"
 
-dlgSeleccionarGeneral::dlgSeleccionarGeneral(QWidget *parent) :
+dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgSeleccionarGeneral)
 {
