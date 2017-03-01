@@ -60,5 +60,6 @@ void PersonasModel::AnadirPersona(const Persona *persona){
     query.exec();
 
     this->select();
+    emit(actualizado());
 
 }

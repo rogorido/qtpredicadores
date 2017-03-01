@@ -18,6 +18,10 @@ public:
     void AnadirLugar(const QString &lugar, const QString &pais);
     void AnadirLugar(const QString &lugar, const QString &pais, const QString &otrosnombres);
 
+signals:
+
+    void actualizado();
+
 protected:
     LugaresModel();
     LugaresModel(const LugaresModel &);

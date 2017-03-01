@@ -32,6 +32,8 @@ private slots:
     void actualizarFiltro(const QString filtro);
     void aceptar();
 
+    void actualizarObjeto();
+
 signals:
     void casaEscogidaSignal(int id, QString nombres);
     void personaEscogidaSignal(Persona autor);

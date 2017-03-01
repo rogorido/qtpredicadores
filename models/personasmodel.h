@@ -14,6 +14,10 @@ public:
 
     void AnadirPersona(const Persona *persona);
 
+signals:
+
+    void actualizado();
+
 protected:
     PersonasModel();
     PersonasModel(const PersonasModel &);

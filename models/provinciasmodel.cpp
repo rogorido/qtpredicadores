@@ -43,4 +43,5 @@ void ProvinciasModel::AnadirProvincia(const Provincia *provincia){
     query.exec();
 
     this->select();
+    emit(actualizado());
 }

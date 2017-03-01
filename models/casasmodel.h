@@ -14,6 +14,10 @@ public:
 
     void AnadirCasa(const Casa *casa);
 
+signals:
+
+    void actualizado();
+
 protected:
     CasasModel();
     CasasModel(const CasasModel &);

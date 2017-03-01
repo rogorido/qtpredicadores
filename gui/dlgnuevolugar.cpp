@@ -3,6 +3,7 @@
 
 #include <QSqlQueryModel>
 #include <QCompleter>
+#include <QDebug>
 
 #include "objs/jsongestor.h"
 #include "models/lugaresmodel.h"
@@ -46,8 +47,9 @@ void dlgNuevoLugar::aceptar(){
         // entiendo q solo puede haber un elemento en la Qlist...
         nombres = otrosnombres->getJsonString(0);
 
-    if (nombres.isEmpty())
-        m_lugares->AnadirLugar(lugar, pais);
+    if (nombres.isEmpty()){
+        qDebug() << "estamos aqui...";
+        m_lugares->AnadirLugar(lugar, pais);}
     else
         m_lugares->AnadirLugar(lugar, pais, nombres);
 

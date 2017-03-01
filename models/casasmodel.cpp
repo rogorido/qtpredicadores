@@ -71,4 +71,5 @@ void CasasModel::AnadirCasa(const Casa *casa){
     query.exec();
 
     this->select();
+    emit(actualizado());
 }

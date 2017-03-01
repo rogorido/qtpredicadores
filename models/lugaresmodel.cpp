@@ -29,17 +29,22 @@ void LugaresModel::AnadirLugar(const QString &lugar, const QString &pais){
 
     QSqlQuery query;
 
+    qDebug() << lugar << pais;
+
     query.prepare("INSERT INTO general.lugares(lugar, pais) VALUES(:lugar, :pais)");
     query.bindValue(":lugar", lugar);
     query.bindValue(":pais", pais);
     query.exec();
 
     this->select();
+    emit(actualizado());
 }
 
 void LugaresModel::AnadirLugar(const QString &lugar, const QString &pais, const QString &otrosnombres){
 
     QSqlQuery query;
+
+
 
     query.prepare("INSERT INTO general.lugares(lugar, pais, otrosnombres) VALUES(:lugar, :pais, :otrosnombres)");
     query.bindValue(":lugar", lugar);
@@ -48,4 +53,6 @@ void LugaresModel::AnadirLugar(const QString &lugar, const QString &pais, const 
     query.exec();
 
     this->select();
+
+    emit(actualizado());
 }

@@ -42,21 +42,25 @@ void dlgSeleccionarGeneral::cargarTipo(){
         m_casas = CasasModel::InstanceModel();
         m_objeto->setTable("vistas.casas_alternativas");
         ui->btAnadir->setText("Añadir casa");
+        connect(m_casas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case LUGAR:{
         m_lugares = LugaresModel::InstanceModel();
         m_objeto->setTable("vistas.lugares_alternativas");
         ui->btAnadir->setText("Añadir lugar");
+        connect(m_lugares, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case PROVINCIA:{
         m_provincias = ProvinciasModel::InstanceModel();
         m_objeto->setTable("vistas.provincias_alternativas");
         ui->btAnadir->setText("Añadir provincia");
+        connect(m_provincias, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case PERSONA:{
         m_personas = PersonasModel::InstanceModel();
         m_objeto->setTable("vistas.personas_alternativas");
         ui->btAnadir->setText("Añadir persona");
+        connect(m_personas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     default:
         break;
@@ -66,8 +70,6 @@ void dlgSeleccionarGeneral::cargarTipo(){
 }
 
 void dlgSeleccionarGeneral::cargarModelo(){
-
-
 
     m_objeto_proxy = new ProxyNombres(tipo_seleccionado, this);
     m_objeto_proxy->setSourceModel(m_objeto);
@@ -246,4 +248,9 @@ void dlgSeleccionarGeneral::anadirObjeto(){
         break;
     }
 
+}
+
+void dlgSeleccionarGeneral::actualizarObjeto(){
+    m_objeto->select();
+    ui->twSeleccionar->resizeRowsToContents();
 }

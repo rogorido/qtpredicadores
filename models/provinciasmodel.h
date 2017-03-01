@@ -14,6 +14,10 @@ public:
 
     void AnadirProvincia(const Provincia *prov);
 
+signals:
+
+    void actualizado();
+
 protected:
     ProvinciasModel();
     ProvinciasModel(const ProvinciasModel &);
