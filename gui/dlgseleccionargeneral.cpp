@@ -83,3 +83,106 @@ void dlgSeleccionarGeneral::actualizarFiltro(const QString filtro){
         ui->twSeleccionar->resizeRowsToContents();
     }
 }
+
+void dlgSeleccionarGeneral::aceptar(){
+
+    // esto es un poco absurdo, tiene que haber otra manera...
+    switch (tipo_seleccionado) {
+    case CASA:
+        casa();
+        break;
+    case LUGAR:
+        lugar();
+    case PROVINCIA:
+        provincia();
+    case PERSONA:
+        persona();
+    default:
+        break;
+    }
+}
+
+void dlgSeleccionarGeneral::casa(){
+    /*
+     * en teoría habría que emitir una casa, pero debido a que quiero construir
+     * el nombre con la provincia, etc. sería más lío pq en el objeto Casa
+     * tengo que poner lugar/provincia/etc. como int y luego tendría que convertirlo
+     * en algún sitio a QString... por eso paso por ahora.
+     */
+
+    // tiene que haber otra manera de hacer esto...
+    QModelIndex idx0 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 0);
+    QModelIndex idx1 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 1);
+    QModelIndex idx2 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 2);
+    QModelIndex idx3 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 3);
+    QModelIndex idx4 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 4);
+
+    if (!idx0.isValid())
+        return;
+
+    int id = m_objeto->data(m_objeto_proxy->mapToSource(idx0), Qt::DisplayRole).toInt();
+    QString nombre = m_objeto->data(m_objeto_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
+    QString lugar = m_objeto->data(m_objeto_proxy->mapToSource(idx2), Qt::DisplayRole).toString();
+    QString provincia = m_objeto->data(m_objeto_proxy->mapToSource(idx3), Qt::DisplayRole).toString();
+    QString advocacion = m_objeto->data(m_objeto_proxy->mapToSource(idx4), Qt::DisplayRole).toString();
+
+    QString valor;
+
+    // lo construimos de forma un poco cutre; esto habría que mejorarlo...
+    valor = nombre;
+    if (!lugar.isEmpty())
+        valor += '-' + lugar;
+    if (!provincia.isEmpty())
+        valor += '-' + provincia;
+    if (!advocacion.isEmpty())
+        valor += '-' + advocacion;
+
+
+    emit(casaEscogidaSignal(id, valor));
+    close();
+}
+
+void dlgSeleccionarGeneral::lugar(){
+    Lugar lugar;
+
+    // tiene que haber otra manera de hacer esto...
+    QModelIndex idx0 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 0);
+    QModelIndex idx1 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 1);
+
+    if (!idx0.isValid())
+        return;
+
+    int id = m_objeto->data(m_objeto_proxy->mapToSource(idx0), Qt::DisplayRole).toInt();
+    QString lugarnombre = m_objeto->data(m_objeto_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
+
+    lugar.setId(id);
+    lugar.setLugar(lugarnombre);
+
+    emit(lugarEscogidoSignal(lugar));
+    close();
+
+}
+
+void dlgSeleccionarGeneral::persona(){
+
+    Persona autor;
+
+    // tiene que haber otra manera de hacer esto...
+    QModelIndex idx0 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 0);
+    QModelIndex idx1 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 1);
+    QModelIndex idx2 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 2);
+
+    if (!idx0.isValid())
+        return;
+
+    int id = m_objeto->data(m_objeto_proxy->mapToSource(idx0), Qt::DisplayRole).toInt();
+    QString nombre = m_objeto->data(m_objeto_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
+    QString apellidos = m_objeto->data(m_objeto_proxy->mapToSource(idx2), Qt::DisplayRole).toString();
+
+    autor.setId(id);
+    autor.setNombre(nombre);
+    autor.setApellidos(apellidos);
+
+    emit(personaEscogidaSignal(autor));
+    close();
+}
