@@ -5,8 +5,10 @@
 #include <QInputDialog>
 
 #include "models/lugaresmodel.h"
-#include "objs/casa.h"
 #include "models/casasmodel.h"
+#include "models/provinciasmodel.h"
+#include "objs/casa.h"
+#include "gui/dlgseleccionarlugar.h"
 
 dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
     QDialog(parent),
@@ -20,10 +22,7 @@ dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarCasa()));
     connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(anadirLugar()));
-
-    ui->cboLugares->setModel(m_lugares);
-    ui->cboLugares->setCurrentIndex(-1);
-    ui->cboLugares->setModelColumn(1);
+    connect(ui->btQuitarLugar, SIGNAL(clicked()), this, SLOT(quitarLugar()));
 
 }
 
@@ -45,8 +44,8 @@ void dlgNuevaCasa::aceptarCasa(){
     QString notas = ui->txtNotas->toPlainText();
     bool studiumgenerale = ui->ckStudium->checkState();
 
-    QSqlRecord record = m_lugares->record(ui->cboLugares->currentIndex());
-    lugar = record.value(0).toInt();
+    // TODO: hay que comprobar que esté vacío?
+    lugar = lugar_struct.id;
 
     casa->setNombre(nombre);
     casa->setLugar(lugar);
@@ -60,12 +59,23 @@ void dlgNuevaCasa::aceptarCasa(){
 
 void dlgNuevaCasa::anadirLugar(){
 
-    QString lugar;
+    dlgSeleccionarLugar *dlgLugar = new dlgSeleccionarLugar(this);
+    dlgLugar->show();
 
-    lugar = QInputDialog::getText(this, "Introduzca un nuevo lugar", "Lugar (nombre,país) ");
+    connect(dlgLugar, SIGNAL(lugarEscogido(Lugar)), this, SLOT(recibirLugar(Lugar)));
 
-    if (!lugar.isEmpty()){
-        m_lugares->AnadirLugar(lugar);
-    }
+}
 
+void dlgNuevaCasa::recibirLugar(Lugar lugarescogido){
+
+    lugar_struct.id = lugarescogido.getId();
+    lugar_struct.elemento = lugarescogido.getLugar();
+
+    ui->txtLugar->setText(lugar_struct.elemento);
+
+}
+
+void dlgNuevaCasa::quitarLugar(){
+
+    lugar_struct = elementopareado();
 }

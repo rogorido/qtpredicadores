@@ -3,6 +3,9 @@
 
 #include <QDialog>
 
+#include "objs/lugar.h"
+#include "objs/provincia.h"
+
 class LugaresModel;
 class CasasModel;
 
@@ -22,12 +25,25 @@ private slots:
 
     void aceptarCasa();
     void anadirLugar();
+    void quitarLugar(); // tenemos que quitarlo pq está en el struct
+    void recibirLugar(Lugar lugar);
+
+    void anadirProvincia();
+    void quitarProvincia();
+    void recibirProvincia(Provincia provincia);
 
 private:
     Ui::dlgNuevaCasa *ui;
 
     LugaresModel *m_lugares;
     CasasModel *m_casas;
+
+    struct elementopareado{
+      int id;
+      QString elemento;
+    };
+
+    elementopareado lugar_struct;
 };
 
 #endif // DLGNUEVACASA_H
