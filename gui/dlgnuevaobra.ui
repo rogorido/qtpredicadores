@@ -33,7 +33,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -335,7 +335,7 @@
       <string>+</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="txtLugar">
+    <widget class="myQLineEdit" name="txtLugar">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -513,6 +513,13 @@
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>myQLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header location="global">widgets/myqlineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

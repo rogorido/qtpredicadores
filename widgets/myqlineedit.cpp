@@ -2,7 +2,7 @@
 
 #include <QMouseEvent>
 
-myQLineEdit::myQLineEdit(QWidget *parent)
+myQLineEdit::myQLineEdit(QWidget *parent) : QLineEdit(parent)
 {
 
 }

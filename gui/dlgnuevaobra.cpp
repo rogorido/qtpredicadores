@@ -20,6 +20,7 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     m_lugares = LugaresModel::InstanceModel();
 
     connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(on_btAnadirLugar_clicked()));
+    connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(on_btIntroducirLugar_clicked()));
 
     cargarCompleters();
 }
