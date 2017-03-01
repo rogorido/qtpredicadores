@@ -15,6 +15,7 @@ dlgNuevoLugar::dlgNuevoLugar(QWidget *parent) :
     ui->setupUi(this);
 
     m_lugares = LugaresModel::InstanceModel();
+    otrosnombres = new JsonGestor(this);
 
     dlgdetalles = new dlgDetalles(otrosnombres, this);
 
@@ -41,14 +42,16 @@ void dlgNuevoLugar::aceptar(){
 
     otrosnombres->actualizarPrevioIntroducir();
 
-    if (otrosnombres->getSize() > 0){
+    if (otrosnombres->getSize() > 0)
         // entiendo q solo puede haber un elemento en la Qlist...
         nombres = otrosnombres->getJsonString(0);
-    }
-    else
-        nombres = "";
 
-    m_lugares->AnadirLugar(lugar, pais, nombres);
+    if (nombres.isEmpty())
+        m_lugares->AnadirLugar(lugar, pais);
+    else
+        m_lugares->AnadirLugar(lugar, pais, nombres);
+
+    close();
 
 }
 
@@ -56,9 +59,11 @@ void dlgNuevoLugar::cargarModelos(){
 
     m_paises = new QSqlQueryModel(this);
     m_paises_completer = new QCompleter(this);
-    otrosnombres = new JsonGestor(this);
 
     m_paises->setQuery("SELECT DISTINCT pais FROM lugares ORDER BY pais");
+
     m_paises_completer->setModel(m_paises);
+    m_paises_completer->setCompletionColumn(0);
+    ui->txtPais->setCompleter(m_paises_completer);
 
 }

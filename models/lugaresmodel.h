@@ -10,6 +10,12 @@ class LugaresModel : public QSqlTableModel
 public:
     static LugaresModel *InstanceModel();
 
+    /*
+     * lo hacemos overload pq si no me mete un {} en el json
+     * cuando está vacío y no quiero tenerlo así... pero tiene que haber
+     * otra forma mejor que esto así...
+     */
+    void AnadirLugar(const QString &lugar, const QString &pais);
     void AnadirLugar(const QString &lugar, const QString &pais, const QString &otrosnombres);
 
 protected:
