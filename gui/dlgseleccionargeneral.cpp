@@ -222,18 +222,18 @@ void dlgSeleccionarGeneral::provincia(){
 void dlgSeleccionarGeneral::anadirObjeto(){
 
     switch (tipo_seleccionado) {
-    case CASA:
+    case CASA:{
         dlgNuevaCasa *dlgcasa = new dlgNuevaCasa(this);
         dlgcasa->show();
-        break;
-    case LUGAR:
-        break;
-    case PROVINCIA:
+        break;}
+    case PROVINCIA:{
         dlgNuevaProvincia *dlgprovincia = new dlgNuevaProvincia(this);
         dlgprovincia->show();
-    case PERSONA:
+        break;}
+    case PERSONA:{
         dlgNuevaPersona *dlgpersona = new dlgNuevaPersona(this);
         dlgpersona->show();
+        break;}
     default:
         break;
     }
