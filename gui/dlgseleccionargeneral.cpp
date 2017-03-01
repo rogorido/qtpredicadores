@@ -11,6 +11,7 @@
 #include "gui/dlgnuevacasa.h"
 #include "gui/dlgnuevapersona.h"
 #include "gui/dlgnuevaprovincia.h"
+#include "gui/dlgnuevolugar.h"
 
 dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *parent) :
     QDialog(parent),
@@ -225,6 +226,10 @@ void dlgSeleccionarGeneral::anadirObjeto(){
     case CASA:{
         dlgNuevaCasa *dlgcasa = new dlgNuevaCasa(this);
         dlgcasa->show();
+        break;}
+    case LUGAR:{
+        dlgNuevoLugar *dlglugar = new dlgNuevoLugar(this);
+        dlglugar->show();
         break;}
     case PROVINCIA:{
         dlgNuevaProvincia *dlgprovincia = new dlgNuevaProvincia(this);
