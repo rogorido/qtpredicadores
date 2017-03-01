@@ -2,8 +2,7 @@
 #include "ui_dlgnuevaobra.h"
 
 #include "models/lugaresmodel.h"
-#include "dlgseleccionarpersona.h"
-#include "dlgseleccionarlugar.h"
+#include "dlgseleccionargeneral.h"
 #include "dlgnuevolugar.h"
 
 #include <QSqlQueryModel>
@@ -64,12 +63,12 @@ void dlgNuevaObra::on_btAnadirLugar_clicked(){
     cargarCompleters();
 }
 
-void dlgNuevaObra::on_pushButton_clicked()
+void dlgNuevaObra::on_btSeleccionarAutor_clicked()
 {
-    dlgSeleccionarPersona *seleccionarpersona = new dlgSeleccionarPersona(this);
-    seleccionarpersona->show();
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgSeleccionar->show();
 
-    connect(seleccionarpersona, SIGNAL(personaEscogida(Persona)), this, SLOT(actualizarPersona(Persona)));
+    connect(dlgSeleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(actualizarPersona(Persona)));
 
 }
 
@@ -89,10 +88,10 @@ void dlgNuevaObra::actualizarPersona(Persona autor){
 
 void dlgNuevaObra::on_btIntroducirLugar_clicked()
 {
-    dlgSeleccionarLugar *seleccionarlugar = new dlgSeleccionarLugar(this);
-    seleccionarlugar->show();
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionar->show();
 
-    connect(seleccionarlugar, SIGNAL(lugarEscogido(Lugar)), this, SLOT(actualizarLugar(Lugar)));
+    connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(actualizarLugar(Lugar)));
 }
 
 void dlgNuevaObra::actualizarLugar(Lugar lugar){
