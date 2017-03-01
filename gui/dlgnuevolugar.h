@@ -5,7 +5,8 @@
 
 class JsonGestor;
 class LugaresModel;
-
+class QSqlQueryModel;
+class QCompleter;
 
 namespace Ui {
 class dlgNuevoLugar;
@@ -28,6 +29,11 @@ private:
 
     JsonGestor *otrosnombres;
     LugaresModel *m_lugares;
+
+    QSqlQueryModel *m_paises;
+    QCompleter *m_paises_completer;
+
+    void cargarModelos();
 };
 
 #endif // DLGNUEVOLUGAR_H
