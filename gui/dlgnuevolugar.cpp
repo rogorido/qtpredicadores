@@ -35,10 +35,12 @@ dlgNuevoLugar::~dlgNuevoLugar()
 void dlgNuevoLugar::aceptar(){
 
     QString lugar;
+    QString lugar_latin;
     QString pais;
     QString nombres;
 
     lugar = ui->txtLugar->text();
+    lugar_latin = ui->txtLugarLatin->text();
     pais = ui->txtPais->text();
 
     otrosnombres->actualizarPrevioIntroducir();
@@ -49,9 +51,9 @@ void dlgNuevoLugar::aceptar(){
 
     if (nombres.isEmpty()){
         qDebug() << "estamos aqui...";
-        m_lugares->AnadirLugar(lugar, pais);}
+        m_lugares->AnadirLugar(lugar, lugar_latin, pais);}
     else
-        m_lugares->AnadirLugar(lugar, pais, nombres);
+        m_lugares->AnadirLugar(lugar, lugar_latin, pais, nombres);
 
     close();
 

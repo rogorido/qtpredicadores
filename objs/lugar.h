@@ -13,17 +13,20 @@ public:
     // setters
     void setId(int i);
     void setLugar(QString l);
+    void setLugarLatin(QString l);
     void setPais(QString p);
 
     //getters
     int getId() const {return id;}
     QString getLugar() const {return lugar;}
+    QString getLugarLatin() const {return lugar_latin;}
     QString getPais() const {return pais;}
 
 private:
 
     int id;
     QString lugar;
+    QString lugar_latin;
     QString pais;
 
 };

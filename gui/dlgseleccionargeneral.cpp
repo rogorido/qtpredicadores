@@ -19,6 +19,8 @@ dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *par
 {
     ui->setupUi(this);
 
+    ui->txtFiltro->setClearButtonEnabled(true);
+
     connect(ui->btAnadir, SIGNAL(clicked(bool)), this, SLOT(anadirObjeto()));
     connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));

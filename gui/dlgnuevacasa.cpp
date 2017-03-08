@@ -3,6 +3,7 @@
 
 #include <QSqlRecord>
 #include <QInputDialog>
+#include <QCompleter>
 
 #include "models/lugaresmodel.h"
 #include "models/casasmodel.h"
@@ -19,6 +20,9 @@ dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
 
     m_lugares = LugaresModel::InstanceModel();
     m_casas = CasasModel::InstanceModel();
+
+    ui->txtProvincia->setClearButtonEnabled(true);
+    ui->txtLugar->setClearButtonEnabled(true);
 
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarCasa()));

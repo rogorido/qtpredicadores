@@ -16,7 +16,7 @@ public:
      * otra forma mejor que esto así...
      */
     void AnadirLugar(const QString &lugar, const QString &pais);
-    void AnadirLugar(const QString &lugar, const QString &pais, const QString &otrosnombres);
+    void AnadirLugar(const QString &lugar, const QString &lugar_latin, const QString &pais, const QString &otrosnombres);
 
 signals:
 
