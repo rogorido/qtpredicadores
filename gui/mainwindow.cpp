@@ -3,6 +3,7 @@
 
 #include <QtGui>
 #include <QDebug>
+#include <QInputDialog>
 #include <QSqlTableModel>
 
 #include "dlgnuevocapitulo.h"
@@ -55,6 +56,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionNuevaPersona, SIGNAL(triggered()), this, SLOT(nuevaPersona()));
     connect(ui->actionNuevaObra, SIGNAL(triggered()), this, SLOT(nuevaObra()));
     connect(ui->actionNuevaProvincia, SIGNAL(triggered()), this, SLOT(nuevaProvincia()));
+    connect(ui->actionNuevoTema, SIGNAL(triggered()), this, SLOT(nuevoTema()));
     connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
@@ -126,4 +128,14 @@ void MainWindow::nuevaObra(){
 void MainWindow::nuevaProvincia(){
     dlgNuevaProvincia *dlgprovincia = new dlgNuevaProvincia(this);
     dlgprovincia->show();
+}
+
+void MainWindow::nuevoTema(){
+
+    QString tema;
+
+    tema = QInputDialog::getText(this, "Introduzca nuevo tema", "Nueva tema");
+
+    if (!tema.isEmpty())
+        m_temas->AnadirTema(tema);
 }

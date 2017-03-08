@@ -85,6 +85,7 @@
     <addaction name="actionNuevaCasa"/>
     <addaction name="actionNuevoCapitulo"/>
     <addaction name="actionNuevaProvincia"/>
+    <addaction name="actionNuevoTema"/>
     <addaction name="actionNuevaObra"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
@@ -139,6 +140,14 @@
   <action name="actionNuevaProvincia">
    <property name="text">
     <string>Nueva provincia</string>
+   </property>
+  </action>
+  <action name="actionNuevoTema">
+   <property name="text">
+    <string>Nuevo &amp;tema</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
    </property>
   </action>
  </widget>

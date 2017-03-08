@@ -48,10 +48,10 @@ void CasasModel::AnadirCasa(const Casa *casa){
     bool studiumgenerale = casa->getStudiumgenerale();
 
     query.prepare("INSERT INTO casas(nombre, nombre_latin, lugar, lugaroriginario, masculino, "
-                  "tipo, congregacion, buscado, wikipedia, provincia, diocesis, fecha_fundacion, "
+                  "tipo, congregacion, buscado, wikipedia, provincia_id, diocesis, fecha_fundacion, "
                   "advocacion, studiumgenerale, notas) "
                   "VALUES(:nombre, :nombre_latin, :lugar, :lugaroriginario, :masculino, "
-                  ":tipo, :congregacion, :buscado, :wiki, :provincia, :diocesis, :fecha_fundacion, "
+                  ":tipo, :congregacion, :buscado, :wiki, :provincia_id, :diocesis, :fecha_fundacion, "
                   ":advocacion, :studiumgenerale, :notas)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":nombre_latin", nombre_latin);
@@ -62,7 +62,7 @@ void CasasModel::AnadirCasa(const Casa *casa){
     query.bindValue(":congregacion", congregacion);
     query.bindValue(":buscado", buscado);
     query.bindValue(":wiki", wiki);
-    query.bindValue(":provincia", provincia);
+    query.bindValue(":provincia_id", provincia);
     query.bindValue("diocesis", diocesis);
     query.bindValue("fecha_fundacion", fecha_fundacion);
     query.bindValue("advocacion", advocacion);

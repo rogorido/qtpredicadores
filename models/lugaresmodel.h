@@ -15,7 +15,7 @@ public:
      * cuando está vacío y no quiero tenerlo así... pero tiene que haber
      * otra forma mejor que esto así...
      */
-    void AnadirLugar(const QString &lugar, const QString &pais);
+    void AnadirLugar(const QString &lugar, const QString &lugar_latin, const QString &pais);
     void AnadirLugar(const QString &lugar, const QString &lugar_latin, const QString &pais, const QString &otrosnombres);
 
 signals:
