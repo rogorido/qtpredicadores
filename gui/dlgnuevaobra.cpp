@@ -6,6 +6,7 @@
 #include "dlgnuevolugar.h"
 #include "objs/obra.h"
 #include "objs/variados.h"
+#include "gui/dlgtemas.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -123,6 +124,20 @@ void dlgNuevaObra::on_btQuitarLugar_clicked(){
 
     lugarescogido_struct = elementopareado();
     ui->txtLugar->setText("");
+}
+
+void dlgNuevaObra::on_btTemas_clicked(){
+
+    dlgTemas *dlgtemas = new dlgTemas(this);
+
+    dlgtemas->show();
+    connect(dlgtemas, SIGNAL(temasSeleccionadosSignal(QList<elementopareado>)), SLOT(recibirTemas(QList<elementopareado>)));
+
+}
+
+void dlgNuevaObra::recibirTemas(QList<elementopareado> temas){
+
+    temasescogidos = temas;
 }
 
 void dlgNuevaObra::on_btOK_clicked(){

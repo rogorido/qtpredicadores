@@ -23,7 +23,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTabWidget" name="tabWidget">
+  <widget class="QTabWidget" name="tbTemas">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -33,7 +33,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -598,6 +598,19 @@
    </property>
    <property name="text">
     <string>&amp;Aceptar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btTemas">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>460</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&amp;Temas</string>
    </property>
   </widget>
  </widget>

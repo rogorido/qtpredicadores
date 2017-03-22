@@ -22,18 +22,6 @@ public:
     explicit dlgNuevaObra(QWidget *parent = 0);
     ~dlgNuevaObra();
 
-private slots:
-    void on_btAnadirLugar_clicked();
-    //void on_txtAutor_doubleclicked();
-    void on_btSeleccionarAutor_clicked();
-    void on_btIntroducirLugar_clicked();
-    void on_btQuitarAutor_clicked();
-    void on_btQuitarLugar_clicked();
-    void on_btOK_clicked();
-
-    void actualizarPersona(Persona autor);
-    void actualizarLugar(Lugar lugar);
-
 private:
     Ui::dlgNuevaObra *ui;
 
@@ -62,8 +50,25 @@ private:
 
     elementopareado autorescogido_struct;
     elementopareado lugarescogido_struct;
+    QList<elementopareado> temasescogidos;
 
     void cargarCompleters();
+
+private slots:
+    void on_btAnadirLugar_clicked();
+    //void on_txtAutor_doubleclicked();
+    void on_btSeleccionarAutor_clicked();
+    void on_btIntroducirLugar_clicked();
+    void on_btQuitarAutor_clicked();
+    void on_btQuitarLugar_clicked();
+    void on_btTemas_clicked();
+    void on_btOK_clicked();
+
+    void actualizarPersona(Persona autor);
+    void actualizarLugar(Lugar lugar);
+
+    void recibirTemas(QList<elementopareado> temas);
+
 
 };
 
