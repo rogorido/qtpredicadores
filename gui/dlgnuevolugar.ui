@@ -6,87 +6,111 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>351</width>
-    <height>123</height>
+    <width>357</width>
+    <height>165</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0" colspan="2">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Lugar</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLineEdit" name="txtLugar"/>
-     </item>
-     <item row="1" column="0" colspan="2">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Lugar (latín)</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QLineEdit" name="txtLugarLatin"/>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>País</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1" colspan="2">
-      <widget class="QLineEdit" name="txtPais"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btOtrosNombres">
-       <property name="text">
-        <string>&amp;Otros nombres</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btCancelar">
-       <property name="text">
-        <string>Can&amp;celar</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btOK">
-       <property name="text">
-        <string>&amp;Aceptar</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-  </layout>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>130</y>
+     <width>317</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btOtrosNombres">
+      <property name="text">
+       <string>&amp;Otros nombres</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btCancelar">
+      <property name="text">
+       <string>Can&amp;celar</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btOK">
+      <property name="text">
+       <string>&amp;Aceptar</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>331</width>
+     <height>108</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Lugar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QLineEdit" name="txtLugar"/>
+    </item>
+    <item row="1" column="0" colspan="3">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Lugar (latín)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLineEdit" name="txtLugarLatin"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>País</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1" colspan="3">
+     <widget class="QLineEdit" name="txtPais"/>
+    </item>
+    <item row="3" column="0" colspan="2">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Wikidata</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2" colspan="2">
+     <widget class="QLineEdit" name="txtWikidata"/>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources/>
  <connections/>
