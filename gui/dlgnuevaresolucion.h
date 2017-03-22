@@ -20,19 +20,9 @@ public:
                              QWidget *parent = 0);
     ~dlgNuevaResolucion();
 
-private slots:
-
-    void on_btNuevoTema_clicked();
-    void on_btAnadirTema_clicked();
-    void on_btQuitarTema_clicked();
-    void on_btDetalles_clicked();
-
-    void aceptarResolucion(); // btOK
-
 private:
     Ui::dlgNuevaResolucion *ui;
 
-    TemasModel *m_temas;
     JsonGestor *jsongestor;
     dlgDetalles *dlgdetalles;
 
@@ -53,6 +43,17 @@ private:
      */
     int capitulo_origen;
     bool origen;
+
+private slots:
+
+    void on_btDetalles_clicked();
+    void on_btTemas_clicked();
+
+    void aceptarResolucion(); // btOK
+
+    // en teoría casi un qlist de ints sería suficiente...
+    void recibirTemas(QList<elementopareado> temas);
+
 };
 
 #endif // DLGNUEVARESOLUCION_H

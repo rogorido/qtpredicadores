@@ -1,7 +1,6 @@
 #include "dlgnuevaresolucion.h"
 #include "ui_dlgnuevaresolucion.h"
 
-#include <QInputDialog>
 #include <QSqlRecord>
 #include <QSqlQuery>
 #include <QCompleter>
@@ -16,6 +15,7 @@
 #include "models/temasmodel.h"
 #include "dlgdetalles.h"
 #include "objs/jsongestor.h"
+#include "gui/dlgtemas.h"
 
 dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
                                  QWidget *parent) :
@@ -24,13 +24,9 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
 {
     ui->setupUi(this);
 
-    m_temas = TemasModel::InstanceModel();
-
     jsongestor = new JsonGestor(this);
 
     dlgdetalles = new dlgDetalles(jsongestor, this);
-
-    rellenarCombos();
 
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
 
@@ -44,64 +40,6 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
 dlgNuevaResolucion::~dlgNuevaResolucion()
 {
     delete ui;
-}
-
-
-void dlgNuevaResolucion::rellenarCombos(){
-// TODO: modificar
-    ui->cboTemas->setModel(m_temas);
-    ui->cboTemas->setCurrentIndex(-1);
-    ui->cboTemas->setModelColumn(1);
-}
-
-void dlgNuevaResolucion::on_btNuevoTema_clicked(){
-
-    QString tema;
-
-    tema = QInputDialog::getText(this, "Introduzca nuevo tema", "Nueva tema");
-
-    if (!tema.isEmpty())
-        m_temas->AnadirTema(tema);
-
-}
-
-void dlgNuevaResolucion::on_btAnadirTema_clicked(){
-    /* sacamos el record del combobox */
-
-    QSqlRecord record = m_temas->record(ui->cboTemas->currentIndex());
-    int id = record.value(0).toInt();
-    QString tema = ui->cboTemas->currentText();
-
-    /* creamos un nuevo struct y lo añadimos a la lista */
-    elementopareado nuevo;
-    nuevo.id = id;
-    nuevo.elemento = tema;
-    temas_lista.append(nuevo);
-
-    /* añadimos un elem a la tabla */
-    QTableWidgetItem *item = new QTableWidgetItem(tema);
-    //this will give the present number of rows available.
-    int insertRow = ui->twTemas->rowCount();
-    //insert the row at the bottom of the table widget - using.
-    ui->twTemas->insertRow(insertRow);
-
-    ui->twTemas->setItem(insertRow, 0, item);
-}
-
-void dlgNuevaResolucion::on_btQuitarTema_clicked(){
-
-    QString valor = ui->twTemas->currentIndex().data().toString();
-
-    int row = ui->twTemas->currentRow();
-    ui->twTemas->removeRow(row);
-
-    for (int i = 0; i < temas_lista.size(); ++i) {
-      if(temas_lista.at(i).elemento == valor){
-        temas_lista.removeAt(i);
-        break;
-      }
-     }
-
 }
 
 void dlgNuevaResolucion::aceptarResolucion(){
@@ -199,4 +137,18 @@ void dlgNuevaResolucion::introducirTemas(const int id){
 void dlgNuevaResolucion::on_btDetalles_clicked()
 {
     dlgdetalles->show();
+}
+
+void dlgNuevaResolucion::on_btTemas_clicked(){
+
+    dlgTemas *dlgtemas = new dlgTemas(this);
+
+    dlgtemas->show();
+
+    connect(dlgtemas, SIGNAL(temasSeleccionadosSignal(QList<elementopareado>)), this, SLOT(recibirTemas(QList<elementopareado>)));
+}
+
+void dlgNuevaResolucion::recibirTemas(QList<elementopareado> temas){
+
+    temas_lista = temas;
 }
