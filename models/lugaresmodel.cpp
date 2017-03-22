@@ -31,7 +31,7 @@ void LugaresModel::AnadirLugar(const QString &lugar, const QString &lugar_latin,
 
     qDebug() << lugar << pais;
 
-    query.prepare("INSERT INTO general.lugares(lugar, lugar_latin, pais) VALUES(:lugar, :lugar_latin, :pais)");
+    query.prepare("INSERT INTO general.places(place, place_latin, country) VALUES(:lugar, :lugar_latin, :pais)");
     query.bindValue(":lugar", lugar);
     query.bindValue(":lugar_latin", lugar_latin);
     query.bindValue(":pais", pais);
@@ -45,7 +45,7 @@ void LugaresModel::AnadirLugar(const QString &lugar, const QString &lugar_latin,
 
     QSqlQuery query;
 
-    query.prepare("INSERT INTO general.lugares(lugar, lugar_latin, pais, otrosnombres) VALUES(:lugar, :lugar_latin, :pais, :otrosnombres)");
+    query.prepare("INSERT INTO general.lugares(place, place_latin, country, other_names) VALUES(:lugar, :lugar_latin, :pais, :otrosnombres)");
     query.bindValue(":lugar", lugar);
     query.bindValue(":lugar_latin", lugar_latin);
     query.bindValue(":pais", pais);
