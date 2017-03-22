@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QTableWidget" name="twTemas_2">
+  <widget class="QTableWidget" name="twTemas">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -27,7 +27,7 @@
    </property>
    <column/>
   </widget>
-  <widget class="QComboBox" name="cboTemas_2">
+  <widget class="QComboBox" name="cboTemas">
    <property name="geometry">
     <rect>
      <x>270</x>
@@ -50,7 +50,7 @@
     <string>Borrar tema</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btAnadirTema_2">
+  <widget class="QPushButton" name="btAnadirTema">
    <property name="geometry">
     <rect>
      <x>270</x>
@@ -63,7 +63,7 @@
     <string>Añadir tema</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btNuevoTema_2">
+  <widget class="QPushButton" name="btNuevoTema">
    <property name="geometry">
     <rect>
      <x>270</x>
