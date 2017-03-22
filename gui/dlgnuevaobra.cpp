@@ -79,15 +79,22 @@ void dlgNuevaObra::on_btSeleccionarAutor_clicked()
 
 void dlgNuevaObra::actualizarPersona(Persona autor){
 
-    autorescogido = new Persona();
+    /*
+     * en lugar de con Persona lo hago con un struct,
+     * pq así sé luego borrarlo... Pero creo q esto es una cutrada.
+     */
 
-    autorescogido->setId(autor.getId());
-    autorescogido->setNombre(autor.getNombre());
-    autorescogido->setApellidos(autor.getApellidos());
+    autorescogido_struct.id = autor.getId();
+    autorescogido_struct.elemento = autor.getNombre() + ' ' + autor.getApellidos();
 
-    QString nombre = autorescogido->getNombre() + ' ' + autorescogido->getApellidos();
+    ui->txtAutor->setText(autorescogido_struct.elemento);
 
-    ui->txtAutor->setText(nombre);
+}
+
+void dlgNuevaObra::on_btQuitarAutor_clicked(){
+
+    autorescogido_struct = elementopareado();
+    ui->txtAutor->setText("");
 
 }
 
@@ -101,12 +108,21 @@ void dlgNuevaObra::on_btIntroducirLugar_clicked()
 
 void dlgNuevaObra::actualizarLugar(Lugar lugar){
 
-    lugarescogido = new Lugar();
+    /*
+     * en lugar de con Lugar lo hago con un struct,
+     * pq así sé luego borrarlo... Pero creo q esto es una cutrada.
+     */
 
-    lugarescogido->setId(lugar.getId());
-    lugarescogido->setLugar(lugar.getLugar());
+    lugarescogido_struct.id = lugar.getId();
+    lugarescogido_struct.elemento = lugar.getLugar();
 
-    ui->txtLugar->setText(lugarescogido->getLugar());
+    ui->txtLugar->setText(lugarescogido_struct.elemento);
+}
+
+void dlgNuevaObra::on_btQuitarLugar_clicked(){
+
+    lugarescogido_struct = elementopareado();
+    ui->txtLugar->setText("");
 }
 
 void dlgNuevaObra::on_btOK_clicked(){

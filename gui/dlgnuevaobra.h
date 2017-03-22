@@ -27,6 +27,8 @@ private slots:
     //void on_txtAutor_doubleclicked();
     void on_btSeleccionarAutor_clicked();
     void on_btIntroducirLugar_clicked();
+    void on_btQuitarAutor_clicked();
+    void on_btQuitarLugar_clicked();
     void on_btOK_clicked();
 
     void actualizarPersona(Persona autor);
@@ -45,8 +47,21 @@ private:
 
     LugaresModel *m_lugares;
 
-    Persona *autorescogido;
+    Persona *autorescogido; // ver abajo lo del elementopareado
     Lugar *lugarescogido;
+
+    /*
+     * sinceramente: la idea de usar esto es para aquellos casos
+     * en los que borro la persona que he metido. Si lo hago con una Persona
+     * sinceramente no sé cómo "vaciarla".
+     */
+    struct elementopareado{
+      int id;
+      QString elemento;
+    };
+
+    elementopareado autorescogido_struct;
+    elementopareado lugarescogido_struct;
 
     void cargarCompleters();
 
