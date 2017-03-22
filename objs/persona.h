@@ -19,6 +19,7 @@ public:
     void setViaf(bool v);
     void setWikilink(QString wl);
     void setViaflink(QString vl);
+    void setWikidata(QString w);
     void setNacimiento(QString nac);
     void setMuerte(QString m);
     void setOtrosnombres(QString o);
@@ -36,6 +37,7 @@ public:
     bool getViaf() const {return viaf;}
     QString getWikilink() const {return wikilink;}
     QString getViaflink() const {return viaflink;}
+    QString getWikidata() const {return wikidata;}
     QString getNacimiento() const {return nacimiento;}
     QString getMuerte() const {return muerte;}
     QString getOtrosNombres() const {return otrosnombres;}
@@ -54,6 +56,7 @@ private:
     bool viaf;
     QString wikilink;
     QString viaflink;
+    QString wikidata;
     QString nacimiento;
     QString muerte;
     // estos dos sería interesantes hacerlos QJson...

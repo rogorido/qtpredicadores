@@ -19,6 +19,7 @@ void Persona::setWiki(bool w){ wiki = w; }
 void Persona::setViaf(bool v){ viaf = v; }
 void Persona::setWikilink(QString wl){ wikilink = wl; }
 void Persona::setViaflink(QString vl){ viaflink = vl; }
+void Persona::setWikidata(QString w) { wikidata = w; }
 void Persona::setNacimiento(QString nac){ nacimiento = nac; }
 void Persona::setMuerte(QString m){ muerte = m; }
 void Persona::setOtrosnombres(QString o){ otrosnombres = o; }

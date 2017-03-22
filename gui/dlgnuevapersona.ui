@@ -69,7 +69,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tabGeneral">
     <attribute name="title">
@@ -132,6 +132,29 @@
        <width>341</width>
        <height>22</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="txtWikidata">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>120</y>
+       <width>341</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>130</y>
+       <width>58</width>
+       <height>14</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Wikidata</string>
      </property>
     </widget>
    </widget>

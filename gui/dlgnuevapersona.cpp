@@ -35,6 +35,7 @@ void dlgNuevaPersona::aceptarPersona(){
     bool viaf = ui->ckViaf->checkState();
     QString wikilink = ui->txtWiki->text();
     QString viaflink = ui->txtViaf->text();
+    QString wikidata = ui->txtWikidata->text();
     QString notas = ui->txtNotas->toPlainText();
     QString nacimiento = ui->txtNacimiento->text();
     QString muerte = ui->txtMuerte->text();
@@ -49,6 +50,7 @@ void dlgNuevaPersona::aceptarPersona(){
     persona->setViaf(viaf);
     persona->setWikilink(wikilink);
     persona->setViaflink(viaflink);
+    persona->setWikidata(wikidata);
     persona->setNacimiento(nacimiento);
     persona->setMuerte(muerte);
     persona->setVolverMirar(volveramirar);
