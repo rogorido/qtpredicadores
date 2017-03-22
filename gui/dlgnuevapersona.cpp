@@ -38,6 +38,7 @@ void dlgNuevaPersona::aceptarPersona(){
     QString notas = ui->txtNotas->toPlainText();
     QString nacimiento = ui->txtNacimiento->text();
     QString muerte = ui->txtMuerte->text();
+    bool volveramirar = ui->ckVolverMirar->checkState();
     // falta lo de los dos json
 
     persona->setNombre(nombre);
@@ -49,6 +50,7 @@ void dlgNuevaPersona::aceptarPersona(){
     persona->setViaflink(viaflink);
     persona->setNacimiento(nacimiento);
     persona->setMuerte(muerte);
+    persona->setVolverMirar(volveramirar);
     persona->setNotas(notas);
 
     m_personas->AnadirPersona(persona);

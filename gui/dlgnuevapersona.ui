@@ -69,7 +69,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="tabGeneral">
     <attribute name="title">
@@ -154,6 +154,19 @@
     <attribute name="title">
      <string>Otros datos</string>
     </attribute>
+    <widget class="QCheckBox" name="ckVolverMirar">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>111</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Volver a mirar</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tabOtrosNombres">
     <attribute name="title">

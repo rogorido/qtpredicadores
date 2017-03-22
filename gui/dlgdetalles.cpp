@@ -150,5 +150,10 @@ void dlgDetalles::on_btModificarDetalles_toggled(bool checked)
         ui->btModificarDetalles->setText("Añadiendo");
 }
 
+void dlgDetalles::on_btAnadirInteresante_clicked(){
 
+    int interesante = ui->spInteresante->value();
+
+    jsondetalles->anadirValor("Interesante", QJsonValue(interesante));
+}
 

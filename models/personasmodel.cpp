@@ -40,12 +40,13 @@ void PersonasModel::AnadirPersona(const Persona *persona){
     QString notas = persona->getNotas();
     QString nacimiento = persona->getNacimiento();
     QString muerte = persona->getMuerte();
+    bool volveramirar = persona->getVolverMirar();
     // falta lo de los dos json
 
     query.prepare("INSERT INTO persons(name, family_name, lookedup, wikipedia, viaf, "
-		  "wikipedia_link, viaf_link, datebirth, datedeath, notes) "
+          "wikipedia_link, viaf_link, datebirth, datedeath, look_again, notes) "
 		  "VALUES (:nombre, :apellidos, :buscado, :wikipedia, :viaf, "
-		  ":wikipedia_link, :viaf_link, :nacimiento, :muerte, :notas)");
+          ":wikipedia_link, :viaf_link, :nacimiento, :muerte, :volveramirar, :notas)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":apellidos", apellidos);
     query.bindValue(":buscado", buscado);
@@ -55,6 +56,7 @@ void PersonasModel::AnadirPersona(const Persona *persona){
     query.bindValue(":viaf_link", viaflink);
     query.bindValue(":nacimiento", nacimiento);
     query.bindValue(":muerte", muerte);
+    query.bindValue(":volveramirar", volveramirar);
     query.bindValue(":notas", notas);
 
     query.exec();

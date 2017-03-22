@@ -23,6 +23,7 @@ public:
     void setMuerte(QString m);
     void setOtrosnombres(QString o);
     void setOtrosdatos(QString o);
+    void setVolverMirar(bool v);
     void setNotas(QString n);
 
     //getters
@@ -38,6 +39,7 @@ public:
     QString getMuerte() const {return muerte;}
     QString getOtrosNombres() const {return otrosnombres;}
     QString getOtrosDatos() const {return otrosdatos;}
+    bool getVolverMirar() const {return volveramirar;}
     QString getNotas() const {return notas;}
 
 private:
@@ -55,6 +57,7 @@ private:
     // estos dos sería interesantes hacerlos QJson...
     QString otrosnombres;
     QString otrosdatos;
+    bool volveramirar;
     QString notas;
 
 };
