@@ -4,6 +4,7 @@
 #include "models/lugaresmodel.h"
 #include "dlgseleccionargeneral.h"
 #include "dlgnuevolugar.h"
+#include "objs/obra.h"
 #include "objs/variados.h"
 
 #include <QSqlQueryModel>
@@ -22,6 +23,7 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(on_btAnadirLugar_clicked()));
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(on_btIntroducirLugar_clicked()));
     connect(ui->txtAutor, SIGNAL(dobleclick()), this, SLOT(on_btSeleccionarAutor_clicked()));
+    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
 
     cargarCompleters();
 }
@@ -105,4 +107,58 @@ void dlgNuevaObra::actualizarLugar(Lugar lugar){
     lugarescogido->setLugar(lugar.getLugar());
 
     ui->txtLugar->setText(lugarescogido->getLugar());
+}
+
+void dlgNuevaObra::on_btOK_clicked(){
+
+    Obra *obra = new Obra();
+
+    QString titulo = ui->txtTitulo->toPlainText();
+    QString idioma = ui->txtIdioma->text();
+    int autor = autorescogido->getId();
+    QString tipo = ui->txtTipo->text();
+    QString formato = ui->txtFormato->text();
+    int tomos = ui->spTomos->value();
+    QString paginas = ui->txtNumeroPags->text();
+    bool impreso = ui->ckImpreso->checkState();
+    bool talvez_impreso = ui->ckTalVezImpreso->checkState();
+    bool manuscrito = ui->ckManuscrito->checkState();
+    QString lugar_impresion_original = ui->txtLugarOriginalImpresion->text();
+    QString editor = ui->txtEditor->text();
+    int lugar_impresion = lugarescogido->getId();
+    int fecha = ui->spFechaImpresion->value();
+    bool referencias = ui->ckReferencias->checkState();
+    bool volveramirar = ui->ckVolverMirar->checkState();
+    bool tituloreducido = ui->ckTituloReducido->checkState();
+    bool dudoso = ui->ckDudoso->checkState();
+    bool contenido = ui->ckContenido->checkState();
+    bool expurgable = ui->ckExpurgable->checkState();
+    int interesante = ui->spInteresante->value();
+    int fiabilidad = ui->spFiabilidad->value();
+    QString notas = ui->txtNotas->toPlainText();
+
+    obra->setTitulo(titulo);
+    obra->setIdioma(idioma);
+    obra->setAutor(autor);
+    obra->setTipo(tipo);
+    obra->setFormato(formato);
+    obra->setTomos(tomos);
+    obra->setNumeroPags(paginas);
+    obra->setImpreso(impreso);
+    obra->setTalVezImpreso(talvez_impreso);
+    obra->setManuscrito(manuscrito);
+    obra->setLugar(lugar_impresion);
+    obra->setLugarOriginal(lugar_impresion_original);
+    obra->setEditor(editor);
+    obra->setFecha(fecha);
+    obra->setReferencias(referencias);
+    obra->setVolverMirar(volveramirar);
+    obra->setExpurgable(expurgable);
+    obra->setDudoso(dudoso);
+    obra->setContenido(contenido);
+    obra->setTituloReducido(tituloreducido);
+    obra->setInteresante(interesante);
+    obra->setFiabilidad(fiabilidad);
+    obra->setNotas(notas);
+
 }

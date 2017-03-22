@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTextEdit" name="txtTitulo">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -33,7 +33,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -270,7 +270,7 @@
       <string>Lugar de impresión</string>
      </property>
     </widget>
-    <widget class="QSpinBox" name="spinBox">
+    <widget class="QSpinBox" name="spFechaImpresion">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -286,7 +286,7 @@
       <number>2000</number>
      </property>
     </widget>
-    <widget class="QLabel" name="spFechaImpresion">
+    <widget class="QLabel" name="lbFecha">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -495,6 +495,19 @@
       <string>Fiabilidad</string>
      </property>
     </widget>
+    <widget class="QCheckBox" name="ckVolverMirar">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>20</y>
+       <width>111</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Volver a mirar</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_4">
     <attribute name="title">
@@ -511,6 +524,32 @@
      </property>
     </widget>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="btCancelar">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>460</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&amp;Cancelar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btOK">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>460</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&amp;Aceptar</string>
+   </property>
   </widget>
  </widget>
  <customwidgets>

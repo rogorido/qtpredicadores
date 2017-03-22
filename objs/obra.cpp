@@ -23,4 +23,5 @@ void Obra::setInteresante(int i) {interesante = i;}
 void Obra::setDudoso(bool d) {dudoso = d;}
 void Obra::setExpurgable(bool e) {expurgable = e;}
 void Obra::setFiabilidad(int f) {fiabilidad = f;}
+void Obra::setVolverMirar(bool v) {volveramirar = v;}
 void Obra::setNotas(QString n) {notas = n;}

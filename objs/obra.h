@@ -32,6 +32,7 @@ public:
     void setDudoso(bool d);
     void setExpurgable(bool e);
     void setFiabilidad(int f);
+    void setVolverMirar(bool v);
     void setNotas(QString n);
 
     //getters
@@ -56,6 +57,7 @@ public:
     bool getDudoso() const {return dudoso;}
     bool getExpurgable() const {return expurgable;}
     int getFiabilidad() const {return fiabilidad;}
+    bool getVolverMirar() const {return volveramirar;}
     QString getNotas() const {return notas;}
 
 private:
@@ -81,6 +83,7 @@ private:
     bool dudoso;
     bool expurgable;
     int fiabilidad;
+    bool volveramirar;
     QString notas;
 
 };

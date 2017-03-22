@@ -27,6 +27,7 @@ private slots:
     //void on_txtAutor_doubleclicked();
     void on_btSeleccionarAutor_clicked();
     void on_btIntroducirLugar_clicked();
+    void on_btOK_clicked();
 
     void actualizarPersona(Persona autor);
     void actualizarLugar(Lugar lugar);

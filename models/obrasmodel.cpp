@@ -49,15 +49,16 @@ void ObrasModel::AnadirObra(const Obra *obra){
     bool dudoso = obra->getDudoso();
     bool expurgable = obra->getExpurgable();
     int fiabilidad = obra->getFiabilidad();
+    bool volveramirar = obra->getVolverMirar();
     QString notas = obra->getNotas();
 
     query.prepare("INSERT INTO works(title, language, author_id, type_work, format, "
-		  "volumes, number_pages, printed, maybe_printed, manuscrit, "
+          "volumes, number_pages, printed, maybe_printed, manuscrit, look_again, "
 		  "place_print_original, place_print_id, "
 		  "date_print, editor, references_work, reduced_title, "
                   "contents, interesting, dubious, expurgatable, reliability, notes) "
 		  " VALUES (:titulo, :idioma, :autor_id, :tipo, :formato, "
-		  ":tomos, :numero_pags, :impreso, :talvez_impreso, :manuscrito, "
+          ":tomos, :numero_pags, :impreso, :talvez_impreso, :manuscrito, :volveramirar, "
 		  ":lugar_impresion_original, :lugar_impresion_id, "
 		  ":fecha_impresion, :editor, :referencias, :tituloreducido, "
           ":contenido, :interesante, :dudoso, :expurgable, :fiabilidad, :notas)");
@@ -69,6 +70,7 @@ void ObrasModel::AnadirObra(const Obra *obra){
     query.bindValue(":impreso", impreso);
     query.bindValue(":talvez_impreso", talvez_impreso);
     query.bindValue(":manuscrito", manuscrito);
+    query.bindValue(":volveramirar", volveramirar);
     query.bindValue(":fecha_impresion", fecha);
     query.bindValue(":editor", editor);
     query.bindValue(":referencias", refs);
