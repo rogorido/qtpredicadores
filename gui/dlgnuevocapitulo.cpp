@@ -11,6 +11,7 @@
 
 #include "models/lugaresmodel.h"
 #include "gui/dlgnuevolugar.h"
+#include "gui/dlgseleccionargeneral.h"
 
 dlgNuevoCapitulo::dlgNuevoCapitulo(QWidget *parent) :
     QDialog(parent),
@@ -23,6 +24,7 @@ dlgNuevoCapitulo::dlgNuevoCapitulo(QWidget *parent) :
     connect(ui->dtInicial, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaInicialCambiada()));
     connect(ui->dtFinal, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaFinalCambiada()));
     connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(anadirLugar()));
+    connect(ui->txtMaestroGeneral, SIGNAL(dobleclick()), this, SLOT(anadirMaestroGeneral()));
 
     ui->dtFinal->calendarPopup();
 
@@ -58,7 +60,7 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
      * que es lo que hace falta cuando no hay una ciudad
      */
     QVariant lugar;
-    QString maestrogeneral;
+    int maestrogeneral;
     QString tipo;
     QVariant fechainicial;
     QVariant fechafinal;
@@ -73,8 +75,8 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
 
     /* vamos extrayendo todos los datos */
 
-    (!ui->txtMaestroGeneral->text().isEmpty()) ?
-                maestrogeneral = ui->txtMaestroGeneral->text() : maestrogeneral = "";
+    if (!ui->txtMaestroGeneral->text().isEmpty())
+                maestrogeneral = maestrogeneral_struct.id;
 
     (!ui->txtPaginas->text().isEmpty()) ?
                 paginas = ui->txtPaginas->text() : paginas = "";
@@ -180,4 +182,28 @@ void dlgNuevoCapitulo::anadirLugar(){
     dlglugar->show();
     cargarCompleters();
 
+}
+
+void dlgNuevoCapitulo::anadirMaestroGeneral(){
+
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+
+    dlgseleccionar->show();
+
+    connect(dlgseleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirMaestroGeneral(Persona)));
+}
+
+void dlgNuevoCapitulo::recibirMaestroGeneral(Persona persona){
+
+    maestrogeneral_struct.id = persona.getId();
+    maestrogeneral_struct.elemento = persona.getNombre() + ' ' + persona.getApellidos();
+
+    ui->txtMaestroGeneral->setText(maestrogeneral_struct.elemento);
+}
+
+
+void dlgNuevoCapitulo::on_btQuitarMaestroGeneral_clicked(){
+
+    maestrogeneral_struct = elementopareado();
+    ui->txtMaestroGeneral->setText("");
 }

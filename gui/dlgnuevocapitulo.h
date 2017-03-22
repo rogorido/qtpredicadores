@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "objs/persona.h"
+
 class QCompleter;
 class QSqlQueryModel;
 
@@ -25,6 +27,10 @@ private slots:
     void fechaInicialCambiada();
     void fechaFinalCambiada();
     void anadirLugar();
+    void anadirMaestroGeneral();
+    void recibirMaestroGeneral(Persona persona);
+
+    void on_btQuitarMaestroGeneral_clicked();
 
 private:
     Ui::dlgNuevoCapitulo *ui;
@@ -51,6 +57,13 @@ private:
      */
     bool bFechaInicialModificada;
     bool bFechaFinalModificada;
+
+    struct elementopareado{
+      int id;
+      QString elemento;
+    };
+
+    elementopareado maestrogeneral_struct;
 
     void cargarCompleters();
 

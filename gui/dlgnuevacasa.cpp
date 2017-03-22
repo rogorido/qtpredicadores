@@ -103,4 +103,5 @@ void dlgNuevaCasa::recibirProvincia(Provincia provincia){
 void dlgNuevaCasa::quitarProvincia(){
 
     provincia_struct = elementopareado();
+    ui->txtProvincia->setText("");
 }
