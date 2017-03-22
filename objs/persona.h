@@ -24,6 +24,7 @@ public:
     void setOtrosnombres(QString o);
     void setOtrosdatos(QString o);
     void setVolverMirar(bool v);
+    void setCantidadInfo(int c);
     void setNotas(QString n);
 
     //getters
@@ -40,6 +41,7 @@ public:
     QString getOtrosNombres() const {return otrosnombres;}
     QString getOtrosDatos() const {return otrosdatos;}
     bool getVolverMirar() const {return volveramirar;}
+    int getCantidadInfo() const {return cantidadinfo;}
     QString getNotas() const {return notas;}
 
 private:
@@ -58,6 +60,7 @@ private:
     QString otrosnombres;
     QString otrosdatos;
     bool volveramirar;
+    int cantidadinfo;
     QString notas;
 
 };
