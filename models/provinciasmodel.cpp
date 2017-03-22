@@ -34,7 +34,7 @@ void ProvinciasModel::AnadirProvincia(const Provincia *provincia){
     QString erigida = provincia->getErigida();
     QString notas = provincia->getNotas();
 
-    query.prepare("INSERT INTO provincias(nombre, otrosnombres, erigida, notas) "
+    query.prepare("INSERT INTO provinces(name, other_names, erected, notes) "
                   "VALUES(:nombre, :otrosnombres, :erigida, :notas)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":otrosnombres", otros_nombres);

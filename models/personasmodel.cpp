@@ -42,8 +42,8 @@ void PersonasModel::AnadirPersona(const Persona *persona){
     QString muerte = persona->getMuerte();
     // falta lo de los dos json
 
-    query.prepare("INSERT INTO personas(nombre, apellidos, buscado, wikipedia, viaf, "
-		  "wikipedia_link, viaf_link, nacimiento, muerte, notas) "
+    query.prepare("INSERT INTO persons(name, family_name, lookedup, wikipedia, viaf, "
+		  "wikipedia_link, viaf_link, datebirth, datedeath, notes) "
 		  "VALUES (:nombre, :apellidos, :buscado, :wikipedia, :viaf, "
 		  ":wikipedia_link, :viaf_link, :nacimiento, :muerte, :notas)");
     query.bindValue(":nombre", nombre);
