@@ -47,9 +47,9 @@ void CasasModel::AnadirCasa(const Casa *casa){
     QString notas = casa->getNotas();
     bool studiumgenerale = casa->getStudiumgenerale();
 
-    query.prepare("INSERT INTO casas(nombre, nombre_latin, lugar, lugaroriginario, masculino, "
-                  "tipo, congregacion, buscado, wikipedia, provincia_id, diocesis, fecha_fundacion, "
-                  "advocacion, studiumgenerale, notas) "
+    query.prepare("INSERT INTO houses(name, latin_name, place, original_place, men, "
+                  "type_house, congregation, lookedup, wikipedia, province_id, diocese, date_foundation, "
+                  "advocation, studiumgenerale, notes) "
                   "VALUES(:nombre, :nombre_latin, :lugar, :lugaroriginario, :masculino, "
                   ":tipo, :congregacion, :buscado, :wiki, :provincia_id, :diocesis, :fecha_fundacion, "
                   ":advocacion, :studiumgenerale, :notas)");
