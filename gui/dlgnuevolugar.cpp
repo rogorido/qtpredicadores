@@ -6,6 +6,7 @@
 #include <QDebug>
 
 #include "objs/jsongestor.h"
+#include "objs/lugar.h"
 #include "models/lugaresmodel.h"
 #include "dlgdetalles.h"
 
@@ -34,27 +35,30 @@ dlgNuevoLugar::~dlgNuevoLugar()
 
 void dlgNuevoLugar::aceptar(){
 
-    QString lugar;
-    QString lugar_latin;
-    QString pais;
+    Lugar *lugar = new Lugar();
+
+    QString nombre = ui->txtLugar->text();
+    QString lugar_latin = ui->txtLugarLatin->text();
+    QString pais = ui->txtPais->text();
+    QString wikidata = ui->txtWikidata->text();
     QString nombres;
 
-    lugar = ui->txtLugar->text();
-    lugar_latin = ui->txtLugarLatin->text();
-    pais = ui->txtPais->text();
+    lugar->setLugar(nombre);
+    lugar->setLugarLatin(lugar_latin);
+    lugar->setPais(pais);
+    lugar->setWikidata(wikidata);
 
     otrosnombres->actualizarPrevioIntroducir();
 
     if (otrosnombres->getSize() > 0)
         // entiendo q solo puede haber un elemento en la Qlist...
         nombres = otrosnombres->getJsonString(0);
-
-    if (nombres.isEmpty()){
-        qDebug() << "estamos aqui...";
-        m_lugares->AnadirLugar(lugar, lugar_latin, pais);}
     else
-        m_lugares->AnadirLugar(lugar, lugar_latin, pais, nombres);
+        nombres = "";
 
+    lugar->setOtrosNombres(nombres);
+
+    m_lugares->AnadirLugar(lugar);
     close();
 
 }

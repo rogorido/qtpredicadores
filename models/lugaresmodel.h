@@ -3,6 +3,8 @@
 
 #include <QSqlTableModel>
 
+class Lugar;
+
 class LugaresModel : public QSqlTableModel
 {
     Q_OBJECT
@@ -17,6 +19,7 @@ public:
      */
     void AnadirLugar(const QString &lugar, const QString &lugar_latin, const QString &pais);
     void AnadirLugar(const QString &lugar, const QString &lugar_latin, const QString &pais, const QString &otrosnombres);
+    void AnadirLugar(const Lugar *lugar);
 
 signals:
 
