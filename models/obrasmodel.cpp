@@ -51,11 +51,11 @@ void ObrasModel::AnadirObra(const Obra *obra){
     int fiabilidad = obra->getFiabilidad();
     QString notas = obra->getNotas();
 
-    query.prepare("INSERT INTO obras(titulo, idioma, autor_id, tipo, formato, "
-		  "tomos, numero_pags, impreso, talvez_impreso, manuscrito, "
-		  "lugar_impresion_original, lugar_impresion_id, "
-		  "fecha_impresion, editor, referencias, tituloreducido, "
-          "contenido, interesante, dudoso, expurgable, fiabilidad, notas) "
+    query.prepare("INSERT INTO works(title, language, author_id, type_work, format, "
+		  "volumes, number_pages, printed, maybe_printed, manuscrit, "
+		  "place_print_original, place_print_id, "
+		  "date_print, editor, references_work, reduced_title, "
+                  "contents, interesting, dubious, expurgatable, reliability, notes) "
 		  " VALUES (:titulo, :idioma, :autor_id, :tipo, :formato, "
 		  ":tomos, :numero_pags, :impreso, :talvez_impreso, :manuscrito, "
 		  ":lugar_impresion_original, :lugar_impresion_id, "
