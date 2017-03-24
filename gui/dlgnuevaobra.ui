@@ -6,612 +6,426 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>638</width>
-    <height>484</height>
+    <width>671</width>
+    <height>505</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QTextEdit" name="txtTitulo">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>601</width>
-     <height>111</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTabWidget" name="tbTemas">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>170</y>
-     <width>621</width>
-     <height>281</height>
+     <y>10</y>
+     <width>651</width>
+     <height>491</height>
     </rect>
    </property>
-   <property name="currentIndex">
-    <number>2</number>
-   </property>
-   <widget class="QWidget" name="tab">
-    <attribute name="title">
-     <string>General</string>
-    </attribute>
-    <widget class="QLineEdit" name="txtIdioma">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>60</y>
-       <width>113</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>58</width>
-       <height>14</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Idioma</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="txtTipo">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>90</y>
-       <width>113</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>90</y>
-       <width>58</width>
-       <height>14</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Tipo</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="txtFormato">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>120</y>
-       <width>113</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>130</y>
-       <width>58</width>
-       <height>14</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Formato</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="spTomos">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>150</y>
-       <width>48</width>
-       <height>23</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>160</y>
-       <width>58</width>
-       <height>14</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Tomos</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="txtNumeroPags">
-     <property name="geometry">
-      <rect>
-       <x>230</x>
-       <y>150</y>
-       <width>113</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_5">
-     <property name="geometry">
-      <rect>
-       <x>140</x>
-       <y>150</y>
-       <width>81</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Número pags.</string>
-     </property>
-    </widget>
-    <widget class="myQLineEdit" name="txtAutor">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>20</y>
-       <width>171</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_11">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>58</width>
-       <height>14</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Autor</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btSeleccionarAutor">
-     <property name="geometry">
-      <rect>
-       <x>260</x>
-       <y>20</y>
-       <width>80</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>+</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btQuitarAutor">
-     <property name="geometry">
-      <rect>
-       <x>350</x>
-       <y>20</y>
-       <width>80</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>-</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="tab_2">
-    <attribute name="title">
-     <string>Impresión</string>
-    </attribute>
-    <widget class="QCheckBox" name="ckImpreso">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>20</y>
-       <width>84</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Impreso</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="ckTalVezImpreso">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>50</y>
-       <width>121</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Tal vez impreso</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="ckManuscrito">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>80</y>
-       <width>84</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Manuscrito</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="txtLugarOriginalImpresion">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>130</y>
-       <width>171</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_6">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>130</y>
-       <width>161</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Lugar original de impresión</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_7">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>170</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Lugar de impresión</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="spFechaImpresion">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>200</y>
-       <width>101</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="minimum">
-      <number>1400</number>
-     </property>
-     <property name="maximum">
-      <number>2000</number>
-     </property>
-    </widget>
-    <widget class="QLabel" name="lbFecha">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>210</y>
-       <width>58</width>
-       <height>14</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Fecha</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="txtEditor">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>130</y>
-       <width>161</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_8">
-     <property name="geometry">
-      <rect>
-       <x>350</x>
-       <y>130</y>
-       <width>81</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Editor</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btAnadirLugar">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>200</y>
-       <width>41</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>+</string>
-     </property>
-    </widget>
-    <widget class="myQLineEdit" name="txtLugar">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>160</y>
-       <width>161</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btIntroducirLugar">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>160</y>
-       <width>80</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>+</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="tbQuitarLugar">
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>160</y>
-       <width>80</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>-</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="tab_3">
-    <attribute name="title">
-     <string>Extras</string>
-    </attribute>
-    <widget class="QCheckBox" name="ckReferencias">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>20</y>
-       <width>84</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Referencias</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="ckTituloReducido">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>50</y>
-       <width>84</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Título reducido</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="ckContenido">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>80</y>
-       <width>84</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Contenido</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="ckDudoso">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>100</y>
-       <width>84</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Dudoso</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="ckExpurgable">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>130</y>
-       <width>84</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Expurgable</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="spInteresante">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>170</y>
-       <width>48</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="maximum">
-      <number>100</number>
-     </property>
-     <property name="singleStep">
-      <number>5</number>
-     </property>
-     <property name="value">
-      <number>50</number>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_9">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>170</y>
-       <width>71</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Interesante</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="spFiabilidad">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>200</y>
-       <width>48</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="maximum">
-      <number>100</number>
-     </property>
-     <property name="singleStep">
-      <number>5</number>
-     </property>
-     <property name="value">
-      <number>50</number>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_10">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>200</y>
-       <width>71</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Fiabilidad</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="ckVolverMirar">
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>20</y>
-       <width>111</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Volver a mirar</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="txtTraduccion">
-     <property name="geometry">
-      <rect>
-       <x>230</x>
-       <y>60</y>
-       <width>141</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_12">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>70</y>
-       <width>61</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Traducción</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="tab_4">
-    <attribute name="title">
-     <string>Notas</string>
-    </attribute>
-    <widget class="QTextEdit" name="txtNotas">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>10</y>
-       <width>461</width>
-       <height>191</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-  </widget>
-  <widget class="QPushButton" name="btCancelar">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>460</y>
-     <width>80</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&amp;Cancelar</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btOK">
-   <property name="geometry">
-    <rect>
-     <x>540</x>
-     <y>460</y>
-     <width>80</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&amp;Aceptar</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btTemas">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>460</y>
-     <width>80</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&amp;Temas</string>
-   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTextEdit" name="txtTitulo"/>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tbTemas">
+      <property name="currentIndex">
+       <number>3</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>General</string>
+       </attribute>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>441</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>Autor</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" colspan="3">
+          <widget class="myQLineEdit" name="txtAutor"/>
+         </item>
+         <item row="0" column="4">
+          <widget class="QPushButton" name="btSeleccionarAutor">
+           <property name="text">
+            <string>+</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5">
+          <widget class="QPushButton" name="btQuitarAutor">
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Idioma</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" colspan="2">
+          <widget class="QLineEdit" name="txtIdioma"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Tipo</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1" colspan="2">
+          <widget class="QLineEdit" name="txtTipo"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Formato</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1" colspan="2">
+          <widget class="QLineEdit" name="txtFormato"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Tomos</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QSpinBox" name="spTomos"/>
+         </item>
+         <item row="4" column="2">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Número pags.</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3" colspan="2">
+          <widget class="QLineEdit" name="txtNumeroPags"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Impresión</string>
+       </attribute>
+       <widget class="QSpinBox" name="spFechaImpresion">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>200</y>
+          <width>101</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1400</number>
+        </property>
+        <property name="maximum">
+         <number>2000</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbFecha">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>210</y>
+          <width>58</width>
+          <height>14</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Fecha</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btAnadirLugar">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>200</y>
+          <width>41</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>+</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>571</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="ckImpreso">
+           <property name="text">
+            <string>Impreso</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QCheckBox" name="ckTalVezImpreso">
+           <property name="text">
+            <string>Tal vez impreso</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="ckManuscrito">
+           <property name="text">
+            <string>Manuscrito</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Lugar original de impresión</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="txtLugarOriginalImpresion"/>
+         </item>
+         <item row="3" column="2" colspan="2">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>Editor</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="4">
+          <widget class="QLineEdit" name="txtEditor"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Lugar de impresión</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="myQLineEdit" name="txtLugar"/>
+         </item>
+         <item row="4" column="2">
+          <widget class="QPushButton" name="btIntroducirLugar">
+           <property name="text">
+            <string>+</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3" colspan="2">
+          <widget class="QPushButton" name="tbQuitarLugar">
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Extras</string>
+       </attribute>
+       <widget class="QSpinBox" name="spFiabilidad">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>200</y>
+          <width>48</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="singleStep">
+         <number>5</number>
+        </property>
+        <property name="value">
+         <number>50</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_10">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>200</y>
+          <width>71</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Fiabilidad</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>337</width>
+          <height>177</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="2" column="0" colspan="2">
+          <widget class="QCheckBox" name="ckContenido">
+           <property name="text">
+            <string>Contenido</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QCheckBox" name="ckTituloReducido">
+           <property name="text">
+            <string>Título reducido</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0" colspan="2">
+          <widget class="QCheckBox" name="ckDudoso">
+           <property name="text">
+            <string>Dudoso</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="QCheckBox" name="ckReferencias">
+           <property name="text">
+            <string>Referencias</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" colspan="2">
+          <widget class="QCheckBox" name="ckVolverMirar">
+           <property name="text">
+            <string>Volver a mirar</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="2">
+          <widget class="QCheckBox" name="ckExpurgable">
+           <property name="text">
+            <string>Expurgable</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Interesante</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QSpinBox" name="spInteresante">
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="singleStep">
+            <number>5</number>
+           </property>
+           <property name="value">
+            <number>50</number>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2">
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>Traducción</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3">
+          <widget class="QLineEdit" name="txtTraduccion"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Notas</string>
+       </attribute>
+       <widget class="QTextEdit" name="txtNotas">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>10</y>
+          <width>611</width>
+          <height>192</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="btTemas">
+        <property name="text">
+         <string>&amp;Temas</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btCancelar">
+        <property name="text">
+         <string>&amp;Cancelar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btOK">
+        <property name="text">
+         <string>&amp;Aceptar</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
  </widget>
  <customwidgets>
