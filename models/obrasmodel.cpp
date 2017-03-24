@@ -9,7 +9,7 @@ ObrasModel *ObrasModel::pInstance = 0;
 ObrasModel::ObrasModel() :
     QSqlTableModel()
 {
-    this->setTable("obras");
+    this->setTable("works.works");
 }
 
 ObrasModel *ObrasModel::InstanceModel(){
@@ -54,15 +54,15 @@ void ObrasModel::AnadirObra(const Obra *obra){
     QString notas = obra->getNotas();
 
     query.prepare("INSERT INTO works(title, language, author_id, type_work, format, "
-          "volumes, number_pages, printed, maybe_printed, manuscrit, look_again, "
+		  "volumes, number_pages, printed, maybe_printed, manuscrit, look_again, "
 		  "place_print_original, place_print_id, "
-          "date_print, editor, references_work, reduced_title, traduction, "
+		  "date_print, editor, references_work, reduced_title, traduction, "
                   "contents, interesting, dubious, expurgatable, reliability, notes) "
 		  " VALUES (:titulo, :idioma, :autor_id, :tipo, :formato, "
-          ":tomos, :numero_pags, :impreso, :talvez_impreso, :manuscrito, :volveramirar, "
+		  ":tomos, :numero_pags, :impreso, :talvez_impreso, :manuscrito, :volveramirar, "
 		  ":lugar_impresion_original, :lugar_impresion_id, "
-          ":fecha_impresion, :editor, :referencias, :tituloreducido, :traduccion, "
-          ":contenido, :interesante, :dudoso, :expurgable, :fiabilidad, :notas)");
+		  ":fecha_impresion, :editor, :referencias, :tituloreducido, :traduccion, "
+		  ":contenido, :interesante, :dudoso, :expurgable, :fiabilidad, :notas)");
     query.bindValue(":titulo", titulo);
     query.bindValue(":idioma", idioma);
     query.bindValue(":autor_id", autor);

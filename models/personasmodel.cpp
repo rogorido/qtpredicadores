@@ -9,7 +9,7 @@ PersonasModel *PersonasModel::pInstance = 0;
 PersonasModel::PersonasModel() :
     QSqlTableModel()
 {
-    this->setTable("personas");
+    this->setTable("persons");
 
 }
 
@@ -46,9 +46,9 @@ void PersonasModel::AnadirPersona(const Persona *persona){
     // falta lo de los dos json
 
     query.prepare("INSERT INTO persons(name, family_name, lookedup, wikipedia, viaf, "
-          "wikipedia_link, viaf_link, wikidata_link, datebirth, datedeath, look_again, quantity_info, notes) "
+		  "wikipedia_link, viaf_link, wikidata_link, datebirth, datedeath, look_again, quantity_info, notes) "
 		  "VALUES (:nombre, :apellidos, :buscado, :wikipedia, :viaf, "
-          ":wikipedia_link, :viaf_link, :wikidata_link, :nacimiento, :muerte, :volveramirar, :cantidad_info, :notas)");
+		  ":wikipedia_link, :viaf_link, :wikidata_link, :nacimiento, :muerte, :volveramirar, :cantidad_info, :notas)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":apellidos", apellidos);
     query.bindValue(":buscado", buscado);

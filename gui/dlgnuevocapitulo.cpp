@@ -114,7 +114,8 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
     }
 
     QSqlQuery query;
-    query.prepare("INSERT INTO capitulos(nombregeneral, lugar_id, fechainicio, fechafinal, tipo, maestrogeneral, asistentes, tomo, paginas, notas) "
+    query.prepare("INSERT INTO chapters(general_name, place_id, date_beginning, date_ending, "
+		  "type_chapter, general_master, attendees, volume, pages, notes) "
                   "VALUES(:nombre, :lugar_id, :fechainicio, :fechafinal, :tipo, :maestro, :asistentes, :tomo, :paginas, :notas)" );
     query.bindValue(":nombre", titulogeneral);
     query.bindValue(":lugar_id", lugar);

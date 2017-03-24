@@ -9,7 +9,7 @@ ProvinciasModel *ProvinciasModel::pInstance = 0;
 ProvinciasModel::ProvinciasModel() :
     QSqlTableModel()
 {
-    this->setTable("provincias");
+    this->setTable("provinces");
 
 }
 

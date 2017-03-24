@@ -9,7 +9,7 @@ CasasModel *CasasModel::pInstance = 0;
 CasasModel::CasasModel() :
     QSqlTableModel()
 {
-    this->setTable("casas");
+    this->setTable("houses");
 
 }
 
@@ -56,16 +56,16 @@ void CasasModel::AnadirCasa(const Casa *casa){
     query.bindValue(":nombre", nombre);
     query.bindValue(":nombre_latin", nombre_latin);
     query.bindValue(":lugar", lugar);
-    query.bindValue("lugaroriginario", lugar_originario);
+    query.bindValue(":lugaroriginario", lugar_originario);
     query.bindValue(":masculino", masculino);
     query.bindValue(":tipo", tipo);
     query.bindValue(":congregacion", congregacion);
     query.bindValue(":buscado", buscado);
     query.bindValue(":wiki", wiki);
     query.bindValue(":provincia_id", provincia);
-    query.bindValue("diocesis", diocesis);
-    query.bindValue("fecha_fundacion", fecha_fundacion);
-    query.bindValue("advocacion", advocacion);
+    query.bindValue(":diocesis", diocesis);
+    query.bindValue(":fecha_fundacion", fecha_fundacion);
+    query.bindValue(":advocacion", advocacion);
     query.bindValue(":studiumgeneral", studiumgenerale);
     query.bindValue(":notas", notas);
     query.exec();

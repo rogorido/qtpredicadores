@@ -55,7 +55,7 @@ void dlgDetalles::actualizarCompleterValues(){
     key = ui->txtKey->text();
 
     if (!key.isEmpty())
-        m_values->setQuery(QString("SELECT DISTINCT value from resoluciones_detalles, json_each_text(detalle) "
+        m_values->setQuery(QString("SELECT DISTINCT value from resolutions_details, json_each_text(details) "
                                "WHERE key='%1' ORDER BY value;").arg(key));
 
 }
@@ -98,7 +98,7 @@ void dlgDetalles::cargarModelos(){
      */
 
     m_keys = new QSqlQueryModel(this);
-    m_keys->setQuery("SELECT DISTINCT json_object_keys(detalle) FROM resoluciones_detalles ORDER BY json_object_keys(detalle);");
+    m_keys->setQuery("SELECT DISTINCT json_object_keys(details) FROM resolutions_details ORDER BY json_object_keys(details);");
 
     keys_completer = new QCompleter(this);
     keys_completer->setModel(m_keys);
@@ -109,7 +109,7 @@ void dlgDetalles::cargarModelos(){
 
     m_values = new QSqlQueryModel(this);
     // ponemos una cosa general que luego habrá que precisar
-    m_values->setQuery("SELECT DISTINCT value from resoluciones_detalles, json_each_text(detalle) ORDER BY value;");
+    m_values->setQuery("SELECT DISTINCT value from resoluciones_details, json_each_text(details) ORDER BY value;");
 
     values_completer = new QCompleter(this);
     values_completer->setModel(m_values);

@@ -12,7 +12,7 @@ dlgCapitulos::dlgCapitulos(QWidget *parent) :
     ui->setupUi(this);
 
     m_capitulos = new QSqlTableModel(this);
-    m_capitulos->setTable("public.capitulos");
+    m_capitulos->setTable("public.chapters");
     m_capitulos->select();
 
     m_resoluciones = new QSqlTableModel(this);

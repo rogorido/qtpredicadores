@@ -68,7 +68,7 @@ void dlgNuevoLugar::cargarModelos(){
     m_paises = new QSqlQueryModel(this);
     m_paises_completer = new QCompleter(this);
 
-    m_paises->setQuery("SELECT DISTINCT pais FROM lugares ORDER BY pais");
+    m_paises->setQuery("SELECT DISTINCT country FROM places ORDER BY country");
 
     m_paises_completer->setModel(m_paises);
     m_paises_completer->setCompletionColumn(0);

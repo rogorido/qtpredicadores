@@ -7,7 +7,7 @@ TemasModel *TemasModel::pInstance = 0;
 TemasModel::TemasModel() :
     QSqlTableModel()
 {
-    this->setTable("temas");
+    this->setTable("themes");
 }
 
 TemasModel *TemasModel::InstanceModel(){

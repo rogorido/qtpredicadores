@@ -10,7 +10,7 @@ LugaresModel * LugaresModel::pInstance = 0;
 LugaresModel::LugaresModel() :
     QSqlTableModel()
 {
-    this->setTable("lugares");
+    this->setTable("places");
 }
 
 LugaresModel *LugaresModel::InstanceModel(){

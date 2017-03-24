@@ -42,25 +42,25 @@ void dlgSeleccionarGeneral::cargarTipo(){
     switch (tipo_seleccionado) {
     case CASA:{
         m_casas = CasasModel::InstanceModel();
-        m_objeto->setTable("vistas.casas_alternativas");
+        m_objeto->setTable("vistas.houses_alternatives");
         ui->btAnadir->setText("Añadir casa");
         connect(m_casas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case LUGAR:{
         m_lugares = LugaresModel::InstanceModel();
-        m_objeto->setTable("vistas.lugares_alternativas");
+        m_objeto->setTable("vistas.places_alternatives");
         ui->btAnadir->setText("Añadir lugar");
         connect(m_lugares, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case PROVINCIA:{
         m_provincias = ProvinciasModel::InstanceModel();
-        m_objeto->setTable("vistas.provincias_alternativas");
+        m_objeto->setTable("vistas.provinces_alternatives");
         ui->btAnadir->setText("Añadir provincia");
         connect(m_provincias, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case PERSONA:{
         m_personas = PersonasModel::InstanceModel();
-        m_objeto->setTable("vistas.personas_alternativas");
+        m_objeto->setTable("vistas.persons_alternatives");
         ui->btAnadir->setText("Añadir persona");
         connect(m_personas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}

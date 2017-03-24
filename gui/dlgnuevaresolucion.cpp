@@ -65,8 +65,8 @@ void dlgNuevaResolucion::aceptarResolucion(){
 
     QSqlQuery query;
 
-    query.prepare("INSERT INTO resoluciones(resolucion_texto, resolucion_traduccion, resolucion_resumen, capitulo, "
-		  "epigrafe, entendida, volveramirar, traducida, interesante, notas) "
+    query.prepare("INSERT INTO resolutions(resolution_text, resolution_traduction, resolution_summary, chapter, "
+		  "small_title, understood, look_again, translated, interesting, notes) "
 		  "VALUES(:resolucion_texto, :resolucion_traduccion, :resolucion_resumen, :capitulo, "
 		  ":epigrafe, :entendida, :volveramirar, :traducida, :interesante, :notas)");
     query.bindValue(":resolucion_texto", resolucion);
@@ -84,7 +84,7 @@ void dlgNuevaResolucion::aceptarResolucion(){
     if (query.exec()){
 
       //QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
-      QSqlQuery lastid("select max(resolucion_id) from resoluciones");
+      QSqlQuery lastid("select max(resolution_id) from resolutions");
 
       lastid.first();
       int id = lastid.value(0).toInt();
@@ -111,7 +111,7 @@ void dlgNuevaResolucion::introducirJson(const int id){
 
         QString jsonfinal = jsongestor->getJsonString(var);
 
-        query.prepare("INSERT INTO resoluciones_detalles(resolucion_id, detalle) VALUES(:resolucionid, :json)");
+        query.prepare("INSERT INTO resolutions_details(resolution_id, details) VALUES(:resolucionid, :json)");
         query.bindValue(":resolucionid", id);
         query.bindValue(":json", jsonfinal);
         query.exec();
@@ -126,7 +126,7 @@ void dlgNuevaResolucion::introducirTemas(const int id){
     for (int i = 0; i < temas_lista.size(); ++i) {
 
         QSqlQuery query;
-        query.prepare("INSERT INTO temas_resoluciones(tema_id, resolucion_id) VALUES (:tema, :resolucion)");
+        query.prepare("INSERT INTO themes_resolutions(theme_id, resolution_id) VALUES (:tema, :resolucion)");
         query.bindValue(":tema", temas_lista.at(i).id);
         query.bindValue(":resolucion", id);
         query.exec();
