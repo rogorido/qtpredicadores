@@ -13,214 +13,153 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLineEdit" name="txtNombre">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>20</y>
-     <width>421</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>30</y>
-     <width>58</width>
-     <height>14</height>
+     <y>10</y>
+     <width>611</width>
+     <height>411</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Nombre</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>60</y>
-     <width>58</width>
-     <height>14</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Lugar</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="ckBuscado">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>140</y>
-     <width>84</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Buscado</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="ckWiki">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>140</y>
-     <width>84</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Wikipedia</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="ckStudium">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>140</y>
-     <width>141</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Studium generale</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="txtNotas">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>170</y>
-     <width>581</width>
-     <height>211</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btCancelar">
-   <property name="geometry">
-    <rect>
-     <x>450</x>
-     <y>390</y>
-     <width>80</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Cancelar</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btOK">
-   <property name="geometry">
-    <rect>
-     <x>540</x>
-     <y>390</y>
-     <width>80</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Aceptar</string>
-   </property>
-  </widget>
-  <widget class="myQLineEdit" name="txtLugar">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>50</y>
-     <width>113</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btQuitarLugar">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>50</y>
-     <width>41</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>-</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="txtLugarOriginario">
-   <property name="geometry">
-    <rect>
-     <x>420</x>
-     <y>50</y>
-     <width>113</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Lugar originario</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>60</y>
-     <width>111</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Lugar originario</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="ckMasculino">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>110</y>
-     <width>84</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Masculino</string>
-   </property>
-  </widget>
-  <widget class="myQLineEdit" name="txtProvincia">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>80</y>
-     <width>113</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>90</y>
-     <width>58</width>
-     <height>14</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Provincia</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btQuitarProvincia">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>80</y>
-     <width>41</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>-</string>
-   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Nombre</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtNombre"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Lugar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="myQLineEdit" name="txtLugar"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btQuitarLugar">
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Lugar originario</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtLugarOriginario">
+        <property name="text">
+         <string>Lugar originario</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Provincia</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="myQLineEdit" name="txtProvincia"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btQuitarProvincia">
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QCheckBox" name="ckBuscado">
+        <property name="text">
+         <string>Buscado</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="ckMasculino">
+        <property name="text">
+         <string>Masculino</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="ckWiki">
+        <property name="text">
+         <string>Wikipedia</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="ckStudium">
+        <property name="text">
+         <string>Studium generale</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="txtNotas"/>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btCancelar">
+        <property name="text">
+         <string>Cancelar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btOK">
+        <property name="text">
+         <string>Aceptar</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
  </widget>
  <customwidgets>
