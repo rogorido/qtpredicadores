@@ -41,7 +41,7 @@
     <rect>
      <x>10</x>
      <y>80</y>
-     <width>441</width>
+     <width>471</width>
      <height>171</height>
     </rect>
    </property>
@@ -69,31 +69,44 @@
     <string>Erigida</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btOK">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>160</x>
      <y>260</y>
-     <width>80</width>
-     <height>22</height>
+     <width>311</width>
+     <height>24</height>
     </rect>
    </property>
-   <property name="text">
-    <string>&amp;Aceptar</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btCancelar">
-   <property name="geometry">
-    <rect>
-     <x>280</x>
-     <y>260</y>
-     <width>80</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Can&amp;celar</string>
-   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btCancelar">
+      <property name="text">
+       <string>Can&amp;celar</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btOK">
+      <property name="text">
+       <string>&amp;Aceptar</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

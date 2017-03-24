@@ -17,9 +17,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>30</y>
+     <y>10</y>
      <width>256</width>
-     <height>192</height>
+     <height>271</height>
     </rect>
    </property>
    <property name="columnCount">
@@ -31,8 +31,8 @@
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>30</y>
-     <width>161</width>
+     <y>10</y>
+     <width>191</width>
      <height>22</height>
     </rect>
    </property>
@@ -41,46 +41,46 @@
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>90</y>
+     <y>70</y>
      <width>111</width>
      <height>22</height>
     </rect>
    </property>
    <property name="text">
-    <string>Borrar tema</string>
+    <string>Borrar</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btAnadirTema">
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>60</y>
+     <y>40</y>
      <width>111</width>
      <height>22</height>
     </rect>
    </property>
    <property name="text">
-    <string>Añadir tema</string>
+    <string>Añadir</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btNuevoTema">
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>120</y>
+     <y>100</y>
      <width>111</width>
      <height>22</height>
     </rect>
    </property>
    <property name="text">
-    <string>Nuevo tema</string>
+    <string>Nuevo</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btOK">
    <property name="geometry">
     <rect>
      <x>380</x>
-     <y>250</y>
+     <y>260</y>
      <width>80</width>
      <height>22</height>
     </rect>
@@ -93,7 +93,7 @@
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>250</y>
+     <y>260</y>
      <width>80</width>
      <height>22</height>
     </rect>

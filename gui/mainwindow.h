@@ -57,7 +57,6 @@ private:
     CasasModel *m_casas;
     ProvinciasModel *m_provincias;
 
-    void cargarConexiones();
     void cargarModelos();
     void cargarMenues();
 };

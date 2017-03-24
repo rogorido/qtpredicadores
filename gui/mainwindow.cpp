@@ -38,7 +38,6 @@ MainWindow::MainWindow(QWidget *parent) :
      if (db.open())
          qDebug() << "Abierta";
 
-     cargarConexiones();
      cargarModelos();
      cargarMenues();
 
@@ -64,14 +63,6 @@ void MainWindow::nuevoCapitulo(){
 
     dlgCapitulo = new dlgNuevoCapitulo(this);
     dlgCapitulo->show();
-}
-
-void MainWindow::cargarConexiones(){
-    connect(ui->btNuevoCapitulo, SIGNAL(clicked()), this, SLOT(nuevoCapitulo()));
-    connect(ui->btNuevaResolucion, SIGNAL(clicked(bool)), this, SLOT(nuevaResolucion()));
-    connect(ui->btPersona, SIGNAL(clicked()), this, SLOT(nuevaPersona()));
-    connect(ui->btNuevaCasa, SIGNAL(clicked()), this, SLOT(nuevaCasa()));
-
 }
 
 void MainWindow::cargarModelos(){

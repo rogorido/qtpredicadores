@@ -13,60 +13,7 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="btNuevoCapitulo">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>80</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btNuevaResolucion">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>60</y>
-      <width>111</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Nueva resolución</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btPersona">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>100</y>
-      <width>80</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Nueva pesona</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btNuevaCasa">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>140</y>
-      <width>80</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Nueva casa</string>
-    </property>
-   </widget>
-  </widget>
+  <widget class="QWidget" name="centralWidget"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
