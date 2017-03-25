@@ -4,6 +4,8 @@
 #include <QDialog>
 
 class PersonasModel;
+class JsonGestor;
+class dlgDetalles;
 
 namespace Ui {
 class dlgNuevaPersona;
@@ -19,11 +21,17 @@ public:
 
 private slots:
     void aceptarPersona();
+    void on_btDetalles_clicked();
 
 private:
     Ui::dlgNuevaPersona *ui;
 
     PersonasModel *m_personas;
+
+    JsonGestor *jsongestor;
+    dlgDetalles *dlgdetalles;
+
+    void introducirJson(const int id);
 };
 
 #endif // DLGNUEVAPERSONA_H

@@ -16,6 +16,7 @@
 #include "dlgdetalles.h"
 #include "objs/jsongestor.h"
 #include "gui/dlgtemas.h"
+#include "gui/dlgseleccionargeneral.h"
 
 dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
                                  QWidget *parent) :
@@ -29,6 +30,9 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     dlgdetalles = new dlgDetalles(jsongestor, this);
 
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
+    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->txtProvincia, SIGNAL(dobleclicked()), this, SLOT(anadirProvincia()));
+    connect(ui->btQuitarProvincia, SIGNAL(clicked()), this, SLOT(quitarProvincia()));
 
     /*
      * si capitulo !=0 entonces es que venimos del form Capitulos
@@ -66,9 +70,9 @@ void dlgNuevaResolucion::aceptarResolucion(){
     QSqlQuery query;
 
     query.prepare("INSERT INTO resolutions(resolution_text, resolution_traduction, resolution_summary, chapter, "
-		  "small_title, understood, look_again, translated, interesting, notes) "
+          "small_title, understood, look_again, province_id, translated, interesting, notes) "
 		  "VALUES(:resolucion_texto, :resolucion_traduccion, :resolucion_resumen, :capitulo, "
-		  ":epigrafe, :entendida, :volveramirar, :traducida, :interesante, :notas)");
+          ":epigrafe, :entendida, :volveramirar, :provincia, :traducida, :interesante, :notas)");
     query.bindValue(":resolucion_texto", resolucion);
     query.bindValue(":resolucion_traduccion", resolucion_trad);
     query.bindValue(":resolucion_resumen", resolucion_resumen);
@@ -77,6 +81,7 @@ void dlgNuevaResolucion::aceptarResolucion(){
     query.bindValue(":epigrafe", epigrafe);
     query.bindValue(":entendida", entendida);
     query.bindValue(":volveramirar", volveramirar);
+    query.bindValue(":provincia", provincia_id);
     query.bindValue(":traducida", traducida);
     query.bindValue(":interesante", interesante);
     query.bindValue(":notas", notas);
@@ -151,4 +156,25 @@ void dlgNuevaResolucion::on_btTemas_clicked(){
 void dlgNuevaResolucion::recibirTemas(QList<elementopareado> temas){
 
     temas_lista = temas;
+}
+
+void dlgNuevaResolucion::anadirProvincia(){
+
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+
+    dlgseleccionar->show();
+    connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
+}
+
+void dlgNuevaResolucion::recibirProvincia(Provincia provincia){
+
+    provincia_id = provincia.getId();
+
+    ui->txtProvincia->setText(provincia.getNombre());
+}
+
+void dlgNuevaResolucion::quitarProvincia(){
+
+    provincia_id = 0;
+    ui->txtProvincia->setText("");
 }

@@ -2,6 +2,7 @@
 #define DLGNUEVARESOLUCION_H
 
 #include <QDialog>
+#include "objs/provincia.h"
 
 class TemasModel;
 class JsonGestor;
@@ -33,6 +34,14 @@ private:
 
     QList<elementopareado> temas_lista;
 
+    /*
+     * si escogemos provincia lo metemos aquí
+     * lo hacemos un pointer pq así luego se puede asignar
+     * el valor NULL
+     * Olvídalo!
+     */
+    int provincia_id;
+
     void rellenarCombos();
     void introducirJson(const int id);
     void introducirTemas(const int id);
@@ -51,8 +60,12 @@ private slots:
 
     void aceptarResolucion(); // btOK
 
+    void anadirProvincia();
+    void quitarProvincia();
+
     // en teoría casi un qlist de ints sería suficiente...
     void recibirTemas(QList<elementopareado> temas);
+    void recibirProvincia(Provincia provincia);
 
 };
 
