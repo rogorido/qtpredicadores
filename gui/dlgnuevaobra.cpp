@@ -2,6 +2,7 @@
 #include "ui_dlgnuevaobra.h"
 
 #include "models/lugaresmodel.h"
+#include "models/obrasmodel.h"
 #include "dlgseleccionargeneral.h"
 #include "dlgnuevolugar.h"
 #include "objs/obra.h"
@@ -9,6 +10,7 @@
 #include "gui/dlgtemas.h"
 
 #include <QSqlQueryModel>
+#include <QSqlQuery>
 #include <QCompleter>
 #include <QInputDialog>
 #include <QDebug>
@@ -20,6 +22,7 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     ui->setupUi(this);
 
     m_lugares = LugaresModel::InstanceModel();
+    m_obras = ObrasModel::InstanceModel();
 
     connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(on_btAnadirLugar_clicked()));
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(on_btIntroducirLugar_clicked()));
@@ -192,4 +195,30 @@ void dlgNuevaObra::on_btOK_clicked(){
     obra->setFiabilidad(fiabilidad);
     obra->setNotas(notas);
 
+    m_obras->AnadirObra(obra);
+
+    // hay q poner una forma para controlar que se meta bien la obra!
+    QSqlQuery lastid("select max(work_id) from works");
+
+    lastid.first();
+    int id = lastid.value(0).toInt();
+
+    qDebug() << "El valor de la obra es: " << id;
+
+    introducirTemas(id);
+}
+
+void dlgNuevaObra::introducirTemas(int id){
+
+    if (temasescogidos.size() == 0)
+        return;
+
+    for (int i = 0; i < temasescogidos.size(); ++i) {
+
+        QSqlQuery query;
+        query.prepare("INSERT INTO works.works_themes(work_id, theme_id) VALUES (:work, :tema)");
+        query.bindValue(":work", id);
+        query.bindValue(":tema", temasescogidos.at(i).id);
+        query.exec();
+    }
 }

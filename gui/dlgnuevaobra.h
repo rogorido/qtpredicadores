@@ -7,6 +7,7 @@
 #include "objs/lugar.h"
 
 class LugaresModel;
+class ObrasModel;
 class QCompleter;
 class QSqlQueryModel;
 
@@ -34,6 +35,7 @@ private:
     QCompleter *c_editor;
 
     LugaresModel *m_lugares;
+    ObrasModel *m_obras;
 
     Persona *autorescogido; // ver abajo lo del elementopareado
     Lugar *lugarescogido;
@@ -68,7 +70,7 @@ private slots:
     void actualizarLugar(Lugar lugar);
 
     void recibirTemas(QList<elementopareado> temas);
-
+    void introducirTemas(int id);
 
 };
 

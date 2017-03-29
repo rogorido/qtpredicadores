@@ -44,7 +44,6 @@ void PersonasModel::AnadirPersona(const Persona *persona){
     bool volveramirar = persona->getVolverMirar();
     int cantidadinfo = persona->getCantidadInfo();
     QString otrosnombres = persona->getOtrosNombres();
-    // falta lo de los dos json
 
     query.prepare("INSERT INTO persons(name, family_name, lookedup, wikipedia, viaf, "
                   "other_names, wikipedia_link, viaf_link, wikidata_link, datebirth, "
