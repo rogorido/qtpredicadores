@@ -21,7 +21,9 @@ public:
 
 private slots:
     void aceptarPersona();
+
     void on_btDetalles_clicked();
+    void on_btOtrosNombres_clicked();
 
 private:
     Ui::dlgNuevaPersona *ui;
@@ -29,9 +31,12 @@ private:
     PersonasModel *m_personas;
 
     JsonGestor *jsongestor;
+    JsonGestor *otrosnombres_json;
     dlgDetalles *dlgdetalles;
+    dlgDetalles *dlgotrosnombres;
 
     void introducirJson(const int id);
+
 };
 
 #endif // DLGNUEVAPERSONA_H

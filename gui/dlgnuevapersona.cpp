@@ -19,6 +19,8 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
 
     jsongestor = new JsonGestor(this);
     dlgdetalles = new dlgDetalles(jsongestor, this);
+    otrosnombres_json = new JsonGestor(this);
+    dlgotrosnombres = new dlgDetalles(otrosnombres_json, this);
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarPersona()));
@@ -47,7 +49,9 @@ void dlgNuevaPersona::aceptarPersona(){
     QString muerte = ui->txtMuerte->text();
     bool volveramirar = ui->ckVolverMirar->checkState();
     int cantidadinfo = ui->spCantidadInfo->value();
-    // falta lo de los dos json
+
+    // entiendo q solo hay un qvector en este otrosnombres_json, no?
+    QString otrosnombres = otrosnombres_json->getJsonString(0);
 
     persona->setNombre(nombre);
     persona->setApellidos(apellidos);
@@ -61,6 +65,7 @@ void dlgNuevaPersona::aceptarPersona(){
     persona->setMuerte(muerte);
     persona->setVolverMirar(volveramirar);
     persona->setCantidadInfo(cantidadinfo);
+    persona->setOtrosnombres(otrosnombres);
     persona->setNotas(notas);
 
     m_personas->AnadirPersona(persona);
@@ -105,3 +110,10 @@ void dlgNuevaPersona::introducirJson(const int id){
         query.exec();
     }
 }
+
+void dlgNuevaPersona::on_btOtrosNombres_clicked(){
+
+    dlgotrosnombres->show();
+
+}
+
