@@ -115,6 +115,7 @@ void JsonGestor::anadirItemNivelCero(){
 
 void JsonGestor::actualizarPrevioIntroducir(){
 
+    // ver explicación en el header!
     if (!m_json_activo.isEmpty())
         m_json_general.append(m_json_activo);
 
@@ -129,6 +130,7 @@ QString JsonGestor::getJsonString(int i){
     /*
      * construimos un QJsonDocument con ese QJsonobject de la lista, pq eso permite luego pasarlo
      *    a una cadena de texto con toJson()
+     * ¿Por qué no pongo aquí un ref a lo de actualizarPrevioIntroducir?
      */
     QJsonDocument jsondoc(m_json_general.at(i));
     QString jsonfinal;

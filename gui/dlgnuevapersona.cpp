@@ -19,6 +19,7 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
 
     jsongestor = new JsonGestor(this);
     dlgdetalles = new dlgDetalles(jsongestor, this);
+
     otrosnombres_json = new JsonGestor(this);
     dlgotrosnombres = new dlgDetalles(otrosnombres_json, this);
 
@@ -50,8 +51,19 @@ void dlgNuevaPersona::aceptarPersona(){
     bool volveramirar = ui->ckVolverMirar->checkState();
     int cantidadinfo = ui->spCantidadInfo->value();
 
+    QString otrosnombres;
+
+    otrosnombres_json->actualizarPrevioIntroducir();
+
     // entiendo q solo hay un qvector en este otrosnombres_json, no?
-    QString otrosnombres = otrosnombres_json->getJsonString(0);
+    if (otrosnombres_json->getSize() > 0) {
+        qDebug() << "estamos aquí";
+        otrosnombres = otrosnombres_json->getJsonString(0);
+    }
+    else
+        otrosnombres = "";
+
+    qDebug() << "los otros nombres son: " << otrosnombres;
 
     persona->setNombre(nombre);
     persona->setApellidos(apellidos);

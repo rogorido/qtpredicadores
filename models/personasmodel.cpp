@@ -1,6 +1,8 @@
 #include "personasmodel.h"
 
 #include <QSqlQuery>
+#include <QDebug>
+#include <QSqlError>
 
 #include "objs/persona.h"
 
@@ -45,7 +47,15 @@ void PersonasModel::AnadirPersona(const Persona *persona){
     int cantidadinfo = persona->getCantidadInfo();
     QString otrosnombres = persona->getOtrosNombres();
 
-    query.prepare("INSERT INTO persons(name, family_name, lookedup, wikipedia, viaf, "
+    /*
+     * cuando otrosnombres está vacío postgresql no permite
+     * en un campo jsonb meter una cadena así vacía.
+     * Hay que transformarla.
+     */
+    if (otrosnombres.isEmpty())
+        otrosnombres = "{}";
+
+    query.prepare("INSERT INTO general.persons(name, family_name, lookedup, wikipedia, viaf, "
                   "other_names, wikipedia_link, viaf_link, wikidata_link, datebirth, "
                   "datedeath, look_again, quantity_info, notes) "
                   "VALUES (:nombre, :apellidos, :buscado, :wikipedia, :viaf, "
@@ -66,7 +76,10 @@ void PersonasModel::AnadirPersona(const Persona *persona){
     query.bindValue(":cantidad_info", cantidadinfo);
     query.bindValue(":notas", notas);
 
-    query.exec();
+    if (!query.exec()){
+        qDebug() << query.lastError();
+        return;
+    }
 
     this->select();
     emit(actualizado());
