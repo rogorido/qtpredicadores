@@ -1,6 +1,8 @@
 #include "casasmodel.h"
 
 #include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
 
 #include "objs/casa.h"
 
@@ -47,7 +49,7 @@ void CasasModel::AnadirCasa(const Casa *casa){
     QString notas = casa->getNotas();
     bool studiumgenerale = casa->getStudiumgenerale();
 
-    query.prepare("INSERT INTO houses(name, latin_name, place, original_place, men, "
+    query.prepare("INSERT INTO general.houses(name, latin_name, place_id, original_place, men, "
                   "type_house, congregation, lookedup, wikipedia, province_id, diocese, date_foundation, "
                   "advocation, studiumgenerale, notes) "
                   "VALUES(:nombre, :nombre_latin, :lugar, :lugaroriginario, :masculino, "
@@ -55,20 +57,32 @@ void CasasModel::AnadirCasa(const Casa *casa){
                   ":advocacion, :studiumgenerale, :notas)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":nombre_latin", nombre_latin);
-    query.bindValue(":lugar", lugar);
+    if (!lugar == 0)
+        query.bindValue(":lugar", lugar);
+    else
+        query.bindValue(":lugar", QVariant(QVariant::Int));
     query.bindValue(":lugaroriginario", lugar_originario);
     query.bindValue(":masculino", masculino);
     query.bindValue(":tipo", tipo);
     query.bindValue(":congregacion", congregacion);
     query.bindValue(":buscado", buscado);
     query.bindValue(":wiki", wiki);
-    query.bindValue(":provincia_id", provincia);
+    if (!provincia == 0)
+        query.bindValue(":provincia_id", provincia);
+    else
+        query.bindValue(":provincia_id", QVariant(QVariant::Int));
     query.bindValue(":diocesis", diocesis);
     query.bindValue(":fecha_fundacion", fecha_fundacion);
     query.bindValue(":advocacion", advocacion);
     query.bindValue(":studiumgeneral", studiumgenerale);
     query.bindValue(":notas", notas);
-    query.exec();
+
+    if (!query.exec()){
+        qDebug() << query.lastError();
+        qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
+
+        return;
+    }
 
     this->select();
     emit(actualizado());

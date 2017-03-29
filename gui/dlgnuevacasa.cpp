@@ -43,6 +43,7 @@ void dlgNuevaCasa::aceptarCasa(){
 
     QString nombre = ui->txtNombre->text();
     int lugar;
+    int provincia;
     bool buscado = ui->ckBuscado->checkState();
     bool wiki = ui->ckWiki->checkState();
     // este  sería interesante hacerlo con QJson...
@@ -52,9 +53,11 @@ void dlgNuevaCasa::aceptarCasa(){
 
     // TODO: hay que comprobar que esté vacío?
     lugar = lugar_struct.id;
+    provincia = provincia_struct.id;
 
     casa->setNombre(nombre);
     casa->setLugar(lugar);
+    casa->setProvincia(provincia);
     casa->setBuscado(buscado);
     casa->setWiki(wiki);
     casa->setNotas(notas);
