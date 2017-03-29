@@ -22,7 +22,7 @@ dlgNuevaProvincia::~dlgNuevaProvincia()
 }
 
 void dlgNuevaProvincia::aceptarProvincia(){
-    Provincia *provincia;
+    Provincia *provincia = new Provincia();
 
     QString nombre = ui->txtNombre->text();
     QString notas = ui->txtNotas->toPlainText();

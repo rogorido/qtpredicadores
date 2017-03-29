@@ -1,6 +1,8 @@
 #include "provinciasmodel.h"
 
 #include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
 
 #include "objs/provincia.h"
 
@@ -29,18 +31,31 @@ void ProvinciasModel::DestroyMe(){
 void ProvinciasModel::AnadirProvincia(const Provincia *provincia){
     QSqlQuery query;
 
+    /*
+     * por ahora he deshabilitado lo de otrosnombres
+     * hay que añadirlo
+     */
     QString nombre = provincia->getNombre();
-    QString otros_nombres = provincia->getOtrosNombres();
+    //QString otros_nombres = provincia->getOtrosNombres();
     QString erigida = provincia->getErigida();
     QString notas = provincia->getNotas();
 
-    query.prepare("INSERT INTO provinces(name, other_names, erected, notes) "
-                  "VALUES(:nombre, :otrosnombres, :erigida, :notas)");
+    //if (otros_nombres.isEmpty())
+    //    otros_nombres = "{}";
+
+    //query.prepare("INSERT INTO general.provinces(name, other_names, erected, notes) "
+    //              "VALUES(:nombre, :otrosnombres, :erigida, :notas)");
+    query.prepare("INSERT INTO general.provinces(name, erected, notes) "
+                  "VALUES(:nombre, :erigida, :notas)");
     query.bindValue(":nombre", nombre);
-    query.bindValue(":otrosnombres", otros_nombres);
+    //query.bindValue(":otrosnombres", otros_nombres);
     query.bindValue(":erigida", erigida);
     query.bindValue(":notas", notas);
-    query.exec();
+
+    if (!query.exec()){
+        qDebug() << query.lastError();
+        return;
+    }
 
     this->select();
     emit(actualizado());

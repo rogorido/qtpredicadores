@@ -46,7 +46,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="txtErigida">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -56,7 +56,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="txtErigida">
+  <widget class="QLabel" name="lblErigida">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -69,7 +69,7 @@
     <string>Erigida</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>160</x>
