@@ -149,7 +149,7 @@ void dlgNuevaObra::on_btOK_clicked(){
 
     QString titulo = ui->txtTitulo->toPlainText();
     QString idioma = ui->txtIdioma->text();
-    int autor = autorescogido->getId();
+    int autor = autorescogido_struct.id;
     QString tipo = ui->txtTipo->text();
     QString formato = ui->txtFormato->text();
     int tomos = ui->spTomos->value();
@@ -159,7 +159,7 @@ void dlgNuevaObra::on_btOK_clicked(){
     bool manuscrito = ui->ckManuscrito->checkState();
     QString lugar_impresion_original = ui->txtLugarOriginalImpresion->text();
     QString editor = ui->txtEditor->text();
-    int lugar_impresion = lugarescogido->getId();
+    int lugar_impresion = lugarescogido_struct.id;
     int fecha = ui->spFechaImpresion->value();
     bool referencias = ui->ckReferencias->checkState();
     bool volveramirar = ui->ckVolverMirar->checkState();
@@ -170,6 +170,8 @@ void dlgNuevaObra::on_btOK_clicked(){
     int interesante = ui->spInteresante->value();
     int fiabilidad = ui->spFiabilidad->value();
     QString notas = ui->txtNotas->toPlainText();
+
+    qDebug() << "el autor es: " << autor;
 
     obra->setTitulo(titulo);
     obra->setIdioma(idioma);
@@ -194,6 +196,8 @@ void dlgNuevaObra::on_btOK_clicked(){
     obra->setInteresante(interesante);
     obra->setFiabilidad(fiabilidad);
     obra->setNotas(notas);
+
+
 
     m_obras->AnadirObra(obra);
 

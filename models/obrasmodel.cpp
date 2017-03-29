@@ -1,6 +1,8 @@
 #include "obrasmodel.h"
 
 #include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
 
 #include "objs/obra.h"
 
@@ -53,10 +55,10 @@ void ObrasModel::AnadirObra(const Obra *obra){
     QString traduccion = obra->getTraduccion();
     QString notas = obra->getNotas();
 
-    query.prepare("INSERT INTO works(title, language, author_id, type_work, format, "
-		  "volumes, number_pages, printed, maybe_printed, manuscrit, look_again, "
-		  "place_print_original, place_print_id, "
-		  "date_print, editor, references_work, reduced_title, traduction, "
+    query.prepare("INSERT INTO works.works(title, language_work, author_id, type_work, format, "
+                  "volumes, number_pages, printed, maybe_printed, manuscrit, look_again, "
+                  "place_print_original, place_print_id, "
+                  "date_print, editor, references_work, reduced_title, traduction, "
                   "contents, interesting, dubious, expurgatable, reliability, notes) "
 		  " VALUES (:titulo, :idioma, :autor_id, :tipo, :formato, "
 		  ":tomos, :numero_pags, :impreso, :talvez_impreso, :manuscrito, :volveramirar, "
@@ -65,7 +67,10 @@ void ObrasModel::AnadirObra(const Obra *obra){
 		  ":contenido, :interesante, :dudoso, :expurgable, :fiabilidad, :notas)");
     query.bindValue(":titulo", titulo);
     query.bindValue(":idioma", idioma);
-    query.bindValue(":autor_id", autor);
+    if (!autor == 0)
+        query.bindValue(":autor_id", autor);
+    else
+        query.bindValue(":autor_id", QVariant(QVariant::Int));
     query.bindValue(":tipo", tipo);
     query.bindValue(":formato", formato);
     query.bindValue(":impreso", impreso);
@@ -78,7 +83,10 @@ void ObrasModel::AnadirObra(const Obra *obra){
     query.bindValue(":tomos", tomos);
     query.bindValue(":numero_pags", numeropags);
     query.bindValue(":lugar_impresion_original", lugaroriginal);
-    query.bindValue(":lugar_impresion_id", lugar);
+    if (!lugar == 0)
+        query.bindValue(":lugar_impresion_id", lugar);
+    else
+        query.bindValue(":lugar_impresion_id", QVariant(QVariant::Int));
     query.bindValue(":tituloreducido", tituloreducido);
     query.bindValue(":traduccion", traduccion);
     query.bindValue(":contenido", contenido);
@@ -87,6 +95,11 @@ void ObrasModel::AnadirObra(const Obra *obra){
     query.bindValue(":expurgable", expurgable);
     query.bindValue(":fiabilidad", fiabilidad);
     query.bindValue(":notas", notas);
-    query.exec();
+
+    if (!query.exec()){
+        qDebug() << query.lastError();
+        return;
+    }
+
     this->select();
 }

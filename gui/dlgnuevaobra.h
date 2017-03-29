@@ -46,8 +46,8 @@ private:
      * sinceramente no sé cómo "vaciarla".
      */
     struct elementopareado{
-      int id;
-      QString elemento;
+      int id = 0;
+      QString elemento = "";
     };
 
     elementopareado autorescogido_struct;
