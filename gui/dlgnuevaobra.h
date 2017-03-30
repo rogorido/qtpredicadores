@@ -5,6 +5,7 @@
 
 #include "objs/persona.h"
 #include "objs/lugar.h"
+#include "gui/dlgtemas.h"
 
 class LugaresModel;
 class ObrasModel;
@@ -53,6 +54,8 @@ private:
     elementopareado autorescogido_struct;
     elementopareado lugarescogido_struct;
     QList<elementopareado> temasescogidos;
+
+    dlgTemas *dlgtemas;
 
     void cargarCompleters();
 

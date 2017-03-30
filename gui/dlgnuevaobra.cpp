@@ -7,7 +7,6 @@
 #include "dlgnuevolugar.h"
 #include "objs/obra.h"
 #include "objs/variados.h"
-#include "gui/dlgtemas.h"
 
 #include <QSqlQueryModel>
 #include <QSqlQuery>
@@ -23,6 +22,9 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
 
     m_lugares = LugaresModel::InstanceModel();
     m_obras = ObrasModel::InstanceModel();
+
+    dlgtemas = new dlgTemas(this);
+    connect(dlgtemas, SIGNAL(temasSeleccionadosSignal(QList<elementopareado>)), SLOT(recibirTemas(QList<elementopareado>)));
 
     connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(on_btAnadirLugar_clicked()));
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(on_btIntroducirLugar_clicked()));
@@ -131,10 +133,7 @@ void dlgNuevaObra::on_btQuitarLugar_clicked(){
 
 void dlgNuevaObra::on_btTemas_clicked(){
 
-    dlgTemas *dlgtemas = new dlgTemas(this);
-
     dlgtemas->show();
-    connect(dlgtemas, SIGNAL(temasSeleccionadosSignal(QList<elementopareado>)), SLOT(recibirTemas(QList<elementopareado>)));
 
 }
 

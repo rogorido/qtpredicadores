@@ -85,4 +85,6 @@ void dlgTemas::on_btQuitarTema_clicked(){
 
 void dlgTemas::aceptarTemas(){
     emit(temasSeleccionadosSignal(temas_lista));
+
+    this->hide();
 }
