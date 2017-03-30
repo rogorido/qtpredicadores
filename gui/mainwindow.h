@@ -15,6 +15,7 @@ class LugaresModel;
 class PersonasModel;
 class CasasModel;
 class ProvinciasModel;
+class CapitulosModel;
 
 namespace Ui {
 class MainWindow;
@@ -56,6 +57,7 @@ private:
     PersonasModel *m_personas;
     CasasModel *m_casas;
     ProvinciasModel *m_provincias;
+    CapitulosModel *m_capitulos;
 
     void cargarModelos();
     void cargarMenues();

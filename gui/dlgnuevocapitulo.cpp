@@ -10,8 +10,10 @@
 #include <QInputDialog>
 
 #include "models/lugaresmodel.h"
+#include "models/capitulosmodel.h"
 #include "gui/dlgnuevolugar.h"
 #include "gui/dlgseleccionargeneral.h"
+#include "objs/capitulo.h"
 
 dlgNuevoCapitulo::dlgNuevoCapitulo(QWidget *parent) :
     QDialog(parent),
@@ -37,6 +39,7 @@ dlgNuevoCapitulo::dlgNuevoCapitulo(QWidget *parent) :
     bFechaFinalModificada = false;
 
     m_lugares = LugaresModel::InstanceModel();
+    m_capitulos = CapitulosModel::InstanceModel();
 
     lugar_query = new QSqlQueryModel(this);
     lugar_completer = new QCompleter(this);
@@ -55,44 +58,21 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
         return;
     }
 
-    QString titulogeneral;
-    /*
-     * Atención: lugar es QVariant pq eso permite que sea NULL
-     * que es lo que hace falta cuando no hay una ciudad
-     */
-    QVariant lugar;
-    int maestrogeneral;
-    QString tipo;
-    QVariant fechainicial;
-    QVariant fechafinal;
+    Capitulo *capitulo = new Capitulo();
+
+    QString titulogeneral = ui->txtNombreGeneral->text();
+
+    int lugar = lugarescogido_struct.id;
+    int maestrogeneral = maestrogeneral_struct.id;;
+    QString tipo = ui->cboTipoCapitulo->currentText();
+    QDate fechainicial;
+    QDate fechafinal;
     //QDate fechainicial;
     //QDate fechafinal;
-    QString tomo;
-    QString paginas;
-    QString notas;
-    QString asistentes;
-
-    titulogeneral = ui->txtNombreGeneral->text();
-
-    /* vamos extrayendo todos los datos */
-
-    if (!ui->txtMaestroGeneral->text().isEmpty())
-                maestrogeneral = maestrogeneral_struct.id;
-
-    (!ui->txtPaginas->text().isEmpty()) ?
-                paginas = ui->txtPaginas->text() : paginas = "";
-
-    (!ui->txtAsistentes->toPlainText().isEmpty()) ?
-                asistentes = ui->txtAsistentes->toPlainText() : asistentes = "";
-
-    (!ui->txtTomo->text().isEmpty()) ?
-                tomo = ui->txtTomo->text() : tomo = "";
-
-    (!ui->txtNotas->toPlainText().isEmpty()) ?
-                notas = ui->txtNotas->toPlainText() : notas ="";
-
-    (!ui->cboTipoCapitulo->currentText().isEmpty()) ?
-                tipo = ui->cboTipoCapitulo->currentText() : tipo = "";
+    QString tomo = ui->txtTomo->text();
+    QString paginas = ui->txtPaginas->text();
+    QString notas = ui->txtNotas->toPlainText();
+    QString asistentes = ui->txtAsistentes->toPlainText();
 
     /*
      * si la fecha ha cambiado, meteremos la fecha
@@ -107,26 +87,18 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
         fechafinal = ui->dtFinal->date();
     }
 
-    if (!ui->txtLugar->text().isEmpty()){
-                lugar = lugarescogido_struct.id;
-    }
+    capitulo->setNombre(titulogeneral);
+    capitulo->setLugar(lugar);
+    capitulo->setTipo(tipo);
+    capitulo->setMaestroGeneral(maestrogeneral);
+    capitulo->setVolumen(tomo);
+    capitulo->setPaginas(paginas);
+    capitulo->setAsistentes(asistentes);
+    capitulo->setNotas(notas);
+    capitulo->setFechaInicio(fechainicial);
+    capitulo->setFechaFin(fechafinal);
 
-    QSqlQuery query;
-    query.prepare("INSERT INTO chapters.chapters(general_name, place_id, date_beginning, date_ending, "
-                  "type_chapter, general_master, attendees, volume, pages, notes) "
-                  "VALUES(:nombre, :lugar_id, :fechainicio, :fechafinal, "
-                  ":tipo, :maestro, :asistentes, :tomo, :paginas, :notas)");
-    query.bindValue(":nombre", titulogeneral);
-    query.bindValue(":lugar_id", lugar);
-    query.bindValue(":tipo", tipo);
-    query.bindValue(":maestro", maestrogeneral);
-    query.bindValue(":asistentes", asistentes);
-    query.bindValue(":fechainicio", fechainicial);
-    query.bindValue(":fechafinal", fechafinal);
-    query.bindValue(":tomo", tomo);
-    query.bindValue(":paginas", paginas);
-    query.bindValue(":notas", notas);
-    query.exec();
+    m_capitulos->AnadirCapitulo(capitulo);
 
 }
 

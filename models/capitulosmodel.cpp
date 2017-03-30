@@ -62,7 +62,6 @@ void CapitulosModel::AnadirCapitulo(const Capitulo *capitulo){
     query.bindValue(":tomo", volumen);
     query.bindValue(":paginas", paginas);
     query.bindValue(":notas", notas);
-    query.exec();
 
     if (!query.exec()){
         qDebug() << query.lastError();

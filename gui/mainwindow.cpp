@@ -18,6 +18,7 @@
 #include "models/personasmodel.h"
 #include "models/casasmodel.h"
 #include "models/provinciasmodel.h"
+#include "models/capitulosmodel.h"
 
 #include "dlgcapitulos.h"
 
@@ -87,6 +88,9 @@ void MainWindow::cargarModelos(){
     m_provincias = ProvinciasModel::InstanceModel();
     m_provincias->setSort(1, Qt::AscendingOrder);
     m_provincias->select();
+
+    m_capitulos = CapitulosModel::InstanceModel();
+    m_capitulos->select();
 
 }
 

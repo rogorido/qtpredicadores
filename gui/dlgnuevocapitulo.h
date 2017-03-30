@@ -10,6 +10,7 @@ class QCompleter;
 class QSqlQueryModel;
 
 class LugaresModel;
+class CapitulosModel;
 
 namespace Ui {
 class dlgNuevoCapitulo;
@@ -53,6 +54,8 @@ private:
 
     LugaresModel *m_lugares;
 
+    CapitulosModel *m_capitulos;
+
     /*
      * esto es una pequeña cutrada: lo uso para que solo si se ha
      * cambiado la fecha se meta, pq si no enteindo que mete la que viene
@@ -62,8 +65,8 @@ private:
     bool bFechaFinalModificada;
 
     struct elementopareado{
-      int id;
-      QString elemento;
+      int id = 0;
+      QString elemento = "";
     };
 
     elementopareado maestrogeneral_struct;
