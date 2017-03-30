@@ -69,22 +69,6 @@ void dlgNuevaResolucion::aceptarResolucion(){
 
     QSqlQuery query;
 
-    query.prepare("INSERT INTO resolutions(resolution_text, resolution_traduction, resolution_summary, chapter, "
-          "small_title, understood, look_again, province_id, translated, interesting, notes) "
-		  "VALUES(:resolucion_texto, :resolucion_traduccion, :resolucion_resumen, :capitulo, "
-          ":epigrafe, :entendida, :volveramirar, :provincia, :traducida, :interesante, :notas)");
-    query.bindValue(":resolucion_texto", resolucion);
-    query.bindValue(":resolucion_traduccion", resolucion_trad);
-    query.bindValue(":resolucion_resumen", resolucion_resumen);
-    //query.bindValue(":capitulo", capitulo_origen);
-    query.bindValue(":capitulo", 1);
-    query.bindValue(":epigrafe", epigrafe);
-    query.bindValue(":entendida", entendida);
-    query.bindValue(":volveramirar", volveramirar);
-    query.bindValue(":provincia", provincia_id);
-    query.bindValue(":traducida", traducida);
-    query.bindValue(":interesante", interesante);
-    query.bindValue(":notas", notas);
 
     if (query.exec()){
 

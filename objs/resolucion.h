@@ -23,6 +23,7 @@ public:
     void setTraducido(bool t);
     void setInteres(int i);
     void setResolucionAnterior(int r);
+    void setNotas(QString n);
 
     //getters
     int getId() const {return id;}
@@ -37,6 +38,7 @@ public:
     bool getTraducido() const {return traducido;}
     int getInteres() const {return interes;}
     int getResolucionAnterior() const {return resolucion_anterior;}
+    QString getNotas() const {return notas;}
     
 private:
 

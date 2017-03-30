@@ -15,3 +15,4 @@ void Resolucion::setVolverMirar(bool v) { volveramirar = v; }
 void Resolucion::setTraducido(bool t) { traducido = t; }
 void Resolucion::setInteres(int i) { interes = i; }
 void Resolucion::setResolucionAnterior(int r) { resolucion_anterior = r; }
+void Resolucion::setNotas(QString n) { notas = n; }
