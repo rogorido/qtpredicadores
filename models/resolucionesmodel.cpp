@@ -28,7 +28,7 @@ void ResolucionesModel::DestroyMe(){
     if (pInstance != NULL) delete pInstance;
 }
 
-void ResolucionesModel::anadirResolucion(const Resolucion *resolucion){
+bool ResolucionesModel::anadirResolucion(const Resolucion *resolucion){
     QSqlQuery query;
 
     QString texto = resolucion->getTexto();
@@ -68,9 +68,11 @@ void ResolucionesModel::anadirResolucion(const Resolucion *resolucion){
         qDebug() << query.lastError();
         qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
 
-        return;
+        return false;
     }
-
-    this->select();
-    emit(actualizado());
+    else {
+        this->select();
+        emit(actualizado());
+        return true;
+    }
 }

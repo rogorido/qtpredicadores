@@ -5,6 +5,7 @@
 #include "objs/provincia.h"
 
 class TemasModel;
+class ResolucionesModel;
 class JsonGestor;
 class dlgDetalles;
 
@@ -26,6 +27,8 @@ private:
 
     JsonGestor *jsongestor;
     dlgDetalles *dlgdetalles;
+
+    ResolucionesModel *m_resoluciones;
 
     struct elementopareado{
       int id;

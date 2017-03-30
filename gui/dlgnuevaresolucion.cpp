@@ -13,8 +13,10 @@
 #include <QDebug>
 
 #include "models/temasmodel.h"
+#include "models/resolucionesmodel.h"
 #include "dlgdetalles.h"
 #include "objs/jsongestor.h"
+#include "objs/resolucion.h"
 #include "gui/dlgtemas.h"
 #include "gui/dlgseleccionargeneral.h"
 
@@ -26,6 +28,7 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     ui->setupUi(this);
 
     jsongestor = new JsonGestor(this);
+    m_resoluciones = ResolucionesModel::InstanceModel();
 
     dlgdetalles = new dlgDetalles(jsongestor, this);
 
@@ -48,11 +51,12 @@ dlgNuevaResolucion::~dlgNuevaResolucion()
 
 void dlgNuevaResolucion::aceptarResolucion(){
 
-    QString resolucion;
+    Resolucion *resolucion;
+    QString resolucion_texto;
 
-    resolucion = ui->txtResolucion->toPlainText();
+    resolucion_texto = ui->txtResolucion->toPlainText();
 
-    if (resolucion.isEmpty()){
+    if (resolucion_texto.isEmpty()){
         int ret = QMessageBox::warning(this, "No hay texto en la resolución general",
                                        "Introduzca por favor texto en la resolución");
         return;
@@ -67,10 +71,17 @@ void dlgNuevaResolucion::aceptarResolucion(){
     bool volveramirar = ui->chVolverMirar->checkState();
     bool traducida = ui->chTradudida->checkState();
 
-    QSqlQuery query;
+    resolucion->setTexto(resolucion_texto);
+    resolucion->setTextoResumido(resolucion_resumen);
+    resolucion->setTextoTraducido(resolucion_trad);
+    resolucion->setEpigrafe(epigrafe);
+    resolucion->setInteres(interesante);
+    resolucion->setEntendido(entendida);
+    resolucion->setVolverMirar(volveramirar);
+    resolucion->setTraducido(traducida);
+    resolucion->setNotas(notas);
 
-
-    if (query.exec()){
+    if (m_resoluciones->anadirResolucion(resolucion)) {
 
       //QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
       QSqlQuery lastid("select max(resolution_id) from resolutions");
@@ -82,7 +93,15 @@ void dlgNuevaResolucion::aceptarResolucion(){
 
       introducirJson(id);
       introducirTemas(id);
+
+      return;
     }
+    else {
+        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
+                                       "Error al introducir la resolución en la BD");
+        return;
+    }
+
 }
 
 void dlgNuevaResolucion::introducirJson(const int id){
