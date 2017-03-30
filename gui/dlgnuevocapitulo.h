@@ -4,6 +4,7 @@
 #include <QDialog>
 
 #include "objs/persona.h"
+#include "objs/lugar.h"
 
 class QCompleter;
 class QSqlQueryModel;
@@ -26,7 +27,9 @@ private slots:
     void aceptarCapitulo();
     void fechaInicialCambiada();
     void fechaFinalCambiada();
+    void quitarLugar();
     void anadirLugar();
+    void actualizarLugar(Lugar lugar);
     void anadirMaestroGeneral();
     void recibirMaestroGeneral(Persona persona);
 
@@ -64,6 +67,7 @@ private:
     };
 
     elementopareado maestrogeneral_struct;
+    elementopareado lugarescogido_struct;
 
     void cargarCompleters();
 

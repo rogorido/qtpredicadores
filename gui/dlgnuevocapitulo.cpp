@@ -23,8 +23,9 @@ dlgNuevoCapitulo::dlgNuevoCapitulo(QWidget *parent) :
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarCapitulo()));
     connect(ui->dtInicial, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaInicialCambiada()));
     connect(ui->dtFinal, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaFinalCambiada()));
-    connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(anadirLugar()));
+    connect(ui->btQuitarLugar, SIGNAL(clicked()), this, SLOT(quitarLugar()));
     connect(ui->txtMaestroGeneral, SIGNAL(dobleclick()), this, SLOT(anadirMaestroGeneral()));
+    connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(anadirLugar()));
 
     ui->dtFinal->calendarPopup();
 
@@ -107,16 +108,14 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
     }
 
     if (!ui->txtLugar->text().isEmpty()){
-                lugar = extraerLugar(ui->txtLugar->text());
-    }
-    else{
-        qDebug("está vacío");
+                lugar = lugarescogido_struct.id;
     }
 
     QSqlQuery query;
-    query.prepare("INSERT INTO chapters(general_name, place_id, date_beginning, date_ending, "
-		  "type_chapter, general_master, attendees, volume, pages, notes) "
-                  "VALUES(:nombre, :lugar_id, :fechainicio, :fechafinal, :tipo, :maestro, :asistentes, :tomo, :paginas, :notas)" );
+    query.prepare("INSERT INTO chapters.chapters(general_name, place_id, date_beginning, date_ending, "
+                  "type_chapter, general_master, attendees, volume, pages, notes) "
+                  "VALUES(:nombre, :lugar_id, :fechainicio, :fechafinal, "
+                  ":tipo, :maestro, :asistentes, :tomo, :paginas, :notas)");
     query.bindValue(":nombre", titulogeneral);
     query.bindValue(":lugar_id", lugar);
     query.bindValue(":tipo", tipo);
@@ -179,10 +178,24 @@ void dlgNuevoCapitulo::fechaFinalCambiada(){
 
 void dlgNuevoCapitulo::anadirLugar(){
 
-    dlgNuevoLugar *dlglugar = new dlgNuevoLugar(this);
-    dlglugar->show();
-    cargarCompleters();
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionar->show();
 
+    connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(actualizarLugar(Lugar)));
+
+}
+
+void dlgNuevoCapitulo::actualizarLugar(Lugar lugar){
+
+    lugarescogido_struct.id = lugar.getId();
+    lugarescogido_struct.elemento = lugar.getLugar();
+
+    ui->txtLugar->setText(lugarescogido_struct.elemento);
+}
+
+void dlgNuevoCapitulo::quitarLugar(){
+    lugarescogido_struct = elementopareado();
+    ui->txtLugar->setText("");
 }
 
 void dlgNuevoCapitulo::anadirMaestroGeneral(){

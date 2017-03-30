@@ -34,15 +34,15 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="txtLugar"/>
+      <widget class="myQLineEdit" name="txtLugar"/>
      </item>
      <item>
-      <widget class="QPushButton" name="btAnadirLugar">
+      <widget class="QPushButton" name="btQuitarLugar">
        <property name="toolTip">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Añadir lugar&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="text">
-        <string>+</string>
+        <string>-</string>
        </property>
       </widget>
      </item>
@@ -169,14 +169,14 @@
      <item>
       <widget class="QPushButton" name="btCancel">
        <property name="text">
-        <string>Cancelar</string>
+        <string>Can&amp;celar</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btOK">
        <property name="text">
-        <string>Grabar</string>
+        <string>&amp;Aceptar</string>
        </property>
       </widget>
      </item>
