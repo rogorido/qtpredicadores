@@ -32,50 +32,37 @@ void CapitulosModel::AnadirCapitulo(const Capitulo *capitulo){
     QSqlQuery query;
 
     QString nombre = capitulo->getNombre();
-    QString nombre_latin = capitulo->getNombreLatin();
     int lugar = capitulo->getLugar();
-    QString lugar_originario = capitulo->getLugarOriginario();
-    bool masculino = capitulo->getMasculino();
     QString tipo = capitulo->getTipo();
-    QString congregacion = capitulo->getCongregacion();
-    bool buscado = capitulo->getBuscado();
-    bool wiki = capitulo->getWiki();
-    int provincia = capitulo->getProvincia();
-    QString diocesis = capitulo->getDiocesis();
-    QString fecha_fundacion = capitulo->getFechaFundacion();
-    QString advocacion = capitulo->getAdvocacion();
-    // este  sería interesante hacerlo con QJson...
-    //QString otrosnombres;
+    QString asistentes = capitulo->getAsistentes();
+    QString volumen = capitulo->getVolumen();
+    QString paginas = capitulo->getPaginas();
     QString notas = capitulo->getNotas();
-    bool studiumgenerale = capitulo->getStudiumgenerale();
+    int maestro = capitulo->getMaestroGeneral();
+    QDate fechainicial = capitulo->getFechaInicio();
+    QDate fechafinal = capitulo->getFechaFin();
 
-    query.prepare("INSERT INTO general.houses(name, latin_name, place_id, original_place, men, "
-                  "type_house, congregation, lookedup, wikipedia, province_id, diocese, date_foundation, "
-                  "advocation, studiumgenerale, notes) "
-                  "VALUES(:nombre, :nombre_latin, :lugar, :lugaroriginario, :masculino, "
-                  ":tipo, :congregacion, :buscado, :wiki, :provincia_id, :diocesis, :fecha_fundacion, "
-                  ":advocacion, :studiumgenerale, :notas)");
+    query.prepare("INSERT INTO chapters.chapters(general_name, place_id, date_beginning, date_ending, "
+                  "type_chapter, general_master, attendees, volume, pages, notes) "
+                  "VALUES(:nombre, :lugar_id, :fechainicio, :fechafinal, "
+                  ":tipo, :maestro, :asistentes, :tomo, :paginas, :notas)");
     query.bindValue(":nombre", nombre);
-    query.bindValue(":nombre_latin", nombre_latin);
     if (!lugar == 0)
-        query.bindValue(":lugar", lugar);
+        query.bindValue(":lugar_id", lugar);
     else
-        query.bindValue(":lugar", QVariant(QVariant::Int));
-    query.bindValue(":lugaroriginario", lugar_originario);
-    query.bindValue(":masculino", masculino);
+        query.bindValue(":lugar_id", QVariant(QVariant::Int));
     query.bindValue(":tipo", tipo);
-    query.bindValue(":congregacion", congregacion);
-    query.bindValue(":buscado", buscado);
-    query.bindValue(":wiki", wiki);
-    if (!provincia == 0)
-        query.bindValue(":provincia_id", provincia);
+    if (!maestro == 0)
+        query.bindValue(":maestro", maestro);
     else
-        query.bindValue(":provincia_id", QVariant(QVariant::Int));
-    query.bindValue(":diocesis", diocesis);
-    query.bindValue(":fecha_fundacion", fecha_fundacion);
-    query.bindValue(":advocacion", advocacion);
-    query.bindValue(":studiumgeneral", studiumgenerale);
+        query.bindValue(":maestro", QVariant(QVariant::Int));
+    query.bindValue(":asistentes", asistentes);
+    query.bindValue(":fechainicio", fechainicial);
+    query.bindValue(":fechafinal", fechafinal);
+    query.bindValue(":tomo", volumen);
+    query.bindValue(":paginas", paginas);
     query.bindValue(":notas", notas);
+    query.exec();
 
     if (!query.exec()){
         qDebug() << query.lastError();
