@@ -58,6 +58,10 @@ bool ProxyNombres::filterAcceptsRow(int sourceRow,
               || sourceModel()->data(index6).toString().contains(filterRegExp())
               || sourceModel()->data(index7).toString().contains(filterRegExp());
       break;
+  case CAPITULO:
+      return sourceModel()->data(index1).toString().contains(filterRegExp())
+              || sourceModel()->data(index2).toString().contains(filterRegExp());
+      break;
 
   }
 

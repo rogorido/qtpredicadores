@@ -204,4 +204,6 @@ void dlgNuevaResolucion::anadirCapitulo(){
 
 void dlgNuevaResolucion::quitarCapitulo(){
 
+    capitulo_id = 0;
+    ui->txtCapitulo->setText("");
 }
