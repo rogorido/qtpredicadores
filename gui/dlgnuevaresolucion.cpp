@@ -34,7 +34,7 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
 
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
-    connect(ui->txtProvincia, SIGNAL(dobleclicked()), this, SLOT(anadirProvincia()));
+    connect(ui->txtProvincia, SIGNAL(dobleclick()), this, SLOT(anadirProvincia()));
     connect(ui->btQuitarProvincia, SIGNAL(clicked()), this, SLOT(quitarProvincia()));
     connect(ui->txtCapitulo, SIGNAL(dobleclick()), this, SLOT(anadirCapitulo()));
     connect(ui->btQuitarCapitulo, SIGNAL(clicked()), this, SLOT(quitarCapitulo()));
@@ -184,7 +184,21 @@ void dlgNuevaResolucion::quitarProvincia(){
     ui->txtProvincia->setText("");
 }
 
+void dlgNuevaResolucion::recibirCapitulo(Capitulo capitulo){
+
+    capitulo_id = capitulo.getId();
+
+    QString capitulo_string = capitulo.getNombre() + ' (' + capitulo.getFechaInicio().toString() + ')';
+
+    ui->txtCapitulo->setText(capitulo_string);
+}
+
 void dlgNuevaResolucion::anadirCapitulo(){
+
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CAPITULO, this);
+
+    dlgseleccionar->show();
+    connect(dlgseleccionar, SIGNAL(capituloEscogidoSignal(Capitulo)), this, SLOT(recibirCapitulo(Capitulo)));
 
 }
 

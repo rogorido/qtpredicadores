@@ -57,6 +57,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionNuevaObra, SIGNAL(triggered()), this, SLOT(nuevaObra()));
     connect(ui->actionNuevaProvincia, SIGNAL(triggered()), this, SLOT(nuevaProvincia()));
     connect(ui->actionNuevoTema, SIGNAL(triggered()), this, SLOT(nuevoTema()));
+    connect(ui->actionNuevaResolucion, SIGNAL(triggered(bool)), this, SLOT(nuevaResolucion()));
     connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 

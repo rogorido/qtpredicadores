@@ -68,7 +68,7 @@ void dlgSeleccionarGeneral::cargarTipo(){
         break;}
     case CAPITULO:{
         m_capitulos = CapitulosModel::InstanceModel();
-        m_objeto->setTable("vistas.persons_alternatives");
+        m_objeto->setTable("vistas.chapters_alternatives");
         ui->btAnadir->setText("Añadir capítulo");
         connect(m_capitulos, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
@@ -123,6 +123,8 @@ void dlgSeleccionarGeneral::aceptar(){
         provincia();
     case PERSONA:
         persona();
+    case CAPITULO:
+        capitulo();
     default:
         break;
     }
@@ -231,6 +233,31 @@ void dlgSeleccionarGeneral::provincia(){
     provincia.setNombre(nombre);
 
     emit(provinciaEscogidaSignal(provincia));
+    close();
+
+}
+
+void dlgSeleccionarGeneral::capitulo(){
+
+    Capitulo capitulo;
+
+    // tiene que haber otra manera de hacer esto...
+    QModelIndex idx0 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 0);
+    QModelIndex idx1 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 1);
+    QModelIndex idx2 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 2); // esto es el año
+
+    if (!idx0.isValid())
+        return;
+
+    int id = m_objeto->data(m_objeto_proxy->mapToSource(idx0), Qt::DisplayRole).toInt();
+    QString nombre = m_objeto->data(m_objeto_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
+    QDate fecha = m_objeto->data(m_objeto_proxy->mapToSource(idx2), Qt::DisplayRole).toDate();
+
+    capitulo.setId(id);
+    capitulo.setNombre(nombre);
+    capitulo.setFechaInicio(fecha);
+
+    emit(capituloEscogidoSignal(capitulo));
     close();
 
 }

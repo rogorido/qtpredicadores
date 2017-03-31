@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "objs/provincia.h"
+#include "objs/capitulo.h"
 
 class TemasModel;
 class ResolucionesModel;
@@ -44,6 +45,7 @@ private:
      * Olvídalo!
      */
     int provincia_id;
+    int capitulo_id;
 
     void rellenarCombos();
     void introducirJson(const int id);
@@ -72,6 +74,7 @@ private slots:
     // en teoría casi un qlist de ints sería suficiente...
     void recibirTemas(QList<elementopareado> temas);
     void recibirProvincia(Provincia provincia);
+    void recibirCapitulo(Capitulo capitulo);
 
 };
 

@@ -31,6 +31,7 @@
     <addaction name="actionNuevaPersona"/>
     <addaction name="actionNuevaCasa"/>
     <addaction name="actionNuevoCapitulo"/>
+    <addaction name="actionNuevaResolucion"/>
     <addaction name="actionNuevaProvincia"/>
     <addaction name="actionNuevoTema"/>
     <addaction name="actionNuevaObra"/>
@@ -95,6 +96,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionNuevaResolucion">
+   <property name="text">
+    <string>Nueva &amp;resolución</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
  </widget>
