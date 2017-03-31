@@ -5,6 +5,7 @@
 #include "models/casasmodel.h"
 #include "models/lugaresmodel.h"
 #include "models/provinciasmodel.h"
+#include "models/capitulosmodel.h"
 
 #include "objs/proxynombres.h"
 
@@ -12,6 +13,7 @@
 #include "gui/dlgnuevapersona.h"
 #include "gui/dlgnuevaprovincia.h"
 #include "gui/dlgnuevolugar.h"
+#include "gui/dlgnuevocapitulo.h"
 
 dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *parent) :
     QDialog(parent),
@@ -63,6 +65,12 @@ void dlgSeleccionarGeneral::cargarTipo(){
         m_objeto->setTable("vistas.persons_alternatives");
         ui->btAnadir->setText("Añadir persona");
         connect(m_personas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
+        break;}
+    case CAPITULO:{
+        m_capitulos = CapitulosModel::InstanceModel();
+        m_objeto->setTable("vistas.persons_alternatives");
+        ui->btAnadir->setText("Añadir capítulo");
+        connect(m_capitulos, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     default:
         break;
@@ -245,6 +253,10 @@ void dlgSeleccionarGeneral::anadirObjeto(){
     case PERSONA:{
         dlgNuevaPersona *dlgpersona = new dlgNuevaPersona(this);
         dlgpersona->show();
+        break;}
+    case CAPITULO:{
+        dlgNuevoCapitulo *dlgcapitulo = new dlgNuevoCapitulo(this);
+        dlgcapitulo->show();
         break;}
     default:
         break;

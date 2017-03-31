@@ -6,11 +6,14 @@
 #include "objs/persona.h"
 #include "objs/lugar.h"
 #include "objs/provincia.h"
+#include "objs/capitulo.h"
 
 class CasasModel;
 class PersonasModel;
 class LugaresModel;
 class ProvinciasModel;
+class CapitulosModel;
+
 class QSqlTableModel;
 class ProxyNombres;
 
@@ -39,6 +42,7 @@ signals:
     void personaEscogidaSignal(Persona autor);
     void lugarEscogidoSignal(Lugar lugar);
     void provinciaEscogidaSignal(Provincia provincia);
+    void capituloEscogidoSignal(Capitulo capitulo);
 
 private:
     Ui::dlgSeleccionarGeneral *ui;
@@ -50,6 +54,7 @@ private:
     LugaresModel *m_lugares;
     PersonasModel *m_personas;
     ProvinciasModel *m_provincias;
+    CapitulosModel *m_capitulos;
 
     void cargarModelo();
     void cargarTipo();
@@ -60,6 +65,7 @@ private:
     void provincia();
     void persona();
     void lugar();
+    void capitulo();
 
     tiposeleccionar tipo_seleccionado;
 

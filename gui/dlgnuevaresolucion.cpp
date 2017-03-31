@@ -36,6 +36,8 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->txtProvincia, SIGNAL(dobleclicked()), this, SLOT(anadirProvincia()));
     connect(ui->btQuitarProvincia, SIGNAL(clicked()), this, SLOT(quitarProvincia()));
+    connect(ui->txtCapitulo, SIGNAL(dobleclick()), this, SLOT(anadirCapitulo()));
+    connect(ui->btQuitarCapitulo, SIGNAL(clicked()), this, SLOT(quitarCapitulo()));
 
     /*
      * si capitulo !=0 entonces es que venimos del form Capitulos
@@ -51,7 +53,7 @@ dlgNuevaResolucion::~dlgNuevaResolucion()
 
 void dlgNuevaResolucion::aceptarResolucion(){
 
-    Resolucion *resolucion;
+    Resolucion *resolucion = new Resolucion();
     QString resolucion_texto;
 
     resolucion_texto = ui->txtResolucion->toPlainText();
@@ -180,4 +182,12 @@ void dlgNuevaResolucion::quitarProvincia(){
 
     provincia_id = 0;
     ui->txtProvincia->setText("");
+}
+
+void dlgNuevaResolucion::anadirCapitulo(){
+
+}
+
+void dlgNuevaResolucion::quitarCapitulo(){
+
 }

@@ -5,7 +5,8 @@ enum tiposeleccionar {
     CASA,
     PERSONA,
     PROVINCIA,
-    LUGAR
+    LUGAR,
+    CAPITULO
 };
 
 #endif // VARIADOS_H
