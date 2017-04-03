@@ -210,3 +210,31 @@ void dlgNuevaResolucion::quitarCapitulo(){
     capitulo_id = 0;
     ui->txtCapitulo->setText("");
 }
+
+void dlgNuevaResolucion::borrarCampos(){
+
+    ui->txtEpigrafe->setText("");
+    ui->txtProvincia->setText("");
+    ui->txtCapitulo->setText("");
+    ui->txtResolucion->clear();
+    ui->txtResolucionNotas->clear();
+    ui->txtResolucionResumen->clear();
+    ui->txtResolucionTraduccion->clear();
+
+    ui->chEntendida->setCheckState(Qt::Unchecked);
+    ui->chTradudida->setCheckState(Qt::Unchecked);
+    ui->chVolverMirar->setCheckState(Qt::Unchecked);
+
+    ui->spInteresante->setValue(0);
+
+    jsongestor = new JsonGestor(this);
+    dlgdetalles = new dlgDetalles(jsongestor, this);
+
+    temas_lista.clear();
+
+    provincia_id = 0;
+    capitulo_id = 0;
+
+    ui->txtEpigrafe->setFocus();
+
+}

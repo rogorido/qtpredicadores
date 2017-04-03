@@ -51,6 +51,8 @@ private:
     void introducirJson(const int id);
     void introducirTemas(const int id);
 
+    void borrarCampos();
+
     /*
      * esto se usa cuando abrimos el formulario
      * desde el formulario de capítulo

@@ -51,7 +51,10 @@ bool ResolucionesModel::anadirResolucion(const Resolucion *resolucion){
     query.bindValue(":resolucion_texto", texto);
     query.bindValue(":resolucion_traduccion", texto_traducido);
     query.bindValue(":resolucion_resumen", texto_resumido);
-    query.bindValue(":capitulo", capitulo);
+    if (!capitulo != 0)
+        query.bindValue(":capitulo", capitulo);
+    else
+        query.bindValue(":capitulo", QVariant(QVariant::Int));
     query.bindValue(":epigrafe", epigrafe);
     if (!provincia == 0)
         query.bindValue(":provincia", provincia);
