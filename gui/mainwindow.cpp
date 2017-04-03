@@ -129,7 +129,7 @@ void MainWindow::nuevaProvincia(){
 
 void MainWindow::nuevoTema(){
 
-    Tema *tema;
+    Tema *tema = new Tema();
 
     QString tematitulo = QInputDialog::getText(this, "Introduzca nuevo tema", "Nueva tema");
 
