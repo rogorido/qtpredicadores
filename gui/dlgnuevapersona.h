@@ -53,6 +53,8 @@ private:
     void introducirJson(const int id);
 
     void cargarCompleters();
+    void borrarCampos();
+    void cargarJsonEstructuras();
 
 };
 

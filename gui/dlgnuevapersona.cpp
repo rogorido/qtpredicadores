@@ -20,12 +20,6 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
 
     m_personas = PersonasModel::InstanceModel();
 
-    jsongestor = new JsonGestor(this);
-    dlgdetalles = new dlgDetalles(jsongestor, this);
-
-    otrosnombres_json = new JsonGestor(this);
-    dlgotrosnombres = new dlgDetalles(otrosnombres_json, this);
-
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarPersona()));
 
@@ -34,6 +28,7 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
     nombres_query = new QSqlQueryModel(this);
     apellidos_query = new QSqlQueryModel(this);
 
+    cargarJsonEstructuras();
     cargarCompleters();
 
 }
@@ -41,6 +36,15 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
 dlgNuevaPersona::~dlgNuevaPersona()
 {
     delete ui;
+}
+
+void dlgNuevaPersona::cargarJsonEstructuras(){
+    jsongestor = new JsonGestor(this);
+    dlgdetalles = new dlgDetalles(jsongestor, this);
+
+    otrosnombres_json = new JsonGestor(this);
+    dlgotrosnombres = new dlgDetalles(otrosnombres_json, this);
+
 }
 
 void dlgNuevaPersona::cargarCompleters(){
@@ -115,6 +119,8 @@ void dlgNuevaPersona::aceptarPersona(){
         lastid.first();
         int id = lastid.value(0).toInt();
         introducirJson(id);
+        borrarCampos();
+        cargarCompleters();
         return;
     }
     else{
@@ -156,5 +162,33 @@ void dlgNuevaPersona::on_btOtrosNombres_clicked(){
 
     dlgotrosnombres->show();
 
+}
+
+void dlgNuevaPersona::borrarCampos(){
+
+    ui->txtNombre->setText("");
+    ui->txtApellidos->setText("");
+    ui->txtMuerte->setText("");
+    ui->txtNacimiento->setText("");
+    ui->txtViaf->setText("");
+    ui->txtWiki->setText("");
+    ui->txtWikidata->setText("");
+    ui->txtNotas->clear();
+
+    ui->ckBuscado->setCheckState(Qt::Unchecked);
+    ui->ckViaf->setCheckState(Qt::Unchecked);
+    ui->ckWiki->setCheckState(Qt::Unchecked);
+    ui->ckVolverMirar->setCheckState(Qt::Unchecked);
+
+    ui->txtNotas->clear();
+
+    /*
+     * recargamos/vaciamos las clases json donde guardo
+     * diversos tipos de datos.
+     * De todas formas: no sé si hay una forma mejor...
+     */
+    cargarJsonEstructuras();
+
+    ui->txtNombre->setFocus();
 }
 
