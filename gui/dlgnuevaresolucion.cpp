@@ -81,6 +81,7 @@ void dlgNuevaResolucion::aceptarResolucion(){
     resolucion->setEntendido(entendida);
     resolucion->setVolverMirar(volveramirar);
     resolucion->setTraducido(traducida);
+    resolucion->setCapitulo(capitulo_id);
     resolucion->setNotas(notas);
 
     if (m_resoluciones->anadirResolucion(resolucion)) {
@@ -136,7 +137,7 @@ void dlgNuevaResolucion::introducirTemas(const int id){
     for (int i = 0; i < temas_lista.size(); ++i) {
 
         QSqlQuery query;
-        query.prepare("INSERT INTO themes_resolutions(theme_id, resolution_id) VALUES (:tema, :resolucion)");
+        query.prepare("INSERT INTO resolutions_themes(theme_id, resolution_id) VALUES (:tema, :resolucion)");
         query.bindValue(":tema", temas_lista.at(i).id);
         query.bindValue(":resolucion", id);
         query.exec();
@@ -187,6 +188,8 @@ void dlgNuevaResolucion::quitarProvincia(){
 void dlgNuevaResolucion::recibirCapitulo(Capitulo capitulo){
 
     capitulo_id = capitulo.getId();
+
+    qDebug() << "el capiutlo es: " << capitulo_id;
 
     QString capitulo_string = capitulo.getNombre() + ' (' + capitulo.getFechaInicio().toString() + ')';
 

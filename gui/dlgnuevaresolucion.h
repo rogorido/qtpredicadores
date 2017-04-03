@@ -32,8 +32,8 @@ private:
     ResolucionesModel *m_resoluciones;
 
     struct elementopareado{
-      int id;
-      QString elemento;
+      int id = 0;
+      QString elemento = "";
     };
 
     QList<elementopareado> temas_lista;

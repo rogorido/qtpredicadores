@@ -107,6 +107,7 @@ void dlgNuevoCapitulo::cargarCompleters(){
     /*
      * TODO: esto entiendo que se puede cambiar al nuevo
      *  clase Lugares que tengo...
+     * TODO: entiendo q esto ya no lo uso, no?
      */
     lugar_query->setQuery("SELECT DISTINCT lugar FROM lugares WHERE lugar IS NOT NULL ORDER BY lugar");
 
