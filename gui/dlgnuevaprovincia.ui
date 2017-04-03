@@ -109,6 +109,13 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>txtNombre</tabstop>
+  <tabstop>txtErigida</tabstop>
+  <tabstop>txtNotas</tabstop>
+  <tabstop>btCancelar</tabstop>
+  <tabstop>btOK</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -169,6 +169,21 @@
    <header location="global">widgets/myqlineedit.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>txtNombre</tabstop>
+  <tabstop>txtLugar</tabstop>
+  <tabstop>btQuitarLugar</tabstop>
+  <tabstop>txtLugarOriginario</tabstop>
+  <tabstop>txtProvincia</tabstop>
+  <tabstop>btQuitarProvincia</tabstop>
+  <tabstop>ckBuscado</tabstop>
+  <tabstop>ckMasculino</tabstop>
+  <tabstop>ckWiki</tabstop>
+  <tabstop>ckStudium</tabstop>
+  <tabstop>btCancelar</tabstop>
+  <tabstop>txtNotas</tabstop>
+  <tabstop>btOK</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -59,7 +59,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -112,6 +112,15 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>txtLugar</tabstop>
+  <tabstop>txtLugarLatin</tabstop>
+  <tabstop>txtPais</tabstop>
+  <tabstop>txtWikidata</tabstop>
+  <tabstop>btOtrosNombres</tabstop>
+  <tabstop>btCancelar</tabstop>
+  <tabstop>btOK</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

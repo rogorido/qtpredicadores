@@ -70,7 +70,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabGeneral">
        <attribute name="title">
@@ -243,6 +243,26 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>txtNombre</tabstop>
+  <tabstop>txtApellidos</tabstop>
+  <tabstop>txtNacimiento</tabstop>
+  <tabstop>txtMuerte</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>ckBuscado</tabstop>
+  <tabstop>ckWiki</tabstop>
+  <tabstop>txtWiki</tabstop>
+  <tabstop>ckViaf</tabstop>
+  <tabstop>txtViaf</tabstop>
+  <tabstop>txtWikidata</tabstop>
+  <tabstop>txtNotas</tabstop>
+  <tabstop>ckVolverMirar</tabstop>
+  <tabstop>spCantidadInfo</tabstop>
+  <tabstop>btOtrosNombres</tabstop>
+  <tabstop>btDetalles</tabstop>
+  <tabstop>btCancelar</tabstop>
+  <tabstop>btOK</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -191,6 +191,22 @@
    <header location="global">widgets/myqlineedit.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>txtNombreGeneral</tabstop>
+  <tabstop>txtLugar</tabstop>
+  <tabstop>btQuitarLugar</tabstop>
+  <tabstop>cboTipoCapitulo</tabstop>
+  <tabstop>dtInicial</tabstop>
+  <tabstop>dtFinal</tabstop>
+  <tabstop>txtMaestroGeneral</tabstop>
+  <tabstop>btQuitarMaestroGeneral</tabstop>
+  <tabstop>txtAsistentes</tabstop>
+  <tabstop>txtNotas</tabstop>
+  <tabstop>txtTomo</tabstop>
+  <tabstop>txtPaginas</tabstop>
+  <tabstop>btCancel</tabstop>
+  <tabstop>btOK</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

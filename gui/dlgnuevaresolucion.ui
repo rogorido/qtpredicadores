@@ -40,7 +40,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabResolucion">
        <attribute name="title">
@@ -302,6 +302,26 @@
    <header location="global">widgets/myqlineedit.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>txtEpigrafe</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>txtResolucion</tabstop>
+  <tabstop>txtResolucionTraduccion</tabstop>
+  <tabstop>txtResolucionResumen</tabstop>
+  <tabstop>txtResolucionNotas</tabstop>
+  <tabstop>chEntendida</tabstop>
+  <tabstop>chVolverMirar</tabstop>
+  <tabstop>chTradudida</tabstop>
+  <tabstop>spInteresante</tabstop>
+  <tabstop>txtProvincia</tabstop>
+  <tabstop>btQuitarProvincia</tabstop>
+  <tabstop>txtCapitulo</tabstop>
+  <tabstop>btQuitarCapitulo</tabstop>
+  <tabstop>btDetalles</tabstop>
+  <tabstop>btTemas</tabstop>
+  <tabstop>btCancelar</tabstop>
+  <tabstop>btOK</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
