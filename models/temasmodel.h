@@ -3,6 +3,8 @@
 
 #include <QSqlTableModel>
 
+#include <objs/tema.h>
+
 class TemasModel : public QSqlTableModel
 {
     Q_OBJECT
@@ -10,7 +12,7 @@ class TemasModel : public QSqlTableModel
 public:
     static TemasModel *InstanceModel();
 
-    void AnadirTema(const QString &tema);
+    void AnadirTema(Tema *tema);
 
 protected:
     TemasModel();

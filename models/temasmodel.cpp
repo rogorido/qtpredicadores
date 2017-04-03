@@ -24,11 +24,13 @@ void TemasModel::DestroyMe(){
 }
 
 
-void TemasModel::AnadirTema(const QString &tema){
+void TemasModel::AnadirTema(Tema *tema){
     QSqlQuery query;
 
+    QString tematitulo = tema->getTema();
+
     query.prepare("INSERT INTO themes(theme) VALUES(:tema)");
-    query.bindValue(":tema", tema);
+    query.bindValue(":tema", tematitulo);
     query.exec();
 
     this->select();

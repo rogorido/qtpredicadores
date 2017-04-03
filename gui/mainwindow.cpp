@@ -22,6 +22,7 @@
 
 #include "dlgcapitulos.h"
 
+#include "objs/tema.h"
 
 const int STATUSBAR_TIMEOUT = 1000;
 
@@ -128,10 +129,12 @@ void MainWindow::nuevaProvincia(){
 
 void MainWindow::nuevoTema(){
 
-    QString tema;
+    Tema *tema;
 
-    tema = QInputDialog::getText(this, "Introduzca nuevo tema", "Nueva tema");
+    QString tematitulo = QInputDialog::getText(this, "Introduzca nuevo tema", "Nueva tema");
 
-    if (!tema.isEmpty())
+    if (!tematitulo.isEmpty()){
+        tema->setTema(tematitulo);
         m_temas->AnadirTema(tema);
+    }
 }

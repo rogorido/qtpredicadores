@@ -7,6 +7,7 @@
 #include <QTableWidget>
 
 #include "models/temasmodel.h"
+#include "objs/tema.h"
 
 dlgTemas::dlgTemas(QWidget *parent) :
     QDialog(parent),
@@ -35,13 +36,14 @@ void dlgTemas::rellenarCombos(){
 
 void dlgTemas::on_btNuevoTema_clicked(){
 
-    QString tema;
+    Tema *tema;
 
-    tema = QInputDialog::getText(this, "Introduzca nuevo tema", "Nueva tema");
+    QString tematitulo = QInputDialog::getText(this, "Introduzca nuevo tema", "Nueva tema");
 
-    if (!tema.isEmpty())
+    if (!tematitulo.isEmpty()){
+        tema->setTema(tematitulo);
         m_temas->AnadirTema(tema);
-
+    }
 }
 
 void dlgTemas::on_btAnadirTema_clicked(){
