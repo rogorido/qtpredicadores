@@ -14,6 +14,10 @@ public:
 
     void AnadirTema(Tema *tema);
 
+signals:
+
+    void actualizado();
+
 protected:
     TemasModel();
     TemasModel(const TemasModel &);

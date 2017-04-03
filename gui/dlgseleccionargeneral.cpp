@@ -6,6 +6,7 @@
 #include "models/lugaresmodel.h"
 #include "models/provinciasmodel.h"
 #include "models/capitulosmodel.h"
+#include "models/temasmodel.h"
 
 #include "objs/proxynombres.h"
 
@@ -71,6 +72,12 @@ void dlgSeleccionarGeneral::cargarTipo(){
         m_objeto->setTable("vistas.chapters_alternatives");
         ui->btAnadir->setText("Añadir capítulo");
         connect(m_capitulos, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
+        break;}
+    case TEMA:{
+        m_temas = TemasModel::InstanceModel();
+        m_objeto->setTable("vistas.themes_alternatives");
+        ui->btAnadir->setText("Añadir tema");
+        connect(m_temas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     default:
         break;

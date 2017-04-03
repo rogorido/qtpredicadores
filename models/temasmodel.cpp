@@ -34,4 +34,5 @@ void TemasModel::AnadirTema(Tema *tema){
     query.exec();
 
     this->select();
+    emit(actualizado());
 }
