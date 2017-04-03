@@ -4,6 +4,7 @@
 #include <QSqlRecord>
 #include <QInputDialog>
 #include <QCompleter>
+#include <QMessageBox>
 
 #include "models/lugaresmodel.h"
 #include "models/casasmodel.h"
@@ -63,7 +64,11 @@ void dlgNuevaCasa::aceptarCasa(){
     casa->setNotas(notas);
     casa->setStudiumgenerale(studiumgenerale);
 
-    m_casas->AnadirCasa(casa);
+    if (!m_casas->AnadirCasa(casa)) {
+        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
+                                       "Error al introducir la resolución en la BD");
+        return;
+    }
 }
 
 void dlgNuevaCasa::anadirLugar(){

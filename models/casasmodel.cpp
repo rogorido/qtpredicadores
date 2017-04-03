@@ -28,7 +28,7 @@ void CasasModel::DestroyMe(){
     if (pInstance != NULL) delete pInstance;
 }
 
-void CasasModel::AnadirCasa(const Casa *casa){
+bool CasasModel::AnadirCasa(const Casa *casa){
     QSqlQuery query;
 
     QString nombre = casa->getNombre();
@@ -81,9 +81,11 @@ void CasasModel::AnadirCasa(const Casa *casa){
         qDebug() << query.lastError();
         qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
 
-        return;
+        return false;
     }
-
-    this->select();
-    emit(actualizado());
+    else {
+        this->select();
+        emit(actualizado());
+        return true;
+    }
 }

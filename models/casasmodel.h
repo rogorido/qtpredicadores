@@ -12,7 +12,7 @@ class CasasModel : public QSqlTableModel
 public:
     static CasasModel *InstanceModel();
 
-    void AnadirCasa(const Casa *casa);
+    bool AnadirCasa(const Casa *casa);
 
 signals:
 
