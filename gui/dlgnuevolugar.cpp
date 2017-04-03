@@ -60,6 +60,7 @@ void dlgNuevoLugar::aceptar(){
     lugar->setOtrosNombres(nombres);
 
     if (m_lugares->AnadirLugar(lugar)) {
+        // borrarCampos(); realmente no tiene ahora mucho sentido...
         close();
     }
     else {
@@ -80,5 +81,14 @@ void dlgNuevoLugar::cargarModelos(){
     m_paises_completer->setModel(m_paises);
     m_paises_completer->setCompletionColumn(0);
     ui->txtPais->setCompleter(m_paises_completer);
+
+}
+
+void dlgNuevoLugar::borrarCampos(){
+
+    ui->txtLugar->setText("");
+    ui->txtPais->setText("");
+    ui->txtWikidata->setText("");
+    ui->txtLugarLatin->setText("");
 
 }

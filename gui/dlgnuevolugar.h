@@ -37,6 +37,7 @@ private:
     QCompleter *m_paises_completer;
 
     void cargarModelos();
+    void borrarCampos();
 };
 
 #endif // DLGNUEVOLUGAR_H
