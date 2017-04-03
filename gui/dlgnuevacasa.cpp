@@ -64,7 +64,10 @@ void dlgNuevaCasa::aceptarCasa(){
     casa->setNotas(notas);
     casa->setStudiumgenerale(studiumgenerale);
 
-    if (!m_casas->AnadirCasa(casa)) {
+    if (m_casas->AnadirCasa(casa)) {
+        borrarCampos();
+    }
+    else {
         int ret = QMessageBox::warning(this, "Error al introducir la resolución",
                                        "Error al introducir la resolución en la BD");
         return;
@@ -112,4 +115,23 @@ void dlgNuevaCasa::quitarProvincia(){
 
     provincia_struct = elementopareado();
     ui->txtProvincia->setText("");
+}
+
+void dlgNuevaCasa::borrarCampos(){
+
+    ui->txtNombre->setText("");
+    ui->txtLugar->setText("");
+    ui->txtLugarOriginario->setText("");
+    ui->txtProvincia->setText("");
+    ui->txtNotas->clear();
+
+    ui->ckBuscado->setCheckState(Qt::Unchecked);
+    ui->ckMasculino->setCheckState(Qt::Unchecked);
+    ui->ckStudium->setCheckState(Qt::Unchecked);
+    ui->ckWiki->setCheckState(Qt::Unchecked);
+
+    lugar_struct = elementopareado();
+    provincia_struct = elementopareado();
+
+    ui->txtNombre->setFocus();
 }

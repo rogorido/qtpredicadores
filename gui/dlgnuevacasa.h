@@ -39,12 +39,14 @@ private:
     CasasModel *m_casas;
 
     struct elementopareado{
-      int id;
-      QString elemento;
+      int id = 0;
+      QString elemento = "";
     };
 
     elementopareado lugar_struct;
     elementopareado provincia_struct;
+
+    void borrarCampos();
 
 };
 
