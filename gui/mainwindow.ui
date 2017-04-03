@@ -25,7 +25,7 @@
    </property>
    <widget class="QMenu" name="menuGeneral">
     <property name="title">
-     <string>General</string>
+     <string>&amp;General</string>
     </property>
     <addaction name="actionCapitulos"/>
     <addaction name="actionNuevaPersona"/>
@@ -79,10 +79,16 @@
    <property name="text">
     <string>Nueva persona</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionNuevaObra">
    <property name="text">
-    <string>Nueva obra</string>
+    <string>Nueva &amp;obra</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionNuevaProvincia">
