@@ -88,14 +88,12 @@ void dlgNuevaResolucion::aceptarResolucion(){
 
       //QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
       QSqlQuery lastid("select max(resolution_id) from resolutions");
-
       lastid.first();
       int id = lastid.value(0).toInt();
-
-      qDebug() << "El valor del capitulo es: " << id;
-
       introducirJson(id);
       introducirTemas(id);
+
+      borrarCampos();
 
       return;
     }

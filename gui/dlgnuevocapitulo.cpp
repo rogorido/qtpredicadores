@@ -215,6 +215,4 @@ void dlgNuevoCapitulo::borrarCampos(){
     maestrogeneral_struct = elementopareado();
     lugarescogido_struct = elementopareado();
 
-
-
 }
