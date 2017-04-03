@@ -29,7 +29,7 @@ void PersonasModel::DestroyMe(){
     if (pInstance != NULL) delete pInstance;
 }
 
-void PersonasModel::AnadirPersona(const Persona *persona){
+bool PersonasModel::AnadirPersona(const Persona *persona){
     QSqlQuery query;
 
     QString nombre = persona->getNombre();
@@ -78,10 +78,12 @@ void PersonasModel::AnadirPersona(const Persona *persona){
 
     if (!query.exec()){
         qDebug() << query.lastError();
-        return;
+        return false;
     }
-
-    this->select();
-    emit(actualizado());
+    else{
+        this->select();
+        emit(actualizado());
+        return true;
+    }
 
 }

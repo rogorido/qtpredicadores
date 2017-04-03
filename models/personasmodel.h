@@ -12,7 +12,7 @@ class PersonasModel : public QSqlTableModel
 public:
     static PersonasModel *InstanceModel();
 
-    void AnadirPersona(const Persona *persona);
+    bool AnadirPersona(const Persona *persona);
 
 signals:
 

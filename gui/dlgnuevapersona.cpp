@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QCompleter>
+#include <QMessageBox>
 
 #include "objs/persona.h"
 #include "models/personasmodel.h"
@@ -107,19 +108,20 @@ void dlgNuevaPersona::aceptarPersona(){
     persona->setOtrosnombres(otrosnombres);
     persona->setNotas(notas);
 
-    m_personas->AnadirPersona(persona);
+    if (m_personas->AnadirPersona(persona)){
+        //QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
+        QSqlQuery lastid("select max(person_id) from persons");
 
-    // Aquí el problema es que no comprobamos que la query hay sido existosa...
-
-    //QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
-    QSqlQuery lastid("select max(person_id) from persons");
-
-      lastid.first();
-      int id = lastid.value(0).toInt();
-
-      qDebug() << "El valor de la persona es: " << id;
-
-      introducirJson(id);
+        lastid.first();
+        int id = lastid.value(0).toInt();
+        introducirJson(id);
+        return;
+    }
+    else{
+        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
+                                       "Error al introducir la resolución en la BD");
+        return;
+    }
 
 }
 
