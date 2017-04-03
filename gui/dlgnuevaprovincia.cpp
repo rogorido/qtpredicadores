@@ -4,6 +4,8 @@
 #include "models/provinciasmodel.h"
 #include "objs/provincia.h"
 
+#include <QMessageBox>
+
 dlgNuevaProvincia::dlgNuevaProvincia(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgNuevaProvincia)
@@ -32,5 +34,9 @@ void dlgNuevaProvincia::aceptarProvincia(){
     provincia->setErigida(erigida);
     provincia->setNotas(notas);
 
-    m_provincias->AnadirProvincia(provincia);
+    if (!m_provincias->AnadirProvincia(provincia)) {
+        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
+                                       "Error al introducir la resolución en la BD");
+        return;
+    }
 }

@@ -12,7 +12,7 @@ class ProvinciasModel : public QSqlTableModel
 public:
     static ProvinciasModel *InstanceModel();
 
-    void AnadirProvincia(const Provincia *prov);
+    bool AnadirProvincia(const Provincia *prov);
 
 signals:
 

@@ -28,7 +28,7 @@ void ProvinciasModel::DestroyMe(){
     if (pInstance != NULL) delete pInstance;
 }
 
-void ProvinciasModel::AnadirProvincia(const Provincia *provincia){
+bool ProvinciasModel::AnadirProvincia(const Provincia *provincia){
     QSqlQuery query;
 
     /*
@@ -54,9 +54,11 @@ void ProvinciasModel::AnadirProvincia(const Provincia *provincia){
 
     if (!query.exec()){
         qDebug() << query.lastError();
-        return;
+        return false;
     }
-
-    this->select();
-    emit(actualizado());
+    else {
+        this->select();
+        emit(actualizado());
+        return true;
+    }
 }
