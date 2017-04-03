@@ -13,6 +13,7 @@
 #include <QCompleter>
 #include <QInputDialog>
 #include <QDebug>
+#include <QMessageBox>
 
 dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     QDialog(parent),
@@ -196,19 +197,20 @@ void dlgNuevaObra::on_btOK_clicked(){
     obra->setFiabilidad(fiabilidad);
     obra->setNotas(notas);
 
+    if (m_obras->AnadirObra(obra)) {
+        QSqlQuery lastid("select max(work_id) from works");
 
+        lastid.first();
+        int id = lastid.value(0).toInt();
 
-    m_obras->AnadirObra(obra);
+        introducirTemas(id);
+    }
+    else {
+        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
+                                       "Error al introducir la resolución en la BD");
+        return;
+    }
 
-    // hay q poner una forma para controlar que se meta bien la obra!
-    QSqlQuery lastid("select max(work_id) from works");
-
-    lastid.first();
-    int id = lastid.value(0).toInt();
-
-    qDebug() << "El valor de la obra es: " << id;
-
-    introducirTemas(id);
 }
 
 void dlgNuevaObra::introducirTemas(int id){

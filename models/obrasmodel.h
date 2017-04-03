@@ -12,7 +12,7 @@ class ObrasModel : public QSqlTableModel
 public:
     static ObrasModel *InstanceModel();
 
-    void AnadirObra(const Obra *obra);
+    bool AnadirObra(const Obra *obra);
 
 protected:
     ObrasModel();

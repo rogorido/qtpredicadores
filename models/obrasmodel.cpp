@@ -27,7 +27,7 @@ void ObrasModel::DestroyMe(){
     if (pInstance != NULL) delete pInstance;
 }
 
-void ObrasModel::AnadirObra(const Obra *obra){
+bool ObrasModel::AnadirObra(const Obra *obra){
     QSqlQuery query;
 
     QString titulo = obra->getTitulo();
@@ -98,8 +98,11 @@ void ObrasModel::AnadirObra(const Obra *obra){
 
     if (!query.exec()){
         qDebug() << query.lastError();
-        return;
+        return false;
+    }
+    else {
+        this->select();
+        return true;
     }
 
-    this->select();
 }
