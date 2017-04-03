@@ -3,6 +3,9 @@
 
 #include <QDialog>
 
+#include "objs/tema.h"
+#include "gui/dlgseleccionargeneral.h"
+
 namespace Ui {
 class dlgTemas;
 }
@@ -20,10 +23,14 @@ private slots:
     void on_btAnadirTema_clicked();
     void on_btQuitarTema_clicked();
 
+    void recibirTema(Tema tema);
+
     void aceptarTemas();
 
 private:
     Ui::dlgTemas *ui;
+
+    dlgSeleccionarGeneral *dlgseleccionar;
 
     struct elementopareado{
       int id;

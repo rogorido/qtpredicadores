@@ -24,20 +24,24 @@ dlgTemas::~dlgTemas()
 }
 
 void dlgTemas::on_btAnadirTema_clicked(){
-    /* sacamos el record del combobox */
 
-    QSqlRecord record = m_temas->record(ui->cboTemas->currentIndex());
-    int id = record.value(0).toInt();
-    QString tema = ui->cboTemas->currentText();
+    dlgseleccionar = new dlgSeleccionarGeneral(TEMA, this);
+    dlgseleccionar->show();
+
+    connect(dlgseleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirTema(Tema)));
+
+}
+
+void dlgTemas::recibirTema(Tema tema){
 
     /* creamos un nuevo struct y lo añadimos a la lista */
     elementopareado nuevo;
-    nuevo.id = id;
-    nuevo.elemento = tema;
+    nuevo.id = tema.getId();
+    nuevo.elemento = tema.getTema();
     temas_lista.append(nuevo);
 
     /* añadimos un elem a la tabla */
-    QTableWidgetItem *item = new QTableWidgetItem(tema);
+    QTableWidgetItem *item = new QTableWidgetItem(nuevo.elemento);
     //this will give the present number of rows available.
     int insertRow = ui->twTemas->rowCount();
     //insert the row at the bottom of the table widget - using.
