@@ -1,6 +1,8 @@
 #include "temasmodel.h"
 
 #include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
 
 TemasModel *TemasModel::pInstance = 0;
 
@@ -24,15 +26,22 @@ void TemasModel::DestroyMe(){
 }
 
 
-void TemasModel::AnadirTema(Tema *tema){
+bool TemasModel::AnadirTema(const Tema *tema){
     QSqlQuery query;
 
     QString tematitulo = tema->getTema();
 
     query.prepare("INSERT INTO themes(theme) VALUES(:tema)");
     query.bindValue(":tema", tematitulo);
-    query.exec();
 
-    this->select();
-    emit(actualizado());
+    if (!query.exec()){
+        qDebug() << query.lastError();
+        return false;
+    }
+    else {
+        this->select();
+        emit(actualizado());
+        return true;
+    }
+
 }

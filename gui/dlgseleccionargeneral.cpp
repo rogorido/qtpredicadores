@@ -17,6 +17,7 @@
 #include "gui/dlgnuevocapitulo.h"
 
 #include <QInputDialog>
+#include <QMessageBox>
 
 dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *parent) :
     QDialog(parent),
@@ -334,12 +335,17 @@ void dlgSeleccionarGeneral::actualizarObjeto(){
 }
 
 void dlgSeleccionarGeneral::anadirTema(){
-    Tema *tema;
+    Tema *tema = new Tema();
 
     QString tematitulo = QInputDialog::getText(this, "Introduzca nuevo tema", "Nueva tema");
 
     if (!tematitulo.isEmpty()){
         tema->setTema(tematitulo);
-        m_temas->AnadirTema(tema);
+
+        if (!m_temas->AnadirTema(tema)){
+            int ret = QMessageBox::warning(this, "Error al introducir la resolución",
+                                           "Error al introducir la resolución en la BD");
+            return;
+        }
     }
 }

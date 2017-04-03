@@ -12,7 +12,7 @@ class TemasModel : public QSqlTableModel
 public:
     static TemasModel *InstanceModel();
 
-    void AnadirTema(Tema *tema);
+    bool AnadirTema(const Tema *tema);
 
 signals:
 
