@@ -7,6 +7,9 @@ class PersonasModel;
 class JsonGestor;
 class dlgDetalles;
 
+class QCompleter;
+class QSqlQueryModel;
+
 namespace Ui {
 class dlgNuevaPersona;
 }
@@ -30,12 +33,26 @@ private:
 
     PersonasModel *m_personas;
 
+    QCompleter *nombres_compl;
+    QCompleter *apellidos_compl;
+
+    /* Esto sincermnete no se por que hay
+     * que ponerlo asi aqui. Lo logico seria ponerlo
+     * como variable local y luego pasarlo como referencia
+     * al Qcompleter; pero no funciona... ¿sera porque se pierde
+     * el modelo al salir?
+     */
+    QSqlQueryModel *nombres_query;
+    QSqlQueryModel *apellidos_query;
+
     JsonGestor *jsongestor;
     JsonGestor *otrosnombres_json;
     dlgDetalles *dlgdetalles;
     dlgDetalles *dlgotrosnombres;
 
     void introducirJson(const int id);
+
+    void cargarCompleters();
 
 };
 

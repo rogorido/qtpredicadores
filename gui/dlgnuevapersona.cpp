@@ -3,6 +3,8 @@
 
 #include <QDebug>
 #include <QSqlQuery>
+#include <QSqlQueryModel>
+#include <QCompleter>
 
 #include "objs/persona.h"
 #include "models/personasmodel.h"
@@ -26,11 +28,36 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarPersona()));
 
+    nombres_compl = new QCompleter(this);
+    apellidos_compl = new QCompleter(this);
+    nombres_query = new QSqlQueryModel(this);
+    apellidos_query = new QSqlQueryModel(this);
+
+    cargarCompleters();
+
 }
 
 dlgNuevaPersona::~dlgNuevaPersona()
 {
     delete ui;
+}
+
+void dlgNuevaPersona::cargarCompleters(){
+
+    nombres_query->setQuery("SELECT DISTINCT name FROM persons WHERE name IS NOT NULL ORDER BY name");
+    nombres_compl->setModel(nombres_query);
+    nombres_compl->setCompletionColumn(0);
+    nombres_compl->setCaseSensitivity(Qt::CaseInsensitive);
+
+    ui->txtNombre->setCompleter(nombres_compl);
+
+    apellidos_query->setQuery("SELECT DISTINCT family_name FROM persons WHERE family_name IS NOT NULL ORDER BY family_name");
+    apellidos_compl->setModel(apellidos_query);
+    apellidos_compl->setCompletionColumn(0);
+    apellidos_compl->setCaseSensitivity(Qt::CaseInsensitive);
+
+    ui->txtApellidos->setCompleter(apellidos_compl);
+
 }
 
 void dlgNuevaPersona::aceptarPersona(){
