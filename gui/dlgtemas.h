@@ -3,8 +3,6 @@
 
 #include <QDialog>
 
-class TemasModel;
-
 namespace Ui {
 class dlgTemas;
 }
@@ -19,7 +17,6 @@ public:
 
 private slots:
 
-    void on_btNuevoTema_clicked();
     void on_btAnadirTema_clicked();
     void on_btQuitarTema_clicked();
 
@@ -28,16 +25,12 @@ private slots:
 private:
     Ui::dlgTemas *ui;
 
-    TemasModel *m_temas;
-
     struct elementopareado{
       int id;
       QString elemento;
     };
 
     QList<elementopareado> temas_lista;
-
-    void rellenarCombos();
 
 signals:
     /*

@@ -27,16 +27,6 @@
    </property>
    <column/>
   </widget>
-  <widget class="QComboBox" name="cboTemas">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>10</y>
-     <width>191</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btQuitarTema">
    <property name="geometry">
     <rect>
@@ -61,19 +51,6 @@
    </property>
    <property name="text">
     <string>Añadir</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btNuevoTema">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>100</y>
-     <width>111</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Nuevo</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btOK">

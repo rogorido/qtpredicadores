@@ -72,6 +72,13 @@ private:
     void capitulo();
     void tema();
 
+    /*
+     * solamente tenemos esto para temas
+     * pq en los otros casos usamos un dlgNuevoX
+     * pero para temas no lo tenemos sino que usamos un inputbox.
+     */
+    void anadirTema();
+
     tiposeleccionar tipo_seleccionado;
 
 };

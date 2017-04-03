@@ -1,12 +1,10 @@
 #include "dlgtemas.h"
 #include "ui_dlgtemas.h"
 
-#include <QInputDialog>
 #include <QSqlRecord>
 #include <QSqlQuery>
 #include <QTableWidget>
 
-#include "models/temasmodel.h"
 #include "objs/tema.h"
 
 dlgTemas::dlgTemas(QWidget *parent) :
@@ -18,32 +16,11 @@ dlgTemas::dlgTemas(QWidget *parent) :
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarTemas()));
 
-    m_temas = TemasModel::InstanceModel();
-    rellenarCombos();
 }
 
 dlgTemas::~dlgTemas()
 {
     delete ui;
-}
-
-void dlgTemas::rellenarCombos(){
-// TODO: modificar
-    ui->cboTemas->setModel(m_temas);
-    ui->cboTemas->setCurrentIndex(-1);
-    ui->cboTemas->setModelColumn(1);
-}
-
-void dlgTemas::on_btNuevoTema_clicked(){
-
-    Tema *tema;
-
-    QString tematitulo = QInputDialog::getText(this, "Introduzca nuevo tema", "Nueva tema");
-
-    if (!tematitulo.isEmpty()){
-        tema->setTema(tematitulo);
-        m_temas->AnadirTema(tema);
-    }
 }
 
 void dlgTemas::on_btAnadirTema_clicked(){

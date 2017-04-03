@@ -16,6 +16,8 @@
 #include "gui/dlgnuevolugar.h"
 #include "gui/dlgnuevocapitulo.h"
 
+#include <QInputDialog>
+
 dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgSeleccionarGeneral), tipo_seleccionado(valor)
@@ -317,6 +319,9 @@ void dlgSeleccionarGeneral::anadirObjeto(){
         dlgNuevoCapitulo *dlgcapitulo = new dlgNuevoCapitulo(this);
         dlgcapitulo->show();
         break;}
+    case TEMA:{
+        anadirTema();
+    }
     default:
         break;
     }
@@ -326,4 +331,15 @@ void dlgSeleccionarGeneral::anadirObjeto(){
 void dlgSeleccionarGeneral::actualizarObjeto(){
     m_objeto->select();
     ui->twSeleccionar->resizeRowsToContents();
+}
+
+void dlgSeleccionarGeneral::anadirTema(){
+    Tema *tema;
+
+    QString tematitulo = QInputDialog::getText(this, "Introduzca nuevo tema", "Nueva tema");
+
+    if (!tematitulo.isEmpty()){
+        tema->setTema(tematitulo);
+        m_temas->AnadirTema(tema);
+    }
 }
