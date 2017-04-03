@@ -28,7 +28,7 @@ void CapitulosModel::DestroyMe(){
     if (pInstance != NULL) delete pInstance;
 }
 
-void CapitulosModel::AnadirCapitulo(const Capitulo *capitulo){
+bool CapitulosModel::AnadirCapitulo(const Capitulo *capitulo){
     QSqlQuery query;
 
     QString nombre = capitulo->getNombre();
@@ -66,10 +66,11 @@ void CapitulosModel::AnadirCapitulo(const Capitulo *capitulo){
     if (!query.exec()){
         qDebug() << query.lastError();
         qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
-
-        return;
+        return false;
     }
-
-    this->select();
-    emit(actualizado());
+    else {
+        this->select();
+        emit(actualizado());
+        return true;
+    }
 }

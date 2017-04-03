@@ -12,7 +12,7 @@ class CapitulosModel : public QSqlTableModel
 public:
     static CapitulosModel *InstanceModel();
 
-    void AnadirCapitulo(const Capitulo *capitulo);
+    bool AnadirCapitulo(const Capitulo *capitulo);
 
 signals:
 

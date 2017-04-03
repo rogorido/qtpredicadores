@@ -98,7 +98,11 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
     capitulo->setFechaInicio(fechainicial);
     capitulo->setFechaFin(fechafinal);
 
-    m_capitulos->AnadirCapitulo(capitulo);
+    if (!m_capitulos->AnadirCapitulo(capitulo)) {
+        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
+                                       "Error al introducir la resolución en la BD");
+        return;
+    }
 
 }
 
