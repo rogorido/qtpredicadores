@@ -98,7 +98,10 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
     capitulo->setFechaInicio(fechainicial);
     capitulo->setFechaFin(fechafinal);
 
-    if (!m_capitulos->AnadirCapitulo(capitulo)) {
+    if (m_capitulos->AnadirCapitulo(capitulo)) {
+        borrarCampos();
+    }
+    else {
         int ret = QMessageBox::warning(this, "Error al introducir la resolución",
                                        "Error al introducir la resolución en la BD");
         return;
@@ -197,4 +200,21 @@ void dlgNuevoCapitulo::on_btQuitarMaestroGeneral_clicked(){
 
     maestrogeneral_struct = elementopareado();
     ui->txtMaestroGeneral->setText("");
+}
+
+void dlgNuevoCapitulo::borrarCampos(){
+
+    ui->txtNombreGeneral->setText("");
+    ui->txtLugar->setText("");
+    ui->txtMaestroGeneral->setText("");
+    ui->txtPaginas->setText("");
+    ui->txtTomo->setText("");
+    ui->txtNotas->clear();
+    ui->txtAsistentes->clear();
+
+    maestrogeneral_struct = elementopareado();
+    lugarescogido_struct = elementopareado();
+
+
+
 }

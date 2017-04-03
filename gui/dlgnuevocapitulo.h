@@ -73,6 +73,7 @@ private:
     elementopareado lugarescogido_struct;
 
     void cargarCompleters();
+    void borrarCampos();
 
     int extraerLugar(QString lugar);
 
