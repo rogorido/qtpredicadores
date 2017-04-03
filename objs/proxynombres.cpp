@@ -62,6 +62,9 @@ bool ProxyNombres::filterAcceptsRow(int sourceRow,
       return sourceModel()->data(index1).toString().contains(filterRegExp())
               || sourceModel()->data(index2).toString().contains(filterRegExp());
       break;
+  case TEMA:
+      return sourceModel()->data(index1).toString().contains(filterRegExp());
+      break;
 
   }
 
