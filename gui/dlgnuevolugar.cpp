@@ -4,6 +4,7 @@
 #include <QSqlQueryModel>
 #include <QCompleter>
 #include <QDebug>
+#include <QMessageBox>
 
 #include "objs/jsongestor.h"
 #include "objs/lugar.h"
@@ -58,8 +59,14 @@ void dlgNuevoLugar::aceptar(){
 
     lugar->setOtrosNombres(nombres);
 
-    m_lugares->AnadirLugar(lugar);
-    close();
+    if (m_lugares->AnadirLugar(lugar)) {
+        close();
+    }
+    else {
+        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
+                                       "Error al introducir la resolución en la BD");
+        return;
+    }
 
 }
 

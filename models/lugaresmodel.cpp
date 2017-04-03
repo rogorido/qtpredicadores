@@ -59,7 +59,7 @@ void LugaresModel::AnadirLugar(const QString &lugar, const QString &lugar_latin,
     emit(actualizado());
 }
 
-void LugaresModel::AnadirLugar(const Lugar *lugar){
+bool LugaresModel::AnadirLugar(const Lugar *lugar){
     QSqlQuery query;
 
     QString nombre_lugar = lugar->getLugar();
@@ -74,9 +74,15 @@ void LugaresModel::AnadirLugar(const Lugar *lugar){
     query.bindValue(":pais", pais);
     query.bindValue(":wikidata", wikidata);
     query.bindValue(":otrosnombres", otrosnombres);
-    query.exec();
 
-    this->select();
+    if (!query.exec()) {
+        return false;
+    }
+    else {
+        this->select();
+        emit(actualizado());
+        return true;
+    }
 
-    emit(actualizado());
+
 }

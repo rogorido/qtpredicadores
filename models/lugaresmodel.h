@@ -19,7 +19,7 @@ public:
      */
     void AnadirLugar(const QString &lugar, const QString &lugar_latin, const QString &pais);
     void AnadirLugar(const QString &lugar, const QString &lugar_latin, const QString &pais, const QString &otrosnombres);
-    void AnadirLugar(const Lugar *lugar);
+    bool AnadirLugar(const Lugar *lugar);
 
 signals:
 
