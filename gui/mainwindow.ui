@@ -74,6 +74,9 @@
    <property name="text">
     <string>Nueva casa</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
   </action>
   <action name="actionNuevaPersona">
    <property name="text">

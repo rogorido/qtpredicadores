@@ -34,7 +34,9 @@ private:
     LugaresModel *m_lugares;
 
     QSqlQueryModel *m_paises;
+    QSqlQueryModel *m_tipos;
     QCompleter *m_paises_completer;
+    QCompleter *m_tipos_completer;
 
     void cargarModelos();
     void borrarCampos();

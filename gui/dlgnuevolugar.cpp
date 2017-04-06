@@ -55,7 +55,7 @@ void dlgNuevoLugar::aceptar(){
         // entiendo q solo puede haber un elemento en la Qlist...
         nombres = otrosnombres->getJsonString(0);
     else
-        nombres = "";
+        nombres = "{}";
 
     lugar->setOtrosNombres(nombres);
 
@@ -64,8 +64,8 @@ void dlgNuevoLugar::aceptar(){
         close();
     }
     else {
-        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
-                                       "Error al introducir la resolución en la BD");
+        int ret = QMessageBox::warning(this, "Error al introducir el lugar",
+                                       "Error al introducir el lugar en la BD");
         return;
     }
 

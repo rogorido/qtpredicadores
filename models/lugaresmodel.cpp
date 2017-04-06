@@ -1,6 +1,7 @@
 #include "lugaresmodel.h"
 
 #include <QSqlQuery>
+#include <QSqlError>
 #include <QDebug>
 
 #include "objs/lugar.h"
@@ -68,7 +69,7 @@ bool LugaresModel::AnadirLugar(const Lugar *lugar){
     QString wikidata = lugar->getWikidata();
     QString otrosnombres = lugar->getOtrosNombres();
 
-    query.prepare("INSERT INTO general.lugares(place, place_latin, country, wikidata, other_names) VALUES(:lugar, :lugar_latin, :pais, :wikidata, :otrosnombres)");
+    query.prepare("INSERT INTO general.places(place, place_latin, country, wikidata, other_names) VALUES(:lugar, :lugar_latin, :pais, :wikidata, :otrosnombres)");
     query.bindValue(":lugar", nombre_lugar);
     query.bindValue(":lugar_latin", latin_lugar);
     query.bindValue(":pais", pais);
@@ -76,6 +77,7 @@ bool LugaresModel::AnadirLugar(const Lugar *lugar){
     query.bindValue(":otrosnombres", otrosnombres);
 
     if (!query.exec()) {
+        qDebug() << query.lastError();
         return false;
     }
     else {
