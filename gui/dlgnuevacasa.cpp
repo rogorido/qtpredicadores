@@ -48,6 +48,7 @@ void dlgNuevaCasa::aceptarCasa(){
     int lugar;
     int provincia;
     bool buscado = ui->ckBuscado->checkState();
+    bool masculino = ui->ckMasculino->checkState();
     bool wiki = ui->ckWiki->checkState();
     QString tipo = ui->txtTipo->text();
     QString advocacion = ui->txtAdvocacion->text();
@@ -69,6 +70,7 @@ void dlgNuevaCasa::aceptarCasa(){
     casa->setTipo(tipo);
     casa->setAdvocacion(advocacion);
     casa->setDiocesis(diocesis);
+    casa->setMasculino(masculino);
     casa->setNotas(notas);
     casa->setStudiumgenerale(studiumgenerale);
 
@@ -155,6 +157,7 @@ void dlgNuevaCasa::cargarModelos(){
     m_tipos->setQuery("SELECT DISTINCT type_house FROM general.houses ORDER BY type_house");
     m_tipos_completer->setModel(m_tipos);
     m_tipos_completer->setCompletionColumn(0);
+    m_tipos_completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtTipo->setCompleter(m_tipos_completer);
 
     m_advocaciones = new QSqlQueryModel(this);
@@ -163,6 +166,7 @@ void dlgNuevaCasa::cargarModelos(){
     m_advocaciones->setQuery("SELECT DISTINCT advocation FROM general.houses ORDER BY advocation");
     m_advocaciones_completer->setModel(m_advocaciones);
     m_advocaciones_completer->setCompletionColumn(0);
+    m_advocaciones_completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtAdvocacion->setCompleter(m_advocaciones_completer);
 
     m_diocesis = new QSqlQueryModel(this);
@@ -171,5 +175,6 @@ void dlgNuevaCasa::cargarModelos(){
     m_diocesis->setQuery("SELECT DISTINCT diocese FROM general.houses ORDER BY diocese");
     m_diocesis_completer->setModel(m_diocesis);
     m_diocesis_completer->setCompletionColumn(0);
+    m_diocesis_completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtDiocesis->setCompleter(m_diocesis_completer);
 }
