@@ -49,14 +49,14 @@
      <item>
       <widget class="QPushButton" name="btCancelar">
        <property name="text">
-        <string>Cancelar</string>
+        <string>Can&amp;celar</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btOK">
        <property name="text">
-        <string>Aceptar</string>
+        <string>&amp;Aceptar</string>
        </property>
       </widget>
      </item>

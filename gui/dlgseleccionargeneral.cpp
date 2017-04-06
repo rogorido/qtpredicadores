@@ -49,37 +49,37 @@ void dlgSeleccionarGeneral::cargarTipo(){
     case CASA:{
         m_casas = CasasModel::InstanceModel();
         m_objeto->setTable("vistas.houses_alternatives");
-        ui->btAnadir->setText("Añadir casa");
+        ui->btAnadir->setText("Aña&dir casa");
         connect(m_casas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case LUGAR:{
         m_lugares = LugaresModel::InstanceModel();
         m_objeto->setTable("vistas.places_alternatives");
-        ui->btAnadir->setText("Añadir lugar");
+        ui->btAnadir->setText("Aña&dir lugar");
         connect(m_lugares, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case PROVINCIA:{
         m_provincias = ProvinciasModel::InstanceModel();
         m_objeto->setTable("vistas.provinces_alternatives");
-        ui->btAnadir->setText("Añadir provincia");
+        ui->btAnadir->setText("Aña&dir provincia");
         connect(m_provincias, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case PERSONA:{
         m_personas = PersonasModel::InstanceModel();
         m_objeto->setTable("vistas.persons_alternatives");
-        ui->btAnadir->setText("Añadir persona");
+        ui->btAnadir->setText("Aña&dir persona");
         connect(m_personas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case CAPITULO:{
         m_capitulos = CapitulosModel::InstanceModel();
         m_objeto->setTable("vistas.chapters_alternatives");
-        ui->btAnadir->setText("Añadir capítulo");
+        ui->btAnadir->setText("Aña&dir capítulo");
         connect(m_capitulos, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case TEMA:{
         m_temas = TemasModel::InstanceModel();
         m_objeto->setTable("vistas.themes_alternatives");
-        ui->btAnadir->setText("Añadir tema");
+        ui->btAnadir->setText("Aña&dir tema");
         connect(m_temas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     default:
