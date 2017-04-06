@@ -8,6 +8,8 @@
 
 class LugaresModel;
 class CasasModel;
+class QCompleter;
+class QSqlQueryModel;
 
 namespace Ui {
 class dlgNuevaCasa;
@@ -46,7 +48,15 @@ private:
     elementopareado lugar_struct;
     elementopareado provincia_struct;
 
+    QSqlQueryModel *m_tipos;
+    QCompleter *m_tipos_completer;
+    QSqlQueryModel *m_advocaciones;
+    QCompleter *m_advocaciones_completer;
+    QSqlQueryModel *m_diocesis;
+    QCompleter *m_diocesis_completer;
+
     void borrarCampos();
+    void cargarModelos();
 
 };
 

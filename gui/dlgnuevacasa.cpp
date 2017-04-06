@@ -31,6 +31,8 @@ dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
     connect(ui->btQuitarLugar, SIGNAL(clicked()), this, SLOT(quitarLugar()));
     connect(ui->txtProvincia, SIGNAL(dobleclick()), this, SLOT(anadirProvincia()));
 
+    cargarModelos();
+
 }
 
 dlgNuevaCasa::~dlgNuevaCasa()
@@ -47,6 +49,9 @@ void dlgNuevaCasa::aceptarCasa(){
     int provincia;
     bool buscado = ui->ckBuscado->checkState();
     bool wiki = ui->ckWiki->checkState();
+    QString tipo = ui->txtTipo->text();
+    QString advocacion = ui->txtAdvocacion->text();
+    QString diocesis = ui->txtDiocesis->text();
     // este  sería interesante hacerlo con QJson...
     //QString otrosnombres;
     QString notas = ui->txtNotas->toPlainText();
@@ -61,6 +66,9 @@ void dlgNuevaCasa::aceptarCasa(){
     casa->setProvincia(provincia);
     casa->setBuscado(buscado);
     casa->setWiki(wiki);
+    casa->setTipo(tipo);
+    casa->setAdvocacion(advocacion);
+    casa->setDiocesis(diocesis);
     casa->setNotas(notas);
     casa->setStudiumgenerale(studiumgenerale);
 
@@ -68,8 +76,8 @@ void dlgNuevaCasa::aceptarCasa(){
         borrarCampos();
     }
     else {
-        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
-                                       "Error al introducir la resolución en la BD");
+        int ret = QMessageBox::warning(this, "Error al introducir la casa",
+                                       "Error al introducir la casa en la BD");
         return;
     }
 }
@@ -123,6 +131,9 @@ void dlgNuevaCasa::borrarCampos(){
     ui->txtLugar->setText("");
     ui->txtLugarOriginario->setText("");
     ui->txtProvincia->setText("");
+    ui->txtTipo->setText("");
+    ui->txtAdvocacion->setText("");
+    ui->txtDiocesis->setText("");
     ui->txtNotas->clear();
 
     ui->ckBuscado->setCheckState(Qt::Unchecked);
@@ -134,4 +145,31 @@ void dlgNuevaCasa::borrarCampos(){
     provincia_struct = elementopareado();
 
     ui->txtNombre->setFocus();
+}
+
+void dlgNuevaCasa::cargarModelos(){
+
+    m_tipos = new QSqlQueryModel(this);
+    m_tipos_completer = new QCompleter(this);
+
+    m_tipos->setQuery("SELECT DISTINCT type_house FROM general.houses ORDER BY type_house");
+    m_tipos_completer->setModel(m_tipos);
+    m_tipos_completer->setCompletionColumn(0);
+    ui->txtTipo->setCompleter(m_tipos_completer);
+
+    m_advocaciones = new QSqlQueryModel(this);
+    m_advocaciones_completer = new QCompleter(this);
+
+    m_advocaciones->setQuery("SELECT DISTINCT advocation FROM general.houses ORDER BY advocation");
+    m_advocaciones_completer->setModel(m_advocaciones);
+    m_advocaciones_completer->setCompletionColumn(0);
+    ui->txtAdvocacion->setCompleter(m_advocaciones_completer);
+
+    m_diocesis = new QSqlQueryModel(this);
+    m_diocesis_completer = new QCompleter(this);
+
+    m_diocesis->setQuery("SELECT DISTINCT diocese FROM general.houses ORDER BY diocese");
+    m_diocesis_completer->setModel(m_diocesis);
+    m_diocesis_completer->setCompletionColumn(0);
+    ui->txtDiocesis->setCompleter(m_diocesis_completer);
 }
