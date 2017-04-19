@@ -14,6 +14,7 @@ void Persona::setViaflink(QString vl){ viaflink = vl; }
 void Persona::setWikidata(QString w) { wikidata = w; }
 void Persona::setNacimiento(QString nac){ nacimiento = nac; }
 void Persona::setMuerte(QString m){ muerte = m; }
+void Persona::setDiocesis(QString d) { diocesis = d; }
 void Persona::setOtrosnombres(QString o){ otrosnombres = o; }
 void Persona::setOtrosdatos(QString o){ otrosdatos = o; }
 void Persona::setVolverMirar(bool v) { volveramirar = v; }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>609</width>
-    <height>454</height>
+    <width>630</width>
+    <height>497</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>11</x>
-     <y>10</y>
-     <width>591</width>
-     <height>441</height>
+     <x>10</x>
+     <y>11</y>
+     <width>611</width>
+     <height>481</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -86,9 +86,23 @@
      </layout>
     </item>
     <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>Diócesis</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtDiocesis"/>
+      </item>
+     </layout>
+    </item>
+    <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabGeneral">
        <attribute name="title">
@@ -144,21 +158,6 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="tabNotas">
-       <attribute name="title">
-        <string>Notas</string>
-       </attribute>
-       <widget class="QTextEdit" name="txtNotas">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>571</width>
-          <height>291</height>
-         </rect>
-        </property>
-       </widget>
-      </widget>
       <widget class="QWidget" name="tabOtros">
        <attribute name="title">
         <string>Otros datos</string>
@@ -203,6 +202,21 @@
         </property>
         <property name="text">
          <string>Cantidad de info</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tabNotas">
+       <attribute name="title">
+        <string>Notas</string>
+       </attribute>
+       <widget class="QTextEdit" name="txtNotas">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>571</width>
+          <height>291</height>
+         </rect>
         </property>
        </widget>
       </widget>

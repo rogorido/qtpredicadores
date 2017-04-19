@@ -23,6 +23,7 @@ public:
     void setWikidata(QString w);
     void setNacimiento(QString nac);
     void setMuerte(QString m);
+    void setDiocesis(QString d);
     void setOtrosnombres(QString o);
     void setOtrosdatos(QString o);
     void setVolverMirar(bool v);
@@ -42,6 +43,7 @@ public:
     QString getWikidata() const {return wikidata;}
     QString getNacimiento() const {return nacimiento;}
     QString getMuerte() const {return muerte;}
+    QString getDiocesis() const {return diocesis;}
     QString getOtrosNombres() const {return otrosnombres;}
     QString getOtrosDatos() const {return otrosdatos;}
     bool getVolverMirar() const {return volveramirar;}
@@ -62,6 +64,7 @@ private:
     QString wikidata;
     QString nacimiento;
     QString muerte;
+    QString diocesis;
     // estos dos sería interesantes hacerlos QJson...
     QString otrosnombres;
     QString otrosdatos;

@@ -35,6 +35,7 @@ private:
 
     QCompleter *nombres_compl;
     QCompleter *apellidos_compl;
+    QCompleter *diocesis_compl;
 
     /* Esto sincermnete no se por que hay
      * que ponerlo asi aqui. Lo logico seria ponerlo
@@ -44,6 +45,7 @@ private:
      */
     QSqlQueryModel *nombres_query;
     QSqlQueryModel *apellidos_query;
+    QSqlQueryModel *diocesis_query;
 
     JsonGestor *jsongestor;
     JsonGestor *otrosnombres_json;

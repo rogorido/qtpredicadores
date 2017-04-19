@@ -44,6 +44,7 @@ bool PersonasModel::AnadirPersona(const Persona *persona){
     QString notas = persona->getNotas();
     QString nacimiento = persona->getNacimiento();
     QString muerte = persona->getMuerte();
+    QString diocesis = persona->getDiocesis();
     bool volveramirar = persona->getVolverMirar();
     int cantidadinfo = persona->getCantidadInfo();
     QString otrosnombres = persona->getOtrosNombres();
@@ -58,10 +59,10 @@ bool PersonasModel::AnadirPersona(const Persona *persona){
 
     query.prepare("INSERT INTO general.persons(name, family_name, origin_name, lookedup, wikipedia, viaf, "
                   "other_names, wikipedia_link, viaf_link, wikidata_link, datebirth, "
-                  "datedeath, look_again, quantity_info, notes) "
+                  "datedeath, birth_diocesis, look_again, quantity_info, notes) "
                   "VALUES (:nombre, :apellidos, :origen, :buscado, :wikipedia, :viaf, "
                   ":otrosnombres, :wikipedia_link, :viaf_link, :wikidata_link, :nacimiento, "
-                  ":muerte, :volveramirar, :cantidad_info, :notas)");
+                  ":muerte, :diocesis, :volveramirar, :cantidad_info, :notas)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":apellidos", apellidos);
     query.bindValue(":origen", origen);
@@ -73,6 +74,7 @@ bool PersonasModel::AnadirPersona(const Persona *persona){
     query.bindValue(":viaf_link", viaflink);
     query.bindValue(":wikidata_link", wikidata);
     query.bindValue(":nacimiento", nacimiento);
+    query.bindValue(":diocesis", diocesis);
     query.bindValue(":muerte", muerte);
     query.bindValue(":volveramirar", volveramirar);
     query.bindValue(":cantidad_info", cantidadinfo);

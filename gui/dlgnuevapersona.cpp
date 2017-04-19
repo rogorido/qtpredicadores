@@ -25,8 +25,10 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
 
     nombres_compl = new QCompleter(this);
     apellidos_compl = new QCompleter(this);
+    diocesis_compl = new QCompleter(this);
     nombres_query = new QSqlQueryModel(this);
     apellidos_query = new QSqlQueryModel(this);
+    diocesis_query = new QSqlQueryModel(this);
 
     cargarJsonEstructuras();
     cargarCompleters();
@@ -63,6 +65,13 @@ void dlgNuevaPersona::cargarCompleters(){
 
     ui->txtApellidos->setCompleter(apellidos_compl);
 
+    diocesis_query->setQuery("SELECT DISTINCT birth_diocesis FROM persons WHERE birth_diocesis IS NOT NULL ORDER BY birth_diocesis");
+    diocesis_compl->setModel(diocesis_query);
+    diocesis_compl->setCompletionColumn(0);
+    diocesis_compl->setCaseSensitivity(Qt::CaseInsensitive);
+
+    ui->txtDiocesis->setCompleter(diocesis_compl);
+
 }
 
 void dlgNuevaPersona::aceptarPersona(){
@@ -81,6 +90,7 @@ void dlgNuevaPersona::aceptarPersona(){
     QString notas = ui->txtNotas->toPlainText();
     QString nacimiento = ui->txtNacimiento->text();
     QString muerte = ui->txtMuerte->text();
+    QString diocesis = ui->txtDiocesis->text();
     bool volveramirar = ui->ckVolverMirar->checkState();
     int cantidadinfo = ui->spCantidadInfo->value();
 
@@ -109,6 +119,7 @@ void dlgNuevaPersona::aceptarPersona(){
     persona->setWikidata(wikidata);
     persona->setNacimiento(nacimiento);
     persona->setMuerte(muerte);
+    persona->setDiocesis(diocesis);
     persona->setVolverMirar(volveramirar);
     persona->setCantidadInfo(cantidadinfo);
     persona->setOtrosnombres(otrosnombres);
