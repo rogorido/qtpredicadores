@@ -43,7 +43,7 @@ dlgNuevaObra::~dlgNuevaObra()
 void dlgNuevaObra::cargarCompleters(){
 
     m_lugaresoriginales = new QSqlQueryModel(this);
-    m_lugaresoriginales->setQuery("SELECT place_print_original FROM works.works ORDER BY place_print_original");
+    m_lugaresoriginales->setQuery("SELECT DISTINCT place_print_original FROM works.works ORDER BY place_print_original");
 
     c_lugaresoriginales = new QCompleter(m_lugaresoriginales, this);
     c_lugaresoriginales->setCompletionColumn(0);
@@ -51,7 +51,7 @@ void dlgNuevaObra::cargarCompleters(){
     ui->txtLugarOriginalImpresion->setCompleter(c_lugaresoriginales);
 
     m_editores = new QSqlQueryModel(this);
-    m_editores->setQuery("SELECT editor FROM works.works ORDER BY editor");
+    m_editores->setQuery("SELECT DISTINCT editor FROM works.works ORDER BY editor");
 
     c_editor = new QCompleter(m_editores, this);
     c_editor->setCompletionColumn(0);
@@ -59,7 +59,7 @@ void dlgNuevaObra::cargarCompleters(){
     ui->txtEditor->setCompleter(c_editor);
 
     m_idiomas = new QSqlQueryModel(this);
-    m_idiomas->setQuery("SELECT language_work FROM works.works ORDER BY language_work");
+    m_idiomas->setQuery("SELECT DISTINCT language_work FROM works.works ORDER BY language_work");
 
     c_idiomas = new QCompleter(m_idiomas, this);
     c_idiomas->setCompletionColumn(0);
