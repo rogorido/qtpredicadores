@@ -29,7 +29,7 @@
     <item>
      <widget class="QTabWidget" name="tbTemas">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -139,7 +139,7 @@
          <string>+</string>
         </property>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>11</x>
@@ -238,25 +238,6 @@
        <attribute name="title">
         <string>Extras</string>
        </attribute>
-       <widget class="QSpinBox" name="spFiabilidad">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>200</y>
-          <width>48</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="maximum">
-         <number>100</number>
-        </property>
-        <property name="singleStep">
-         <number>5</number>
-        </property>
-        <property name="value">
-         <number>50</number>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_10">
         <property name="geometry">
          <rect>
@@ -354,6 +335,26 @@
          </item>
          <item row="5" column="3">
           <widget class="QLineEdit" name="txtTraduccion"/>
+         </item>
+         <item row="6" column="3">
+          <widget class="QSpinBox" name="spFiabilidad">
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="singleStep">
+            <number>5</number>
+           </property>
+           <property name="value">
+            <number>50</number>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="2">
+          <widget class="QLabel" name="label_13">
+           <property name="text">
+            <string>Fiabilidad</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>

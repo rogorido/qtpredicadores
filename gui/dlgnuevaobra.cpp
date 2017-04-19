@@ -204,6 +204,7 @@ void dlgNuevaObra::on_btOK_clicked(){
         int id = lastid.value(0).toInt();
 
         introducirTemas(id);
+        borrarCampos();
     }
     else {
         int ret = QMessageBox::warning(this, "Error al introducir la resolución",
@@ -226,4 +227,43 @@ void dlgNuevaObra::introducirTemas(int id){
         query.bindValue(":tema", temasescogidos.at(i).id);
         query.exec();
     }
+}
+
+void dlgNuevaObra::borrarCampos(){
+
+    ui->txtTitulo->setText("");
+    ui->txtFormato->setText("");
+    ui->txtIdioma->setText("");
+    ui->txtLugarOriginalImpresion->setText("");
+    ui->txtNumeroPags->setText("");
+    ui->txtEditor->setText("");
+    ui->txtTipo->setText("");
+    ui->txtNotas->setText("");
+    ui->txtTraduccion->setText("");
+
+    ui->ckContenido->setCheckState(Qt::Unchecked);
+    ui->ckDudoso->setCheckState(Qt::Unchecked);
+    ui->ckExpurgable->setCheckState(Qt::Unchecked);
+    ui->ckImpreso->setCheckState(Qt::Unchecked);
+    ui->ckManuscrito->setCheckState(Qt::Unchecked);
+    ui->ckVolverMirar->setCheckState(Qt::Unchecked);
+    ui->ckTalVezImpreso->setCheckState(Qt::Unchecked);
+
+    ui->spFechaImpresion->setValue(1400);
+    ui->spTomos->setValue(0);
+    ui->spInteresante->setValue(50);
+    ui->spFiabilidad->setValue(50);
+
+    /*
+     * vaciamos lo de los temas y lo de lugar pero no lo del autor
+     * pq así podemos meter varios libros del mismo autor
+     */
+    temasescogidos.clear();
+    dlgtemas = new dlgTemas(this);
+    connect(dlgtemas, SIGNAL(temasSeleccionadosSignal(QList<elementopareado>)), SLOT(recibirTemas(QList<elementopareado>)));
+
+    ui->txtLugar->setText("");
+    lugarescogido_struct = elementopareado();
+
+    ui->txtTitulo->setFocus();
 }

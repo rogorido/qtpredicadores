@@ -58,6 +58,7 @@ private:
     dlgTemas *dlgtemas;
 
     void cargarCompleters();
+    void borrarCampos();
 
 private slots:
     void on_btAnadirLugar_clicked();
