@@ -71,6 +71,7 @@ void dlgNuevaPersona::aceptarPersona(){
 
     QString nombre = ui->txtNombre->text();
     QString apellidos = ui->txtApellidos->text();
+    QString origen = ui->txtOrigen->text();
     bool buscado = ui->ckBuscado->checkState();
     bool wiki = ui->ckWiki->checkState();
     bool viaf = ui->ckViaf->checkState();
@@ -99,6 +100,7 @@ void dlgNuevaPersona::aceptarPersona(){
 
     persona->setNombre(nombre);
     persona->setApellidos(apellidos);
+    persona->setOrigen(origen);
     persona->setBuscado(buscado);
     persona->setWiki(wiki);
     persona->setViaf(viaf);

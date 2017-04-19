@@ -3,17 +3,9 @@
 Persona::Persona() { }
 
 void Persona::setId(int i){ id = i; }
-
-void Persona::setNombre(QString n){
-    if (!n.isEmpty())
-        nombre = n;
-}
-
-void Persona::setApellidos(QString a){
-    if (!a.isEmpty())
-        apellidos = a;
-}
-
+void Persona::setNombre(QString n){ nombre = n; }
+void Persona::setApellidos(QString a){ apellidos = a; }
+void Persona::setOrigen(QString o){ origen = o; }
 void Persona::setBuscado(bool b){ buscado = b; }
 void Persona::setWiki(bool w){ wiki = w; }
 void Persona::setViaf(bool v){ viaf = v; }

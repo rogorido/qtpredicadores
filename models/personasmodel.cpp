@@ -34,6 +34,7 @@ bool PersonasModel::AnadirPersona(const Persona *persona){
 
     QString nombre = persona->getNombre();
     QString apellidos = persona->getApellidos();
+    QString origen = persona->getOrigen();
     bool buscado = persona->getBuscado();
     bool wiki = persona->getWiki();
     bool viaf = persona->getViaf();
@@ -55,14 +56,15 @@ bool PersonasModel::AnadirPersona(const Persona *persona){
     if (otrosnombres.isEmpty())
         otrosnombres = "{}";
 
-    query.prepare("INSERT INTO general.persons(name, family_name, lookedup, wikipedia, viaf, "
+    query.prepare("INSERT INTO general.persons(name, family_name, origin_name, lookedup, wikipedia, viaf, "
                   "other_names, wikipedia_link, viaf_link, wikidata_link, datebirth, "
                   "datedeath, look_again, quantity_info, notes) "
-                  "VALUES (:nombre, :apellidos, :buscado, :wikipedia, :viaf, "
+                  "VALUES (:nombre, :apellidos, :origen, :buscado, :wikipedia, :viaf, "
                   ":otrosnombres, :wikipedia_link, :viaf_link, :wikidata_link, :nacimiento, "
                   ":muerte, :volveramirar, :cantidad_info, :notas)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":apellidos", apellidos);
+    query.bindValue(":origen", origen);
     query.bindValue(":buscado", buscado);
     query.bindValue(":wikipedia", wiki);
     query.bindValue(":viaf", viaf);

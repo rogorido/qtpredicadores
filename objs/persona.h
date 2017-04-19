@@ -14,6 +14,7 @@ public:
     void setId(int i);
     void setNombre(QString n);
     void setApellidos(QString a);
+    void setOrigen(QString o);
     void setBuscado(bool b);
     void setWiki(bool w);
     void setViaf(bool v);
@@ -32,6 +33,7 @@ public:
     int getId() const {return id;}
     QString getNombre() const {return nombre;}
     QString getApellidos() const {return apellidos;}
+    QString getOrigen() const {return origen;}
     bool getBuscado() const {return buscado;}
     bool getWiki() const {return wiki;}
     bool getViaf() const {return viaf;}
@@ -51,6 +53,7 @@ private:
     int id;
     QString nombre;
     QString apellidos;
+    QString origen;
     bool buscado;
     bool wiki;
     bool viaf;

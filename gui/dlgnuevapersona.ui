@@ -13,56 +13,74 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>11</x>
      <y>10</y>
      <width>591</width>
-     <height>431</height>
+     <height>441</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
        <widget class="QLabel" name="label">
         <property name="text">
          <string>Nombre</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item>
        <widget class="QLineEdit" name="txtNombre"/>
       </item>
-      <item row="0" column="2">
+      <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
          <string>Apellidos</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="3">
+      <item>
        <widget class="QLineEdit" name="txtApellidos"/>
       </item>
-      <item row="1" column="0">
+      <item>
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Origen</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txtOrigen">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
        <widget class="QLabel" name="label_3">
         <property name="text">
          <string>Nacimineto</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item>
        <widget class="QLineEdit" name="txtNacimiento"/>
       </item>
-      <item row="1" column="2">
+      <item>
        <widget class="QLabel" name="label_4">
         <property name="text">
          <string>Muerte</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="3">
+      <item>
        <widget class="QLineEdit" name="txtMuerte"/>
       </item>
      </layout>

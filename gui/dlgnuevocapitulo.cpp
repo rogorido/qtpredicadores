@@ -44,6 +44,10 @@ dlgNuevoCapitulo::dlgNuevoCapitulo(QWidget *parent) :
     lugar_query = new QSqlQueryModel(this);
     lugar_completer = new QCompleter(this);
     cargarCompleters();
+
+    QDate fechainicial = QDate(1500, 1, 1);
+
+    ui->dtInicial->setMinimumDate(fechainicial);
 }
 
 dlgNuevoCapitulo::~dlgNuevoCapitulo()
