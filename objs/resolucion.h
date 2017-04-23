@@ -21,6 +21,7 @@ public:
     void setEntendido(bool e);
     void setVolverMirar(bool v); 
     void setTraducido(bool t);
+    void setRazonada(bool r);
     void setInteres(int i);
     void setResolucionAnterior(int r);
     void setNotas(QString n);
@@ -36,6 +37,7 @@ public:
     bool getEntendido() const {return entendido;}
     bool getVolverMirar() const {return volveramirar;}
     bool getTraducido() const {return traducido;}
+    bool getRazonada() const {return razonada;}
     int getInteres() const {return interes;}
     int getResolucionAnterior() const {return resolucion_anterior;}
     QString getNotas() const {return notas;}
@@ -52,6 +54,7 @@ private:
     bool entendido;
     bool volveramirar;
     bool traducido;
+    bool razonada;
     int interes;
     int resolucion_anterior;
     QString notas;

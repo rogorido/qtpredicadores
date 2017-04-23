@@ -72,6 +72,7 @@ void dlgNuevaResolucion::aceptarResolucion(){
     bool entendida = ui->chEntendida->checkState();
     bool volveramirar = ui->chVolverMirar->checkState();
     bool traducida = ui->chTradudida->checkState();
+    bool razonada = ui->chRazonada->checkState();
 
     resolucion->setTexto(resolucion_texto);
     resolucion->setTextoResumido(resolucion_resumen);
@@ -81,6 +82,7 @@ void dlgNuevaResolucion::aceptarResolucion(){
     resolucion->setEntendido(entendida);
     resolucion->setVolverMirar(volveramirar);
     resolucion->setTraducido(traducida);
+    resolucion->setRazonada(razonada);
     resolucion->setCapitulo(capitulo_id);
     resolucion->setNotas(notas);
 

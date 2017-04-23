@@ -13,6 +13,7 @@ void Resolucion::setProvincia(int p) { provincia = p; }
 void Resolucion::setEntendido(bool e) { entendido = e; }
 void Resolucion::setVolverMirar(bool v) { volveramirar = v; }
 void Resolucion::setTraducido(bool t) { traducido = t; }
+void Resolucion::setRazonada(bool r) { razonada = r; }
 void Resolucion::setInteres(int i) { interes = i; }
 void Resolucion::setResolucionAnterior(int r) { resolucion_anterior = r; }
 void Resolucion::setNotas(QString n) { notas = n; }

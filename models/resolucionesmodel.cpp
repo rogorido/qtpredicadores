@@ -40,14 +40,15 @@ bool ResolucionesModel::anadirResolucion(const Resolucion *resolucion){
     bool entendido = resolucion->getEntendido();
     bool volveramirar = resolucion->getVolverMirar();
     bool traducido = resolucion->getTraducido();
+    bool razonada = resolucion->getRazonada();
     int interesante = resolucion->getInteres();
     int resolucion_anterior = resolucion->getResolucionAnterior();
     QString notas = resolucion->getNotas();
 
     query.prepare("INSERT INTO chapters.resolutions(resolution_text, resolution_traduction, resolution_summary, chapter, "
-          "small_title, understood, look_again, province_id, translated, interesting, resolution_previous, notes) "
+          "small_title, understood, look_again, province_id, translated, motivated, interesting, resolution_previous, notes) "
           "VALUES(:resolucion_texto, :resolucion_traduccion, :resolucion_resumen, :capitulo, "
-          ":epigrafe, :entendida, :volveramirar, :provincia, :traducida, :interesante, :resolucion_anterior, :notas)");
+          ":epigrafe, :entendida, :volveramirar, :provincia, :traducida, :razonada, :interesante, :resolucion_anterior, :notas)");
     query.bindValue(":resolucion_texto", texto);
     query.bindValue(":resolucion_traduccion", texto_traducido);
     query.bindValue(":resolucion_resumen", texto_resumido);
@@ -63,6 +64,7 @@ bool ResolucionesModel::anadirResolucion(const Resolucion *resolucion){
     query.bindValue(":entendida", entendido);
     query.bindValue(":volveramirar", volveramirar);
     query.bindValue(":traducida", traducido);
+    query.bindValue(":razonada", razonada);
     query.bindValue(":interesante", interesante);
     query.bindValue("resolucion_anterior", resolucion_anterior);
     query.bindValue(":notas", notas);
