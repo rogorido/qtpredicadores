@@ -7,6 +7,14 @@
 #include <QSqlQueryModel>
 #include <QCompleter>
 
+const QString sqlresoluciones_valores="SELECT DISTINCT value from resolutions_details, json_each_text(details) ORDER BY value;";
+const QString sqlresoluciones_keys="SELECT DISTINCT jsonb_object_keys(details) FROM resolutions_details ORDER BY jsonb_object_keys(details);";
+const QString sqlobras_valores="SELECT DISTINCT value from works_details, jsonb_each_text(details) ORDER BY value;";
+const QString sqlobras_keys="SELECT DISTINCT jsonb_object_keys(details) FROM works_details ORDER BY jsonb_object_keys(details);";
+const QString sqlpersonas_valores="SELECT DISTINCT value from persons_details, jsonb_each_text(details) ORDER BY value;";
+const QString sqlpersonas_keys="SELECT DISTINCT jsonb_object_keys(details) FROM persons_details ORDER BY jsonb_object_keys(details);";
+
+
 dlgDetalles::dlgDetalles(JsonGestor *json, int t, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgDetalles), jsondetalles(json), tipo(t)
@@ -114,7 +122,7 @@ void dlgDetalles::cargarModelos(){
      */
 
     m_keys = new QSqlQueryModel(this);
-    m_keys->setQuery("SELECT DISTINCT json_object_keys(details) FROM resolutions_details ORDER BY json_object_keys(details);");
+    m_keys->setQuery(sqlresoluciones_keys);
 
     keys_completer = new QCompleter(this);
     keys_completer->setModel(m_keys);
@@ -125,7 +133,7 @@ void dlgDetalles::cargarModelos(){
 
     m_values = new QSqlQueryModel(this);
     // ponemos una cosa general que luego habrá que precisar
-    m_values->setQuery("SELECT DISTINCT value from resoluciones_details, json_each_text(details) ORDER BY value;");
+    m_values->setQuery(sqlresoluciones_valores);
 
     values_completer = new QCompleter(this);
     values_completer->setModel(m_values);
