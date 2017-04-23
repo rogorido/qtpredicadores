@@ -356,6 +356,16 @@
            </property>
           </widget>
          </item>
+         <item row="3" column="2">
+          <widget class="QLabel" name="label_14">
+           <property name="text">
+            <string>Page Quetif</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QLineEdit" name="txtPageQuetif"/>
+         </item>
         </layout>
        </widget>
       </widget>

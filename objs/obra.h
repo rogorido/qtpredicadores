@@ -34,6 +34,7 @@ public:
     void setFiabilidad(int f);
     void setVolverMirar(bool v);
     void setTraduccion(QString t);
+    void setPageQuetif(QString p);
     void setNotas(QString n);
 
     //getters
@@ -60,6 +61,7 @@ public:
     int getFiabilidad() const {return fiabilidad;}
     bool getVolverMirar() const {return volveramirar;}
     QString getTraduccion() const {return traduccion;}
+    QString getPageQuetif() const {return page_quetif;}
     QString getNotas() const {return notas;}
 
 private:
@@ -87,6 +89,7 @@ private:
     int fiabilidad;
     bool volveramirar;
     QString traduccion;
+    QString page_quetif;
     QString notas;
 
 };

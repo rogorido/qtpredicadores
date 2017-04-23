@@ -170,6 +170,7 @@ void dlgNuevaObra::on_btOK_clicked(){
     int interesante = ui->spInteresante->value();
     int fiabilidad = ui->spFiabilidad->value();
     QString notas = ui->txtNotas->toPlainText();
+    QString pagequetif = ui->txtPageQuetif->text();
 
     qDebug() << "el autor es: " << autor;
 
@@ -195,6 +196,7 @@ void dlgNuevaObra::on_btOK_clicked(){
     obra->setTituloReducido(tituloreducido);
     obra->setInteresante(interesante);
     obra->setFiabilidad(fiabilidad);
+    obra->setPageQuetif(pagequetif);
     obra->setNotas(notas);
 
     if (m_obras->AnadirObra(obra)) {
@@ -240,6 +242,7 @@ void dlgNuevaObra::borrarCampos(){
     ui->txtTipo->setText("");
     ui->txtNotas->setText("");
     ui->txtTraduccion->setText("");
+    ui->txtPageQuetif->setText("");
 
     ui->ckContenido->setCheckState(Qt::Unchecked);
     ui->ckDudoso->setCheckState(Qt::Unchecked);
