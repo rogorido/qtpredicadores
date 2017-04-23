@@ -109,9 +109,9 @@
   <widget class="QLineEdit" name="txtKey">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>352</x>
      <y>150</y>
-     <width>113</width>
+     <width>301</width>
      <height>22</height>
     </rect>
    </property>
@@ -119,9 +119,9 @@
   <widget class="QLineEdit" name="txtValue">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>150</y>
-     <width>113</width>
+     <x>350</x>
+     <y>180</y>
+     <width>301</width>
      <height>22</height>
     </rect>
    </property>
@@ -142,8 +142,8 @@
   <widget class="QPushButton" name="btJsonAnadirLibre">
    <property name="geometry">
     <rect>
-     <x>610</x>
-     <y>150</y>
+     <x>300</x>
+     <y>170</y>
      <width>51</width>
      <height>22</height>
     </rect>
@@ -224,7 +224,7 @@
    <property name="geometry">
     <rect>
      <x>380</x>
-     <y>190</y>
+     <y>270</y>
      <width>48</width>
      <height>23</height>
     </rect>
@@ -240,7 +240,7 @@
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>200</y>
+     <y>280</y>
      <width>58</width>
      <height>14</height>
     </rect>
@@ -253,7 +253,7 @@
    <property name="geometry">
     <rect>
      <x>440</x>
-     <y>190</y>
+     <y>270</y>
      <width>80</width>
      <height>22</height>
     </rect>
