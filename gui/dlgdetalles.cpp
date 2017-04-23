@@ -122,7 +122,24 @@ void dlgDetalles::cargarModelos(){
      */
 
     m_keys = new QSqlQueryModel(this);
-    m_keys->setQuery(sqlresoluciones_keys);
+    switch (tipo) {
+    case RESOLUCION:
+        m_keys->setQuery(sqlresoluciones_keys);
+        break;
+    case PERSONADETALLES:
+        m_keys->setQuery(sqlpersonas_keys);
+        break;
+    case OBRA:
+        m_keys->setQuery(sqlobras_keys);
+        break;
+    default:
+        /*
+         * en caso de 0 ponemos el de resoluciones, aunque en principio
+         * para que no dé error...
+         */
+        m_keys->setQuery(sqlresoluciones_keys);
+        break;
+    }
 
     keys_completer = new QCompleter(this);
     keys_completer->setModel(m_keys);
@@ -132,8 +149,24 @@ void dlgDetalles::cargarModelos(){
     ui->txtKey->setCompleter(keys_completer);
 
     m_values = new QSqlQueryModel(this);
-    // ponemos una cosa general que luego habrá que precisar
-    m_values->setQuery(sqlresoluciones_valores);
+    switch (tipo) {
+    case RESOLUCION:
+        m_values->setQuery(sqlresoluciones_values);
+        break;
+    case PERSONADETALLES:
+        m_values->setQuery(sqlpersonas_values);
+        break;
+    case OBRA:
+        m_values->setQuery(sqlobras_values);
+        break;
+    default:
+        /*
+         * en caso de 0 ponemos el de resoluciones, aunque en principio
+         * para que no dé error...
+         */
+        m_values->setQuery(sqlresoluciones_values);
+        break;
+    }
 
     values_completer = new QCompleter(this);
     values_completer->setModel(m_values);
