@@ -45,6 +45,13 @@ void dlgDetalles::recibirLugar(Lugar lugar){
     jsondetalles->anadirValor("Lugar", valor, id);
 }
 
+void dlgDetalles::recibirProvincia(Provincia provincia){
+    int id = provincia.getId();
+    QString valor = provincia.getNombre();
+
+    jsondetalles->anadirValor("Provincia", valor, id);
+}
+
 void dlgDetalles::recibirCasa(int id, QString valor){
     jsondetalles->anadirValor("Casa", valor, id);
 }
@@ -75,6 +82,15 @@ void dlgDetalles::on_btLugar_clicked()
     dlgSeleccionar->show();
 
     connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));
+
+}
+
+void dlgDetalles::on_btProvincia_clicked()
+{
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgSeleccionar->show();
+
+    connect(dlgSeleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
 
 }
 

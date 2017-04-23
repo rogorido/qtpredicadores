@@ -262,6 +262,19 @@
     <string>Añadir</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btProvincia">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>110</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Provincia</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
