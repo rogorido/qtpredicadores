@@ -20,7 +20,7 @@ class dlgDetalles : public QDialog
     Q_OBJECT
 
 public:
-    explicit dlgDetalles(JsonGestor *json, QWidget *parent = 0);
+    explicit dlgDetalles(JsonGestor *json, int t, QWidget *parent = 0);
     ~dlgDetalles();
 
 private slots:
@@ -53,6 +53,13 @@ private:
     JsonGestor *jsondetalles;
 
     void cargarModelos();
+
+    /*
+     * el tipo sirve para escoger los valores del completer
+     * para meter valores libres
+     */
+
+    int tipo;
 };
 
 #endif // DLGDETALLES_H

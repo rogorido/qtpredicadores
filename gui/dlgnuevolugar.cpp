@@ -10,6 +10,7 @@
 #include "objs/lugar.h"
 #include "models/lugaresmodel.h"
 #include "dlgdetalles.h"
+#include "objs/variados.h"
 
 dlgNuevoLugar::dlgNuevoLugar(QWidget *parent) :
     QDialog(parent),
@@ -20,7 +21,7 @@ dlgNuevoLugar::dlgNuevoLugar(QWidget *parent) :
     m_lugares = LugaresModel::InstanceModel();
     otrosnombres = new JsonGestor(this);
 
-    dlgdetalles = new dlgDetalles(otrosnombres, this);
+    dlgdetalles = new dlgDetalles(otrosnombres, OTROS, this);
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));

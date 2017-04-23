@@ -7,9 +7,9 @@
 #include <QSqlQueryModel>
 #include <QCompleter>
 
-dlgDetalles::dlgDetalles(JsonGestor *json, QWidget *parent) :
+dlgDetalles::dlgDetalles(JsonGestor *json, int t, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::dlgDetalles), jsondetalles(json)
+    ui(new Ui::dlgDetalles), jsondetalles(json), tipo(t)
 {
     ui->setupUi(this);
     jsondetalles->setTreeWidget(ui->twDetalles);

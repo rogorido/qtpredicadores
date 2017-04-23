@@ -10,4 +10,11 @@ enum tiposeleccionar {
     TEMA
 };
 
+enum tipodetalles {
+    RESOLUCION,
+    OBRA,
+    PERSONADETALLES,
+    OTROS
+};
+
 #endif // VARIADOS_H

@@ -11,6 +11,7 @@
 #include "models/personasmodel.h"
 #include "objs/jsongestor.h"
 #include "gui/dlgdetalles.h"
+#include "objs/variados.h"
 
 dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
     QDialog(parent),
@@ -42,10 +43,10 @@ dlgNuevaPersona::~dlgNuevaPersona()
 
 void dlgNuevaPersona::cargarJsonEstructuras(){
     jsongestor = new JsonGestor(this);
-    dlgdetalles = new dlgDetalles(jsongestor, this);
+    dlgdetalles = new dlgDetalles(jsongestor, PERSONADETALLES, this);
 
     otrosnombres_json = new JsonGestor(this);
-    dlgotrosnombres = new dlgDetalles(otrosnombres_json, this);
+    dlgotrosnombres = new dlgDetalles(otrosnombres_json, OTROS, this);
 
 }
 

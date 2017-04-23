@@ -30,7 +30,7 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     jsongestor = new JsonGestor(this);
     m_resoluciones = ResolucionesModel::InstanceModel();
 
-    dlgdetalles = new dlgDetalles(jsongestor, this);
+    dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, this);
 
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
@@ -228,7 +228,7 @@ void dlgNuevaResolucion::borrarCampos(){
     ui->spInteresante->setValue(0);
 
     jsongestor = new JsonGestor(this);
-    dlgdetalles = new dlgDetalles(jsongestor, this);
+    dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, this);
 
     temas_lista.clear();
 
