@@ -151,20 +151,20 @@ void dlgDetalles::cargarModelos(){
     m_values = new QSqlQueryModel(this);
     switch (tipo) {
     case RESOLUCION:
-        m_values->setQuery(sqlresoluciones_values);
+        m_values->setQuery(sqlresoluciones_valores);
         break;
     case PERSONADETALLES:
-        m_values->setQuery(sqlpersonas_values);
+        m_values->setQuery(sqlpersonas_valores);
         break;
     case OBRA:
-        m_values->setQuery(sqlobras_values);
+        m_values->setQuery(sqlobras_valores);
         break;
     default:
         /*
          * en caso de 0 ponemos el de resoluciones, aunque en principio
          * para que no dé error...
          */
-        m_values->setQuery(sqlresoluciones_values);
+        m_values->setQuery(sqlresoluciones_valores);
         break;
     }
 
