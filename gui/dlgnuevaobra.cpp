@@ -7,6 +7,7 @@
 #include "dlgnuevolugar.h"
 #include "objs/obra.h"
 #include "objs/variados.h"
+#include "objs/jsongestor.h"
 
 #include <QSqlQueryModel>
 #include <QSqlQuery>
@@ -27,10 +28,15 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     dlgtemas = new dlgTemas(this);
     connect(dlgtemas, SIGNAL(temasSeleccionadosSignal(QList<elementopareado>)), SLOT(recibirTemas(QList<elementopareado>)));
 
+    json_detalles = new JsonGestor(this);
+    dlgdetalles = new dlgDetalles(json_detalles, this);
+
     connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(on_btAnadirLugar_clicked()));
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(on_btIntroducirLugar_clicked()));
     connect(ui->txtAutor, SIGNAL(dobleclick()), this, SLOT(on_btSeleccionarAutor_clicked()));
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
+    // mostramos el form de dlgdetalles que ya está creado...
+    connect(ui->btDetalles, SIGNAL(clicked(bool)), dlgdetalles, SLOT(show()));
 
     cargarCompleters();
 }
@@ -206,6 +212,7 @@ void dlgNuevaObra::on_btOK_clicked(){
         int id = lastid.value(0).toInt();
 
         introducirTemas(id);
+        introducirJson(id);
         borrarCampos();
     }
     else {
@@ -269,4 +276,27 @@ void dlgNuevaObra::borrarCampos(){
     lugarescogido_struct = elementopareado();
 
     ui->txtTitulo->setFocus();
+}
+
+
+void dlgNuevaObra::introducirJson(const int id){
+
+    QSqlQuery query;
+    int totaljson;
+
+    json_detalles->actualizarPrevioIntroducir();
+    totaljson = json_detalles->getSize();
+
+    if (totaljson == 0)
+        return;
+
+    for (int var = 0; var < totaljson; ++var) {
+
+        QString jsonfinal = json_detalles->getJsonString(var);
+
+        query.prepare("INSERT INTO works_details(work_id, details) VALUES(:workid, :json)");
+        query.bindValue(":workid", id);
+        query.bindValue(":json", jsonfinal);
+        query.exec();
+    }
 }

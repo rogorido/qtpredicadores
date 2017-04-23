@@ -6,11 +6,13 @@
 #include "objs/persona.h"
 #include "objs/lugar.h"
 #include "gui/dlgtemas.h"
+#include "gui/dlgdetalles.h"
 
 class LugaresModel;
 class ObrasModel;
 class QCompleter;
 class QSqlQueryModel;
+class JsonGestor;
 
 namespace Ui {
 class dlgNuevaObra;
@@ -55,10 +57,14 @@ private:
     elementopareado lugarescogido_struct;
     QList<elementopareado> temasescogidos;
 
+    JsonGestor *json_detalles;
+
     dlgTemas *dlgtemas;
+    dlgDetalles *dlgdetalles;
 
     void cargarCompleters();
     void borrarCampos();
+    void introducirJson(const int id);
 
 private slots:
     void on_btAnadirLugar_clicked();

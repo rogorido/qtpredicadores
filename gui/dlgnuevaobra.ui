@@ -13,11 +13,11 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>11</y>
      <width>651</width>
      <height>491</height>
     </rect>
@@ -388,6 +388,13 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="btDetalles">
+        <property name="text">
+         <string>&amp;Detalles</string>
+        </property>
+       </widget>
+      </item>
       <item>
        <widget class="QPushButton" name="btTemas">
         <property name="text">
