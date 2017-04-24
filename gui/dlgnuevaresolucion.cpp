@@ -3,10 +3,10 @@
 
 #include <QSqlRecord>
 #include <QSqlQuery>
-#include <QCompleter>
 #include <QTableWidget>
 #include <QMessageBox>
-
+#include <QSqlQueryModel>
+#include <QCompleter>
 #include <QJsonValue>
 #include <QSqlError>
 
@@ -39,6 +39,8 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     connect(ui->txtCapitulo, SIGNAL(dobleclick()), this, SLOT(anadirCapitulo()));
     connect(ui->btQuitarCapitulo, SIGNAL(clicked()), this, SLOT(quitarCapitulo()));
 
+    cargarModelos();
+
     /*
      * si capitulo !=0 entonces es que venimos del form Capitulos
      */
@@ -61,6 +63,12 @@ void dlgNuevaResolucion::aceptarResolucion(){
     if (resolucion_texto.isEmpty()){
         int ret = QMessageBox::warning(this, "No hay texto en la resolución general",
                                        "Introduzca por favor texto en la resolución");
+        return;
+    }
+
+    if (capitulo_id == 0){
+        int ret = QMessageBox::warning(this, "El capítulo esta vacío",
+                                       "El capítulo esta vacío. Introduzca por favor el capítulo de la resolución");
         return;
     }
 
@@ -189,8 +197,6 @@ void dlgNuevaResolucion::recibirCapitulo(Capitulo capitulo){
 
     capitulo_id = capitulo.getId();
 
-    qDebug() << "el capiutlo es: " << capitulo_id;
-
     QString capitulo_string = capitulo.getNombre() + ' (' + capitulo.getFechaInicio().toString() + ')';
 
     ui->txtCapitulo->setText(capitulo_string);
@@ -237,4 +243,16 @@ void dlgNuevaResolucion::borrarCampos(){
 
     ui->txtEpigrafe->setFocus();
 
+}
+
+void dlgNuevaResolucion::cargarModelos(){
+
+    m_epigrafe = new QSqlQueryModel(this);
+    m_epigrafe->setQuery("SELECT DISTINCT small_title FROM resolutions ORDER BY small_title;");
+
+    m_epigrafe_completer = new QCompleter(m_epigrafe, this);
+    m_epigrafe_completer->setCompletionColumn(0);
+    m_epigrafe_completer->setCaseSensitivity(Qt::CaseInsensitive);
+
+    ui->txtEpigrafe->setCompleter(m_epigrafe_completer);
 }

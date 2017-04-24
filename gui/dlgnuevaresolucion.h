@@ -10,6 +10,9 @@ class ResolucionesModel;
 class JsonGestor;
 class dlgDetalles;
 
+class QSqlQueryModel;
+class QCompleter;
+
 namespace Ui {
 class dlgNuevaResolucion;
 }
@@ -46,11 +49,13 @@ private:
      */
     int provincia_id;
     int capitulo_id;
+    QSqlQueryModel *m_epigrafe;
+    QCompleter *m_epigrafe_completer;
 
+    void cargarModelos();
     void rellenarCombos();
     void introducirJson(const int id);
     void introducirTemas(const int id);
-
     void borrarCampos();
 
     /*

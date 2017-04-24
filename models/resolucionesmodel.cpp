@@ -52,7 +52,11 @@ bool ResolucionesModel::anadirResolucion(const Resolucion *resolucion){
     query.bindValue(":resolucion_texto", texto);
     query.bindValue(":resolucion_traduccion", texto_traducido);
     query.bindValue(":resolucion_resumen", texto_resumido);
-    if (!capitulo != 0)
+    /*
+     * esta comprobación es absurda pq realmetne no debería llegar hasta aquí
+     * con un capítulo =0; además de que tp deja la BD meter un capítulo NULL..
+     */
+    if (capitulo != 0)
         query.bindValue(":capitulo", capitulo);
     else
         query.bindValue(":capitulo", QVariant(QVariant::Int));
