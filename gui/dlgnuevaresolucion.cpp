@@ -232,6 +232,8 @@ void dlgNuevaResolucion::borrarCampos(){
     ui->txtResolucionNotas->clear();
     ui->txtResolucionResumen->clear();
     ui->txtResolucionTraduccion->clear();
+    ui->txtVerbo->setText("");
+    ui->txtExpresion->setText("");
 
     ui->chEntendida->setCheckState(Qt::Unchecked);
     ui->chTradudida->setCheckState(Qt::Unchecked);
@@ -306,6 +308,8 @@ void dlgNuevaResolucion::on_btAnadirVerbo_clicked(){
 
     m_verbos->setData(index, verbo);
 
+    ui->txtVerbo->setText("");
+
 }
 
 void dlgNuevaResolucion::on_btQuitarVerbo_clicked(){
@@ -328,6 +332,8 @@ void dlgNuevaResolucion::on_btAnadirExpresion_clicked(){
     QModelIndex index = m_expresiones->index(row);
 
     m_expresiones->setData(index, expresion);
+
+    ui->txtExpresion->setText("");
 }
 
 void dlgNuevaResolucion::on_btQuitarExpresion_clicked(){
