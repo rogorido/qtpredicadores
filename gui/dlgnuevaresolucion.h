@@ -90,7 +90,6 @@ private slots:
     void quitarCapitulo();
 
     // en teoría casi un qlist de ints sería suficiente...
-    void recibirTemas(QList<elementopareado> temas);
     void recibirProvincia(Provincia provincia);
     void recibirCapitulo(Capitulo capitulo);
 

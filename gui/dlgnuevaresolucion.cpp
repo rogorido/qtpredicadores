@@ -169,12 +169,7 @@ void dlgNuevaResolucion::on_btTemas_clicked(){
 
     dlgtemas->show();
 
-    connect(dlgtemas, SIGNAL(temasSeleccionadosSignal(QList<elementopareado>)), this, SLOT(recibirTemas(QList<elementopareado>)));
-}
-
-void dlgNuevaResolucion::recibirTemas(QList<elementopareado> temas){
-
-    temas_lista = temas;
+    //connect(dlgtemas, SIGNAL(temasSeleccionadosSignal(QList<elementopareado>)), this, SLOT(recibirTemas(QList<elementopareado>)));
 }
 
 void dlgNuevaResolucion::anadirProvincia(){
