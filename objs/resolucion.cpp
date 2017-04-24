@@ -16,4 +16,6 @@ void Resolucion::setTraducido(bool t) { traducido = t; }
 void Resolucion::setRazonada(bool r) { razonada = r; }
 void Resolucion::setInteres(int i) { interes = i; }
 void Resolucion::setResolucionAnterior(int r) { resolucion_anterior = r; }
+void Resolucion::setVerbos(QStringList v) { verbos = v; }
+void Resolucion::setExpresiones(QStringList e) { expresiones = e; }
 void Resolucion::setNotas(QString n) { notas = n; }

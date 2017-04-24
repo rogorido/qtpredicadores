@@ -286,6 +286,7 @@ void dlgNuevaResolucion::on_btAnadirVerbo_clicked(){
 
 void dlgNuevaResolucion::on_btQuitarVerbo_clicked(){
 
+    m_verbos->removeRows(ui->twVerbs->currentIndex().row(),1);
 }
 
 void dlgNuevaResolucion::on_btAnadirExpresion_clicked(){
@@ -307,4 +308,5 @@ void dlgNuevaResolucion::on_btAnadirExpresion_clicked(){
 
 void dlgNuevaResolucion::on_btQuitarExpresion_clicked(){
 
+    m_expresiones->removeRows(ui->twExpresiones->currentIndex().row(), 1);
 }

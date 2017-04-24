@@ -2,6 +2,7 @@
 #define RESOLUCION_H
 
 #include <QString>
+#include <QStringList>
 
 // no lo derivo de QObject, por lo que no tiene ni signals ni slots
 
@@ -24,6 +25,8 @@ public:
     void setRazonada(bool r);
     void setInteres(int i);
     void setResolucionAnterior(int r);
+    void setVerbos(QStringList v);
+    void setExpresiones(QStringList e);
     void setNotas(QString n);
 
     //getters
@@ -40,6 +43,8 @@ public:
     bool getRazonada() const {return razonada;}
     int getInteres() const {return interes;}
     int getResolucionAnterior() const {return resolucion_anterior;}
+    QStringList getVerbos() const {return verbos;}
+    QStringList getExpresiones() const {return expresiones;}
     QString getNotas() const {return notas;}
     
 private:
@@ -57,6 +62,8 @@ private:
     bool razonada;
     int interes;
     int resolucion_anterior;
+    QStringList verbos;
+    QStringList expresiones;
     QString notas;
 
 };
