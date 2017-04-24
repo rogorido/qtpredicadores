@@ -15,7 +15,7 @@ class dlgTemas : public QDialog
     Q_OBJECT
 
 public:
-    explicit dlgTemas(QWidget *parent = 0);
+    explicit dlgTemas(QList<elementopareado> *temas_lista, QWidget *parent = 0);
     ~dlgTemas();
 
 private slots:
@@ -32,7 +32,7 @@ private:
 
     dlgSeleccionarGeneral *dlgseleccionar;
 
-    QList<elementopareado> temas_lista;
+    QList<elementopareado> *temas;
 
 signals:
     /*

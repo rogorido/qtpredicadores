@@ -18,8 +18,8 @@ enum tipodetalles {
 };
 
 struct elementopareado{
-  int id;
-  QString elemento;
+  int id = 0;
+  QString elemento = "";
 };
 
 #endif // VARIADOS_H

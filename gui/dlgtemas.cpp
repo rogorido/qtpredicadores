@@ -7,9 +7,9 @@
 
 #include "objs/tema.h"
 
-dlgTemas::dlgTemas(QWidget *parent) :
+dlgTemas::dlgTemas(QList<elementopareado> *temas_lista, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::dlgTemas)
+    ui(new Ui::dlgTemas), temas(temas_lista)
 {
     ui->setupUi(this);
 
@@ -38,7 +38,7 @@ void dlgTemas::recibirTema(Tema tema){
     elementopareado nuevo;
     nuevo.id = tema.getId();
     nuevo.elemento = tema.getTema();
-    temas_lista.append(nuevo);
+    temas->append(nuevo);
 
     /* añadimos un elem a la tabla */
     QTableWidgetItem *item = new QTableWidgetItem(nuevo.elemento);
@@ -57,13 +57,12 @@ void dlgTemas::on_btQuitarTema_clicked(){
     int row = ui->twTemas->currentRow();
     ui->twTemas->removeRow(row);
 
-    for (int i = 0; i < temas_lista.size(); ++i) {
-      if(temas_lista.at(i).elemento == valor){
-        temas_lista.removeAt(i);
+    for (int i = 0; i < temas->size(); ++i) {
+      if(temas->at(i).elemento == valor){
+        temas->removeAt(i);
         break;
       }
      }
-
 }
 
 void dlgTemas::aceptarTemas(){

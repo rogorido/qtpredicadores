@@ -32,6 +32,7 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     m_resoluciones = ResolucionesModel::InstanceModel();
 
     dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, this);
+    dlgtemas = new dlgTemas(temas_lista, this);
 
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
@@ -145,14 +146,14 @@ void dlgNuevaResolucion::introducirJson(const int id){
 
 void dlgNuevaResolucion::introducirTemas(const int id){
 
-    if (temas_lista.size() == 0)
+    if (temas_lista->size() == 0)
         return;
 
-    for (int i = 0; i < temas_lista.size(); ++i) {
+    for (int i = 0; i < temas_lista->size(); ++i) {
 
         QSqlQuery query;
         query.prepare("INSERT INTO resolutions_themes(theme_id, resolution_id) VALUES (:tema, :resolucion)");
-        query.bindValue(":tema", temas_lista.at(i).id);
+        query.bindValue(":tema", temas_lista->at(i).id);
         query.bindValue(":resolucion", id);
         query.exec();
     }
@@ -165,8 +166,6 @@ void dlgNuevaResolucion::on_btDetalles_clicked()
 }
 
 void dlgNuevaResolucion::on_btTemas_clicked(){
-
-    dlgTemas *dlgtemas = new dlgTemas(this);
 
     dlgtemas->show();
 
@@ -249,7 +248,7 @@ void dlgNuevaResolucion::borrarCampos(){
     ui->twVerbs->setModel(m_verbos);
     ui->twExpresiones->setModel(m_expresiones);
 
-    temas_lista.clear();
+    temas_lista->clear();
 
     provincia_id = 0;
     capitulo_id = 0;

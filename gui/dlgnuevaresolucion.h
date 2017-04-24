@@ -4,11 +4,13 @@
 #include <QDialog>
 #include "objs/provincia.h"
 #include "objs/capitulo.h"
+#include "objs/variados.h"
 
 class TemasModel;
 class ResolucionesModel;
 class JsonGestor;
 class dlgDetalles;
+class dlgTemas;
 
 class QSqlQueryModel;
 class QCompleter;
@@ -32,15 +34,11 @@ private:
 
     JsonGestor *jsongestor;
     dlgDetalles *dlgdetalles;
+    dlgTemas *dlgtemas;
 
     ResolucionesModel *m_resoluciones;
 
-    struct elementopareado{
-      int id = 0;
-      QString elemento = "";
-    };
-
-    QList<elementopareado> temas_lista;
+    QList<elementopareado> *temas_lista;
 
     /*
      * si escogemos provincia lo metemos aquí
