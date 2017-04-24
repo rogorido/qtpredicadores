@@ -83,6 +83,9 @@ void dlgNuevaResolucion::aceptarResolucion(){
     bool traducida = ui->chTradudida->checkState();
     bool razonada = ui->chRazonada->checkState();
 
+    QStringList verbos = m_verbos->stringList();
+    QStringList expresiones = m_expresiones->stringList();
+
     resolucion->setTexto(resolucion_texto);
     resolucion->setTextoResumido(resolucion_resumen);
     resolucion->setTextoTraducido(resolucion_trad);
@@ -93,6 +96,8 @@ void dlgNuevaResolucion::aceptarResolucion(){
     resolucion->setTraducido(traducida);
     resolucion->setRazonada(razonada);
     resolucion->setCapitulo(capitulo_id);
+    resolucion->setVerbos(verbos);
+    resolucion->setExpresiones(expresiones);
     resolucion->setNotas(notas);
 
     if (m_resoluciones->anadirResolucion(resolucion)) {

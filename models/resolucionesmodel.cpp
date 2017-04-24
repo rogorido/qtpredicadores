@@ -47,6 +47,17 @@ bool ResolucionesModel::anadirResolucion(const Resolucion *resolucion){
     QStringList expresiones = resolucion->getExpresiones();
     QString notas = resolucion->getNotas();
 
+    QString verbos_final;
+    QString expresiones_final;
+
+    if (!verbos.isEmpty()) {
+        verbos_final = '{' + verbos.join(", ") + '}';
+    }
+
+    if (!expresiones.isEmpty()) {
+        expresiones_final = '{' + expresiones.join(", ") + '}';
+    }
+
     query.prepare("INSERT INTO chapters.resolutions(resolution_text, resolution_traduction, resolution_summary, chapter, "
                   "small_title, understood, look_again, province_id, translated, motivated, interesting, verbs, expressions, "
                   "resolution_previous, notes) "
@@ -74,8 +85,14 @@ bool ResolucionesModel::anadirResolucion(const Resolucion *resolucion){
     query.bindValue(":traducida", traducido);
     query.bindValue(":razonada", razonada);
     query.bindValue(":interesante", interesante);
-    query.bindValue(":verbos", verbos);
-    query.bindValue(":expresiones", expresiones);
+    if (!verbos_final.isEmpty())
+        query.bindValue(":verbos", verbos_final);
+    else
+        query.bindValue(":verbos", QVariant(QVariant::String));
+    if (!expresiones_final.isEmpty())
+        query.bindValue(":expresiones", expresiones_final);
+    else
+        query.bindValue(":expresiones", QVariant(QVariant::String));
     query.bindValue("resolucion_anterior", resolucion_anterior);
     query.bindValue(":notas", notas);
 
