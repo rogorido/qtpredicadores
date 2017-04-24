@@ -9,6 +9,7 @@
 #include <QCompleter>
 #include <QJsonValue>
 #include <QSqlError>
+#include <QStringListModel>
 
 #include <QDebug>
 
@@ -255,4 +256,55 @@ void dlgNuevaResolucion::cargarModelos(){
     m_epigrafe_completer->setCaseSensitivity(Qt::CaseInsensitive);
 
     ui->txtEpigrafe->setCompleter(m_epigrafe_completer);
+
+    m_verbos = new QStringListModel();
+    m_expresiones = new QStringListModel();
+
+    ui->twVerbs->setModel(m_verbos);
+    ui->twExpresiones->setModel(m_expresiones);
+
+}
+
+void dlgNuevaResolucion::on_btAnadirVerbo_clicked(){
+
+    QString verbo = ui->txtVerbo->text();
+
+    if (verbo.isEmpty()){
+        return;
+    }
+
+    // Get the position
+    int row = m_verbos->rowCount();
+    // Enable add one or more rows
+    m_verbos->insertRows(row,1);
+    // Get the row for Edit mode
+    QModelIndex index = m_verbos->index(row);
+
+    m_verbos->setData(index, verbo);
+
+}
+
+void dlgNuevaResolucion::on_btQuitarVerbo_clicked(){
+
+}
+
+void dlgNuevaResolucion::on_btAnadirExpresion_clicked(){
+    QString expresion = ui->txtExpresion->text();
+
+    if (expresion.isEmpty()){
+        return;
+    }
+
+    // Get the position
+    int row = m_expresiones->rowCount();
+    // Enable add one or more rows
+    m_expresiones->insertRows(row,1);
+    // Get the row for Edit mode
+    QModelIndex index = m_expresiones->index(row);
+
+    m_expresiones->setData(index, expresion);
+}
+
+void dlgNuevaResolucion::on_btQuitarExpresion_clicked(){
+
 }

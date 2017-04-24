@@ -12,6 +12,7 @@ class dlgDetalles;
 
 class QSqlQueryModel;
 class QCompleter;
+class QStringListModel;
 
 namespace Ui {
 class dlgNuevaResolucion;
@@ -52,6 +53,10 @@ private:
     QSqlQueryModel *m_epigrafe;
     QCompleter *m_epigrafe_completer;
 
+    // para lo de los verbos y las expresiones
+    QStringListModel *m_verbos;
+    QStringListModel *m_expresiones;
+
     void cargarModelos();
     void rellenarCombos();
     void introducirJson(const int id);
@@ -69,6 +74,10 @@ private slots:
 
     void on_btDetalles_clicked();
     void on_btTemas_clicked();
+    void on_btAnadirVerbo_clicked();
+    void on_btQuitarVerbo_clicked();
+    void on_btAnadirExpresion_clicked();
+    void on_btQuitarExpresion_clicked();
 
     void aceptarResolucion(); // btOK
 

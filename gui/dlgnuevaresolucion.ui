@@ -288,7 +288,7 @@
          <string>Borrar</string>
         </property>
        </widget>
-       <widget class="QTableWidget" name="twVerbs">
+       <widget class="QListView" name="twVerbs">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -297,10 +297,6 @@
           <height>271</height>
          </rect>
         </property>
-        <property name="columnCount">
-         <number>1</number>
-        </property>
-        <column/>
        </widget>
        <widget class="QLineEdit" name="txtVerbo">
         <property name="geometry">
@@ -343,7 +339,7 @@
          <string>Borrar</string>
         </property>
        </widget>
-       <widget class="QTableWidget" name="twExpresiones">
+       <widget class="QListView" name="twExpresiones">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -352,10 +348,6 @@
           <height>271</height>
          </rect>
         </property>
-        <property name="columnCount">
-         <number>1</number>
-        </property>
-        <column/>
        </widget>
        <widget class="QLineEdit" name="txtExpresion">
         <property name="geometry">
