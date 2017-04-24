@@ -32,11 +32,6 @@ private:
 
     dlgSeleccionarGeneral *dlgseleccionar;
 
-    struct elementopareado{
-      int id;
-      QString elemento;
-    };
-
     QList<elementopareado> temas_lista;
 
 signals:
