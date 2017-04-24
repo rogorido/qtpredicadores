@@ -51,7 +51,11 @@ private:
     int provincia_id;
     int capitulo_id;
     QSqlQueryModel *m_epigrafe;
+    QSqlQueryModel *m_verbos_usados;
+    QSqlQueryModel *m_expresiones_usados;
     QCompleter *m_epigrafe_completer;
+    QCompleter *m_verbos_completer;
+    QCompleter *m_expresiones_completer;
 
     // para lo de los verbos y las expresiones
     QStringListModel *m_verbos;

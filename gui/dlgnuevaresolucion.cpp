@@ -242,6 +242,11 @@ void dlgNuevaResolucion::borrarCampos(){
     jsongestor = new JsonGestor(this);
     dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, this);
 
+    m_verbos = new QStringListModel();
+    m_expresiones = new QStringListModel();
+    ui->twVerbs->setModel(m_verbos);
+    ui->twExpresiones->setModel(m_expresiones);
+
     temas_lista.clear();
 
     provincia_id = 0;
@@ -267,6 +272,20 @@ void dlgNuevaResolucion::cargarModelos(){
 
     ui->twVerbs->setModel(m_verbos);
     ui->twExpresiones->setModel(m_expresiones);
+
+    m_verbos_usados = new QSqlQueryModel(this);
+    m_verbos_usados->setQuery("SELECT DISTINCT unnest(verbs) AS verbos FROM resolutions ORDER BY verbos;");
+    m_verbos_completer = new QCompleter(m_verbos_usados, this);
+    m_verbos_completer->setCompletionColumn(0);
+    m_verbos_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtVerbo->setCompleter(m_verbos_completer);
+
+    m_expresiones_usados = new QSqlQueryModel(this);
+    m_expresiones_usados->setQuery("SELECT DISTINCT unnest(expressions) AS expresiones FROM resolutions ORDER BY expresiones;");
+    m_expresiones_completer = new QCompleter(m_expresiones_usados, this);
+    m_expresiones_completer->setCompletionColumn(0);
+    m_expresiones_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtExpresion->setCompleter(m_expresiones_completer);
 
 }
 
