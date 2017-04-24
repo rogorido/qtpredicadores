@@ -7,7 +7,9 @@
 #include <QSqlQueryModel>
 #include <QCompleter>
 
-const QString sqlresoluciones_valores="SELECT DISTINCT value from resolutions_details, json_each_text(details) ORDER BY value;";
+#include <QDebug>
+
+const QString sqlresoluciones_valores="SELECT DISTINCT value from resolutions_details, jsonb_each_text(details) ORDER BY value;";
 const QString sqlresoluciones_keys="SELECT DISTINCT jsonb_object_keys(details) FROM resolutions_details ORDER BY jsonb_object_keys(details);";
 const QString sqlobras_valores="SELECT DISTINCT value from works_details, jsonb_each_text(details) ORDER BY value;";
 const QString sqlobras_keys="SELECT DISTINCT jsonb_object_keys(details) FROM works_details ORDER BY jsonb_object_keys(details);";
@@ -26,7 +28,10 @@ dlgDetalles::dlgDetalles(JsonGestor *json, int t, QWidget *parent) :
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(hide()));
     connect(ui->btNuevoBloque, SIGNAL(clicked(bool)), jsondetalles, SLOT(nuevoBloqueJson()));
     connect(ui->btBorrarElemento, SIGNAL(clicked(bool)), jsondetalles, SLOT(eliminarElemento()));
-    connect(ui->txtKey, SIGNAL(editingFinished()), this, SLOT(actualizarCompleterValues()));
+
+    // esto hay en todo caso que mejorarlo pq ahora tenemos diversas queries según el origen
+    // pero tvz no haga falta y se pueda quitar sin más
+    //connect(ui->txtKey, SIGNAL(editingFinished()), this, SLOT(actualizarCompleterValues()));
 
     ui->cboDescripcion->addItem("Nombramiento");
     ui->cboDescripcion->setCurrentIndex(-1);
@@ -151,6 +156,7 @@ void dlgDetalles::cargarModelos(){
     m_values = new QSqlQueryModel(this);
     switch (tipo) {
     case RESOLUCION:
+        qDebug() << "estamos aquí";
         m_values->setQuery(sqlresoluciones_valores);
         break;
     case PERSONADETALLES:
