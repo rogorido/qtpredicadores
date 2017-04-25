@@ -51,7 +51,7 @@ private:
      * el valor NULL
      * Olvídalo!
      */
-    int provincia_id;
+    int provincia_id = 0;
     int capitulo_id;
     QSqlQueryModel *m_epigrafe;
     QSqlQueryModel *m_verbos_usados;

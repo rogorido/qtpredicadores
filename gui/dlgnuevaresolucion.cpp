@@ -98,6 +98,7 @@ void dlgNuevaResolucion::aceptarResolucion(){
     resolucion->setTraducido(traducida);
     resolucion->setRazonada(razonada);
     resolucion->setCapitulo(capitulo_id);
+    resolucion->setProvincia(provincia_id);
     resolucion->setVerbos(verbos);
     resolucion->setExpresiones(expresiones);
     resolucion->setNotas(notas);
@@ -222,7 +223,7 @@ void dlgNuevaResolucion::borrarCampos(){
 
     ui->txtEpigrafe->setText("");
     ui->txtProvincia->setText("");
-    ui->txtCapitulo->setText("");
+    //ui->txtCapitulo->setText(""); ver abajo
     ui->txtResolucion->clear();
     ui->txtResolucionNotas->clear();
     ui->txtResolucionResumen->clear();
@@ -249,7 +250,12 @@ void dlgNuevaResolucion::borrarCampos(){
     dlgtemas = new dlgTemas(&temas_lista, this);
 
     provincia_id = 0;
-    capitulo_id = 0;
+
+    /*
+     * dejamos el capítulo pq así puedo ir metiendo varias
+     * resoluciones del mismo capítulo.
+     */
+    //capitulo_id = 0;
 
     ui->txtEpigrafe->setFocus();
 
