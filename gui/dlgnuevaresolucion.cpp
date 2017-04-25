@@ -245,6 +245,8 @@ void dlgNuevaResolucion::borrarCampos(){
     ui->twExpresiones->setModel(m_expresiones);
 
     temas_lista.clear();
+    // pasamos una referencia: ver notas en el header
+    dlgtemas = new dlgTemas(&temas_lista, this);
 
     provincia_id = 0;
     capitulo_id = 0;

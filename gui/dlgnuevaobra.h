@@ -51,7 +51,13 @@ private:
 
     elementopareado autorescogido_struct;
     elementopareado lugarescogido_struct;
-    QList<elementopareado> *temasescogidos;
+
+    /*
+     * esto no se define como pointer, pq luego no sé cómo
+     * inicializarlo y es obligatorio antes de poder usarlo.
+     * Lo que hago luego es pasarle una referencia a dlgtemas
+     */
+    QList<elementopareado> temasescogidos;
 
     JsonGestor *json_detalles;
 

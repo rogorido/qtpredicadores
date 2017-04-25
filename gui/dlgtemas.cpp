@@ -14,7 +14,9 @@ dlgTemas::dlgTemas(QList<elementopareado> *temas_lista, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // los dos hacen lo mismo... tvz quitar uno
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(hide()));
+    connect(ui->btOK, SIGNAL(clicked()), this, SLOT(hide()));
     //connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarTemas()));
 
 }

@@ -25,7 +25,8 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     m_lugares = LugaresModel::InstanceModel();
     m_obras = ObrasModel::InstanceModel();
 
-    dlgtemas = new dlgTemas(temasescogidos, this);
+    // lo pasamos como referencia. ver header.
+    dlgtemas = new dlgTemas(&temasescogidos, this);
 
     json_detalles = new JsonGestor(this);
     dlgdetalles = new dlgDetalles(json_detalles, OBRA, this);
@@ -219,15 +220,15 @@ void dlgNuevaObra::on_btOK_clicked(){
 
 void dlgNuevaObra::introducirTemas(int id){
 
-    if (temasescogidos->size() == 0)
+    if (temasescogidos.size() == 0)
         return;
 
-    for (int i = 0; i < temasescogidos->size(); ++i) {
+    for (int i = 0; i < temasescogidos.size(); ++i) {
 
         QSqlQuery query;
         query.prepare("INSERT INTO works.works_themes(work_id, theme_id) VALUES (:work, :tema)");
         query.bindValue(":work", id);
-        query.bindValue(":tema", temasescogidos->at(i).id);
+        query.bindValue(":tema", temasescogidos.at(i).id);
         query.exec();
     }
 }
@@ -260,10 +261,10 @@ void dlgNuevaObra::borrarCampos(){
 
     /*
      * vaciamos lo de los temas y lo de lugar pero no lo del autor
-     * pq así podemos meter varios libros del mismo autor
+     * pq así podemos meter varios libros del mismo auto.
      */
-    temasescogidos->clear();
-    dlgtemas = new dlgTemas(temasescogidos, this);
+    temasescogidos.clear();
+    dlgtemas = new dlgTemas(&temasescogidos, this);
 
     ui->txtLugar->setText("");
     lugarescogido_struct = elementopareado();
