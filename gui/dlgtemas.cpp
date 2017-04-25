@@ -4,6 +4,7 @@
 #include <QSqlRecord>
 #include <QSqlQuery>
 #include <QTableWidget>
+#include <QDebug>
 
 #include "objs/tema.h"
 
@@ -38,6 +39,9 @@ void dlgTemas::recibirTema(Tema tema){
     elementopareado nuevo;
     nuevo.id = tema.getId();
     nuevo.elemento = tema.getTema();
+
+    qDebug() << "ehmos recibido el tema...";
+
     temas->append(nuevo);
 
     /* añadimos un elem a la tabla */

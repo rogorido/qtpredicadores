@@ -38,7 +38,12 @@ private:
 
     ResolucionesModel *m_resoluciones;
 
-    QList<elementopareado> *temas_lista;
+    /*
+     * esto no se define como pointer, pq luego no sé cómo
+     * inicializarlo y es obligatorio antes de poder usarlo.
+     * Lo que hago luego es pasarle una referencia a dlgtemas
+     */
+    QList<elementopareado> temas_lista;
 
     /*
      * si escogemos provincia lo metemos aquí
