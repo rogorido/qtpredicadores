@@ -13,8 +13,8 @@ dlgTemas::dlgTemas(QList<elementopareado> *temas_lista, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
-    connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarTemas()));
+    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(hide()));
+    //connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarTemas()));
 
 }
 
@@ -65,8 +65,10 @@ void dlgTemas::on_btQuitarTema_clicked(){
      }
 }
 
+/*
 void dlgTemas::aceptarTemas(){
     emit(temasSeleccionadosSignal(temas_lista));
 
     this->hide();
 }
+*/

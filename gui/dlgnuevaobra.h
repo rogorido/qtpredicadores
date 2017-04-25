@@ -48,14 +48,10 @@ private:
      * en los que borro la persona que he metido. Si lo hago con una Persona
      * sinceramente no sé cómo "vaciarla".
      */
-    struct elementopareado{
-      int id = 0;
-      QString elemento = "";
-    };
 
     elementopareado autorescogido_struct;
     elementopareado lugarescogido_struct;
-    QList<elementopareado> temasescogidos;
+    QList<elementopareado> *temasescogidos;
 
     JsonGestor *json_detalles;
 
@@ -79,7 +75,6 @@ private slots:
     void actualizarPersona(Persona autor);
     void actualizarLugar(Lugar lugar);
 
-    void recibirTemas(QList<elementopareado> temas);
     void introducirTemas(int id);
 
 };

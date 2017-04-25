@@ -25,7 +25,7 @@ private slots:
 
     void recibirTema(Tema tema);
 
-    void aceptarTemas();
+    //void aceptarTemas();
 
 private:
     Ui::dlgTemas *ui;
