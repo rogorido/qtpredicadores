@@ -38,7 +38,7 @@
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
-   <widget class="QMenu" name="menuGes_ti_n">
+   <widget class="QMenu" name="menuGestion">
     <property name="title">
      <string>Gesti&amp;ón</string>
     </property>
@@ -46,7 +46,7 @@
     <addaction name="actionCiudades"/>
    </widget>
    <addaction name="menuGeneral"/>
-   <addaction name="menuGes_ti_n"/>
+   <addaction name="menuGestion"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

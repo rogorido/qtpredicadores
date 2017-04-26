@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+class QSqlTableModel;
+
 namespace Ui {
 class dlgCiudades;
 }
@@ -17,6 +19,10 @@ public:
 
 private:
     Ui::dlgCiudades *ui;
+
+    QSqlTableModel *ciudades_model;
+
+    void cargarModelos();
 };
 
 #endif // DLGCIUDADES_H
