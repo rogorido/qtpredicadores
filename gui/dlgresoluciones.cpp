@@ -1,11 +1,13 @@
 #include "dlgresoluciones.h"
 #include "ui_dlgresoluciones.h"
 
+#include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QSqlRelationalTableModel>
 #include <QDataWidgetMapper>
-
 #include <QDebug>
+
+#include "gui/dlgseleccionargeneral.h"
 
 DlgResoluciones::DlgResoluciones(QWidget *parent) :
     QDialog(parent),
@@ -45,6 +47,28 @@ void DlgResoluciones::seleccionarResolucion(const QModelIndex &idx)
 
     resolucion_id = resoluciones_model->data(indice, Qt::DisplayRole).toInt();
     temas_model->setFilter(QString("resolution_id=%1").arg(resolucion_id));
+}
+
+void DlgResoluciones::recibirNuevoTema(Tema t)
+{
+    int tema_id = t.getId();
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO resolutions_themes(theme_id, resolution_id) VALUES(:tema, :resolucion)");
+    query.bindValue(":tema", tema_id);
+    query.bindValue(":resolucion", resolucion_id);
+    query.exec();
+
+    temas_model->select();
+    temas_model->setFilter(QString("resolution_id=%1").arg(resolucion_id));
+}
+
+void DlgResoluciones::on_btAnadirTema_clicked()
+{
+    dlgseleccionar = new dlgSeleccionarGeneral(TEMA, this);
+    dlgseleccionar->show();
+
+    connect(dlgseleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirNuevoTema(Tema)));
 }
 
 void DlgResoluciones::cargarModelos()

@@ -3,10 +3,14 @@
 
 #include <QDialog>
 
+#include "objs/tema.h"
+
 class QSqlQueryModel;
 class QSqlRelationalTableModel;
 class QDataWidgetMapper;
 class QModelIndex;
+
+class dlgSeleccionarGeneral;
 
 namespace Ui {
 class DlgResoluciones;
@@ -23,9 +27,14 @@ public:
 private slots:
 
     void seleccionarResolucion(const QModelIndex &idx);
+    void recibirNuevoTema(Tema t);
+
+    void on_btAnadirTema_clicked();
 
 private:
     Ui::DlgResoluciones *ui;
+
+    dlgSeleccionarGeneral *dlgseleccionar;
 
     /*
      * no pongo m_resoluciones pq "se confundiría
