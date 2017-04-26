@@ -38,7 +38,14 @@
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
+   <widget class="QMenu" name="menuGes_ti_n">
+    <property name="title">
+     <string>Gesti&amp;ón</string>
+    </property>
+    <addaction name="actionResoluciones"/>
+   </widget>
    <addaction name="menuGeneral"/>
+   <addaction name="menuGes_ti_n"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -51,7 +58,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionCapitulos">
    <property name="text">
-    <string>Capítulos</string>
+    <string>&amp;Capítulos</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
@@ -59,12 +66,12 @@
   </action>
   <action name="actionNuevoCapitulo">
    <property name="text">
-    <string>Nuevo capítulo</string>
+    <string>Nu&amp;evo capítulo</string>
    </property>
   </action>
   <action name="actionSalir">
    <property name="text">
-    <string>Salir</string>
+    <string>&amp;Salir</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -72,7 +79,7 @@
   </action>
   <action name="actionNuevaCasa">
    <property name="text">
-    <string>Nueva casa</string>
+    <string>N&amp;ueva casa</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+A</string>
@@ -80,7 +87,7 @@
   </action>
   <action name="actionNuevaPersona">
    <property name="text">
-    <string>Nueva persona</string>
+    <string>&amp;Nueva persona</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -96,7 +103,7 @@
   </action>
   <action name="actionNuevaProvincia">
    <property name="text">
-    <string>Nueva provincia</string>
+    <string>Nueva &amp;provincia</string>
    </property>
   </action>
   <action name="actionNuevoTema">
@@ -113,6 +120,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionResoluciones">
+   <property name="text">
+    <string>Resolu&amp;ciones</string>
    </property>
   </action>
  </widget>

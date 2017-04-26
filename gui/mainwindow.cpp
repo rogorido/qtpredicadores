@@ -12,6 +12,7 @@
 #include "dlgnuevacasa.h"
 #include "dlgnuevaobra.h"
 #include "dlgnuevaprovincia.h"
+#include "dlgresoluciones.h"
 
 #include "models/temasmodel.h"
 #include "models/lugaresmodel.h"
@@ -59,6 +60,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionNuevaProvincia, SIGNAL(triggered()), this, SLOT(nuevaProvincia()));
     connect(ui->actionNuevoTema, SIGNAL(triggered()), this, SLOT(nuevoTema()));
     connect(ui->actionNuevaResolucion, SIGNAL(triggered(bool)), this, SLOT(nuevaResolucion()));
+    connect(ui->actionResoluciones, SIGNAL(triggered(bool)), this, SLOT(Resoluciones()));
     connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
@@ -114,6 +116,12 @@ void MainWindow::nuevaCasa(){
 void MainWindow::Capitulos(){
     FormCapitulos = new dlgCapitulos(this);
     FormCapitulos->show();
+}
+
+void MainWindow::Resoluciones()
+{
+    FormResoluciones = new DlgResoluciones(this);
+    FormResoluciones->show();
 }
 
 void MainWindow::nuevaObra(){
