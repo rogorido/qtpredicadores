@@ -43,6 +43,7 @@
      <string>Gesti&amp;ón</string>
     </property>
     <addaction name="actionResoluciones"/>
+    <addaction name="actionCiudades"/>
    </widget>
    <addaction name="menuGeneral"/>
    <addaction name="menuGes_ti_n"/>
@@ -125,6 +126,11 @@
   <action name="actionResoluciones">
    <property name="text">
     <string>Resolu&amp;ciones</string>
+   </property>
+  </action>
+  <action name="actionCiudades">
+   <property name="text">
+    <string>C&amp;iudades</string>
    </property>
   </action>
  </widget>
