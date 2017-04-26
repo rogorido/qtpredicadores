@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+class QSqlRelationalTableModel;
+
 namespace Ui {
 class dlgCasas;
 }
@@ -17,6 +19,10 @@ public:
 
 private:
     Ui::dlgCasas *ui;
+
+    QSqlRelationalTableModel *casas_model;
+
+    void cargarModelos();
 };
 
 #endif // DLGCASAS_H
