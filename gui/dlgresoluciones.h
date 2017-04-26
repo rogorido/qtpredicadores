@@ -37,6 +37,12 @@ private:
     QSqlRelationalTableModel *temas_model;
 
     void cargarModelos();
+    void cargarMapper();
+
+    /*
+     * aquí guardamos la id de la resolución que está escogida.
+     */
+    int resolucion_id;
 };
 
 #endif // DLGRESOLUCIONES_H

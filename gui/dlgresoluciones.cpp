@@ -5,6 +5,8 @@
 #include <QSqlRelationalTableModel>
 #include <QDataWidgetMapper>
 
+#include <QDebug>
+
 DlgResoluciones::DlgResoluciones(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DlgResoluciones)
@@ -12,8 +14,10 @@ DlgResoluciones::DlgResoluciones(QWidget *parent) :
     ui->setupUi(this);
 
     cargarModelos();
+    cargarMapper();
 
-    connect(ui->twResoluciones->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(seleccionarResolucion(QModelIndex)));
+    connect(ui->twResoluciones->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
+            this, SLOT(seleccionarResolucion(QModelIndex)));
     connect(ui->btCerrar, SIGNAL(clicked()), this, SLOT(close()));
 }
 
@@ -29,6 +33,18 @@ void DlgResoluciones::seleccionarResolucion(const QModelIndex &idx)
      * se actualicen... por que si no, ¿para qué puse esto?
      */
     mapper_data->setCurrentModelIndex(idx);
+
+    /*
+     * sacamos el índice de la columna 0 que es donde está
+     * la id de la resolución, para luego convertirla en int
+     * y usarla en el filtro del otro modelo.
+     */
+    QModelIndex indice = idx.model()->index(idx.row(), 0);
+    if (!indice.isValid())
+        return;
+
+    resolucion_id = resoluciones_model->data(indice, Qt::DisplayRole).toInt();
+    temas_model->setFilter(QString("resolution_id=%1").arg(resolucion_id));
 }
 
 void DlgResoluciones::cargarModelos()
@@ -48,10 +64,7 @@ void DlgResoluciones::cargarModelos()
     ui->twResoluciones->horizontalHeader()->setStretchLastSection(true);
     ui->twResoluciones->setSortingEnabled(true);
     ui->twResoluciones->setSelectionBehavior(QAbstractItemView::SelectRows);
-
-    mapper_data = new QDataWidgetMapper(this);
-    mapper_data->setModel(resoluciones_model);
-    mapper_data->addMapping(ui->txtResolucion, 1);
+    ui->twResoluciones->setSelectionMode(QAbstractItemView::SingleSelection);
 
     temas_model = new QSqlRelationalTableModel(this);
     temas_model->setTable("chapters.resolutions_themes");
@@ -65,5 +78,15 @@ void DlgResoluciones::cargarModelos()
     ui->twTemas->setAlternatingRowColors(true);
     ui->twTemas->resizeColumnsToContents();
     ui->twTemas->resizeRowsToContents();
+    ui->twTemas->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twTemas->setSelectionMode(QAbstractItemView::SingleSelection);
+
+}
+
+void DlgResoluciones::cargarMapper()
+{
+    mapper_data = new QDataWidgetMapper(this);
+    mapper_data->setModel(resoluciones_model);
+    mapper_data->addMapping(ui->txtResolucion, 1);
 
 }
