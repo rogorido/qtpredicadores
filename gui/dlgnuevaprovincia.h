@@ -20,6 +20,7 @@ public:
 private slots:
 
     void aceptarProvincia();
+    void borrarCampos();
 
 private:
     Ui::dlgNuevaProvincia *ui;

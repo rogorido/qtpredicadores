@@ -39,4 +39,15 @@ void dlgNuevaProvincia::aceptarProvincia(){
                                        "Error al introducir la resolución en la BD");
         return;
     }
+    else
+        borrarCampos();
+}
+
+void dlgNuevaProvincia::borrarCampos()
+{
+    ui->txtNombre->setText("");
+    ui->txtErigida->setText("");
+    ui->txtNotas->clear();
+
+    ui->txtNombre->setFocus();
 }
