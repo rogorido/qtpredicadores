@@ -71,6 +71,29 @@ void DlgResoluciones::on_btAnadirTema_clicked()
     connect(dlgseleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirNuevoTema(Tema)));
 }
 
+void DlgResoluciones::on_btQuitarTema_clicked()
+{
+    /*
+     * sigo sin entender cómo coño es tan difícil esto de
+     * extraer el valor de una tabla, del modelo subyacente, etc.
+     */
+    int row = ui->twTemas->currentIndex().row();
+    QModelIndex idx = temas_model->index(row, 0); // columna 0, pq está el id
+
+    if (!idx.isValid())
+        return;
+
+    int valor = temas_model->data(idx, Qt::DisplayRole).toInt();
+
+    QSqlQuery query;
+    query.prepare("DELETE FROM resolutions_themes WHERE resolutions_themes_id=:valor");
+    query.bindValue(":valor", valor);
+    query.exec();
+
+    temas_model->select();
+    temas_model->setFilter(QString("resolution_id=%1").arg(resolucion_id));
+}
+
 void DlgResoluciones::cargarModelos()
 {
     resoluciones_model = new QSqlQueryModel(this);

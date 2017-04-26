@@ -30,6 +30,7 @@ private slots:
     void recibirNuevoTema(Tema t);
 
     void on_btAnadirTema_clicked();
+    void on_btQuitarTema_clicked();
 
 private:
     Ui::DlgResoluciones *ui;
