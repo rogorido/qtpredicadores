@@ -4,6 +4,7 @@
 #include <QDialog>
 
 class QSqlQueryModel;
+class QSqlRelationalTableModel;
 class QDataWidgetMapper;
 class QModelIndex;
 
@@ -33,6 +34,9 @@ private:
      */
     QSqlQueryModel *resoluciones_model;
     QDataWidgetMapper *mapper_data;
+    QSqlRelationalTableModel *temas_model;
+
+    void cargarModelos();
 };
 
 #endif // DLGRESOLUCIONES_H
