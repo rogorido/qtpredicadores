@@ -97,6 +97,16 @@
       <widget class="QLineEdit" name="txtTipo"/>
      </item>
      <item>
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Año</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtFechaFundacion"/>
+     </item>
+     <item>
       <widget class="QLabel" name="label_6">
        <property name="text">
         <string>Advocacion</string>

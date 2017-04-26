@@ -55,6 +55,7 @@ void dlgNuevaCasa::aceptarCasa(){
     QString diocesis = ui->txtDiocesis->text();
     // este  sería interesante hacerlo con QJson...
     //QString otrosnombres;
+    QString fechafundacion = ui->txtFechaFundacion->text();
     QString notas = ui->txtNotas->toPlainText();
     bool studiumgenerale = ui->ckStudium->checkState();
 
@@ -71,6 +72,7 @@ void dlgNuevaCasa::aceptarCasa(){
     casa->setAdvocacion(advocacion);
     casa->setDiocesis(diocesis);
     casa->setMasculino(masculino);
+    casa->setFechaFundacion(fechafundacion);
     casa->setNotas(notas);
     casa->setStudiumgenerale(studiumgenerale);
 
@@ -136,6 +138,7 @@ void dlgNuevaCasa::borrarCampos(){
     ui->txtTipo->setText("");
     ui->txtAdvocacion->setText("");
     ui->txtDiocesis->setText("");
+    ui->txtFechaFundacion->setText("");
     ui->txtNotas->clear();
 
     ui->ckBuscado->setCheckState(Qt::Unchecked);
