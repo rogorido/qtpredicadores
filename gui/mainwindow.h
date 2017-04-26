@@ -11,6 +11,7 @@ class dlgNuevaCasa;
 class dlgCapitulos;
 class DlgResoluciones; // esto me he confundido y lo he puesto en mayúscula!
 class dlgCiudades;
+class dlgCasas;
 
 class TemasModel;
 class LugaresModel;
@@ -44,6 +45,7 @@ private slots:
     void Capitulos();
     void Resoluciones();
     void Ciudades();
+    void Casas();
 
 private:
     Ui::MainWindow *ui;
@@ -59,6 +61,7 @@ private:
     dlgCapitulos *FormCapitulos;
     DlgResoluciones *FormResoluciones;
     dlgCiudades *FormCiudades;
+    dlgCasas *FormCasas;
 
     TemasModel *m_temas;
     LugaresModel *m_lugares;
