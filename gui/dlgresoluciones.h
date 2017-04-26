@@ -4,6 +4,8 @@
 #include <QDialog>
 
 class QSqlQueryModel;
+class QDataWidgetMapper;
+class QModelIndex;
 
 namespace Ui {
 class DlgResoluciones;
@@ -17,6 +19,10 @@ public:
     explicit DlgResoluciones(QWidget *parent = 0);
     ~DlgResoluciones();
 
+private slots:
+
+    void seleccionarResolucion(const QModelIndex &idx);
+
 private:
     Ui::DlgResoluciones *ui;
 
@@ -26,6 +32,7 @@ private:
      * y aquí solo cargamos una parte y además con datos de otras
      */
     QSqlQueryModel *resoluciones_model;
+    QDataWidgetMapper *mapper_data;
 };
 
 #endif // DLGRESOLUCIONES_H
