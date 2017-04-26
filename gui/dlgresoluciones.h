@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+class QSqlQueryModel;
+
 namespace Ui {
 class DlgResoluciones;
 }
@@ -17,6 +19,13 @@ public:
 
 private:
     Ui::DlgResoluciones *ui;
+
+    /*
+     * no pongo m_resoluciones pq "se confundiría
+     * con el que suelo usar que carga toda la tabla,
+     * y aquí solo cargamos una parte y además con datos de otras
+     */
+    QSqlQueryModel *resoluciones_model;
 };
 
 #endif // DLGRESOLUCIONES_H
