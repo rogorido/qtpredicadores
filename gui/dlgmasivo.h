@@ -34,8 +34,8 @@ private:
      * pero realmente es sensato?
      */
     QSqlQueryModel *provincias;
-    QSortFilterProxyModel *prov_escogidas;
-    QSortFilterProxyModel *prov_noescogidas;
+    QSortFilterProxyModel *provescogidas;
+    QSortFilterProxyModel *provnoescogidas;
 
     void desmarcarTodasProvincias();
     void cargarModelos();

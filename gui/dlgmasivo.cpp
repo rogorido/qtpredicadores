@@ -43,6 +43,26 @@ void dlgMasivo::desmarcarTodasProvincias()
 
 void dlgMasivo::cargarModelos()
 {
+    provincias = new QSqlQueryModel(this);
+    provincias->setQuery("SELECT province_id, name, selected FROM provinces ORDER BY name");
+
+    provescogidas = new QSortFilterProxyModel(this);
+    provescogidas->setSourceModel(provincias);
+    provescogidas->setFilterKeyColumn(2);
+    provescogidas->setFilterFixedString("f");
+
+    provnoescogidas = new QSortFilterProxyModel(this);
+    provnoescogidas->setSourceModel(provincias);
+    provnoescogidas->setFilterKeyColumn(2);
+    provnoescogidas->setFilterFixedString("t");
+
+    ui->twProvinciasSeleccionadas->setModel(provescogidas);
+    ui->twProvinciasSinSeleccionar->setModel(provnoescogidas);
+
+    ui->twProvinciasSeleccionadas->hideColumn(0);
+    ui->twProvinciasSeleccionadas->hideColumn(2);
+    ui->twProvinciasSinSeleccionar->hideColumn(0);
+    ui->twProvinciasSinSeleccionar->hideColumn(2);
 
 
 }
