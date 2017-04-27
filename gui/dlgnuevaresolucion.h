@@ -96,6 +96,8 @@ private slots:
     void anadirCapitulo();
     void quitarCapitulo();
 
+    void anadirMasivo();
+
     // en teoría casi un qlist de ints sería suficiente...
     void recibirProvincia(Provincia provincia);
     void recibirCapitulo(Capitulo capitulo);

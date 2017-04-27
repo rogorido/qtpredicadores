@@ -20,6 +20,8 @@ public:
 private:
     Ui::dlgMasivo *ui;
     JsonGestor *jsondetalles;
+
+    void desmarcarTodasProvincias();
 };
 
 #endif // DLGMASIVO_H

@@ -19,6 +19,7 @@
 #include "objs/jsongestor.h"
 #include "objs/resolucion.h"
 #include "gui/dlgtemas.h"
+#include "gui/dlgmasivo.h"
 #include "gui/dlgseleccionargeneral.h"
 
 dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
@@ -41,6 +42,7 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     connect(ui->btQuitarProvincia, SIGNAL(clicked()), this, SLOT(quitarProvincia()));
     connect(ui->txtCapitulo, SIGNAL(dobleclick()), this, SLOT(anadirCapitulo()));
     connect(ui->btQuitarCapitulo, SIGNAL(clicked()), this, SLOT(quitarCapitulo()));
+    connect(ui->btMasivo, SIGNAL(clicked()), this, SLOT(anadirMasivo()));
 
     cargarModelos();
 
@@ -217,6 +219,13 @@ void dlgNuevaResolucion::quitarCapitulo(){
 
     capitulo_id = 0;
     ui->txtCapitulo->setText("");
+}
+
+void dlgNuevaResolucion::anadirMasivo()
+{
+    dlgmasivo = new dlgMasivo(jsongestor, this);
+
+    dlgmasivo->show();
 }
 
 void dlgNuevaResolucion::borrarCampos(){
