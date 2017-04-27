@@ -36,7 +36,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Lugar</string>
+        <string>&amp;Lugar</string>
        </property>
        <property name="buddy">
         <cstring>txtLugar</cstring>
@@ -166,6 +166,16 @@
       <widget class="QCheckBox" name="ckMasculino">
        <property name="text">
         <string>Masculino</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="ckQuetif">
+       <property name="text">
+        <string>Quétif</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

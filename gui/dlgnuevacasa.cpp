@@ -55,6 +55,7 @@ void dlgNuevaCasa::aceptarCasa(){
     QString diocesis = ui->txtDiocesis->text();
     // este  sería interesante hacerlo con QJson...
     //QString otrosnombres;
+    bool quetif = ui->ckQuetif->checkState();
     QString fechafundacion = ui->txtFechaFundacion->text();
     QString notas = ui->txtNotas->toPlainText();
     bool studiumgenerale = ui->ckStudium->checkState();
@@ -71,6 +72,7 @@ void dlgNuevaCasa::aceptarCasa(){
     casa->setTipo(tipo);
     casa->setAdvocacion(advocacion);
     casa->setDiocesis(diocesis);
+    casa->setQuetif(quetif);
     casa->setMasculino(masculino);
     casa->setFechaFundacion(fechafundacion);
     casa->setNotas(notas);

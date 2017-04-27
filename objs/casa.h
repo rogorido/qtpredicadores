@@ -25,6 +25,7 @@ public:
     void setDiocesis(QString d);
     void setFechaFundacion(QString f);
     void setAdvocacion(QString a);
+    void setQuetif(bool q);
     void setStudiumgenerale(bool w);
     void setOtrosnombres(QString o);
     void setNotas(QString n);
@@ -44,6 +45,7 @@ public:
     QString getDiocesis() const {return diocesis;}
     QString getFechaFundacion() const {return fecha_fundacion;}
     QString getAdvocacion() const {return advocacion;}
+    bool getQuetif() const {return quetif;}
     QString getOtrosNombres() const {return otrosnombres;}
     QString getNotas() const {return notas;}
     bool getStudiumgenerale() const {return studiumgenerale;}
@@ -64,6 +66,7 @@ private:
     QString diocesis;
     QString fecha_fundacion;
     QString advocacion;
+    bool quetif;
     // este  sería interesante hacerlo con QJson...
     QString otrosnombres;
     QString notas;
