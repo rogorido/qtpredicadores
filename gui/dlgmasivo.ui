@@ -105,7 +105,7 @@
     <string>Value</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="btOK">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -118,7 +118,7 @@
     <string>&amp;Aceptar</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="btCancelar">
    <property name="geometry">
     <rect>
      <x>450</x>

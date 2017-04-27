@@ -11,12 +11,21 @@ dlgMasivo::dlgMasivo(JsonGestor *json, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
+
     desmarcarTodasProvincias();
+    cargarModelos();
 }
 
 dlgMasivo::~dlgMasivo()
 {
     delete ui;
+}
+
+void dlgMasivo::aceptar()
+{
+
 }
 
 void dlgMasivo::desmarcarTodasProvincias()
@@ -29,5 +38,11 @@ void dlgMasivo::desmarcarTodasProvincias()
     QSqlQuery query;
 
     query.exec("UPDATE provinces SET selected=FALSE");
+
+}
+
+void dlgMasivo::cargarModelos()
+{
+
 
 }
