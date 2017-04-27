@@ -27,7 +27,6 @@
     <property name="title">
      <string>&amp;General</string>
     </property>
-    <addaction name="actionCapitulos"/>
     <addaction name="actionNuevaPersona"/>
     <addaction name="actionNuevaCasa"/>
     <addaction name="actionNuevoCapitulo"/>
@@ -137,6 +136,11 @@
   <action name="actionCasas">
    <property name="text">
     <string>Ca&amp;sas</string>
+   </property>
+  </action>
+  <action name="actionCapitulos_2">
+   <property name="text">
+    <string>Capítulos</string>
    </property>
   </action>
  </widget>
