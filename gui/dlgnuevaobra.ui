@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -29,7 +29,7 @@
     <item>
      <widget class="QTabWidget" name="tbTemas">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -365,6 +365,13 @@
          </item>
          <item row="3" column="3">
           <widget class="QLineEdit" name="txtPageQuetif"/>
+         </item>
+         <item row="2" column="2">
+          <widget class="QCheckBox" name="ckInvestigar">
+           <property name="text">
+            <string>Investigar</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>

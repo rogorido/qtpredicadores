@@ -33,6 +33,7 @@ public:
     void setExpurgable(bool e);
     void setFiabilidad(int f);
     void setVolverMirar(bool v);
+    void setInvestigar(bool i);
     void setTraduccion(QString t);
     void setPageQuetif(QString p);
     void setNotas(QString n);
@@ -60,6 +61,7 @@ public:
     bool getExpurgable() const {return expurgable;}
     int getFiabilidad() const {return fiabilidad;}
     bool getVolverMirar() const {return volveramirar;}
+    bool getInvestigar() const {return investigar;}
     QString getTraduccion() const {return traduccion;}
     QString getPageQuetif() const {return page_quetif;}
     QString getNotas() const {return notas;}
@@ -88,6 +90,7 @@ private:
     bool expurgable;
     int fiabilidad;
     bool volveramirar;
+    bool investigar;
     QString traduccion;
     QString page_quetif;
     QString notas;

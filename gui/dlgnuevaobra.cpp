@@ -170,6 +170,7 @@ void dlgNuevaObra::on_btOK_clicked(){
     bool expurgable = ui->ckExpurgable->checkState();
     int interesante = ui->spInteresante->value();
     int fiabilidad = ui->spFiabilidad->value();
+    bool investigar = ui->ckInvestigar->checkState();
     QString notas = ui->txtNotas->toPlainText();
     QString pagequetif = ui->txtPageQuetif->text();
 
@@ -197,6 +198,7 @@ void dlgNuevaObra::on_btOK_clicked(){
     obra->setTituloReducido(tituloreducido);
     obra->setInteresante(interesante);
     obra->setFiabilidad(fiabilidad);
+    obra->setInvestigar(investigar);
     obra->setPageQuetif(pagequetif);
     obra->setNotas(notas);
 
