@@ -1,9 +1,9 @@
 #include "dlgmasivo.h"
 #include "ui_dlgmasivo.h"
 
-dlgMasivo::dlgMasivo(QWidget *parent) :
+dlgMasivo::dlgMasivo(JsonGestor *json, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::dlgMasivo)
+    ui(new Ui::dlgMasivo), jsondetalles(json)
 {
     ui->setupUi(this);
 }
