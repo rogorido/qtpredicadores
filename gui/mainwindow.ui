@@ -44,6 +44,7 @@
     <addaction name="actionResoluciones"/>
     <addaction name="actionCiudades"/>
     <addaction name="actionCasas"/>
+    <addaction name="actionCapituli"/>
    </widget>
    <addaction name="menuGeneral"/>
    <addaction name="menuGestion"/>
@@ -139,6 +140,11 @@
    </property>
   </action>
   <action name="actionCapitulos_2">
+   <property name="text">
+    <string>Capítulos</string>
+   </property>
+  </action>
+  <action name="actionCapituli">
    <property name="text">
     <string>Capítulos</string>
    </property>

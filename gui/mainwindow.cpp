@@ -15,6 +15,7 @@
 #include "dlgresoluciones.h"
 #include "dlgciudades.h"
 #include "dlgcasas.h"
+#include "dlgcapitulos.h"
 
 #include "models/temasmodel.h"
 #include "models/lugaresmodel.h"
@@ -65,6 +66,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionResoluciones, SIGNAL(triggered(bool)), this, SLOT(Resoluciones()));
     connect(ui->actionCiudades, SIGNAL(triggered(bool)), this, SLOT(Ciudades()));
     connect(ui->actionCasas, SIGNAL(triggered(bool)), this, SLOT(Casas()));
+    connect(ui->actionCapituli, SIGNAL(triggered(bool)), this, SLOT(Capitulos()));
     connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
