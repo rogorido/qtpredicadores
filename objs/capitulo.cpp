@@ -12,5 +12,6 @@ void Capitulo::setVolumen(QString v) { volumen = v; }
 void Capitulo::setPaginas(QString p) { paginas = p; }
 void Capitulo::setNotas(QString n) { notas = n; }
 void Capitulo::setMaestroGeneral(int m) { maestrogeneral = m; }
+void Capitulo::setDefinitorio(bool d) { definitorio = d; }
 void Capitulo::setFechaInicio(QDate fi) { fecha_inicio = fi; }
 void Capitulo::setFechaFin(QDate ff) { fecha_fin = ff; }

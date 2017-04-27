@@ -21,6 +21,7 @@ public:
     void setPaginas(QString paginas);
     void setNotas(QString notas);
     void setMaestroGeneral(int maestrogeneral);
+    void setDefinitorio(bool d);
     void setFechaInicio(QDate f_inicio);
     void setFechaFin(QDate f_fin);
 
@@ -34,6 +35,7 @@ public:
     QString getPaginas() const {return paginas;}
     QString getNotas() const {return notas;}
     int getMaestroGeneral() const {return maestrogeneral;}
+    bool getDefinitorio() const {return definitorio;}
     QDate getFechaInicio() const {return fecha_inicio;}
     QDate getFechaFin() const {return fecha_fin;}
     
@@ -46,6 +48,7 @@ private:
     QDate fecha_inicio;
     QDate fecha_fin;
     int maestrogeneral;
+    bool definitorio;
     QString asistentes; 
     QString volumen;
     QString paginas;

@@ -4,7 +4,6 @@
 #include <QDialog>
 
 class QSqlTableModel;
-class QSortFilterProxyModel;
 class QModelIndex;
 
 namespace Ui {
@@ -26,8 +25,7 @@ private:
     Ui::dlgCapitulos *ui;
 
     QSqlTableModel *m_capitulos;
-    QSqlTableModel *m_resoluciones;
-    QSortFilterProxyModel *m_proxyresoluciones;
+
 };
 
 #endif // DLGCAPITULOS_H

@@ -39,13 +39,14 @@ bool CapitulosModel::AnadirCapitulo(const Capitulo *capitulo){
     QString paginas = capitulo->getPaginas();
     QString notas = capitulo->getNotas();
     int maestro = capitulo->getMaestroGeneral();
+    bool definitorio = capitulo->getDefinitorio();
     QDate fechainicial = capitulo->getFechaInicio();
     QDate fechafinal = capitulo->getFechaFin();
 
     query.prepare("INSERT INTO chapters.chapters(general_name, place_id, date_beginning, date_ending, "
-                  "type_chapter, general_master, attendees, volume, pages, notes) "
+                  "definitory, type_chapter, general_master, attendees, volume, pages, notes) "
                   "VALUES(:nombre, :lugar_id, :fechainicio, :fechafinal, "
-                  ":tipo, :maestro, :asistentes, :tomo, :paginas, :notas)");
+                  ":definitorio, :tipo, :maestro, :asistentes, :tomo, :paginas, :notas)");
     query.bindValue(":nombre", nombre);
     if (!lugar == 0)
         query.bindValue(":lugar_id", lugar);
@@ -56,6 +57,7 @@ bool CapitulosModel::AnadirCapitulo(const Capitulo *capitulo){
         query.bindValue(":maestro", maestro);
     else
         query.bindValue(":maestro", QVariant(QVariant::Int));
+    query.bindValue(":definitorio", definitorio);
     query.bindValue(":asistentes", asistentes);
     query.bindValue(":fechainicio", fechainicial);
     query.bindValue(":fechafinal", fechafinal);

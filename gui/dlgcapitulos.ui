@@ -23,16 +23,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTableView" name="twResoluciones">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>240</y>
-     <width>611</width>
-     <height>181</height>
-    </rect>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>

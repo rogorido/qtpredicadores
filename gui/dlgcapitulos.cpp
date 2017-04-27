@@ -15,10 +15,6 @@ dlgCapitulos::dlgCapitulos(QWidget *parent) :
     m_capitulos->setTable("public.chapters");
     m_capitulos->select();
 
-    m_resoluciones = new QSqlTableModel(this);
-    m_resoluciones->setTable("public.resoluciones");
-    m_resoluciones->select();
-
     // atención: esto da un error al cerrar la aplicación!
     //m_proxyresoluciones = new QSortFilterProxyModel(this);
     //m_proxyresoluciones->setSourceModel(m_resoluciones);
@@ -31,13 +27,6 @@ dlgCapitulos::dlgCapitulos(QWidget *parent) :
     std::vector<int> v = {0, 2, 6, 7, 8, 9, 10, 11, 12};
     for(int n : v) {
         ui->twCapitulos->hideColumn(n);
-        }
-
-    // problema: este modelo no tiene buenas columnas para mostrar
-    // en un tableview...
-    v = {0, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-    for(int n : v) {
-        ui->twResoluciones->hideColumn(n);
         }
 
     connect(ui->twCapitulos, SIGNAL(clicked(QModelIndex)), this, SLOT(escogidoCapitulo(QModelIndex)));
