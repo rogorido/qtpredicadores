@@ -1,8 +1,7 @@
 #include "dlgcapitulos.h"
 #include "ui_dlgcapitulos.h"
 
-#include <QSqlTableModel>
-#include <QSortFilterProxyModel>
+#include "models/capitulosmodel.h"
 #include <QDebug>
 
 dlgCapitulos::dlgCapitulos(QWidget *parent) :
@@ -11,9 +10,7 @@ dlgCapitulos::dlgCapitulos(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    m_capitulos = new QSqlTableModel(this);
-    m_capitulos->setTable("public.chapters");
-    m_capitulos->select();
+    m_capitulos = CapitulosModel::InstanceModel();
 
     // atención: esto da un error al cerrar la aplicación!
     //m_proxyresoluciones = new QSortFilterProxyModel(this);
@@ -28,6 +25,19 @@ dlgCapitulos::dlgCapitulos(QWidget *parent) :
     for(int n : v) {
         ui->twCapitulos->hideColumn(n);
         }
+
+    m_capitulos->setHeaderData(1, Qt::Horizontal, "Nombre general");
+    m_capitulos->setHeaderData(2, Qt::Horizontal, "Fecha inicio");
+    m_capitulos->setHeaderData(3, Qt::Horizontal, "Fecha final");
+    m_capitulos->setHeaderData(4, Qt::Horizontal, "Tipo");
+    m_capitulos->setHeaderData(13, Qt::Horizontal, "Definitorio");
+
+    ui->twCapitulos->setAlternatingRowColors(true);
+    ui->twCapitulos->resizeColumnsToContents();
+    ui->twCapitulos->resizeRowsToContents();
+    ui->twCapitulos->horizontalHeader()->setStretchLastSection(true);
+    ui->twCapitulos->setSortingEnabled(true);
+    ui->twCapitulos->setSelectionMode(QAbstractItemView::SingleSelection);
 
     connect(ui->twCapitulos, SIGNAL(clicked(QModelIndex)), this, SLOT(escogidoCapitulo(QModelIndex)));
     // no reconoce esta signal... esto parece que lo han cambiado.

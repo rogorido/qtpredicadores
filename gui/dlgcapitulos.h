@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-class QSqlTableModel;
+class CapitulosModel;
 class QModelIndex;
 
 namespace Ui {
@@ -24,7 +24,7 @@ private slots:
 private:
     Ui::dlgCapitulos *ui;
 
-    QSqlTableModel *m_capitulos;
+    CapitulosModel *m_capitulos;
 
 };
 
