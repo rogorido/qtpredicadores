@@ -58,6 +58,13 @@ void dlgMasivo::aceptar()
     QString key = ui->txtKey->text();
     QString valor = ui->txtValue->text();
 
+    /*
+     * la verdad es que hago un lío del carajo que no sé si
+     * es necesario, pues uso QJsonDocuments, etc. para todo
+     * esto cuando tal vez podría construir yo mismo el QString
+     * para el json de postgresql. En cualquier caso: lo de usar
+     * finalmente un QJsonDocument es pq permite pasarlo a un QString.
+     */
     for (int i = 0; i < provinciasescogidas.size(); ++i) {
         QJsonObject json;
 
@@ -66,10 +73,12 @@ void dlgMasivo::aceptar()
 
         QJsonDocument jsondoc(json);
         QString jsonfinal = jsondoc.toJson(QJsonDocument::Compact);
+
         QSqlQuery query;
         query.prepare("INSERT INTO chapters.chapters_details(chapter_id, details) VALUES(:id, :detalles)");
         query.bindValue(":id", chapterescogido);
         query.bindValue(":detalles", jsonfinal);
+        query.exec();
     }
 
     close();
