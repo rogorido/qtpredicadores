@@ -5,6 +5,9 @@
 #include <QSqlTableModel>
 #include <QModelIndex>
 #include <QListWidgetItem>
+#include <QMessageBox>
+#include <QJsonObject>
+#include <QJsonDocument>
 
 #include "objs/jsongestor.h"
 
@@ -40,6 +43,36 @@ dlgMasivo::~dlgMasivo()
 
 void dlgMasivo::aceptar()
 {
+    if (ui->txtKey->isEmpty() || ui->txtValue.isEmpty()){
+        int ret = QMessageBox::warning(this, "Imposible al introducir los datos",
+                                       "Los campos key y value son obligatorios.");
+        return;
+    }
+
+    if (provinciasescogidas.size() == 0) {
+        int ret = QMessageBox::warning(this, "No hay provincias escogidas",
+                                       "No hay provincias escogidas.");
+        return;
+    }
+
+    QString key = ui->txtKey->text();
+    QString valor = ui->txtValue->text();
+
+    for (int i = 0; i < provinciasescogidas.size(); ++i) {
+        QJsonObject json;
+
+        json.insert(key, valor);
+        json.insert("Provincia", QJsonValue(provinciasescogidas.at(i).id));
+
+        QJsonDocument jsondoc(json);
+        QString jsonfinal = jsondoc.toJson(QJsonDocument::Compact);
+        QSqlQuery query;
+        query.prepare("INSERT INTO chapters.chapters_details(chapter_id, details) VALUES(:id, :detalles)");
+        query.bindValue(":id", chapterescogido);
+        query.bindValue(":detalles", jsonfinal);
+    }
+
+    close();
 
 }
 

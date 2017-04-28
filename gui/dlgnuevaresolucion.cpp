@@ -226,7 +226,7 @@ void dlgNuevaResolucion::anadirMasivo()
     /*
      * TODO: hay que cmabiar este 0!
      */
-    dlgmasivo = new dlgMasivo(jsongestor, 0, this);
+    dlgmasivo = new dlgMasivo(0, this);
 
     dlgmasivo->show();
 }
