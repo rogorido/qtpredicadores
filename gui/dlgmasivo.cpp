@@ -114,6 +114,23 @@ void dlgMasivo::anadirProvincia()
 void dlgMasivo::quitarProvincia()
 {
 
+    QModelIndex idx = ui->twProvinciasSeleccionadas->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    QString prov = idx.data().toString();
+
+    for (int i = 0; i < provinciasescogidas.size(); ++i) {
+        if (provinciasescogidas.at(i).elemento == prov){
+            provinciasescogidas.removeAt(i);
+            break;
+        }
+    }
+
+    ui->twProvinciasSeleccionadas->takeItem(ui->twProvinciasSeleccionadas->currentRow());
+    // no sé por qué no funciona esto de abjao...
+    //ui->twProvinciasSeleccionadas->removeItemWidget(ui->twProvinciasSeleccionadas->currentItem());
 }
 
 void dlgMasivo::desmarcarTodasProvincias()
@@ -151,6 +168,8 @@ void dlgMasivo::cargarModelos()
     ui->twProvinciasSinSeleccionar->resizeRowsToContents();
     ui->twProvinciasSinSeleccionar->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->twProvinciasSinSeleccionar->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    ui->twProvinciasSeleccionadas->setSelectionMode(QAbstractItemView::SingleSelection);
 
 
 }
