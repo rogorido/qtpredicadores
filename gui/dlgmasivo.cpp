@@ -27,6 +27,9 @@ dlgMasivo::dlgMasivo(int chapter, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // ponemos esto pq será lo frecuente.
+    ui->txtKey->setText("Asistentes");
+
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->btAnadirProvincia, SIGNAL(clicked(bool)), this, SLOT(anadirProvincia()));
