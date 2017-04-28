@@ -2,17 +2,32 @@
 #include "ui_dlgmasivo.h"
 
 #include <QSqlQuery>
-#include <QSqlQueryModel>
-#include <QSortFilterProxyModel>
+#include <QSqlTableModel>
+#include <QModelIndex>
+#include <QListWidgetItem>
 
-dlgMasivo::dlgMasivo(JsonGestor *json, QWidget *parent) :
+#include "objs/jsongestor.h"
+
+#include <QDebug>
+
+/*
+ * en teoría todo eso de seleccionar provincias, etc.
+ * habría que hacerlo con un QSortFilterProxyModel pero
+ * el cabrón me da problemas pq me da un crash de lo más
+ * errático, que creo que no es culpa de mi código.
+ * Por eso lo hago a mano con un QList<elementopareado>
+ */
+
+dlgMasivo::dlgMasivo(JsonGestor *json, int chapter, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::dlgMasivo), jsondetalles(json)
+    ui(new Ui::dlgMasivo), jsondetalles(json), chapterescogido(chapter)
 {
     ui->setupUi(this);
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
+    connect(ui->btAnadirProvincia, SIGNAL(clicked(bool)), this, SLOT(anadirProvincia()));
+    connect(ui->btQuitarProvincia, SIGNAL(clicked(bool)), this, SLOT(quitarProvincia()));
 
     desmarcarTodasProvincias();
     cargarModelos();
@@ -24,6 +39,34 @@ dlgMasivo::~dlgMasivo()
 }
 
 void dlgMasivo::aceptar()
+{
+
+}
+
+void dlgMasivo::anadirProvincia()
+{
+
+    QModelIndex idx = provincias->index(ui->twProvinciasSinSeleccionar->currentIndex().row(), 0);
+    QModelIndex idxnombre = provincias->index(ui->twProvinciasSinSeleccionar->currentIndex().row(), 1);
+
+    if (!idx.isValid() || !idxnombre.isValid())
+        return;
+
+    int id_prov = provincias->data(idx, Qt::DisplayRole).toInt();
+    QString nombre = provincias->data(idxnombre, Qt::DisplayRole).toString();
+
+    elementopareado nuevo;
+    nuevo.id = id_prov;
+    nuevo.elemento = nombre;
+
+    provinciasescogidas.append(nuevo);
+
+    /* añadimos un elem a la tabla */
+    QListWidgetItem *item = new QListWidgetItem(nuevo.elemento, ui->twProvinciasSeleccionadas);
+
+}
+
+void dlgMasivo::quitarProvincia()
 {
 
 }
@@ -43,26 +86,26 @@ void dlgMasivo::desmarcarTodasProvincias()
 
 void dlgMasivo::cargarModelos()
 {
-    provincias = new QSqlQueryModel(this);
-    provincias->setQuery("SELECT province_id, name, selected FROM provinces ORDER BY name");
+    provincias = new QSqlTableModel(this);
+    provincias->setTable("general.provinces");
+    provincias->select();
+    provincias->sort(1, Qt::AscendingOrder);
+    //provincias->setEditStrategy(QSqlTableModel::OnRowChange);
 
-    provescogidas = new QSortFilterProxyModel(this);
-    provescogidas->setSourceModel(provincias);
-    provescogidas->setFilterKeyColumn(2);
-    provescogidas->setFilterFixedString("f");
+    ui->twProvinciasSinSeleccionar->setModel(provincias);
 
-    provnoescogidas = new QSortFilterProxyModel(this);
-    provnoescogidas->setSourceModel(provincias);
-    provnoescogidas->setFilterKeyColumn(2);
-    provnoescogidas->setFilterFixedString("t");
+    // esto es para hacer el loop de un array de ints...
+    // la finalidad: ocultar algunas columnas
+    std::vector<int> v = {0, 2, 3, 4, 5, 6, 7, 8};
+    for(int n : v) {
+        ui->twProvinciasSinSeleccionar->hideColumn(n);
+        }
 
-    ui->twProvinciasSeleccionadas->setModel(provescogidas);
-    ui->twProvinciasSinSeleccionar->setModel(provnoescogidas);
-
-    ui->twProvinciasSeleccionadas->hideColumn(0);
-    ui->twProvinciasSeleccionadas->hideColumn(2);
-    ui->twProvinciasSinSeleccionar->hideColumn(0);
-    ui->twProvinciasSinSeleccionar->hideColumn(2);
+    ui->twProvinciasSinSeleccionar->setAlternatingRowColors(true);
+    ui->twProvinciasSinSeleccionar->resizeColumnsToContents();
+    ui->twProvinciasSinSeleccionar->resizeRowsToContents();
+    ui->twProvinciasSinSeleccionar->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twProvinciasSinSeleccionar->setSelectionMode(QAbstractItemView::SingleSelection);
 
 
 }

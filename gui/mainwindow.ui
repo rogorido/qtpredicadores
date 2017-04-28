@@ -58,14 +58,6 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionCapitulos">
-   <property name="text">
-    <string>&amp;Capítulos</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+C</string>
-   </property>
-  </action>
   <action name="actionNuevoCapitulo">
    <property name="text">
     <string>Nu&amp;evo capítulo</string>
@@ -139,14 +131,9 @@
     <string>Ca&amp;sas</string>
    </property>
   </action>
-  <action name="actionCapitulos_2">
-   <property name="text">
-    <string>Capítulos</string>
-   </property>
-  </action>
   <action name="actionCapituli">
    <property name="text">
-    <string>Capítulos</string>
+    <string>Ca&amp;pítulos</string>
    </property>
   </action>
  </widget>

@@ -24,8 +24,6 @@
 #include "models/provinciasmodel.h"
 #include "models/capitulosmodel.h"
 
-#include "dlgcapitulos.h"
-
 #include "objs/tema.h"
 
 const int STATUSBAR_TIMEOUT = 1000;
@@ -56,7 +54,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::cargarMenues(){
     connect(ui->actionNuevoCapitulo, SIGNAL(triggered()), this, SLOT(nuevoCapitulo()));
-    connect(ui->actionCapitulos, SIGNAL(triggered()), this, SLOT(Capitulos()));
     connect(ui->actionNuevaCasa, SIGNAL(triggered()), this, SLOT(nuevaCasa()));
     connect(ui->actionNuevaPersona, SIGNAL(triggered()), this, SLOT(nuevaPersona()));
     connect(ui->actionNuevaObra, SIGNAL(triggered()), this, SLOT(nuevaObra()));

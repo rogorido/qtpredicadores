@@ -23,16 +23,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTableView" name="twProvinciasSeleccionadas">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>120</y>
-     <width>256</width>
-     <height>271</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btAnadirProvincia">
    <property name="geometry">
     <rect>
@@ -129,6 +119,16 @@
    </property>
    <property name="text">
     <string>Can&amp;celar</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="twProvinciasSeleccionadas">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>140</y>
+     <width>256</width>
+     <height>192</height>
+    </rect>
    </property>
   </widget>
  </widget>

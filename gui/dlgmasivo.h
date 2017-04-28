@@ -3,9 +3,10 @@
 
 #include <QDialog>
 
+#include "objs/variados.h"
+
 class JsonGestor;
-class QSqlQueryModel;
-class QSortFilterProxyModel;
+class QSqlTableModel;
 
 namespace Ui {
 class dlgMasivo;
@@ -16,16 +17,24 @@ class dlgMasivo : public QDialog
     Q_OBJECT
 
 public:
-    explicit dlgMasivo(JsonGestor *json, QWidget *parent = 0);
+    /*
+     * el int chapter es cuando lo abrimos desde el formulario
+     * de gestión de chapters.
+     */
+    explicit dlgMasivo(JsonGestor *json, int chapter, QWidget *parent = 0);
     ~dlgMasivo();
 
 private slots:
 
     void aceptar();
+    void anadirProvincia();
+    void quitarProvincia();
 
 private:
     Ui::dlgMasivo *ui;
     JsonGestor *jsondetalles;
+
+    QList<elementopareado> provinciasescogidas;
 
     /*
      * no uso el que ya tengo pq aquí cojo solo las columnas
@@ -33,12 +42,12 @@ private:
      * columnas en las views, que me aburre...
      * pero realmente es sensato?
      */
-    QSqlQueryModel *provincias;
-    QSortFilterProxyModel *provescogidas;
-    QSortFilterProxyModel *provnoescogidas;
+    QSqlTableModel *provincias;
 
     void desmarcarTodasProvincias();
     void cargarModelos();
+
+    int chapterescogido;
 };
 
 #endif // DLGMASIVO_H
