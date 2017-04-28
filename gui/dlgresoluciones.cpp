@@ -97,7 +97,7 @@ void DlgResoluciones::on_btQuitarTema_clicked()
 void DlgResoluciones::cargarModelos()
 {
     resoluciones_model = new QSqlQueryModel(this);
-    resoluciones_model->setQuery("SELECT resolution_id, substring(resolution_text, 0, 100) || '[...]', "
+    resoluciones_model->setQuery("SELECT resolution_id, resolution_text, "
                                  "chapters.general_name, small_title FROM resolutions "
                                  "JOIN chapters ON chapter=chapter_id;");
     resoluciones_model->setHeaderData(1, Qt::Horizontal, "Texto resolución");
@@ -106,8 +106,9 @@ void DlgResoluciones::cargarModelos()
     ui->twResoluciones->setModel(resoluciones_model);
     ui->twResoluciones->hideColumn(0);
     ui->twResoluciones->setAlternatingRowColors(true);
-    ui->twResoluciones->resizeColumnsToContents();
-    ui->twResoluciones->resizeRowsToContents();
+    ui->twResoluciones->setColumnWidth(1, 80);
+    //ui->twResoluciones->resizeColumnsToContents();
+    //ui->twResoluciones->resizeRowsToContents();
     ui->twResoluciones->horizontalHeader()->setStretchLastSection(true);
     ui->twResoluciones->setSortingEnabled(true);
     ui->twResoluciones->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -127,6 +128,7 @@ void DlgResoluciones::cargarModelos()
     ui->twTemas->resizeRowsToContents();
     ui->twTemas->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->twTemas->setSelectionMode(QAbstractItemView::SingleSelection);
+
 
 }
 

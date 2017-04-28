@@ -77,6 +77,12 @@ void dlgNuevaResolucion::aceptarResolucion(){
         return;
     }
 
+    /*
+     * necesitamos quitar \\n y demás del texto
+     */
+    resolucion_texto = resolucion_texto.replace("-\n", "");
+    resolucion_texto = resolucion_texto.simplified();
+
     QString resolucion_resumen = ui->txtResolucionResumen->toPlainText();
     QString resolucion_trad = ui->txtResolucionTraduccion->toPlainText();
     QString epigrafe = ui->txtEpigrafe->text();
