@@ -5,7 +5,6 @@
 
 #include "objs/variados.h"
 
-class JsonGestor;
 class QSqlTableModel;
 
 namespace Ui {
@@ -21,7 +20,7 @@ public:
      * el int chapter es cuando lo abrimos desde el formulario
      * de gestión de chapters.
      */
-    explicit dlgMasivo(JsonGestor *json, int chapter, QWidget *parent = 0);
+    explicit dlgMasivo(int chapter, QWidget *parent = 0);
     ~dlgMasivo();
 
 private slots:
@@ -32,7 +31,6 @@ private slots:
 
 private:
     Ui::dlgMasivo *ui;
-    JsonGestor *jsondetalles;
 
     QList<elementopareado> provinciasescogidas;
 

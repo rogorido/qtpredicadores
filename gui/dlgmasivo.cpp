@@ -18,9 +18,9 @@
  * Por eso lo hago a mano con un QList<elementopareado>
  */
 
-dlgMasivo::dlgMasivo(JsonGestor *json, int chapter, QWidget *parent) :
+dlgMasivo::dlgMasivo(int chapter, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::dlgMasivo), jsondetalles(json), chapterescogido(chapter)
+    ui(new Ui::dlgMasivo), chapterescogido(chapter)
 {
     ui->setupUi(this);
 
