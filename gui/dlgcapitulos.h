@@ -5,6 +5,7 @@
 
 class CapitulosModel;
 class QModelIndex;
+class dlgMasivo;
 
 namespace Ui {
 class dlgCapitulos;
@@ -20,11 +21,16 @@ public:
 
 private slots:
     void escogidoCapitulo(const QModelIndex &idx);
+    void introducirAsistentes();
 
 private:
     Ui::dlgCapitulos *ui;
 
     CapitulosModel *m_capitulos;
+
+    dlgMasivo *dlgmasivo;
+
+
 
 };
 

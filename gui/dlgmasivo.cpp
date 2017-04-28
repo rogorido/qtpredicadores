@@ -43,7 +43,7 @@ dlgMasivo::~dlgMasivo()
 
 void dlgMasivo::aceptar()
 {
-    if (ui->txtKey->isEmpty() || ui->txtValue.isEmpty()){
+    if (ui->txtKey->text().isEmpty() || ui->txtValue->text().isEmpty()){
         int ret = QMessageBox::warning(this, "Imposible al introducir los datos",
                                        "Los campos key y value son obligatorios.");
         return;

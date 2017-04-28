@@ -2,6 +2,8 @@
 #include "ui_dlgcapitulos.h"
 
 #include "models/capitulosmodel.h"
+#include "gui/dlgmasivo.h"
+
 #include <QDebug>
 
 dlgCapitulos::dlgCapitulos(QWidget *parent) :
@@ -40,6 +42,8 @@ dlgCapitulos::dlgCapitulos(QWidget *parent) :
     ui->twCapitulos->setSelectionMode(QAbstractItemView::SingleSelection);
 
     connect(ui->twCapitulos, SIGNAL(clicked(QModelIndex)), this, SLOT(escogidoCapitulo(QModelIndex)));
+    connect(ui->btCerrar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btIntroducirAsistentes, SIGNAL(clicked(bool)), this, SLOT(introducirAsistentes()));
     // no reconoce esta signal... esto parece que lo han cambiado.
     //connect(ui->twCapitulos, SIGNAL(currentChanged(QModelIndex, QModelIndex)), this, SLOT(escogidoCapitulo(QModelIndex)));
 
@@ -55,5 +59,19 @@ void dlgCapitulos::escogidoCapitulo(const QModelIndex &idx){
     QModelIndex indice = idx.model()->index(idx.row(), 0);
     int id = m_capitulos->data(indice, Qt::DisplayRole).toInt();
 
+
+}
+
+void dlgCapitulos::introducirAsistentes()
+{
+    QModelIndex indice = m_capitulos->index(ui->twCapitulos->currentIndex().row(), 0);
+
+    if (!indice.isValid())
+        return;
+
+    int id = m_capitulos->data(indice, Qt::DisplayRole).toInt();
+
+    dlgmasivo = new dlgMasivo(id, this);
+    dlgmasivo->show();
 
 }
