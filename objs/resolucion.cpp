@@ -18,4 +18,5 @@ void Resolucion::setInteres(int i) { interes = i; }
 void Resolucion::setResolucionAnterior(int r) { resolucion_anterior = r; }
 void Resolucion::setVerbos(QStringList v) { verbos = v; }
 void Resolucion::setExpresiones(QStringList e) { expresiones = e; }
+void Resolucion::setPages(QString p) { pages = p; }
 void Resolucion::setNotas(QString n) { notas = n; }

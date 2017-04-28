@@ -27,6 +27,7 @@ public:
     void setResolucionAnterior(int r);
     void setVerbos(QStringList v);
     void setExpresiones(QStringList e);
+    void setPages(QString p);
     void setNotas(QString n);
 
     //getters
@@ -45,6 +46,7 @@ public:
     int getResolucionAnterior() const {return resolucion_anterior;}
     QStringList getVerbos() const {return verbos;}
     QStringList getExpresiones() const {return expresiones;}
+    QString getPages() const {return pages;}
     QString getNotas() const {return notas;}
     
 private:
@@ -64,6 +66,7 @@ private:
     int resolucion_anterior;
     QStringList verbos;
     QStringList expresiones;
+    QString pages;
     QString notas;
 
 };

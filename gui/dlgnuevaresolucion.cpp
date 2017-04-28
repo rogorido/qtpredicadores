@@ -86,6 +86,7 @@ void dlgNuevaResolucion::aceptarResolucion(){
     bool volveramirar = ui->chVolverMirar->checkState();
     bool traducida = ui->chTradudida->checkState();
     bool razonada = ui->chRazonada->checkState();
+    QString paginas = ui->txtPaginas->text();
 
     QStringList verbos = m_verbos->stringList();
     QStringList expresiones = m_expresiones->stringList();
@@ -103,6 +104,7 @@ void dlgNuevaResolucion::aceptarResolucion(){
     resolucion->setProvincia(provincia_id);
     resolucion->setVerbos(verbos);
     resolucion->setExpresiones(expresiones);
+    resolucion->setPages(paginas);
     resolucion->setNotas(notas);
 
     if (m_resoluciones->anadirResolucion(resolucion)) {
