@@ -1,6 +1,13 @@
 #include "dlglicenciaentrada.h"
 #include "ui_dlglicenciaentrada.h"
 
+#include <QSqlQueryModel>
+#include <QCompleter>
+
+const QString sql_otorgantes="SELECT DISTINCT details->>'otorgante' AS otorgante "
+                             "FROM resolutions_details WHERE details->>'otorgante' IS NOT NULL "
+                             "ORDER BY otorgante;";
+
 dlgLicenciaEntrada::dlgLicenciaEntrada(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgLicenciaEntrada)
@@ -54,4 +61,11 @@ void dlgLicenciaEntrada::quitarOtorgante()
 void dlgLicenciaEntrada::cargarModelos()
 {
 
+    otorgantes_model = new QSqlQueryModel(this);
+    otorgantes_model->setQuery(sql_otorgantes);
+
+    otorgantes_completer = new QCompleter(otorgantes_model, this);
+    otorgantes_completer->setCompletionColumn(0);
+    otorgantes_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtOtorgante->setCompleter(otorgantes_completer);
 }
