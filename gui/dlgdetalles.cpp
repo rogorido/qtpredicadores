@@ -75,10 +75,12 @@ void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
      * una forma un poco más fácil de hacerlo?
      */
 
+    if (lista_aprobaciones.size() == 0)
+        return;
+
     /*
      * si el jsondetalles no está vacío, creamos un nuevo bloque
      */
-
     if (!jsondetalles->isEmpty())
         jsondetalles->nuevoBloqueJson();
 
