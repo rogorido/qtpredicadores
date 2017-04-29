@@ -5,6 +5,26 @@ AprobacionesTableModel::AprobacionesTableModel(QObject *parent)
 {
 }
 
+QVariant AprobacionesTableModel::headerData(int section, Qt::Orientation orientation, int role) const{
+
+    if (role != Qt::DisplayRole)
+            return QVariant();
+
+        if (orientation == Qt::Horizontal) {
+            switch (section) {
+                case 0:
+                    return tr("Persona");
+
+                case 1:
+                    return tr("Provincia");
+
+                default:
+                    return QVariant();
+            }
+        }
+        return QVariant();
+}
+
 int AprobacionesTableModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid())

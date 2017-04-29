@@ -16,6 +16,7 @@ dlgAprobacionesEntrada::dlgAprobacionesEntrada(QWidget *parent) :
     ui->twAprobaciones->setAlternatingRowColors(true);
     ui->twAprobaciones->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->twAprobaciones->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twAprobaciones->horizontalHeader()->setStretchLastSection(true);
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btPersona, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
