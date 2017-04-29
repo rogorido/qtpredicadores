@@ -66,9 +66,24 @@ void dlgDetalles::recibirProvincia(Provincia provincia){
     jsondetalles->anadirValor("Provincia", valor, id);
 }
 
-void dlgDetalles::recibirAprobaciones(QList<Aprobacion> lista_aprobaciones)
+void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
 {
 
+    /*
+     * tenemos que meter los datos de esta lista de aprobaciones
+     * en nuestro json. Pero: ¿todo esto no es un poco lío? ¿No habría
+     * una forma un poco más fácil de hacerlo?
+     */
+
+    for (int i = 0; i < lista_aprobaciones.size(); ++i) {
+        Aprobacion *aprobacion = lista_aprobaciones.at(i);
+        jsondetalles->nuevoBloqueJson();
+
+        QString nombre = aprobacion->getPersona().getNombre() + ' ' + aprobacion->getPersona().getApellidos();
+        jsondetalles->anadirValor("aprobación", aprobacion->getTipo());
+        jsondetalles->anadirValor("Persona", nombre, aprobacion->getPersona().getId());
+        jsondetalles->anadirValor("Provincia", aprobacion->getProvincia().getNombre(), aprobacion->getProvincia().getId());
+    }
 }
 
 void dlgDetalles::recibirCasa(int id, QString valor){
@@ -231,5 +246,5 @@ void dlgDetalles::on_btAprobaciones_clicked(){
     dlgAprobacionesEntrada *dlgaprobaciones = new dlgAprobacionesEntrada(this);
     dlgaprobaciones->show();
 
-    connect(dlgaprobaciones, SIGNAL(aceptarDatos(QList<Aprobacion>)), this, SLOT(recibirAprobaciones(QList<Aprobacion>)));
+    connect(dlgaprobaciones, SIGNAL(aceptarDatos(QList<Aprobacion*>)), this, SLOT(recibirAprobaciones(QList<Aprobacion*>)));
 }

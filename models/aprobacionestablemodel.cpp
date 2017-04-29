@@ -13,9 +13,11 @@ QVariant AprobacionesTableModel::headerData(int section, Qt::Orientation orienta
         if (orientation == Qt::Horizontal) {
             switch (section) {
                 case 0:
-                    return tr("Persona");
-
+                    return tr("Aprobación");
                 case 1:
+                return tr("Persona");
+
+                case 2:
                     return tr("Provincia");
 
                 default:
@@ -38,7 +40,7 @@ int AprobacionesTableModel::columnCount(const QModelIndex &parent) const
     if (parent.isValid())
         return 0;
 
-    return 2;
+    return 3;
 }
 
 QVariant AprobacionesTableModel::data(const QModelIndex &index, int role) const
@@ -54,8 +56,10 @@ QVariant AprobacionesTableModel::data(const QModelIndex &index, int role) const
             QString persona = aprobacion->getPersona().getNombre() + ' ' + aprobacion->getPersona().getApellidos();
 
             if (index.column() == 0)
-                return persona;
+                return aprobacion->getTipo();
             else if (index.column() == 1)
+                return persona;
+            else if (index.column() == 2)
                 return aprobacion->getProvincia().getNombre();
         }
 

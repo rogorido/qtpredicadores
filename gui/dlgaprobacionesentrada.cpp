@@ -42,6 +42,8 @@ void dlgAprobacionesEntrada::anadirAprobacion()
         return;
     }
 
+    aprobacion_activa->setTipo(ui->txtTipo->text());
+
     aprobaciones_model->anadirAprobacion(aprobacion_activa);
 
     // borramos la aprobación activa creando un nuevo objeto
