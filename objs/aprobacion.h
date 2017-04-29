@@ -3,6 +3,8 @@
 
 #include <QString>
 #include "objs/variados.h"
+#include "objs/persona.h"
+#include "objs/provincia.h"
 
 class Aprobacion
 {
@@ -11,18 +13,18 @@ public:
 
     //setters
     void setTipo(QString t);
-    void setPersona(elementopareado p);
-    void setProvincia(elementopareado p);
+    void setPersona(Persona p);
+    void setProvincia(Provincia p);
 
     //getters
     QString getTipo() const {return tipo;}
-    elementopareado getPersona() const {return persona;}
-    elementopareado getProvincia() const {return provincia;}
+    Persona getPersona() const {return persona;}
+    Provincia getProvincia() const {return provincia;}
 
 private:
     QString tipo;
-    elementopareado persona;
-    elementopareado provincia;
+    Persona persona;
+    Provincia provincia;
 
 };
 
