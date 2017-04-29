@@ -2,8 +2,10 @@
 #define DLGLICENCIAENTRADA_H
 
 #include <QDialog>
-
 #include "objs/licencia.h"
+
+class QSqlQueryModel;
+class QCompleter;
 
 namespace Ui {
 class dlgLicenciaEntrada;
@@ -35,8 +37,14 @@ private:
     QStringList receptores;
     QStringList otorgantes;
 
+    QSqlQueryModel *otorgantes_model;
+    QCompleter *otorgantes_completer;
+    QSqlQueryModel *receptores_model;
+    QCompleter *receptores_completer;
+
     Licencia licencia_activa;
 
+    void cargarModelos();
 };
 
 #endif // DLGLICENCIAENTRADA_H
