@@ -13,11 +13,15 @@ dlgAprobacionesEntrada::dlgAprobacionesEntrada(QWidget *parent) :
     aprobaciones_model = new AprobacionesTableModel(this);
 
     ui->twAprobaciones->setModel(aprobaciones_model);
+    ui->twAprobaciones->setAlternatingRowColors(true);
+    ui->twAprobaciones->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->twAprobaciones->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btPersona, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
     connect(ui->btProvincia, SIGNAL(clicked(bool)), this, SLOT(anadirProvincia()));
     connect(ui->btAnadirAprobacion, SIGNAL(clicked(bool)), this, SLOT(anadirAprobacion()));
+    connect(ui->btQuitarAprobacion, SIGNAL(clicked(bool)), this, SLOT(quitarAprobacion()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarAprobaciones()));
 
 }
@@ -33,6 +37,21 @@ void dlgAprobacionesEntrada::anadirAprobacion()
     aprobaciones_model->anadirAprobacion(aprobacion_activa);
 
     aprobacion_activa = new Aprobacion();
+    ui->txtPersona->setText("");
+    ui->txtProvincia->setText("");
+    ui->twAprobaciones->resizeColumnsToContents();
+    ui->twAprobaciones->resizeRowsToContents();
+}
+
+void dlgAprobacionesEntrada::quitarAprobacion()
+{
+    QModelIndex idx = ui->twAprobaciones->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    int row = idx.row();
+    aprobaciones_model->quitarAprobacion(row);
 }
 
 void dlgAprobacionesEntrada::aceptarAprobaciones()

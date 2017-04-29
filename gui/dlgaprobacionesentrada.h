@@ -28,6 +28,7 @@ signals:
 
 private slots:
     void anadirAprobacion();
+    void quitarAprobacion();
     void aceptarAprobaciones();
     void anadirPersona();
     void anadirProvincia();

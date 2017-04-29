@@ -56,3 +56,15 @@ void AprobacionesTableModel::anadirAprobacion(Aprobacion *aprobracion)
     endResetModel();
     //emitdataChanged(QModelIndex idx, QModelIndex idx2));
 }
+
+void AprobacionesTableModel::quitarAprobacion(int row)
+{
+    /*
+     * esto así creo que es una chapuza
+     */
+    beginResetModel();
+    removeRow(row);
+    endResetModel();
+
+    listaaprobaciones.removeAt(row);
+}

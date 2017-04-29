@@ -21,6 +21,7 @@ public:
     QList<Aprobacion *> getLista();
 
     void anadirAprobacion(Aprobacion *aprobracion);
+    void quitarAprobacion(int row);
 
 private:
 
