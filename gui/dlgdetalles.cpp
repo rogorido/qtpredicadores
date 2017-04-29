@@ -3,6 +3,7 @@
 
 #include "objs/jsongestor.h"
 #include "dlgseleccionargeneral.h"
+#include "dlgaprobacionesentrada.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -63,6 +64,11 @@ void dlgDetalles::recibirProvincia(Provincia provincia){
     QString valor = provincia.getNombre();
 
     jsondetalles->anadirValor("Provincia", valor, id);
+}
+
+void dlgDetalles::recibirAprobaciones(QList<Aprobacion> lista_aprobaciones)
+{
+
 }
 
 void dlgDetalles::recibirCasa(int id, QString valor){
@@ -220,3 +226,10 @@ void dlgDetalles::on_btAnadirInteresante_clicked(){
     jsondetalles->anadirValor("Interesante", QJsonValue(interesante));
 }
 
+void dlgDetalles::on_btAprobaciones_clicked(){
+
+    dlgAprobacionesEntrada *dlgaprobaciones = new dlgAprobacionesEntrada(this);
+    dlgaprobaciones->show();
+
+    connect(dlgaprobaciones, SIGNAL(aceptarDatos(QList<Aprobacion>)), this, SLOT(recibirAprobaciones(QList<Aprobacion>)));
+}

@@ -275,6 +275,19 @@
     <string>Provincia</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btAprobaciones">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>380</y>
+     <width>91</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Aprobaciones</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
