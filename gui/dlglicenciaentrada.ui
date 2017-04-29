@@ -218,6 +218,19 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>txtTipo</tabstop>
+  <tabstop>txtOtorgante</tabstop>
+  <tabstop>txtReceptor</tabstop>
+  <tabstop>txtAsunto</tabstop>
+  <tabstop>btQuitarOtorgante</tabstop>
+  <tabstop>spSeguridad</tabstop>
+  <tabstop>btQuitarReceptor</tabstop>
+  <tabstop>lwOtorgantes</tabstop>
+  <tabstop>lwReceptores</tabstop>
+  <tabstop>btCancelar</tabstop>
+  <tabstop>btOK</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
