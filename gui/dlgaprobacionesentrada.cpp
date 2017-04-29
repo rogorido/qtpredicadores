@@ -36,11 +36,20 @@ void dlgAprobacionesEntrada::aceptarAprobaciones()
 
 void dlgAprobacionesEntrada::anadirPersona()
 {
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgseleccionar->show();
+
+    connect(dlgseleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(actualizarPersona(Persona)));
 
 }
 
 void dlgAprobacionesEntrada::anadirProvincia()
 {
+
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgseleccionar->show();
+
+    connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(actualizarProvincia(Provincia)));
 
 }
 

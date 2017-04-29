@@ -6,8 +6,7 @@
 #include "objs/aprobacion.h"
 #include "objs/persona.h"
 #include "objs/provincia.h"
-
-class dlgSeleccionarGeneral;
+#include "objs/variados.h"
 
 namespace Ui {
 class dlgAprobacionesEntrada;
@@ -36,7 +35,6 @@ private slots:
 
 private:
     Ui::dlgAprobacionesEntrada *ui;
-    dlgSeleccionarGeneral *dlgseleccionar;
 
     Aprobacion *aprobacion_activa;
 };
