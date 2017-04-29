@@ -1,6 +1,8 @@
 #include "dlgaprobacionesentrada.h"
 #include "ui_dlgaprobacionesentrada.h"
 
+#include <QMessageBox>
+
 #include "gui/dlgseleccionargeneral.h"
 
 dlgAprobacionesEntrada::dlgAprobacionesEntrada(QWidget *parent) :
@@ -34,10 +36,18 @@ dlgAprobacionesEntrada::~dlgAprobacionesEntrada()
 
 void dlgAprobacionesEntrada::anadirAprobacion()
 {
+    if (ui->txtTipo->text().isEmpty()){
+        int ret = QMessageBox::warning(this, "No hay texto en el tipo de aprobación",
+                                       "Introduzca por favor texto en el tipo de aprobación");
+        return;
+    }
 
     aprobaciones_model->anadirAprobacion(aprobacion_activa);
 
+    // borramos la aprobación activa creando un nuevo objeto
     aprobacion_activa = new Aprobacion();
+
+    // borramos los campos
     ui->txtPersona->setText("");
     ui->txtProvincia->setText("");
     ui->twAprobaciones->resizeColumnsToContents();
@@ -57,6 +67,9 @@ void dlgAprobacionesEntrada::quitarAprobacion()
 
 void dlgAprobacionesEntrada::aceptarAprobaciones()
 {
+    QList<Aprobacion*> lista = aprobaciones_model->getLista();
+
+    emit(aceptarDatos(lista));
 
 }
 

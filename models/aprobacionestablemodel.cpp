@@ -51,9 +51,10 @@ QVariant AprobacionesTableModel::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole) {
             Aprobacion *aprobacion = listaaprobaciones.at(index.row());
+            QString persona = aprobacion->getPersona().getNombre() + ' ' + aprobacion->getPersona().getApellidos();
 
             if (index.column() == 0)
-                return aprobacion->getPersona().getNombre();
+                return persona;
             else if (index.column() == 1)
                 return aprobacion->getProvincia().getNombre();
         }

@@ -24,7 +24,7 @@ public:
 
 signals:
 
-    void aceptarDatos(QList<Aprobacion> listaaprobaciones);
+    void aceptarDatos(QList<Aprobacion*> listaaprobaciones);
 
 private slots:
     void anadirAprobacion();
