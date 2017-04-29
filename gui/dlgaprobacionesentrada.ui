@@ -15,43 +15,36 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Tipo</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="1" colspan="2">
       <widget class="QLineEdit" name="txtTipo"/>
      </item>
-     <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
+     <item row="1" column="0" colspan="2">
       <widget class="QPushButton" name="btPersona">
        <property name="text">
         <string>Pe&amp;rsona</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="1" column="2">
+      <widget class="QLineEdit" name="txtPersona"/>
+     </item>
+     <item row="2" column="0" colspan="2">
       <widget class="QPushButton" name="btProvincia">
        <property name="text">
         <string>&amp;Provincia</string>
        </property>
       </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLineEdit" name="txtProvincia"/>
      </item>
     </layout>
    </item>
@@ -60,6 +53,13 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="btAnadirAprobacion">
+       <property name="text">
+        <string>Aña&amp;dir</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
