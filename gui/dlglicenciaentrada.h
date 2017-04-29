@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "objs/licencia.h"
+
 namespace Ui {
 class dlgLicenciaEntrada;
 }
@@ -15,8 +17,26 @@ public:
     explicit dlgLicenciaEntrada(QWidget *parent = 0);
     ~dlgLicenciaEntrada();
 
+public slots:
+
+    void aceptar();
+    void anadirReceptor();
+    void quitarReceptor();
+    void anadirOtorgante();
+    void quitarOtorgante();
+
+signals:
+
+    void aceptarLicencia(Licencia licencia);
+
 private:
     Ui::dlgLicenciaEntrada *ui;
+
+    QStringList receptores;
+    QStringList otorgantes;
+
+    Licencia licencia_activa;
+
 };
 
 #endif // DLGLICENCIAENTRADA_H
