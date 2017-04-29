@@ -56,9 +56,17 @@ void dlgAprobacionesEntrada::anadirProvincia()
 void dlgAprobacionesEntrada::actualizarPersona(Persona persona)
 {
 
+    aprobacion_activa->setPersona(persona);
+    QString nombre_persona;
+
+    nombre_persona = persona.getNombre() + ' ' + persona.getApellidos() + ' ' + persona.getOrigen();
+
+    ui->txtPersona->setText(nombre_persona);
 }
 
 void dlgAprobacionesEntrada::actualizarProvincia(Provincia provincia)
 {
+    aprobacion_activa->setProvincia(provincia);
 
+    ui->txtProvincia->setText(provincia.getNombre());
 }
