@@ -125,6 +125,15 @@ int JsonGestor::getSize(){
     return m_json_general.size();
 }
 
+bool JsonGestor::isEmpty()
+{
+    if (m_json_activo.isEmpty())
+        return true;
+    else
+        return false;
+
+}
+
 QString JsonGestor::getJsonString(int i){
 
     /*

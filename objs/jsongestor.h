@@ -39,6 +39,7 @@ public:
     void actualizarPrevioIntroducir();
 
     int getSize();
+    bool isEmpty();
 
     QString getJsonString(int i);
 

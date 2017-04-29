@@ -75,14 +75,26 @@ void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
      * una forma un poco más fácil de hacerlo?
      */
 
+    /*
+     * si el jsondetalles no está vacío, creamos un nuevo bloque
+     */
+
+    if (!jsondetalles->isEmpty())
+        jsondetalles->nuevoBloqueJson();
+
     for (int i = 0; i < lista_aprobaciones.size(); ++i) {
         Aprobacion *aprobacion = lista_aprobaciones.at(i);
-        jsondetalles->nuevoBloqueJson();
 
         QString nombre = aprobacion->getPersona().getNombre() + ' ' + aprobacion->getPersona().getApellidos();
         jsondetalles->anadirValor("aprobación", aprobacion->getTipo());
         jsondetalles->anadirValor("Persona", nombre, aprobacion->getPersona().getId());
-        jsondetalles->anadirValor("Provincia", aprobacion->getProvincia().getNombre(), aprobacion->getProvincia().getId());
+
+        // a veces probablemente no haya provincia...
+        QString provincia = aprobacion->getProvincia().getNombre();
+        if (!provincia.isEmpty())
+            jsondetalles->anadirValor("Provincia", aprobacion->getProvincia().getNombre(), aprobacion->getProvincia().getId());
+
+        jsondetalles->nuevoBloqueJson();
     }
 }
 

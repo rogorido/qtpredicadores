@@ -73,6 +73,8 @@ void dlgAprobacionesEntrada::aceptarAprobaciones()
 
     emit(aceptarDatos(lista));
 
+    close();
+
 }
 
 void dlgAprobacionesEntrada::anadirPersona()
