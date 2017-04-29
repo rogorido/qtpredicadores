@@ -8,6 +8,7 @@
 
 #include <QSqlQueryModel>
 #include <QCompleter>
+#include <QJsonArray>
 
 #include <QDebug>
 
@@ -99,6 +100,28 @@ void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
 
         jsondetalles->nuevoBloqueJson();
     }
+}
+
+void dlgDetalles::recibirLicencia(Licencia licencia)
+{
+    /*
+     * si el jsondetalles no está vacío, creamos un nuevo bloque
+     */
+    if (!jsondetalles->isEmpty())
+        jsondetalles->nuevoBloqueJson();
+
+    jsondetalles->anadirValor("licencia", "yes");
+    if (!licencia.getLicenciatipo().isEmpty()) {
+        jsondetalles->anadirValor("tipo", licencia.getLicenciatipo());
+    }
+
+    /*
+     * TODO: aquí se plantea la duda qué hacer con los NULLs?
+     * ¿controlo si están vacíos y no los meto? ¿o meto nulls que luego
+     * a lo mejor es más interesante para buscar?
+     */
+    if (!licencia.getOtorgantes().isEmpty())
+        jsondetalles->anadirValor("otorgante", QJsonArray::fromStringList(licencia.getOtorgantes()));
 }
 
 void dlgDetalles::recibirCasa(int id, QString valor){
@@ -269,5 +292,6 @@ void dlgDetalles::on_btLicencias_clicked() {
     dlgLicenciaEntrada *dlglicencias = new dlgLicenciaEntrada(this);
     dlglicencias->show();
 
+    connect(dlglicencias, SIGNAL(aceptarLicencia(Licencia)), this, SLOT(recibirLicencia(Licencia)));
 
 }

@@ -5,6 +5,7 @@
 #include <QVariant>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QJsonArray>
 #include <QList>
 #include <QVector>
 
