@@ -37,6 +37,8 @@ private:
     QStringList receptores;
     QStringList otorgantes;
 
+    QSqlQueryModel *tipos_model;
+    QCompleter *tipos_completer;
     QSqlQueryModel *otorgantes_model;
     QCompleter *otorgantes_completer;
     QSqlQueryModel *receptores_model;

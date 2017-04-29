@@ -7,6 +7,8 @@
 const QString sql_otorgantes="SELECT DISTINCT details->>'otorgante' AS otorgante "
                              "FROM resolutions_details WHERE details->>'otorgante' IS NOT NULL "
                              "ORDER BY otorgante;";
+const QString sql_tipo="SELECT DISTINCT details->>'tipo' AS tipo "
+                       "FROM resolutions_details WHERE details ? 'licencia' ORDER BY tipo;";
 
 dlgLicenciaEntrada::dlgLicenciaEntrada(QWidget *parent) :
     QDialog(parent),
@@ -68,4 +70,12 @@ void dlgLicenciaEntrada::cargarModelos()
     otorgantes_completer->setCompletionColumn(0);
     otorgantes_completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtOtorgante->setCompleter(otorgantes_completer);
+
+    tipos_model = new QSqlQueryModel(this);
+    tipos_model->setQuery(sql_tipo);
+
+    tipos_completer = new QCompleter(tipos_model, this);
+    tipos_completer->setCompletionColumn(0);
+    tipos_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtTipo->setCompleter(tipos_completer);
 }
