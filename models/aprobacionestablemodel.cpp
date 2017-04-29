@@ -26,7 +26,18 @@ QVariant AprobacionesTableModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    // FIXME: Implement me!
+    if (index.row() >= listaaprobaciones.size() || index.row() < 0)
+            return QVariant();
+
+    if (role == Qt::DisplayRole) {
+            Aprobacion aprobacion = listaaprobaciones.at(index.row());
+
+            if (index.column() == 0)
+                return aprobacion.getPersona().getNombre();
+            else if (index.column() == 1)
+                return aprobacion.getProvincia().getNombre();
+        }
+
     return QVariant();
 }
 
@@ -37,7 +48,11 @@ QList<Aprobacion> AprobacionesTableModel::getLista()
 
 void AprobacionesTableModel::anadirAprobacion(Aprobacion aprobracion)
 {
+    /*
+     * esto así creo que es una chapuza
+     */
+    beginResetModel();
     listaaprobaciones.append(aprobracion);
-
+    endResetModel();
     //emitdataChanged(QModelIndex idx, QModelIndex idx2));
 }
