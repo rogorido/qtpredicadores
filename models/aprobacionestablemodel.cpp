@@ -30,23 +30,23 @@ QVariant AprobacionesTableModel::data(const QModelIndex &index, int role) const
             return QVariant();
 
     if (role == Qt::DisplayRole) {
-            Aprobacion aprobacion = listaaprobaciones.at(index.row());
+            Aprobacion *aprobacion = listaaprobaciones.at(index.row());
 
             if (index.column() == 0)
-                return aprobacion.getPersona().getNombre();
+                return aprobacion->getPersona().getNombre();
             else if (index.column() == 1)
-                return aprobacion.getProvincia().getNombre();
+                return aprobacion->getProvincia().getNombre();
         }
 
     return QVariant();
 }
 
-QList<Aprobacion> AprobacionesTableModel::getLista()
+QList<Aprobacion*> AprobacionesTableModel::getLista()
 {
     return listaaprobaciones;
 }
 
-void AprobacionesTableModel::anadirAprobacion(Aprobacion aprobracion)
+void AprobacionesTableModel::anadirAprobacion(Aprobacion *aprobracion)
 {
     /*
      * esto así creo que es una chapuza

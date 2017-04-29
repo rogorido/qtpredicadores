@@ -39,6 +39,12 @@ private:
     Ui::dlgAprobacionesEntrada *ui;
     AprobacionesTableModel *aprobaciones_model;
 
+    /*
+     * lo hago pointer pq luego necesito borrarla
+     * para crear una nueva... pero esto sinceramente no sé
+     * si está muy bien así. Al hacerlo pointer esto tb
+     * me cambia internamente lo de AprobacionesTableModel
+     */
     Aprobacion *aprobacion_activa;
 };
 

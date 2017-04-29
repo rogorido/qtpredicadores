@@ -18,13 +18,13 @@ public:
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
-    QList<Aprobacion> getLista();
+    QList<Aprobacion *> getLista();
 
-    void anadirAprobacion(Aprobacion aprobracion);
+    void anadirAprobacion(Aprobacion *aprobracion);
 
 private:
 
-    QList<Aprobacion> listaaprobaciones;
+    QList<Aprobacion *> listaaprobaciones;
 };
 
 #endif // APROBACIONESTABLEMODEL_H

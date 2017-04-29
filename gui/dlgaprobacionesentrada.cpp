@@ -30,6 +30,9 @@ dlgAprobacionesEntrada::~dlgAprobacionesEntrada()
 void dlgAprobacionesEntrada::anadirAprobacion()
 {
 
+    aprobaciones_model->anadirAprobacion(aprobacion_activa);
+
+    aprobacion_activa = new Aprobacion();
 }
 
 void dlgAprobacionesEntrada::aceptarAprobaciones()
