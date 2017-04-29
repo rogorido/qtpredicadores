@@ -4,6 +4,7 @@
 #include "objs/jsongestor.h"
 #include "dlgseleccionargeneral.h"
 #include "dlgaprobacionesentrada.h"
+#include "dlglicenciaentrada.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -261,4 +262,12 @@ void dlgDetalles::on_btAprobaciones_clicked(){
     dlgaprobaciones->show();
 
     connect(dlgaprobaciones, SIGNAL(aceptarDatos(QList<Aprobacion*>)), this, SLOT(recibirAprobaciones(QList<Aprobacion*>)));
+}
+
+void dlgDetalles::on_btLicencias_clicked() {
+
+    dlgLicenciaEntrada *dlglicencias = new dlgLicenciaEntrada(this);
+    dlglicencias->show();
+
+
 }

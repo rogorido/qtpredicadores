@@ -288,6 +288,19 @@
     <string>Aprobaciones</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btLicencias">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>380</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Licencias</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

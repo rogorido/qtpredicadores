@@ -40,6 +40,7 @@ private slots:
     void on_btModificarDetalles_toggled(bool checked);
     void on_btAnadirInteresante_clicked();
     void on_btAprobaciones_clicked();
+    void on_btLicencias_clicked();
 
     void on_btCasa_clicked();
 
