@@ -34,6 +34,7 @@ dlgMasivo::dlgMasivo(int chapter, QWidget *parent) :
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->btAnadirProvincia, SIGNAL(clicked(bool)), this, SLOT(anadirProvincia()));
     connect(ui->btQuitarProvincia, SIGNAL(clicked(bool)), this, SLOT(quitarProvincia()));
+    connect(ui->twProvinciasSinSeleccionar, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(anadirProvincia()));
 
     desmarcarTodasProvincias();
     cargarModelos();

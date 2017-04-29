@@ -14,6 +14,13 @@ dlgTemas::dlgTemas(QList<elementopareado> *temas_lista, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->twTemas->setAlternatingRowColors(true);
+    ui->twTemas->resizeColumnsToContents();
+    ui->twTemas->resizeRowsToContents();
+    ui->twTemas->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->twTemas->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twTemas->horizontalHeader()->setStretchLastSection(true);
+
     // los dos hacen lo mismo... tvz quitar uno
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(hide()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(hide()));
@@ -54,6 +61,9 @@ void dlgTemas::recibirTema(Tema tema){
     ui->twTemas->insertRow(insertRow);
 
     ui->twTemas->setItem(insertRow, 0, item);
+
+    ui->twTemas->resizeColumnsToContents();
+    ui->twTemas->resizeRowsToContents();
 }
 
 void dlgTemas::on_btQuitarTema_clicked(){
