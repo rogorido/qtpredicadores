@@ -122,6 +122,14 @@ void dlgDetalles::recibirLicencia(Licencia licencia)
      */
     if (!licencia.getOtorgantes().isEmpty())
         jsondetalles->anadirValor("otorgante", QJsonArray::fromStringList(licencia.getOtorgantes()));
+
+    if (!licencia.getReceptores().isEmpty())
+        jsondetalles->anadirValor("receptor", QJsonArray::fromStringList(licencia.getReceptores()));
+
+    if (!licencia.getAsunto().isEmpty())
+        jsondetalles->anadirValor("asunto", licencia.getAsunto());
+
+    jsondetalles->anadirValor("seguridad", QJsonValue(licencia.getSeguridad()));
 }
 
 void dlgDetalles::recibirCasa(int id, QString valor){

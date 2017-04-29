@@ -56,14 +56,14 @@ void JsonGestor::anadirValor(const QString &key, const QJsonValue &value){
      * hay que hacer este pequeño lío para sacar el puto Qstringlist
      * del array. No sé por qué no hay un sistema más fácil..
      */
+    QVariant valores = value.toVariant();
     if (value.isArray()){
-        QVariant valores = value.toVariant();
         QStringList valores_lista = valores.toStringList();
         QString valores_final = valores_lista.join(", ");
         anadirChildItem(key, valores_final);
     }
     else
-        anadirChildItem(key, value.toString());
+        anadirChildItem(key, valores.toString());
 }
 
 
