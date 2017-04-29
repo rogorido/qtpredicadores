@@ -4,6 +4,7 @@
 #include <QSqlQueryModel>
 #include <QCompleter>
 #include <QListWidgetItem>
+#include <QModelIndex>
 
 const QString sql_otorgantes="SELECT DISTINCT details->>'otorgante' AS otorgante "
                              "FROM resolutions_details WHERE details->>'otorgante' IS NOT NULL "
@@ -23,7 +24,10 @@ dlgLicenciaEntrada::dlgLicenciaEntrada(QWidget *parent) :
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
+    connect(ui->btQuitarOtorgante, SIGNAL(clicked(bool)), this, SLOT(quitarOtorgante()));
+    connect(ui->btQuitarReceptor, SIGNAL(clicked(bool)), this, SLOT(quitarReceptor()));
     connect(ui->txtOtorgante, SIGNAL(returnPressed()), this, SLOT(anadirOtorgante()));
+    connect(ui->txtReceptor, SIGNAL(returnPressed()), this, SLOT(anadirReceptor()));
 
    cargarModelos();
 }
@@ -48,11 +52,29 @@ void dlgLicenciaEntrada::aceptar()
 
 void dlgLicenciaEntrada::anadirReceptor()
 {
-
+    if (!ui->txtReceptor->text().isEmpty()){
+        receptores.append(ui->txtReceptor->text());
+        QListWidgetItem *item = new QListWidgetItem(ui->txtReceptor->text(), ui->lwReceptores);
+    }
 }
 
 void dlgLicenciaEntrada::quitarReceptor()
 {
+    QModelIndex idx = ui->lwReceptores->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    QString receptor = idx.data().toString();
+
+    for (int i = 0; i < receptores.size(); ++i) {
+        if (receptores.value(i) == receptor) {
+            receptores.removeAt(i);
+            break;
+        }
+    }
+
+    ui->lwReceptores->takeItem(ui->lwReceptores->currentRow());
 
 }
 
@@ -67,7 +89,21 @@ void dlgLicenciaEntrada::anadirOtorgante()
 
 void dlgLicenciaEntrada::quitarOtorgante()
 {
+    QModelIndex idx = ui->lwOtorgantes->currentIndex();
 
+    if (!idx.isValid())
+        return;
+
+    QString otorgante = idx.data().toString();
+
+    for (int i = 0; i < otorgantes.size(); ++i) {
+        if (otorgantes.value(i) == otorgante) {
+            otorgantes.removeAt(i);
+            break;
+        }
+    }
+
+    ui->lwOtorgantes->takeItem(ui->lwOtorgantes->currentRow());
 }
 
 void dlgLicenciaEntrada::cargarModelos()
