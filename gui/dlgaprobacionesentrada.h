@@ -8,6 +8,8 @@
 #include "objs/provincia.h"
 #include "objs/variados.h"
 
+#include "models/aprobacionestablemodel.h"
+
 namespace Ui {
 class dlgAprobacionesEntrada;
 }
@@ -35,6 +37,7 @@ private slots:
 
 private:
     Ui::dlgAprobacionesEntrada *ui;
+    AprobacionesTableModel *aprobaciones_model;
 
     Aprobacion *aprobacion_activa;
 };

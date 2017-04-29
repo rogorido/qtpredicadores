@@ -10,7 +10,7 @@ int AprobacionesTableModel::rowCount(const QModelIndex &parent) const
     if (parent.isValid())
         return 0;
 
-    // FIXME: Implement me!
+    return listaaprobaciones.size();
 }
 
 int AprobacionesTableModel::columnCount(const QModelIndex &parent) const
@@ -18,7 +18,7 @@ int AprobacionesTableModel::columnCount(const QModelIndex &parent) const
     if (parent.isValid())
         return 0;
 
-    // FIXME: Implement me!
+    return 2;
 }
 
 QVariant AprobacionesTableModel::data(const QModelIndex &index, int role) const
@@ -28,4 +28,16 @@ QVariant AprobacionesTableModel::data(const QModelIndex &index, int role) const
 
     // FIXME: Implement me!
     return QVariant();
+}
+
+QList<Aprobacion> AprobacionesTableModel::getLista()
+{
+    return listaaprobaciones;
+}
+
+void AprobacionesTableModel::anadirAprobacion(Aprobacion aprobracion)
+{
+    listaaprobaciones.append(aprobracion);
+
+    //emitdataChanged(QModelIndex idx, QModelIndex idx2));
 }

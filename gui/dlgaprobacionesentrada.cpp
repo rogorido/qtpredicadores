@@ -10,6 +10,7 @@ dlgAprobacionesEntrada::dlgAprobacionesEntrada(QWidget *parent) :
     ui->setupUi(this);
 
     aprobacion_activa = new Aprobacion();
+    aprobaciones_model = new AprobacionesTableModel(this);
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btPersona, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));

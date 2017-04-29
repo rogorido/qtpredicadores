@@ -3,6 +3,8 @@
 
 #include <QAbstractTableModel>
 
+#include <objs/aprobacion.h>
+
 class AprobacionesTableModel : public QAbstractTableModel
 {
     Q_OBJECT
@@ -16,7 +18,13 @@ public:
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+    QList<Aprobacion> getLista();
+
+    void anadirAprobacion(Aprobacion aprobracion);
+
 private:
+
+    QList<Aprobacion> listaaprobaciones;
 };
 
 #endif // APROBACIONESTABLEMODEL_H
