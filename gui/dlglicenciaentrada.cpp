@@ -6,6 +6,8 @@
 #include <QListWidgetItem>
 #include <QModelIndex>
 
+#include <QDebug>
+
 const QString sql_otorgantes="SELECT DISTINCT details->>'otorgante' AS otorgante "
                              "FROM resolutions_details WHERE details->>'otorgante' IS NOT NULL "
                              "ORDER BY otorgante;";
@@ -55,6 +57,7 @@ void dlgLicenciaEntrada::anadirReceptor()
     if (!ui->txtReceptor->text().isEmpty()){
         receptores.append(ui->txtReceptor->text());
         QListWidgetItem *item = new QListWidgetItem(ui->txtReceptor->text(), ui->lwReceptores);
+        ui->txtReceptor->setText("");
     }
 }
 
@@ -83,6 +86,8 @@ void dlgLicenciaEntrada::anadirOtorgante()
     if (!ui->txtOtorgante->text().isEmpty()){
         otorgantes.append(ui->txtOtorgante->text());
         QListWidgetItem *item = new QListWidgetItem(ui->txtOtorgante->text(), ui->lwOtorgantes);
+        // por qué coño no funciona esto o funciona erráticamente???
+        ui->txtOtorgante->setText("");
     }
 
 }
