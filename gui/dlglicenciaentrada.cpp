@@ -3,6 +3,7 @@
 
 #include <QSqlQueryModel>
 #include <QCompleter>
+#include <QListWidgetItem>
 
 const QString sql_otorgantes="SELECT DISTINCT details->>'otorgante' AS otorgante "
                              "FROM resolutions_details WHERE details->>'otorgante' IS NOT NULL "
@@ -22,6 +23,7 @@ dlgLicenciaEntrada::dlgLicenciaEntrada(QWidget *parent) :
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
+    connect(ui->txtOtorgante, SIGNAL(returnPressed()), this, SLOT(anadirOtorgante()));
 
    cargarModelos();
 }
@@ -56,6 +58,10 @@ void dlgLicenciaEntrada::quitarReceptor()
 
 void dlgLicenciaEntrada::anadirOtorgante()
 {
+    if (!ui->txtOtorgante->text().isEmpty()){
+        otorgantes.append(ui->txtOtorgante->text());
+        QListWidgetItem *item = new QListWidgetItem(ui->txtOtorgante->text(), ui->lwOtorgantes);
+    }
 
 }
 
