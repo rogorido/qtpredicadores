@@ -23,7 +23,7 @@ dlgLicenciaEntrada::dlgLicenciaEntrada(QWidget *parent) :
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
 
-    cargarModelos();
+   cargarModelos();
 }
 
 dlgLicenciaEntrada::~dlgLicenciaEntrada()
