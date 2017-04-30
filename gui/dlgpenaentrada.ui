@@ -203,13 +203,6 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="btCancelar">
-       <property name="text">
-        <string>Can&amp;celar</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="btOK">
        <property name="text">
         <string>&amp;Aceptar</string>
@@ -227,7 +220,6 @@
   <tabstop>txtAbsolucion</tabstop>
   <tabstop>spSeguridad</tabstop>
   <tabstop>txtMotivo</tabstop>
-  <tabstop>btCancelar</tabstop>
   <tabstop>btOK</tabstop>
   <tabstop>lwTipos</tabstop>
   <tabstop>lwPenados</tabstop>

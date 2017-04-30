@@ -28,6 +28,10 @@ private slots:
     void anadirPenados();
     void quitarPenados();
 
+signals:
+
+    void aceptarPena(Pena pena);
+
 private:
     Ui::dlgPenaEntrada *ui;
 
