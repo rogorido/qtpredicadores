@@ -5,6 +5,7 @@
 #include "dlgseleccionargeneral.h"
 #include "dlgaprobacionesentrada.h"
 #include "dlglicenciaentrada.h"
+#include "dlgpena.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -301,5 +302,12 @@ void dlgDetalles::on_btLicencias_clicked() {
     dlglicencias->show();
 
     connect(dlglicencias, SIGNAL(aceptarLicencia(Licencia)), this, SLOT(recibirLicencia(Licencia)));
+
+}
+
+void dlgDetalles::on_btPenas_clicked() {
+
+    dlgPena *dlgpena = new dlgPena(this);
+    dlgpena->show();
 
 }

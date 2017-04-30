@@ -301,6 +301,19 @@
     <string>Licencias</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btPenas">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>380</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Penas</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
