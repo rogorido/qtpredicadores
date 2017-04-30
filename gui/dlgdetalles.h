@@ -44,7 +44,6 @@ private slots:
     void on_btAprobaciones_clicked();
     void on_btLicencias_clicked();
     void on_btPenas_clicked();
-
     void on_btCasa_clicked();
 
 private:

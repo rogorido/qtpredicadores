@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>dlgPena</class>
- <widget class="QDialog" name="dlgPena">
+ <class>dlgPenaEntrada</class>
+ <widget class="QDialog" name="dlgPenaEntrada">
   <property name="geometry">
    <rect>
     <x>0</x>
