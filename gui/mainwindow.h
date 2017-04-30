@@ -12,6 +12,7 @@ class dlgCapitulos;
 class DlgResoluciones; // esto me he confundido y lo he puesto en mayúscula!
 class dlgCiudades;
 class dlgCasas;
+class dlgEstadisticas;
 
 class TemasModel;
 class LugaresModel;
@@ -47,6 +48,8 @@ private slots:
     void Ciudades();
     void Casas();
 
+    void Estadisticas();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
@@ -62,6 +65,8 @@ private:
     DlgResoluciones *FormResoluciones;
     dlgCiudades *FormCiudades;
     dlgCasas *FormCasas;
+
+    dlgEstadisticas *FormEstadisticas;
 
     TemasModel *m_temas;
     LugaresModel *m_lugares;

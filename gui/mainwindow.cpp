@@ -16,6 +16,7 @@
 #include "dlgciudades.h"
 #include "dlgcasas.h"
 #include "dlgcapitulos.h"
+#include "dlgestadisticas.h"
 
 #include "models/temasmodel.h"
 #include "models/lugaresmodel.h"
@@ -64,6 +65,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionCiudades, SIGNAL(triggered(bool)), this, SLOT(Ciudades()));
     connect(ui->actionCasas, SIGNAL(triggered(bool)), this, SLOT(Casas()));
     connect(ui->actionCapituli, SIGNAL(triggered(bool)), this, SLOT(Capitulos()));
+    connect(ui->actionGeneralEstadisticas, SIGNAL(triggered(bool)), this, SLOT(Estadisticas()));
     connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
@@ -137,6 +139,12 @@ void MainWindow::Casas()
 {
     FormCasas = new dlgCasas(this);
     FormCasas->show();
+}
+
+void MainWindow::Estadisticas()
+{
+    FormEstadisticas = new dlgEstadisticas(this);
+    FormEstadisticas->show();
 }
 
 void MainWindow::nuevaObra(){

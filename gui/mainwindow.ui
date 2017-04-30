@@ -46,8 +46,15 @@
     <addaction name="actionCasas"/>
     <addaction name="actionCapituli"/>
    </widget>
+   <widget class="QMenu" name="menuEstad_sticas">
+    <property name="title">
+     <string>Estad&amp;ísticas</string>
+    </property>
+    <addaction name="actionGeneralEstadisticas"/>
+   </widget>
    <addaction name="menuGeneral"/>
    <addaction name="menuGestion"/>
+   <addaction name="menuEstad_sticas"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -134,6 +141,11 @@
   <action name="actionCapituli">
    <property name="text">
     <string>Ca&amp;pítulos</string>
+   </property>
+  </action>
+  <action name="actionGeneralEstadisticas">
+   <property name="text">
+    <string>General</string>
    </property>
   </action>
  </widget>
