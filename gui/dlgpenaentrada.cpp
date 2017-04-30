@@ -8,7 +8,7 @@ dlgPenaEntrada::dlgPenaEntrada(QWidget *parent) :
     ui->setupUi(this);
 }
 
-dlgPenaEntrada::~dlgPena()
+dlgPenaEntrada::~dlgPenaEntrada()
 {
     delete ui;
 }
