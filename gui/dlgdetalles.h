@@ -8,6 +8,7 @@
 #include "objs/provincia.h"
 #include "objs/aprobacion.h"
 #include "objs/licencia.h"
+#include "objs/pena.h"
 
 class JsonGestor;
 class QSqlQueryModel;
@@ -32,6 +33,7 @@ private slots:
     void recibirProvincia(Provincia provincia);
     void recibirAprobaciones(QList<Aprobacion*> lista_aprobaciones);
     void recibirLicencia(Licencia licencia);
+    void recibirPena(Pena pena);
     void actualizarCompleterValues(); // cuando cambia el campo key de json libre
 
     void on_btPersona_clicked();

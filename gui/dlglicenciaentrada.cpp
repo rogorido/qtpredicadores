@@ -8,7 +8,7 @@
 
 #include <QDebug>
 
-const QString sql_otorgantes="SELECT DISTINCT details->>'otorgante' AS otorgante "
+const QString sql_otorgantes="SELECT DISTINCT jsonb_array_elements_text(details->'otorgante') AS otorgante "
                              "FROM resolutions_details WHERE details->>'otorgante' IS NOT NULL "
                              "ORDER BY otorgante;";
 const QString sql_tipo="SELECT DISTINCT details->>'tipo' AS tipo "

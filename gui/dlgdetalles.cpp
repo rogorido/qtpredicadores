@@ -133,6 +133,19 @@ void dlgDetalles::recibirLicencia(Licencia licencia)
     jsondetalles->anadirValor("seguridad", QJsonValue(licencia.getSeguridad()));
 }
 
+void dlgDetalles::recibirPena(Pena pena)
+{
+
+    /*
+     * si el jsondetalles no está vacío, creamos un nuevo bloque
+     */
+    if (!jsondetalles->isEmpty())
+        jsondetalles->nuevoBloqueJson();
+
+     jsondetalles->anadirValor("pena", "yes");
+
+}
+
 void dlgDetalles::recibirCasa(int id, QString valor){
     jsondetalles->anadirValor("Casa", valor, id);
 }
@@ -309,5 +322,7 @@ void dlgDetalles::on_btPenas_clicked() {
 
     dlgPenaEntrada *dlgpena = new dlgPenaEntrada(this);
     dlgpena->show();
+
+    connect(dlgpena, SIGNAL(aceptarPena(Pena)), this, SLOT(recibirPena(Pena)));
 
 }
