@@ -6,6 +6,7 @@
 #include "dlgaprobacionesentrada.h"
 #include "dlglicenciaentrada.h"
 #include "dlgpenaentrada.h"
+#include "dlgafiliacionentrada.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -99,10 +100,10 @@ void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
         if (!provincia.isEmpty())
             jsondetalles->anadirValor("Provincia", aprobacion->getProvincia().getNombre(), aprobacion->getProvincia().getId());
 
-        jsondetalles->nuevoBloqueJson();
-
         ExtraInfos extras = aprobacion->getExtraInfos();
         anadirExtraInfos(extras);
+
+        jsondetalles->nuevoBloqueJson();
     }
 }
 
@@ -179,6 +180,49 @@ void dlgDetalles::recibirPena(Pena pena)
      anadirExtraInfos(extras);
 }
 
+void dlgDetalles::recibirAfiliacion(QList<Afiliacion *> lista_afiliaciones)
+{
+    if (lista_afiliaciones.size() == 0)
+        return;
+
+    /*
+     * si el jsondetalles no está vacío, creamos un nuevo bloque
+     */
+    if (!jsondetalles->isEmpty())
+        jsondetalles->nuevoBloqueJson();
+
+    for (int i = 0; i < lista_afiliaciones.size(); ++i) {
+        Afiliacion *afiliacion = lista_afiliaciones.at(i);
+
+        jsondetalles->anadirValor("afiliación", "yes");
+        jsondetalles->anadirValor("Persona", afiliacion->getPersona().getNombre(),
+                                  afiliacion->getPersona().getId());
+
+        // a veces probablemente no haya casa de origen...
+        if (!afiliacion->getCasaOrigen().getNombre().isEmpty())
+            jsondetalles->anadirValor("Casa_origen", afiliacion->getCasaOrigen().getNombre(),
+                                      afiliacion->getCasaOrigen().getId());
+
+        if (!afiliacion->getCasaDestino().getNombre().isEmpty())
+            jsondetalles->anadirValor("Casa_destino", afiliacion->getCasaDestino().getNombre(),
+                                      afiliacion->getCasaDestino().getId());
+
+        if (!afiliacion->getProvinciaOrigen().getNombre().isEmpty())
+            jsondetalles->anadirValor("Provincia_origen", afiliacion->getProvinciaOrigen().getNombre(),
+                                      afiliacion->getProvinciaOrigen().getId());
+
+        if (!afiliacion->getProvinciaDestino().getNombre().isEmpty())
+            jsondetalles->anadirValor("Provincia_destino", afiliacion->getProvinciaDestino().getNombre(),
+                                      afiliacion->getProvinciaDestino().getId());
+
+        ExtraInfos extras = afiliacion->getExtras();
+        anadirExtraInfos(extras);
+
+        jsondetalles->nuevoBloqueJson();
+    }
+
+}
+
 void dlgDetalles::recibirCasa(Casa casa){
     jsondetalles->anadirValor("Casa", casa.getNombre(), casa.getId());
 }
@@ -227,6 +271,15 @@ void dlgDetalles::on_btCasa_clicked()
     dlgSeleccionar->show();
 
     connect(dlgSeleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(recibirCasa(Casa)));
+
+}
+
+void dlgDetalles::on_btAfiliaciones_clicked()
+{
+    dlgAfiliacionEntrada *dlgafiliaciones = new dlgAfiliacionEntrada(this);
+    dlgafiliaciones->show();
+
+    connect(dlgafiliaciones, SIGNAL(aceptarDatos(QList<Afiliacion*>)), this, SLOT(recibirAfiliacion(QList<Afiliacion*>)));
 
 }
 
