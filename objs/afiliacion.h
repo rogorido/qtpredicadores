@@ -13,21 +13,27 @@ public:
 
     // setters
     void setPersona(Persona p);
-    void setCasa(Casa c);
-    void setProvincia(Provincia p);
+    void setCasaOrigen(Casa c);
+    void setCasaDestino(Casa c);
+    void setProvinciaOrigen(Provincia p);
+    void setProvinciaDestino(Provincia p);
     void setExtras(ExtraInfos e);
 
     // getters
     Persona getPersona() const { return persona; }
-    Casa getCasa() const { return casa; }
-    Provincia getProvincia() const { return provincia; }
+    Casa getCasaOrigen() const { return casa_origen; }
+    Casa getCasaDestino() const { return casa_destino; }
+    Provincia getProvinciaOrigen() const { return provincia_origen; }
+    Provincia getProvinciaDestino() const { return provincia_destino; }
     ExtraInfos getExtras() const { return extras; }
 
 
 private:
     Persona persona;
-    Casa casa;
-    Provincia provincia;
+    Casa casa_origen;
+    Casa casa_destino;
+    Provincia provincia_origen;
+    Provincia provincia_destino;
     ExtraInfos extras;
 
 };
