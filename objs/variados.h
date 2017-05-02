@@ -26,6 +26,6 @@ struct elementopareado{
   QString elemento = "";
 };
 
-typedef QList<QPair<QString,QString>> extrainfos;
+typedef QList<QPair<QString,QString>> ExtraInfos;
 
 #endif // VARIADOS_H

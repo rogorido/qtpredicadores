@@ -17,6 +17,11 @@ WidgetExtraInfos::~WidgetExtraInfos()
     delete ui;
 }
 
+ExtraInfos WidgetExtraInfos::getExtraInfos()
+{
+    return extras;
+}
+
 void WidgetExtraInfos::anadirPar(){
 
     if (!ui->txtLlave->text().isEmpty() && !ui->txtValor->text().isEmpty()) {

@@ -17,6 +17,8 @@ public:
     explicit WidgetExtraInfos(QWidget *parent = 0);
     ~WidgetExtraInfos();
 
+    ExtraInfos getExtraInfos();
+
 private slots:
 
     void anadirPar();
@@ -25,7 +27,7 @@ private slots:
 private:
     Ui::WidgetExtraInfos *ui;
 
-    extrainfos extras;
+    ExtraInfos extras;
 };
 
 #endif // WIDGETEXTRAINFOS_H
