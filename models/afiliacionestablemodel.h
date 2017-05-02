@@ -3,6 +3,8 @@
 
 #include <QAbstractTableModel>
 
+#include "objs/afiliacion.h"
+
 class AfiliacionesTableModel : public QAbstractTableModel
 {
     Q_OBJECT
@@ -13,10 +15,17 @@ public:
     // Basic functionality:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+    QList<Afiliacion *> getLista();
+
+    void anadirAfiliacion(Afiliacion *afiliacion);
+    void quitarAfiliacion(int row);
+
 private:
+
+      QList<Afiliacion *> lista_afiliaciones;
 };
 
 #endif // AFILIACIONESTABLEMODEL_H

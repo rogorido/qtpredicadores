@@ -32,7 +32,7 @@ int AprobacionesTableModel::rowCount(const QModelIndex &parent) const
     if (parent.isValid())
         return 0;
 
-    return listaaprobaciones.size();
+    return lista_aprobaciones.size();
 }
 
 int AprobacionesTableModel::columnCount(const QModelIndex &parent) const
@@ -48,11 +48,11 @@ QVariant AprobacionesTableModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    if (index.row() >= listaaprobaciones.size() || index.row() < 0)
+    if (index.row() >= lista_aprobaciones.size() || index.row() < 0)
             return QVariant();
 
     if (role == Qt::DisplayRole) {
-            Aprobacion *aprobacion = listaaprobaciones.at(index.row());
+            Aprobacion *aprobacion = lista_aprobaciones.at(index.row());
             QString persona = aprobacion->getPersona().getNombre() + ' ' + aprobacion->getPersona().getApellidos();
 
             if (index.column() == 0)
@@ -68,7 +68,7 @@ QVariant AprobacionesTableModel::data(const QModelIndex &index, int role) const
 
 QList<Aprobacion*> AprobacionesTableModel::getLista()
 {
-    return listaaprobaciones;
+    return lista_aprobaciones;
 }
 
 void AprobacionesTableModel::anadirAprobacion(Aprobacion *aprobracion)
@@ -77,7 +77,7 @@ void AprobacionesTableModel::anadirAprobacion(Aprobacion *aprobracion)
      * esto así creo que es una chapuza
      */
     beginResetModel();
-    listaaprobaciones.append(aprobracion);
+    lista_aprobaciones.append(aprobracion);
     endResetModel();
     //emitdataChanged(QModelIndex idx, QModelIndex idx2));
 }
@@ -91,5 +91,5 @@ void AprobacionesTableModel::quitarAprobacion(int row)
     removeRow(row);
     endResetModel();
 
-    listaaprobaciones.removeAt(row);
+    lista_aprobaciones.removeAt(row);
 }

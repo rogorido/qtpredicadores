@@ -1,4 +1,4 @@
-#ifndef APROBACIONESTABLEMODEL_H
+﻿#ifndef APROBACIONESTABLEMODEL_H
 #define APROBACIONESTABLEMODEL_H
 
 #include <QAbstractTableModel>
@@ -26,7 +26,7 @@ public:
 
 private:
 
-    QList<Aprobacion *> listaaprobaciones;
+    QList<Aprobacion *> lista_aprobaciones;
 };
 
 #endif // APROBACIONESTABLEMODEL_H
