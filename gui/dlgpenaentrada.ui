@@ -124,16 +124,6 @@
     <attribute name="title">
      <string>Tab 2</string>
     </attribute>
-    <widget class="WidgetOtrasInfos" name="widget" native="true">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>50</y>
-       <width>120</width>
-       <height>80</height>
-      </rect>
-     </property>
-    </widget>
    </widget>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -200,7 +190,7 @@
     <item>
      <widget class="QLabel" name="label_6">
       <property name="text">
-       <string>Absoluci&amp;ón</string>
+       <string>Abso&amp;lución</string>
       </property>
       <property name="buddy">
        <cstring>txtAbsolucion</cstring>
@@ -284,14 +274,6 @@
    </layout>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>WidgetOtrasInfos</class>
-   <extends>QWidget</extends>
-   <header location="global">gui/widgetotrasinfos.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>txtTipos</tabstop>
   <tabstop>txtDuracion</tabstop>
