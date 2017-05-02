@@ -100,6 +100,9 @@ void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
             jsondetalles->anadirValor("Provincia", aprobacion->getProvincia().getNombre(), aprobacion->getProvincia().getId());
 
         jsondetalles->nuevoBloqueJson();
+
+        ExtraInfos extras = aprobacion->getExtraInfos();
+        anadirExtraInfos(extras);
     }
 }
 
