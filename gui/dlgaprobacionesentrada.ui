@@ -15,41 +15,70 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Tipo</string>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>General</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Tipo</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" colspan="2">
+          <widget class="QLineEdit" name="txtTipo"/>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QPushButton" name="btPersona">
+           <property name="text">
+            <string>Pe&amp;rsona</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLineEdit" name="txtPersona"/>
+         </item>
+         <item row="2" column="0" colspan="2">
+          <widget class="QPushButton" name="btProvincia">
+           <property name="text">
+            <string>&amp;Provincia</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLineEdit" name="txtProvincia"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTableView" name="twAprobaciones"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Infos extra</string>
+      </attribute>
+      <widget class="WidgetExtraInfos" name="wdExtras" native="true">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>311</width>
+         <height>291</height>
+        </rect>
        </property>
       </widget>
-     </item>
-     <item row="0" column="1" colspan="2">
-      <widget class="QLineEdit" name="txtTipo"/>
-     </item>
-     <item row="1" column="0" colspan="2">
-      <widget class="QPushButton" name="btPersona">
-       <property name="text">
-        <string>Pe&amp;rsona</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QLineEdit" name="txtPersona"/>
-     </item>
-     <item row="2" column="0" colspan="2">
-      <widget class="QPushButton" name="btProvincia">
-       <property name="text">
-        <string>&amp;Provincia</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QLineEdit" name="txtProvincia"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QTableView" name="twAprobaciones"/>
+     </widget>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -98,6 +127,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WidgetExtraInfos</class>
+   <extends>QWidget</extends>
+   <header>widgets/widgetextrainfos.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
