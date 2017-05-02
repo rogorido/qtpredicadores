@@ -4,6 +4,8 @@
 #include <QString>
 #include <QStringList>
 
+#include "objs/variados.h"
+
 class Licencia
 {
 public:
@@ -15,6 +17,7 @@ public:
     void setReceptores(QStringList r);
     void setAsunto(QString a);
     void setSeguridad(int s);
+    void setExtraInfos(ExtraInfos e);
 
     // getters
     QString getLicenciatipo() const { return licenciatipo; }
@@ -22,6 +25,7 @@ public:
     QStringList getReceptores() const { return receptores; }
     QString getAsunto() const { return asunto; }
     int getSeguridad() const { return seguridad; }
+    ExtraInfos getExtraInfos() const { return extras; }
 
 private:
 
@@ -30,6 +34,7 @@ private:
     QStringList receptores;
     QString asunto;
     int seguridad; // de la interpretación
+    ExtraInfos extras;
 
 };
 

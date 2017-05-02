@@ -4,6 +4,8 @@
 #include <QString>
 #include <QStringList>
 
+#include "objs/variados.h"
+
 class Pena
 {
 public:
@@ -18,6 +20,7 @@ public:
     void setPenados(QStringList p);
     void setMotivo(QString m);
     void setSeguridad(int s);
+    void setExtraInfos(ExtraInfos e);
 
     // getters
     QStringList getPenasTipos() const { return penas_tipos; }
@@ -28,6 +31,7 @@ public:
     QStringList getPenados() const { return penados; }
     QString getMotivo() const { return motivo; }
     int getSeguridad() const {return seguridad; }
+    ExtraInfos getExtraInfos() const { return extras; }
 
 private:
 
@@ -39,6 +43,8 @@ private:
     QStringList penados;
     QString motivo;
     int seguridad;
+    ExtraInfos extras;
+
 };
 
 #endif // PENA_H

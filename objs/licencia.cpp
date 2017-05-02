@@ -7,3 +7,5 @@ void Licencia::setOtorgantes(QStringList o) { otorgantes = o; }
 void Licencia::setReceptores(QStringList r) { receptores = r; }
 void Licencia::setAsunto(QString a) { asunto = a; }
 void Licencia::setSeguridad(int s) { seguridad = s; }
+void Licencia::setExtraInfos(ExtraInfos e) { extras = e; }
+

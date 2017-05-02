@@ -10,3 +10,4 @@ void Pena::setAbsolucion(QString a) { absolucion = a; }
 void Pena::setPenados(QStringList p) { penados = p; }
 void Pena::setMotivo(QString m) { motivo = m; }
 void Pena::setSeguridad(int s) { seguridad = s; }
+void Pena::setExtraInfos(ExtraInfos e) { extras = e; }

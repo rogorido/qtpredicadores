@@ -15,16 +15,19 @@ public:
     void setTipo(QString t);
     void setPersona(Persona p);
     void setProvincia(Provincia p);
+    void setExtraInfos(ExtraInfos e);
 
     //getters
     QString getTipo() const {return tipo;}
     Persona getPersona() const {return persona;}
     Provincia getProvincia() const {return provincia;}
+    ExtraInfos getExtraInfos() const { return extras; }
 
 private:
     QString tipo;
     Persona persona;
     Provincia provincia;
+    ExtraInfos extras;
 
 };
 
