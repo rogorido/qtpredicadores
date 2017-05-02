@@ -144,6 +144,42 @@ void dlgDetalles::recibirPena(Pena pena)
 
      jsondetalles->anadirValor("pena", "yes");
 
+     /*
+      * TODO: aquí se plantea la duda qué hacer con los NULLs?
+      * ¿controlo si están vacíos y no los meto? ¿o meto nulls que luego
+      * a lo mejor es más interesante para buscar?
+      */
+     if (!pena.getPenasTipos().isEmpty())
+         jsondetalles->anadirValor("penas_tipos", QJsonArray::fromStringList(pena.getPenasTipos()));
+
+     if (!pena.getDuracion().isEmpty())
+         jsondetalles->anadirValor("duracion", QJsonValue(pena.getDuracion()));
+
+     if (!pena.getPenados().isEmpty())
+         jsondetalles->anadirValor("penados", QJsonArray::fromStringList(pena.getPenados()));
+
+     if (!pena.getMotivo().isEmpty())
+         jsondetalles->anadirValor("motivo", QJsonValue(pena.getMotivo()));
+
+     if (!pena.getAbsolucion().isEmpty())
+         jsondetalles->anadirValor("absolucion", QJsonValue(pena.getAbsolucion()));
+
+     if (!pena.getPenaTexto().isEmpty())
+         jsondetalles->anadirValor("pena_texto", QJsonValue(pena.getPenaTexto()));
+
+     jsondetalles->anadirValor("seguridad", QJsonValue(pena.getSeguridad()));
+
+     ExtraInfos extras = pena.getExtraInfos();
+
+     if (extras.size() > 0 ) {
+         for (int i = 0; i < extras.size(); ++i) {
+             QPair<QString, QString> valores;
+             valores = extras.at(i);
+
+             jsondetalles->anadirValor(valores.first, QJsonValue(valores.second));
+         }
+     }
+
 }
 
 void dlgDetalles::recibirCasa(int id, QString valor){

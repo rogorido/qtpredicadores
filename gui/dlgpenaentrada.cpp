@@ -31,11 +31,14 @@ dlgPenaEntrada::~dlgPenaEntrada()
 
 void dlgPenaEntrada::aceptar()
 {
+    ExtraInfos extras = ui->widget->getExtraInfos();
+
     pena.setPenasTipos(penastipos);
     pena.setDuracion(ui->txtDuracion->text());
     pena.setPenados(penados);
     pena.setSeguridad(ui->spSeguridad->value());
     pena.setMotivo(ui->txtMotivo->text());
+    pena.setExtraInfos(extras);
     // TODO: falta penatexto!
 
     emit(aceptarPena(pena));
