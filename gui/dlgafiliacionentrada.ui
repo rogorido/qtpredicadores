@@ -95,7 +95,7 @@
       <attribute name="title">
        <string>Infos extra</string>
       </attribute>
-      <widget class="WidgetExtraInfos" name="widget" native="true">
+      <widget class="WidgetExtraInfos" name="wdExtraInfos" native="true">
        <property name="geometry">
         <rect>
          <x>20</x>

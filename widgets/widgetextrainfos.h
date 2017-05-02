@@ -18,6 +18,7 @@ public:
     ~WidgetExtraInfos();
 
     ExtraInfos getExtraInfos();
+    void clear();
 
 private slots:
 

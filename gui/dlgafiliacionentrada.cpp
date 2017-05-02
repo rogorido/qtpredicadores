@@ -1,6 +1,8 @@
 #include "dlgafiliacionentrada.h"
 #include "ui_dlgafiliacionentrada.h"
 
+#include <QMessageBox>
+
 #include "gui/dlgseleccionargeneral.h"
 
 dlgAfiliacionEntrada::dlgAfiliacionEntrada(QWidget *parent) :
@@ -36,7 +38,31 @@ dlgAfiliacionEntrada::~dlgAfiliacionEntrada()
 
 void dlgAfiliacionEntrada::anadirAfiliacion()
 {
+    if (ui->txtPersona->text().isEmpty()){
+        int ret = QMessageBox::warning(this, "No hay persona escogida",
+                                       "Introduzca por favor una persona.");
+        return;
+    }
 
+    ExtraInfos e = ui->wdExtraInfos->getExtraInfos();
+    afiliacion_activa->setExtras(e);
+
+    afiliaciones_model->anadirAfiliacion(afiliacion_activa);
+
+    // borramos la aprobación activa creando un nuevo objeto
+    afiliacion_activa = new Afiliacion();
+
+    // borramos los campos
+    ui->txtPersona->setText("");
+    ui->txtProvinciaOrigen->setText("");
+    ui->txtProvinciaDestino->setText("");
+    ui->txtCasaOrigen->setText("");
+    ui->txtCasaDestino->setText("");
+
+    ui->wdExtraInfos->clear();
+
+    ui->twAfiliaciones->resizeColumnsToContents();
+    ui->twAfiliaciones->resizeRowsToContents();
 }
 
 void dlgAfiliacionEntrada::quitarAfiliacion()

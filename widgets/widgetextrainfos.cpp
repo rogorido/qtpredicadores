@@ -23,6 +23,12 @@ ExtraInfos WidgetExtraInfos::getExtraInfos()
     return extras;
 }
 
+void WidgetExtraInfos::clear()
+{
+    extras.clear();
+    ui->lwExtraInfos->clear();
+}
+
 void WidgetExtraInfos::anadirPar(){
 
     if (!ui->txtLlave->text().isEmpty() && !ui->txtValor->text().isEmpty()) {
