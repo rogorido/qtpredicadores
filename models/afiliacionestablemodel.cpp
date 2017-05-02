@@ -10,7 +10,7 @@ int AfiliacionesTableModel::rowCount(const QModelIndex &parent) const
     if (parent.isValid())
         return 0;
 
-    lista_afiliaciones.size();
+    return lista_afiliaciones.size();
 }
 
 int AfiliacionesTableModel::columnCount(const QModelIndex &parent) const
