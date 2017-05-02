@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "objs/variados.h"
+
 namespace Ui {
 class WidgetExtraInfos;
 }
@@ -15,8 +17,15 @@ public:
     explicit WidgetExtraInfos(QWidget *parent = 0);
     ~WidgetExtraInfos();
 
+private slots:
+
+    void anadirPar();
+    void eliminarPar();
+
 private:
     Ui::WidgetExtraInfos *ui;
+
+    extrainfos extras;
 };
 
 #endif // WIDGETEXTRAINFOS_H
