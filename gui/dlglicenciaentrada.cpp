@@ -14,7 +14,7 @@ const QString sql_otorgantes="SELECT DISTINCT jsonb_array_elements_text(details-
 const QString sql_tipo="SELECT DISTINCT details->>'tipo' AS tipo "
                        "FROM resolutions_details WHERE details ? 'licencia' ORDER BY tipo;";
 
-const QString sql_receptores="SELECT DISTINCT details->>'receptor' AS receptor "
+const QString sql_receptores="SELECT DISTINCT jsonb_array_elements_text(details->'receptor') AS receptor "
                              "FROM resolutions_details WHERE details->>'receptor' IS NOT NULL "
                              "ORDER BY receptor";
 
