@@ -57,7 +57,7 @@ QVariant AfiliacionesTableModel::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole) {
             Afiliacion *afiliacion = lista_afiliaciones.at(index.row());
-            QString persona = afiliacion->getPersona().getNombre() + ' ' + afiliacion->getPersona().getApellidos();
+            QString persona = afiliacion->getPersona().getNombre() + QString(" ") + afiliacion->getPersona().getApellidos();
             ExtraInfos extras = afiliacion->getExtras();
             QString extras_final;
 
@@ -65,9 +65,9 @@ QVariant AfiliacionesTableModel::data(const QModelIndex &index, int role) const
                 for (int i = 0; i < extras.size(); ++i) {
                     QPair<QString, QString> par;
                     par = extras.at(i);
-                    extras_final = par.first + ': ' + par.second;
+                    extras_final = par.first + QString(": ") + par.second;
                 }
-                extras_final += "//";
+                extras_final += QString("//");
             }
 
             if (index.column() == 0)
