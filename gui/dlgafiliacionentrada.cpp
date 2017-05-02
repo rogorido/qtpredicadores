@@ -67,11 +67,23 @@ void dlgAfiliacionEntrada::anadirAfiliacion()
 
 void dlgAfiliacionEntrada::quitarAfiliacion()
 {
+    QModelIndex idx = ui->twAfiliaciones->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    int row = idx.row();
+    afiliaciones_model->quitarAfiliacion(row);
 
 }
 
 void dlgAfiliacionEntrada::aceptarAfiliaciones()
 {
+    QList<Afiliacion*> lista = afiliaciones_model->getLista();
+
+    emit(aceptarDatos(lista));
+
+    close();
 
 }
 

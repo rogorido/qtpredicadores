@@ -43,6 +43,8 @@ void dlgAprobacionesEntrada::anadirAprobacion()
     }
 
     aprobacion_activa->setTipo(ui->txtTipo->text());
+    ExtraInfos e = ui->wdExtras->getExtraInfos();
+    aprobacion_activa->setExtraInfos(e);
 
     aprobaciones_model->anadirAprobacion(aprobacion_activa);
 
@@ -52,8 +54,12 @@ void dlgAprobacionesEntrada::anadirAprobacion()
     // borramos los campos
     ui->txtPersona->setText("");
     ui->txtProvincia->setText("");
+
+    ui->wdExtras->clear();
+
     ui->twAprobaciones->resizeColumnsToContents();
     ui->twAprobaciones->resizeRowsToContents();
+
 }
 
 void dlgAprobacionesEntrada::quitarAprobacion()
@@ -74,7 +80,6 @@ void dlgAprobacionesEntrada::aceptarAprobaciones()
     emit(aceptarDatos(lista));
 
     close();
-
 }
 
 void dlgAprobacionesEntrada::anadirPersona()
