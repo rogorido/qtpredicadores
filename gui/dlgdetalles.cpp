@@ -131,6 +131,9 @@ void dlgDetalles::recibirLicencia(Licencia licencia)
         jsondetalles->anadirValor("asunto", licencia.getAsunto());
 
     jsondetalles->anadirValor("seguridad", QJsonValue(licencia.getSeguridad()));
+
+    ExtraInfos extras = licencia.getExtraInfos();
+    anadirExtraInfos(extras);
 }
 
 void dlgDetalles::recibirPena(Pena pena)
@@ -170,16 +173,7 @@ void dlgDetalles::recibirPena(Pena pena)
      jsondetalles->anadirValor("seguridad", QJsonValue(pena.getSeguridad()));
 
      ExtraInfos extras = pena.getExtraInfos();
-
-     if (extras.size() > 0 ) {
-         for (int i = 0; i < extras.size(); ++i) {
-             QPair<QString, QString> valores;
-             valores = extras.at(i);
-
-             jsondetalles->anadirValor(valores.first, QJsonValue(valores.second));
-         }
-     }
-
+     anadirExtraInfos(extras);
 }
 
 void dlgDetalles::recibirCasa(int id, QString valor){
@@ -297,6 +291,23 @@ void dlgDetalles::cargarModelos(){
     values_completer->setCaseSensitivity(Qt::CaseInsensitive);
 
     ui->txtValue->setCompleter(values_completer);
+}
+
+void dlgDetalles::anadirExtraInfos(ExtraInfos extras)
+{
+    /*
+     * este método sirve para que lo usen los diversos
+     * formularios que me permiten meter penas, licencias, etc.
+     */
+
+    if (extras.size() > 0 ) {
+        for (int i = 0; i < extras.size(); ++i) {
+            QPair<QString, QString> valores;
+            valores = extras.at(i);
+
+            jsondetalles->anadirValor(valores.first, QJsonValue(valores.second));
+        }
+    }
 }
 
 void dlgDetalles::on_btJsonAnadirLibre_clicked()

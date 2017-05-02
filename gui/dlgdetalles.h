@@ -61,6 +61,7 @@ private:
     JsonGestor *jsondetalles;
 
     void cargarModelos();
+    void anadirExtraInfos(ExtraInfos extras);
 
     /*
      * el tipo sirve para escoger los valores del completer
