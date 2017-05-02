@@ -113,12 +113,17 @@ void dlgAfiliacionEntrada::actualizarProvinciaOrigen(Provincia provincia)
 
 void dlgAfiliacionEntrada::actualizarCasaOrigen(Casa casa)
 {
+    afiliacion_activa->setCasaOrigen(casa);
+
+    ui->txtCasaOrigen->setText(casa.getNombre());
 
 }
 
 void dlgAfiliacionEntrada::actualizarCasaDestino(Casa casa)
 {
+    afiliacion_activa->setCasaDestino(casa);
 
+    ui->txtCasaDestino->setText(casa.getNombre());
 }
 
 void dlgAfiliacionEntrada::actualizarProvinciaDestino(Provincia provincia)
