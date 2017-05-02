@@ -52,7 +52,38 @@ QVariant AfiliacionesTableModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    // FIXME: Implement me!
+    if (index.row() >= lista_afiliaciones.size() || index.row() < 0)
+            return QVariant();
+
+    if (role == Qt::DisplayRole) {
+            Afiliacion *afiliacion = lista_afiliaciones.at(index.row());
+            QString persona = afiliacion->getPersona().getNombre() + ' ' + afiliacion->getPersona().getApellidos();
+            ExtraInfos extras = afiliacion->getExtras();
+            QString extras_final;
+
+            if (extras.size() > 0) {
+                for (int i = 0; i < extras.size(); ++i) {
+                    QPair<QString, QString> par;
+                    par = extras.at(i);
+                    extras_final = par.first + ': ' + par.second;
+                }
+                extras_final += "//";
+            }
+
+            if (index.column() == 0)
+                return persona;
+            else if (index.column() == 1)
+                return afiliacion->getCasaOrigen().getNombre();
+            else if (index.column() == 2)
+                return afiliacion->getCasaDestino().getNombre();
+            else if (index.column() == 3)
+                return afiliacion->getProvinciaOrigen().getNombre();
+            else if (index.column() == 4)
+                return afiliacion->getProvinciaDestino().getNombre();
+            else if (index.column() == 5)
+                return extras_final;
+        }
+
     return QVariant();
 }
 
@@ -82,3 +113,4 @@ void AfiliacionesTableModel::quitarAfiliacion(int row)
 
     lista_afiliaciones.removeAt(row);
 }
+

@@ -3,6 +3,7 @@
 
 #include <QAbstractTableModel>
 
+#include "objs/variados.h"
 #include "objs/afiliacion.h"
 
 class AfiliacionesTableModel : public QAbstractTableModel
@@ -26,6 +27,7 @@ public:
 private:
 
       QList<Afiliacion *> lista_afiliaciones;
+
 };
 
 #endif // AFILIACIONESTABLEMODEL_H
