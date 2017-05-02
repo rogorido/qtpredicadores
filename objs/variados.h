@@ -1,6 +1,10 @@
 #ifndef VARIADOS_H
 #define VARIADOS_H
 
+#include <QList>
+#include <QPair>
+#include <QString>
+
 enum tiposeleccionar {
     CASA,
     PERSONA,
@@ -21,5 +25,7 @@ struct elementopareado{
   int id = 0;
   QString elemento = "";
 };
+
+typedef QList<QPair<QString,QString>> extrainfos;
 
 #endif // VARIADOS_H
