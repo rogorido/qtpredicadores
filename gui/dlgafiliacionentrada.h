@@ -5,6 +5,7 @@
 
 #include <objs/afiliacion.h>
 #include "objs/persona.h"
+#include "objs/casa.h"
 #include "objs/provincia.h"
 #include "objs/variados.h"
 
@@ -34,6 +35,7 @@ private slots:
     void anadirProvincia();
 
     void actualizarPersona(Persona persona);
+    void actualizarCasa(Casa casa);
     void actualizarProvincia(Provincia provincia);
 
 private:
@@ -46,7 +48,7 @@ private:
      * si está muy bien así. Al hacerlo pointer esto tb
      * me cambia internamente lo de AprobacionesTableModel
      */
-    Afiliacion *aprobacion_activa;
+    Afiliacion *afiliacion_activa;
 };
 
 #endif // DLGAFILIACIONENTRADA_H
