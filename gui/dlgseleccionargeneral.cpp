@@ -144,11 +144,17 @@ void dlgSeleccionarGeneral::aceptar(){
 
 void dlgSeleccionarGeneral::casa(){
     /*
+     * ATENCiÖN: esta nota es antigua: ahora emito una casa, pero pierdo lo de la provincia?
+     * bueno, se podría hacer con una signal que emita tb el nombre de la provincia...
+     *
+     * Nota antigua:
      * en teoría habría que emitir una casa, pero debido a que quiero construir
      * el nombre con la provincia, etc. sería más lío pq en el objeto Casa
      * tengo que poner lugar/provincia/etc. como int y luego tendría que convertirlo
      * en algún sitio a QString... por eso paso por ahora.
      */
+
+    Casa casa;
 
     // tiene que haber otra manera de hacer esto...
     QModelIndex idx0 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 0);
@@ -162,23 +168,18 @@ void dlgSeleccionarGeneral::casa(){
 
     int id = m_objeto->data(m_objeto_proxy->mapToSource(idx0), Qt::DisplayRole).toInt();
     QString nombre = m_objeto->data(m_objeto_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
+
+    // esto eran variables anteriores
+    /*
     QString lugar = m_objeto->data(m_objeto_proxy->mapToSource(idx2), Qt::DisplayRole).toString();
     QString provincia = m_objeto->data(m_objeto_proxy->mapToSource(idx3), Qt::DisplayRole).toString();
     QString advocacion = m_objeto->data(m_objeto_proxy->mapToSource(idx4), Qt::DisplayRole).toString();
+    */
 
-    QString valor;
+    casa.setId(id);
+    casa.setNombre(nombre);
 
-    // lo construimos de forma un poco cutre; esto habría que mejorarlo...
-    valor = nombre;
-    if (!lugar.isEmpty())
-        valor += '-' + lugar;
-    if (!provincia.isEmpty())
-        valor += '-' + provincia;
-    if (!advocacion.isEmpty())
-        valor += '-' + advocacion;
-
-
-    emit(casaEscogidaSignal(id, valor));
+    emit(casaEscogidaSignal(casa));
     close();
 }
 

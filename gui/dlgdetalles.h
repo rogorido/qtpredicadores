@@ -4,6 +4,7 @@
 #include <QDialog>
 
 #include "objs/persona.h"
+#include "objs/casa.h"
 #include "objs/lugar.h"
 #include "objs/provincia.h"
 #include "objs/aprobacion.h"
@@ -29,7 +30,7 @@ public:
 private slots:
     void recibirPersona(Persona persona);
     void recibirLugar(Lugar lugar);
-    void recibirCasa(int id, QString nombres);
+    void recibirCasa(Casa casa);
     void recibirProvincia(Provincia provincia);
     void recibirAprobaciones(QList<Aprobacion*> lista_aprobaciones);
     void recibirLicencia(Licencia licencia);

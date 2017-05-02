@@ -63,7 +63,7 @@ void dlgAfiliacionEntrada::anadirCasaOrigen()
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, this);
     dlgseleccionar->show();
 
-    connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(int,QString)), this, SLOT(actualizarCasaOrigen(Casa)));
+    connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(actualizarCasaOrigen(Casa)));
 
 }
 
@@ -72,7 +72,7 @@ void dlgAfiliacionEntrada::anadirCasaDestino()
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, this);
     dlgseleccionar->show();
 
-    connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(int,QString)), this, SLOT(actualizarCasaDestino(Casa)));
+    connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(actualizarCasaDestino(Casa)));
 
 }
 

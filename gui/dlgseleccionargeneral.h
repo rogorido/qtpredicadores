@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "objs/variados.h"
+#include "objs/casa.h"
 #include "objs/persona.h"
 #include "objs/lugar.h"
 #include "objs/provincia.h"
@@ -40,7 +41,7 @@ private slots:
     void actualizarObjeto();
 
 signals:
-    void casaEscogidaSignal(int id, QString nombres);
+    void casaEscogidaSignal(Casa casa);
     void personaEscogidaSignal(Persona autor);
     void lugarEscogidoSignal(Lugar lugar);
     void provinciaEscogidaSignal(Provincia provincia);

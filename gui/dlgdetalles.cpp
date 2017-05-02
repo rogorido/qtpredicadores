@@ -179,8 +179,8 @@ void dlgDetalles::recibirPena(Pena pena)
      anadirExtraInfos(extras);
 }
 
-void dlgDetalles::recibirCasa(int id, QString valor){
-    jsondetalles->anadirValor("Casa", valor, id);
+void dlgDetalles::recibirCasa(Casa casa){
+    jsondetalles->anadirValor("Casa", casa.getNombre(), casa.getId());
 }
 
 void dlgDetalles::actualizarCompleterValues(){
@@ -226,7 +226,7 @@ void dlgDetalles::on_btCasa_clicked()
     dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(CASA, this);
     dlgSeleccionar->show();
 
-    connect(dlgSeleccionar, SIGNAL(casaEscogidaSignal(int,QString)), this, SLOT(recibirCasa(int,QString)));
+    connect(dlgSeleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(recibirCasa(Casa)));
 
 }
 
