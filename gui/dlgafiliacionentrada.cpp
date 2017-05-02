@@ -58,8 +58,39 @@ void dlgAfiliacionEntrada::anadirPersona()
 
 }
 
-void dlgAfiliacionEntrada::anadirProvincia()
+void dlgAfiliacionEntrada::anadirCasaOrigen()
 {
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, this);
+    dlgseleccionar->show();
+
+    connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(int,QString)), this, SLOT(actualizarCasaOrigen(Casa)));
+
+}
+
+void dlgAfiliacionEntrada::anadirCasaDestino()
+{
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, this);
+    dlgseleccionar->show();
+
+    connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(int,QString)), this, SLOT(actualizarCasaDestino(Casa)));
+
+}
+
+void dlgAfiliacionEntrada::anadirProvinciaOrigen()
+{
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgseleccionar->show();
+
+    connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(actualizarProvinciaOrigen(Provincia)));
+
+}
+
+void dlgAfiliacionEntrada::anadirProvinciaDestino()
+{
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgseleccionar->show();
+
+    connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(actualizarProvinciaDestino(Provincia)));
 
 }
 
@@ -73,12 +104,27 @@ void dlgAfiliacionEntrada::actualizarPersona(Persona persona)
     ui->txtPersona->setText(nombre_persona);
 }
 
-void dlgAfiliacionEntrada::actualizarCasa(Casa casa)
+void dlgAfiliacionEntrada::actualizarProvinciaOrigen(Provincia provincia)
+{
+    afiliacion_activa->setProvinciaOrigen(provincia);
+
+    ui->txtProvinciaOrigen->setText(provincia.getNombre());
+}
+
+void dlgAfiliacionEntrada::actualizarCasaOrigen(Casa casa)
 {
 
 }
 
-void dlgAfiliacionEntrada::actualizarProvincia(Provincia provincia)
+void dlgAfiliacionEntrada::actualizarCasaDestino(Casa casa)
 {
+
+}
+
+void dlgAfiliacionEntrada::actualizarProvinciaDestino(Provincia provincia)
+{
+    afiliacion_activa->setProvinciaDestino(provincia);
+
+    ui->txtProvinciaDestino->setText(provincia.getNombre());
 
 }

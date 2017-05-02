@@ -32,11 +32,16 @@ private slots:
     void quitarAfiliacion();
     void aceptarAfiliaciones();
     void anadirPersona();
-    void anadirProvincia();
+    void anadirCasaOrigen();
+    void anadirCasaDestino();
+    void anadirProvinciaOrigen();
+    void anadirProvinciaDestino();
 
     void actualizarPersona(Persona persona);
-    void actualizarCasa(Casa casa);
-    void actualizarProvincia(Provincia provincia);
+    void actualizarCasaOrigen(Casa casa);
+    void actualizarCasaDestino(Casa casa);
+    void actualizarProvinciaOrigen(Provincia provincia);
+    void actualizarProvinciaDestino(Provincia provincia);
 
 private:
     Ui::dlgAfiliacionEntrada *ui;
