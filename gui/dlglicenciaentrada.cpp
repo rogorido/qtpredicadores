@@ -41,11 +41,14 @@ dlgLicenciaEntrada::~dlgLicenciaEntrada()
 
 void dlgLicenciaEntrada::aceptar()
 {
+    ExtraInfos extras = ui->wdExtras->getExtraInfos();
+
     licencia_activa.setLicenciaTipo(ui->txtTipo->text());
     licencia_activa.setOtorgantes(otorgantes);
     licencia_activa.setReceptores(receptores);
     licencia_activa.setAsunto(ui->txtAsunto->text());
     licencia_activa.setSeguridad(ui->spSeguridad->value());
+    licencia_activa.setExtraInfos(extras);
 
     emit(aceptarLicencia(licencia_activa));
 

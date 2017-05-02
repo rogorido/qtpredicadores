@@ -6,91 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>627</width>
-    <height>331</height>
+    <width>663</width>
+    <height>376</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QListWidget" name="lwOtorgantes">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>60</y>
-     <width>281</width>
-     <height>192</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QListWidget" name="lwReceptores">
-   <property name="geometry">
-    <rect>
-     <x>305</x>
-     <y>60</y>
-     <width>311</width>
-     <height>192</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>40</y>
-     <width>71</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Otorgantes</string>
-   </property>
-   <property name="buddy">
-    <cstring>lwOtorgantes</cstring>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>340</x>
-     <y>40</y>
-     <width>71</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Receptores</string>
-   </property>
-   <property name="buddy">
-    <cstring>lwReceptores</cstring>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btQuitarOtorgante">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>260</y>
-     <width>80</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Eliminar</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btQuitarReceptor">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>260</y>
-     <width>80</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Eliminar</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
@@ -145,8 +67,8 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>290</y>
+     <x>20</x>
+     <y>340</y>
      <width>611</width>
      <height>25</height>
     </rect>
@@ -217,17 +139,132 @@
     </item>
    </layout>
   </widget>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>641</width>
+     <height>291</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>General</string>
+    </attribute>
+    <widget class="QListWidget" name="lwReceptores">
+     <property name="geometry">
+      <rect>
+       <x>305</x>
+       <y>20</y>
+       <width>311</width>
+       <height>192</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Otorgantes</string>
+     </property>
+     <property name="buddy">
+      <cstring>lwOtorgantes</cstring>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>0</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Receptores</string>
+     </property>
+     <property name="buddy">
+      <cstring>lwReceptores</cstring>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btQuitarReceptor">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>220</y>
+       <width>80</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Eliminar</string>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="lwOtorgantes">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>281</width>
+       <height>192</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btQuitarOtorgante">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>220</y>
+       <width>80</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Eliminar</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>Infos extra</string>
+    </attribute>
+    <widget class="WidgetExtraInfos" name="wdExtras" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>301</width>
+       <height>241</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+  </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WidgetExtraInfos</class>
+   <extends>QWidget</extends>
+   <header>widgets/widgetextrainfos.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>txtTipo</tabstop>
   <tabstop>txtOtorgante</tabstop>
   <tabstop>txtReceptor</tabstop>
   <tabstop>txtAsunto</tabstop>
-  <tabstop>btQuitarOtorgante</tabstop>
   <tabstop>spSeguridad</tabstop>
-  <tabstop>btQuitarReceptor</tabstop>
-  <tabstop>lwOtorgantes</tabstop>
-  <tabstop>lwReceptores</tabstop>
   <tabstop>btCancelar</tabstop>
   <tabstop>btOK</tabstop>
  </tabstops>
