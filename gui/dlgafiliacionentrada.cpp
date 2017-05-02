@@ -1,6 +1,8 @@
 #include "dlgafiliacionentrada.h"
 #include "ui_dlgafiliacionentrada.h"
 
+#include "gui/dlgseleccionargeneral.h"
+
 dlgAfiliacionEntrada::dlgAfiliacionEntrada(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgAfiliacionEntrada)
@@ -49,6 +51,10 @@ void dlgAfiliacionEntrada::aceptarAfiliaciones()
 
 void dlgAfiliacionEntrada::anadirPersona()
 {
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgseleccionar->show();
+
+    connect(dlgseleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(actualizarPersona(Persona)));
 
 }
 
@@ -59,7 +65,12 @@ void dlgAfiliacionEntrada::anadirProvincia()
 
 void dlgAfiliacionEntrada::actualizarPersona(Persona persona)
 {
+    afiliacion_activa->setPersona(persona);
+    QString nombre_persona;
 
+    nombre_persona = persona.getNombre() + ' ' + persona.getApellidos() + ' ' + persona.getOrigen();
+
+    ui->txtPersona->setText(nombre_persona);
 }
 
 void dlgAfiliacionEntrada::actualizarCasa(Casa casa)
