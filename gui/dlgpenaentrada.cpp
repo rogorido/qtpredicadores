@@ -8,6 +8,17 @@
 
 #include <QDebug>
 
+const QString sql_tipos="SELECT DISTINCT jsonb_array_elements_text(details->'pena_tipos') AS penas "
+                             "FROM resolutions_details WHERE details->>'pena_tipos' IS NOT NULL "
+                             "ORDER BY penas";
+const QString sql_penatexto="SELECT DISTINCT details->>'pena_texto' AS pena_texto "
+                            "FROM resolutions_details WHERE details ? 'pena' ORDER BY pena_texto";
+const QString sql_penados="SELECT DISTINCT jsonb_array_elements_text(details->'penados') AS penados "
+                             "FROM resolutions_details WHERE details->>'penados' IS NOT NULL "
+                             "ORDER BY penados";
+const QString sql_motivo="SELECT DISTINCT details->>'motivo' AS motivo "
+                            "FROM resolutions_details WHERE details ? 'pena' ORDER BY motivo";
+
 dlgPenaEntrada::dlgPenaEntrada(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgPenaEntrada)
@@ -108,5 +119,36 @@ void dlgPenaEntrada::quitarPenados()
 
 void dlgPenaEntrada::cargarModelos()
 {
+    tipos_model = new QSqlQueryModel(this);
+    tipos_model->setQuery(sql_tipos);
+
+    tipos_completer = new QCompleter(tipos_model, this);
+    tipos_completer->setCompletionColumn(0);
+    tipos_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtTipos->setCompleter(tipos_completer);
+
+    penados_model = new QSqlQueryModel(this);
+    penados_model->setQuery(sql_penados);
+
+    penados_completer = new QCompleter(penados_model, this);
+    penados_completer->setCompletionColumn(0);
+    penados_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtPenados->setCompleter(penados_completer);
+
+    penatexto_model = new QSqlQueryModel(this);
+    penatexto_model->setQuery(sql_penatexto);
+
+    penatexto_completer = new QCompleter(penatexto_model, this);
+    penatexto_completer->setCompletionColumn(0);
+    penatexto_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtPenaTexto->setCompleter(penatexto_completer);
+
+    motivo_model = new QSqlQueryModel(this);
+    motivo_model->setQuery(sql_motivo);
+
+    motivo_completer = new QCompleter(motivo_model, this);
+    motivo_completer->setCompletionColumn(0);
+    motivo_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtMotivo->setCompleter(motivo_completer);
 
 }

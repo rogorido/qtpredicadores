@@ -44,6 +44,8 @@ private:
     QCompleter *penados_completer;
     QSqlQueryModel *penatexto_model;
     QCompleter *penatexto_completer;
+    QSqlQueryModel *motivo_model;
+    QCompleter *motivo_completer;
 
     Pena pena;
 

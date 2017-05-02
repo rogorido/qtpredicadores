@@ -116,7 +116,7 @@ void dlgDetalles::recibirLicencia(Licencia licencia)
 
     jsondetalles->anadirValor("licencia", "yes");
     if (!licencia.getLicenciatipo().isEmpty()) {
-        jsondetalles->anadirValor("tipo", licencia.getLicenciatipo());
+        jsondetalles->anadirValor("licencia_tipo", licencia.getLicenciatipo());
     }
 
     /*
@@ -156,7 +156,7 @@ void dlgDetalles::recibirPena(Pena pena)
       * a lo mejor es más interesante para buscar?
       */
      if (!pena.getPenasTipos().isEmpty())
-         jsondetalles->anadirValor("penas_tipos", QJsonArray::fromStringList(pena.getPenasTipos()));
+         jsondetalles->anadirValor("pena_tipos", QJsonArray::fromStringList(pena.getPenasTipos()));
 
      if (!pena.getDuracion().isEmpty())
          jsondetalles->anadirValor("duracion", QJsonValue(pena.getDuracion()));
