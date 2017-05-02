@@ -124,6 +124,16 @@
     <attribute name="title">
      <string>Tab 2</string>
     </attribute>
+    <widget class="WidgetExtraInfos" name="widget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>321</width>
+       <height>251</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -274,6 +284,14 @@
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WidgetExtraInfos</class>
+   <extends>QWidget</extends>
+   <header>widgets/widgetextrainfos.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>txtTipos</tabstop>
   <tabstop>txtDuracion</tabstop>

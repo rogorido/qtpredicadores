@@ -10,6 +10,7 @@ WidgetExtraInfos::WidgetExtraInfos(QWidget *parent) :
     ui->txtLlave->setFocus();
 
     connect(ui->txtValor, SIGNAL(returnPressed()), this, SLOT(anadirPar()));
+    connect(ui->btEliminarExtraInfo, SIGNAL(clicked(bool)), this, SLOT(eliminarPar()));
 }
 
 WidgetExtraInfos::~WidgetExtraInfos()
@@ -33,10 +34,23 @@ void WidgetExtraInfos::anadirPar(){
 
         QString nuevoitem = nuevo.first + ': ' + nuevo.second;
         QListWidgetItem *item = new QListWidgetItem(nuevoitem, ui->lwExtraInfos);
+
+        ui->txtLlave->setText("");
+        ui->txtValor->setText("");
+        ui->txtLlave->setFocus();
     }
 }
 
 void WidgetExtraInfos::eliminarPar()
 {
+    QModelIndex idx = ui->lwExtraInfos->currentIndex();
 
+    if (!idx.isValid())
+        return;
+
+    int identificador = idx.row();
+
+    extras.removeAt(identificador);
+
+    ui->lwExtraInfos->takeItem(ui->lwExtraInfos->currentRow());
 }
