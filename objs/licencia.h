@@ -3,6 +3,8 @@
 
 #include <QString>
 #include <QStringList>
+#include <QJsonObject>
+#include <QJsonArray>
 
 #include "objs/variados.h"
 
@@ -26,6 +28,8 @@ public:
     QString getAsunto() const { return asunto; }
     int getSeguridad() const { return seguridad; }
     ExtraInfos getExtraInfos() const { return extras; }
+
+    QJsonObject getLicenciaJson();
 
 private:
 
