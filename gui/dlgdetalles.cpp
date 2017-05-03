@@ -147,6 +147,8 @@ void dlgDetalles::recibirLicencia(Licencia licencia)
 
     QJsonObject lic_json = licencia.getLicenciaJson();
     json_model->anadirJson(lic_json);
+    //ui->twJsonGeneral->resizeColumnToContents(true);
+    ui->twJsonGeneral->expandAll();
 }
 
 void dlgDetalles::recibirPena(Pena pena)

@@ -82,7 +82,8 @@ QJsonTreeItem *QJsonTreeItem::load(const QJsonValue &value, QJsonTreeItem *paren
             for (QJsonValue v : value.toArray()){
 
                 QJsonTreeItem * child = load(v,rootItem);
-                child->setKey(QString::number(index));
+                child->setKey(QString());
+                //child->setKey(QString::number(index));
                 child->setType(v.type());
                 rootItem->appendChild(child);
                 ++index;
