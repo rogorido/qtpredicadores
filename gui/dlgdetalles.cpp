@@ -283,6 +283,17 @@ void dlgDetalles::recibirOrdenanza(Ordenanza ordenanza)
          jsondetalles->anadirValor("retro", retro_json);
      }
 
+     if (!ordenanza.getTemas().isEmpty()) {
+         QList<int> temas = ordenanza.getTemas();
+         QJsonArray array_temas;
+
+         for (int i = 0; i < temas.size(); ++i) {
+             array_temas.append(QJsonValue(temas.at(i)));
+         }
+
+         jsondetalles->anadirValor("temas", array_temas);
+     }
+
      ExtraInfos extras = ordenanza.getExtraInfos();
      anadirExtraInfos(extras);
 }
