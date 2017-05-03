@@ -3,12 +3,14 @@
 
 #include <QString>
 #include <QJsonValue>
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QList>
 
 class QJsonTreeItem
 {
 public:
-    QJsonTreeItem();
+    QJsonTreeItem(QJsonTreeItem *parent);
     ~QJsonTreeItem();
 
     QJsonTreeItem *child(int row);
@@ -21,9 +23,9 @@ public:
     void appendChild(QJsonTreeItem * item);
 
     // getters
-    QString key() const;
-    QString value() const;
-    QJsonValue::Type type() const;
+    QString getKey() const { return mKey; }
+    QString getValue() const { return mValue; }
+    QJsonValue::Type getType() const { return mType; }
 
     int childCount() const;
     int row() const;
