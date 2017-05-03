@@ -12,3 +12,8 @@ dlgOrdenanzaEntrada::~dlgOrdenanzaEntrada()
 {
     delete ui;
 }
+
+bool dlgOrdenanzaEntrada::eventFilter(QObject *obj, QEvent *e)
+{
+
+}

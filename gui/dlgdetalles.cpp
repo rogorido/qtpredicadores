@@ -7,6 +7,7 @@
 #include "dlglicenciaentrada.h"
 #include "dlgpenaentrada.h"
 #include "dlgafiliacionentrada.h"
+#include "dlgordenanzaentrada.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -223,6 +224,11 @@ void dlgDetalles::recibirAfiliacion(QList<Afiliacion *> lista_afiliaciones)
 
 }
 
+void dlgDetalles::recibirOrdenanza(Ordenanza ordenanza)
+{
+
+}
+
 void dlgDetalles::recibirCasa(Casa casa){
     jsondetalles->anadirValor("Casa", casa.getNombre(), casa.getId());
 }
@@ -280,6 +286,15 @@ void dlgDetalles::on_btAfiliaciones_clicked()
     dlgafiliaciones->show();
 
     connect(dlgafiliaciones, SIGNAL(aceptarDatos(QList<Afiliacion*>)), this, SLOT(recibirAfiliacion(QList<Afiliacion*>)));
+
+}
+
+void dlgDetalles::on_btOrdenanzas_clicked()
+{
+    dlgOrdenanzaEntrada *dlgordenanzas = new dlgOrdenanzaEntrada(this);
+    dlgordenanzas->show();
+
+    connect(dlgordenanzas, SIGNAL(aceptarOrdenanza(Ordenanza)), this, SLOT(recibirOrdenanza(Ordenanza)));
 
 }
 

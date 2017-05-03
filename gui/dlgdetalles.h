@@ -11,6 +11,7 @@
 #include "objs/licencia.h"
 #include "objs/pena.h"
 #include "objs/afiliacion.h"
+#include "objs/ordenanza.h"
 
 class JsonGestor;
 class QSqlQueryModel;
@@ -37,6 +38,7 @@ private slots:
     void recibirLicencia(Licencia licencia);
     void recibirPena(Pena pena);
     void recibirAfiliacion(QList<Afiliacion*> lista_afiliaciones);
+    void recibirOrdenanza(Ordenanza ordenanza);
     void actualizarCompleterValues(); // cuando cambia el campo key de json libre
 
     void on_btPersona_clicked();
@@ -51,6 +53,7 @@ private slots:
     void on_btPenas_clicked();
     void on_btCasa_clicked();
     void on_btAfiliaciones_clicked();
+    void on_btOrdenanzas_clicked();
 
 private:
     Ui::dlgDetalles *ui;
