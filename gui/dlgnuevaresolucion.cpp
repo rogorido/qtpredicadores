@@ -209,7 +209,7 @@ void dlgNuevaResolucion::recibirCapitulo(Capitulo capitulo){
 
     capitulo_id = capitulo.getId();
 
-    QString capitulo_string = capitulo.getNombre() + ' (' + capitulo.getFechaInicio().toString() + ')';
+    QString capitulo_string = capitulo.getNombre() + QString(" (") + capitulo.getFechaInicio().toString() + QString(" )");
 
     ui->txtCapitulo->setText(capitulo_string);
 }
