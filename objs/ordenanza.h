@@ -24,6 +24,7 @@ public:
     void setFinalidades(QStringList f);
     void setSeguridad(int s);
     void setRetroReferencia(RetroReferencia r);
+    void setTemas(QList<int> t);
     void setExtraInfos(ExtraInfos e);
 
     // getters
@@ -35,6 +36,7 @@ public:
     QStringList getFinalidades() const {return finalidades;}
     int getSeguridad() const {return seguridad;}
     RetroReferencia getRetroReferencia() const {return retro;}
+    QList<int> getTemas() const {return temas;}
     ExtraInfos getExtraInfos() const {return extras;}
 
 private:
@@ -47,6 +49,7 @@ private:
     QStringList finalidades; // no sé si lo voy a usar
     int seguridad;
     RetroReferencia retro;
+    QList<int> temas;
     ExtraInfos extras;
 };
 
