@@ -112,6 +112,16 @@ void dlgOrdenanzaEntrada::aceptar() {
         ordenanza.setRetroReferencia(retro);
     }
 
+    if (temas_lista.size() > 0) {
+        QList<int> temas_id;
+
+        for (int i = 0; i < temas_lista.size(); ++i) {
+            temas_id.append(temas_lista.at(i).id);
+        }
+
+        ordenanza.setTemas(temas_id);
+    }
+
     emit(aceptarOrdenanza(ordenanza));
 
     close();
