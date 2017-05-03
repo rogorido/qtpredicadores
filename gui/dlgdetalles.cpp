@@ -278,6 +278,11 @@ void dlgDetalles::recibirOrdenanza(Ordenanza ordenanza)
         jsondetalles->anadirValor("pena", pena_json);
      }
 
+     if (ordenanza.getRetroReferencia().estaLleno()) {
+         QJsonObject retro_json = ordenanza.getRetroReferencia().getRetroJson();
+         jsondetalles->anadirValor("retro", retro_json);
+     }
+
      ExtraInfos extras = ordenanza.getExtraInfos();
      anadirExtraInfos(extras);
 }
