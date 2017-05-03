@@ -15,6 +15,11 @@ QModelIndex QJsonModel::parent(const QModelIndex &index) const
     // FIXME: Implement me!
 }
 
+QVariant QJsonModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+
+}
+
 int QJsonModel::rowCount(const QModelIndex &parent) const
 {
     if (!parent.isValid())

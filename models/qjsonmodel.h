@@ -2,6 +2,9 @@
 #define QJSONMODEL_H
 
 #include <QAbstractItemModel>
+#include <QJsonDocument>
+
+#include "objs/qjsontreeitem.h"
 
 class QJsonModel : public QAbstractItemModel
 {
@@ -15,12 +18,17 @@ public:
                       const QModelIndex &parent = QModelIndex()) const override;
     QModelIndex parent(const QModelIndex &index) const override;
 
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private:
+    QJsonTreeItem * mRootItem;
+    QJsonDocument mDocument;
+    QStringList mHeaders;
 };
 
 #endif // QJSONMODEL_H
