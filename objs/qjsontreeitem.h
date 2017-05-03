@@ -1,6 +1,9 @@
 #ifndef QJSONTREEITEM_H
 #define QJSONTREEITEM_H
 
+#include <QString>
+#include <QJsonValue>
+#include <QList>
 
 class QJsonTreeItem
 {
