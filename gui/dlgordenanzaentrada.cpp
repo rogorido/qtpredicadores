@@ -3,6 +3,16 @@
 
 #include "gui/dlgpenaentrada.h"
 
+#include <QSqlQueryModel>
+#include <QCompleter>
+
+const QString sql_receptores="SELECT DISTINCT jsonb_array_elements_text(details->'destinatarios_pena') AS penados "
+                             "FROM resolutions_details WHERE details->>'destinatarios_pena' IS NOT NULL "
+                             "ORDER BY penados";
+const QString sql_objetos="SELECT DISTINCT jsonb_array_elements_text(details->'objetos') AS objetos "
+                             "FROM resolutions_details WHERE details->>'objetos' IS NOT NULL "
+                             "ORDER BY objetos";
+
 dlgOrdenanzaEntrada::dlgOrdenanzaEntrada(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgOrdenanzaEntrada)
@@ -47,6 +57,25 @@ bool dlgOrdenanzaEntrada::eventFilter(QObject *obj, QEvent *e)
      * si pongo dlgPenaEntrada no funciona!!
      */
     return QDialog::eventFilter(obj, e);
+}
+
+void dlgOrdenanzaEntrada::cargarModelos()
+{
+    receptores_model = new QSqlQueryModel(this);
+    receptores_model->setQuery(sql_receptores);
+
+    receptores_completer = new QCompleter(receptores_model, this);
+    receptores_completer->setCompletionColumn(0);
+    receptores_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtReceptor->setCompleter(receptores_completer);
+
+    objetos_model = new QSqlQueryModel(this);
+    objetos_model->setQuery(sql_objetos);
+
+    objetos_completer = new QCompleter(objetos_model, this);
+    objetos_completer->setCompletionColumn(0);
+    objetos_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtObjeto->setCompleter(objetos_completer);
 }
 
 void dlgOrdenanzaEntrada::aceptar() {

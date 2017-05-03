@@ -7,6 +7,9 @@
 #include "objs/variados.h"
 #include "objs/pena.h"
 
+class QSqlQueryModel;
+class QCompleter;
+
 namespace Ui {
 class dlgOrdenanzaEntrada;
 }
@@ -44,6 +47,13 @@ private:
     QStringList lista_receptores;
     QStringList lista_objetos;
     Pena pena_estipulada;
+
+    QSqlQueryModel *receptores_model;
+    QCompleter *receptores_completer;
+    QSqlQueryModel *objetos_model;
+    QCompleter *objetos_completer;
+
+    void cargarModelos();
 };
 
 #endif // DLGORDENANZAENTRADA_H
