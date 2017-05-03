@@ -2,6 +2,7 @@
 #include "ui_dlgordenanzaentrada.h"
 
 #include "gui/dlgpenaentrada.h"
+#include "gui/dlgtemas.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
@@ -22,6 +23,8 @@ dlgOrdenanzaEntrada::dlgOrdenanzaEntrada(QWidget *parent) :
     ui->txtObjeto->installEventFilter(this);
     ui->txtReceptor->installEventFilter(this);
 
+    dlgtemas = new dlgTemas(&temas_lista, this);
+
     ui->cbTipo->addItem("Prohibición", QVariant(1));
     ui->cbTipo->addItem("Mandato", QVariant(2));
 
@@ -30,6 +33,8 @@ dlgOrdenanzaEntrada::dlgOrdenanzaEntrada(QWidget *parent) :
     connect(ui->btEliminarObjetos, SIGNAL(clicked(bool)), this, SLOT(quitarObjeto()));
     connect(ui->btEliminarReceptores, SIGNAL(clicked(bool)), this, SLOT(quitarReceptor()));
     connect(ui->btPenas, SIGNAL(clicked(bool)), this, SLOT(anadirPena()));
+    connect(ui->btTemas, SIGNAL(clicked(bool)), dlgtemas, SLOT(show()));
+
 }
 
 dlgOrdenanzaEntrada::~dlgOrdenanzaEntrada()

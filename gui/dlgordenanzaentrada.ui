@@ -114,7 +114,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget_2">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -250,7 +250,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Texto real</string>
+        <string>Te&amp;xto real</string>
        </property>
        <property name="buddy">
         <cstring>txtTextoReal</cstring>
@@ -316,6 +316,13 @@
       <widget class="QPushButton" name="btPenas">
        <property name="text">
         <string>Penas</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btTemas">
+       <property name="text">
+        <string>Temas</string>
        </property>
       </widget>
      </item>

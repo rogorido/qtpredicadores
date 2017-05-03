@@ -10,6 +10,7 @@
 
 class QSqlQueryModel;
 class QCompleter;
+class dlgTemas;
 
 namespace Ui {
 class dlgOrdenanzaEntrada;
@@ -44,6 +45,7 @@ protected:
 
 private:
     Ui::dlgOrdenanzaEntrada *ui;
+    dlgTemas *dlgtemas;
 
     QStringList lista_receptores;
     QStringList lista_objetos;
@@ -53,6 +55,8 @@ private:
     QCompleter *receptores_completer;
     QSqlQueryModel *objetos_model;
     QCompleter *objetos_completer;
+
+    QList<elementopareado> temas_lista;
 
     Ordenanza ordenanza;
 
