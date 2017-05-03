@@ -94,3 +94,21 @@ QVariant QJsonModel::data(const QModelIndex &index, int role) const
 
     return QVariant();
 }
+
+void QJsonModel::anadirJson(QJsonObject json)
+{
+    QJsonObject general;
+
+    beginResetModel();
+
+    lista_jsons.append(json);
+
+    for (int i = 0; i < lista_jsons.size(); ++i) {
+        QString llave = "Datos-" + QString::number(i);
+        general.insert(llave, lista_jsons.at(i));
+    }
+
+    mRootItem = QJsonTreeItem::load(general);
+
+    endResetModel();
+}

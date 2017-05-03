@@ -3,6 +3,7 @@
 
 #include <QAbstractItemModel>
 #include <QJsonDocument>
+#include <QJsonObject>
 
 #include "objs/qjsontreeitem.h"
 
@@ -25,10 +26,14 @@ public:
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+    void anadirJson(QJsonObject json);
+
 private:
     QJsonTreeItem *mRootItem;
     QJsonDocument mDocument;
     QStringList mHeaders;
+
+    QList<QJsonObject> lista_jsons;
 };
 
 #endif // QJSONMODEL_H
