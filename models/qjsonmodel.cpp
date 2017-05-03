@@ -3,6 +3,9 @@
 QJsonModel::QJsonModel(QObject *parent)
     : QAbstractItemModel(parent)
 {
+    mRootItem = new QJsonTreeItem();
+    mHeaders.append("key");
+    mHeaders.append("value");
 }
 
 QModelIndex QJsonModel::index(int row, int column, const QModelIndex &parent) const
@@ -39,8 +42,17 @@ int QJsonModel::columnCount(const QModelIndex &parent) const
 QVariant QJsonModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
-        return QVariant();
+            return QVariant();
 
-    // FIXME: Implement me!
+    QJsonTreeItem *item = static_cast<QJsonTreeItem*>(index.internalPointer());
+
+    if (role == Qt::DisplayRole) {
+        if (index.column() == 0)
+            return QString("%1").arg(item->getKey());
+
+            if (index.column() == 1)
+                return QString("%1").arg(item->getValue());
+        }
+
     return QVariant();
 }

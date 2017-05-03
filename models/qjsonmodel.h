@@ -26,7 +26,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
 private:
-    QJsonTreeItem * mRootItem;
+    QJsonTreeItem *mRootItem;
     QJsonDocument mDocument;
     QStringList mHeaders;
 };
