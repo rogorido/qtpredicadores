@@ -110,6 +110,9 @@ void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
         anadirExtraInfos(extras);
 
         jsondetalles->nuevoBloqueJson();
+
+        QJsonObject aprobacion_json = aprobacion->getAprobacionJson();
+        json_model->anadirJson(aprobacion_json);
     }
 }
 

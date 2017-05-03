@@ -49,6 +49,7 @@ public:
     bool getVolverMirar() const {return volveramirar;}
     int getCantidadInfo() const {return cantidadinfo;}
     QString getNotas() const {return notas;}
+    bool estaLleno() const {return lleno;}
 
 private:
 
@@ -71,6 +72,7 @@ private:
     bool volveramirar;
     int cantidadinfo;
     QString notas;
+    bool lleno = false;
 
 };
 

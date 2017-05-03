@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QStringList>
+#include <QJsonObject>
 
 #include "objs/variados.h"
 
@@ -33,6 +34,8 @@ public:
     int getSeguridad() const {return seguridad; }
     ExtraInfos getExtraInfos() const { return extras; }
     bool estaLleno() const {return lleno;}
+
+    QJsonObject getPenaJson();
 
 private:
 

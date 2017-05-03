@@ -20,6 +20,7 @@ public:
     QString getOtrosNombres() const {return otrosnombres;}
     QString getErigida() const {return erigida;}
     QString getNotas() const {return notas;}
+    bool estaLleno() const {return lleno;}
 
 private:
 
@@ -28,6 +29,7 @@ private:
     QString otrosnombres;
     QString erigida;
     QString notas;
+    bool lleno = false;
 
 };
 

@@ -20,3 +20,8 @@ void Pena::setPenados(QStringList p)
 void Pena::setMotivo(QString m) { motivo = m; }
 void Pena::setSeguridad(int s) { seguridad = s; }
 void Pena::setExtraInfos(ExtraInfos e) { extras = e; }
+
+QJsonObject Pena::getPenaJson()
+{
+
+}

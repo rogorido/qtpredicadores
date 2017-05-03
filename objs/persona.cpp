@@ -1,9 +1,13 @@
 #include "persona.h"
 
-Persona::Persona() { }
+Persona::Persona() { lleno = false; }
 
 void Persona::setId(int i){ id = i; }
-void Persona::setNombre(QString n){ nombre = n; }
+void Persona::setNombre(QString n)
+{
+    nombre = n;
+    lleno = true;
+}
 void Persona::setApellidos(QString a){ apellidos = a; }
 void Persona::setOrigen(QString o){ origen = o; }
 void Persona::setBuscado(bool b){ buscado = b; }

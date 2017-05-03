@@ -2,6 +2,8 @@
 #define APROBACION_H
 
 #include <QString>
+#include <QJsonObject>
+
 #include "objs/variados.h"
 #include "objs/persona.h"
 #include "objs/provincia.h"
@@ -22,6 +24,8 @@ public:
     Persona getPersona() const {return persona;}
     Provincia getProvincia() const {return provincia;}
     ExtraInfos getExtraInfos() const { return extras; }
+
+    QJsonObject getAprobacionJson();
 
 private:
     QString tipo;
