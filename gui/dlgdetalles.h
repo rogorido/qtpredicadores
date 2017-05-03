@@ -16,6 +16,7 @@
 class JsonGestor;
 class QSqlQueryModel;
 class QCompleter;
+class QJsonModel;
 
 namespace Ui {
 class dlgDetalles;
@@ -57,6 +58,8 @@ private slots:
 
 private:
     Ui::dlgDetalles *ui;
+
+    QJsonModel *json_model;
 
     /* estos son modelos solo de este form */
     QSqlQueryModel *m_keys;

@@ -9,6 +9,8 @@
 #include "dlgafiliacionentrada.h"
 #include "dlgordenanzaentrada.h"
 
+#include "models/qjsonmodel.h"
+
 #include <QSqlQueryModel>
 #include <QCompleter>
 #include <QJsonArray>
@@ -29,6 +31,9 @@ dlgDetalles::dlgDetalles(JsonGestor *json, int t, QWidget *parent) :
 {
     ui->setupUi(this);
     jsondetalles->setTreeWidget(ui->twDetalles);
+
+    json_model = new QJsonModel(this);
+    ui->twJsonGeneral->setModel(json_model);
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(hide()));
@@ -139,6 +144,9 @@ void dlgDetalles::recibirLicencia(Licencia licencia)
 
     ExtraInfos extras = licencia.getExtraInfos();
     anadirExtraInfos(extras);
+
+    QJsonObject lic_json = licencia.getLicenciaJson();
+    json_model->anadirJson(lic_json);
 }
 
 void dlgDetalles::recibirPena(Pena pena)
