@@ -5,6 +5,7 @@
 
 #include "objs/ordenanza.h"
 #include "objs/variados.h"
+#include "objs/pena.h"
 
 namespace Ui {
 class dlgOrdenanzaEntrada;
@@ -26,6 +27,9 @@ private slots:
     void anadirReceptor();
     void quitarObjeto();
     void quitarReceptor();
+    void anadirPena();
+
+    void recibirPena(Pena pena);
 
 signals:
 
@@ -39,6 +43,7 @@ private:
 
     QStringList lista_receptores;
     QStringList lista_objetos;
+    Pena pena_estipulada;
 };
 
 #endif // DLGORDENANZAENTRADA_H

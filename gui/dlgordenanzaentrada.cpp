@@ -1,6 +1,8 @@
 #include "dlgordenanzaentrada.h"
 #include "ui_dlgordenanzaentrada.h"
 
+#include "gui/dlgpenaentrada.h"
+
 dlgOrdenanzaEntrada::dlgOrdenanzaEntrada(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgOrdenanzaEntrada)
@@ -14,6 +16,7 @@ dlgOrdenanzaEntrada::dlgOrdenanzaEntrada(QWidget *parent) :
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->btEliminarObjetos, SIGNAL(clicked(bool)), this, SLOT(quitarObjeto()));
     connect(ui->btEliminarReceptores, SIGNAL(clicked(bool)), this, SLOT(quitarReceptor()));
+    connect(ui->btPenas, SIGNAL(clicked(bool)), this, SLOT(anadirPena()));
 }
 
 dlgOrdenanzaEntrada::~dlgOrdenanzaEntrada()
@@ -23,7 +26,26 @@ dlgOrdenanzaEntrada::~dlgOrdenanzaEntrada()
 
 bool dlgOrdenanzaEntrada::eventFilter(QObject *obj, QEvent *e)
 {
+    if (e->type()== QEvent::KeyPress) {
+            QKeyEvent *keyEvent = static_cast<QKeyEvent *>(e);
+            if (keyEvent->key() == Qt::Key_Return){
 
+                // y ahora dependiendo del QLineEdit...
+                if (obj == ui->txtObjeto){
+                    anadirObjeto();
+                    return true;
+                }
+                else if (obj == ui->txtReceptor) {
+                    anadirReceptor();
+                    return true;
+                }
+            }
+        }
+
+    /*
+     * atención aquí lo importante es poner QDialog!
+     * si pongo dlgPenaEntrada no funciona!!
+     */
     return QDialog::eventFilter(obj, e);
 }
 
@@ -68,11 +90,37 @@ void dlgOrdenanzaEntrada::quitarObjeto()
     }
 
     ui->lwObjetos->takeItem(ui->lwObjetos->currentRow());
-
-
 }
 
 void dlgOrdenanzaEntrada::quitarReceptor()
 {
+    QModelIndex idx = ui->lwReceptores->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    QString receptor = idx.data().toString();
+
+    for (int i = 0; i < lista_receptores.size(); ++i) {
+        if (lista_receptores.value(i) == receptor) {
+            lista_receptores.removeAt(i);
+            break;
+        }
+    }
+
+    ui->lwReceptores->takeItem(ui->lwReceptores->currentRow());
+}
+
+void dlgOrdenanzaEntrada::anadirPena()
+{
+    dlgPenaEntrada *dlgpena = new dlgPenaEntrada(this);
+    dlgpena->show();
+
+    connect(dlgpena, SIGNAL(aceptarPena(Pena)), this, SLOT(recibirPena(Pena)));
+}
+
+void dlgOrdenanzaEntrada::recibirPena(Pena pena)
+{
+    pena_estipulada = pena;
 
 }
