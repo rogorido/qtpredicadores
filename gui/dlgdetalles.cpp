@@ -227,6 +227,35 @@ void dlgDetalles::recibirAfiliacion(QList<Afiliacion *> lista_afiliaciones)
 void dlgDetalles::recibirOrdenanza(Ordenanza ordenanza)
 {
 
+    /*
+     * si el jsondetalles no está vacío, creamos un nuevo bloque
+     */
+    if (!jsondetalles->isEmpty())
+        jsondetalles->nuevoBloqueJson();
+
+    if (ordenanza.getTipo() == Ordenanza::TipoOrdenanza::PROHIBICION)
+        jsondetalles->anadirValor("prohibición", "yes");
+    else
+        jsondetalles->anadirValor("mandato", "yes");
+
+     /*
+      * TODO: aquí se plantea la duda qué hacer con los NULLs?
+      * ¿controlo si están vacíos y no los meto? ¿o meto nulls que luego
+      * a lo mejor es más interesante para buscar?
+      */
+     if (!ordenanza.getObjetos().isEmpty())
+         jsondetalles->anadirValor("objetos", QJsonArray::fromStringList(ordenanza.getObjetos()));
+
+     if (!ordenanza.getReceptores().isEmpty())
+         jsondetalles->anadirValor("destinatarios", QJsonArray::fromStringList(ordenanza.getReceptores()));
+
+     if (!ordenanza.getRestriccion().isEmpty())
+         jsondetalles->anadirValor("restricción", ordenanza.getRestriccion());
+
+     jsondetalles->anadirValor("seguridad", QJsonValue(pena.getSeguridad()));
+
+     ExtraInfos extras = ordenanza.getExtraInfos();
+     anadirExtraInfos(extras);
 }
 
 void dlgDetalles::recibirCasa(Casa casa){
