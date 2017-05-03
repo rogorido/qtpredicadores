@@ -22,6 +22,9 @@ dlgOrdenanzaEntrada::dlgOrdenanzaEntrada(QWidget *parent) :
     ui->txtObjeto->installEventFilter(this);
     ui->txtReceptor->installEventFilter(this);
 
+    ui->cbTipo->addItem("Prohibición", QVariant(1));
+    ui->cbTipo->addItem("Mandato", QVariant(2));
+
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->btEliminarObjetos, SIGNAL(clicked(bool)), this, SLOT(quitarObjeto()));
@@ -79,6 +82,25 @@ void dlgOrdenanzaEntrada::cargarModelos()
 }
 
 void dlgOrdenanzaEntrada::aceptar() {
+
+    if (ui->cbTipo->currentText() == "Prohibición")
+        ordenanza.setTipo(Ordenanza::TipoOrdenanza::PROHIBICION);
+    else
+        ordenanza.setTipo(Ordenanza::TipoOrdenanza::MANDATO);
+
+    ordenanza.setObjetos(lista_objetos);
+    ordenanza.setReceptores(lista_receptores);
+    ordenanza.setPena(pena_estipulada);
+    ordenanza.setRestriccion(ui->txtRestriccion->text());
+    ordenanza.setSeguridad(ui->spSeguridad->value());
+
+    ExtraInfos e = ui->widget->getExtraInfos();
+    ordenanza.setExtraInfos(e);
+
+    emit(aceptarOrdenanza(ordenanza));
+
+    close();
+
 
 }
 

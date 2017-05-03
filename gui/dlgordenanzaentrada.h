@@ -53,7 +53,10 @@ private:
     QSqlQueryModel *objetos_model;
     QCompleter *objetos_completer;
 
+    Ordenanza ordenanza;
+
     void cargarModelos();
+
 };
 
 #endif // DLGORDENANZAENTRADA_H
