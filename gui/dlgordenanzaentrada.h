@@ -17,6 +17,13 @@ public:
     explicit dlgOrdenanzaEntrada(QWidget *parent = 0);
     ~dlgOrdenanzaEntrada();
 
+private slots:
+
+    void aceptar();
+
+    void anadirObjeto();
+    void anadirRecptor();
+
 signals:
 
     void aceptarOrdenanza(Ordenanza ordenanza);
@@ -26,6 +33,9 @@ protected:
 
 private:
     Ui::dlgOrdenanzaEntrada *ui;
+
+    QStringList lista_receptores;
+    QStringList lista_objetos;
 };
 
 #endif // DLGORDENANZAENTRADA_H
