@@ -97,6 +97,16 @@ void dlgOrdenanzaEntrada::aceptar() {
     ExtraInfos e = ui->widget->getExtraInfos();
     ordenanza.setExtraInfos(e);
 
+    if (ui->ckRetro->checkState() == Qt::Checked){
+        RetroReferencia retro;
+
+        retro.setTipo(ui->txtRetroTipo->text());
+        retro.setReferencia(ui->txtReferencia->text());
+        retro.setTextoReal(ui->txtTextoReal->text());
+
+        ordenanza.setRetroReferencia(retro);
+    }
+
     emit(aceptarOrdenanza(ordenanza));
 
     close();

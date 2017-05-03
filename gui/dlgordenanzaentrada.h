@@ -6,6 +6,7 @@
 #include "objs/ordenanza.h"
 #include "objs/variados.h"
 #include "objs/pena.h"
+#include "objs/retroreferencia.h"
 
 class QSqlQueryModel;
 class QCompleter;

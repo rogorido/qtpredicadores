@@ -16,9 +16,17 @@ QJsonObject RetroReferencia::getRetroJson()
 {
     QJsonObject json;
 
-    json.insert("tipo_retro", tipo);
-    json.insert("referencia", referencia);
-    json.insert("textoreal_retro", texto_real);
+    if (lleno)
+        json.insert("retro", "yes");
+
+    if (!tipo.isEmpty())
+        json.insert("tipo_retro", tipo);
+
+    if (!referencia.isEmpty())
+        json.insert("referencia", referencia);
+
+    if (!texto_real.isEmpty())
+        json.insert("textoreal_retro", texto_real);
 
     return json;
 }

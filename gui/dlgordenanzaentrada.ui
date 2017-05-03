@@ -46,7 +46,10 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Objeto</string>
+        <string>Ob&amp;jeto</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtObjeto</cstring>
        </property>
       </widget>
      </item>
@@ -57,6 +60,9 @@
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>Receptor</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtReceptor</cstring>
        </property>
       </widget>
      </item>
@@ -70,7 +76,10 @@
      <item>
       <widget class="QLabel" name="label_6">
        <property name="text">
-        <string>Restricción</string>
+        <string>Restricci&amp;ón</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtRestriccion</cstring>
        </property>
       </widget>
      </item>
@@ -105,7 +114,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget_2">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -187,6 +196,102 @@
         </layout>
        </item>
       </layout>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Retroreferencias</string>
+      </attribute>
+      <widget class="QCheckBox" name="ckRetro">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>9</y>
+         <width>123</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Retroreferencias</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>63</y>
+         <width>63</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Referencia</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtReferencia</cstring>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="txtReferencia">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>63</y>
+         <width>125</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_9">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>91</y>
+         <width>59</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Texto real</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtTextoReal</cstring>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="txtTextoReal">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>91</y>
+         <width>125</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="txtRetroTipo">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>30</y>
+         <width>125</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>58</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Tipo</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtRetroTipo</cstring>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
