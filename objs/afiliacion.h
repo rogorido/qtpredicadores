@@ -1,6 +1,8 @@
 #ifndef AFILIACION_H
 #define AFILIACION_H
 
+#include <QJsonObject>
+
 #include "objs/variados.h"
 #include "objs/persona.h"
 #include "objs/casa.h"
@@ -27,6 +29,7 @@ public:
     Provincia getProvinciaDestino() const { return provincia_destino; }
     ExtraInfos getExtras() const { return extras; }
 
+    QJsonObject getAfiliacionJson();
 
 private:
     Persona persona;

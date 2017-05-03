@@ -1,15 +1,18 @@
 #include "casa.h"
 
 Casa::Casa()
-{ }
+{  lleno = false; }
 
 void Casa::setId(int i){
     id = i;
+    lleno = true;
 }
 
 void Casa::setNombre(QString n){
-    if (!n.isEmpty())
+    if (!n.isEmpty()){
         nombre = n;
+        lleno = true;
+    }
 }
 
 void Casa::setNombreLatin(QString n){

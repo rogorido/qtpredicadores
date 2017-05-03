@@ -49,6 +49,7 @@ public:
     QString getOtrosNombres() const {return otrosnombres;}
     QString getNotas() const {return notas;}
     bool getStudiumgenerale() const {return studiumgenerale;}
+    bool estaLleno() const {return lleno;}
 
 private:
 
@@ -71,6 +72,7 @@ private:
     QString otrosnombres;
     QString notas;
     bool studiumgenerale;
+    bool lleno = false;
 
 };
 

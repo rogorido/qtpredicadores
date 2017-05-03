@@ -47,7 +47,6 @@ QJsonObject Pena::getPenaJson()
 
     json.insert("seguridad", QJsonValue(seguridad));
 
-
     if (extras.size() > 0 ) {
         for (int i = 0; i < extras.size(); ++i) {
             QPair<QString, QString> valores;

@@ -236,6 +236,9 @@ void dlgDetalles::recibirAfiliacion(QList<Afiliacion *> lista_afiliaciones)
         anadirExtraInfos(extras);
 
         jsondetalles->nuevoBloqueJson();
+
+        QJsonObject afiliacion_json = afiliacion->getAfiliacionJson();
+        json_model->anadirJson(afiliacion_json);
     }
 
 }
