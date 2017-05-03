@@ -9,4 +9,5 @@ void Ordenanza::setPena(Pena p) { pena = p; }
 void Ordenanza::setRestriccion(QString r) { restriccion = r; }
 void Ordenanza::setFinalidades(QStringList f) { finalidades = f; }
 void Ordenanza::setSeguridad(int s) { seguridad = s; }
+void Ordenanza::setRetroReferencia(RetroReferencia r) { retro = r; }
 void Ordenanza::setExtraInfos(ExtraInfos e) { extras = e; }

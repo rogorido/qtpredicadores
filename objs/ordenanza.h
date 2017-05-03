@@ -3,8 +3,10 @@
 
 #include <QString>
 #include <QStringList>
-#include <objs/pena.h>
-#include <objs/variados.h>
+
+#include "objs/pena.h"
+#include "objs/variados.h"
+#include "objs/retroreferencia.h"
 
 class Ordenanza
 {
@@ -21,6 +23,7 @@ public:
     void setRestriccion(QString r);
     void setFinalidades(QStringList f);
     void setSeguridad(int s);
+    void setRetroReferencia(RetroReferencia r);
     void setExtraInfos(ExtraInfos e);
 
     // getters
@@ -31,6 +34,7 @@ public:
     QString getRestriccion() const {return restriccion;}
     QStringList getFinalidades() const {return finalidades;}
     int getSeguridad() const {return seguridad;}
+    RetroReferencia getRetroReferencia() const {return retro;}
     ExtraInfos getExtraInfos() const {return extras;}
 
 private:
@@ -42,6 +46,7 @@ private:
     QString restriccion;
     QStringList finalidades; // no sé si lo voy a usar
     int seguridad;
+    RetroReferencia retro;
     ExtraInfos extras;
 };
 
