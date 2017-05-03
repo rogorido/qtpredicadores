@@ -3,6 +3,8 @@
 
 #include <QString>
 #include <QStringList>
+#include <QJsonObject>
+#include <QJsonArray>
 
 #include "objs/pena.h"
 #include "objs/variados.h"
@@ -38,6 +40,8 @@ public:
     RetroReferencia getRetroReferencia() const {return retro;}
     QList<int> getTemas() const {return temas;}
     ExtraInfos getExtraInfos() const {return extras;}
+
+    QJsonObject getOrdenanzaJson();
 
 private:
 

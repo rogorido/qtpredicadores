@@ -315,6 +315,9 @@ void dlgDetalles::recibirOrdenanza(Ordenanza ordenanza)
 
      ExtraInfos extras = ordenanza.getExtraInfos();
      anadirExtraInfos(extras);
+
+     QJsonObject ordenanza_json = ordenanza.getOrdenanzaJson();
+     json_model->anadirJson(ordenanza_json);
 }
 
 void dlgDetalles::recibirCasa(Casa casa){
