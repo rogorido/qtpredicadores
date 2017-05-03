@@ -49,6 +49,7 @@ void dlgPenaEntrada::aceptar()
     pena.setPenados(penados);
     pena.setSeguridad(ui->spSeguridad->value());
     pena.setMotivo(ui->txtMotivo->text());
+    pena.setRestriccion(ui->txtRestriccion->text());
     pena.setExtraInfos(extras);
     // TODO: falta penatexto!
 
