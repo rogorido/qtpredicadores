@@ -53,6 +53,14 @@ void JsonGestor::anadirValor(const QString &key, const QJsonValue &value){
     m_json_activo.insert(key, value);
 
     /*
+     * si es un objeto ponemos solo "OBJ" y salimos
+     */
+    if (value.isObject()){
+        anadirChildItem(key, "OBJ");
+        return;
+    }
+
+    /*
      * hay que hacer este pequeño lío para sacar el puto Qstringlist
      * del array. No sé por qué no hay un sistema más fácil..
      */

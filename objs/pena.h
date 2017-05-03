@@ -32,6 +32,7 @@ public:
     QString getMotivo() const { return motivo; }
     int getSeguridad() const {return seguridad; }
     ExtraInfos getExtraInfos() const { return extras; }
+    bool estaLleno() const {return lleno;}
 
 private:
 
@@ -44,6 +45,7 @@ private:
     QString motivo;
     int seguridad;
     ExtraInfos extras;
+    bool lleno = false;
 
 };
 

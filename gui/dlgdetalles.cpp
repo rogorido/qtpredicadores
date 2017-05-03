@@ -252,7 +252,31 @@ void dlgDetalles::recibirOrdenanza(Ordenanza ordenanza)
      if (!ordenanza.getRestriccion().isEmpty())
          jsondetalles->anadirValor("restricción", ordenanza.getRestriccion());
 
-     jsondetalles->anadirValor("seguridad", QJsonValue(pena.getSeguridad()));
+     jsondetalles->anadirValor("seguridad", QJsonValue(ordenanza.getSeguridad()));
+
+     if (ordenanza.getPena().estaLleno()) {
+        QJsonObject pena_json;
+        pena_json.insert("penas_tipos", QJsonArray::fromStringList(ordenanza.getPena().getPenasTipos()));
+        pena_json.insert("destinatarios_pena", QJsonArray::fromStringList(ordenanza.getPena().getPenados()));
+        pena_json.insert("motivo", ordenanza.getPena().getMotivo());
+        pena_json.insert("pena_texto", ordenanza.getPena().getPenaTexto());
+        pena_json.insert("duración_pena", ordenanza.getPena().getDuracion());
+        pena_json.insert("restricción_pena", ordenanza.getPena().getRestriccion());
+        pena_json.insert("seguridad_pena", QJsonValue(ordenanza.getPena().getSeguridad()));
+
+        ExtraInfos e = ordenanza.getPena().getExtraInfos();
+
+        if (e.size() > 0 ) {
+            for (int i = 0; i < e.size(); ++i) {
+                QPair<QString, QString> valores;
+                valores = e.at(i);
+
+                pena_json.insert(valores.first, QJsonValue(valores.second));
+            }
+        }
+
+        jsondetalles->anadirValor("pena", pena_json);
+     }
 
      ExtraInfos extras = ordenanza.getExtraInfos();
      anadirExtraInfos(extras);
