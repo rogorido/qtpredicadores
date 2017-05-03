@@ -56,10 +56,17 @@ QVariant QJsonModel::headerData(int section, Qt::Orientation orientation, int ro
 
 int QJsonModel::rowCount(const QModelIndex &parent) const
 {
-    if (!parent.isValid())
+    QJsonTreeItem *parentItem;
+
+    if (parent.column() > 0)
         return 0;
 
-    // FIXME: Implement me!
+    if (!parent.isValid())
+        parentItem = mRootItem;
+    else
+        parentItem = static_cast<QJsonTreeItem*>(parent.internalPointer());
+
+    return parentItem->childCount();
 }
 
 int QJsonModel::columnCount(const QModelIndex &parent) const
@@ -67,7 +74,7 @@ int QJsonModel::columnCount(const QModelIndex &parent) const
     if (!parent.isValid())
         return 0;
 
-    // FIXME: Implement me!
+    return 2;
 }
 
 QVariant QJsonModel::data(const QModelIndex &index, int role) const
