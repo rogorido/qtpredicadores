@@ -1,5 +1,7 @@
 #include "qjsonmodel.h"
 
+#include <QDebug>
+
 QJsonModel::QJsonModel(QObject *parent)
     : QAbstractItemModel(parent)
 {
@@ -71,8 +73,6 @@ int QJsonModel::rowCount(const QModelIndex &parent) const
 
 int QJsonModel::columnCount(const QModelIndex &parent) const
 {
-    if (!parent.isValid())
-        return 0;
 
     return 2;
 }

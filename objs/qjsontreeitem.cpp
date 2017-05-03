@@ -1,5 +1,7 @@
 #include "qjsontreeitem.h"
 
+#include <QDebug>
+
 QJsonTreeItem::QJsonTreeItem(QJsonTreeItem *parent)
 {
     mParent = parent;
