@@ -10,16 +10,47 @@ QJsonModel::QJsonModel(QObject *parent)
 
 QModelIndex QJsonModel::index(int row, int column, const QModelIndex &parent) const
 {
-    // FIXME: Implement me!
+    if (!hasIndex(row, column, parent))
+            return QModelIndex();
+
+    QJsonTreeItem *parentItem;
+
+    if (!parent.isValid())
+        parentItem = mRootItem;
+    else
+        parentItem = static_cast<QJsonTreeItem*>(parent.internalPointer());
+
+    QJsonTreeItem *childItem = parentItem->child(row);
+    if (childItem)
+        return createIndex(row, column, childItem);
+    else
+        return QModelIndex();
 }
 
 QModelIndex QJsonModel::parent(const QModelIndex &index) const
 {
-    // FIXME: Implement me!
+    if (!index.isValid())
+            return QModelIndex();
+
+    QJsonTreeItem *childItem = static_cast<QJsonTreeItem*>(index.internalPointer());
+    QJsonTreeItem *parentItem = childItem->parent();
+
+    if (parentItem == mRootItem)
+        return QModelIndex();
+
+    return createIndex(parentItem->row(), 0, parentItem);
 }
 
 QVariant QJsonModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
+    if (role != Qt::DisplayRole)
+            return QVariant();
+
+    if (orientation == Qt::Horizontal) {
+            return mHeaders.value(section);
+        }
+    else
+        return QVariant();
 
 }
 
@@ -50,8 +81,8 @@ QVariant QJsonModel::data(const QModelIndex &index, int role) const
         if (index.column() == 0)
             return QString("%1").arg(item->getKey());
 
-            if (index.column() == 1)
-                return QString("%1").arg(item->getValue());
+        if (index.column() == 1)
+            return QString("%1").arg(item->getValue());
         }
 
     return QVariant();
