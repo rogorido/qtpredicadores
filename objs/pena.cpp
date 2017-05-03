@@ -23,5 +23,40 @@ void Pena::setExtraInfos(ExtraInfos e) { extras = e; }
 
 QJsonObject Pena::getPenaJson()
 {
+    QJsonObject json;
+
+    json.insert("pena", "yes");
+
+    if (!penas_tipos.isEmpty())
+        json.insert("pena_tipos", QJsonArray::fromStringList(penas_tipos));
+
+    if (!duracion.isEmpty())
+        json.insert("duración", duracion);
+
+    if (!penados.isEmpty())
+        json.insert("penados", QJsonArray::fromStringList(penados));
+
+    if (!motivo.isEmpty())
+        json.insert("pena_motivo", motivo);
+
+    if (!absolucion.isEmpty())
+        json.insert("pena_absolución", absolucion);
+
+    if (!pena_texto.isEmpty())
+        json.insert("pena_texto", pena_texto);
+
+    json.insert("seguridad", QJsonValue(seguridad));
+
+
+    if (extras.size() > 0 ) {
+        for (int i = 0; i < extras.size(); ++i) {
+            QPair<QString, QString> valores;
+            valores = extras.at(i);
+
+            json.insert(valores.first, valores.second);
+        }
+    }
+
+    return json;
 
 }

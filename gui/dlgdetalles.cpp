@@ -192,6 +192,9 @@ void dlgDetalles::recibirPena(Pena pena)
 
      ExtraInfos extras = pena.getExtraInfos();
      anadirExtraInfos(extras);
+
+     QJsonObject pena_json = pena.getPenaJson();
+     json_model->anadirJson(pena_json);
 }
 
 void dlgDetalles::recibirAfiliacion(QList<Afiliacion *> lista_afiliaciones)
