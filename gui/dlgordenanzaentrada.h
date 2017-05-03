@@ -4,6 +4,7 @@
 #include <QDialog>
 
 #include "objs/ordenanza.h"
+#include "objs/variados.h"
 
 namespace Ui {
 class dlgOrdenanzaEntrada;
@@ -22,7 +23,9 @@ private slots:
     void aceptar();
 
     void anadirObjeto();
-    void anadirRecptor();
+    void anadirReceptor();
+    void quitarObjeto();
+    void quitarReceptor();
 
 signals:
 
