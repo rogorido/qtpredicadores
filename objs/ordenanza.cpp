@@ -1,6 +1,5 @@
 #include "ordenanza.h"
 
-Ordenanza::Ordenanza()
-{
+Ordenanza::Ordenanza() { }
 
-}
+
