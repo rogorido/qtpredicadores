@@ -165,7 +165,7 @@
      <item>
       <widget class="QLabel" name="label_9">
        <property name="text">
-        <string>Texto pena</string>
+        <string>Te&amp;xto pena</string>
        </property>
        <property name="buddy">
         <cstring>txtPenaTexto</cstring>
@@ -254,6 +254,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="btOK">
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
        <property name="text">
         <string>&amp;Aceptar</string>
        </property>

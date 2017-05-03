@@ -32,6 +32,9 @@ signals:
 
     void aceptarPena(Pena pena);
 
+protected:
+    bool eventFilter(QObject *obj, QEvent *e);
+
 private:
     Ui::dlgPenaEntrada *ui;
 
@@ -50,6 +53,7 @@ private:
     Pena pena;
 
     void cargarModelos();
+    void activarTeclaReturn();
 };
 
 #endif // DLGPENAENTRADA_H

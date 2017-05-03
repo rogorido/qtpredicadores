@@ -29,8 +29,8 @@ dlgPenaEntrada::dlgPenaEntrada(QWidget *parent) :
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->btEliminarPenas, SIGNAL(clicked(bool)), this, SLOT(quitarPenasTipos()));
     connect(ui->btEliminarPenados, SIGNAL(clicked(bool)), this, SLOT(quitarPenados()));
-    connect(ui->txtTipos, SIGNAL(returnPressed()), this, SLOT(anadirPenasTipos()));
-    connect(ui->txtPenados, SIGNAL(returnPressed()), this, SLOT(anadirPenados()));
+
+    activarTeclaReturn();
 
     cargarModelos();
 }
@@ -117,6 +117,31 @@ void dlgPenaEntrada::quitarPenados()
 
 }
 
+bool dlgPenaEntrada::eventFilter(QObject *obj, QEvent *e)
+{
+    if (e->type()== QEvent::KeyPress) {
+            QKeyEvent *keyEvent = static_cast<QKeyEvent *>(e);
+            if (keyEvent->key() == Qt::Key_Return){
+
+                // y ahora dependiendo del QLineEdit...
+                if (obj == ui->txtTipos){
+                    anadirPenasTipos();
+                    return true;
+                }
+                else if (obj == ui->txtPenados) {
+                    anadirPenados();
+                    return true;
+                }
+            }
+        }
+
+    /*
+     * atención aquí lo importante es poner QDialog!
+     * si pongo dlgPenaEntrada no funciona!!
+     */
+    return QDialog::eventFilter(obj, e);
+}
+
 void dlgPenaEntrada::cargarModelos()
 {
     tipos_model = new QSqlQueryModel(this);
@@ -151,4 +176,10 @@ void dlgPenaEntrada::cargarModelos()
     motivo_completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtMotivo->setCompleter(motivo_completer);
 
+}
+
+void dlgPenaEntrada::activarTeclaReturn()
+{
+    ui->txtTipos->installEventFilter(this);
+    ui->txtPenados->installEventFilter(this);
 }

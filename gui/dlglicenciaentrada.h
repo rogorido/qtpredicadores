@@ -31,6 +31,9 @@ signals:
 
     void aceptarLicencia(Licencia licencia);
 
+protected:
+    bool eventFilter(QObject *obj, QEvent *e);
+
 private:
     Ui::dlgLicenciaEntrada *ui;
 

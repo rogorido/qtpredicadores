@@ -32,6 +32,9 @@ dlgLicenciaEntrada::dlgLicenciaEntrada(QWidget *parent) :
     connect(ui->txtReceptor, SIGNAL(returnPressed()), this, SLOT(anadirReceptor()));
 
    cargarModelos();
+
+   ui->txtOtorgante->installEventFilter(this);
+   ui->txtReceptor->installEventFilter(this);
 }
 
 dlgLicenciaEntrada::~dlgLicenciaEntrada()
@@ -112,6 +115,37 @@ void dlgLicenciaEntrada::quitarOtorgante()
     }
 
     ui->lwOtorgantes->takeItem(ui->lwOtorgantes->currentRow());
+}
+
+bool dlgLicenciaEntrada::eventFilter(QObject *obj, QEvent *e)
+{
+    if (obj == ui->txtOtorgante)
+    {
+        if (e->type()==QEvent::KeyPress){
+            QKeyEvent *keyEvent = static_cast<QKeyEvent *>(e);
+            if (keyEvent->key()==Qt::Key_Return){
+                anadirOtorgante();
+                return true;
+            }
+    }
+    }
+    else if (obj == ui->txtReceptor)
+    {
+        if (e->type()==QEvent::KeyPress){
+            QKeyEvent *keyEvent = static_cast<QKeyEvent *>(e);
+            if (keyEvent->key()==Qt::Key_Return){
+                anadirReceptor();
+                return true;
+            }
+    }
+    }
+
+    /*
+     * atención aquí lo importante es poner QDialog!
+     * si pongo dlgPenaEntrada no funciona!!
+     */
+    return QDialog::eventFilter(obj, e);
+
 }
 
 void dlgLicenciaEntrada::cargarModelos()
