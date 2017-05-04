@@ -77,6 +77,7 @@ void DlgResoluciones::cargarDetalles(int id)
     QSqlQuery query;
     QString sql;
     QJsonDocument json;
+    QList<int> ids;
 
     sql = QString("SELECT detail_id, details FROM resolutions_details WHERE resolution_id=%1").arg(id);
     query.exec(sql);
@@ -87,10 +88,15 @@ void DlgResoluciones::cargarDetalles(int id)
      * no hay manera...
      */
     while (query.next()) {
+        int id = query.value(0).toInt();
         QByteArray datos = query.value(1).toByteArray();
         json = QJsonDocument::fromJson(datos);
         json_model->anadirJson(json.object());
+
+        ids << id;
     }
+
+    json_model->setIdDetails(ids);
 
 }
 

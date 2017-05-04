@@ -30,6 +30,7 @@ public:
     int getSize();
     QString getJsonString(int i);
     void borrarJson(int ordinal);
+    void setIdDetails(QList<int> lista_ids);
 
 private:
     QJsonTreeItem *mRootItem;
@@ -37,6 +38,15 @@ private:
     QStringList mHeaders;
 
     QList<QJsonObject> lista_jsons;
+
+    /*
+     * aqui guardamos una lista de ints donde están metidos
+     * las ids de la tabla resolutions_details, para cuando se usa
+     * con el form de gestión de resoluciones. Es decir, el orden de la lista
+     * se corresponde con el de la view y permite borrar/editar
+     * los corresondientes QJsonObjects
+     */
+    QList<int> lista_iddetails;
 
     void resetearModelo();
 };

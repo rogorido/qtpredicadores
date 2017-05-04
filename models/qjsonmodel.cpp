@@ -122,6 +122,11 @@ void QJsonModel::borrarJson(int ordinal)
     resetearModelo();
 }
 
+void QJsonModel::setIdDetails(QList<int> lista_ids)
+{
+    lista_iddetails = lista_ids;
+}
+
 void QJsonModel::resetearModelo()
 {
     QJsonObject general;
