@@ -57,6 +57,7 @@ void dlgDetalles::recibirPersona(Persona persona){
     QString valor = persona.getNombre() + ' ' + persona.getApellidos();
 
     json_libre.insert("persona", id);
+    anadirChildItem("persona", valor);
 }
 
 void dlgDetalles::recibirLugar(Lugar lugar){
@@ -64,6 +65,7 @@ void dlgDetalles::recibirLugar(Lugar lugar){
     QString valor = lugar.getLugar();
 
     json_libre.insert("lugar", id);
+    anadirChildItem("lugar", valor);
 }
 
 void dlgDetalles::recibirProvincia(Provincia provincia){
@@ -71,6 +73,7 @@ void dlgDetalles::recibirProvincia(Provincia provincia){
     QString valor = provincia.getNombre();
 
     json_libre.insert("provincia", id);
+    anadirChildItem("provincia", valor);
 }
 
 void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
@@ -196,12 +199,23 @@ void dlgDetalles::on_btBorrarJsonLibre_clicked()
 {
     ui->twJsonLibre->clear();
 
+    /*
+     * borramos el jodido json_libre, que al NO ser un pointer
+     * no sé cómo inicializarlo, porque QJsonObject no sé por qué
+     * no tiene un método clear()...
+     * Uso este iterator que tp me queda muy claro, pero bueno...
+     */
+    QJsonObject::iterator i = json_libre.begin();
+    while (i != json_libre.end()) {
+        i = json_libre.erase(i);
+    }
+
 }
 
 void dlgDetalles::on_btAnadirJsonLibre_clicked()
 {
     json_model->anadirJson(json_libre);
-    ui->twJsonLibre->clear();
+    on_btBorrarJsonLibre_clicked();
 
     ui->tabWidget->setCurrentIndex(0);
 }
@@ -217,6 +231,8 @@ void dlgDetalles::anadirDatosLibres()
         ui->txtKey->setText("");
         ui->txtValue->setText("");
         ui->txtKey->setFocus();
+
+        anadirChildItem(key, value);
     }
 }
 
