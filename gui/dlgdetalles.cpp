@@ -229,7 +229,7 @@ void dlgDetalles::on_btBorrarBloqueJson_clicked()
      * el índice que nos interesa es idx, pero si es válido, lo que
      * nos interesa es el índice padre.
      *
-     * FIXIT: esto evidentemente sólo sirve cuando hay solo un subnivel,
+     * NOTE: esto evidentemente sólo sirve cuando hay solo un subnivel,
      * si hubiera más subniveles no funcionaría!
      */
     QModelIndex idx = ui->twJsonGeneral->currentIndex();
