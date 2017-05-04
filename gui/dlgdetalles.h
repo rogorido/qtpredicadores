@@ -52,6 +52,7 @@ private slots:
     void on_btOrdenanzas_clicked();
 
     void anadirDatosLibres();
+    void anadirInteresante();
     void actualizarCompleterValues(); // cuando cambia el campo key de json libre
 
 protected:

@@ -44,6 +44,7 @@ dlgDetalles::dlgDetalles(JsonGestor *json, int t, QWidget *parent) :
 
     ui->txtKey->installEventFilter(this);
     ui->txtValue->installEventFilter(this);
+    ui->spInteresante->installEventFilter(this);
 
     cargarModelos();
 }
@@ -57,21 +58,21 @@ void dlgDetalles::recibirPersona(Persona persona){
     int id = persona.getId();
     QString valor = persona.getNombre() + ' ' + persona.getApellidos();
 
-    jsondetalles->anadirValor("Persona", valor, id);
+    json_libre->insert("persona", id);
 }
 
 void dlgDetalles::recibirLugar(Lugar lugar){
     int id = lugar.getId();
     QString valor = lugar.getLugar();
 
-    jsondetalles->anadirValor("Lugar", valor, id);
+    json_libre->insert("lugar", id);
 }
 
 void dlgDetalles::recibirProvincia(Provincia provincia){
     int id = provincia.getId();
     QString valor = provincia.getNombre();
 
-    jsondetalles->anadirValor("Provincia", valor, id);
+    json_libre->insert("provincia", id);
 }
 
 void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
@@ -401,6 +402,12 @@ void dlgDetalles::anadirDatosLibres()
     }
 }
 
+void dlgDetalles::anadirInteresante()
+{
+    int interesante = ui->spInteresante->value();
+    json_libre->insert("Interesante", QJsonValue(interesante));
+}
+
 bool dlgDetalles::eventFilter(QObject *obj, QEvent *e)
 {
     if (e->type()== QEvent::KeyPress) {
@@ -413,7 +420,11 @@ bool dlgDetalles::eventFilter(QObject *obj, QEvent *e)
                     return true;
                 }
                 else if (obj == ui->txtValue) {
-
+                    anadirDatosLibres();
+                    return true;
+                }
+                else if (obj == ui->spInteresante) {
+                    anadirInteresante();
                     return true;
                 }
             }
