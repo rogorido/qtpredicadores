@@ -7,6 +7,7 @@
 #include <QDataWidgetMapper>
 #include <QDebug>
 #include <QJsonObject>
+#include <QJsonDocument>
 
 #include "models/qjsonmodel.h"
 
@@ -75,10 +76,21 @@ void DlgResoluciones::cargarDetalles(int id)
 {
     QSqlQuery query;
     QString sql;
+    QJsonDocument json;
 
     sql = QString("SELECT detail_id, details FROM resolutions_details WHERE resolution_id=%1").arg(id);
     query.exec(sql);
 
+    /*
+     * joder, que lío hay que hacer para construir un json...
+     * hay que usar eso de QByteArray pq con una QString normal
+     * no hay manera...
+     */
+    while (query.next()) {
+        QByteArray datos = query.value(1).toByteArray();
+        json = QJsonDocument::fromJson(datos);
+        json_model->anadirJson(json.object());
+    }
 
 }
 
