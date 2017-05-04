@@ -29,6 +29,7 @@ public:
     void anadirJson(QJsonObject json);
     int getSize();
     QString getJsonString(int i);
+    void borrarJson(int ordinal);
 
 private:
     QJsonTreeItem *mRootItem;
@@ -36,6 +37,8 @@ private:
     QStringList mHeaders;
 
     QList<QJsonObject> lista_jsons;
+
+    void resetearModelo();
 };
 
 #endif // QJSONMODEL_H

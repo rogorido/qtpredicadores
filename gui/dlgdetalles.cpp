@@ -219,6 +219,36 @@ void dlgDetalles::on_btAnadirJsonLibre_clicked()
     ui->tabWidget->setCurrentIndex(0);
 }
 
+void dlgDetalles::on_btBorrarBloqueJson_clicked()
+{
+    /*
+     * la idea es la siguiente: cogemos el índice; si no es válido
+     * salimos sin más. Si es válido continúa y coge el del padre.
+     * Y aquí está el truco: si el índice del padre no es válido, eso
+     * quiere decir que estamos ya en el nivel superior y por tanto
+     * el índice que nos interesa es idx, pero si es válido, lo que
+     * nos interesa es el índice padre.
+     *
+     * FIXIT: esto evidentemente sólo sirve cuando hay solo un subnivel,
+     * si hubiera más subniveles no funcionaría!
+     */
+    QModelIndex idx = ui->twJsonGeneral->currentIndex();
+    int ordinal;
+
+    if (!idx.isValid())
+        return;
+
+    QModelIndex padre = idx.parent();
+
+    if (!padre.isValid())
+        ordinal = idx.row();
+    else
+        ordinal = padre.row();
+
+    json_model->borrarJson(ordinal);
+
+}
+
 void dlgDetalles::anadirDatosLibres()
 {
     QString key = ui->txtKey->text();

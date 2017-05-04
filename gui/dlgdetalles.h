@@ -51,6 +51,7 @@ private slots:
     void on_btOrdenanzas_clicked();
     void on_btBorrarJsonLibre_clicked();
     void on_btAnadirJsonLibre_clicked();
+    void on_btBorrarBloqueJson_clicked();
 
     void anadirDatosLibres();
     void anadirInteresante();

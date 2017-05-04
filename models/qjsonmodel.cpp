@@ -97,20 +97,8 @@ QVariant QJsonModel::data(const QModelIndex &index, int role) const
 
 void QJsonModel::anadirJson(QJsonObject json)
 {
-    QJsonObject general;
-
-    beginResetModel();
-
     lista_jsons.append(json);
-
-    for (int i = 0; i < lista_jsons.size(); ++i) {
-        QString llave = "Datos-" + QString::number(i);
-        general.insert(llave, lista_jsons.at(i));
-    }
-
-    mRootItem = QJsonTreeItem::load(general);
-
-    endResetModel();
+    resetearModelo();
 }
 
 int QJsonModel::getSize()
@@ -126,4 +114,26 @@ QString QJsonModel::getJsonString(int i)
     jsonfinal = jsondoc.toJson(QJsonDocument::Compact);
 
     return jsonfinal;
+}
+
+void QJsonModel::borrarJson(int ordinal)
+{
+    lista_jsons.removeAt(ordinal);
+    resetearModelo();
+}
+
+void QJsonModel::resetearModelo()
+{
+    QJsonObject general;
+
+    beginResetModel();
+
+    for (int i = 0; i < lista_jsons.size(); ++i) {
+        QString llave = "Datos-" + QString::number(i);
+        general.insert(llave, lista_jsons.at(i));
+    }
+
+    mRootItem = QJsonTreeItem::load(general);
+
+    endResetModel();
 }
