@@ -26,7 +26,7 @@ QJsonObject Ordenanza::getOrdenanzaJson()
         json.insert("objetos", QJsonArray::fromStringList(objetos));
 
     if (!receptores.isEmpty())
-        json.insert("destinatorios", QJsonArray::fromStringList(receptores));
+        json.insert("destinatarios", QJsonArray::fromStringList(receptores));
 
     if (!restriccion.isEmpty())
         json.insert("restricción", restriccion);
