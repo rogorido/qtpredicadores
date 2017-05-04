@@ -4,7 +4,7 @@
 #include <QDialog>
 
 class PersonasModel;
-class JsonGestor;
+class QJsonModel;
 class dlgDetalles;
 
 class QCompleter;
@@ -47,8 +47,8 @@ private:
     QSqlQueryModel *apellidos_query;
     QSqlQueryModel *diocesis_query;
 
-    JsonGestor *jsongestor;
-    JsonGestor *otrosnombres_json;
+    QJsonModel *jsongestor;
+    QJsonModel *otrosnombres_json;
     dlgDetalles *dlgdetalles;
     dlgDetalles *dlgotrosnombres;
 

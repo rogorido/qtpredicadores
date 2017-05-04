@@ -112,3 +112,18 @@ void QJsonModel::anadirJson(QJsonObject json)
 
     endResetModel();
 }
+
+int QJsonModel::getSize()
+{
+    return lista_jsons.size();
+}
+
+QString QJsonModel::getJsonString(int i)
+{
+    QJsonDocument jsondoc(lista_jsons.at(i));
+    QString jsonfinal;
+
+    jsonfinal = jsondoc.toJson(QJsonDocument::Compact);
+
+    return jsonfinal;
+}

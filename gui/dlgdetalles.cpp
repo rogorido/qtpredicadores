@@ -15,6 +15,7 @@
 #include <QCompleter>
 #include <QJsonArray>
 #include <QTreeWidgetItem>
+#include <QJsonObject>
 
 #include <QDebug>
 
@@ -34,12 +35,10 @@ dlgDetalles::dlgDetalles(QJsonModel *json, int t, QWidget *parent) :
 
     ui->twJsonGeneral->setModel(json_model);
 
-    json_libre = new QJsonObject(this);
-
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(hide()));
 
-    ui->twDetalles->setColumnCount(2);
+    ui->twJsonLibre->setColumnCount(2);
 
     ui->txtKey->installEventFilter(this);
     ui->txtValue->installEventFilter(this);
@@ -57,21 +56,21 @@ void dlgDetalles::recibirPersona(Persona persona){
     int id = persona.getId();
     QString valor = persona.getNombre() + ' ' + persona.getApellidos();
 
-    json_libre->insert("persona", id);
+    json_libre.insert("persona", id);
 }
 
 void dlgDetalles::recibirLugar(Lugar lugar){
     int id = lugar.getId();
     QString valor = lugar.getLugar();
 
-    json_libre->insert("lugar", id);
+    json_libre.insert("lugar", id);
 }
 
 void dlgDetalles::recibirProvincia(Provincia provincia){
     int id = provincia.getId();
     QString valor = provincia.getNombre();
 
-    json_libre->insert("provincia", id);
+    json_libre.insert("provincia", id);
 }
 
 void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
@@ -194,7 +193,7 @@ void dlgDetalles::on_btOrdenanzas_clicked()
 void dlgDetalles::on_btBorrarJsonLibre_clicked()
 {
     ui->twJsonLibre->clear();
-    json_libre = new QJsonObject();
+
 }
 
 void dlgDetalles::on_btAnadirJsonLibre_clicked()
@@ -211,7 +210,7 @@ void dlgDetalles::anadirDatosLibres()
     QString value = ui->txtValue->text();
 
     if (!key.isEmpty() && !value.isEmpty()){
-        json_libre->insert(key, value);
+        json_libre.insert(key, value);
 
         ui->txtKey->setText("");
         ui->txtValue->setText("");
@@ -222,7 +221,7 @@ void dlgDetalles::anadirDatosLibres()
 void dlgDetalles::anadirInteresante()
 {
     int interesante = ui->spInteresante->value();
-    json_libre->insert("Interesante", QJsonValue(interesante));
+    json_libre.insert("Interesante", QJsonValue(interesante));
 }
 
 bool dlgDetalles::eventFilter(QObject *obj, QEvent *e)
@@ -319,13 +318,6 @@ void dlgDetalles::cargarModelos(){
     values_completer->setCaseSensitivity(Qt::CaseInsensitive);
 
     ui->txtValue->setCompleter(values_completer);
-}
-
-void dlgDetalles::on_btAnadirInteresante_clicked(){
-
-    int interesante = ui->spInteresante->value();
-
-    jsondetalles->anadirValor("Interesante", QJsonValue(interesante));
 }
 
 void dlgDetalles::on_btAprobaciones_clicked(){

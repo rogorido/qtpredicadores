@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-class JsonGestor;
+class QJsonModel;
 class LugaresModel;
 class QSqlQueryModel;
 class QCompleter;
@@ -30,7 +30,7 @@ private:
 
     dlgDetalles *dlgdetalles;
 
-    JsonGestor *otrosnombres;
+    QJsonModel *otrosnombres;
     LugaresModel *m_lugares;
 
     QSqlQueryModel *m_paises;

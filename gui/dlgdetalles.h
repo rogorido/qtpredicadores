@@ -76,7 +76,7 @@ private:
      * con esto podemos crear QJsonObjects "libres"
      * en el sentido de que voy metiendo los campos a mano.
      */
-    QJsonObject *json_libre;
+    QJsonObject json_libre;
 
     /* estos son modelos solo de este form */
     QSqlQueryModel *m_keys;

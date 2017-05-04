@@ -12,7 +12,7 @@ class LugaresModel;
 class ObrasModel;
 class QCompleter;
 class QSqlQueryModel;
-class JsonGestor;
+class QJsonModel;
 
 namespace Ui {
 class dlgNuevaObra;
@@ -59,7 +59,7 @@ private:
      */
     QList<elementopareado> temasescogidos;
 
-    JsonGestor *json_detalles;
+    QJsonModel *json_detalles;
 
     dlgTemas *dlgtemas;
     dlgDetalles *dlgdetalles;

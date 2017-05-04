@@ -139,7 +139,6 @@ void dlgNuevaResolucion::introducirJson(const int id){
     QSqlQuery query;
     int totaljson;
 
-    jsongestor->actualizarPrevioIntroducir();
     totaljson = jsongestor->getSize();
 
     if (totaljson == 0)
@@ -257,7 +256,7 @@ void dlgNuevaResolucion::borrarCampos(){
 
     ui->spInteresante->setValue(0);
 
-    jsongestor = new JsonGestor(this);
+    jsongestor = new QJsonModel(this);
     dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, this);
 
     m_verbos = new QStringListModel();

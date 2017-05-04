@@ -6,11 +6,11 @@
 #include <QDebug>
 #include <QMessageBox>
 
-#include "objs/jsongestor.h"
-#include "objs/lugar.h"
-#include "models/lugaresmodel.h"
 #include "dlgdetalles.h"
+#include "objs/lugar.h"
 #include "objs/variados.h"
+#include "models/lugaresmodel.h"
+#include "models/qjsonmodel.h"
 
 dlgNuevoLugar::dlgNuevoLugar(QWidget *parent) :
     QDialog(parent),
@@ -19,7 +19,7 @@ dlgNuevoLugar::dlgNuevoLugar(QWidget *parent) :
     ui->setupUi(this);
 
     m_lugares = LugaresModel::InstanceModel();
-    otrosnombres = new JsonGestor(this);
+    otrosnombres = new QJsonModel(this);
 
     dlgdetalles = new dlgDetalles(otrosnombres, OTROS, this);
 
@@ -49,8 +49,6 @@ void dlgNuevoLugar::aceptar(){
     lugar->setLugarLatin(lugar_latin);
     lugar->setPais(pais);
     lugar->setWikidata(wikidata);
-
-    otrosnombres->actualizarPrevioIntroducir();
 
     if (otrosnombres->getSize() > 0)
         // entiendo q solo puede haber un elemento en la Qlist...

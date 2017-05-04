@@ -3,11 +3,11 @@
 
 #include "models/lugaresmodel.h"
 #include "models/obrasmodel.h"
+#include "models/qjsonmodel.h"
 #include "dlgseleccionargeneral.h"
 #include "dlgnuevolugar.h"
 #include "objs/obra.h"
 #include "objs/variados.h"
-#include "objs/jsongestor.h"
 
 #include <QSqlQueryModel>
 #include <QSqlQuery>
@@ -28,7 +28,7 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     // lo pasamos como referencia. ver header.
     dlgtemas = new dlgTemas(&temasescogidos, this);
 
-    json_detalles = new JsonGestor(this);
+    json_detalles = new QJsonModel(this);
     dlgdetalles = new dlgDetalles(json_detalles, OBRA, this);
 
     connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(on_btAnadirLugar_clicked()));
@@ -280,7 +280,6 @@ void dlgNuevaObra::introducirJson(const int id){
     QSqlQuery query;
     int totaljson;
 
-    json_detalles->actualizarPrevioIntroducir();
     totaljson = json_detalles->getSize();
 
     if (totaljson == 0)

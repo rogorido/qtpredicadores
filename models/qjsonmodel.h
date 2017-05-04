@@ -27,6 +27,8 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     void anadirJson(QJsonObject json);
+    int getSize();
+    QString getJsonString(int i);
 
 private:
     QJsonTreeItem *mRootItem;

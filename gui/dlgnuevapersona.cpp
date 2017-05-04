@@ -7,11 +7,11 @@
 #include <QCompleter>
 #include <QMessageBox>
 
-#include "objs/persona.h"
 #include "models/personasmodel.h"
-#include "objs/jsongestor.h"
+#include "models/qjsonmodel.h"
 #include "gui/dlgdetalles.h"
 #include "objs/variados.h"
+#include "objs/persona.h"
 
 dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
     QDialog(parent),
@@ -42,10 +42,10 @@ dlgNuevaPersona::~dlgNuevaPersona()
 }
 
 void dlgNuevaPersona::cargarJsonEstructuras(){
-    jsongestor = new JsonGestor(this);
+    jsongestor = new QJsonModel(this);
     dlgdetalles = new dlgDetalles(jsongestor, PERSONADETALLES, this);
 
-    otrosnombres_json = new JsonGestor(this);
+    otrosnombres_json = new QJsonModel(this);
     dlgotrosnombres = new dlgDetalles(otrosnombres_json, OTROS, this);
 
 }
@@ -96,8 +96,6 @@ void dlgNuevaPersona::aceptarPersona(){
     int cantidadinfo = ui->spCantidadInfo->value();
 
     QString otrosnombres;
-
-    otrosnombres_json->actualizarPrevioIntroducir();
 
     // entiendo q solo hay un qvector en este otrosnombres_json, no?
     if (otrosnombres_json->getSize() > 0) {
@@ -155,7 +153,6 @@ void dlgNuevaPersona::introducirJson(const int id){
     QSqlQuery query;
     int totaljson;
 
-    jsongestor->actualizarPrevioIntroducir();
     totaljson = jsongestor->getSize();
 
     if (totaljson == 0)
