@@ -1,7 +1,6 @@
 #include "dlgdetalles.h"
 #include "ui_dlgdetalles.h"
 
-#include "objs/jsongestor.h"
 #include "dlgseleccionargeneral.h"
 #include "dlgaprobacionesentrada.h"
 #include "dlglicenciaentrada.h"
