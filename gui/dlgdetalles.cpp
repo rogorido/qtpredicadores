@@ -113,7 +113,10 @@ void dlgDetalles::recibirOrdenanza(Ordenanza ordenanza)
 }
 
 void dlgDetalles::recibirCasa(Casa casa){
-    jsondetalles->anadirValor("Casa", casa.getNombre(), casa.getId());
+
+    json_libre.insert("casa", casa.getId());
+    anadirChildItem("casa", casa.getNombre());
+
 }
 
 void dlgDetalles::actualizarCompleterValues(){
@@ -129,10 +132,9 @@ void dlgDetalles::actualizarCompleterValues(){
 
 void dlgDetalles::anadirChildItem(const QString &key, const QString &value)
 {
-    QTreeWidgetItem *item = new QTreeWidgetItem();
+    QTreeWidgetItem *item = new QTreeWidgetItem(ui->twJsonLibre);
     item->setText(0, key);
     item->setText(1, value);
-
 
 }
 
