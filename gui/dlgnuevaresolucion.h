@@ -8,7 +8,7 @@
 
 class TemasModel;
 class ResolucionesModel;
-class JsonGestor;
+class QJsonModel;
 class dlgDetalles;
 class dlgTemas;
 class dlgMasivo;
@@ -33,7 +33,7 @@ public:
 private:
     Ui::dlgNuevaResolucion *ui;
 
-    JsonGestor *jsongestor;
+    QJsonModel *jsongestor;
     dlgDetalles *dlgdetalles;
     dlgTemas *dlgtemas;
     dlgMasivo *dlgmasivo;

@@ -26,7 +26,7 @@ class dlgDetalles : public QDialog
     Q_OBJECT
 
 public:
-    explicit dlgDetalles(JsonGestor *json, int t, QWidget *parent = 0);
+    explicit dlgDetalles(QJsonModel *json, int t, QWidget *parent = 0);
     ~dlgDetalles();
 
 private slots:
@@ -43,17 +43,21 @@ private slots:
     void on_btPersona_clicked();
     void on_btLugar_clicked();
     void on_btProvincia_clicked();
-    void on_btAnadirInteresante_clicked();
     void on_btAprobaciones_clicked();
     void on_btLicencias_clicked();
     void on_btPenas_clicked();
     void on_btCasa_clicked();
     void on_btAfiliaciones_clicked();
     void on_btOrdenanzas_clicked();
+    void on_btBorrarJsonLibre_clicked();
+    void on_btAnadirJsonLibre_clicked();
 
     void anadirDatosLibres();
     void anadirInteresante();
     void actualizarCompleterValues(); // cuando cambia el campo key de json libre
+
+    // para gestionar el qtreewidget
+    void anadirChildItem(const QString &key, const QString &value);
 
 protected:
     bool eventFilter(QObject *obj, QEvent *e);
@@ -63,7 +67,8 @@ private:
 
     /*
      * este es el model donde vamos metiendo QJsonObjects
-     * y que se comunica con la view
+     * y que se comunica con la view. Este model viene realmente
+     * de otros formularios!
      */
     QJsonModel *json_model;
 
@@ -81,7 +86,6 @@ private:
     QCompleter *values_completer;
 
     void cargarModelos();
-    void anadirExtraInfos(ExtraInfos extras);
 
     /*
      * el tipo sirve para escoger los valores del completer

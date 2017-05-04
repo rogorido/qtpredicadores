@@ -33,7 +33,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>450</x>
@@ -85,7 +85,7 @@
       <attribute name="title">
        <string>Libre</string>
       </attribute>
-      <widget class="QTreeWidget" name="twDetalles">
+      <widget class="QTreeWidget" name="twJsonLibre">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -236,7 +236,7 @@
         <cstring>txtValue</cstring>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="btBorrarJsonLibre">
        <property name="geometry">
         <rect>
          <x>280</x>
@@ -249,7 +249,7 @@
         <string>Borrar todo</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="btAnadirJsonLibre">
        <property name="geometry">
         <rect>
          <x>380</x>

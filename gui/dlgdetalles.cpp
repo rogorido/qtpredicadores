@@ -26,13 +26,12 @@ const QString sqlpersonas_valores="SELECT DISTINCT value from persons_details, j
 const QString sqlpersonas_keys="SELECT DISTINCT jsonb_object_keys(details) FROM persons_details ORDER BY jsonb_object_keys(details);";
 
 
-dlgDetalles::dlgDetalles(JsonGestor *json, int t, QWidget *parent) :
+dlgDetalles::dlgDetalles(QJsonModel *json, int t, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::dlgDetalles), jsondetalles(json), tipo(t)
+    ui(new Ui::dlgDetalles), json_model(json), tipo(t)
 {
     ui->setupUi(this);
 
-    json_model = new QJsonModel(this);
     ui->twJsonGeneral->setModel(json_model);
 
     json_libre = new QJsonObject(this);
@@ -99,9 +98,6 @@ void dlgDetalles::recibirPena(Pena pena)
 
 void dlgDetalles::recibirAfiliacion(QList<Afiliacion *> lista_afiliaciones)
 {
-    if (lista_afiliaciones.size() == 0)
-        return;
-
     for (int i = 0; i < lista_afiliaciones.size(); ++i) {
         Afiliacion *afiliacion = lista_afiliaciones.at(i);
 
@@ -129,6 +125,15 @@ void dlgDetalles::actualizarCompleterValues(){
     if (!key.isEmpty())
         m_values->setQuery(QString("SELECT DISTINCT value from resolutions_details, json_each_text(details) "
                                "WHERE key='%1' ORDER BY value;").arg(key));
+
+}
+
+void dlgDetalles::anadirChildItem(const QString &key, const QString &value)
+{
+    QTreeWidgetItem *item = new QTreeWidgetItem();
+    item->setText(0, key);
+    item->setText(1, value);
+
 
 }
 
@@ -184,6 +189,20 @@ void dlgDetalles::on_btOrdenanzas_clicked()
 
     connect(dlgordenanzas, SIGNAL(aceptarOrdenanza(Ordenanza)), this, SLOT(recibirOrdenanza(Ordenanza)));
 
+}
+
+void dlgDetalles::on_btBorrarJsonLibre_clicked()
+{
+    ui->twJsonLibre->clear();
+    json_libre = new QJsonObject();
+}
+
+void dlgDetalles::on_btAnadirJsonLibre_clicked()
+{
+    json_model->anadirJson(json_libre);
+    ui->twJsonLibre->clear();
+
+    ui->tabWidget->setCurrentIndex(0);
 }
 
 void dlgDetalles::anadirDatosLibres()
@@ -300,23 +319,6 @@ void dlgDetalles::cargarModelos(){
     values_completer->setCaseSensitivity(Qt::CaseInsensitive);
 
     ui->txtValue->setCompleter(values_completer);
-}
-
-void dlgDetalles::anadirExtraInfos(ExtraInfos extras)
-{
-    /*
-     * este método sirve para que lo usen los diversos
-     * formularios que me permiten meter penas, licencias, etc.
-     */
-
-    if (extras.size() > 0 ) {
-        for (int i = 0; i < extras.size(); ++i) {
-            QPair<QString, QString> valores;
-            valores = extras.at(i);
-
-            jsondetalles->anadirValor(valores.first, QJsonValue(valores.second));
-        }
-    }
 }
 
 void dlgDetalles::on_btAnadirInteresante_clicked(){

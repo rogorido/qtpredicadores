@@ -15,8 +15,8 @@
 
 #include "models/temasmodel.h"
 #include "models/resolucionesmodel.h"
+#include "models/qjsonmodel.h"
 #include "dlgdetalles.h"
-#include "objs/jsongestor.h"
 #include "objs/resolucion.h"
 #include "gui/dlgtemas.h"
 #include "gui/dlgmasivo.h"
@@ -29,7 +29,7 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
 {
     ui->setupUi(this);
 
-    jsongestor = new JsonGestor(this);
+    jsongestor = new QJsonModel(this);
     m_resoluciones = ResolucionesModel::InstanceModel();
 
     dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, this);
