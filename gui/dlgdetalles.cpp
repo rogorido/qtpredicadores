@@ -77,38 +77,8 @@ void dlgDetalles::recibirProvincia(Provincia provincia){
 
 void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
 {
-
-    /*
-     * tenemos que meter los datos de esta lista de aprobaciones
-     * en nuestro json. Pero: ¿todo esto no es un poco lío? ¿No habría
-     * una forma un poco más fácil de hacerlo?
-     */
-
-    if (lista_aprobaciones.size() == 0)
-        return;
-
-    /*
-     * si el jsondetalles no está vacío, creamos un nuevo bloque
-     */
-    if (!jsondetalles->isEmpty())
-        jsondetalles->nuevoBloqueJson();
-
     for (int i = 0; i < lista_aprobaciones.size(); ++i) {
         Aprobacion *aprobacion = lista_aprobaciones.at(i);
-
-        QString nombre = aprobacion->getPersona().getNombre() + ' ' + aprobacion->getPersona().getApellidos();
-        jsondetalles->anadirValor("aprobación", aprobacion->getTipo());
-        jsondetalles->anadirValor("Persona", nombre, aprobacion->getPersona().getId());
-
-        // a veces probablemente no haya provincia...
-        QString provincia = aprobacion->getProvincia().getNombre();
-        if (!provincia.isEmpty())
-            jsondetalles->anadirValor("Provincia", aprobacion->getProvincia().getNombre(), aprobacion->getProvincia().getId());
-
-        ExtraInfos extras = aprobacion->getExtraInfos();
-        anadirExtraInfos(extras);
-
-        jsondetalles->nuevoBloqueJson();
 
         QJsonObject aprobacion_json = aprobacion->getAprobacionJson();
         json_model->anadirJson(aprobacion_json);
@@ -117,81 +87,12 @@ void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
 
 void dlgDetalles::recibirLicencia(Licencia licencia)
 {
-    /*
-     * si el jsondetalles no está vacío, creamos un nuevo bloque
-     */
-    if (!jsondetalles->isEmpty())
-        jsondetalles->nuevoBloqueJson();
-
-    jsondetalles->anadirValor("licencia", "yes");
-    if (!licencia.getLicenciatipo().isEmpty()) {
-        jsondetalles->anadirValor("licencia_tipo", licencia.getLicenciatipo());
-    }
-
-    /*
-     * TODO: aquí se plantea la duda qué hacer con los NULLs?
-     * ¿controlo si están vacíos y no los meto? ¿o meto nulls que luego
-     * a lo mejor es más interesante para buscar?
-     */
-    if (!licencia.getOtorgantes().isEmpty())
-        jsondetalles->anadirValor("otorgante", QJsonArray::fromStringList(licencia.getOtorgantes()));
-
-    if (!licencia.getReceptores().isEmpty())
-        jsondetalles->anadirValor("receptor", QJsonArray::fromStringList(licencia.getReceptores()));
-
-    if (!licencia.getAsunto().isEmpty())
-        jsondetalles->anadirValor("asunto", licencia.getAsunto());
-
-    jsondetalles->anadirValor("seguridad", QJsonValue(licencia.getSeguridad()));
-
-    ExtraInfos extras = licencia.getExtraInfos();
-    anadirExtraInfos(extras);
-
     QJsonObject lic_json = licencia.getLicenciaJson();
     json_model->anadirJson(lic_json);
-    //ui->twJsonGeneral->resizeColumnToContents(true);
-    ui->twJsonGeneral->expandAll();
 }
 
 void dlgDetalles::recibirPena(Pena pena)
 {
-
-    /*
-     * si el jsondetalles no está vacío, creamos un nuevo bloque
-     */
-    if (!jsondetalles->isEmpty())
-        jsondetalles->nuevoBloqueJson();
-
-     jsondetalles->anadirValor("pena", "yes");
-
-     /*
-      * TODO: aquí se plantea la duda qué hacer con los NULLs?
-      * ¿controlo si están vacíos y no los meto? ¿o meto nulls que luego
-      * a lo mejor es más interesante para buscar?
-      */
-     if (!pena.getPenasTipos().isEmpty())
-         jsondetalles->anadirValor("pena_tipos", QJsonArray::fromStringList(pena.getPenasTipos()));
-
-     if (!pena.getDuracion().isEmpty())
-         jsondetalles->anadirValor("duracion", QJsonValue(pena.getDuracion()));
-
-     if (!pena.getPenados().isEmpty())
-         jsondetalles->anadirValor("penados", QJsonArray::fromStringList(pena.getPenados()));
-
-     if (!pena.getMotivo().isEmpty())
-         jsondetalles->anadirValor("motivo", QJsonValue(pena.getMotivo()));
-
-     if (!pena.getAbsolucion().isEmpty())
-         jsondetalles->anadirValor("absolucion", QJsonValue(pena.getAbsolucion()));
-
-     if (!pena.getPenaTexto().isEmpty())
-         jsondetalles->anadirValor("pena_texto", QJsonValue(pena.getPenaTexto()));
-
-     jsondetalles->anadirValor("seguridad", QJsonValue(pena.getSeguridad()));
-
-     ExtraInfos extras = pena.getExtraInfos();
-     anadirExtraInfos(extras);
-
      QJsonObject pena_json = pena.getPenaJson();
      json_model->anadirJson(pena_json);
 }
@@ -201,40 +102,8 @@ void dlgDetalles::recibirAfiliacion(QList<Afiliacion *> lista_afiliaciones)
     if (lista_afiliaciones.size() == 0)
         return;
 
-    /*
-     * si el jsondetalles no está vacío, creamos un nuevo bloque
-     */
-    if (!jsondetalles->isEmpty())
-        jsondetalles->nuevoBloqueJson();
-
     for (int i = 0; i < lista_afiliaciones.size(); ++i) {
         Afiliacion *afiliacion = lista_afiliaciones.at(i);
-
-        jsondetalles->anadirValor("afiliación", "yes");
-        jsondetalles->anadirValor("Persona", afiliacion->getPersona().getNombre(),
-                                  afiliacion->getPersona().getId());
-
-        // a veces probablemente no haya casa de origen...
-        if (!afiliacion->getCasaOrigen().getNombre().isEmpty())
-            jsondetalles->anadirValor("Casa_origen", afiliacion->getCasaOrigen().getNombre(),
-                                      afiliacion->getCasaOrigen().getId());
-
-        if (!afiliacion->getCasaDestino().getNombre().isEmpty())
-            jsondetalles->anadirValor("Casa_destino", afiliacion->getCasaDestino().getNombre(),
-                                      afiliacion->getCasaDestino().getId());
-
-        if (!afiliacion->getProvinciaOrigen().getNombre().isEmpty())
-            jsondetalles->anadirValor("Provincia_origen", afiliacion->getProvinciaOrigen().getNombre(),
-                                      afiliacion->getProvinciaOrigen().getId());
-
-        if (!afiliacion->getProvinciaDestino().getNombre().isEmpty())
-            jsondetalles->anadirValor("Provincia_destino", afiliacion->getProvinciaDestino().getNombre(),
-                                      afiliacion->getProvinciaDestino().getId());
-
-        ExtraInfos extras = afiliacion->getExtras();
-        anadirExtraInfos(extras);
-
-        jsondetalles->nuevoBloqueJson();
 
         QJsonObject afiliacion_json = afiliacion->getAfiliacionJson();
         json_model->anadirJson(afiliacion_json);
@@ -244,77 +113,6 @@ void dlgDetalles::recibirAfiliacion(QList<Afiliacion *> lista_afiliaciones)
 
 void dlgDetalles::recibirOrdenanza(Ordenanza ordenanza)
 {
-
-    /*
-     * si el jsondetalles no está vacío, creamos un nuevo bloque
-     */
-    if (!jsondetalles->isEmpty())
-        jsondetalles->nuevoBloqueJson();
-
-    if (ordenanza.getTipo() == Ordenanza::TipoOrdenanza::PROHIBICION)
-        jsondetalles->anadirValor("prohibición", "yes");
-    else
-        jsondetalles->anadirValor("mandato", "yes");
-
-     /*
-      * TODO: aquí se plantea la duda qué hacer con los NULLs?
-      * ¿controlo si están vacíos y no los meto? ¿o meto nulls que luego
-      * a lo mejor es más interesante para buscar?
-      */
-     if (!ordenanza.getObjetos().isEmpty())
-         jsondetalles->anadirValor("objetos", QJsonArray::fromStringList(ordenanza.getObjetos()));
-
-     if (!ordenanza.getReceptores().isEmpty())
-         jsondetalles->anadirValor("destinatarios", QJsonArray::fromStringList(ordenanza.getReceptores()));
-
-     if (!ordenanza.getRestriccion().isEmpty())
-         jsondetalles->anadirValor("restricción", ordenanza.getRestriccion());
-
-     jsondetalles->anadirValor("seguridad", QJsonValue(ordenanza.getSeguridad()));
-
-     if (ordenanza.getPena().estaLleno()) {
-        QJsonObject pena_json;
-        pena_json.insert("penas_tipos", QJsonArray::fromStringList(ordenanza.getPena().getPenasTipos()));
-        pena_json.insert("destinatarios_pena", QJsonArray::fromStringList(ordenanza.getPena().getPenados()));
-        pena_json.insert("motivo", ordenanza.getPena().getMotivo());
-        pena_json.insert("pena_texto", ordenanza.getPena().getPenaTexto());
-        pena_json.insert("duración_pena", ordenanza.getPena().getDuracion());
-        pena_json.insert("restricción_pena", ordenanza.getPena().getRestriccion());
-        pena_json.insert("seguridad_pena", QJsonValue(ordenanza.getPena().getSeguridad()));
-
-        ExtraInfos e = ordenanza.getPena().getExtraInfos();
-
-        if (e.size() > 0 ) {
-            for (int i = 0; i < e.size(); ++i) {
-                QPair<QString, QString> valores;
-                valores = e.at(i);
-
-                pena_json.insert(valores.first, QJsonValue(valores.second));
-            }
-        }
-
-        jsondetalles->anadirValor("pena", pena_json);
-     }
-
-     if (ordenanza.getRetroReferencia().estaLleno()) {
-         QJsonObject retro_json = ordenanza.getRetroReferencia().getRetroJson();
-         jsondetalles->anadirValor("retro", retro_json);
-     }
-
-     if (!ordenanza.getTemas().isEmpty()) {
-         QList<int> temas = ordenanza.getTemas();
-         QJsonArray array_temas;
-
-         for (int i = 0; i < temas.size(); ++i) {
-             array_temas.append(QJsonValue(temas.at(i)));
-         }
-
-         jsondetalles->anadirValor("temas", array_temas);
-     }
-
-     ExtraInfos extras = ordenanza.getExtraInfos();
-     anadirExtraInfos(extras);
-
      QJsonObject ordenanza_json = ordenanza.getOrdenanzaJson();
      json_model->anadirJson(ordenanza_json);
 }
