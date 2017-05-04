@@ -82,6 +82,9 @@ void DlgResoluciones::cargarDetalles(int id)
     sql = QString("SELECT detail_id, details FROM resolutions_details WHERE resolution_id=%1").arg(id);
     query.exec(sql);
 
+    // borramos lo que ya está
+    json_model->clear();
+
     /*
      * joder, que lío hay que hacer para construir un json...
      * hay que usar eso de QByteArray pq con una QString normal
@@ -91,6 +94,11 @@ void DlgResoluciones::cargarDetalles(int id)
         int id = query.value(0).toInt();
         QByteArray datos = query.value(1).toByteArray();
         json = QJsonDocument::fromJson(datos);
+        /*
+         * tenemos que pasar json.object que construye un
+         * QjsonObject, que es al parecer tb un QJsonValue
+         * y es lo que pide anadirJson...
+         */
         json_model->anadirJson(json.object());
 
         ids << id;

@@ -28,6 +28,7 @@ public:
 
     void anadirJson(QJsonObject json);
     int getSize();
+    void clear();
     QString getJsonString(int i);
     void borrarJson(int ordinal);
     void setIdDetails(QList<int> lista_ids);

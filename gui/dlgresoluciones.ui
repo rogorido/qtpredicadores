@@ -72,6 +72,32 @@
       </rect>
      </property>
     </widget>
+    <widget class="QPushButton" name="btAnadirDetalles">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>10</y>
+       <width>80</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Aña&amp;dir</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btBorrarDetalles">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>40</y>
+       <width>80</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Bo&amp;rrar</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">

@@ -106,6 +106,12 @@ int QJsonModel::getSize()
     return lista_jsons.size();
 }
 
+void QJsonModel::clear()
+{
+    lista_jsons.clear();
+    resetearModelo();
+}
+
 QString QJsonModel::getJsonString(int i)
 {
     QJsonDocument jsondoc(lista_jsons.at(i));
