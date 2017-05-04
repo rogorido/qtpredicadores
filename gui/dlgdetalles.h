@@ -46,8 +46,6 @@ private slots:
     void on_btLugar_clicked();
     void on_btProvincia_clicked();
     void on_btJsonAnadirLibre_clicked();
-    void on_btJsonAnadirDescripcion_clicked();
-    void on_btModificarDetalles_toggled(bool checked);
     void on_btAnadirInteresante_clicked();
     void on_btAprobaciones_clicked();
     void on_btLicencias_clicked();

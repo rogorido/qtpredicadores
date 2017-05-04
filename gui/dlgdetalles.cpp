@@ -37,15 +37,10 @@ dlgDetalles::dlgDetalles(JsonGestor *json, int t, QWidget *parent) :
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(hide()));
-    connect(ui->btNuevoBloque, SIGNAL(clicked(bool)), jsondetalles, SLOT(nuevoBloqueJson()));
-    connect(ui->btBorrarElemento, SIGNAL(clicked(bool)), jsondetalles, SLOT(eliminarElemento()));
 
     // esto hay en todo caso que mejorarlo pq ahora tenemos diversas queries según el origen
     // pero tvz no haga falta y se pueda quitar sin más
     //connect(ui->txtKey, SIGNAL(editingFinished()), this, SLOT(actualizarCompleterValues()));
-
-    ui->cboDescripcion->addItem("Nombramiento");
-    ui->cboDescripcion->setCurrentIndex(-1);
 
     cargarModelos();
 }
@@ -483,24 +478,6 @@ void dlgDetalles::on_btJsonAnadirLibre_clicked()
         ui->txtKey->setText("");
         ui->txtValue->setText("");
     }
-}
-
-void dlgDetalles::on_btJsonAnadirDescripcion_clicked(){
-
-    QString valor = ui->cboDescripcion->currentText();
-
-    if (!valor.isEmpty())
-        jsondetalles->anadirValor("Tipo", QJsonValue(valor));
-
-}
-
-void dlgDetalles::on_btModificarDetalles_toggled(bool checked)
-{
-    if (checked){
-        ui->btModificarDetalles->setText("Modificando");
-    }
-    else
-        ui->btModificarDetalles->setText("Añadiendo");
 }
 
 void dlgDetalles::on_btAnadirInteresante_clicked(){
