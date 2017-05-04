@@ -6,6 +6,9 @@
 #include <QSqlRelationalTableModel>
 #include <QDataWidgetMapper>
 #include <QDebug>
+#include <QJsonObject>
+
+#include "models/qjsonmodel.h"
 
 #include "gui/dlgseleccionargeneral.h"
 
@@ -14,6 +17,9 @@ DlgResoluciones::DlgResoluciones(QWidget *parent) :
     ui(new Ui::DlgResoluciones)
 {
     ui->setupUi(this);
+
+    json_model = new QJsonModel(this);
+    ui->twDetalles->setModel(json_model);
 
     cargarModelos();
     cargarMapper();
@@ -47,6 +53,8 @@ void DlgResoluciones::seleccionarResolucion(const QModelIndex &idx)
 
     resolucion_id = resoluciones_model->data(indice, Qt::DisplayRole).toInt();
     temas_model->setFilter(QString("resolution_id=%1").arg(resolucion_id));
+
+    cargarDetalles(resolucion_id);
 }
 
 void DlgResoluciones::recibirNuevoTema(Tema t)
@@ -61,6 +69,17 @@ void DlgResoluciones::recibirNuevoTema(Tema t)
 
     temas_model->select();
     temas_model->setFilter(QString("resolution_id=%1").arg(resolucion_id));
+}
+
+void DlgResoluciones::cargarDetalles(int id)
+{
+    QSqlQuery query;
+    QString sql;
+
+    sql = QString("SELECT detail_id, details FROM resolutions_details WHERE resolution_id=%1").arg(id);
+    query.exec(sql);
+
+
 }
 
 void DlgResoluciones::on_btAnadirTema_clicked()

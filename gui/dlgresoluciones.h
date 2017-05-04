@@ -9,6 +9,7 @@ class QSqlQueryModel;
 class QSqlRelationalTableModel;
 class QDataWidgetMapper;
 class QModelIndex;
+class QJsonModel;
 
 class dlgSeleccionarGeneral;
 
@@ -28,6 +29,7 @@ private slots:
 
     void seleccionarResolucion(const QModelIndex &idx);
     void recibirNuevoTema(Tema t);
+    void cargarDetalles(int id);
 
     void on_btAnadirTema_clicked();
     void on_btQuitarTema_clicked();
@@ -45,6 +47,7 @@ private:
     QSqlQueryModel *resoluciones_model;
     QDataWidgetMapper *mapper_data;
     QSqlRelationalTableModel *temas_model;
+    QJsonModel *json_model;
 
     void cargarModelos();
     void cargarMapper();
