@@ -269,6 +269,7 @@ void dlgDetalles::anadirInteresante()
 {
     int interesante = ui->spInteresante->value();
     json_libre.insert("Interesante", QJsonValue(interesante));
+    anadirChildItem("interesante", QString::number(interesante));
 }
 
 bool dlgDetalles::eventFilter(QObject *obj, QEvent *e)
