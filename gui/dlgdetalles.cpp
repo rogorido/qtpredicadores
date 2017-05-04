@@ -14,6 +14,7 @@
 #include <QSqlQueryModel>
 #include <QCompleter>
 #include <QJsonArray>
+#include <QTreeWidgetItem>
 
 #include <QDebug>
 
@@ -30,17 +31,19 @@ dlgDetalles::dlgDetalles(JsonGestor *json, int t, QWidget *parent) :
     ui(new Ui::dlgDetalles), jsondetalles(json), tipo(t)
 {
     ui->setupUi(this);
-    jsondetalles->setTreeWidget(ui->twDetalles);
 
     json_model = new QJsonModel(this);
     ui->twJsonGeneral->setModel(json_model);
 
+    json_libre = new QJsonObject(this);
+
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(hide()));
 
-    // esto hay en todo caso que mejorarlo pq ahora tenemos diversas queries según el origen
-    // pero tvz no haga falta y se pueda quitar sin más
-    //connect(ui->txtKey, SIGNAL(editingFinished()), this, SLOT(actualizarCompleterValues()));
+    ui->twDetalles->setColumnCount(2);
+
+    ui->txtKey->installEventFilter(this);
+    ui->txtValue->installEventFilter(this);
 
     cargarModelos();
 }
@@ -384,6 +387,46 @@ void dlgDetalles::on_btOrdenanzas_clicked()
 
 }
 
+void dlgDetalles::anadirDatosLibres()
+{
+    QString key = ui->txtKey->text();
+    QString value = ui->txtValue->text();
+
+    if (!key.isEmpty() && !value.isEmpty()){
+        json_libre->insert(key, value);
+
+        ui->txtKey->setText("");
+        ui->txtValue->setText("");
+        ui->txtKey->setFocus();
+    }
+}
+
+bool dlgDetalles::eventFilter(QObject *obj, QEvent *e)
+{
+    if (e->type()== QEvent::KeyPress) {
+            QKeyEvent *keyEvent = static_cast<QKeyEvent *>(e);
+            if (keyEvent->key() == Qt::Key_Return){
+
+                // y ahora dependiendo del QLineEdit...
+                if (obj == ui->txtKey){
+                    ui->txtValue->setFocus();
+                    return true;
+                }
+                else if (obj == ui->txtValue) {
+
+                    return true;
+                }
+            }
+        }
+
+    /*
+     * atención aquí lo importante es poner QDialog!
+     * si pongo dlgPenaEntrada no funciona!!
+     */
+    return QDialog::eventFilter(obj, e);
+
+}
+
 void dlgDetalles::cargarModelos(){
 
     /*
@@ -464,19 +507,6 @@ void dlgDetalles::anadirExtraInfos(ExtraInfos extras)
 
             jsondetalles->anadirValor(valores.first, QJsonValue(valores.second));
         }
-    }
-}
-
-void dlgDetalles::on_btJsonAnadirLibre_clicked()
-{
-    QString key = ui->txtKey->text();
-    QString value = ui->txtValue->text();
-
-    if (!key.isEmpty() && !value.isEmpty()){
-        jsondetalles->anadirValor(key, value);
-
-        ui->txtKey->setText("");
-        ui->txtValue->setText("");
     }
 }
 

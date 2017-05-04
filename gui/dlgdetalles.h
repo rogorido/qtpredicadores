@@ -13,7 +13,6 @@
 #include "objs/afiliacion.h"
 #include "objs/ordenanza.h"
 
-class JsonGestor;
 class QSqlQueryModel;
 class QCompleter;
 class QJsonModel;
@@ -40,12 +39,10 @@ private slots:
     void recibirPena(Pena pena);
     void recibirAfiliacion(QList<Afiliacion*> lista_afiliaciones);
     void recibirOrdenanza(Ordenanza ordenanza);
-    void actualizarCompleterValues(); // cuando cambia el campo key de json libre
 
     void on_btPersona_clicked();
     void on_btLugar_clicked();
     void on_btProvincia_clicked();
-    void on_btJsonAnadirLibre_clicked();
     void on_btAnadirInteresante_clicked();
     void on_btAprobaciones_clicked();
     void on_btLicencias_clicked();
@@ -54,10 +51,26 @@ private slots:
     void on_btAfiliaciones_clicked();
     void on_btOrdenanzas_clicked();
 
+    void anadirDatosLibres();
+    void actualizarCompleterValues(); // cuando cambia el campo key de json libre
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *e);
+
 private:
     Ui::dlgDetalles *ui;
 
+    /*
+     * este es el model donde vamos metiendo QJsonObjects
+     * y que se comunica con la view
+     */
     QJsonModel *json_model;
+
+    /*
+     * con esto podemos crear QJsonObjects "libres"
+     * en el sentido de que voy metiendo los campos a mano.
+     */
+    QJsonObject *json_libre;
 
     /* estos son modelos solo de este form */
     QSqlQueryModel *m_keys;
@@ -65,8 +78,6 @@ private:
 
     QCompleter *keys_completer;
     QCompleter *values_completer;
-
-    JsonGestor *jsondetalles;
 
     void cargarModelos();
     void anadirExtraInfos(ExtraInfos extras);
