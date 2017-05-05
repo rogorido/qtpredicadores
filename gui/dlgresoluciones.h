@@ -61,6 +61,7 @@ private:
 
     void cargarModelos();
     void cargarMapper();
+    void cargarInfos();
 
     /*
      * aquí guardamos la id de la resolución que está escogida.

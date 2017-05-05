@@ -15,6 +15,10 @@
 #include "gui/dlgseleccionargeneral.h"
 #include "gui/dlgdetalles.h"
 
+const QString sql_general="SELECT DISTINCT ON (r.resolution_id) * FROM resolutions r "
+                          "LEFT JOIN resolutions_details rd ON r.resolution_id = rd.resolution_id "
+                          "LEFT JOIN chapters c ON r.chapter = c.chapter_id;";
+
 DlgResoluciones::DlgResoluciones(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DlgResoluciones)
@@ -28,6 +32,7 @@ DlgResoluciones::DlgResoluciones(QWidget *parent) :
 
     cargarModelos();
     cargarMapper();
+    cargarInfos();
 
     connect(ui->twResoluciones->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
             this, SLOT(seleccionarResolucion(QModelIndex)));
@@ -239,9 +244,7 @@ void DlgResoluciones::on_btBorrarDetalles_clicked()
 void DlgResoluciones::cargarModelos()
 {
     resoluciones_model = new QSqlQueryModel(this);
-    resoluciones_model->setQuery("SELECT resolution_id, resolution_text, "
-                                 "chapters.general_name, small_title FROM resolutions "
-                                 "JOIN chapters ON chapter=chapter_id");
+    resoluciones_model->setQuery(sql_general);
     resoluciones_model->setHeaderData(1, Qt::Horizontal, "Texto resolución");
     resoluciones_model->setHeaderData(2, Qt::Horizontal, "Capítulo");
     resoluciones_model->setHeaderData(3, Qt::Horizontal, "Epígrafe");
@@ -258,7 +261,9 @@ void DlgResoluciones::cargarModelos()
 
     // escogemos la primera línea del modelo...
     QModelIndex index = resoluciones_model->index(0,0);
-    ui->twResoluciones->setCurrentIndex(index);
+    if (index.isValid()) {
+        ui->twResoluciones->setCurrentIndex(index);
+    }
 
     temas_model = new QSqlRelationalTableModel(this);
     temas_model->setTable("chapters.resolutions_themes");
@@ -275,7 +280,6 @@ void DlgResoluciones::cargarModelos()
     ui->twTemas->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->twTemas->setSelectionMode(QAbstractItemView::SingleSelection);
 
-
 }
 
 void DlgResoluciones::cargarMapper()
@@ -285,4 +289,9 @@ void DlgResoluciones::cargarMapper()
     mapper_data->addMapping(ui->txtResolucion, 1);
     mapper_data->addMapping(ui->txtResolucionResumen,3);
 
+}
+
+void DlgResoluciones::cargarInfos()
+{
+    ui->lblTotalResoluciones->setText(QString("Resoluciones: %1").arg(resoluciones_model->rowCount()));
 }
