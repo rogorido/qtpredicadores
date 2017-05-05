@@ -12,6 +12,7 @@
 #include "models/qjsonmodel.h"
 
 #include "gui/dlgseleccionargeneral.h"
+#include "gui/dlgdetalles.h"
 
 DlgResoluciones::DlgResoluciones(QWidget *parent) :
     QDialog(parent),
@@ -21,6 +22,8 @@ DlgResoluciones::DlgResoluciones(QWidget *parent) :
 
     json_model = new QJsonModel(this);
     ui->twDetalles->setModel(json_model);
+
+    json_anadir_model = new QJsonModel(this);
 
     cargarModelos();
     cargarMapper();
@@ -70,6 +73,35 @@ void DlgResoluciones::recibirNuevoTema(Tema t)
 
     temas_model->select();
     temas_model->setFilter(QString("resolution_id=%1").arg(resolucion_id));
+}
+
+void DlgResoluciones::recibirNuevoJsonDetalles()
+{
+
+    QSqlQuery query;
+    int totaljson = json_anadir_model->getSize();
+
+    if (totaljson == 0)
+        return;
+
+    for (int var = 0; var < totaljson; ++var) {
+
+        QString jsonfinal = json_anadir_model->getJsonString(var);
+
+        query.prepare("INSERT INTO resolutions_details(resolution_id, details) VALUES(:resolucionid, :json)");
+        query.bindValue(":resolucionid", resolucion_id);
+        query.bindValue(":json", jsonfinal);
+        query.exec();
+
+        /*
+         * y ahora actualizamos el modelo de la view
+         */
+        QJsonObject json_temporal = json_anadir_model->getJsonObject(var);
+        json_model->anadirJson(json_temporal);
+    }
+
+    // borramos el contenido json_anadir_model...
+    json_anadir_model->clear();
 }
 
 void DlgResoluciones::cargarDetalles(int id)
@@ -137,6 +169,21 @@ void DlgResoluciones::on_btQuitarTema_clicked()
 
     temas_model->select();
     temas_model->setFilter(QString("resolution_id=%1").arg(resolucion_id));
+}
+
+void DlgResoluciones::on_btAnadirDetalles_clicked()
+{
+    bool anadiendo = true;
+
+    dlgDetalles *dlgdetalles = new dlgDetalles(json_anadir_model, RESOLUCION, anadiendo, this);
+    dlgdetalles->show();
+
+    connect(dlgdetalles, SIGNAL(accepted()), this, SLOT(recibirNuevoJsonDetalles()));
+}
+
+void DlgResoluciones::on_btBorrarDetalles_clicked()
+{
+
 }
 
 void DlgResoluciones::cargarModelos()

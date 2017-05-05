@@ -101,6 +101,11 @@ void QJsonModel::anadirJson(QJsonObject json)
     resetearModelo();
 }
 
+QJsonObject QJsonModel::getJsonObject(int i)
+{
+    return lista_jsons.at(i);
+}
+
 int QJsonModel::getSize()
 {
     return lista_jsons.size();

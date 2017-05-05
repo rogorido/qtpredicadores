@@ -26,16 +26,26 @@ const QString sqlpersonas_valores="SELECT DISTINCT value from persons_details, j
 const QString sqlpersonas_keys="SELECT DISTINCT jsonb_object_keys(details) FROM persons_details ORDER BY jsonb_object_keys(details);";
 
 
-dlgDetalles::dlgDetalles(QJsonModel *json, int t, QWidget *parent) :
+dlgDetalles::dlgDetalles(QJsonModel *json, int t, bool anadir, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::dlgDetalles), json_model(json), tipo(t)
+    ui(new Ui::dlgDetalles), json_model(json), tipo(t), anadiendo(anadir)
 {
     ui->setupUi(this);
 
     ui->twJsonGeneral->setModel(json_model);
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
-    connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(hide()));
+
+    /*
+     * si estamos añadiendo cerramos sin más; si no, lo ocultamos.
+     * Al cerrar tenemos que emitir de todas formas una señal.
+     */
+    if (anadir) {
+        connect(ui->btOK, SIGNAL(clicked(bool)), this, SIGNAL(accepted()));
+        connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(close()));
+    }
+    else
+        connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(hide()));
 
     ui->twJsonLibre->setColumnCount(2);
 

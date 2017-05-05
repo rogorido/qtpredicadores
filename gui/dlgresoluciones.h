@@ -29,10 +29,14 @@ private slots:
 
     void seleccionarResolucion(const QModelIndex &idx);
     void recibirNuevoTema(Tema t);
+    // cuando añadimos detalles los recibimos en este slot
+    void recibirNuevoJsonDetalles();
     void cargarDetalles(int id);
 
     void on_btAnadirTema_clicked();
     void on_btQuitarTema_clicked();
+    void on_btAnadirDetalles_clicked();
+    void on_btBorrarDetalles_clicked();
 
 private:
     Ui::DlgResoluciones *ui;
@@ -48,6 +52,12 @@ private:
     QDataWidgetMapper *mapper_data;
     QSqlRelationalTableModel *temas_model;
     QJsonModel *json_model;
+
+    /*
+     * este lo usamos en el caso de que queramos
+     * añadir nuevos Jsons a la resolución
+     */
+    QJsonModel *json_anadir_model;
 
     void cargarModelos();
     void cargarMapper();

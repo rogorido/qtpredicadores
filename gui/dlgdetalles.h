@@ -26,7 +26,7 @@ class dlgDetalles : public QDialog
     Q_OBJECT
 
 public:
-    explicit dlgDetalles(QJsonModel *json, int t, QWidget *parent = 0);
+    explicit dlgDetalles(QJsonModel *json, int t, bool anadir, QWidget *parent = 0);
     ~dlgDetalles();
 
 private slots:
@@ -94,6 +94,12 @@ private:
      */
 
     int tipo;
+
+    /*
+     * esta variable controla si llamamos el form desde alguno
+     * de los forms de gestión.
+     */
+    bool anadiendo;
 };
 
 #endif // DLGDETALLES_H
