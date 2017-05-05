@@ -32,6 +32,7 @@ private slots:
     // cuando añadimos detalles los recibimos en este slot
     void recibirNuevoJsonDetalles();
     void cargarDetalles(int id);
+    void aplicarFiltro();
 
     void on_btAnadirTema_clicked();
     void on_btQuitarTema_clicked();

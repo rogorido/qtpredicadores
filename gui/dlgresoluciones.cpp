@@ -17,7 +17,7 @@
 
 const QString sql_general="SELECT DISTINCT ON (r.resolution_id) * FROM resolutions r "
                           "LEFT JOIN resolutions_details rd ON r.resolution_id = rd.resolution_id "
-                          "LEFT JOIN chapters c ON r.chapter = c.chapter_id;";
+                          "LEFT JOIN chapters c ON r.chapter = c.chapter_id";
 
 DlgResoluciones::DlgResoluciones(QWidget *parent) :
     QDialog(parent),
@@ -37,6 +37,7 @@ DlgResoluciones::DlgResoluciones(QWidget *parent) :
     connect(ui->twResoluciones->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
             this, SLOT(seleccionarResolucion(QModelIndex)));
     connect(ui->btCerrar, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(aplicarFiltro()));
 
 }
 
@@ -154,6 +155,12 @@ void DlgResoluciones::cargarDetalles(int id)
     }
 
     json_model->setIdDetails(ids_resolutions_details);
+
+}
+
+void DlgResoluciones::aplicarFiltro()
+{
+    resoluciones_model->setQuery(sql_general + QString(" WHERE details ?| array['mandato', 'prohibición'];"));
 
 }
 
