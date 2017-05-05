@@ -5,6 +5,8 @@
 #include <QStringList>
 #include <QJsonObject>
 
+#include "objs/variados.h"
+
 class Sufragio
 {
 public:
@@ -15,12 +17,14 @@ public:
     void setMisas(int m);
     void setMotivo(QString m);
     void setDestinatarios(QStringList d);
+    void setExtraInfos(ExtraInfos e);
 
     // getters
     QString getTipo() const {return tipo;}
     int getMisas() const {return misas;}
     QString getMotivo() const {return motivo;}
     QStringList getDestinatarios() const {return destinatarios;}
+    ExtraInfos getExtraInfos() const {return extras;}
 
     QJsonObject getSufragio();
 
@@ -30,6 +34,7 @@ private:
     int misas;
     QString motivo;
     QStringList destinatarios;
+    ExtraInfos extras;
 };
 
 #endif // SUFRAGIO_H
