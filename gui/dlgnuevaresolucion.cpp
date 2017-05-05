@@ -32,7 +32,7 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     jsongestor = new QJsonModel(this);
     m_resoluciones = ResolucionesModel::InstanceModel();
 
-    dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, this);
+    dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, false, this);
     // pasamos una referencia: ver notas en el header
     dlgtemas = new dlgTemas(&temas_lista, this);
 
@@ -257,7 +257,7 @@ void dlgNuevaResolucion::borrarCampos(){
     ui->spInteresante->setValue(0);
 
     jsongestor = new QJsonModel(this);
-    dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, this);
+    dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, false, this);
 
     m_verbos = new QStringListModel();
     m_expresiones = new QStringListModel();

@@ -43,10 +43,10 @@ dlgNuevaPersona::~dlgNuevaPersona()
 
 void dlgNuevaPersona::cargarJsonEstructuras(){
     jsongestor = new QJsonModel(this);
-    dlgdetalles = new dlgDetalles(jsongestor, PERSONADETALLES, this);
+    dlgdetalles = new dlgDetalles(jsongestor, PERSONADETALLES, false, this);
 
     otrosnombres_json = new QJsonModel(this);
-    dlgotrosnombres = new dlgDetalles(otrosnombres_json, OTROS, this);
+    dlgotrosnombres = new dlgDetalles(otrosnombres_json, OTROS, false, this);
 
 }
 

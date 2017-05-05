@@ -21,7 +21,7 @@ dlgNuevoLugar::dlgNuevoLugar(QWidget *parent) :
     m_lugares = LugaresModel::InstanceModel();
     otrosnombres = new QJsonModel(this);
 
-    dlgdetalles = new dlgDetalles(otrosnombres, OTROS, this);
+    dlgdetalles = new dlgDetalles(otrosnombres, OTROS, false, this);
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));

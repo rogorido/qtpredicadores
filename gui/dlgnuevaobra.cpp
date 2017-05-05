@@ -29,7 +29,7 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     dlgtemas = new dlgTemas(&temasescogidos, this);
 
     json_detalles = new QJsonModel(this);
-    dlgdetalles = new dlgDetalles(json_detalles, OBRA, this);
+    dlgdetalles = new dlgDetalles(json_detalles, OBRA, false, this);
 
     connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(on_btAnadirLugar_clicked()));
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(on_btIntroducirLugar_clicked()));
