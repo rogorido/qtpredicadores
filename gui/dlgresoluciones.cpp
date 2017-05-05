@@ -32,6 +32,7 @@ DlgResoluciones::DlgResoluciones(QWidget *parent) :
     connect(ui->twResoluciones->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
             this, SLOT(seleccionarResolucion(QModelIndex)));
     connect(ui->btCerrar, SIGNAL(clicked()), this, SLOT(close()));
+
 }
 
 DlgResoluciones::~DlgResoluciones()
@@ -85,6 +86,8 @@ void DlgResoluciones::recibirNuevoJsonDetalles()
     if (totaljson == 0)
         return;
 
+    qDebug() << "la resulu-id es: " << resolucion_id;
+
     for (int var = 0; var < totaljson; ++var) {
 
         QString jsonfinal = json_anadir_model->getJsonString(var);
@@ -103,6 +106,14 @@ void DlgResoluciones::recibirNuevoJsonDetalles()
 
     // borramos el contenido json_anadir_model...
     json_anadir_model->clear();
+
+    /*
+     * NOTE: esto es un poco cutre, pero volver a cargar los detalles
+     * pq así se vuelve a llenar la lista de ids_details pq si no,
+     * puede estar vacía... Realmente habría que hacer aquí algún sistema
+     * para coger lo que se haya metido pero da igual...
+     */
+    cargarDetalles(resolucion_id);
 }
 
 void DlgResoluciones::cargarDetalles(int id)
@@ -174,9 +185,7 @@ void DlgResoluciones::on_btQuitarTema_clicked()
 
 void DlgResoluciones::on_btAnadirDetalles_clicked()
 {
-    bool anadiendo = true;
-
-    dlgDetalles *dlgdetalles = new dlgDetalles(json_anadir_model, RESOLUCION, anadiendo, this);
+    dlgDetalles *dlgdetalles = new dlgDetalles(json_anadir_model, RESOLUCION, true, this);
     dlgdetalles->show();
 
     connect(dlgdetalles, SIGNAL(accepted()), this, SLOT(recibirNuevoJsonDetalles()));
@@ -211,9 +220,12 @@ void DlgResoluciones::on_btBorrarDetalles_clicked()
 
     /*
      * ahora necesitamos sacar el detail_id de la
-     * lista para hacer una query DELETE
+     * lista para hacer una query DELETE.
+     * tenemos que usar takeAt para eleminar ese elemetno de
+     * la lista ids_resolutions_details
      */
-    int id_detail = ids_resolutions_details.at(ordinal);
+    qDebug() << "tamaño de la lista de ids: " << ids_resolutions_details.size();
+    int id_detail = ids_resolutions_details.takeAt(ordinal);
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "Borrar detalles de resolución", "¿Seguro que quieres borrar este bloque de datos?",
                                     QMessageBox::Yes|QMessageBox::No);
@@ -229,7 +241,7 @@ void DlgResoluciones::cargarModelos()
     resoluciones_model = new QSqlQueryModel(this);
     resoluciones_model->setQuery("SELECT resolution_id, resolution_text, "
                                  "chapters.general_name, small_title FROM resolutions "
-                                 "JOIN chapters ON chapter=chapter_id;");
+                                 "JOIN chapters ON chapter=chapter_id");
     resoluciones_model->setHeaderData(1, Qt::Horizontal, "Texto resolución");
     resoluciones_model->setHeaderData(2, Qt::Horizontal, "Capítulo");
     resoluciones_model->setHeaderData(3, Qt::Horizontal, "Epígrafe");
@@ -243,6 +255,10 @@ void DlgResoluciones::cargarModelos()
     ui->twResoluciones->setSortingEnabled(true);
     ui->twResoluciones->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->twResoluciones->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    // escogemos la primera línea del modelo...
+    QModelIndex index = resoluciones_model->index(0,0);
+    ui->twResoluciones->setCurrentIndex(index);
 
     temas_model = new QSqlRelationalTableModel(this);
     temas_model->setTable("chapters.resolutions_themes");
@@ -267,5 +283,6 @@ void DlgResoluciones::cargarMapper()
     mapper_data = new QDataWidgetMapper(this);
     mapper_data->setModel(resoluciones_model);
     mapper_data->addMapping(ui->txtResolucion, 1);
+    mapper_data->addMapping(ui->txtResolucionResumen,3);
 
 }

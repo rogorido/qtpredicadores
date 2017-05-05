@@ -99,6 +99,7 @@ void dlgSeleccionarGeneral::cargarModelo(){
     ui->twSeleccionar->setAlternatingRowColors(true);
     ui->twSeleccionar->resizeColumnsToContents();
     ui->twSeleccionar->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twSeleccionar->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->twSeleccionar->resizeRowsToContents();
 
     // escogemos la primera línea...

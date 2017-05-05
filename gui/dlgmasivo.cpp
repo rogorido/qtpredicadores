@@ -9,8 +9,6 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 
-#include "objs/jsongestor.h"
-
 #include <QDebug>
 
 /*
