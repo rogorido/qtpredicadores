@@ -14,4 +14,24 @@ QJsonObject Sufragio::getSufragio()
 
     json.insert("sufragio", "yes");
 
+    if (!motivo.isEmpty())
+        json.insert("motivo", motivo);
+
+    if (misas != 0)
+        json.insert("misas", QJsonValue(misas));
+
+    if (!destinatarios.isEmpty())
+        json.insert("destinatarios", QJsonArray::fromStringList(destinatarios));
+
+    if (extras.size() > 0 ) {
+        for (int i = 0; i < extras.size(); ++i) {
+            QPair<QString, QString> valores;
+            valores = extras.at(i);
+
+            json.insert(valores.first, valores.second);
+        }
+    }
+
+    return json;
+
 }

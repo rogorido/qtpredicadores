@@ -4,6 +4,7 @@
 #include <QString>
 #include <QStringList>
 #include <QJsonObject>
+#include <QJsonArray>
 
 #include "objs/variados.h"
 
