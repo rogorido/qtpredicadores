@@ -66,6 +66,13 @@ private:
      * aquí guardamos la id de la resolución que está escogida.
      */
     int resolucion_id;
+
+    /*
+     * aquí se guarda una lista de las ids de la tabla
+     * resolutions_details, que se corresponde al campo
+     * detail_id  y permite manipular las entradas de esta tabla
+     */
+    QList<int> ids_resolutions_details;
 };
 
 #endif // DLGRESOLUCIONES_H

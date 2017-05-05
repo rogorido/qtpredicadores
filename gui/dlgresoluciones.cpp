@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QMessageBox>
 
 #include "models/qjsonmodel.h"
 
@@ -109,13 +110,13 @@ void DlgResoluciones::cargarDetalles(int id)
     QSqlQuery query;
     QString sql;
     QJsonDocument json;
-    QList<int> ids;
 
     sql = QString("SELECT detail_id, details FROM resolutions_details WHERE resolution_id=%1").arg(id);
     query.exec(sql);
 
     // borramos lo que ya está
     json_model->clear();
+    ids_resolutions_details.clear();
 
     /*
      * joder, que lío hay que hacer para construir un json...
@@ -133,10 +134,10 @@ void DlgResoluciones::cargarDetalles(int id)
          */
         json_model->anadirJson(json.object());
 
-        ids << id;
+        ids_resolutions_details << id;
     }
 
-    json_model->setIdDetails(ids);
+    json_model->setIdDetails(ids_resolutions_details);
 
 }
 
@@ -183,6 +184,43 @@ void DlgResoluciones::on_btAnadirDetalles_clicked()
 
 void DlgResoluciones::on_btBorrarDetalles_clicked()
 {
+    /*
+     * la idea es la siguiente: cogemos el índice; si no es válido
+     * salimos sin más. Si es válido continúa y coge el del padre.
+     * Y aquí está el truco: si el índice del padre no es válido, eso
+     * quiere decir que estamos ya en el nivel superior y por tanto
+     * el índice que nos interesa es idx, pero si es válido, lo que
+     * nos interesa es el índice padre.
+     *
+     * NOTE: esto evidentemente sólo sirve cuando hay solo un subnivel,
+     * si hubiera más subniveles no funcionaría!
+     */
+    QSqlQuery query;
+    QModelIndex idx = ui->twDetalles->currentIndex();
+    int ordinal;
+
+    if (!idx.isValid())
+        return;
+
+    QModelIndex padre = idx.parent();
+
+    if (!padre.isValid())
+        ordinal = idx.row();
+    else
+        ordinal = padre.row();
+
+    /*
+     * ahora necesitamos sacar el detail_id de la
+     * lista para hacer una query DELETE
+     */
+    int id_detail = ids_resolutions_details.at(ordinal);
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Borrar detalles de resolución", "¿Seguro que quieres borrar este bloque de datos?",
+                                    QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        query.exec(QString("DELETE FROM resolutions_details WHERE detail_id=%1").arg(id_detail));
+        json_model->borrarJson(ordinal);
+    }
 
 }
 
