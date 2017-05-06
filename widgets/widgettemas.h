@@ -3,6 +3,9 @@
 
 #include <QWidget>
 
+class QSqlTableModel;
+class QSortFilterProxyModel;
+
 namespace Ui {
 class WidgetTemas;
 }
@@ -17,6 +20,10 @@ public:
 
 private:
     Ui::WidgetTemas *ui;
+
+    QSqlTableModel *m_temas;
+    QSortFilterProxyModel *temas_noseleccionados_proxy;
+    QSortFilterProxyModel *temas_seleccionados_proxy;
 };
 
 #endif // WIDGETTEMAS_H
