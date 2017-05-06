@@ -4,6 +4,8 @@
 #include <QSortFilterProxyModel>
 #include <QSqlQuery>
 #include <QDebug>
+#include <QPushButton>
+#include <QTableView>
 
 #include "models/temasmodel.h"
 
@@ -16,31 +18,13 @@ WidgetTemas::WidgetTemas(QWidget *parent) :
     m_temas = TemasModel::InstanceModel();
     m_temas->sort(1, Qt::AscendingOrder);
 
-    temas_noseleccionados_proxy = new QSortFilterProxyModel(this);
-    temas_noseleccionados_proxy->setSourceModel(m_temas);
-    temas_noseleccionados_proxy->setFilterFixedString("f");
-    temas_noseleccionados_proxy->setFilterKeyColumn(3);
+    /*
+     * lo deshabilitamos por el puto error ese que da.
+     * Mirar abajo...
+     */
+    ui->btQuitar->setEnabled(false);
 
-    temas_seleccionados_proxy = new QSortFilterProxyModel(this);
-    temas_seleccionados_proxy->setSourceModel(m_temas);
-    temas_seleccionados_proxy->setFilterFixedString("t");
-    temas_seleccionados_proxy->setFilterKeyColumn(3);
-
-    ui->twNoSeleccionado->setModel(temas_noseleccionados_proxy);
-    ui->twSeleccionado->setModel(temas_seleccionados_proxy);
-
-    ui->twNoSeleccionado->hideColumn(0);
-    ui->twNoSeleccionado->hideColumn(2);
-    ui->twNoSeleccionado->hideColumn(3);
-
-    ui->twSeleccionado->hideColumn(0);
-    ui->twSeleccionado->hideColumn(2);
-    ui->twSeleccionado->hideColumn(3);
-
-    ui->twNoSeleccionado->resizeColumnsToContents();
-    ui->twNoSeleccionado->resizeRowsToContents();
-    ui->twSeleccionado->resizeColumnsToContents();
-    ui->twSeleccionado->resizeRowsToContents();
+    cargarModelos();
 
 }
 
@@ -95,5 +79,43 @@ void WidgetTemas::on_btQuitarTodos_clicked()
     m_temas->select();
     ui->twNoSeleccionado->resizeColumnsToContents();
     ui->twNoSeleccionado->resizeRowsToContents();
+
+}
+
+void WidgetTemas::cargarModelos()
+{
+    temas_noseleccionados_proxy = new QSortFilterProxyModel(this);
+    temas_noseleccionados_proxy->setSourceModel(m_temas);
+    temas_noseleccionados_proxy->setFilterFixedString("f");
+    temas_noseleccionados_proxy->setFilterKeyColumn(3);
+
+    temas_seleccionados_proxy = new QSortFilterProxyModel(this);
+    temas_seleccionados_proxy->setSourceModel(m_temas);
+    temas_seleccionados_proxy->setFilterFixedString("t");
+    temas_seleccionados_proxy->setFilterKeyColumn(3);
+
+    ui->twNoSeleccionado->setModel(temas_noseleccionados_proxy);
+    ui->twSeleccionado->setModel(temas_seleccionados_proxy);
+
+    ui->twNoSeleccionado->hideColumn(0);
+    ui->twNoSeleccionado->hideColumn(2);
+    ui->twNoSeleccionado->hideColumn(3);
+
+    ui->twSeleccionado->hideColumn(0);
+    ui->twSeleccionado->hideColumn(2);
+    ui->twSeleccionado->hideColumn(3);
+
+    ui->twNoSeleccionado->resizeColumnsToContents();
+    ui->twNoSeleccionado->resizeRowsToContents();
+    ui->twSeleccionado->resizeColumnsToContents();
+    ui->twSeleccionado->resizeRowsToContents();
+    ui->twNoSeleccionado->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twNoSeleccionado->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->twSeleccionado->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twSeleccionado->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->twNoSeleccionado->horizontalHeader()->setStretchLastSection(true);
+    ui->twSeleccionado->horizontalHeader()->setStretchLastSection(true);
+
+    connect(ui->twNoSeleccionado, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(on_btAnadir_clicked()));
 
 }

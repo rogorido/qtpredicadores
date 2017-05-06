@@ -35,6 +35,8 @@ private:
     QSqlTableModel *m_temas;
     QSortFilterProxyModel *temas_noseleccionados_proxy;
     QSortFilterProxyModel *temas_seleccionados_proxy;
+
+    void cargarModelos();
 };
 
 #endif // WIDGETTEMAS_H
