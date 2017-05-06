@@ -9,6 +9,7 @@ dlgSufragiosEntrada::dlgSufragiosEntrada(QWidget *parent) :
 
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarSufragio()));
+    connect(ui->btEliminar, SIGNAL(clicked(bool)), this, SLOT(quitarDestinatario()));
 
     ui->cbTipo->addItem("Por vivos");
     ui->cbTipo->addItem("Por muertos");
@@ -60,5 +61,20 @@ void dlgSufragiosEntrada::anadirDestinatario()
 
 void dlgSufragiosEntrada::quitarDestinatario()
 {
+    QModelIndex idx = ui->lwDestinatarios->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    QString destinatario = idx.data().toString();
+
+    for (int i = 0; i < destinatarios.size(); ++i) {
+        if (destinatarios.value(i) == destinatario) {
+            destinatarios.removeAt(i);
+            break;
+        }
+    }
+
+    ui->lwDestinatarios->takeItem(ui->lwDestinatarios->currentRow());
 
 }
