@@ -38,6 +38,8 @@ private:
 
     QSqlQueryModel *destinatarios_model;
     QCompleter *destinatarios_completer;
+    QSqlQueryModel *motivos_model;
+    QCompleter *motivos_completer;
 
     Sufragio sufragio;
 

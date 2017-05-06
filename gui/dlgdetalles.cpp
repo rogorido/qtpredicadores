@@ -127,7 +127,8 @@ void dlgDetalles::recibirOrdenanza(Ordenanza ordenanza)
 
 void dlgDetalles::recibirSufragio(Sufragio sufragio)
 {
-
+    QJsonObject sufragio_json = sufragio.getSufragioJson();
+    json_model->anadirJson(sufragio_json);
 }
 
 void dlgDetalles::recibirCasa(Casa casa){

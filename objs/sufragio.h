@@ -27,7 +27,7 @@ public:
     QStringList getDestinatarios() const {return destinatarios;}
     ExtraInfos getExtraInfos() const {return extras;}
 
-    QJsonObject getSufragio();
+    QJsonObject getSufragioJson();
 
 private:
 

@@ -9,6 +9,9 @@
 const QString sql_destinatarios="SELECT DISTINCT jsonb_array_elements_text(details->'destinatarios') AS destinatarios "
                                 "FROM resolutions_details WHERE details ? 'sufragio' "
                                 "ORDER BY destinatarios";
+const QString sql_motivos="SELECT DISTINCT details->>'motivo' AS motivo "
+                                "FROM resolutions_details WHERE details ? 'sufragio' "
+                                "ORDER BY motivo";
 
 dlgSufragiosEntrada::dlgSufragiosEntrada(QWidget *parent) :
     QDialog(parent),
@@ -60,6 +63,7 @@ void dlgSufragiosEntrada::aceptarSufragio()
     sufragio.setTipo(ui->cbTipo->currentText());
     sufragio.setMotivo(ui->txtMotivo->text());
     sufragio.setMisas(ui->spMisas->value());
+    sufragio.setDestinatarios(destinatarios);
     sufragio.setExtraInfos(extras);
 
     emit(emitirSufragio(sufragio));
@@ -108,5 +112,13 @@ void dlgSufragiosEntrada::cargarModelos()
     destinatarios_completer->setCompletionColumn(0);
     destinatarios_completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtDestinatarios->setCompleter(destinatarios_completer);
+
+    motivos_model = new QSqlQueryModel(this);
+    motivos_model->setQuery(sql_motivos);
+
+    motivos_completer = new QCompleter(motivos_model, this);
+    motivos_completer->setCompletionColumn(0);
+    motivos_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtMotivo->setCompleter(motivos_completer);
 
 }
