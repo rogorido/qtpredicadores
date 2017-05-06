@@ -48,6 +48,8 @@ void WidgetTemas::on_btAnadir_clicked()
     ui->twSeleccionado->resizeColumnsToContents();
     ui->twSeleccionado->resizeRowsToContents();
 
+    crearSqlFiltro();
+
 }
 
 void WidgetTemas::on_btQuitar_clicked()
@@ -68,6 +70,8 @@ void WidgetTemas::on_btQuitar_clicked()
     valor = !valor;
     m_temas->setData(temas_seleccionados_proxy->mapToSource(idx), valor, Qt::EditRole);
 
+    crearSqlFiltro();
+
 }
 
 void WidgetTemas::on_btQuitarTodos_clicked()
@@ -79,6 +83,8 @@ void WidgetTemas::on_btQuitarTodos_clicked()
     m_temas->select();
     ui->twNoSeleccionado->resizeColumnsToContents();
     ui->twNoSeleccionado->resizeRowsToContents();
+
+    crearSqlFiltro();
 
 }
 
@@ -117,5 +123,20 @@ void WidgetTemas::cargarModelos()
     ui->twSeleccionado->horizontalHeader()->setStretchLastSection(true);
 
     connect(ui->twNoSeleccionado, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(on_btAnadir_clicked()));
+
+}
+
+void WidgetTemas::crearSqlFiltro()
+{
+    QSqlQuery query;
+    QString filtro;
+
+    query.exec("SELECT theme_id FROM themes WHERE selected='t'");
+
+    if (query.size() == 0){
+        filtro = "";
+        emit(temasSeleccionadosCambio(filtro));
+        return;
+    }
 
 }

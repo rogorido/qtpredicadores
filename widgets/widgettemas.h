@@ -37,6 +37,7 @@ private:
     QSortFilterProxyModel *temas_seleccionados_proxy;
 
     void cargarModelos();
+    void crearSqlFiltro();
 };
 
 #endif // WIDGETTEMAS_H
