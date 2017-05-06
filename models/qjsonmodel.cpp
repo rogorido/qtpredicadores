@@ -98,7 +98,6 @@ QVariant QJsonModel::data(const QModelIndex &index, int role) const
 void QJsonModel::anadirJson(QJsonObject json)
 {
     lista_jsons.append(json);
-    resetearModelo();
 }
 
 QJsonObject QJsonModel::getJsonObject(int i)

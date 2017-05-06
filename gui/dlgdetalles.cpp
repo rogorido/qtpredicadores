@@ -94,18 +94,22 @@ void dlgDetalles::recibirAprobaciones(QList<Aprobacion *> lista_aprobaciones)
         QJsonObject aprobacion_json = aprobacion->getAprobacionJson();
         json_model->anadirJson(aprobacion_json);
     }
+
+    json_model->resetearModelo();
 }
 
 void dlgDetalles::recibirLicencia(Licencia licencia)
 {
     QJsonObject lic_json = licencia.getLicenciaJson();
     json_model->anadirJson(lic_json);
+    json_model->resetearModelo();
 }
 
 void dlgDetalles::recibirPena(Pena pena)
 {
      QJsonObject pena_json = pena.getPenaJson();
      json_model->anadirJson(pena_json);
+     json_model->resetearModelo();
 }
 
 void dlgDetalles::recibirAfiliacion(QList<Afiliacion *> lista_afiliaciones)
@@ -116,6 +120,7 @@ void dlgDetalles::recibirAfiliacion(QList<Afiliacion *> lista_afiliaciones)
         QJsonObject afiliacion_json = afiliacion->getAfiliacionJson();
         json_model->anadirJson(afiliacion_json);
     }
+    json_model->resetearModelo();
 
 }
 
@@ -123,12 +128,14 @@ void dlgDetalles::recibirOrdenanza(Ordenanza ordenanza)
 {
      QJsonObject ordenanza_json = ordenanza.getOrdenanzaJson();
      json_model->anadirJson(ordenanza_json);
+     json_model->resetearModelo();
 }
 
 void dlgDetalles::recibirSufragio(Sufragio sufragio)
 {
     QJsonObject sufragio_json = sufragio.getSufragioJson();
     json_model->anadirJson(sufragio_json);
+    json_model->resetearModelo();
 }
 
 void dlgDetalles::recibirCasa(Casa casa){

@@ -110,6 +110,8 @@ void DlgResoluciones::recibirNuevoJsonDetalles()
         json_model->anadirJson(json_temporal);
     }
 
+    json_model->resetearModelo();
+
     // borramos el contenido json_anadir_model...
     json_anadir_model->clear();
 
@@ -153,6 +155,8 @@ void DlgResoluciones::cargarDetalles(int id)
 
         ids_resolutions_details << id;
     }
+
+    json_model->resetearModelo();
 
     json_model->setIdDetails(ids_resolutions_details);
 
