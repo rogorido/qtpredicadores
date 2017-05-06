@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>915</width>
+    <width>960</width>
     <height>578</height>
    </rect>
   </property>
@@ -164,19 +164,19 @@
     <rect>
      <x>700</x>
      <y>100</y>
-     <width>191</width>
+     <width>251</width>
      <height>391</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>191</width>
+      <width>251</width>
       <height>335</height>
      </rect>
     </property>
@@ -202,13 +202,23 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>191</width>
+      <width>251</width>
       <height>335</height>
      </rect>
     </property>
     <attribute name="label">
      <string>Page 2</string>
     </attribute>
+    <widget class="WidgetTemas" name="widget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>231</width>
+       <height>341</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QLabel" name="lblTotalResoluciones">
@@ -238,6 +248,14 @@
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WidgetTemas</class>
+   <extends>QWidget</extends>
+   <header>widgets/widgettemas.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
