@@ -18,6 +18,13 @@ public:
     explicit WidgetTemas(QWidget *parent = 0);
     ~WidgetTemas();
 
+signals:
+
+    void temasSeleccionadosCambio(QString filtro);
+
+private slots:
+    void on_btAnadir_clicked();
+
 private:
     Ui::WidgetTemas *ui;
 

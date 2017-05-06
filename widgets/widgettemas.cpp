@@ -2,6 +2,7 @@
 #include "ui_widgettemas.h"
 
 #include <QSortFilterProxyModel>
+#include <QDebug>
 
 #include "models/temasmodel.h"
 
@@ -45,4 +46,19 @@ WidgetTemas::WidgetTemas(QWidget *parent) :
 WidgetTemas::~WidgetTemas()
 {
     delete ui;
+}
+
+void WidgetTemas::on_btAnadir_clicked()
+{
+    bool valor;
+    QModelIndex idx = temas_noseleccionados_proxy->index(ui->twNoSeleccionado->currentIndex().row(), 3);
+
+    if (!idx.isValid())
+        return;
+
+    valor = m_temas->data(temas_noseleccionados_proxy->mapToSource(idx), Qt::DisplayRole).toBool();
+    qDebug() << "el valor es: " << valor;
+    valor = !valor;
+    m_temas->setData(temas_noseleccionados_proxy->mapToSource(idx), valor, Qt::EditRole);
+
 }
