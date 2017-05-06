@@ -1,18 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>dlgSufragiosEntrada</class>
- <widget name="dlgSufragiosEntrada" class="QDialog">
+ <widget class="QDialog" name="dlgSufragiosEntrada">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>551</width>
+    <height>357</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>General</string>
+      </attribute>
+      <widget class="QComboBox" name="cbTipo">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>20</y>
+         <width>231</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="txtMotivo">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>50</y>
+         <width>351</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spMisas">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>80</y>
+         <width>48</width>
+         <height>23</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>58</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Tipo</string>
+       </property>
+       <property name="buddy">
+        <cstring>cbTipo</cstring>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>58</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&amp;Motivo</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtMotivo</cstring>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>58</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Misas</string>
+       </property>
+       <property name="buddy">
+        <cstring>spMisas</cstring>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="txtDestinatarios">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>110</y>
+         <width>151</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Destinatarios</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtDestinatarios</cstring>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="lwDestinatarios">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>80</y>
+         <width>256</width>
+         <height>192</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btEliminar">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>250</y>
+         <width>80</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Eli&amp;minar</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Extras</string>
+      </attribute>
+      <widget class="WidgetExtraInfos" name="widget" native="true">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>301</width>
+         <height>261</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btCancelar">
+       <property name="text">
+        <string>Can&amp;celar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btOK">
+       <property name="text">
+        <string>&amp;Aceptar</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WidgetExtraInfos</class>
+   <extends>QWidget</extends>
+   <header>widgets/widgetextrainfos.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>cbTipo</tabstop>
+  <tabstop>txtMotivo</tabstop>
+  <tabstop>spMisas</tabstop>
+  <tabstop>txtDestinatarios</tabstop>
+  <tabstop>btCancelar</tabstop>
+  <tabstop>btOK</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>lwDestinatarios</tabstop>
+  <tabstop>btEliminar</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
