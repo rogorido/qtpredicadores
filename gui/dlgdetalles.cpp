@@ -7,6 +7,7 @@
 #include "dlgpenaentrada.h"
 #include "dlgafiliacionentrada.h"
 #include "dlgordenanzaentrada.h"
+#include "dlgsufragiosentrada.h"
 
 #include "models/qjsonmodel.h"
 
@@ -122,6 +123,11 @@ void dlgDetalles::recibirOrdenanza(Ordenanza ordenanza)
 {
      QJsonObject ordenanza_json = ordenanza.getOrdenanzaJson();
      json_model->anadirJson(ordenanza_json);
+}
+
+void dlgDetalles::recibirSufragio(Sufragio sufragio)
+{
+
 }
 
 void dlgDetalles::recibirCasa(Casa casa){
@@ -256,6 +262,15 @@ void dlgDetalles::on_btBorrarBloqueJson_clicked()
         ordinal = padre.row();
 
     json_model->borrarJson(ordinal);
+
+}
+
+void dlgDetalles::on_btSufragios_clicked()
+{
+    dlgSufragiosEntrada *dlgsufragio = new dlgSufragiosEntrada(this);
+    dlgsufragio->show();
+
+    connect(dlgsufragio, SIGNAL(emitirSufragio(Sufragio)), this, SLOT(recibirSufragio(Sufragio)));
 
 }
 
