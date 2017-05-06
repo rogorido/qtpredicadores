@@ -25,6 +25,10 @@ signals:
 private slots:
     void on_btAnadir_clicked();
 
+    void on_btQuitar_clicked();
+
+    void on_btQuitarTodos_clicked();
+
 private:
     Ui::WidgetTemas *ui;
 
