@@ -1,6 +1,8 @@
 #include "dlgsufragiosentrada.h"
 #include "ui_dlgsufragiosentrada.h"
 
+#include "objs/variados.h"
+
 dlgSufragiosEntrada::dlgSufragiosEntrada(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgSufragiosEntrada)
@@ -44,7 +46,16 @@ bool dlgSufragiosEntrada::eventFilter(QObject *obj, QEvent *e)
 
 void dlgSufragiosEntrada::aceptarSufragio()
 {
+    ExtraInfos extras = ui->wdExtras->getExtraInfos();
 
+    sufragio.setTipo(ui->cbTipo->currentText());
+    sufragio.setMotivo(ui->txtMotivo->text());
+    sufragio.setMisas(ui->spMisas->value());
+    sufragio.setExtraInfos(extras);
+
+    emit(emitirSufragio(sufragio));
+
+    close();
 }
 
 void dlgSufragiosEntrada::anadirDestinatario()

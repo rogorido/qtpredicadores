@@ -33,6 +33,8 @@ private slots:
 private:
     Ui::dlgSufragiosEntrada *ui;
 
+    Sufragio sufragio;
+
     QStringList destinatarios;
 };
 
