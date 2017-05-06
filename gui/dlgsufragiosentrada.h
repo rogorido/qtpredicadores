@@ -1,9 +1,12 @@
-#ifndef DLGSUFRAGIOSENTRADA_H
+﻿#ifndef DLGSUFRAGIOSENTRADA_H
 #define DLGSUFRAGIOSENTRADA_H
 
 #include <QDialog>
 
 #include "objs/sufragio.h"
+
+class QSqlQueryModel;
+class QCompleter;
 
 namespace Ui {
 class dlgSufragiosEntrada;
@@ -33,9 +36,14 @@ private slots:
 private:
     Ui::dlgSufragiosEntrada *ui;
 
+    QSqlQueryModel *destinatarios_model;
+    QCompleter *destinatarios_completer;
+
     Sufragio sufragio;
 
     QStringList destinatarios;
+
+    void cargarModelos();
 };
 
 #endif // DLGSUFRAGIOSENTRADA_H

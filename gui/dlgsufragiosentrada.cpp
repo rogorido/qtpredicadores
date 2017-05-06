@@ -1,7 +1,14 @@
 #include "dlgsufragiosentrada.h"
 #include "ui_dlgsufragiosentrada.h"
 
+#include <QSqlQueryModel>
+#include <QCompleter>
+
 #include "objs/variados.h"
+
+const QString sql_destinatarios="SELECT DISTINCT jsonb_array_elements_text(details->'destinatarios') AS destinatarios "
+                                "FROM resolutions_details WHERE details ? 'sufragio' "
+                                "ORDER BY destinatarios";
 
 dlgSufragiosEntrada::dlgSufragiosEntrada(QWidget *parent) :
     QDialog(parent),
@@ -17,6 +24,8 @@ dlgSufragiosEntrada::dlgSufragiosEntrada(QWidget *parent) :
     ui->cbTipo->addItem("Por muertos");
 
     ui->txtDestinatarios->installEventFilter(this);
+
+    cargarModelos();
 }
 
 dlgSufragiosEntrada::~dlgSufragiosEntrada()
@@ -87,5 +96,17 @@ void dlgSufragiosEntrada::quitarDestinatario()
     }
 
     ui->lwDestinatarios->takeItem(ui->lwDestinatarios->currentRow());
+
+}
+
+void dlgSufragiosEntrada::cargarModelos()
+{
+    destinatarios_model = new QSqlQueryModel(this);
+    destinatarios_model->setQuery(sql_destinatarios);
+
+    destinatarios_completer = new QCompleter(destinatarios_model, this);
+    destinatarios_completer->setCompletionColumn(0);
+    destinatarios_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtDestinatarios->setCompleter(destinatarios_completer);
 
 }
