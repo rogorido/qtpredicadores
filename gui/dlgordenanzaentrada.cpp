@@ -123,7 +123,8 @@ void dlgOrdenanzaEntrada::aceptar() {
         ordenanza.setTemas(temas_id);
     }
 
-    if (notaIntroducida());
+    if (notaintroducida)
+        ordenanza.setNota(ui->wdNotas->getNotas());
 
     emit(aceptarOrdenanza(ordenanza));
 

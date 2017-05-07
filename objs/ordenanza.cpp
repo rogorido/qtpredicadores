@@ -41,6 +41,9 @@ QJsonObject Ordenanza::getOrdenanzaJson()
     if (retro.estaLleno())
         json.insert("retro", retro.getRetroJson());
 
+    if (nota.estaLleno())
+        json.insert("notas", nota.getNotasJson());
+
     if (!temas.isEmpty()){
         QJsonArray array_temas;
         for (int i = 0; i < temas.size(); ++i) {

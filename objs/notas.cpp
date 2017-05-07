@@ -2,10 +2,16 @@
 
 Notas::Notas() { }
 
-void Notas::setVolverMirar(bool v) { volveramirar = v; }
-void Notas::setNota(QString n) { nota = n; }
+void Notas::setVolverMirar(bool v) {
+    volveramirar = v;
+    lleno = true;
+}
+void Notas::setNota(QString n) {
+    nota = n;
+    lleno = true;
+}
 
-QJsonObject Notas::getNotas()
+QJsonObject Notas::getNotasJson()
 {
     QJsonObject json;
 

@@ -16,12 +16,14 @@ public:
     // getters
     bool getVolverMirar() const {return volveramirar;}
     QString getNota() const {return nota;}
+    bool estaLleno() const {return lleno;}
 
-    QJsonObject getNotas();
+    QJsonObject getNotasJson();
 
 private:
     bool volveramirar = false;
     QString nota;
+    bool lleno = false;
 
 };
 
