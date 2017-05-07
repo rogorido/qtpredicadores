@@ -138,5 +138,4 @@ void WidgetTemas::crearSqlFiltro()
         emit(temasSeleccionadosCambio(filtro));
         return;
     }
-
 }
