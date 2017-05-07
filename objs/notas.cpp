@@ -2,5 +2,5 @@
 
 Notas::Notas() { }
 
-Notas::setVolverMirar(bool v) { volveramirar = v; }
-Notas::setNota(QString n) { nota = n; }
+void Notas::setVolverMirar(bool v) { volveramirar = v; }
+void Notas::setNota(QString n) { nota = n; }
