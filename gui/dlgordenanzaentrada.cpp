@@ -34,6 +34,7 @@ dlgOrdenanzaEntrada::dlgOrdenanzaEntrada(QWidget *parent) :
     connect(ui->btEliminarReceptores, SIGNAL(clicked(bool)), this, SLOT(quitarReceptor()));
     connect(ui->btPenas, SIGNAL(clicked(bool)), this, SLOT(anadirPena()));
     connect(ui->btTemas, SIGNAL(clicked(bool)), dlgtemas, SLOT(show()));
+    connect(ui->wdNotas, SIGNAL(textoIntroducido()), this, SLOT(notaIntroducida()));
 
 }
 
@@ -122,6 +123,8 @@ void dlgOrdenanzaEntrada::aceptar() {
         ordenanza.setTemas(temas_id);
     }
 
+    if (notaIntroducida());
+
     emit(aceptarOrdenanza(ordenanza));
 
     close();
@@ -198,5 +201,11 @@ void dlgOrdenanzaEntrada::anadirPena()
 void dlgOrdenanzaEntrada::recibirPena(Pena pena)
 {
     pena_estipulada = pena;
+
+}
+
+void dlgOrdenanzaEntrada::notaIntroducida()
+{
+    notaintroducida = true;
 
 }

@@ -12,6 +12,7 @@ void Ordenanza::setSeguridad(int s) { seguridad = s; }
 void Ordenanza::setRetroReferencia(RetroReferencia r) { retro = r; }
 void Ordenanza::setTemas(QList<int> t) { temas = t; }
 void Ordenanza::setExtraInfos(ExtraInfos e) { extras = e; }
+void Ordenanza::setNota(Notas n) { nota = n; }
 
 QJsonObject Ordenanza::getOrdenanzaJson()
 {

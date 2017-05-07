@@ -9,6 +9,7 @@
 #include "objs/pena.h"
 #include "objs/variados.h"
 #include "objs/retroreferencia.h"
+#include "objs/notas.h"
 
 class Ordenanza
 {
@@ -28,6 +29,7 @@ public:
     void setRetroReferencia(RetroReferencia r);
     void setTemas(QList<int> t);
     void setExtraInfos(ExtraInfos e);
+    void setNota(Notas n);
 
     // getters
     TipoOrdenanza getTipo() const {return tipo_ordenanza;}
@@ -40,6 +42,7 @@ public:
     RetroReferencia getRetroReferencia() const {return retro;}
     QList<int> getTemas() const {return temas;}
     ExtraInfos getExtraInfos() const {return extras;}
+    Notas getNota() const {return nota;}
 
     QJsonObject getOrdenanzaJson();
 
@@ -55,6 +58,7 @@ private:
     RetroReferencia retro;
     QList<int> temas;
     ExtraInfos extras;
+    Notas nota; // realmente lo es una...
 };
 
 #endif // ORDENANZA_H

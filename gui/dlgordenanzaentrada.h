@@ -36,6 +36,13 @@ private slots:
 
     void recibirPena(Pena pena);
 
+    /*
+     * con esto se controla que se ha metido una nota
+     * y que por tanto hay que pedirle al widget nota
+     * que envíe su contenido
+     */
+    void notaIntroducida();
+
 signals:
 
     void aceptarOrdenanza(Ordenanza ordenanza);
@@ -59,6 +66,8 @@ private:
     QList<elementopareado> temas_lista;
 
     Ordenanza ordenanza;
+
+    bool notaintroducida = false;
 
     void cargarModelos();
 

@@ -114,7 +114,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget_2">
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -308,6 +308,21 @@
        </property>
       </widget>
      </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Notas</string>
+      </attribute>
+      <widget class="WidgetNotas" name="wdNotas" native="true">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>441</width>
+         <height>211</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </item>
    <item>
@@ -362,6 +377,12 @@
    <class>WidgetExtraInfos</class>
    <extends>QWidget</extends>
    <header>widgets/widgetextrainfos.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WidgetNotas</class>
+   <extends>QWidget</extends>
+   <header>widgets/widgetnotas.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
