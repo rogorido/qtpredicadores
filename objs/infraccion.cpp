@@ -20,5 +20,8 @@ void Infraccion::setNota(Notas n) { nota = n; }
 void Infraccion::setExtras(ExtraInfos e) { extras = e; }
 
 QJsonObject Infraccion::getInfraccionJson(){
+    QJsonObject json;
+
+    return json;
 
 }
