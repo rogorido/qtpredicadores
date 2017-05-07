@@ -2,6 +2,7 @@
 #define NOTAS_H
 
 #include <QString>
+#include <QJsonObject>
 
 class Notas
 {
@@ -15,6 +16,8 @@ public:
     // getters
     bool getVolverMirar() const {return volveramirar;}
     QString getNota() const {return nota;}
+
+    QJsonObject getNotas();
 
 private:
     bool volveramirar = false;
