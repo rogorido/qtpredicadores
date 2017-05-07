@@ -27,6 +27,7 @@ public:
     QStringList getInfractores() const {return infractores;}
     Notas getNota() const {return nota;}
     ExtraInfos getExtras() const {return extras;}
+    bool estaLleno() const {return lleno;}
 
     QJsonObject getInfraccionJson();
 
@@ -37,6 +38,7 @@ private:
     QStringList infractores;
     Notas nota;
     ExtraInfos extras;
+    bool lleno = false;
 
     /*
      * meter o no meter temas? Teniendo en cuenta que esto
