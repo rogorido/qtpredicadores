@@ -123,7 +123,7 @@ void dlgOrdenanzaEntrada::aceptar() {
         ordenanza.setTemas(temas_id);
     }
 
-    if (notaintroducida)
+    if (ui->wdNotas->haCambiado())
         ordenanza.setNota(ui->wdNotas->getNotas());
 
     emit(aceptarOrdenanza(ordenanza));
@@ -205,8 +205,3 @@ void dlgOrdenanzaEntrada::recibirPena(Pena pena)
 
 }
 
-void dlgOrdenanzaEntrada::notaIntroducida()
-{
-    notaintroducida = true;
-
-}

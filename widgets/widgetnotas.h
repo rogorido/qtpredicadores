@@ -17,25 +17,14 @@ public:
     explicit WidgetNotas(QWidget *parent = 0);
     ~WidgetNotas();
 
+    bool haCambiado();
     Notas getNotas();
-
-signals:
-    /*
-     * esta señal se envía cuando el texto de
-     * notas ha cambiado pq así podemos poner en el otro
-     * formulario un SLOT que active una variable
-     * que advierta: hay que coger la nota!
-     */
-
-    void textoIntroducido();
-
-private slots:
-    void on_txtNota_textChanged();
 
 private:
     Ui::WidgetNotas *ui;
 
     Notas nota;
+    bool cambiado;
 };
 
 #endif // WIDGETNOTAS_H
