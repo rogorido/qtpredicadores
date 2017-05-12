@@ -19,7 +19,6 @@ public:
     void setExistente(bool e);
     void setOtrosDatos(QJsonObject o);
 
-
     // getters
     int getId() const {return id;}
     QString getNombre() const {return nombre;}
