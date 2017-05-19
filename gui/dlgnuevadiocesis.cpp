@@ -93,6 +93,8 @@ void dlgNuevaDiocesis::borrarCampos()
 
     sufraganea = 0;
     lugar = 0;
+
+    ui->txtNombre->setFocus();
 }
 
 void dlgNuevaDiocesis::anadirLugar()
@@ -106,6 +108,15 @@ void dlgNuevaDiocesis::anadirLugar()
 
 void dlgNuevaDiocesis::anadirArchiDiocesis()
 {
+    /*
+     * pongo esto pq parece que si intento abrir este formulario
+     * y la vista esa está vacía me hace crash (que no entiendo por qué...)
+     */
+    if (!m_diocesis->rowCount() > 0) {
+        int ret = QMessageBox::warning(this, "Todavía no hay diócesis",
+                                       "No hay diócesis. Introduzca alguna.");
+        return;
+    }
     dlgSeleccionarGeneral *seleccion = new dlgSeleccionarGeneral(DIOCESIS, this);
     seleccion->show();
 
