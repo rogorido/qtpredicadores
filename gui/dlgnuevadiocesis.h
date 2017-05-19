@@ -28,7 +28,7 @@ private slots:
     void anadirLugar();
     void anadirArchiDiocesis();
 
-    void recibirLugar(Lugar lugar);
+    void recibirLugar(Lugar lugarrecibido);
     void recibirArchiDiocesis(Diocesis diocesis);
 
 private:

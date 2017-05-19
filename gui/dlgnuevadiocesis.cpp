@@ -69,6 +69,10 @@ void dlgNuevaDiocesis::borrarCampos()
 
 void dlgNuevaDiocesis::anadirLugar()
 {
+    dlgSeleccionarGeneral *seleccionlugar = new dlgSeleccionarGeneral(LUGAR, this);
+    seleccionlugar->show();
+
+    connect(seleccionlugar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));
 
 }
 
@@ -77,9 +81,10 @@ void dlgNuevaDiocesis::anadirArchiDiocesis()
 
 }
 
-void dlgNuevaDiocesis::recibirLugar(Lugar lugar)
+void dlgNuevaDiocesis::recibirLugar(Lugar lugarrecibido)
 {
-
+    lugar = lugarrecibido.getId();
+    ui->txtLugar->setText(lugarrecibido.getLugar());
 }
 
 void dlgNuevaDiocesis::recibirArchiDiocesis(Diocesis diocesis)
