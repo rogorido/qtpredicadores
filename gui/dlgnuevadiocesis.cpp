@@ -2,6 +2,7 @@
 #include "ui_dlgnuevadiocesis.h"
 
 #include <QMessageBox>
+#include <QJsonObject>
 
 #include "gui/dlgseleccionargeneral.h"
 #include "models/diocesismodel.h"
@@ -28,6 +29,13 @@ void dlgNuevaDiocesis::aceptarDiocesis()
 {
     Diocesis *diocesis = new Diocesis();
 
+    /*
+     * tenemos dos, pq realmente lo metemos de esta forma:
+     * {gcatholic: {datos, etc.}}
+     */
+    QJsonObject otros_datos;
+    QJsonObject datos_concretos;
+
     QString nombre = ui->txtNombre->text();
     QString nombre_latin = ui->txtNombreLatin->text();
     bool archidiocesis = ui->ckArchidiocesis->checkState();
@@ -43,6 +51,23 @@ void dlgNuevaDiocesis::aceptarDiocesis()
 
     if (lugar != 0 )
         diocesis->setLugar(lugar);
+
+    /*
+     * creamos un QJonObject con los datos de la página gcatholic
+     * pero solo si hemos modficiado el txtURL o si hemos marcado
+     * el campo ckBuscado
+     */
+
+    if (!ui->txtURL->text().isEmpty() || ui->ckBuscado->checkState() == Qt::Checked) {
+
+        datos_concretos.insert("buscado", QJsonValue(ui->ckBuscado->checkState()));
+        datos_concretos.insert("url", ui->txtURL->text());
+        if (ui->spParroquias != 0 )
+            datos_concretos.insert("parroquias", QJsonValue(ui->spParroquias->value()));
+
+        otros_datos.insert("gcatholic", datos_concretos);
+        diocesis->setOtrosDatos(otros_datos);
+    }
 
     if (!m_diocesis->AnadirDiocesis(diocesis)){
         int ret = QMessageBox::warning(this, "Error al introducir la diócesis",
