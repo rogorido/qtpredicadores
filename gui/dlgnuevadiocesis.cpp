@@ -1,8 +1,10 @@
 #include "dlgnuevadiocesis.h"
 #include "ui_dlgnuevadiocesis.h"
 
+#include <QMessageBox>
+
+#include "gui/dlgseleccionargeneral.h"
 #include "models/diocesismodel.h"
-#include "objs/diocesis.h"
 
 dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
     QDialog(parent),
@@ -35,12 +37,52 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     diocesis->setNombreLatin(nombre_latin);
     diocesis->setArchidiosis(archidiocesis);
     diocesis->setExistente(existe);
-    diocesis->setSufraganea(sufraganea);
-    diocesis->setLugar(lugar);
+
+    if (sufraganea != 0)
+        diocesis->setSufraganea(sufraganea);
+
+    if (lugar != 0 )
+        diocesis->setLugar(lugar);
+
+    if (!m_diocesis->AnadirDiocesis(diocesis)){
+        int ret = QMessageBox::warning(this, "Error al introducir la diócesis",
+                                       "Error al introducir la diócesis en la BD");
+        return;
+    }
+    else
+        borrarCampos();
 
 }
 
 void dlgNuevaDiocesis::borrarCampos()
+{
+    ui->txtNombre->setText("");
+    ui->txtNombreLatin->setText("");
+    ui->txtLugar->setText("");
+    ui->txtArchidiocesis->setText("");
+    ui->ckArchidiocesis->setCheckState(Qt::Unchecked);
+    ui->ckExiste->setCheckState(Qt::Unchecked);
+
+    sufraganea = 0;
+    lugar = 0;
+}
+
+void dlgNuevaDiocesis::anadirLugar()
+{
+
+}
+
+void dlgNuevaDiocesis::anadirArchiDiocesis()
+{
+
+}
+
+void dlgNuevaDiocesis::recibirLugar(Lugar lugar)
+{
+
+}
+
+void dlgNuevaDiocesis::recibirArchiDiocesis(Diocesis diocesis)
 {
 
 }

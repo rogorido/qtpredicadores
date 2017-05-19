@@ -70,7 +70,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="txtArchidiocesis"/>
+      <widget class="myQLineEdit" name="txtArchidiocesis"/>
      </item>
      <item>
       <widget class="QPushButton" name="btQuitarArchi">
@@ -91,7 +91,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="txtLugar"/>
+      <widget class="myQLineEdit" name="txtLugar"/>
      </item>
      <item>
       <widget class="QPushButton" name="btQuitarLugar">
@@ -135,6 +135,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>myQLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>widgets/myqlineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

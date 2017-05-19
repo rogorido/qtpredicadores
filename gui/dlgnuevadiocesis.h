@@ -3,6 +3,9 @@
 
 #include <QDialog>
 
+#include "objs/diocesis.h"
+#include "objs/lugar.h"
+
 class DiocesisModel;
 
 namespace Ui {
@@ -22,6 +25,12 @@ private slots:
     void aceptarDiocesis();
     void borrarCampos();
 
+    void anadirLugar();
+    void anadirArchiDiocesis();
+
+    void recibirLugar(Lugar lugar);
+    void recibirArchiDiocesis(Diocesis diocesis);
+
 private:
     Ui::dlgNuevaDiocesis *ui;
 
@@ -29,11 +38,11 @@ private:
 
     /*
      * aquí metemos esos valores que vendrían del
-     * formulario seleccionar
+     * formulario seleccionar.
      */
 
-    int sufraganea;
-    int lugar;
+    int sufraganea = 0;
+    int lugar = 0;
 };
 
 #endif // DLGNUEVADIOCESIS_H
