@@ -2,6 +2,7 @@
 #include "ui_dlgnuevadiocesis.h"
 
 #include "models/diocesismodel.h"
+#include "objs/diocesis.h"
 
 dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
     QDialog(parent),
@@ -29,6 +30,13 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     QString nombre_latin = ui->txtNombreLatin->text();
     bool archidiocesis = ui->ckArchidiocesis->checkState();
     bool existe = ui->ckExiste->checkState();
+
+    diocesis->setNombre(nombre);
+    diocesis->setNombreLatin(nombre_latin);
+    diocesis->setArchidiosis(archidiocesis);
+    diocesis->setExistente(existe);
+    diocesis->setSufraganea(sufraganea);
+    diocesis->setLugar(lugar);
 
 }
 
