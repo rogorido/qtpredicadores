@@ -47,12 +47,8 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     diocesis->setNombreLatin(nombre_latin);
     diocesis->setArchidiosis(archidiocesis);
     diocesis->setExistente(existe);
-
-    if (sufraganea != 0)
-        diocesis->setSufraganea(sufraganea);
-
-    if (lugar != 0 )
-        diocesis->setLugar(lugar);
+    diocesis->setSufraganea(sufraganea);
+    diocesis->setLugar(lugar);
 
     /*
      * creamos un QJonObject con los datos de la página gcatholic
@@ -62,7 +58,7 @@ void dlgNuevaDiocesis::aceptarDiocesis()
 
     if (!ui->txtURL->text().isEmpty() || ui->ckBuscado->checkState() == Qt::Checked) {
 
-        datos_concretos.insert("buscado", QJsonValue(ui->ckBuscado->checkState()));
+        datos_concretos.insert("buscado", QJsonValue(ui->ckBuscado->isChecked()));
         datos_concretos.insert("url", ui->txtURL->text());
         if (ui->spParroquias != 0 )
             datos_concretos.insert("parroquias", QJsonValue(ui->spParroquias->value()));
@@ -89,6 +85,11 @@ void dlgNuevaDiocesis::borrarCampos()
     ui->txtArchidiocesis->setText("");
     ui->ckArchidiocesis->setCheckState(Qt::Unchecked);
     ui->ckExiste->setCheckState(Qt::Unchecked);
+
+    // lo de json de gcatholic
+    ui->ckBuscado->setCheckState(Qt::Unchecked);
+    ui->txtURL->setText("");
+    ui->spParroquias->setValue(0);
 
     sufraganea = 0;
     lugar = 0;
