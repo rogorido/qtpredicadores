@@ -12,6 +12,7 @@
 #include "dlgnuevacasa.h"
 #include "dlgnuevaobra.h"
 #include "dlgnuevaprovincia.h"
+#include "dlgnuevadiocesis.h"
 #include "dlgresoluciones.h"
 #include "dlgciudades.h"
 #include "dlgcasas.h"
@@ -59,6 +60,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionNuevaPersona, SIGNAL(triggered()), this, SLOT(nuevaPersona()));
     connect(ui->actionNuevaObra, SIGNAL(triggered()), this, SLOT(nuevaObra()));
     connect(ui->actionNuevaProvincia, SIGNAL(triggered()), this, SLOT(nuevaProvincia()));
+    connect(ui->actionNuevaDiocesis, SIGNAL(triggered()), this, SLOT(nuevaDiocesis()));
     connect(ui->actionNuevoTema, SIGNAL(triggered()), this, SLOT(nuevoTema()));
     connect(ui->actionNuevaResolucion, SIGNAL(triggered(bool)), this, SLOT(nuevaResolucion()));
     connect(ui->actionResoluciones, SIGNAL(triggered(bool)), this, SLOT(Resoluciones()));
@@ -116,6 +118,11 @@ void MainWindow::nuevaPersona(){
 void MainWindow::nuevaCasa(){
     dlgCasa = new dlgNuevaCasa(this);
     dlgCasa->show();
+}
+
+void MainWindow::nuevaDiocesis(){
+    dlgDiocesis = new dlgNuevaDiocesis(this);
+    dlgDiocesis->show();
 }
 
 void MainWindow::Capitulos(){

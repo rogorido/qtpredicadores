@@ -8,6 +8,7 @@ class dlgNuevoCapitulo;
 class dlgNuevaResolucion;
 class dlgNuevaPersona;
 class dlgNuevaCasa;
+class dlgNuevaDiocesis;
 class dlgCapitulos;
 class DlgResoluciones; // esto me he confundido y lo he puesto en mayúscula!
 class dlgCiudades;
@@ -41,6 +42,7 @@ private slots:
     void nuevaCasa();
     void nuevaObra();
     void nuevaProvincia();
+    void nuevaDiocesis();
     void nuevoTema();
 
     void Capitulos();
@@ -59,6 +61,7 @@ private:
     dlgNuevaResolucion *dlgResolucion;
     dlgNuevaPersona *dlgPersona;
     dlgNuevaCasa *dlgCasa;
+    dlgNuevaDiocesis *dlgDiocesis;
 
     // esto son los de gestión
     dlgCapitulos *FormCapitulos;

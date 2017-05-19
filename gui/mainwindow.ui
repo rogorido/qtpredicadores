@@ -20,12 +20,12 @@
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>19</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGeneral">
     <property name="title">
-     <string>&amp;General</string>
+     <string>&amp;Nuevo</string>
     </property>
     <addaction name="actionNuevaPersona"/>
     <addaction name="actionNuevaCasa"/>
@@ -33,6 +33,7 @@
     <addaction name="actionNuevaResolucion"/>
     <addaction name="actionNuevaProvincia"/>
     <addaction name="actionNuevoTema"/>
+    <addaction name="actionNuevaDiocesis"/>
     <addaction name="actionNuevaObra"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
@@ -145,7 +146,12 @@
   </action>
   <action name="actionGeneralEstadisticas">
    <property name="text">
-    <string>General</string>
+    <string>&amp;General</string>
+   </property>
+  </action>
+  <action name="actionNuevaDiocesis">
+   <property name="text">
+    <string>Nueva diocesis</string>
    </property>
   </action>
  </widget>
