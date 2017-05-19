@@ -7,6 +7,7 @@
 #include "models/provinciasmodel.h"
 #include "models/capitulosmodel.h"
 #include "models/temasmodel.h"
+#include "models/diocesismodel.h"
 
 #include "objs/proxynombres.h"
 
@@ -76,6 +77,12 @@ void dlgSeleccionarGeneral::cargarTipo(){
         ui->btAnadir->setText("Aña&dir capítulo");
         connect(m_capitulos, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
+    case DIOCESIS:{
+        m_diocesis = DiocesisModel::InstanceModel();
+        m_objeto->setTable("vistas.dioceses_alternatives");
+        ui->btAnadir->setText("Aña&dir diócesis");
+        connect(m_capitulos, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
+        break;}
     case TEMA:{
         m_temas = TemasModel::InstanceModel();
         m_objeto->setTable("vistas.themes_alternatives");
@@ -138,6 +145,8 @@ void dlgSeleccionarGeneral::aceptar(){
         capitulo();
     case TEMA:
         tema();
+    case DIOCESIS:
+        diocesis();
     default:
         break;
     }
@@ -251,6 +260,28 @@ void dlgSeleccionarGeneral::provincia(){
 
 }
 
+void dlgSeleccionarGeneral::diocesis(){
+
+    Diocesis diocesis;
+
+    // tiene que haber otra manera de hacer esto...
+    QModelIndex idx0 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 0);
+    QModelIndex idx1 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 1);
+
+    if (!idx0.isValid())
+        return;
+
+    int id = m_objeto->data(m_objeto_proxy->mapToSource(idx0), Qt::DisplayRole).toInt();
+    QString nombre = m_objeto->data(m_objeto_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
+
+    diocesis.setId(id);
+    diocesis.setNombre(nombre);
+
+    emit(diocesisEscogidaSignal(diocesis));
+    close();
+
+}
+
 void dlgSeleccionarGeneral::capitulo(){
 
     Capitulo capitulo;
@@ -325,6 +356,10 @@ void dlgSeleccionarGeneral::anadirObjeto(){
     case TEMA:{
         anadirTema();
     }
+        /*
+         * TODO: faltaría añadir diócesis! pero por ahora paso pq en principio
+         * no debería darse el caso de que meto la diócesis desde aquí...
+         */
     default:
         break;
     }

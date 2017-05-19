@@ -9,6 +9,7 @@
 #include "objs/provincia.h"
 #include "objs/capitulo.h"
 #include "objs/tema.h"
+#include "objs/diocesis.h"
 
 class CasasModel;
 class PersonasModel;
@@ -16,6 +17,7 @@ class LugaresModel;
 class ProvinciasModel;
 class CapitulosModel;
 class TemasModel;
+class DiocesisModel;
 
 class QSqlTableModel;
 class ProxyNombres;
@@ -47,6 +49,7 @@ signals:
     void provinciaEscogidaSignal(Provincia provincia);
     void capituloEscogidoSignal(Capitulo capitulo);
     void temaEscogidoSignal(Tema tema);
+    void diocesisEscogidaSignal(Diocesis diocesis);
 
 private:
     Ui::dlgSeleccionarGeneral *ui;
@@ -60,6 +63,7 @@ private:
     ProvinciasModel *m_provincias;
     CapitulosModel *m_capitulos;
     TemasModel *m_temas;
+    DiocesisModel *m_diocesis;
 
     void cargarModelo();
     void cargarTipo();
@@ -72,6 +76,7 @@ private:
     void lugar();
     void capitulo();
     void tema();
+    void diocesis();
 
     /*
      * solamente tenemos esto para temas

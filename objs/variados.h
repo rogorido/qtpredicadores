@@ -11,7 +11,8 @@ enum tiposeleccionar {
     PROVINCIA,
     LUGAR,
     CAPITULO,
-    TEMA
+    TEMA,
+    DIOCESIS
 };
 
 enum tipodetalles {
