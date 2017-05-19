@@ -9,6 +9,18 @@ class Obispo
 public:
     Obispo();
 
+    // setters
+    void setId(int i);
+    void setPersona(int p);
+    void setDiocesis(int d);
+    void setPapa(int p);
+    void setFechaNominacion(QDate f);
+    void setFechaFin(QDate f);
+    void setCircaFecha(bool c);
+    void setDuracion(QString d);
+    void setFinPorMuerte(bool f);
+    void setVolverMirar(bool v);
+    void setOtrosDatos(QJsonObject o);
 
     // getters
     int getId() const { return id; }
