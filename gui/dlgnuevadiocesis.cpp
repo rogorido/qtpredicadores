@@ -17,6 +17,8 @@ dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarDiocesis()));
+    connect(ui->txtArchidiocesis, SIGNAL(dobleclick()), this, SLOT(anadirArchiDiocesis()));
+    connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(anadirLugar()));
 
 }
 
@@ -103,7 +105,10 @@ void dlgNuevaDiocesis::anadirLugar()
 
 void dlgNuevaDiocesis::anadirArchiDiocesis()
 {
+    dlgSeleccionarGeneral *seleccion = new dlgSeleccionarGeneral(DIOCESIS, this);
+    seleccion->show();
 
+    connect(seleccion, SIGNAL(diocesisEscogidaSignal(Diocesis)), this, SLOT(recibirArchiDiocesis(Diocesis)));
 }
 
 void dlgNuevaDiocesis::recibirLugar(Lugar lugarrecibido)
@@ -114,5 +119,6 @@ void dlgNuevaDiocesis::recibirLugar(Lugar lugarrecibido)
 
 void dlgNuevaDiocesis::recibirArchiDiocesis(Diocesis diocesis)
 {
-
+    sufraganea = diocesis.getId();
+    ui->txtArchidiocesis->setText(diocesis.getNombre());
 }
