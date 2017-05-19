@@ -118,14 +118,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="btCancelar">
        <property name="text">
         <string>Can&amp;celar</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="btOK">
        <property name="text">
         <string>&amp;Aceptar</string>
        </property>
