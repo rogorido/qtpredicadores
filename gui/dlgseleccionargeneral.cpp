@@ -19,6 +19,7 @@
 
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QDebug>
 
 dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *parent) :
     QDialog(parent),
@@ -80,8 +81,9 @@ void dlgSeleccionarGeneral::cargarTipo(){
     case DIOCESIS:{
         m_diocesis = DiocesisModel::InstanceModel();
         m_objeto->setTable("vistas.dioceses_alternatives");
+        comprobarVacio();
         ui->btAnadir->setText("Aña&dir diócesis");
-        connect(m_capitulos, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
+        connect(m_diocesis, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case TEMA:{
         m_temas = TemasModel::InstanceModel();
@@ -384,5 +386,13 @@ void dlgSeleccionarGeneral::anadirTema(){
                                            "Error al introducir la resolución en la BD");
             return;
         }
+    }
+}
+
+void dlgSeleccionarGeneral::comprobarVacio()
+{
+    if (m_objeto->rowCount() == 0){
+        qDebug() << "cerrando...";
+        close();
     }
 }

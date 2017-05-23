@@ -71,6 +71,7 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
     }
     else {
         this->select();
+        emit(actualizado());
         return true;
     }
 

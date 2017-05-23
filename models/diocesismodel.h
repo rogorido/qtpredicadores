@@ -14,6 +14,10 @@ public:
 
     bool AnadirDiocesis(const Diocesis *diocesis);
 
+signals:
+
+    void actualizado();
+
 protected:
     DiocesisModel();
     DiocesisModel(const DiocesisModel &);

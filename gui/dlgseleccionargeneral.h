@@ -85,6 +85,15 @@ private:
      */
     void anadirTema();
 
+    /*
+     * en teoría esto es para comprobar si el modelo está vacío
+     * y entonces cerramos el formulario pq me da un crash...
+     * PERO: creo q no funciona (y además, sospecho que el crash
+     * no era por eso...).
+     * FIXME: de hecho, solo lo uso una vez...
+     */
+    void comprobarVacio();
+
     tiposeleccionar tipo_seleccionado;
 
 };

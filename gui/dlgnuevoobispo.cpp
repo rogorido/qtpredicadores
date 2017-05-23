@@ -111,7 +111,7 @@ void dlgNuevoObispo::recibirDiocesis(Diocesis diocesis)
 void dlgNuevoObispo::cargarModelos()
 {
     m_papas = new QSqlQueryModel(this);
-    m_papas->setQuery("SELECT pope_id, pope_name FROM general.popes ORDER BY pope_name");
+    m_papas->setQuery("SELECT pope_id, name_pope FROM general.popes ORDER BY name_pope");
 
     m_papas_completer = new QCompleter(this);
     m_papas_completer->setModel(m_papas);
