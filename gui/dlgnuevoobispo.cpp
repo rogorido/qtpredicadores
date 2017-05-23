@@ -5,6 +5,7 @@
 #include <QSqlQueryModel>
 #include <QCompleter>
 #include <QMessageBox>
+#include <QDebug>
 
 #include "objs/obispo.h"
 #include "dlgseleccionargeneral.h"
@@ -15,10 +16,22 @@ dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    QDate fechainicial = QDate(1200, 1, 1);
+    QDate fechafinal = QDate(1800, 1, 1);
+
+    ui->dtFechaInicio->setMinimumDate(fechainicial);
+    ui->dtFechaInicio->setMaximumDate(fechafinal);
+    ui->dtFechaFinal->setMinimumDate(fechainicial);
+    ui->dtFechaFinal->setMaximumDate(fechafinal);
+
+    ui->dtFechaInicio->setDate(fechainicial);
+
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarObispo()));
     connect(ui->txtPersona, SIGNAL(dobleclick()), this, SLOT(anadirPersona()));
     connect(ui->txtDiocesis, SIGNAL(dobleclick()), this, SLOT(anadirDiocesis()));
+    connect(ui->dtFechaInicio, SIGNAL(dateChanged(QDate)), this, SLOT(fechaInicioCambiada()));
+    connect(ui->dtFechaFinal, SIGNAL(dateChanged(QDate)), this, SLOT(fechaFinalCambiada()));
 
     cargarModelos();
 }
@@ -38,16 +51,16 @@ void dlgNuevoObispo::aceptarObispo()
 
     if (persona_id == 0 || diocesis_id == 0 || papa_id == 0){
         int ret = QMessageBox::warning(this, "Faltan datos",
-                                       "Faltan datos: o bien la persona, o bien la diócesis o bien el papa.");
+                                       "Faltan datos: los campos persona, diócesis y papa son obligatorios.");
         return;
     }
 
     QString duracion = ui->txtDuracion->text();
-    QDate fecha_inicio = ui->dtFechaInicio->date();
-    QDate fecha_fin = ui->dtFechaFinal->date();
     bool circa_fecha = ui->ckFechaAprox->isChecked();
     bool volver_mirar = ui->ckVolverMirar->isChecked();
     bool fin_muerte = ui->ckFinPorMuerte->isChecked();
+    QDate fecha_inicio = ui->dtFechaInicio->date();
+    QDate fecha_fin = ui->dtFechaFinal->date();
 
     /*
      * TODO: faltaría lo de other_data, que es difernete de lo que
@@ -60,8 +73,19 @@ void dlgNuevoObispo::aceptarObispo()
     query.bindValue(":persona", persona_id);
     query.bindValue(":diocesis", diocesis_id);
     query.bindValue(":papa", papa_id);
-    query.bindValue(":fecha_inicio", fecha_inicio);
-    query.bindValue(":fecha_final", fecha_fin);
+
+    if (fecha_inicio_cambiada)
+        query.bindValue(":fecha_inicio", fecha_inicio);
+    else
+        query.bindValue(":fecha_inicio", QVariant(QVariant::Date));
+
+    if (fecha_final_cambiada)
+        query.bindValue(":fecha_final", fecha_fin);
+    else{
+        qDebug() << "no se ha cambadio la fecha...";
+        query.bindValue(":fecha_final", QVariant(QVariant::Date));
+    }
+
     query.bindValue(":circa_fecha", circa_fecha);
     query.bindValue(":duracion", duracion);
     query.bindValue(":finpormuerte", fin_muerte);
@@ -94,6 +118,16 @@ void dlgNuevoObispo::anadirDiocesis()
     connect(seleccionar, SIGNAL(diocesisEscogidaSignal(Diocesis)), this, SLOT(recibirDiocesis(Diocesis)));
 }
 
+void dlgNuevoObispo::fechaInicioCambiada()
+{
+    fecha_inicio_cambiada = true;
+}
+
+void dlgNuevoObispo::fechaFinalCambiada()
+{
+    fecha_final_cambiada = true;
+}
+
 void dlgNuevoObispo::recibirPersona(Persona persona)
 {
     persona_id = persona.getId();
@@ -120,6 +154,7 @@ void dlgNuevoObispo::cargarModelos()
     m_papas_completer = new QCompleter(this);
     m_papas_completer->setModel(m_papas);
     m_papas_completer->setCompletionColumn(1);
+    m_papas_completer->setCaseSensitivity(Qt::CaseInsensitive);
 
     ui->txtPapa->setCompleter(m_papas_completer);
 }
@@ -134,6 +169,9 @@ void dlgNuevoObispo::borrarCampos()
     ui->txtDiocesis->setText("");
     ui->txtPapa->setText("");
     ui->txtDuracion->setText("");
+
+    fecha_inicio_cambiada = false;
+    fecha_final_cambiada = false;
 
     ui->ckFechaAprox->setCheckState(Qt::Unchecked);
     ui->ckFinPorMuerte->setCheckState(Qt::Unchecked);

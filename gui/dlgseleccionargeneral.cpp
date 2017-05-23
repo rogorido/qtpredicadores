@@ -225,6 +225,7 @@ void dlgSeleccionarGeneral::persona(){
     QModelIndex idx0 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 0);
     QModelIndex idx1 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 1);
     QModelIndex idx2 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 2);
+    QModelIndex idx3 = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 3);
 
     if (!idx0.isValid())
         return;
@@ -232,10 +233,12 @@ void dlgSeleccionarGeneral::persona(){
     int id = m_objeto->data(m_objeto_proxy->mapToSource(idx0), Qt::DisplayRole).toInt();
     QString nombre = m_objeto->data(m_objeto_proxy->mapToSource(idx1), Qt::DisplayRole).toString();
     QString apellidos = m_objeto->data(m_objeto_proxy->mapToSource(idx2), Qt::DisplayRole).toString();
+    QString origen = m_objeto->data(m_objeto_proxy->mapToSource(idx3), Qt::DisplayRole).toString();
 
     autor.setId(id);
     autor.setNombre(nombre);
     autor.setApellidos(apellidos);
+    autor.setOrigen(origen);
 
     emit(personaEscogidaSignal(autor));
     close();

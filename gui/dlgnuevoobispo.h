@@ -27,6 +27,9 @@ private slots:
     void anadirPersona();
     void anadirDiocesis();
 
+    void fechaInicioCambiada();
+    void fechaFinalCambiada();
+
     void recibirPersona(Persona persona);
     void recibirDiocesis(Diocesis diocesis);
 
@@ -44,6 +47,14 @@ private:
     int persona_id = 0;
     int diocesis_id = 0;
     int papa_id = 0;
+
+    /*
+     * joder: eto es para que no me meta pej 1800-01-01
+     * cuando no cambio la fecha final... pero tiene que haber otra forma
+     * de hacerlo!
+     */
+    bool fecha_inicio_cambiada = false;
+    bool fecha_final_cambiada = false;
 
     void cargarModelos();
     void borrarCampos();

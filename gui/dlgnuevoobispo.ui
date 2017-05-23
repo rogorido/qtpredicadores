@@ -96,7 +96,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="dtFechaInicio"/>
+      <widget class="QDateEdit" name="dtFechaInicio">
+       <property name="displayFormat">
+        <string>d/M/yyyy</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_5">
@@ -109,7 +113,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="dtFechaFinal"/>
+      <widget class="QDateEdit" name="dtFechaFinal">
+       <property name="displayFormat">
+        <string>d/M/yyyy</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_6">
