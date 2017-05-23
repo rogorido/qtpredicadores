@@ -31,6 +31,10 @@ dlgNuevoObispo::~dlgNuevoObispo()
 void dlgNuevoObispo::aceptarObispo()
 {
     QSqlQuery query;
+    QModelIndex idx;
+
+    idx = m_papas_completer->model()->index(m_papas_completer->currentIndex().row(), 0);
+    papa_id = idx.data().toInt();
 
     if (persona_id == 0 || diocesis_id == 0 || papa_id == 0){
         int ret = QMessageBox::warning(this, "Faltan datos",

@@ -16,6 +16,7 @@
 #include "gui/dlgnuevaprovincia.h"
 #include "gui/dlgnuevolugar.h"
 #include "gui/dlgnuevocapitulo.h"
+#include "gui/dlgnuevadiocesis.h"
 
 #include <QInputDialog>
 #include <QMessageBox>
@@ -354,6 +355,10 @@ void dlgSeleccionarGeneral::anadirObjeto(){
     case CAPITULO:{
         dlgNuevoCapitulo *dlgcapitulo = new dlgNuevoCapitulo(this);
         dlgcapitulo->show();
+        break;}
+    case DIOCESIS:{
+        dlgNuevaDiocesis *dlgdiocesis = new dlgNuevaDiocesis(this);
+        dlgdiocesis->show();
         break;}
     case TEMA:{
         anadirTema();
