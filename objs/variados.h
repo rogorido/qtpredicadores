@@ -27,6 +27,12 @@ struct elementopareado{
   QString elemento = "";
 };
 
+struct fuente {
+    int titulo;
+    QString tomo;
+    QString paginas;
+};
+
 typedef QList<QPair<QString,QString>> ExtraInfos;
 
 #endif // VARIADOS_H
