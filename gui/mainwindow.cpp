@@ -14,6 +14,7 @@
 #include "dlgnuevaprovincia.h"
 #include "dlgnuevadiocesis.h"
 #include "dlgnuevoobispo.h"
+#include "dlgnuevafuente.h"
 #include "dlgresoluciones.h"
 #include "dlgciudades.h"
 #include "dlgcasas.h"
@@ -65,6 +66,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionNuevoTema, SIGNAL(triggered()), this, SLOT(nuevoTema()));
     connect(ui->actionNuevaResolucion, SIGNAL(triggered(bool)), this, SLOT(nuevaResolucion()));
     connect(ui->actionNuevoObispo, SIGNAL(triggered(bool)), this, SLOT(nuevoObispo()));
+    connect(ui->actionNuevaFuente, SIGNAL(triggered(bool)), this, SLOT(nuevaFuente()));
     connect(ui->actionResoluciones, SIGNAL(triggered(bool)), this, SLOT(Resoluciones()));
     connect(ui->actionCiudades, SIGNAL(triggered(bool)), this, SLOT(Ciudades()));
     connect(ui->actionCasas, SIGNAL(triggered(bool)), this, SLOT(Casas()));
@@ -183,4 +185,10 @@ void MainWindow::nuevoTema(){
         tema->setTema(tematitulo);
         m_temas->AnadirTema(tema);
     }
+}
+
+void MainWindow::nuevaFuente()
+{
+    dlgNuevaFuente *nuevaFuente = new dlgNuevaFuente(this);
+    nuevaFuente->show();
 }
