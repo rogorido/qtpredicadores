@@ -9,6 +9,7 @@
 
 #include "objs/obispo.h"
 #include "dlgseleccionargeneral.h"
+#include "dlgfuenteentrada.h"
 
 dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
     QDialog(parent),
@@ -28,6 +29,7 @@ dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
 
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarObispo()));
+    connect(ui->btFuente, SIGNAL(clicked()), this, SLOT(anadirFuente()));
     connect(ui->txtPersona, SIGNAL(dobleclick()), this, SLOT(anadirPersona()));
     connect(ui->txtDiocesis, SIGNAL(dobleclick()), this, SLOT(anadirDiocesis()));
     connect(ui->dtFechaInicio, SIGNAL(dateChanged(QDate)), this, SLOT(fechaInicioCambiada()));
@@ -118,6 +120,14 @@ void dlgNuevoObispo::anadirDiocesis()
     connect(seleccionar, SIGNAL(diocesisEscogidaSignal(Diocesis)), this, SLOT(recibirDiocesis(Diocesis)));
 }
 
+void dlgNuevoObispo::anadirFuente()
+{
+    dlgFuenteEntrada *fuente = new dlgFuenteEntrada(this);
+    fuente->show();
+
+    connect(fuente, SIGNAL(signalFuente(fuente)), this, SLOT(recibirFuente(fuente)));
+}
+
 void dlgNuevoObispo::fechaInicioCambiada()
 {
     fecha_inicio_cambiada = true;
@@ -144,6 +154,15 @@ void dlgNuevoObispo::recibirDiocesis(Diocesis diocesis)
     diocesis_id = diocesis.getId();
 
     ui->txtDiocesis->setText(diocesis.getNombre());
+}
+
+void dlgNuevoObispo::recibirFuente(fuente datoobra)
+{
+    fuente_recibida = true;
+
+    fuentedatos->insert("book", QJsonValue(datoobra.titulo));
+    fuentedatos->insert("volume", datoobra.tomo);
+    fuentedatos->insert("pages", datoobra.paginas);
 }
 
 void dlgNuevoObispo::cargarModelos()

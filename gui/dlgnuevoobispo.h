@@ -2,9 +2,11 @@
 #define DLGNUEVOOBISPO_H
 
 #include <QDialog>
+#include <QJsonObject>
 
 #include "objs/persona.h"
 #include "objs/diocesis.h"
+#include "objs/variados.h"
 
 class QSqlQueryModel;
 class QCompleter;
@@ -26,12 +28,14 @@ private slots:
     void aceptarObispo();
     void anadirPersona();
     void anadirDiocesis();
+    void anadirFuente();
 
     void fechaInicioCambiada();
     void fechaFinalCambiada();
 
     void recibirPersona(Persona persona);
     void recibirDiocesis(Diocesis diocesis);
+    void recibirFuente(fuente datoobra);
 
 private:
     Ui::dlgNuevoObispo *ui;
@@ -49,12 +53,18 @@ private:
     int papa_id = 0;
 
     /*
+     * aquí metemos los datos que nos llegan de la source
+     */
+    QJsonObject *fuentedatos;
+
+    /*
      * joder: eto es para que no me meta pej 1800-01-01
      * cuando no cambio la fecha final... pero tiene que haber otra forma
      * de hacerlo!
      */
     bool fecha_inicio_cambiada = false;
     bool fecha_final_cambiada = false;
+    bool fuente_recibida = false;
 
     void cargarModelos();
     void borrarCampos();
