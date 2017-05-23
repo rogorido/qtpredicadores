@@ -34,6 +34,7 @@
     <addaction name="actionNuevaProvincia"/>
     <addaction name="actionNuevoTema"/>
     <addaction name="actionNuevaDiocesis"/>
+    <addaction name="actionNuevoObispo"/>
     <addaction name="actionNuevaObra"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
@@ -151,7 +152,12 @@
   </action>
   <action name="actionNuevaDiocesis">
    <property name="text">
-    <string>Nueva diocesis</string>
+    <string>Nueva &amp;diocesis</string>
+   </property>
+  </action>
+  <action name="actionNuevoObispo">
+   <property name="text">
+    <string>Nuevo obispo</string>
    </property>
   </action>
  </widget>

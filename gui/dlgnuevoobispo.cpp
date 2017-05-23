@@ -1,8 +1,10 @@
 #include "dlgnuevoobispo.h"
 #include "ui_dlgnuevoobispo.h"
 
+#include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QCompleter>
+#include <QMessageBox>
 
 #include "objs/obispo.h"
 #include "dlgseleccionargeneral.h"
@@ -28,6 +30,47 @@ dlgNuevoObispo::~dlgNuevoObispo()
 
 void dlgNuevoObispo::aceptarObispo()
 {
+    QSqlQuery query;
+
+    if (persona_id == 0 || diocesis_id == 0 || papa_id == 0){
+        int ret = QMessageBox::warning(this, "Faltan datos",
+                                       "Faltan datos: o bien la persona, o bien la diócesis o bien el papa.");
+        return;
+    }
+
+    QString duracion = ui->txtDuracion->text();
+    QDate fecha_inicio = ui->dtFechaInicio->date();
+    QDate fecha_fin = ui->dtFechaFinal->date();
+    bool circa_fecha = ui->ckFechaAprox->isChecked();
+    bool volver_mirar = ui->ckVolverMirar->isChecked();
+    bool fin_muerte = ui->ckFinPorMuerte->isChecked();
+
+    /*
+     * TODO: faltaría lo de other_data, que es difernete de lo que
+     * está en la tabla bishops_details...
+     */
+    query.prepare("INSERT INTO bishops.bishops(bishop_person_id, diocese_id, pope_id, "
+                  "date_nomination, circa_date_nomination, date_end, duration, end_bydeath, see_again) "
+                  "VALUES(:persona, :diocesis, :papa, "
+                  ":fecha_inicio, :circa_fecha, :fecha_final, :duracion, :finpormuerte, :volveramirar)");
+    query.bindValue(":persona", persona_id);
+    query.bindValue(":diocesis", diocesis_id);
+    query.bindValue(":papa", papa_id);
+    query.bindValue(":fecha_inicio", fecha_inicio);
+    query.bindValue(":fecha_final", fecha_fin);
+    query.bindValue(":circa_fecha", circa_fecha);
+    query.bindValue(":duracion", duracion);
+    query.bindValue(":finpormuerte", fin_muerte);
+    query.bindValue(":volveramirar", volver_mirar);
+
+    if (query.exec()){
+        borrarCampos();
+    }
+    else {
+        int ret = QMessageBox::warning(this, "Error",
+                                       "Ha habido un error al ejecutar la consulta de inserción.");
+        return;
+    }
 
 }
 
