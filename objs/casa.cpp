@@ -35,3 +35,4 @@ void Casa::setAdvocacion(QString a) { advocacion = a; }
 void Casa::setQuetif(bool q) { quetif = q; }
 void Casa::setOtrosnombres(QString o) { otrosnombres = o; }
 void Casa::setNotas(QString n) { notas = n; }
+void Casa::setOtrosDatos(QString o) { otrosdatos = o; }

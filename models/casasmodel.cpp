@@ -48,14 +48,15 @@ bool CasasModel::AnadirCasa(const Casa *casa){
     // este  sería interesante hacerlo con QJson...
     //QString otrosnombres;
     QString notas = casa->getNotas();
+    QString otrosdatos = casa->getOtrosDatos();
     bool studiumgenerale = casa->getStudiumgenerale();
 
     query.prepare("INSERT INTO general.houses(name, latin_name, place_id, original_place, men, "
                   "type_house, congregation, lookedup, wikipedia, province_id, diocese, date_foundation, "
-                  "quetif, advocation, studiumgenerale, notes) "
+                  "quetif, advocation, studiumgenerale, notes, other_data) "
                   "VALUES(:nombre, :nombre_latin, :lugar, :lugaroriginario, :masculino, "
                   ":tipo, :congregacion, :buscado, :wiki, :provincia_id, :diocesis, :fecha_fundacion, "
-                  ":quetif, :advocacion, :studiumgenerale, :notas)");
+                  ":quetif, :advocacion, :studiumgenerale, :notas, :otrosdatos)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":nombre_latin", nombre_latin);
     if (!lugar == 0)
@@ -78,6 +79,11 @@ bool CasasModel::AnadirCasa(const Casa *casa){
     query.bindValue(":advocacion", advocacion);
     query.bindValue(":studiumgeneral", studiumgenerale);
     query.bindValue(":notas", notas);
+
+    if (!otrosdatos.isEmpty())
+        query.bindValue(":otrosdatos", otrosdatos);
+    else
+        query.bindValue(":otrosdatos", QVariant(QVariant::String));
 
     if (!query.exec()){
         qDebug() << query.lastError();

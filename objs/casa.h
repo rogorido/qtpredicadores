@@ -29,6 +29,7 @@ public:
     void setStudiumgenerale(bool w);
     void setOtrosnombres(QString o);
     void setNotas(QString n);
+    void setOtrosDatos(QString o);
 
     //getters
     int getId() const {return id;}
@@ -49,6 +50,7 @@ public:
     QString getOtrosNombres() const {return otrosnombres;}
     QString getNotas() const {return notas;}
     bool getStudiumgenerale() const {return studiumgenerale;}
+    QString getOtrosDatos() const {return otrosdatos;}
     bool estaLleno() const {return lleno;}
 
 private:
@@ -72,6 +74,7 @@ private:
     QString otrosnombres;
     QString notas;
     bool studiumgenerale;
+    QString otrosdatos; // aquí en principio va lo de fuentes
     bool lleno = false;
 
 };
