@@ -3,6 +3,7 @@
 
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QJsonDocument>
 #include <QCompleter>
 #include <QMessageBox>
 #include <QDebug>
@@ -65,13 +66,21 @@ void dlgNuevoObispo::aceptarObispo()
     QDate fecha_fin = ui->dtFechaFinal->date();
 
     /*
+     * ATENCIÓn: aquí lo que hago es dereferenciar un pointer,
+     * porque QJsonDocument me pide una referencia y fuentedatos
+     * es un pointer...
+     */
+    QJsonDocument jsondoc(*fuentedatos);
+    QString fuente_final = jsondoc.toJson(QJsonDocument::Compact);
+
+    /*
      * TODO: faltaría lo de other_data, que es difernete de lo que
      * está en la tabla bishops_details...
      */
     query.prepare("INSERT INTO bishops.bishops(bishop_person_id, diocese_id, pope_id, "
-                  "date_nomination, circa_date_nomination, date_end, duration, end_bydeath, see_again) "
+                  "date_nomination, circa_date_nomination, date_end, duration, end_bydeath, see_again, other_data) "
                   "VALUES(:persona, :diocesis, :papa, "
-                  ":fecha_inicio, :circa_fecha, :fecha_final, :duracion, :finpormuerte, :volveramirar)");
+                  ":fecha_inicio, :circa_fecha, :fecha_final, :duracion, :finpormuerte, :volveramirar, :otrosdatos)");
     query.bindValue(":persona", persona_id);
     query.bindValue(":diocesis", diocesis_id);
     query.bindValue(":papa", papa_id);
@@ -92,6 +101,11 @@ void dlgNuevoObispo::aceptarObispo()
     query.bindValue(":duracion", duracion);
     query.bindValue(":finpormuerte", fin_muerte);
     query.bindValue(":volveramirar", volver_mirar);
+
+    if (fuente_recibida)
+        query.bindValue(":otrosdatos", fuente_final);
+    else
+        query.bindValue(":otrosdatos", QVariant(QVariant::String));
 
     if (query.exec()){
         borrarCampos();
@@ -195,6 +209,15 @@ void dlgNuevoObispo::borrarCampos()
     ui->ckFechaAprox->setCheckState(Qt::Unchecked);
     ui->ckFinPorMuerte->setCheckState(Qt::Unchecked);
     ui->ckVolverMirar->setCheckState(Qt::Unchecked);
+
+    /*
+     * no borramos el punto fuentedatos
+     * pque ahora no sé cómo borrar un pointer
+     * pero en principio conesta variable debería ser
+     * suficiente
+     */
+    //fuentedatos = QJsonObject();
+    fuente_recibida = false;
 
     ui->txtPersona->setFocus();
 }
