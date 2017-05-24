@@ -4,6 +4,8 @@
 #include <QSqlRecord>
 #include <QInputDialog>
 #include <QCompleter>
+#include <QJsonObject>
+#include <QJsonDocument>
 #include <QMessageBox>
 
 #include "models/lugaresmodel.h"
@@ -12,6 +14,7 @@
 #include "objs/casa.h"
 #include "objs/variados.h"
 #include "gui/dlgseleccionargeneral.h"
+#include "gui/dlgfuenteentrada.h"
 
 dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
     QDialog(parent),
@@ -30,6 +33,7 @@ dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(anadirLugar()));
     connect(ui->btQuitarLugar, SIGNAL(clicked()), this, SLOT(quitarLugar()));
     connect(ui->txtProvincia, SIGNAL(dobleclick()), this, SLOT(anadirProvincia()));
+    connect(ui->btFuente, SIGNAL(clicked(bool)), this, SLOT(anadirFuente()));
 
     cargarModelos();
 
@@ -59,10 +63,24 @@ void dlgNuevaCasa::aceptarCasa(){
     QString fechafundacion = ui->txtFechaFundacion->text();
     QString notas = ui->txtNotas->toPlainText();
     bool studiumgenerale = ui->ckStudium->checkState();
+    QString otrosdatos; // aquí va el json de la fuente
 
     // TODO: hay que comprobar que esté vacío?
     lugar = lugar_struct.id;
     provincia = provincia_struct.id;
+
+    if (fuente_recibida) {
+        /*
+         * ATENCIÓn: aquí lo que hago es dereferenciar un pointer,
+         * porque QJsonDocument me pide una referencia y fuentedatos
+         * es un pointer...
+         */
+        QJsonDocument jsondoc(*fuentedatos);
+        otrosdatos = jsondoc.toJson(QJsonDocument::Compact);
+    }
+    else {
+        otrosdatos = "";
+    }
 
     casa->setNombre(nombre);
     casa->setLugar(lugar);
@@ -105,6 +123,15 @@ void dlgNuevaCasa::recibirLugar(Lugar lugarescogido){
 
 }
 
+void dlgNuevaCasa::anadirFuente()
+{
+    dlgFuenteEntrada *fuente = new dlgFuenteEntrada(this);
+    fuente->show();
+
+    connect(fuente, SIGNAL(signalFuente(fuente)), this, SLOT(recibirFuente(fuente)));
+
+}
+
 void dlgNuevaCasa::quitarLugar(){
 
     lugar_struct = elementopareado();
@@ -123,6 +150,15 @@ void dlgNuevaCasa::recibirProvincia(Provincia provincia){
     provincia_struct.elemento = provincia.getNombre();
 
     ui->txtProvincia->setText(provincia_struct.elemento);
+}
+
+void dlgNuevaCasa::recibirFuente(fuente f)
+{
+    fuente_recibida = true;
+
+    fuentedatos->insert("book", QJsonValue(f.titulo));
+    fuentedatos->insert("volume", f.tomo);
+    fuentedatos->insert("pages", f.paginas);
 }
 
 void dlgNuevaCasa::quitarProvincia(){
