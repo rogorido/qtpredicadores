@@ -196,11 +196,15 @@ void dlgNuevoObispo::recibirDiocesis(Diocesis diocesis)
 
 void dlgNuevoObispo::recibirFuente(fuente datoobra)
 {
+    QJsonObject json_datosconcretos;
+
     fuente_recibida = true;
 
-    fuentedatos->insert("book", QJsonValue(datoobra.titulo));
-    fuentedatos->insert("volume", datoobra.tomo);
-    fuentedatos->insert("pages", datoobra.paginas);
+    json_datosconcretos.insert("source_id", QJsonValue(datoobra.titulo));
+    json_datosconcretos.insert("volume", datoobra.tomo);
+    json_datosconcretos.insert("pages", datoobra.paginas);
+
+    fuentedatos->insert("source", json_datosconcretos);
 }
 
 void dlgNuevoObispo::introducirJson(const int id)

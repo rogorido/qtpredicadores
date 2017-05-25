@@ -11,10 +11,10 @@ dlgFuenteEntrada::dlgFuenteEntrada(QWidget *parent) :
     ui->setupUi(this);
 
     m_obras = new QSqlQueryModel(this);
-    m_obras->setQuery("SELECT title FROM general.sources ORDER BY title");
+    m_obras->setQuery("SELECT source_id, title FROM general.sources ORDER BY title");
 
     m_obras_completer = new QCompleter(m_obras, this);
-    m_obras_completer->setCompletionColumn(0);
+    m_obras_completer->setCompletionColumn(1);
     m_obras_completer->setCaseSensitivity(Qt::CaseInsensitive);
 
     ui->txtObra->setCompleter(m_obras_completer);
