@@ -7,9 +7,11 @@
 #include "objs/persona.h"
 #include "objs/diocesis.h"
 #include "objs/variados.h"
+#include "gui/dlgdetalles.h"
 
 class QSqlQueryModel;
 class QCompleter;
+class QJsonModel;
 
 namespace Ui {
 class dlgNuevoObispo;
@@ -56,6 +58,15 @@ private:
      * aquí metemos los datos que nos llegan de la source
      */
     QJsonObject *fuentedatos;
+
+    /*
+     * métodos y variables para gestionar los detalles
+     */
+    QJsonModel *json_detalles;
+    dlgDetalles *dlgdetalles;
+
+    void introducirJson(const int id);
+
 
     /*
      * joder: eto es para que no me meta pej 1800-01-01

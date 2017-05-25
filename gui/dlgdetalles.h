@@ -13,6 +13,7 @@
 #include "objs/afiliacion.h"
 #include "objs/ordenanza.h"
 #include "objs/sufragio.h"
+#include "objs/diocesis.h"
 
 class QSqlQueryModel;
 class QCompleter;
@@ -41,6 +42,7 @@ private slots:
     void recibirAfiliacion(QList<Afiliacion*> lista_afiliaciones);
     void recibirOrdenanza(Ordenanza ordenanza);
     void recibirSufragio(Sufragio sufragio);
+    void recibirTraslado(Diocesis diocesis);
 
     void on_btPersona_clicked();
     void on_btLugar_clicked();
@@ -55,6 +57,7 @@ private slots:
     void on_btAnadirJsonLibre_clicked();
     void on_btBorrarBloqueJson_clicked();
     void on_btSufragios_clicked();
+    void on_btTraslado_clicked();
 
     void anadirDatosLibres();
     void anadirInteresante();

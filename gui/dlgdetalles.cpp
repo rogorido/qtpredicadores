@@ -138,6 +138,15 @@ void dlgDetalles::recibirSufragio(Sufragio sufragio)
     json_model->resetearModelo();
 }
 
+void dlgDetalles::recibirTraslado(Diocesis diocesis)
+{
+    QJsonObject json;
+
+    json.insert("traslado", QJsonValue(diocesis.getId()));
+    json_model->anadirJson(json);
+    json_model->resetearModelo();
+}
+
 void dlgDetalles::recibirCasa(Casa casa){
 
     json_libre.insert("casa", casa.getId());
@@ -279,6 +288,15 @@ void dlgDetalles::on_btSufragios_clicked()
     dlgsufragio->show();
 
     connect(dlgsufragio, SIGNAL(emitirSufragio(Sufragio)), this, SLOT(recibirSufragio(Sufragio)));
+
+}
+
+void dlgDetalles::on_btTraslado_clicked()
+{
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(DIOCESIS, this);
+    seleccionar->show();
+
+    connect(seleccionar, SIGNAL(diocesisEscogidaSignal(Diocesis)), this, SLOT(recibirTraslado(Diocesis)));
 
 }
 

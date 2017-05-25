@@ -9,6 +9,7 @@
 #include <QDebug>
 
 #include "objs/obispo.h"
+#include "models/qjsonmodel.h"
 #include "dlgseleccionargeneral.h"
 #include "dlgfuenteentrada.h"
 
@@ -25,8 +26,14 @@ dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
     ui->dtFechaInicio->setMaximumDate(fechafinal);
     ui->dtFechaFinal->setMinimumDate(fechainicial);
     ui->dtFechaFinal->setMaximumDate(fechafinal);
-
     ui->dtFechaInicio->setDate(fechainicial);
+
+    json_detalles = new QJsonModel(this);
+    /*
+     * FIXME: aquí el 2º paramétro lo dejo como OBRA pq
+     * sinceramente no sabría qué poner ahora...
+     */
+    dlgdetalles = new dlgDetalles(json_detalles, OBRA, false, this);
 
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarObispo()));
@@ -35,6 +42,7 @@ dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
     connect(ui->txtDiocesis, SIGNAL(dobleclick()), this, SLOT(anadirDiocesis()));
     connect(ui->dtFechaInicio, SIGNAL(dateChanged(QDate)), this, SLOT(fechaInicioCambiada()));
     connect(ui->dtFechaFinal, SIGNAL(dateChanged(QDate)), this, SLOT(fechaFinalCambiada()));
+    connect(ui->btDetalles, SIGNAL(clicked(bool)), dlgdetalles, SLOT(show()));
 
     cargarModelos();
 }
@@ -108,6 +116,12 @@ void dlgNuevoObispo::aceptarObispo()
         query.bindValue(":otrosdatos", QVariant(QVariant::String));
 
     if (query.exec()){
+        QSqlQuery lastid("select max(bishop_id) from bishops.bishops");
+
+        lastid.first();
+        int id = lastid.value(0).toInt();
+
+        introducirJson(id);
         borrarCampos();
     }
     else {
@@ -177,6 +191,27 @@ void dlgNuevoObispo::recibirFuente(fuente datoobra)
     fuentedatos->insert("book", QJsonValue(datoobra.titulo));
     fuentedatos->insert("volume", datoobra.tomo);
     fuentedatos->insert("pages", datoobra.paginas);
+}
+
+void dlgNuevoObispo::introducirJson(const int id)
+{
+    QSqlQuery query;
+    int totaljson;
+
+    totaljson = json_detalles->getSize();
+
+    if (totaljson == 0)
+        return;
+
+    for (int var = 0; var < totaljson; ++var) {
+
+        QString jsonfinal = json_detalles->getJsonString(var);
+
+        query.prepare("INSERT INTO bishops_details(bishop_id, details) VALUES(:bishopid, :json)");
+        query.bindValue(":bishopid", id);
+        query.bindValue(":json", jsonfinal);
+        query.exec();
+    }
 }
 
 void dlgNuevoObispo::cargarModelos()
