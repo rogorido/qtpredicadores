@@ -28,6 +28,9 @@ dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
     ui->dtFechaFinal->setMaximumDate(fechafinal);
     ui->dtFechaInicio->setDate(fechainicial);
 
+    // hay que inicializar el pointer para que no dé error luego.
+    fuentedatos = new QJsonObject();
+
     json_detalles = new QJsonModel(this);
     /*
      * FIXME: aquí el 2º paramétro lo dejo como OBRA pq
@@ -57,10 +60,13 @@ void dlgNuevoObispo::aceptarObispo()
     QSqlQuery query;
     QModelIndex idx;
 
-    idx = m_papas_completer->model()->index(m_papas_completer->currentIndex().row(), 0);
-    papa_id = idx.data().toInt();
+    if (!ui->txtPapa->text().isEmpty()){
+        idx = m_papas_completer->model()->index(m_papas_completer->currentIndex().row(), 0);
+        if (idx.isValid())
+            papa_id = idx.data().toInt();
+    }
 
-    if (persona_id == 0 || diocesis_id == 0 || papa_id == 0){
+    if (persona_id == 0 || diocesis_id == 0){
         int ret = QMessageBox::warning(this, "Faltan datos",
                                        "Faltan datos: los campos persona, diócesis y papa son obligatorios.");
         return;
@@ -91,7 +97,11 @@ void dlgNuevoObispo::aceptarObispo()
                   ":fecha_inicio, :circa_fecha, :fecha_final, :duracion, :finpormuerte, :volveramirar, :otrosdatos)");
     query.bindValue(":persona", persona_id);
     query.bindValue(":diocesis", diocesis_id);
-    query.bindValue(":papa", papa_id);
+
+    if (papa_id != 0)
+        query.bindValue(":papa", papa_id);
+    else
+        query.bindValue(":papa", QVariant(QVariant::Int));
 
     if (fecha_inicio_cambiada)
         query.bindValue(":fecha_inicio", fecha_inicio);

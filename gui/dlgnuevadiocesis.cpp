@@ -62,7 +62,9 @@ void dlgNuevaDiocesis::aceptarDiocesis()
         datos_concretos.insert("buscado", QJsonValue(ui->ckBuscado->isChecked()));
         datos_concretos.insert("url", ui->txtURL->text());
         if (ui->spParroquias != 0 )
-            datos_concretos.insert("parroquias", QJsonValue(ui->spParroquias->value()));
+            datos_concretos.insert("parishes_number", QJsonValue(ui->spParroquias->value()));
+        if (ui->spSuperficie != 0 )
+            datos_concretos.insert("area", QJsonValue(ui->spSuperficie->value()));
 
         otros_datos.insert("gcatholic", datos_concretos);
         diocesis->setOtrosDatos(otros_datos);
