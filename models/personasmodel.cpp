@@ -12,6 +12,7 @@ PersonasModel::PersonasModel() :
     QSqlTableModel()
 {
     this->setTable("persons");
+    this->select();
 
 }
 

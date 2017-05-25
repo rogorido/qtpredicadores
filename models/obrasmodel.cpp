@@ -12,6 +12,7 @@ ObrasModel::ObrasModel() :
     QSqlTableModel()
 {
     this->setTable("works.works");
+    this->select();
 }
 
 ObrasModel *ObrasModel::InstanceModel(){

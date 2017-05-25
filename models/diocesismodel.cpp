@@ -13,7 +13,8 @@ DiocesisModel *DiocesisModel::pInstance = 0;
 DiocesisModel::DiocesisModel() :
     QSqlTableModel()
 {
-    this->setTable("general.diocesis");
+    this->setTable("dioceses");
+    this->select();
 
 }
 

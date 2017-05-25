@@ -12,6 +12,7 @@ ProvinciasModel::ProvinciasModel() :
     QSqlTableModel()
 {
     this->setTable("provinces");
+    this->select();
 
 }
 

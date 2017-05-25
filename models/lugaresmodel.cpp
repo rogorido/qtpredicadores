@@ -12,6 +12,7 @@ LugaresModel::LugaresModel() :
     QSqlTableModel()
 {
     this->setTable("places");
+    this->select();
 }
 
 LugaresModel *LugaresModel::InstanceModel(){

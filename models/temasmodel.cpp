@@ -10,6 +10,7 @@ TemasModel::TemasModel() :
     QSqlTableModel()
 {
     this->setTable("themes");
+    this->select();
 }
 
 TemasModel *TemasModel::InstanceModel(){

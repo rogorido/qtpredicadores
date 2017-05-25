@@ -3,6 +3,7 @@
 
 #include <QMessageBox>
 #include <QJsonObject>
+#include <QDebug>
 
 #include "gui/dlgseleccionargeneral.h"
 #include "models/diocesismodel.h"
@@ -112,7 +113,8 @@ void dlgNuevaDiocesis::anadirArchiDiocesis()
      * pongo esto pq parece que si intento abrir este formulario
      * y la vista esa está vacía me hace crash (que no entiendo por qué...)
      */
-    if (!m_diocesis->rowCount() > 0) {
+    if (m_diocesis->rowCount() < 1) {
+        qDebug() << "cojones, hay: " << m_diocesis->rowCount();
         int ret = QMessageBox::warning(this, "Todavía no hay diócesis",
                                        "No hay diócesis. Introduzca alguna.");
         return;

@@ -12,6 +12,7 @@ CasasModel::CasasModel() :
     QSqlTableModel()
 {
     this->setTable("houses");
+    this->select();
 
 }
 

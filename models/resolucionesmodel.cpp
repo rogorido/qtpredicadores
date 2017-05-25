@@ -12,6 +12,7 @@ ResolucionesModel::ResolucionesModel() :
     QSqlTableModel()
 {
     this->setTable("chapters.resolutions");
+    this->select();
 
 }
 

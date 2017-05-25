@@ -12,6 +12,7 @@ CapitulosModel::CapitulosModel() :
     QSqlTableModel()
 {
     this->setTable("chapters.chapters");
+    this->select();
 
 }
 
