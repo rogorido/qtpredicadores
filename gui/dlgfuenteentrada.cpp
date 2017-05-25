@@ -34,13 +34,19 @@ void dlgFuenteEntrada::accept()
 
     fuente datosobra;
 
-    idx = m_obras_completer->model()->index(m_obras_completer->currentIndex().row(), 0);
-    obra = idx.data().toInt();
+    idx = m_obras_completer->currentIndex();
+    if (idx.isValid()){
+        int row = idx.row();
+        obra = m_obras_completer->completionModel()->index(row, 0).data().toInt();
+    }
+
 
     datosobra.titulo = obra;
     datosobra.tomo = tomo;
     datosobra.paginas = paginas;
 
     emit(signalFuente(datosobra));
+
+    close();
 
 }
