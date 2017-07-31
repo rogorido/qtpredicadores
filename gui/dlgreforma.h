@@ -6,6 +6,9 @@
 #include "objs/variados.h"
 #include "objs/lugar.h"
 
+class QCompleter;
+class QSqlQueryModel;
+
 namespace Ui {
 class dlgReforma;
 }
@@ -30,6 +33,11 @@ private:
     Ui::dlgReforma *ui;
 
     elementopareado lugar_struct;
+
+    QSqlQueryModel *m_ordenes;
+    QCompleter *m_ordenes_completer;
+
+    void cargarModelos();
 };
 
 #endif // DLGREFORMA_H

@@ -1,6 +1,9 @@
 #include "dlgreforma.h"
 #include "ui_dlgreforma.h"
 
+#include <QCompleter>
+#include <QSqlQueryModel>
+
 #include "gui/dlgseleccionargeneral.h"
 
 dlgReforma::dlgReforma(QWidget *parent) :
@@ -12,6 +15,8 @@ dlgReforma::dlgReforma(QWidget *parent) :
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(anadirLugar()));
     connect(ui->btOk, SIGNAL(clicked()), this, SLOT(aceptar()));
+
+    cargarModelos();
 
 }
 
@@ -45,4 +50,17 @@ void dlgReforma::recibirLugar(Lugar lugar)
     lugar_struct.elemento = lugar.getLugar();
 
     ui->txtLugar->setText(lugar_struct.elemento);
+}
+
+void dlgReforma::cargarModelos()
+{
+    m_ordenes = new QSqlQueryModel(this);
+    m_ordenes_completer = new QCompleter(this);
+
+    m_ordenes->setQuery("SELECT DISTINCT religious_order FROM reform.reform_houses ORDER BY religious_order");
+    m_ordenes_completer->setModel(m_ordenes);
+    m_ordenes_completer->setCompletionColumn(0);
+    m_ordenes_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtOrden->setCompleter(m_ordenes_completer);
+
 }
