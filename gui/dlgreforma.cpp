@@ -3,8 +3,13 @@
 
 #include <QCompleter>
 #include <QSqlQueryModel>
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QMessageBox>
 
 #include "gui/dlgseleccionargeneral.h"
+#include "models/qjsonmodel.h"
+#include "gui/dlgdetalles.h"
 
 dlgReforma::dlgReforma(QWidget *parent) :
     QDialog(parent),
@@ -18,6 +23,13 @@ dlgReforma::dlgReforma(QWidget *parent) :
 
     cargarModelos();
 
+    jsongestor = new QJsonModel(this);
+    /*
+     * ponemos 0 como tipo: esa variable sirve para unos QCompleters
+     * de dlgDetalles, pero por ahora no tengo nada para este formulario.
+     * 0 es un poco absurdo pq coge las resoluciones, pero bueno...
+     */
+    dlgdetalles = new dlgDetalles(jsongestor, 0, false, this);
 }
 
 dlgReforma::~dlgReforma()
@@ -41,6 +53,38 @@ void dlgReforma::quitarLugar()
 
 void dlgReforma::aceptar()
 {
+    QSqlQuery query;
+    QString orden;
+    bool male;
+    QString otrosdatos;
+
+    if (ui->txtOrden->text().isEmpty()){
+        int ret = QMessageBox::warning(this, "No hay tipo de orden ",
+                                       "Introduzca algún tipo de orden religiosa");
+        return;
+    }
+
+    if (lugar_struct.id == 0 ){
+        int ret = QMessageBox::warning(this, "No hay ningún lugar.",
+                                       "Introduzca algún lugar.");
+        return;
+    }
+
+    orden = ui->txtOrden->text();
+    male = ui->ckMasculino->checkState();
+
+    query.prepare("INSERTO INTO reform.reform_houses(place_id, religious_order, male, other_data) "
+                  "VALUES(:lugar, :orden, :masculino, :otrosdatos)");
+    query.bindValue(":lugar", lugar_struct.id);
+    query.bindValue(":orden", orden);
+    query.bindValue(":masculino", male);
+    if (!otrosdatos.isEmpty())
+        query.bindValue(":otrosdatos", otrosdatos);
+    else
+        query.bindValue(":otrosdatos", QVariant(QVariant::String));
+
+
+
 
 }
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>488</width>
-    <height>137</height>
+    <width>563</width>
+    <height>142</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,6 +20,9 @@
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Lugar</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtLugar</cstring>
        </property>
       </widget>
      </item>
@@ -42,6 +45,9 @@
        <property name="text">
         <string>Orden</string>
        </property>
+       <property name="buddy">
+        <cstring>txtOrden</cstring>
+       </property>
       </widget>
      </item>
      <item>
@@ -59,11 +65,68 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
+      <widget class="QCheckBox" name="ckAbandonado">
+       <property name="text">
+        <string>Abandonado</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Año</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtAbandonadoAno</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtAbandonadoAno"/>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="ckRetomado">
+       <property name="text">
+        <string>Retomado</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Año</string>
+       </property>
+       <property name="buddy">
+        <cstring>t</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="t"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
       <widget class="QPushButton" name="btOtrosDatos">
        <property name="text">
         <string>&amp;Otros datos</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
      <item>
       <widget class="QPushButton" name="btCancelar">
@@ -90,6 +153,19 @@
    <header location="global">widgets/myqlineedit.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>txtLugar</tabstop>
+  <tabstop>btQuitarLugar</tabstop>
+  <tabstop>txtOrden</tabstop>
+  <tabstop>ckMasculino</tabstop>
+  <tabstop>ckAbandonado</tabstop>
+  <tabstop>txtAbandonadoAno</tabstop>
+  <tabstop>ckRetomado</tabstop>
+  <tabstop>t</tabstop>
+  <tabstop>btOtrosDatos</tabstop>
+  <tabstop>btCancelar</tabstop>
+  <tabstop>btOk</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

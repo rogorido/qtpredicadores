@@ -8,6 +8,8 @@
 
 class QCompleter;
 class QSqlQueryModel;
+class QJsonModel;
+class dlgDetalles;
 
 namespace Ui {
 class dlgReforma;
@@ -36,6 +38,9 @@ private:
 
     QSqlQueryModel *m_ordenes;
     QCompleter *m_ordenes_completer;
+
+    QJsonModel *jsongestor;
+    dlgDetalles *dlgdetalles;
 
     void cargarModelos();
 };
