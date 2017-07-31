@@ -97,12 +97,12 @@
         <string>Año</string>
        </property>
        <property name="buddy">
-        <cstring>t</cstring>
+        <cstring>txtRetomadoAno</cstring>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="t"/>
+      <widget class="QLineEdit" name="txtRetomadoAno"/>
      </item>
     </layout>
    </item>
@@ -161,7 +161,7 @@
   <tabstop>ckAbandonado</tabstop>
   <tabstop>txtAbandonadoAno</tabstop>
   <tabstop>ckRetomado</tabstop>
-  <tabstop>t</tabstop>
+  <tabstop>txtRetomadoAno</tabstop>
   <tabstop>btOtrosDatos</tabstop>
   <tabstop>btCancelar</tabstop>
   <tabstop>btOk</tabstop>

@@ -6,10 +6,11 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QMessageBox>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QDebug>
 
 #include "gui/dlgseleccionargeneral.h"
-#include "models/qjsonmodel.h"
-#include "gui/dlgdetalles.h"
 
 dlgReforma::dlgReforma(QWidget *parent) :
     QDialog(parent),
@@ -22,14 +23,6 @@ dlgReforma::dlgReforma(QWidget *parent) :
     connect(ui->btOk, SIGNAL(clicked()), this, SLOT(aceptar()));
 
     cargarModelos();
-
-    jsongestor = new QJsonModel(this);
-    /*
-     * ponemos 0 como tipo: esa variable sirve para unos QCompleters
-     * de dlgDetalles, pero por ahora no tengo nada para este formulario.
-     * 0 es un poco absurdo pq coge las resoluciones, pero bueno...
-     */
-    dlgdetalles = new dlgDetalles(jsongestor, 0, false, this);
 }
 
 dlgReforma::~dlgReforma()
@@ -72,6 +65,7 @@ void dlgReforma::aceptar()
 
     orden = ui->txtOrden->text();
     male = ui->ckMasculino->checkState();
+    otrosdatos = crearJsonDatos();
 
     query.prepare("INSERTO INTO reform.reform_houses(place_id, religious_order, male, other_data) "
                   "VALUES(:lugar, :orden, :masculino, :otrosdatos)");
@@ -83,8 +77,14 @@ void dlgReforma::aceptar()
     else
         query.bindValue(":otrosdatos", QVariant(QVariant::String));
 
+    if (!query.exec()){
+        qDebug() << query.lastError();
+        qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
 
+        int ret = QMessageBox::warning(this, "Error al introducir los datos.",
+                                       "Error al introducir los datos.");
 
+    }
 
 }
 
@@ -106,5 +106,34 @@ void dlgReforma::cargarModelos()
     m_ordenes_completer->setCompletionColumn(0);
     m_ordenes_completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtOrden->setCompleter(m_ordenes_completer);
+
+}
+
+QString dlgReforma::crearJsonDatos()
+{
+    QJsonObject json;
+    QJsonDocument json_document;
+    QString final = "";
+
+    if (ui->ckAbandonado->checkState())
+        json.insert("abandoned", QJsonValue(true));
+
+    if (!ui->txtAbandonadoAno->text().isEmpty())
+        json.insert("abandoned_year", QJsonValue(ui->txtAbandonadoAno->text()));
+
+    if (ui->ckRetomado->checkState())
+        json.insert("reopened", QJsonValue(true));
+
+    if (!ui->txtRetomadoAno->text().isEmpty())
+        json.insert("reopened_year", QJsonValue(ui->txtRetomadoAno->text()));
+
+    if (json.empty())
+        return final;
+    else
+    {
+        json_document.setObject(json);
+        final = json_document.toJson(QJsonDocument::Compact);
+        return final;
+    }
 
 }
