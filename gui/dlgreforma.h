@@ -39,6 +39,7 @@ private:
 
     void cargarModelos();
     QString crearJsonDatos();
+    void borrarCampos();
 };
 
 #endif // DLGREFORMA_H

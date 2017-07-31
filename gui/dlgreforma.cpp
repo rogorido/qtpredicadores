@@ -67,7 +67,7 @@ void dlgReforma::aceptar()
     male = ui->ckMasculino->checkState();
     otrosdatos = crearJsonDatos();
 
-    query.prepare("INSERTO INTO reform.reform_houses(place_id, religious_order, male, other_data) "
+    query.prepare("INSERT INTO reform.reform_houses(place_id, religious_order, male, other_data) "
                   "VALUES(:lugar, :orden, :masculino, :otrosdatos)");
     query.bindValue(":lugar", lugar_struct.id);
     query.bindValue(":orden", orden);
@@ -84,6 +84,10 @@ void dlgReforma::aceptar()
         int ret = QMessageBox::warning(this, "Error al introducir los datos.",
                                        "Error al introducir los datos.");
 
+    }
+    else {
+        borrarCampos();
+        ui->txtLugar->setFocus();
     }
 
 }
@@ -136,4 +140,16 @@ QString dlgReforma::crearJsonDatos()
         return final;
     }
 
+}
+
+void dlgReforma::borrarCampos()
+{
+    lugar_struct = elementopareado();
+    ui->txtLugar->clear();
+    ui->txtOrden->clear();
+    ui->txtAbandonadoAno->clear();
+    ui->txtRetomadoAno->clear();
+    ui->ckMasculino->setCheckState(Qt::Unchecked);
+    ui->ckAbandonado->setCheckState(Qt::Unchecked);
+    ui->ckRetomado->setCheckState(Qt::Unchecked);
 }
