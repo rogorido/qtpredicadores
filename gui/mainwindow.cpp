@@ -20,6 +20,7 @@
 #include "dlgcasas.h"
 #include "dlgcapitulos.h"
 #include "dlgestadisticas.h"
+#include "dlgreforma.h"
 
 #include "models/temasmodel.h"
 #include "models/lugaresmodel.h"
@@ -67,6 +68,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionNuevaResolucion, SIGNAL(triggered(bool)), this, SLOT(nuevaResolucion()));
     connect(ui->actionNuevoObispo, SIGNAL(triggered(bool)), this, SLOT(nuevoObispo()));
     connect(ui->actionNuevaFuente, SIGNAL(triggered(bool)), this, SLOT(nuevaFuente()));
+    connect(ui->actionIntroducirReformaConvento, SIGNAL(triggered(bool)), this, SLOT(nuevaReforma()));
     connect(ui->actionResoluciones, SIGNAL(triggered(bool)), this, SLOT(Resoluciones()));
     connect(ui->actionCiudades, SIGNAL(triggered(bool)), this, SLOT(Ciudades()));
     connect(ui->actionCasas, SIGNAL(triggered(bool)), this, SLOT(Casas()));
@@ -191,4 +193,11 @@ void MainWindow::nuevaFuente()
 {
     dlgNuevaFuente *nuevaFuente = new dlgNuevaFuente(this);
     nuevaFuente->show();
+}
+
+void MainWindow::nuevaReforma()
+{
+    dlgReforma *dlgReformaConvento = new dlgReforma(this);
+
+    dlgReformaConvento->show();
 }

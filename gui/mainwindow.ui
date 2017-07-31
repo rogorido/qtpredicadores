@@ -55,9 +55,16 @@
     </property>
     <addaction name="actionGeneralEstadisticas"/>
    </widget>
+   <widget class="QMenu" name="menuRefo_rma">
+    <property name="title">
+     <string>Refo&amp;rma</string>
+    </property>
+    <addaction name="actionIntroducirReformaConvento"/>
+   </widget>
    <addaction name="menuGeneral"/>
    <addaction name="menuGestion"/>
    <addaction name="menuEstad_sticas"/>
+   <addaction name="menuRefo_rma"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -164,6 +171,11 @@
   <action name="actionNuevaFuente">
    <property name="text">
     <string>Nueva fuente</string>
+   </property>
+  </action>
+  <action name="actionIntroducirReformaConvento">
+   <property name="text">
+    <string>Introducir &amp;datos</string>
    </property>
   </action>
  </widget>
