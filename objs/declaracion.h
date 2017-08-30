@@ -35,10 +35,31 @@ public:
 
 private:
     QString tipo;
+
+    /*!
+     * \brief Infracción
+     *
+     * Se mete aquí el tipo de infracción, los infractores, etc.
+     */
     Infraccion infraccion;
+
+    /*!
+     * \brief Pena
+     *
+     * Tipo de pena, etc. Pero cómo coño pienso conjugarlo esto
+     * con lo anterior?
+     */
     Pena pena;
+
+    /*!
+     * \brief persona
+     *
+     * Esto cómo va con lo anterior?
+     */
     Persona persona; // tvz tendría que ser Qlist... o QList<int>
     Notas nota;
+
+    // por qué coño tengo estos dos?
     ExtraInfos extras;
     QJsonObject extrajson; // esto casi debería ser una QList<QJsonObject>...
 
