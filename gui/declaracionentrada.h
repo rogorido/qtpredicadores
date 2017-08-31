@@ -36,6 +36,12 @@ signals:
 
 private:
     Ui::DeclaracionEntrada *ui;
+
+    Declaracion declaracion;
+
+    Pena pena_estipulada;
+
+    void cargarModelos();
 };
 
 #endif // DECLARACIONENTRADA_H
