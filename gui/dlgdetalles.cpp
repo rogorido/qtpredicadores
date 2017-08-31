@@ -150,7 +150,9 @@ void dlgDetalles::recibirTraslado(Diocesis diocesis)
 
 void dlgDetalles::recibirDeclaracion(Declaracion declaracion)
 {
-
+    QJsonObject declaracion_json = declaracion.getDeclaracionJson();
+    json_model->anadirJson(declaracion_json);
+    json_model->resetearModelo();
 }
 
 void dlgDetalles::recibirCasa(Casa casa){
