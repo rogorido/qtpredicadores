@@ -8,6 +8,7 @@
 #include "dlgafiliacionentrada.h"
 #include "dlgordenanzaentrada.h"
 #include "dlgsufragiosentrada.h"
+#include "dlgdeclaracionentrada.h"
 
 #include "models/qjsonmodel.h"
 
@@ -147,6 +148,11 @@ void dlgDetalles::recibirTraslado(Diocesis diocesis)
     json_model->resetearModelo();
 }
 
+void dlgDetalles::recibirDeclaracion(Declaracion declaracion)
+{
+
+}
+
 void dlgDetalles::recibirCasa(Casa casa){
 
     json_libre.insert("casa", casa.getId());
@@ -225,6 +231,14 @@ void dlgDetalles::on_btOrdenanzas_clicked()
 
     connect(dlgordenanzas, SIGNAL(aceptarOrdenanza(Ordenanza)), this, SLOT(recibirOrdenanza(Ordenanza)));
 
+}
+
+void dlgDetalles::on_btDeclaraciones_clicked()
+{
+    dlgDeclaracionEntrada *dlgdeclaraciones = new dlgDeclaracionEntrada(this);
+    dlgdeclaraciones->show();
+
+    connect(dlgdeclaraciones, SIGNAL(aceptarDeclaracion(Declaracion)), this, SLOT(recibirDeclaracion(Declaracion)));
 }
 
 void dlgDetalles::on_btBorrarJsonLibre_clicked()

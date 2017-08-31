@@ -46,6 +46,7 @@ private:
     Declaracion declaracion;
 
     Pena pena_estipulada;
+    Infraccion infraccion_cometida;
 
     void cargarModelos();
 };

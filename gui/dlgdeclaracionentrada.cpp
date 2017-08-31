@@ -2,8 +2,7 @@
 #include "ui_dlgdeclaracionentrada.h"
 
 #include "gui/dlgpenaentrada.h"
-
-// TODO: falta añadir lo de dlginfraccionentrada.h
+#include "gui/dlginfraccionentrada.h"
 
 // TODO: falta añadir lo de persona, pero no sé para qué lo puse...
 
@@ -15,6 +14,7 @@ dlgDeclaracionEntrada::dlgDeclaracionEntrada(QWidget *parent) :
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
+    connect(ui->btInfraccion, SIGNAL(clicked(bool)), this, SLOT(anadirInfraccion()));
     connect(ui->btPena, SIGNAL(clicked(bool)), this, SLOT(anadirPena()));
     connect(ui->wdNotas, SIGNAL(textoIntroducido()), this, SLOT(notaIntroducida()));
 }
@@ -43,6 +43,10 @@ void dlgDeclaracionEntrada::aceptar()
 
 void dlgDeclaracionEntrada::anadirInfraccion()
 {
+    dlgInfraccionEntrada *dlginfraccion = new dlgInfraccionEntrada(this);
+    dlginfraccion->show();
+
+    connect(dlginfraccion, SIGNAL(aceptarInfraccion(Infraccion)), this, SLOT(recibirInfraccion(Infraccion)));
 
 }
 
@@ -56,7 +60,7 @@ void dlgDeclaracionEntrada::anadirPena()
 
 void dlgDeclaracionEntrada::recibirInfraccion(Infraccion infraccion)
 {
-
+    infraccion_cometida = infraccion;
 }
 
 void dlgDeclaracionEntrada::recibirPena(Pena pena)

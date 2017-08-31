@@ -33,67 +33,6 @@
         </rect>
        </property>
       </widget>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>450</x>
-         <y>10</y>
-         <width>191</width>
-         <height>112</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="QPushButton" name="btLicencias">
-          <property name="text">
-           <string>Licencias</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1" colspan="2">
-         <widget class="QPushButton" name="btPenas">
-          <property name="text">
-           <string>Penas</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" colspan="2">
-         <widget class="QPushButton" name="btAprobaciones">
-          <property name="text">
-           <string>Aprobaciones</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="btOrdenanzas">
-          <property name="text">
-           <string>Ordenanzas</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QPushButton" name="btAfiliaciones">
-          <property name="text">
-           <string>Afiliaciones</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="btSufragios">
-          <property name="text">
-           <string>Sufragios</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="btTraslado">
-          <property name="text">
-           <string>Traslado</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
       <widget class="QPushButton" name="btBorrarBloqueJson">
        <property name="geometry">
         <rect>
@@ -105,6 +44,110 @@
        </property>
        <property name="text">
         <string>Borrar bloque</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btAprobaciones">
+       <property name="geometry">
+        <rect>
+         <x>451</x>
+         <y>40</y>
+         <width>89</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Aprobaciones</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btTraslado">
+       <property name="geometry">
+        <rect>
+         <x>451</x>
+         <y>98</y>
+         <width>80</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Traslado</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btSufragios">
+       <property name="geometry">
+        <rect>
+         <x>451</x>
+         <y>69</y>
+         <width>80</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Sufragios</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btDeclaraciones">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>100</y>
+         <width>80</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Declaraciones</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btOrdenanzas">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>40</y>
+         <width>80</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ordenanzas</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btPenas">
+       <property name="geometry">
+        <rect>
+         <x>537</x>
+         <y>11</y>
+         <width>80</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Penas</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btLicencias">
+       <property name="geometry">
+        <rect>
+         <x>451</x>
+         <y>11</y>
+         <width>80</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Licencias</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btAfiliaciones">
+       <property name="geometry">
+        <rect>
+         <x>550</x>
+         <y>70</y>
+         <width>80</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Afiliaciones</string>
        </property>
       </widget>
      </widget>
