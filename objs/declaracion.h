@@ -34,6 +34,12 @@ public:
     QJsonObject getDeclaracionJson();
 
 private:
+
+    /*!
+     * \brief Tipo de declaración
+     *
+     * Exactamente qué coño quería meter aquí?
+     */
     QString tipo;
 
     /*!
