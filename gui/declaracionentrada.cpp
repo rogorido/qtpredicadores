@@ -5,6 +5,8 @@
 
 // TODO: falta añadir lo de dlginfraccionentrada.h
 
+// TODO: falta añadir lo de persona, pero no sé para qué lo puse...
+
 DeclaracionEntrada::DeclaracionEntrada(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DeclaracionEntrada)
@@ -24,7 +26,16 @@ DeclaracionEntrada::~DeclaracionEntrada()
 
 void DeclaracionEntrada::aceptar()
 {
+    QString tipo = ui->txtTipo->text();
+    ExtraInfos e = ui->wdExtras->getExtraInfos();
 
+    declaracion.setPena(pena_estipulada);
+    declaracion.setTipo(tipo);
+    declaracion.setExtraInfos(e);
+
+    emit(aceptarDeclaracion(declaracion));
+
+    close();
 }
 
 void DeclaracionEntrada::anadirInfraccion()
