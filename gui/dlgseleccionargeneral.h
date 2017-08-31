@@ -67,6 +67,7 @@ private:
 
     void cargarModelo();
     void cargarTipo();
+    void cargarTituloVentana();
 
     // esto es un poco absurdo, tiene que haber otra manera...
     // pq esto lo q hace es llamar a las signals...

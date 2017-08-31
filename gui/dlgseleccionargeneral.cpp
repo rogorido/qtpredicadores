@@ -38,6 +38,7 @@ dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *par
 
     cargarTipo();
     cargarModelo();
+    cargarTituloVentana();
 }
 
 dlgSeleccionarGeneral::~dlgSeleccionarGeneral()
@@ -99,6 +100,35 @@ void dlgSeleccionarGeneral::cargarTipo(){
     m_objeto->select();
 }
 
+void dlgSeleccionarGeneral::cargarTituloVentana()
+{
+    switch (tipo_seleccionado) {
+    case CASA:
+        setWindowTitle("Seleccionar casas");
+        break;
+    case LUGAR:
+        setWindowTitle("Seleccionar lugares");
+        break;
+    case PROVINCIA:
+        setWindowTitle("Seleccionar provincia");
+        break;
+    case PERSONA:
+        setWindowTitle("Seleccionar persona");
+        break;
+    case CAPITULO:
+        setWindowTitle("Seleccionar capítulo");
+        break;
+    case TEMA:
+        setWindowTitle("Seleccionar tema");
+        break;
+    case DIOCESIS:
+        setWindowTitle("Seleccionar diócesis");
+        break;
+    default:
+        break;
+    }
+}
+
 void dlgSeleccionarGeneral::cargarModelo(){
 
     m_objeto_proxy = new ProxyNombres(tipo_seleccionado, this);
@@ -140,16 +170,22 @@ void dlgSeleccionarGeneral::aceptar(){
         break;
     case LUGAR:
         lugar();
+        break;
     case PROVINCIA:
         provincia();
+        break;
     case PERSONA:
         persona();
+        break;
     case CAPITULO:
         capitulo();
+        break;
     case TEMA:
         tema();
+        break;
     case DIOCESIS:
         diocesis();
+        break;
     default:
         break;
     }
