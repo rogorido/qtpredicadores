@@ -6,6 +6,9 @@
 
 #include <QSqlQueryModel>
 #include <QCompleter>
+// entiendo que estos no son necesarios pero bueno...
+#include <QListWidgetItem>
+#include <QModelIndex>
 
 const QString sql_receptores="SELECT DISTINCT jsonb_array_elements_text(details->'destinatarios_pena') AS penados "
                              "FROM resolutions_details WHERE details->>'destinatarios_pena' IS NOT NULL "
