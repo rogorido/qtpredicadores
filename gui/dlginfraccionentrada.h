@@ -6,6 +6,9 @@
 #include "objs/variados.h"
 #include "objs/infraccion.h"
 
+class QSqlQueryModel;
+class QCompleter;
+
 namespace Ui {
 class dlgInfraccionEntrada;
 }
@@ -38,6 +41,13 @@ private:
     Infraccion infraccion;
 
     QStringList lista_infractores;
+
+    QSqlQueryModel *tipos_model;
+    QCompleter *tipos_completer;
+    QSqlQueryModel *infractores_model;
+    QCompleter *infractores_completer;
+    QSqlQueryModel *infraccion_model;
+    QCompleter *infraccion_completer;
 
     void cargarModelos();
 };

@@ -17,7 +17,7 @@ QJsonObject Declaracion::getDeclaracionJson(){
     json.insert("declaracion", "yes");
 
     if (!tipo.isEmpty())
-        json.insert("infraccion_tipo", tipo);
+        json.insert("declaracion_tipo", tipo);
 
     if (pena.estaLleno())
         json.insert("declaracion_pena", pena.getPenaJson());

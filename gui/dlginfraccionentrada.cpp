@@ -1,6 +1,21 @@
 #include "dlginfraccionentrada.h"
 #include "ui_dlginfraccionentrada.h"
 
+#include <QSqlQueryModel>
+#include <QCompleter>
+#include <QListWidgetItem>
+#include <QModelIndex>
+
+const QString sql_tipo="SELECT DISTINCT details->'declaracion_infraccion'->>'infraccion_tipo' AS tipo "
+                       "FROM resolutions_details WHERE details ? 'declaracion_infraccion' ORDER BY tipo;";
+
+const QString sql_infraccion="SELECT DISTINCT details->'declaracion_infraccion'->>'infraccion_asunto' AS asunto "
+                       "FROM resolutions_details WHERE details ? 'declaracion_infraccion' ORDER BY asunto;";
+
+const QString sql_infractores="SELECT DISTINCT jsonb_array_elements_text(details->'declaracion_infraccion'->'infraccion_infractores') AS infractores "
+                             "FROM resolutions_details WHERE details->'declaracion_infraccion'->'infraccion_infractores' IS NOT NULL "
+                             "ORDER BY infractores;";
+
 dlgInfraccionEntrada::dlgInfraccionEntrada(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgInfraccionEntrada)
@@ -12,6 +27,8 @@ dlgInfraccionEntrada::dlgInfraccionEntrada(QWidget *parent) :
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->btEliminar, SIGNAL(clicked(bool)), this, SLOT(quitarInfractor()));
+
+    cargarModelos();
 
 }
 
@@ -83,4 +100,31 @@ bool dlgInfraccionEntrada::eventFilter(QObject *obj, QEvent *e)
      * si pongo dlgPenaEntrada no funciona!!
      */
     return QDialog::eventFilter(obj, e);
+}
+
+void dlgInfraccionEntrada::cargarModelos()
+{
+    infractores_model = new QSqlQueryModel(this);
+    infractores_model->setQuery(sql_infractores);
+
+    infractores_completer = new QCompleter(infractores_model, this);
+    infractores_completer->setCompletionColumn(0);
+    infractores_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtInfractor->setCompleter(infractores_completer);
+
+    tipos_model = new QSqlQueryModel(this);
+    tipos_model->setQuery(sql_tipo);
+
+    tipos_completer = new QCompleter(tipos_model, this);
+    tipos_completer->setCompletionColumn(0);
+    tipos_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtTipo->setCompleter(tipos_completer);
+
+    infraccion_model = new QSqlQueryModel(this);
+    infraccion_model->setQuery(sql_infraccion);
+
+    infraccion_completer = new QCompleter(infraccion_model, this);
+    infraccion_completer->setCompletionColumn(0);
+    infraccion_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtInfraccion->setCompleter(infraccion_completer);
 }
