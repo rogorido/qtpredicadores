@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Nueva diócesis</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -215,7 +215,7 @@
   <customwidget>
    <class>myQLineEdit</class>
    <extends>QLineEdit</extends>
-   <header>widgets/myqlineedit.h</header>
+   <header location="global">widgets/myqlineedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

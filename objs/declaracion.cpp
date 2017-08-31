@@ -1,9 +1,6 @@
 #include "declaracion.h"
 
-Declaracion::Declaracion()
-{
-
-}
+Declaracion::Declaracion() { }
 
 void Declaracion::setTipo(QString t) { tipo = t; }
 void Declaracion::setInfraccion(Infraccion i) { infraccion = i; }
@@ -22,8 +19,11 @@ QJsonObject Declaracion::getDeclaracionJson(){
     if (!tipo.isEmpty())
         json.insert("infraccion_tipo", tipo);
 
-    json.insert("declaracion_infraccion", infraccion.getInfraccionJson());
-    json.insert("declaracion_pena", pena.getPenaJson());
+    if (pena.estaLleno())
+        json.insert("declaracion_pena", pena.getPenaJson());
+
+    if (infraccion.estaLleno())
+        json.insert("declaracion_infraccion", infraccion.getInfraccionJson());
 
     if (persona.estaLleno()){
         json.insert("declaracion_persona", persona.getId());
@@ -43,7 +43,7 @@ QJsonObject Declaracion::getDeclaracionJson(){
     }
 
     // y aqí rtt qué coño va...
-    json.insert("declaracion_otros", extrajson);
+    //json.insert("declaracion_otros", extrajson);
 
     return json;
 

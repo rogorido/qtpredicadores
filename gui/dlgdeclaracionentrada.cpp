@@ -30,6 +30,7 @@ void dlgDeclaracionEntrada::aceptar()
     ExtraInfos e = ui->wdExtras->getExtraInfos();
 
     declaracion.setPena(pena_estipulada);
+    declaracion.setInfraccion(infraccion_cometida);
     declaracion.setTipo(tipo);
     declaracion.setExtraInfos(e);
 

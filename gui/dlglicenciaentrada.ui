@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Licencia</string>
   </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
@@ -19,7 +19,7 @@
      <x>10</x>
      <y>10</y>
      <width>601</width>
-     <height>24</height>
+     <height>25</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -70,7 +70,7 @@
      <x>20</x>
      <y>340</y>
      <width>611</width>
-     <height>25</height>
+     <height>26</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
