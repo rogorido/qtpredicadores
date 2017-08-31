@@ -1,5 +1,5 @@
-#ifndef DECLARACIONENTRADA_H
-#define DECLARACIONENTRADA_H
+#ifndef DLGDECLARACIONENTRADA_H
+#define DLGDECLARACIONENTRADA_H
 
 #include <QDialog>
 
@@ -9,16 +9,16 @@
 #include "objs/declaracion.h"
 
 namespace Ui {
-class DeclaracionEntrada;
+class dlgDeclaracionEntrada;
 }
 
-class DeclaracionEntrada : public QDialog
+class dlgDeclaracionEntrada : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit DeclaracionEntrada(QWidget *parent = 0);
-    ~DeclaracionEntrada();
+    explicit dlgDeclaracionEntrada(QWidget *parent = 0);
+    ~dlgDeclaracionEntrada();
 
 private slots:
 
@@ -35,7 +35,7 @@ signals:
     void aceptarDeclaracion(Declaracion declaracion);
 
 private:
-    Ui::DeclaracionEntrada *ui;
+    Ui::dlgDeclaracionEntrada *ui;
 
     Declaracion declaracion;
 
@@ -44,4 +44,4 @@ private:
     void cargarModelos();
 };
 
-#endif // DECLARACIONENTRADA_H
+#endif // DLGDECLARACIONENTRADA_H

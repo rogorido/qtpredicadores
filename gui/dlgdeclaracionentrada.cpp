@@ -1,5 +1,5 @@
-#include "declaracionentrada.h"
-#include "ui_declaracionentrada.h"
+#include "dlgdeclaracionentrada.h"
+#include "ui_dlgdeclaracionentrada.h"
 
 #include "gui/dlgpenaentrada.h"
 
@@ -7,9 +7,9 @@
 
 // TODO: falta añadir lo de persona, pero no sé para qué lo puse...
 
-DeclaracionEntrada::DeclaracionEntrada(QWidget *parent) :
+dlgDeclaracionEntrada::dlgDeclaracionEntrada(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::DeclaracionEntrada)
+    ui(new Ui::dlgDeclaracionEntrada)
 {
     ui->setupUi(this);
 
@@ -19,12 +19,12 @@ DeclaracionEntrada::DeclaracionEntrada(QWidget *parent) :
     connect(ui->wdNotas, SIGNAL(textoIntroducido()), this, SLOT(notaIntroducida()));
 }
 
-DeclaracionEntrada::~DeclaracionEntrada()
+dlgDeclaracionEntrada::~dlgDeclaracionEntrada()
 {
     delete ui;
 }
 
-void DeclaracionEntrada::aceptar()
+void dlgDeclaracionEntrada::aceptar()
 {
     QString tipo = ui->txtTipo->text();
     ExtraInfos e = ui->wdExtras->getExtraInfos();
@@ -38,12 +38,12 @@ void DeclaracionEntrada::aceptar()
     close();
 }
 
-void DeclaracionEntrada::anadirInfraccion()
+void dlgDeclaracionEntrada::anadirInfraccion()
 {
 
 }
 
-void DeclaracionEntrada::anadirPena()
+void dlgDeclaracionEntrada::anadirPena()
 {
     dlgPenaEntrada *dlgpena = new dlgPenaEntrada(this);
     dlgpena->show();
@@ -51,12 +51,12 @@ void DeclaracionEntrada::anadirPena()
     connect(dlgpena, SIGNAL(aceptarPena(Pena)), this, SLOT(recibirPena(Pena)));
 }
 
-void DeclaracionEntrada::recibirInfraccion(Infraccion infraccion)
+void dlgDeclaracionEntrada::recibirInfraccion(Infraccion infraccion)
 {
 
 }
 
-void DeclaracionEntrada::recibirPena(Pena pena)
+void dlgDeclaracionEntrada::recibirPena(Pena pena)
 {
     pena_estipulada = pena;
 
