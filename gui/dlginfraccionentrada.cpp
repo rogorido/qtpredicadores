@@ -22,7 +22,21 @@ dlgInfraccionEntrada::~dlgInfraccionEntrada()
 
 void dlgInfraccionEntrada::aceptar()
 {
+    infraccion.setTipo(ui->txtTipo->text());
 
+    // qué pasa si la infracción está vacía?
+    infraccion.setInfraccion(ui->txtInfraccion->text());
+    infraccion.setInfractores(lista_infractores);
+
+    ExtraInfos e = ui->wdExtras->getExtraInfos();
+    infraccion.setExtras(e);
+
+    if (ui->wdNotas->haCambiado())
+        infraccion.setNota(ui->wdNotas->getNotas());
+
+    emit(aceptarInfraccion(infraccion));
+
+    close();
 }
 
 void dlgInfraccionEntrada::anadirInfractor()

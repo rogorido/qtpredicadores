@@ -130,7 +130,6 @@ void dlgOrdenanzaEntrada::aceptar() {
 
     close();
 
-
 }
 
 void dlgOrdenanzaEntrada::anadirObjeto()

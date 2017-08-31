@@ -33,6 +33,9 @@ void dlgDeclaracionEntrada::aceptar()
     declaracion.setTipo(tipo);
     declaracion.setExtraInfos(e);
 
+    if (ui->wdNotas->haCambiado())
+        declaracion.setNota(ui->wdNotas->getNotas());
+
     emit(aceptarDeclaracion(declaracion));
 
     close();
