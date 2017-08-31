@@ -15,5 +15,37 @@ void Declaracion::setExtraJson(QJsonObject e) { extrajson = e; }
 
 QJsonObject Declaracion::getDeclaracionJson(){
 
+    QJsonObject json;
+
+    json.insert("declaracion", "yes");
+
+    if (!tipo.isEmpty())
+        json.insert("infraccion_tipo", tipo);
+
+    json.insert("declaracion_infraccion", infraccion.getInfraccionJson());
+    json.insert("declaracion_pena", pena.getPenaJson());
+
+    if (persona.estaLleno()){
+        json.insert("declaracion_persona", persona.getId());
+    }
+
+    if (extras.size() > 0 ) {
+        for (int i = 0; i < extras.size(); ++i) {
+            QPair<QString, QString> valores;
+            valores = extras.at(i);
+
+            json.insert(valores.first, valores.second);
+        }
+    }
+
+    if (nota.estaLleno()){
+        json.insert("declaracion_nota", nota.getNotasJson());
+    }
+
+    // y aqí rtt qué coño va...
+    json.insert("declaracion_otros", extrajson);
+
+    return json;
+
 }
 
