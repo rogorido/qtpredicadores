@@ -66,6 +66,9 @@ void dlgSufragiosEntrada::aceptarSufragio()
     sufragio.setDestinatarios(destinatarios);
     sufragio.setExtraInfos(extras);
 
+    if (ui->wdNotas->haCambiado())
+        sufragio.setNota(ui->wdNotas->getNotas());
+
     emit(emitirSufragio(sufragio));
 
     close();

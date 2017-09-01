@@ -2,11 +2,12 @@
 
 Sufragio::Sufragio() { }
 
-void Sufragio::setTipo(QString t) { tipo = t;}
+void Sufragio::setTipo(QString t) { tipo = t; }
 void Sufragio::setMisas(int m) { misas = m; }
 void Sufragio::setMotivo(QString m) { motivo = m; }
 void Sufragio::setDestinatarios(QStringList d) { destinatarios = d; }
-void Sufragio::setExtraInfos(ExtraInfos e) { extras = e;}
+void Sufragio::setExtraInfos(ExtraInfos e) { extras = e; }
+void Sufragio::setNota(Notas n) { nota = n; }
 
 QJsonObject Sufragio::getSufragioJson()
 {
@@ -31,6 +32,9 @@ QJsonObject Sufragio::getSufragioJson()
             json.insert(valores.first, valores.second);
         }
     }
+
+    if (nota.estaLleno())
+        json.insert("meta_info", nota.getNotasJson());
 
     return json;
 
