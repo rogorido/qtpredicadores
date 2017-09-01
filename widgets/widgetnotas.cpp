@@ -15,7 +15,9 @@ WidgetNotas::~WidgetNotas()
 
 bool WidgetNotas::haCambiado()
 {
-    if (ui->ckVolverMirar->checkState() == Qt::Checked || ui->txtNota->toPlainText() != "")
+    if (ui->ckVolverMirar->checkState() == Qt::Checked ||
+            ui->ckInteresante->checkState() == Qt::Checked ||
+            ui->txtNota->toPlainText() != "")
         return true;
     else
         return false;

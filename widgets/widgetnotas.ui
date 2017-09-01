@@ -13,29 +13,29 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QCheckBox" name="ckVolverMirar">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>10</y>
-     <width>121</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Volver a mirar</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="txtNota">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>30</y>
-     <width>381</width>
-     <height>121</height>
-    </rect>
-   </property>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QCheckBox" name="ckVolverMirar">
+       <property name="text">
+        <string>Volver a mirar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="ckInteresante">
+       <property name="text">
+        <string>Interesante</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="txtNota"/>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
