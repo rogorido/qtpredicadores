@@ -127,7 +127,9 @@ void MainWindow::nuevaPersona(){
 
 void MainWindow::nuevaCasa(){
 
-    dlgCasa = new dlgNuevaCasa(this);
+    // dlgCasa = new dlgNuevaCasa(this);
+    // hay q poner this o poner ui->mdiArea como parent?
+    dlgCasa = new dlgNuevaCasa(ui->mdiArea);
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgCasa);
 
     window->show();
