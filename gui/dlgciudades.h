@@ -1,7 +1,7 @@
 #ifndef DLGCIUDADES_H
 #define DLGCIUDADES_H
 
-#include <QDialog>
+#include <QWidget>
 
 class QSqlTableModel;
 
@@ -9,7 +9,7 @@ namespace Ui {
 class dlgCiudades;
 }
 
-class dlgCiudades : public QDialog
+class dlgCiudades : public QWidget
 {
     Q_OBJECT
 

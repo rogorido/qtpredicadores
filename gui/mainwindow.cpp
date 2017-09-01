@@ -163,7 +163,8 @@ void MainWindow::Resoluciones()
 void MainWindow::Ciudades()
 {
     FormCiudades = new dlgCiudades(this);
-    FormCiudades->show();
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(FormCiudades);
+    window->show();
 }
 
 void MainWindow::Casas()

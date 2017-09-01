@@ -4,7 +4,7 @@
 #include <QSqlTableModel>
 
 dlgCiudades::dlgCiudades(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgCiudades)
 {
     ui->setupUi(this);
