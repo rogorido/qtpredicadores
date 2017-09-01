@@ -1,1 +1,5 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/x-office-spreadsheet.png</file>
+    </qresource>
+</RCC>
