@@ -28,6 +28,8 @@ private slots:
     void on_btDetalles_clicked();
     void on_btOtrosNombres_clicked();
 
+    void cerrar();
+
 private:
     Ui::dlgNuevaPersona *ui;
 

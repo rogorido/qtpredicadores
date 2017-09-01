@@ -37,7 +37,7 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     dlgtemas = new dlgTemas(&temas_lista, this);
 
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
-    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
     connect(ui->txtProvincia, SIGNAL(dobleclick()), this, SLOT(anadirProvincia()));
     connect(ui->btQuitarProvincia, SIGNAL(clicked()), this, SLOT(quitarProvincia()));
     connect(ui->txtCapitulo, SIGNAL(dobleclick()), this, SLOT(anadirCapitulo()));
@@ -211,6 +211,11 @@ void dlgNuevaResolucion::recibirCapitulo(Capitulo capitulo){
     QString capitulo_string = capitulo.getNombre() + QString(" (") + capitulo.getFechaInicio().toString() + QString(" )");
 
     ui->txtCapitulo->setText(capitulo_string);
+}
+
+void dlgNuevaResolucion::cerrar()
+{
+    parentWidget()->close();
 }
 
 void dlgNuevaResolucion::anadirCapitulo(){

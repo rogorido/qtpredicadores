@@ -102,6 +102,8 @@ private slots:
     void recibirProvincia(Provincia provincia);
     void recibirCapitulo(Capitulo capitulo);
 
+    void cerrar();
+
 };
 
 #endif // DLGNUEVARESOLUCION_H

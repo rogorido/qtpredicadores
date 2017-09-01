@@ -21,7 +21,7 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
 
     m_personas = PersonasModel::InstanceModel();
 
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarPersona()));
 
     nombres_compl = new QCompleter(this);
@@ -173,6 +173,11 @@ void dlgNuevaPersona::on_btOtrosNombres_clicked(){
 
     dlgotrosnombres->show();
 
+}
+
+void dlgNuevaPersona::cerrar()
+{
+    parentWidget()->close();
 }
 
 void dlgNuevaPersona::borrarCampos(){
