@@ -17,10 +17,12 @@
 #include "gui/dlgfuenteentrada.h"
 
 dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgNuevaCasa)
 {
     ui->setupUi(this);
+
+    setAttribute(Qt::WA_DeleteOnClose);
 
     m_lugares = LugaresModel::InstanceModel();
     m_casas = CasasModel::InstanceModel();

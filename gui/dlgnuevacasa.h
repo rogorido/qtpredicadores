@@ -1,7 +1,7 @@
 #ifndef DLGNUEVACASA_H
 #define DLGNUEVACASA_H
 
-#include <QDialog>
+#include <QWidget>
 
 #include "objs/lugar.h"
 #include "objs/provincia.h"
@@ -17,7 +17,7 @@ namespace Ui {
 class dlgNuevaCasa;
 }
 
-class dlgNuevaCasa : public QDialog
+class dlgNuevaCasa : public QWidget
 {
     Q_OBJECT
 
