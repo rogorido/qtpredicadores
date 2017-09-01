@@ -14,7 +14,7 @@
 #include "objs/persona.h"
 
 dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgNuevaPersona)
 {
     ui->setupUi(this);

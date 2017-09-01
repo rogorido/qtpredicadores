@@ -1,7 +1,7 @@
 #ifndef DLGNUEVAPERSONA_H
 #define DLGNUEVAPERSONA_H
 
-#include <QDialog>
+#include <QWidget>
 
 class PersonasModel;
 class QJsonModel;
@@ -14,7 +14,7 @@ namespace Ui {
 class dlgNuevaPersona;
 }
 
-class dlgNuevaPersona : public QDialog
+class dlgNuevaPersona : public QWidget
 {
     Q_OBJECT
 

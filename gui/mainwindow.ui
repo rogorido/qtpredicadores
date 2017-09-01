@@ -83,6 +83,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionNuevaPersona"/>
    <addaction name="actionNuevaCasa"/>
    <addaction name="actionGeneralEstadisticas"/>
    <addaction name="separator"/>
@@ -117,6 +118,10 @@
    </property>
   </action>
   <action name="actionNuevaPersona">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/persona.png</normaloff>:/icons/icons/persona.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Nueva persona</string>
    </property>

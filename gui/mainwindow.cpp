@@ -122,7 +122,8 @@ void MainWindow::nuevaResolucion(){
 
 void MainWindow::nuevaPersona(){
     dlgPersona = new dlgNuevaPersona(this);
-    dlgPersona->show();
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgPersona);
+    window->show();
 }
 
 void MainWindow::nuevaCasa(){
