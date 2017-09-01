@@ -1,7 +1,7 @@
 #ifndef DLGNUEVAOBRA_H
 #define DLGNUEVAOBRA_H
 
-#include <QDialog>
+#include <QWidget>
 
 #include "objs/persona.h"
 #include "objs/lugar.h"
@@ -18,7 +18,7 @@ namespace Ui {
 class dlgNuevaObra;
 }
 
-class dlgNuevaObra : public QDialog
+class dlgNuevaObra : public QWidget
 {
     Q_OBJECT
 
@@ -82,6 +82,8 @@ private slots:
     void actualizarLugar(Lugar lugar);
 
     void introducirTemas(int id);
+
+    void cerrar();
 
 };
 

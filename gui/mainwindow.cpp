@@ -180,14 +180,14 @@ void MainWindow::Estadisticas()
 {
     FormEstadisticas = new dlgEstadisticas(this);
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(FormEstadisticas);
-
     window->show();
 }
 
 void MainWindow::nuevaObra(){
 
     dlgNuevaObra *nuevaObra = new dlgNuevaObra(this);
-    nuevaObra->show();
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(nuevaObra);
+    window->show();
 }
 
 void MainWindow::nuevaProvincia(){

@@ -17,7 +17,7 @@
 #include <QMessageBox>
 
 dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgNuevaObra)
 {
     ui->setupUi(this);
@@ -34,7 +34,7 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
     connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(on_btAnadirLugar_clicked()));
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(on_btIntroducirLugar_clicked()));
     connect(ui->txtAutor, SIGNAL(dobleclick()), this, SLOT(on_btSeleccionarAutor_clicked()));
-    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
     // mostramos el form de dlgdetalles que ya está creado...
     connect(ui->btDetalles, SIGNAL(clicked(bool)), dlgdetalles, SLOT(show()));
 
@@ -233,6 +233,11 @@ void dlgNuevaObra::introducirTemas(int id){
         query.bindValue(":tema", temasescogidos.at(i).id);
         query.exec();
     }
+}
+
+void dlgNuevaObra::cerrar()
+{
+    parentWidget()->close();
 }
 
 void dlgNuevaObra::borrarCampos(){

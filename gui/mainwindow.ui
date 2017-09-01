@@ -87,6 +87,8 @@
    <addaction name="actionNuevaPersona"/>
    <addaction name="actionNuevoObispo"/>
    <addaction name="actionNuevaCasa"/>
+   <addaction name="actionNuevaObra"/>
+   <addaction name="separator"/>
    <addaction name="actionGeneralEstadisticas"/>
    <addaction name="separator"/>
    <addaction name="actionResoluciones"/>
@@ -132,6 +134,10 @@
    </property>
   </action>
   <action name="actionNuevaObra">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/book.png</normaloff>:/icons/icons/book.png</iconset>
+   </property>
    <property name="text">
     <string>Nueva &amp;obra</string>
    </property>
