@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>DlgResoluciones</class>
- <widget class="QDialog" name="DlgResoluciones">
+ <widget class="QWidget" name="DlgResoluciones">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Resoluciones</string>
   </property>
   <widget class="QTableView" name="twResoluciones">
    <property name="geometry">
@@ -176,8 +176,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>251</width>
-      <height>335</height>
+      <width>100</width>
+      <height>30</height>
      </rect>
     </property>
     <attribute name="label">
@@ -203,7 +203,7 @@
       <x>0</x>
       <y>0</y>
       <width>251</width>
-      <height>335</height>
+      <height>333</height>
      </rect>
     </property>
     <attribute name="label">

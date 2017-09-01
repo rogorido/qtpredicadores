@@ -20,7 +20,7 @@ const QString sql_general="SELECT DISTINCT ON (r.resolution_id) * FROM resolutio
                           "LEFT JOIN chapters c ON r.chapter = c.chapter_id";
 
 DlgResoluciones::DlgResoluciones(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::DlgResoluciones)
 {
     ui->setupUi(this);

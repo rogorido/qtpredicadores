@@ -85,6 +85,11 @@
    </attribute>
    <addaction name="actionNuevaCasa"/>
    <addaction name="actionGeneralEstadisticas"/>
+   <addaction name="separator"/>
+   <addaction name="actionResoluciones"/>
+   <addaction name="actionCiudades"/>
+   <addaction name="actionCasas"/>
+   <addaction name="actionCapituli"/>
   </widget>
   <action name="actionNuevoCapitulo">
    <property name="text">
@@ -149,21 +154,37 @@
    </property>
   </action>
   <action name="actionResoluciones">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/redshift.png</normaloff>:/icons/icons/redshift.png</iconset>
+   </property>
    <property name="text">
     <string>Resolu&amp;ciones</string>
    </property>
   </action>
   <action name="actionCiudades">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/city.png</normaloff>:/icons/icons/city.png</iconset>
+   </property>
    <property name="text">
     <string>C&amp;iudades</string>
    </property>
   </action>
   <action name="actionCasas">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/christianity.png</normaloff>:/icons/icons/christianity.png</iconset>
+   </property>
    <property name="text">
     <string>Ca&amp;sas</string>
    </property>
   </action>
   <action name="actionCapituli">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/chapter.png</normaloff>:/icons/icons/chapter.png</iconset>
+   </property>
    <property name="text">
     <string>Ca&amp;pítulos</string>
    </property>

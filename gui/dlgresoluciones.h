@@ -1,7 +1,7 @@
 #ifndef DLGRESOLUCIONES_H
 #define DLGRESOLUCIONES_H
 
-#include <QDialog>
+#include <QWidget>
 
 #include "objs/tema.h"
 
@@ -17,7 +17,7 @@ namespace Ui {
 class DlgResoluciones;
 }
 
-class DlgResoluciones : public QDialog
+class DlgResoluciones : public QWidget
 {
     Q_OBJECT
 
