@@ -117,7 +117,8 @@ void MainWindow::cargarModelos(){
 
 void MainWindow::nuevaResolucion(){
     dlgResolucion = new dlgNuevaResolucion(0, this);
-    dlgResolucion->show();
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgResolucion);
+    window->show();
 }
 
 void MainWindow::nuevaPersona(){
@@ -132,9 +133,7 @@ void MainWindow::nuevaCasa(){
     // hay q poner this o poner ui->mdiArea como parent?
     dlgCasa = new dlgNuevaCasa(ui->mdiArea);
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgCasa);
-
     window->show();
-
 }
 
 void MainWindow::nuevaDiocesis(){
@@ -145,7 +144,8 @@ void MainWindow::nuevaDiocesis(){
 void MainWindow::nuevoObispo()
 {
     dlgObispo = new dlgNuevoObispo(this);
-    dlgObispo->show();
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgObispo);
+    window->show();
 }
 
 void MainWindow::Capitulos(){

@@ -1,7 +1,7 @@
 #ifndef DLGNUEVOOBISPO_H
 #define DLGNUEVOOBISPO_H
 
-#include <QDialog>
+#include <QWidget>
 #include <QJsonObject>
 
 #include "objs/persona.h"
@@ -17,7 +17,7 @@ namespace Ui {
 class dlgNuevoObispo;
 }
 
-class dlgNuevoObispo : public QDialog
+class dlgNuevoObispo : public QWidget
 {
     Q_OBJECT
 
@@ -38,6 +38,8 @@ private slots:
     void recibirPersona(Persona persona);
     void recibirDiocesis(Diocesis diocesis);
     void recibirFuente(fuente datoobra);
+
+    void cerrar();
 
 private:
     Ui::dlgNuevoObispo *ui;

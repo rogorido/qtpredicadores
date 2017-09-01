@@ -1,7 +1,7 @@
 #ifndef DLGNUEVARESOLUCION_H
 #define DLGNUEVARESOLUCION_H
 
-#include <QDialog>
+#include <QWidget>
 #include "objs/provincia.h"
 #include "objs/capitulo.h"
 #include "objs/variados.h"
@@ -21,7 +21,7 @@ namespace Ui {
 class dlgNuevaResolucion;
 }
 
-class dlgNuevaResolucion : public QDialog
+class dlgNuevaResolucion : public QWidget
 {
     Q_OBJECT
 

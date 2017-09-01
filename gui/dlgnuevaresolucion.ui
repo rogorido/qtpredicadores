@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>dlgNuevaResolucion</class>
- <widget class="QDialog" name="dlgNuevaResolucion">
+ <widget class="QWidget" name="dlgNuevaResolucion">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,432 +13,426 @@
   <property name="windowTitle">
    <string>Nueva resolución</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>681</width>
-     <height>421</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Epígrafe</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="txtEpigrafe"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="tabResolucion">
-       <attribute name="title">
-        <string>Resolución</string>
-       </attribute>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>651</width>
-          <height>291</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <item>
-          <widget class="QTextEdit" name="txtResolucion">
-           <property name="toolTip">
-            <string>Resolución</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QTextEdit" name="txtResolucionTraduccion">
-           <property name="toolTip">
-            <string>Traducción</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+  <property name="windowIcon">
+   <iconset resource="../icons.qrc">
+    <normaloff>:/icons/icons/resolution.png</normaloff>:/icons/icons/resolution.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Epígrafe</string>
+       </property>
       </widget>
-      <widget class="QWidget" name="tabResumen">
-       <attribute name="title">
-        <string>Resumen</string>
-       </attribute>
-       <widget class="QTextEdit" name="txtResolucionResumen">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>651</width>
-          <height>311</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>Resumen</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tabNotas">
-       <attribute name="title">
-        <string>Notas</string>
-       </attribute>
-       <widget class="QTextEdit" name="txtResolucionNotas">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>661</width>
-          <height>311</height>
-         </rect>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tabOtros">
-       <attribute name="title">
-        <string>Otros</string>
-       </attribute>
-       <widget class="QCheckBox" name="chEntendida">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>30</y>
-          <width>84</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Entendida</string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="chVolverMirar">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>60</y>
-          <width>121</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Volver a mirar</string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="chTradudida">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>90</y>
-          <width>84</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Traducida</string>
-        </property>
-       </widget>
-       <widget class="QSpinBox" name="spInteresante">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>160</y>
-          <width>48</width>
-          <height>23</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_2">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>160</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Interesante</string>
-        </property>
-       </widget>
-       <widget class="myQLineEdit" name="txtProvincia">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>30</y>
-          <width>251</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>220</x>
-          <y>40</y>
-          <width>58</width>
-          <height>14</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Provincia</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btQuitarProvincia">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>30</y>
-          <width>41</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>-</string>
-        </property>
-       </widget>
-       <widget class="myQLineEdit" name="txtCapitulo">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>70</y>
-          <width>251</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_4">
-        <property name="geometry">
-         <rect>
-          <x>220</x>
-          <y>80</y>
-          <width>58</width>
-          <height>14</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Capítulo</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btQuitarCapitulo">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>70</y>
-          <width>41</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>-</string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="chRazonada">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>120</y>
-          <width>84</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Razonada</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="txtPaginas">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>100</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_5">
-        <property name="geometry">
-         <rect>
-          <x>220</x>
-          <y>110</y>
-          <width>58</width>
-          <height>14</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Páginas</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab">
-       <attribute name="title">
-        <string>Verbos</string>
-       </attribute>
-       <widget class="QPushButton" name="btAnadirVerbo">
-        <property name="geometry">
-         <rect>
-          <x>280</x>
-          <y>40</y>
-          <width>111</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Añadir</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btQuitarVerbo">
-        <property name="geometry">
-         <rect>
-          <x>280</x>
-          <y>70</y>
-          <width>111</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Borrar</string>
-        </property>
-       </widget>
-       <widget class="QListView" name="twVerbs">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>10</y>
-          <width>256</width>
-          <height>271</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="txtVerbo">
-        <property name="geometry">
-         <rect>
-          <x>280</x>
-          <y>10</y>
-          <width>321</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_2">
-       <attribute name="title">
-        <string>Expresiones</string>
-       </attribute>
-       <widget class="QPushButton" name="btAnadirExpresion">
-        <property name="geometry">
-         <rect>
-          <x>280</x>
-          <y>40</y>
-          <width>111</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Añadir</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btQuitarExpresion">
-        <property name="geometry">
-         <rect>
-          <x>280</x>
-          <y>70</y>
-          <width>111</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Borrar</string>
-        </property>
-       </widget>
-       <widget class="QListView" name="twExpresiones">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>10</y>
-          <width>256</width>
-          <height>271</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="txtExpresion">
-        <property name="geometry">
-         <rect>
-          <x>280</x>
-          <y>10</y>
-          <width>321</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtEpigrafe"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabResolucion">
+      <attribute name="title">
+       <string>Resolución</string>
+      </attribute>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>651</width>
+         <height>291</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QTextEdit" name="txtResolucion">
+          <property name="toolTip">
+           <string>Resolución</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="txtResolucionTraduccion">
+          <property name="toolTip">
+           <string>Traducción</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QPushButton" name="btMasivo">
-        <property name="text">
-         <string>Masivo</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btDetalles">
-        <property name="text">
-         <string>Añadir &amp;detalles</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btTemas">
-        <property name="text">
-         <string>Añadir &amp;temas</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btCancelar">
-        <property name="text">
-         <string>&amp;Cancelar</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btOK">
-        <property name="text">
-         <string>Aceptar</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-   </layout>
-  </widget>
+     <widget class="QWidget" name="tabResumen">
+      <attribute name="title">
+       <string>Resumen</string>
+      </attribute>
+      <widget class="QTextEdit" name="txtResolucionResumen">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>651</width>
+         <height>311</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>Resumen</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tabNotas">
+      <attribute name="title">
+       <string>Notas</string>
+      </attribute>
+      <widget class="QTextEdit" name="txtResolucionNotas">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>661</width>
+         <height>311</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tabOtros">
+      <attribute name="title">
+       <string>Otros</string>
+      </attribute>
+      <widget class="QCheckBox" name="chEntendida">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>30</y>
+         <width>84</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Entendida</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="chVolverMirar">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>60</y>
+         <width>121</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Volver a mirar</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="chTradudida">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>90</y>
+         <width>84</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Traducida</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spInteresante">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>160</y>
+         <width>48</width>
+         <height>23</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>160</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Interesante</string>
+       </property>
+      </widget>
+      <widget class="myQLineEdit" name="txtProvincia">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>30</y>
+         <width>251</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>40</y>
+         <width>58</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Provincia</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btQuitarProvincia">
+       <property name="geometry">
+        <rect>
+         <x>570</x>
+         <y>30</y>
+         <width>41</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+      <widget class="myQLineEdit" name="txtCapitulo">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>70</y>
+         <width>251</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>80</y>
+         <width>58</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Capítulo</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btQuitarCapitulo">
+       <property name="geometry">
+        <rect>
+         <x>570</x>
+         <y>70</y>
+         <width>41</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="chRazonada">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>120</y>
+         <width>84</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Razonada</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="txtPaginas">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>100</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>110</y>
+         <width>58</width>
+         <height>14</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Páginas</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Verbos</string>
+      </attribute>
+      <widget class="QPushButton" name="btAnadirVerbo">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>40</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Añadir</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btQuitarVerbo">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>70</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Borrar</string>
+       </property>
+      </widget>
+      <widget class="QListView" name="twVerbs">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>10</y>
+         <width>256</width>
+         <height>271</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="txtVerbo">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>10</y>
+         <width>321</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Expresiones</string>
+      </attribute>
+      <widget class="QPushButton" name="btAnadirExpresion">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>40</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Añadir</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btQuitarExpresion">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>70</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Borrar</string>
+       </property>
+      </widget>
+      <widget class="QListView" name="twExpresiones">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>10</y>
+         <width>256</width>
+         <height>271</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="txtExpresion">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>10</y>
+         <width>321</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="btMasivo">
+       <property name="text">
+        <string>Masivo</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btDetalles">
+       <property name="text">
+        <string>Añadir &amp;detalles</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btTemas">
+       <property name="text">
+        <string>Añadir &amp;temas</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btCancelar">
+       <property name="text">
+        <string>&amp;Cancelar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btOK">
+       <property name="text">
+        <string>Aceptar</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <customwidgets>
   <customwidget>
@@ -467,6 +461,8 @@
   <tabstop>btCancelar</tabstop>
   <tabstop>btOK</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

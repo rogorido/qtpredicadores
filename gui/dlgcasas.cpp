@@ -8,7 +8,7 @@ dlgCasas::dlgCasas(QWidget *parent) :
     ui(new Ui::dlgCasas)
 {
     ui->setupUi(this);
-    connect(ui->btCerrar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCerrar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
 
     cargarModelos();
 }
@@ -16,6 +16,11 @@ dlgCasas::dlgCasas(QWidget *parent) :
 dlgCasas::~dlgCasas()
 {
     delete ui;
+}
+
+void dlgCasas::cerrar()
+{
+    parentWidget()->close();
 }
 
 void dlgCasas::cargarModelos(){

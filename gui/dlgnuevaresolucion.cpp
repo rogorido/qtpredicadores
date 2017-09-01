@@ -24,7 +24,7 @@
 
 dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
                                  QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgNuevaResolucion), capitulo_origen(capitulo)
 {
     ui->setupUi(this);

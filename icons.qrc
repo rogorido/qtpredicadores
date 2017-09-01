@@ -5,5 +5,9 @@
         <file>icons/city.png</file>
         <file>icons/christianity.png</file>
         <file>icons/chapter.png</file>
+        <file>icons/persona.png</file>
+        <file>icons/resolution.png</file>
+        <file>icons/bishop.png</file>
+        <file>icons/small_monastery.png</file>
     </qresource>
 </RCC>

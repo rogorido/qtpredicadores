@@ -83,7 +83,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionNuevaResolucion"/>
    <addaction name="actionNuevaPersona"/>
+   <addaction name="actionNuevoObispo"/>
    <addaction name="actionNuevaCasa"/>
    <addaction name="actionGeneralEstadisticas"/>
    <addaction name="separator"/>
@@ -107,8 +109,8 @@
   </action>
   <action name="actionNuevaCasa">
    <property name="icon">
-    <iconset>
-     <normaloff>:/icons/down2.png</normaloff>:/icons/down2.png</iconset>
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/small_monastery.png</normaloff>:/icons/icons/small_monastery.png</iconset>
    </property>
    <property name="text">
     <string>N&amp;ueva casa</string>
@@ -151,6 +153,10 @@
    </property>
   </action>
   <action name="actionNuevaResolucion">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/resolution.png</normaloff>:/icons/icons/resolution.png</iconset>
+   </property>
    <property name="text">
     <string>Nueva &amp;resolución</string>
    </property>
@@ -212,6 +218,10 @@
    </property>
   </action>
   <action name="actionNuevoObispo">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/bishop.png</normaloff>:/icons/icons/bishop.png</iconset>
+   </property>
    <property name="text">
     <string>Nue&amp;vo obispo</string>
    </property>

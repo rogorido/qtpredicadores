@@ -14,7 +14,7 @@
 #include "dlgfuenteentrada.h"
 
 dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgNuevoObispo)
 {
     ui->setupUi(this);
@@ -38,7 +38,7 @@ dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
      */
     dlgdetalles = new dlgDetalles(json_detalles, OBRA, false, this);
 
-    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarObispo()));
     connect(ui->btFuente, SIGNAL(clicked()), this, SLOT(anadirFuente()));
     connect(ui->txtPersona, SIGNAL(dobleclick()), this, SLOT(anadirPersona()));
@@ -205,6 +205,11 @@ void dlgNuevoObispo::recibirFuente(fuente datoobra)
     json_datosconcretos.insert("pages", datoobra.paginas);
 
     fuentedatos->insert("source", json_datosconcretos);
+}
+
+void dlgNuevoObispo::cerrar()
+{
+    parentWidget()->close();
 }
 
 void dlgNuevoObispo::introducirJson(const int id)

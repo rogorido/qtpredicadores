@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Nueva casa</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../icons.qrc">
+    <normaloff>:/icons/icons/small_monastery.png</normaloff>:/icons/icons/small_monastery.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -264,6 +268,8 @@
   <tabstop>btCancelar</tabstop>
   <tabstop>btOK</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

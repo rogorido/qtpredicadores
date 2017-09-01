@@ -17,6 +17,10 @@ public:
     explicit dlgCasas(QWidget *parent = 0);
     ~dlgCasas();
 
+private slots:
+
+    void cerrar();
+
 private:
     Ui::dlgCasas *ui;
 
