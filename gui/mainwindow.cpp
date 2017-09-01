@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QInputDialog>
 #include <QSqlTableModel>
+#include <QMdiSubWindow>
 
 #include "dlgnuevocapitulo.h"
 #include "dlgnuevaresolucion.h"
@@ -38,6 +39,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    setCentralWidget(ui->mdiArea);
+    QMainWindow::showMaximized();
 
     db = QSqlDatabase::addDatabase("QPSQL");
      db.setHostName("localhost");
@@ -122,8 +126,12 @@ void MainWindow::nuevaPersona(){
 }
 
 void MainWindow::nuevaCasa(){
+
     dlgCasa = new dlgNuevaCasa(this);
-    dlgCasa->show();
+    auto window = ui->mdiArea->addSubWindow(dlgCasa);
+
+    window->show();
+
 }
 
 void MainWindow::nuevaDiocesis(){
