@@ -18,6 +18,12 @@ QJsonObject Ordenanza::getOrdenanzaJson()
 {
     QJsonObject json;
 
+    /*
+     * ponemos este campo general, pq tal vez sirva para hacer
+     * búsquedas más generales...
+     */
+    json.insert("ordenanza", "yes");
+
     if (tipo_ordenanza == TipoOrdenanza::PROHIBICION)
         json.insert("prohibición", "yes");
     else

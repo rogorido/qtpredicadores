@@ -38,14 +38,15 @@ void dlgCiudades::cargarModelos()
     ciudades_model->select();
 
     ui->twCiudades->setModel(ciudades_model);
-    ui->twCiudades->hideColumn(0);
-    ui->twCiudades->hideColumn(8);
-    ui->twCiudades->hideColumn(9);
     ui->twCiudades->setSortingEnabled(true);
     ui->twCiudades->resizeColumnsToContents();
     ui->twCiudades->resizeRowsToContents();
     ui->twCiudades->setAlternatingRowColors(true);
     ui->twCiudades->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->twCiudades->horizontalHeader()->setStretchLastSection(true);
+    ui->twCiudades->hideColumn(0);
+    ui->twCiudades->hideColumn(8);
+    ui->twCiudades->hideColumn(9);
+    ui->twCiudades->hideColumn(10); // other_data
 
 }
