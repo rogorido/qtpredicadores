@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/icons">
         <file>icons/x-office-spreadsheet.png</file>
+        <file>icons/redshift.png</file>
+        <file>icons/city.png</file>
+        <file>icons/christianity.png</file>
+        <file>icons/chapter.png</file>
     </qresource>
 </RCC>
