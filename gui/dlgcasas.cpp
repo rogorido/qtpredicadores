@@ -4,7 +4,7 @@
 #include <QSqlRelationalTableModel>
 
 dlgCasas::dlgCasas(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgCasas)
 {
     ui->setupUi(this);

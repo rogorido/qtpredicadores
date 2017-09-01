@@ -1,7 +1,7 @@
 #ifndef DLGCASAS_H
 #define DLGCASAS_H
 
-#include <QDialog>
+#include <QWidget>
 
 class QSqlRelationalTableModel;
 
@@ -9,7 +9,7 @@ namespace Ui {
 class dlgCasas;
 }
 
-class dlgCasas : public QDialog
+class dlgCasas : public QWidget
 {
     Q_OBJECT
 

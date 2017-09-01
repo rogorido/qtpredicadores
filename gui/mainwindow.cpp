@@ -170,7 +170,9 @@ void MainWindow::Ciudades()
 void MainWindow::Casas()
 {
     FormCasas = new dlgCasas(this);
-    FormCasas->show();
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(FormCasas);
+
+    window->show();
 }
 
 void MainWindow::Estadisticas()
