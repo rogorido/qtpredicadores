@@ -38,6 +38,8 @@ private slots:
     void recibirProvincia(Provincia provincia);
     void recibirFuente(fuente f);
 
+    void cerrar();
+
 private:
     Ui::dlgNuevaCasa *ui;
 

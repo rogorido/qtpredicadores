@@ -22,15 +22,13 @@ dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setAttribute(Qt::WA_DeleteOnClose);
-
     m_lugares = LugaresModel::InstanceModel();
     m_casas = CasasModel::InstanceModel();
 
     ui->txtProvincia->setClearButtonEnabled(true);
     ui->txtLugar->setClearButtonEnabled(true);
 
-    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarCasa()));
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(anadirLugar()));
     connect(ui->btQuitarLugar, SIGNAL(clicked()), this, SLOT(quitarLugar()));
@@ -161,6 +159,11 @@ void dlgNuevaCasa::recibirFuente(fuente f)
     fuentedatos->insert("book", QJsonValue(f.titulo));
     fuentedatos->insert("volume", f.tomo);
     fuentedatos->insert("pages", f.paginas);
+}
+
+void dlgNuevaCasa::cerrar()
+{
+    this->parentWidget()->close();
 }
 
 void dlgNuevaCasa::quitarProvincia(){

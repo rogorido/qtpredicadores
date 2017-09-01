@@ -128,7 +128,7 @@ void MainWindow::nuevaPersona(){
 void MainWindow::nuevaCasa(){
 
     dlgCasa = new dlgNuevaCasa(this);
-    auto window = ui->mdiArea->addSubWindow(dlgCasa);
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgCasa);
 
     window->show();
 
