@@ -1,7 +1,7 @@
 #ifndef DLGESTADISTICAS_H
 #define DLGESTADISTICAS_H
 
-#include <QDialog>
+#include <QWidget>
 
 class QSqlQueryModel;
 
@@ -9,7 +9,7 @@ namespace Ui {
 class dlgEstadisticas;
 }
 
-class dlgEstadisticas : public QDialog
+class dlgEstadisticas : public QWidget
 {
     Q_OBJECT
 
@@ -20,7 +20,6 @@ public:
 private slots:
 
     void cambiarModelo(int row);
-
 
 private:
     Ui::dlgEstadisticas *ui;

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>538</width>
+    <height>340</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>538</width>
      <height>20</height>
     </rect>
    </property>
@@ -73,6 +73,18 @@
    <addaction name="menuRefo_rma"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionNuevaCasa"/>
+  </widget>
   <action name="actionNuevoCapitulo">
    <property name="text">
     <string>Nu&amp;evo capítulo</string>
@@ -87,6 +99,10 @@
    </property>
   </action>
   <action name="actionNuevaCasa">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/down2.png</normaloff>:/icons/down2.png</iconset>
+   </property>
    <property name="text">
     <string>N&amp;ueva casa</string>
    </property>
@@ -178,6 +194,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

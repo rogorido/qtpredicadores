@@ -173,7 +173,9 @@ void MainWindow::Casas()
 void MainWindow::Estadisticas()
 {
     FormEstadisticas = new dlgEstadisticas(this);
-    FormEstadisticas->show();
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(FormEstadisticas);
+
+    window->show();
 }
 
 void MainWindow::nuevaObra(){

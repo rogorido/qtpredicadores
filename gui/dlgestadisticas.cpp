@@ -8,7 +8,7 @@ const QString est_resoluciones_por_capitulo="SELECT * FROM analysis.resolutions_
 const QString est_casas_por_provincias="SELECT * FROM analysis.casas_por_provincias";
 
 dlgEstadisticas::dlgEstadisticas(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgEstadisticas)
 {
     ui->setupUi(this);
@@ -17,7 +17,6 @@ dlgEstadisticas::dlgEstadisticas(QWidget *parent) :
 
     ui->twEstadisticas->horizontalHeader()->setStretchLastSection(true);
 
-    connect(ui->btCerrar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->cbQuery, SIGNAL(currentIndexChanged(int)), this, SLOT(cambiarModelo(int)));
 
     ui->cbQuery->addItem("Tema por resolución");
