@@ -84,6 +84,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionNuevaCasa"/>
+   <addaction name="actionGeneralEstadisticas"/>
   </widget>
   <action name="actionNuevoCapitulo">
    <property name="text">
@@ -100,7 +101,7 @@
   </action>
   <action name="actionNuevaCasa">
    <property name="icon">
-    <iconset resource="../icons.qrc">
+    <iconset>
      <normaloff>:/icons/down2.png</normaloff>:/icons/down2.png</iconset>
    </property>
    <property name="text">
@@ -168,8 +169,15 @@
    </property>
   </action>
   <action name="actionGeneralEstadisticas">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/x-office-spreadsheet.png</normaloff>:/icons/icons/x-office-spreadsheet.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;General</string>
+   </property>
+   <property name="toolTip">
+    <string>Estadísticas</string>
    </property>
   </action>
   <action name="actionNuevaDiocesis">
