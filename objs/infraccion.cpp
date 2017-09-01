@@ -43,7 +43,7 @@ QJsonObject Infraccion::getInfraccionJson(){
     }
 
     if (nota.estaLleno()){
-        json.insert("notas", nota.getNotasJson());
+        json.insert("meta_info", nota.getNotasJson());
     }
 
     return json;

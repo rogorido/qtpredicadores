@@ -39,7 +39,7 @@ QJsonObject Declaracion::getDeclaracionJson(){
     }
 
     if (nota.estaLleno()){
-        json.insert("declaracion_nota", nota.getNotasJson());
+        json.insert("meta_info", nota.getNotasJson());
     }
 
     // y aqí rtt qué coño va...
