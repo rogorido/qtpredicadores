@@ -379,14 +379,14 @@
      <item>
       <widget class="QPushButton" name="btDetalles">
        <property name="text">
-        <string>Añadir &amp;detalles</string>
+        <string>&amp;Detalles</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btTemas">
        <property name="text">
-        <string>Añadir &amp;temas</string>
+        <string>&amp;Temas</string>
        </property>
       </widget>
      </item>
