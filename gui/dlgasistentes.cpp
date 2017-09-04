@@ -1,5 +1,5 @@
-#include "dlgmasivo.h"
-#include "ui_dlgmasivo.h"
+#include "dlgasistentes.h"
+#include "ui_dlgasistentes.h"
 
 #include <QSqlQuery>
 #include <QSqlTableModel>
@@ -19,9 +19,9 @@
  * Por eso lo hago a mano con un QList<elementopareado>
  */
 
-dlgMasivo::dlgMasivo(int chapter, QWidget *parent) :
+dlgAsistentes::dlgAsistentes(int chapter, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::dlgMasivo), chapterescogido(chapter)
+    ui(new Ui::dlgAsistentes), chapterescogido(chapter)
 {
     ui->setupUi(this);
 
@@ -38,12 +38,12 @@ dlgMasivo::dlgMasivo(int chapter, QWidget *parent) :
     cargarModelos();
 }
 
-dlgMasivo::~dlgMasivo()
+dlgAsistentes::~dlgAsistentes()
 {
     delete ui;
 }
 
-void dlgMasivo::aceptar()
+void dlgAsistentes::aceptar()
 {
     if (ui->txtKey->text().isEmpty() || ui->txtValue->text().isEmpty()){
         int ret = QMessageBox::warning(this, "Imposible al introducir los datos",
@@ -87,7 +87,7 @@ void dlgMasivo::aceptar()
 
 }
 
-void dlgMasivo::anadirProvincia()
+void dlgAsistentes::anadirProvincia()
 {
 
     QModelIndex idx = provincias->index(ui->twProvinciasSinSeleccionar->currentIndex().row(), 0);
@@ -110,7 +110,7 @@ void dlgMasivo::anadirProvincia()
 
 }
 
-void dlgMasivo::quitarProvincia()
+void dlgAsistentes::quitarProvincia()
 {
 
     QModelIndex idx = ui->twProvinciasSeleccionadas->currentIndex();
@@ -132,7 +132,7 @@ void dlgMasivo::quitarProvincia()
     //ui->twProvinciasSeleccionadas->removeItemWidget(ui->twProvinciasSeleccionadas->currentItem());
 }
 
-void dlgMasivo::desmarcarTodasProvincias()
+void dlgAsistentes::desmarcarTodasProvincias()
 {
     /*
      * con esto desmacamos todas las provincias que
@@ -145,7 +145,7 @@ void dlgMasivo::desmarcarTodasProvincias()
 
 }
 
-void dlgMasivo::cargarModelos()
+void dlgAsistentes::cargarModelos()
 {
     provincias = new QSqlTableModel(this);
     provincias->setTable("general.provinces");

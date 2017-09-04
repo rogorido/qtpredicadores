@@ -1,5 +1,5 @@
-#ifndef DLGMASIVO_H
-#define DLGMASIVO_H
+#ifndef DLGASISTENTES_H
+#define DLGASISTENTES_H
 
 #include <QDialog>
 
@@ -8,10 +8,10 @@
 class QSqlTableModel;
 
 namespace Ui {
-class dlgMasivo;
+class dlgAsistentes;
 }
 
-class dlgMasivo : public QDialog
+class dlgAsistentes : public QDialog
 {
     Q_OBJECT
 
@@ -20,8 +20,8 @@ public:
      * el int chapter es cuando lo abrimos desde el formulario
      * de gestión de chapters.
      */
-    explicit dlgMasivo(int chapter, QWidget *parent = 0);
-    ~dlgMasivo();
+    explicit dlgAsistentes(int chapter, QWidget *parent = 0);
+    ~dlgAsistentes();
 
 private slots:
 
@@ -30,7 +30,7 @@ private slots:
     void quitarProvincia();
 
 private:
-    Ui::dlgMasivo *ui;
+    Ui::dlgAsistentes *ui;
 
     QList<elementopareado> provinciasescogidas;
 
@@ -48,4 +48,4 @@ private:
     int chapterescogido;
 };
 
-#endif // DLGMASIVO_H
+#endif // DLGASISTENTES_H
