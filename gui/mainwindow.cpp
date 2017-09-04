@@ -122,6 +122,9 @@ void MainWindow::cargarModelos(){
 void MainWindow::nuevaResolucion(){
     dlgResolucion = new dlgNuevaResolucion(0, this);
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgResolucion);
+
+    connect(dlgResolucion, SIGNAL(abrirDetalles(dlgDetalles*)), this, SLOT(abrirDetalles(dlgDetalles*)));
+
     window->show();
 }
 
@@ -187,10 +190,9 @@ void MainWindow::Estadisticas()
     window->show();
 }
 
-void MainWindow::abrirDetalles(QJsonModel *json, int t, bool anadir)
+void MainWindow::abrirDetalles(dlgDetalles *dlg)
 {
-    dlgdetalles = new dlgDetalles(json, t, anadir, this);
-    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgdetalles);
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlg);
     window->show();
 }
 

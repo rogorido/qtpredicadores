@@ -20,8 +20,6 @@ class dlgReforma;
 
 class dlgDetalles;
 
-class QJsonModel;
-
 class TemasModel;
 class LugaresModel;
 class PersonasModel;
@@ -45,7 +43,7 @@ public slots:
 
     // para lo de MDIarea
 
-    void abrirDetalles(QJsonModel *json, int t, bool anadir);
+    void abrirDetalles(dlgDetalles *dlg);
 
 private slots:
 

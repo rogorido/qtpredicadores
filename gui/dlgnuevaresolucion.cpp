@@ -171,7 +171,7 @@ void dlgNuevaResolucion::introducirTemas(const int id){
 
 void dlgNuevaResolucion::on_btDetalles_clicked()
 {
-    dlgdetalles->show();
+    emit(abrirDetalles(dlgdetalles));
 }
 
 void dlgNuevaResolucion::on_btTemas_clicked(){

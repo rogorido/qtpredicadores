@@ -29,6 +29,10 @@ public:
                              QWidget *parent = 0);
     ~dlgNuevaResolucion();
 
+signals:
+
+    void abrirDetalles(dlgDetalles *dlg);
+
 private:
     Ui::dlgNuevaResolucion *ui;
 
