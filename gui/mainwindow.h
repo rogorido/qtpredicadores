@@ -18,6 +18,10 @@ class dlgCasas;
 class dlgEstadisticas;
 class dlgReforma;
 
+class dlgDetalles;
+
+class QJsonModel;
+
 class TemasModel;
 class LugaresModel;
 class PersonasModel;
@@ -36,6 +40,12 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+public slots:
+
+    // para lo de MDIarea
+
+    void abrirDetalles(QJsonModel *json, int t, bool anadir);
 
 private slots:
 
@@ -77,6 +87,9 @@ private:
     DlgResoluciones *FormResoluciones;
     dlgCiudades *FormCiudades;
     dlgCasas *FormCasas;
+
+    // esto es para gestionarlos con lo de MDIarea
+    dlgDetalles *dlgdetalles;
 
     dlgEstadisticas *FormEstadisticas;
 

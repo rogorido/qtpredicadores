@@ -23,12 +23,16 @@
 #include "dlgestadisticas.h"
 #include "dlgreforma.h"
 
+// para lo de MDIarea
+#include "dlgdetalles.h"
+
 #include "models/temasmodel.h"
 #include "models/lugaresmodel.h"
 #include "models/personasmodel.h"
 #include "models/casasmodel.h"
 #include "models/provinciasmodel.h"
 #include "models/capitulosmodel.h"
+#include "models/qjsonmodel.h"
 
 #include "objs/tema.h"
 
@@ -180,6 +184,13 @@ void MainWindow::Estadisticas()
 {
     FormEstadisticas = new dlgEstadisticas(this);
     QMdiSubWindow *window = ui->mdiArea->addSubWindow(FormEstadisticas);
+    window->show();
+}
+
+void MainWindow::abrirDetalles(QJsonModel *json, int t, bool anadir)
+{
+    dlgdetalles = new dlgDetalles(json, t, anadir, this);
+    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgdetalles);
     window->show();
 }
 
