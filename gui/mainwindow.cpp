@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    mdiArea = new MyQmdiArea(this);
+    mdiArea = MyQmdiArea::Instance(this);
 
     setCentralWidget(mdiArea);
     QMainWindow::showMaximized();
