@@ -20,6 +20,8 @@ class QSqlQueryModel;
 class QCompleter;
 class QJsonModel;
 
+class MyQmdiArea;
+
 namespace Ui {
 class dlgDetalles;
 }
@@ -76,6 +78,8 @@ protected:
 
 private:
     Ui::dlgDetalles *ui;
+
+    MyQmdiArea *mdiarea;
 
     /*
      * este es el model donde vamos metiendo QJsonObjects

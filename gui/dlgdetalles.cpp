@@ -12,11 +12,14 @@
 
 #include "models/qjsonmodel.h"
 
+#include "widgets/myqmdiarea.h"
+
 #include <QSqlQueryModel>
 #include <QCompleter>
 #include <QJsonArray>
 #include <QTreeWidgetItem>
 #include <QJsonObject>
+#include <QMdiSubWindow>
 
 #include <QDebug>
 
@@ -33,6 +36,8 @@ dlgDetalles::dlgDetalles(QJsonModel *json, int t, bool anadir, QWidget *parent) 
     ui(new Ui::dlgDetalles), json_model(json), tipo(t), anadiendo(anadir)
 {
     ui->setupUi(this);
+
+    mdiarea = MyQmdiArea::Instance(this);
 
     ui->twJsonGeneral->setModel(json_model);
 
@@ -238,9 +243,11 @@ void dlgDetalles::on_btOrdenanzas_clicked()
 void dlgDetalles::on_btDeclaraciones_clicked()
 {
     dlgDeclaracionEntrada *dlgdeclaraciones = new dlgDeclaracionEntrada(this);
-    dlgdeclaraciones->show();
-
     connect(dlgdeclaraciones, SIGNAL(aceptarDeclaracion(Declaracion)), this, SLOT(recibirDeclaracion(Declaracion)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgdeclaraciones);
+    window->show();
+
 }
 
 void dlgDetalles::on_btBorrarJsonLibre_clicked()
