@@ -36,6 +36,8 @@ private slots:
 
     void recibirPena(Pena pena);
 
+    void cerrar();
+
 signals:
 
     void aceptarOrdenanza(Ordenanza ordenanza);

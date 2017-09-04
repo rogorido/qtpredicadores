@@ -19,13 +19,15 @@ public:
     explicit dlgLicenciaEntrada(QWidget *parent = 0);
     ~dlgLicenciaEntrada();
 
-public slots:
+private slots:
 
     void aceptar();
     void anadirReceptor();
     void quitarReceptor();
     void anadirOtorgante();
     void quitarOtorgante();
+
+    void cerrar();
 
 signals:
 

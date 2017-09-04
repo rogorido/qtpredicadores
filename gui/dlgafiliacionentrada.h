@@ -43,6 +43,8 @@ private slots:
     void actualizarProvinciaOrigen(Provincia provincia);
     void actualizarProvinciaDestino(Provincia provincia);
 
+    void cerrar();
+
 private:
     Ui::dlgAfiliacionEntrada *ui;
     AfiliacionesTableModel *afiliaciones_model;

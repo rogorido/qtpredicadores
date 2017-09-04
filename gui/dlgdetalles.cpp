@@ -307,35 +307,38 @@ void dlgDetalles::on_btBorrarBloqueJson_clicked()
 void dlgDetalles::on_btSufragios_clicked()
 {
     dlgSufragiosEntrada *dlgsufragio = new dlgSufragiosEntrada(this);
-    dlgsufragio->show();
-
     connect(dlgsufragio, SIGNAL(emitirSufragio(Sufragio)), this, SLOT(recibirSufragio(Sufragio)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgsufragio);
+    window->show();
 }
 
 void dlgDetalles::on_btTraslado_clicked()
 {
     dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(DIOCESIS, this);
-    seleccionar->show();
-
     connect(seleccionar, SIGNAL(diocesisEscogidaSignal(Diocesis)), this, SLOT(recibirTraslado(Diocesis)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);
+    window->show();
 }
 
 void dlgDetalles::on_btAdmoniciones_clicked()
 {
     dlgOrdenanzaEntrada *dlgordenanzas = new dlgOrdenanzaEntrada(this);
-    dlgordenanzas->show();
-
     connect(dlgordenanzas, SIGNAL(aceptarOrdenanza(Ordenanza)), this, SLOT(recibirOrdenanza(Ordenanza)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgordenanzas);
+    window->show();
 }
+
 
 void dlgDetalles::on_btComisiones_clicked()
 {
     dlgOrdenanzaEntrada *dlgordenanzas = new dlgOrdenanzaEntrada(this);
-    dlgordenanzas->show();
-
     connect(dlgordenanzas, SIGNAL(aceptarOrdenanza(Ordenanza)), this, SLOT(recibirOrdenanza(Ordenanza)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgordenanzas);
+    window->show();
 }
 
 void dlgDetalles::anadirDatosLibres()
@@ -460,25 +463,27 @@ void dlgDetalles::cargarModelos(){
 void dlgDetalles::on_btAprobaciones_clicked(){
 
     dlgAprobacionesEntrada *dlgaprobaciones = new dlgAprobacionesEntrada(this);
-    dlgaprobaciones->show();
-
     connect(dlgaprobaciones, SIGNAL(aceptarDatos(QList<Aprobacion*>)), this, SLOT(recibirAprobaciones(QList<Aprobacion*>)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgaprobaciones);
+    window->show();
 }
 
 void dlgDetalles::on_btLicencias_clicked() {
 
     dlgLicenciaEntrada *dlglicencias = new dlgLicenciaEntrada(this);
-    dlglicencias->show();
-
     connect(dlglicencias, SIGNAL(aceptarLicencia(Licencia)), this, SLOT(recibirLicencia(Licencia)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlglicencias);
+    window->show();
 }
 
 void dlgDetalles::on_btPenas_clicked() {
 
     dlgPenaEntrada *dlgpena = new dlgPenaEntrada(this);
-    dlgpena->show();
-
     connect(dlgpena, SIGNAL(aceptarPena(Pena)), this, SLOT(recibirPena(Pena)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgpena);
+    window->show();
 
 }

@@ -20,7 +20,7 @@ dlgAfiliacionEntrada::dlgAfiliacionEntrada(QWidget *parent) :
     ui->twAfiliaciones->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->twAfiliaciones->horizontalHeader()->setStretchLastSection(true);
 
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btPersona, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
     connect(ui->btProvinciaOrigen, SIGNAL(clicked(bool)), this, SLOT(anadirProvinciaOrigen()));
     connect(ui->btProvinciaDestino, SIGNAL(clicked(bool)), this, SLOT(anadirProvinciaDestino()));
@@ -169,5 +169,11 @@ void dlgAfiliacionEntrada::actualizarProvinciaDestino(Provincia provincia)
     afiliacion_activa->setProvinciaDestino(provincia);
 
     ui->txtProvinciaDestino->setText(provincia.getNombre());
+
+}
+
+void dlgAfiliacionEntrada::cerrar()
+{
+    parentWidget()->close();
 
 }

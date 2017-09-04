@@ -36,6 +36,8 @@ private slots:
     void recibirInfraccion(Infraccion infraccion);
     void recibirPena(Pena pena);
 
+    void cerrar();
+
 signals:
 
     void aceptarDeclaracion(Declaracion declaracion);

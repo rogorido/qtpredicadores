@@ -24,7 +24,7 @@ dlgLicenciaEntrada::dlgLicenciaEntrada(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->btQuitarOtorgante, SIGNAL(clicked(bool)), this, SLOT(quitarOtorgante()));
     connect(ui->btQuitarReceptor, SIGNAL(clicked(bool)), this, SLOT(quitarReceptor()));
@@ -115,6 +115,11 @@ void dlgLicenciaEntrada::quitarOtorgante()
     }
 
     ui->lwOtorgantes->takeItem(ui->lwOtorgantes->currentRow());
+}
+
+void dlgLicenciaEntrada::cerrar()
+{
+    parentWidget()->close();
 }
 
 bool dlgLicenciaEntrada::eventFilter(QObject *obj, QEvent *e)

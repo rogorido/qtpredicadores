@@ -12,7 +12,7 @@ dlgDeclaracionEntrada::dlgDeclaracionEntrada(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->btInfraccion, SIGNAL(clicked(bool)), this, SLOT(anadirInfraccion()));
     connect(ui->btPena, SIGNAL(clicked(bool)), this, SLOT(anadirPena()));
@@ -67,5 +67,11 @@ void dlgDeclaracionEntrada::recibirInfraccion(Infraccion infraccion)
 void dlgDeclaracionEntrada::recibirPena(Pena pena)
 {
     pena_estipulada = pena;
+
+}
+
+void dlgDeclaracionEntrada::cerrar()
+{
+    parentWidget()->close();
 
 }

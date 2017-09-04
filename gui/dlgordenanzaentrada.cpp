@@ -33,7 +33,7 @@ dlgOrdenanzaEntrada::dlgOrdenanzaEntrada(QWidget *parent) :
     ui->cbTipo->addItem("Admonición", QVariant(3));
     ui->cbTipo->addItem("Comisión", QVariant(4));
 
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->btEliminarObjetos, SIGNAL(clicked(bool)), this, SLOT(quitarObjeto()));
     connect(ui->btEliminarReceptores, SIGNAL(clicked(bool)), this, SLOT(quitarReceptor()));
@@ -211,5 +211,10 @@ void dlgOrdenanzaEntrada::recibirPena(Pena pena)
 {
     pena_estipulada = pena;
 
+}
+
+void dlgOrdenanzaEntrada::cerrar()
+{
+    parentWidget()->close();
 }
 
