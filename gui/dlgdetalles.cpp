@@ -225,19 +225,19 @@ void dlgDetalles::on_btCasa_clicked()
 void dlgDetalles::on_btAfiliaciones_clicked()
 {
     dlgAfiliacionEntrada *dlgafiliaciones = new dlgAfiliacionEntrada(this);
-    dlgafiliaciones->show();
-
     connect(dlgafiliaciones, SIGNAL(aceptarDatos(QList<Afiliacion*>)), this, SLOT(recibirAfiliacion(QList<Afiliacion*>)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgafiliaciones);
+    window->show();
 }
 
 void dlgDetalles::on_btOrdenanzas_clicked()
 {
     dlgOrdenanzaEntrada *dlgordenanzas = new dlgOrdenanzaEntrada(this);
-    dlgordenanzas->show();
-
     connect(dlgordenanzas, SIGNAL(aceptarOrdenanza(Ordenanza)), this, SLOT(recibirOrdenanza(Ordenanza)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgordenanzas);
+    window->show();
 }
 
 void dlgDetalles::on_btDeclaraciones_clicked()
@@ -247,7 +247,6 @@ void dlgDetalles::on_btDeclaraciones_clicked()
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgdeclaraciones);
     window->show();
-
 }
 
 void dlgDetalles::on_btBorrarJsonLibre_clicked()
