@@ -31,7 +31,6 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     jsongestor = new QJsonModel(this);
     m_resoluciones = ResolucionesModel::InstanceModel();
 
-    dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, false, this);
     // pasamos una referencia: ver notas en el header
     dlgtemas = new dlgTemas(&temas_lista, this);
 
@@ -171,6 +170,7 @@ void dlgNuevaResolucion::introducirTemas(const int id){
 
 void dlgNuevaResolucion::on_btDetalles_clicked()
 {
+    dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, false, this);
     emit(abrirDetalles(dlgdetalles));
 }
 
