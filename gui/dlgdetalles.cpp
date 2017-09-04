@@ -324,6 +324,14 @@ void dlgDetalles::on_btAdmoniciones_clicked()
     connect(dlgordenanzas, SIGNAL(aceptarOrdenanza(Ordenanza)), this, SLOT(recibirOrdenanza(Ordenanza)));
 }
 
+void dlgDetalles::on_btComisiones_clicked()
+{
+    dlgOrdenanzaEntrada *dlgordenanzas = new dlgOrdenanzaEntrada(this);
+    dlgordenanzas->show();
+
+    connect(dlgordenanzas, SIGNAL(aceptarOrdenanza(Ordenanza)), this, SLOT(recibirOrdenanza(Ordenanza)));
+}
+
 void dlgDetalles::anadirDatosLibres()
 {
     QString key = ui->txtKey->text();

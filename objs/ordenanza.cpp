@@ -34,6 +34,9 @@ QJsonObject Ordenanza::getOrdenanzaJson()
     case TipoOrdenanza::ADMONICION:
         json.insert("admonición", "yes");
         break;
+    case TipoOrdenanza::COMISION:
+        json.insert("comisión", "yes");
+        break;
     default:
         break;
     }

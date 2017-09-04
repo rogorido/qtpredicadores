@@ -31,6 +31,7 @@ dlgOrdenanzaEntrada::dlgOrdenanzaEntrada(QWidget *parent) :
     ui->cbTipo->addItem("Prohibición", QVariant(1));
     ui->cbTipo->addItem("Mandato", QVariant(2));
     ui->cbTipo->addItem("Admonición", QVariant(3));
+    ui->cbTipo->addItem("Comisión", QVariant(4));
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
@@ -97,6 +98,8 @@ void dlgOrdenanzaEntrada::aceptar() {
         ordenanza.setTipo(Ordenanza::TipoOrdenanza::PROHIBICION);
     else if (ui->cbTipo->currentText() == "Mandato")
         ordenanza.setTipo(Ordenanza::TipoOrdenanza::MANDATO);
+    else if (ui->cbTipo->currentText() == "Comisión")
+        ordenanza.setTipo(Ordenanza::TipoOrdenanza::COMISION);
     else
         ordenanza.setTipo(Ordenanza::TipoOrdenanza::ADMONICION);
 

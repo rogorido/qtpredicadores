@@ -62,6 +62,7 @@ private slots:
     void on_btSufragios_clicked();
     void on_btTraslado_clicked();
     void on_btAdmoniciones_clicked(); // realmente es el mismo form que ordenanzas
+    void on_btComisiones_clicked(); // realmente es el mismo form que ordenanzas
 
     void anadirDatosLibres();
     void anadirInteresante();

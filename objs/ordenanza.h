@@ -16,7 +16,7 @@ class Ordenanza
 public:
     Ordenanza();
 
-    enum class TipoOrdenanza { MANDATO, PROHIBICION, ADMONICION };
+    enum class TipoOrdenanza { MANDATO, PROHIBICION, ADMONICION, COMISION };
 
     // setters
     void setTipo(TipoOrdenanza t);
