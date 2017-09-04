@@ -24,10 +24,19 @@ QJsonObject Ordenanza::getOrdenanzaJson()
      */
     json.insert("ordenanza", "yes");
 
-    if (tipo_ordenanza == TipoOrdenanza::PROHIBICION)
+    switch (tipo_ordenanza) {
+    case TipoOrdenanza::PROHIBICION:
         json.insert("prohibición", "yes");
-    else
+        break;
+    case TipoOrdenanza::MANDATO:
         json.insert("mandato", "yes");
+        break;
+    case TipoOrdenanza::ADMONICION:
+        json.insert("admonición", "yes");
+        break;
+    default:
+        break;
+    }
 
     if (!objetos.isEmpty())
         json.insert("objetos", QJsonArray::fromStringList(objetos));
