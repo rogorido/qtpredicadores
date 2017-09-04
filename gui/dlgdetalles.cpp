@@ -52,7 +52,7 @@ dlgDetalles::dlgDetalles(QJsonModel *json, int t, bool anadir, QWidget *parent) 
         connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     }
     else
-        connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(hide()));
+        connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(ocultar()));
 
     ui->twJsonLibre->setColumnCount(2);
 
@@ -189,6 +189,11 @@ void dlgDetalles::anadirChildItem(const QString &key, const QString &value)
 void dlgDetalles::cerrar()
 {
     parentWidget()->close();
+}
+
+void dlgDetalles::ocultar()
+{
+    parentWidget()->hide();
 }
 
 void dlgDetalles::on_btPersona_clicked()

@@ -74,6 +74,7 @@ private slots:
     void anadirChildItem(const QString &key, const QString &value);
 
     void cerrar();
+    void ocultar();
 
 protected:
     bool eventFilter(QObject *obj, QEvent *e);

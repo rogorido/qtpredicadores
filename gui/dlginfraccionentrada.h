@@ -28,6 +28,8 @@ private slots:
     void anadirInfractor();
     void quitarInfractor();
 
+    void cerrar();
+
 signals:
 
     void aceptarInfraccion(Infraccion infraccion);

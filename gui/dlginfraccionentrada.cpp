@@ -24,7 +24,7 @@ dlgInfraccionEntrada::dlgInfraccionEntrada(QWidget *parent) :
 
     ui->txtInfractor->installEventFilter(this);
 
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->btEliminar, SIGNAL(clicked(bool)), this, SLOT(quitarInfractor()));
 
@@ -82,6 +82,11 @@ void dlgInfraccionEntrada::quitarInfractor()
     }
 
     ui->lwInfractores->takeItem(ui->lwInfractores->currentRow());
+}
+
+void dlgInfraccionEntrada::cerrar()
+{
+    parentWidget()->close();
 }
 
 bool dlgInfraccionEntrada::eventFilter(QObject *obj, QEvent *e)
