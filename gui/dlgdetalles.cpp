@@ -49,7 +49,7 @@ dlgDetalles::dlgDetalles(QJsonModel *json, int t, bool anadir, QWidget *parent) 
      */
     if (anadir) {
         connect(ui->btOK, SIGNAL(clicked(bool)), this, SIGNAL(accepted()));
-        connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(close()));
+        connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     }
     else
         connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(hide()));
@@ -184,6 +184,11 @@ void dlgDetalles::anadirChildItem(const QString &key, const QString &value)
     item->setText(0, key);
     item->setText(1, value);
 
+}
+
+void dlgDetalles::cerrar()
+{
+    parentWidget()->close();
 }
 
 void dlgDetalles::on_btPersona_clicked()

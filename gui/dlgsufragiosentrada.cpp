@@ -19,7 +19,7 @@ dlgSufragiosEntrada::dlgSufragiosEntrada(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarSufragio()));
     connect(ui->btEliminar, SIGNAL(clicked(bool)), this, SLOT(quitarDestinatario()));
 
@@ -104,6 +104,11 @@ void dlgSufragiosEntrada::quitarDestinatario()
 
     ui->lwDestinatarios->takeItem(ui->lwDestinatarios->currentRow());
 
+}
+
+void dlgSufragiosEntrada::cerrar()
+{
+    parentWidget()->close();
 }
 
 void dlgSufragiosEntrada::cargarModelos()

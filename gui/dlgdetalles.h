@@ -73,6 +73,8 @@ private slots:
     // para gestionar el qtreewidget
     void anadirChildItem(const QString &key, const QString &value);
 
+    void cerrar();
+
 protected:
     bool eventFilter(QObject *obj, QEvent *e);
 

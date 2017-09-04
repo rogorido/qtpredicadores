@@ -36,6 +36,8 @@ private slots:
     void actualizarPersona(Persona persona);
     void actualizarProvincia(Provincia provincia);
 
+    void cerrar();
+
 private:
     Ui::dlgAprobacionesEntrada *ui;
     AprobacionesTableModel *aprobaciones_model;

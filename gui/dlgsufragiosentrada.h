@@ -33,6 +33,8 @@ private slots:
     void anadirDestinatario();
     void quitarDestinatario();
 
+    void cerrar();
+
 private:
     Ui::dlgSufragiosEntrada *ui;
 

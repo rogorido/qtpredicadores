@@ -20,7 +20,7 @@ dlgAprobacionesEntrada::dlgAprobacionesEntrada(QWidget *parent) :
     ui->twAprobaciones->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->twAprobaciones->horizontalHeader()->setStretchLastSection(true);
 
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btPersona, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
     connect(ui->btProvincia, SIGNAL(clicked(bool)), this, SLOT(anadirProvincia()));
     connect(ui->btAnadirAprobacion, SIGNAL(clicked(bool)), this, SLOT(anadirAprobacion()));
@@ -117,4 +117,9 @@ void dlgAprobacionesEntrada::actualizarProvincia(Provincia provincia)
     aprobacion_activa->setProvincia(provincia);
 
     ui->txtProvincia->setText(provincia.getNombre());
+}
+
+void dlgAprobacionesEntrada::cerrar()
+{
+    parentWidget()->close();
 }
