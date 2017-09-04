@@ -5,6 +5,14 @@
 #include <QObject>
 #include <QWidget>
 
+/*
+ * Esta clase singleton no tiene método DestroyMe
+ * como otras que tengo, porque veo que me da un segmentation fault.
+ * Creo que la razón es la siguiente: de alguna forma borra el objeto
+ * antes de que lo borre la mainwindow. Entonces la mainwindow al cerrarse
+ * intenta borrarlo y como ha desaparecido da un error.
+ */
+
 class MyQmdiArea : public QMdiArea
 {
     Q_OBJECT
@@ -20,7 +28,6 @@ protected:
 private:
 
     static MyQmdiArea *pInstance;
-    static void DestroyMe();
 };
 
 #endif // MYQMDIAREA_H

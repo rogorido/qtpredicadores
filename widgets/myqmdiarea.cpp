@@ -10,12 +10,8 @@ MyQmdiArea::MyQmdiArea(QWidget *parent) : QMdiArea(parent)
 MyQmdiArea *MyQmdiArea::Instance(QWidget *parent){
     if (pInstance == 0){
         pInstance = new MyQmdiArea(parent);
-        atexit(&DestroyMe);
+        //atexit(&DestroyMe);
     }
 
     return pInstance;
-}
-
-void MyQmdiArea::DestroyMe(){
-    if (pInstance != NULL) delete pInstance;
 }
