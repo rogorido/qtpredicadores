@@ -26,6 +26,8 @@
 // para lo de MDIarea
 #include "dlgdetalles.h"
 
+#include "widgets/myqmdiarea.h"
+
 #include "models/temasmodel.h"
 #include "models/lugaresmodel.h"
 #include "models/personasmodel.h"
@@ -44,7 +46,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setCentralWidget(ui->mdiArea);
+    mdiArea = new MyQmdiArea(this);
+
+    setCentralWidget(mdiArea);
     QMainWindow::showMaximized();
 
     db = QSqlDatabase::addDatabase("QPSQL");
@@ -121,7 +125,7 @@ void MainWindow::cargarModelos(){
 
 void MainWindow::nuevaResolucion(){
     dlgResolucion = new dlgNuevaResolucion(0, this);
-    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgResolucion);
+    QMdiSubWindow *window = mdiArea->addSubWindow(dlgResolucion);
 
     connect(dlgResolucion, SIGNAL(abrirDetalles(dlgDetalles*)), this, SLOT(abrirDetalles(dlgDetalles*)));
 
@@ -130,7 +134,7 @@ void MainWindow::nuevaResolucion(){
 
 void MainWindow::nuevaPersona(){
     dlgPersona = new dlgNuevaPersona(this);
-    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgPersona);
+    QMdiSubWindow *window = mdiArea->addSubWindow(dlgPersona);
     window->show();
 }
 
@@ -138,8 +142,8 @@ void MainWindow::nuevaCasa(){
 
     // dlgCasa = new dlgNuevaCasa(this);
     // hay q poner this o poner ui->mdiArea como parent?
-    dlgCasa = new dlgNuevaCasa(ui->mdiArea);
-    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgCasa);
+    dlgCasa = new dlgNuevaCasa(this);
+    QMdiSubWindow *window = mdiArea->addSubWindow(dlgCasa);
     window->show();
 }
 
@@ -151,7 +155,7 @@ void MainWindow::nuevaDiocesis(){
 void MainWindow::nuevoObispo()
 {
     dlgObispo = new dlgNuevoObispo(this);
-    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlgObispo);
+    QMdiSubWindow *window = mdiArea->addSubWindow(dlgObispo);
     window->show();
 }
 
@@ -163,7 +167,7 @@ void MainWindow::Capitulos(){
 void MainWindow::Resoluciones()
 {
     FormResoluciones = new DlgResoluciones(this);
-    QMdiSubWindow *window = ui->mdiArea->addSubWindow(FormResoluciones);
+    QMdiSubWindow *window = mdiArea->addSubWindow(FormResoluciones);
 
     window->show();
 }
@@ -171,14 +175,14 @@ void MainWindow::Resoluciones()
 void MainWindow::Ciudades()
 {
     FormCiudades = new dlgCiudades(this);
-    QMdiSubWindow *window = ui->mdiArea->addSubWindow(FormCiudades);
+    QMdiSubWindow *window = mdiArea->addSubWindow(FormCiudades);
     window->show();
 }
 
 void MainWindow::Casas()
 {
     FormCasas = new dlgCasas(this);
-    QMdiSubWindow *window = ui->mdiArea->addSubWindow(FormCasas);
+    QMdiSubWindow *window = mdiArea->addSubWindow(FormCasas);
 
     window->show();
 }
@@ -186,20 +190,20 @@ void MainWindow::Casas()
 void MainWindow::Estadisticas()
 {
     FormEstadisticas = new dlgEstadisticas(this);
-    QMdiSubWindow *window = ui->mdiArea->addSubWindow(FormEstadisticas);
+    QMdiSubWindow *window = mdiArea->addSubWindow(FormEstadisticas);
     window->show();
 }
 
 void MainWindow::abrirDetalles(dlgDetalles *dlg)
 {
-    QMdiSubWindow *window = ui->mdiArea->addSubWindow(dlg);
+    QMdiSubWindow *window = mdiArea->addSubWindow(dlg);
     window->show();
 }
 
 void MainWindow::nuevaObra(){
 
     dlgNuevaObra *nuevaObra = new dlgNuevaObra(this);
-    QMdiSubWindow *window = ui->mdiArea->addSubWindow(nuevaObra);
+    QMdiSubWindow *window = mdiArea->addSubWindow(nuevaObra);
     window->show();
 }
 

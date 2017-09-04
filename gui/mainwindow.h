@@ -27,6 +27,8 @@ class CasasModel;
 class ProvinciasModel;
 class CapitulosModel;
 
+class MyQmdiArea;
+
 namespace Ui {
 class MainWindow;
 }
@@ -69,6 +71,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
+    MyQmdiArea *mdiArea;
 
     /* esto son formularios */
     dlgNuevoCapitulo *dlgCapitulo;
