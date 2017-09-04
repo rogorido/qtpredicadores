@@ -41,7 +41,6 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
     connect(ui->btQuitarProvincia, SIGNAL(clicked()), this, SLOT(quitarProvincia()));
     connect(ui->txtCapitulo, SIGNAL(dobleclick()), this, SLOT(anadirCapitulo()));
     connect(ui->btQuitarCapitulo, SIGNAL(clicked()), this, SLOT(quitarCapitulo()));
-    connect(ui->btMasivo, SIGNAL(clicked()), this, SLOT(anadirMasivo()));
 
     cargarModelos();
 

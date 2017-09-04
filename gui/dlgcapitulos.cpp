@@ -2,7 +2,7 @@
 #include "ui_dlgcapitulos.h"
 
 #include "models/capitulosmodel.h"
-#include "gui/dlgmasivo.h"
+#include "gui/dlgasistentes.h"
 
 #include <QDebug>
 
@@ -71,7 +71,7 @@ void dlgCapitulos::introducirAsistentes()
 
     int id = m_capitulos->data(indice, Qt::DisplayRole).toInt();
 
-    dlgmasivo = new dlgMasivo(id, this);
-    dlgmasivo->show();
+    dlgasistentes = new dlgAsistentes(id, this);
+    dlgasistentes->show();
 
 }

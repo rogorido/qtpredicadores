@@ -5,7 +5,7 @@
 
 class CapitulosModel;
 class QModelIndex;
-class dlgMasivo;
+class dlgAsistentes;
 
 namespace Ui {
 class dlgCapitulos;
@@ -28,7 +28,7 @@ private:
 
     CapitulosModel *m_capitulos;
 
-    dlgMasivo *dlgmasivo;
+    dlgAsistentes *dlgasistentes;
 
 
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>dlgMasivo</class>
+ <class>dlgAsistentes</class>
  <widget class="QDialog" name="dlgAsistentes">
   <property name="geometry">
    <rect>
