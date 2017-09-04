@@ -231,6 +231,9 @@
    <property name="text">
     <string>Nue&amp;vo obispo</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
   </action>
   <action name="actionNuevaFuente">
    <property name="text">
