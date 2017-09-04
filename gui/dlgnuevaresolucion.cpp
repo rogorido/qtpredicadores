@@ -19,7 +19,6 @@
 #include "dlgdetalles.h"
 #include "objs/resolucion.h"
 #include "gui/dlgtemas.h"
-#include "gui/dlgmasivo.h"
 #include "gui/dlgseleccionargeneral.h"
 
 dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
@@ -231,16 +230,6 @@ void dlgNuevaResolucion::quitarCapitulo(){
 
     capitulo_id = 0;
     ui->txtCapitulo->setText("");
-}
-
-void dlgNuevaResolucion::anadirMasivo()
-{
-    /*
-     * TODO: hay que cmabiar este 0!
-     */
-    dlgmasivo = new dlgMasivo(0, this);
-
-    dlgmasivo->show();
 }
 
 void dlgNuevaResolucion::borrarCampos(){

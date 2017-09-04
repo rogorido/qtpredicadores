@@ -11,7 +11,6 @@ class ResolucionesModel;
 class QJsonModel;
 class dlgDetalles;
 class dlgTemas;
-class dlgMasivo;
 
 class QSqlQueryModel;
 class QCompleter;
@@ -36,7 +35,6 @@ private:
     QJsonModel *jsongestor;
     dlgDetalles *dlgdetalles;
     dlgTemas *dlgtemas;
-    dlgMasivo *dlgmasivo;
 
     ResolucionesModel *m_resoluciones;
 
