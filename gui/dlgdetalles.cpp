@@ -29,7 +29,7 @@ const QString sqlpersonas_keys="SELECT DISTINCT jsonb_object_keys(details) FROM 
 
 
 dlgDetalles::dlgDetalles(QJsonModel *json, int t, bool anadir, QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgDetalles), json_model(json), tipo(t), anadiendo(anadir)
 {
     ui->setupUi(this);
@@ -378,10 +378,10 @@ bool dlgDetalles::eventFilter(QObject *obj, QEvent *e)
         }
 
     /*
-     * atención aquí lo importante es poner QDialog!
+     * atención aquí lo importante es poner QWidget!
      * si pongo dlgPenaEntrada no funciona!!
      */
-    return QDialog::eventFilter(obj, e);
+    return QWidget::eventFilter(obj, e);
 
 }
 

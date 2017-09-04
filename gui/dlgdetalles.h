@@ -1,7 +1,7 @@
 #ifndef DLGDETALLES_H
 #define DLGDETALLES_H
 
-#include <QDialog>
+#include <QWidget>
 
 #include "objs/persona.h"
 #include "objs/casa.h"
@@ -24,7 +24,7 @@ namespace Ui {
 class dlgDetalles;
 }
 
-class dlgDetalles : public QDialog
+class dlgDetalles : public QWidget
 {
     Q_OBJECT
 
