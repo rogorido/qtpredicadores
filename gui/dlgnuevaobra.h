@@ -73,7 +73,7 @@ private:
     void introducirJson(const int id);
 
 private slots:
-    void on_btAnadirLugar_clicked();
+
     //void on_txtAutor_doubleclicked();
     void on_btSeleccionarAutor_clicked();
     void on_btIntroducirLugar_clicked();
