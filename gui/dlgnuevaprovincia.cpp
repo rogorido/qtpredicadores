@@ -30,6 +30,9 @@ void dlgNuevaProvincia::aceptarProvincia(){
     QString notas = ui->txtNotas->toPlainText();
     QString erigida = ui->txtErigida->text();
 
+    if (nombre.isEmpty())
+        return;
+
     provincia->setNombre(nombre);
     provincia->setErigida(erigida);
     provincia->setNotas(notas);
