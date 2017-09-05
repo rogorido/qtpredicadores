@@ -7,6 +7,7 @@
 #include "objs/variados.h"
 #include "objs/persona.h"
 #include "objs/provincia.h"
+#include "objs/casa.h"
 
 /*!
  * \brief Aprobaciones de cargos, casas, etc.
@@ -24,15 +25,19 @@ public:
     //setters
     void setTipoAprobacion(TipoAprobacion t);
     void setCargo(QString c);
+    void setTipoInstitucion(QString t);
     void setPersona(Persona p);
+    void setCasa(Casa c);
     void setProvincia(Provincia p);
     void setExtraInfos(ExtraInfos e);
 
     //getters
     TipoAprobacion getTipoAprobacion() const { return tipo_aprobacion; }
-    QString getCargo() const {return cargo; }
-    Persona getPersona() const {return persona; }
-    Provincia getProvincia() const {return provincia; }
+    QString getCargo() const { return cargo; }
+    QString getTipoInstitucion() const { return tipo_institucion; }
+    Persona getPersona() const { return persona; }
+    Casa getCasa() const { return casa; }
+    Provincia getProvincia() const { return provincia; }
     ExtraInfos getExtraInfos() const { return extras; }
 
     QJsonObject getAprobacionJson();
@@ -40,7 +45,9 @@ public:
 private:
     TipoAprobacion tipo_aprobacion;
     QString cargo;
+    QString tipo_institucion;
     Persona persona;
+    Casa casa;
     Provincia provincia;
     ExtraInfos extras;
 
