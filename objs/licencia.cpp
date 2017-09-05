@@ -8,6 +8,7 @@ void Licencia::setReceptores(QStringList r) { receptores = r; }
 void Licencia::setAsunto(QString a) { asunto = a; }
 void Licencia::setSeguridad(int s) { seguridad = s; }
 void Licencia::setExtraInfos(ExtraInfos e) { extras = e; }
+void Licencia::setNotas(Notas n) { nota = n; }
 
 QJsonObject Licencia::getLicenciaJson()
 {
@@ -36,6 +37,10 @@ QJsonObject Licencia::getLicenciaJson()
 
             json.insert(valores.first, valores.second);
         }
+    }
+
+    if (nota.estaLleno()){
+        json.insert("meta_info", nota.getNotasJson());
     }
 
     return json;

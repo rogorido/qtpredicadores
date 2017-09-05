@@ -7,6 +7,7 @@
 #include <QJsonArray>
 
 #include "objs/variados.h"
+#include "objs/notas.h"
 
 class Licencia
 {
@@ -20,6 +21,7 @@ public:
     void setAsunto(QString a);
     void setSeguridad(int s);
     void setExtraInfos(ExtraInfos e);
+    void setNotas(Notas n);
 
     // getters
     QString getLicenciatipo() const { return licenciatipo; }
@@ -28,6 +30,7 @@ public:
     QString getAsunto() const { return asunto; }
     int getSeguridad() const { return seguridad; }
     ExtraInfos getExtraInfos() const { return extras; }
+    Notas getNotas() const { return nota; }
 
     QJsonObject getLicenciaJson();
 
@@ -39,6 +42,7 @@ private:
     QString asunto;
     int seguridad; // de la interpretación
     ExtraInfos extras;
+    Notas nota;
 
 };
 

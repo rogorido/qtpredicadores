@@ -53,6 +53,9 @@ void dlgLicenciaEntrada::aceptar()
     licencia_activa.setSeguridad(ui->spSeguridad->value());
     licencia_activa.setExtraInfos(extras);
 
+    if (ui->wdNotas->haCambiado())
+        licencia_activa.setNotas(ui->wdNotas->getNotas());
+
     emit(aceptarLicencia(licencia_activa));
 
     close();
