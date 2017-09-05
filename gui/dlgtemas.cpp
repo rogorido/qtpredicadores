@@ -21,14 +21,16 @@ dlgTemas::dlgTemas(QList<elementopareado> *temas_lista, QWidget *parent) :
     ui->twTemas->setAlternatingRowColors(true);
     ui->twTemas->resizeColumnsToContents();
     ui->twTemas->resizeRowsToContents();
+    ui->twTemas->setHorizontalHeaderLabels(QStringList("Temas"));
     ui->twTemas->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->twTemas->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->twTemas->horizontalHeader()->setStretchLastSection(true);
 
     // los dos hacen lo mismo... tvz quitar uno
-    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(hide()));
-    connect(ui->btOK, SIGNAL(clicked()), this, SLOT(hide()));
-    //connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarTemas()));
+    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
+    connect(ui->btOK, SIGNAL(clicked()), this, SLOT(cerrar()));
+
+    inicializarTemasWidget();
 
 }
 
@@ -58,8 +60,19 @@ void dlgTemas::recibirTema(Tema tema){
 
     temas->append(nuevo);
 
+    meterTemaWidget(nuevo.elemento);
+
+}
+
+void dlgTemas::cerrar()
+{
+    parentWidget()->close();
+}
+
+void dlgTemas::meterTemaWidget(QString tema)
+{
     /* añadimos un elem a la tabla */
-    QTableWidgetItem *item = new QTableWidgetItem(nuevo.elemento);
+    QTableWidgetItem *item = new QTableWidgetItem(tema);
     //this will give the present number of rows available.
     int insertRow = ui->twTemas->rowCount();
     //insert the row at the bottom of the table widget - using.
@@ -69,6 +82,15 @@ void dlgTemas::recibirTema(Tema tema){
 
     ui->twTemas->resizeColumnsToContents();
     ui->twTemas->resizeRowsToContents();
+}
+
+void dlgTemas::inicializarTemasWidget()
+{
+    if (temas->size() > 0) {
+        for (int i = 0; i < temas->size(); ++i) {
+            meterTemaWidget(temas->at(i).elemento);
+          }
+     }
 }
 
 void dlgTemas::on_btQuitarTema_clicked(){

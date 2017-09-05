@@ -27,6 +27,8 @@ private slots:
 
     void recibirTema(Tema tema);
 
+    void cerrar();
+
     //void aceptarTemas();
 
 private:
@@ -36,6 +38,14 @@ private:
     dlgSeleccionarGeneral *dlgseleccionar;
 
     QList<elementopareado> *temas;
+
+    void meterTemaWidget(QString tema);
+
+    /*
+     * cuando volvermos a abrir el form y habíamos añadido
+     * ya temas es necesario q ue los meta en la tabla
+     */
+    void inicializarTemasWidget();
 
 signals:
     /*
