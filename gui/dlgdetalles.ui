@@ -32,32 +32,21 @@
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <layout class="QGridLayout" name="gridLayout">
-             <item row="1" column="2">
-              <widget class="QPushButton" name="btOrdenanzas">
-               <property name="text">
-                <string>Ordenanzas</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QPushButton" name="btDeclaraciones">
-               <property name="text">
-                <string>Declaraciones</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1" colspan="2">
-              <widget class="QPushButton" name="btPenas">
-               <property name="text">
-                <string>Penas</string>
-               </property>
-              </widget>
-             </item>
+            <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0" columnminimumwidth="0,0,0">
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
              <item row="2" column="2">
               <widget class="QPushButton" name="btAdmoniciones">
                <property name="text">
                 <string>Admoniciones</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QPushButton" name="btOrdenanzas">
+               <property name="text">
+                <string>Ordenanzas</string>
                </property>
               </widget>
              </item>
@@ -68,10 +57,10 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="0">
-              <widget class="QPushButton" name="btLicencias">
+             <item row="4" column="2">
+              <widget class="QPushButton" name="btAfiliaciones">
                <property name="text">
-                <string>Licencias</string>
+                <string>Afiliaciones</string>
                </property>
               </widget>
              </item>
@@ -79,6 +68,20 @@
               <widget class="QPushButton" name="btSufragios">
                <property name="text">
                 <string>Sufragios</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QPushButton" name="btLicencias">
+               <property name="text">
+                <string>Licencias</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" colspan="2">
+              <widget class="QPushButton" name="btPenas">
+               <property name="text">
+                <string>Penas</string>
                </property>
               </widget>
              </item>
@@ -96,10 +99,10 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="2">
-              <widget class="QPushButton" name="btAfiliaciones">
+             <item row="4" column="0">
+              <widget class="QPushButton" name="btDeclaraciones">
                <property name="text">
-                <string>Afiliaciones</string>
+                <string>Declaraciones</string>
                </property>
               </widget>
              </item>
