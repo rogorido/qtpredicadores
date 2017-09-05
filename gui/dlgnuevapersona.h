@@ -10,6 +10,8 @@ class dlgDetalles;
 class QCompleter;
 class QSqlQueryModel;
 
+class MyQmdiArea;
+
 namespace Ui {
 class dlgNuevaPersona;
 }
@@ -32,6 +34,7 @@ private slots:
 
 private:
     Ui::dlgNuevaPersona *ui;
+    MyQmdiArea *mdiarea;
 
     PersonasModel *m_personas;
 

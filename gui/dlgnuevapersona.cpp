@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QCompleter>
+#include <QMdiSubWindow>
 #include <QMessageBox>
 
 #include "models/personasmodel.h"
@@ -12,12 +13,15 @@
 #include "gui/dlgdetalles.h"
 #include "objs/variados.h"
 #include "objs/persona.h"
+#include "widgets/myqmdiarea.h"
 
 dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dlgNuevaPersona)
 {
     ui->setupUi(this);
+
+    mdiarea = MyQmdiArea::Instance(this);
 
     m_personas = PersonasModel::InstanceModel();
 
@@ -31,7 +35,9 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
     apellidos_query = new QSqlQueryModel(this);
     diocesis_query = new QSqlQueryModel(this);
 
-    cargarJsonEstructuras();
+    jsongestor = new QJsonModel(this);
+    otrosnombres_json = new QJsonModel(this);
+    //cargarJsonEstructuras();
     cargarCompleters();
 
 }
@@ -42,11 +48,7 @@ dlgNuevaPersona::~dlgNuevaPersona()
 }
 
 void dlgNuevaPersona::cargarJsonEstructuras(){
-    jsongestor = new QJsonModel(this);
-    dlgdetalles = new dlgDetalles(jsongestor, PERSONADETALLES, false, this);
 
-    otrosnombres_json = new QJsonModel(this);
-    dlgotrosnombres = new dlgDetalles(otrosnombres_json, OTROS, false, this);
 
 }
 
@@ -145,7 +147,9 @@ void dlgNuevaPersona::aceptarPersona(){
 
 void dlgNuevaPersona::on_btDetalles_clicked()
 {
-    dlgdetalles->show();
+    dlgdetalles = new dlgDetalles(jsongestor, PERSONADETALLES, false, this);
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgdetalles);
+    window->show();
 }
 
 void dlgNuevaPersona::introducirJson(const int id){
@@ -171,8 +175,9 @@ void dlgNuevaPersona::introducirJson(const int id){
 
 void dlgNuevaPersona::on_btOtrosNombres_clicked(){
 
-    dlgotrosnombres->show();
-
+    dlgotrosnombres = new dlgDetalles(otrosnombres_json, OTROS, false, this);
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgotrosnombres);
+    window->show();
 }
 
 void dlgNuevaPersona::cerrar()
