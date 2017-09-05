@@ -26,7 +26,7 @@
 #include <QDebug>
 
 dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgSeleccionarGeneral), tipo_seleccionado(valor)
 {
     ui->setupUi(this);

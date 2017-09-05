@@ -1,7 +1,7 @@
 #ifndef DLGSELECCIONARGENERAL_H
 #define DLGSELECCIONARGENERAL_H
 
-#include <QDialog>
+#include <QWidget>
 #include "objs/variados.h"
 #include "objs/casa.h"
 #include "objs/persona.h"
@@ -28,7 +28,7 @@ namespace Ui {
 class dlgSeleccionarGeneral;
 }
 
-class dlgSeleccionarGeneral : public QDialog
+class dlgSeleccionarGeneral : public QWidget
 {
     Q_OBJECT
 
