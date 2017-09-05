@@ -13,6 +13,8 @@ class QCompleter;
 class QSqlQueryModel;
 class QJsonObject;
 
+class MyQmdiArea;
+
 namespace Ui {
 class dlgNuevaCasa;
 }
@@ -42,6 +44,8 @@ private slots:
 
 private:
     Ui::dlgNuevaCasa *ui;
+
+    MyQmdiArea *mdiarea;
 
     LugaresModel *m_lugares;
     CasasModel *m_casas;

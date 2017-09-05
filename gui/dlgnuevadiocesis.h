@@ -7,6 +7,7 @@
 #include "objs/lugar.h"
 
 class DiocesisModel;
+class MyQmdiArea;
 
 namespace Ui {
 class dlgNuevaDiocesis;
@@ -33,6 +34,7 @@ private slots:
 
 private:
     Ui::dlgNuevaDiocesis *ui;
+    MyQmdiArea *mdiarea;
 
     DiocesisModel *m_diocesis;
 

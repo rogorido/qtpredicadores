@@ -199,36 +199,38 @@ void dlgDetalles::ocultar()
 void dlgDetalles::on_btPersona_clicked()
 {
     dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PERSONA, this);
-    dlgSeleccionar->show();
-
     connect(dlgSeleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirPersona(Persona)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
+    window->show();
 }
 
 void dlgDetalles::on_btLugar_clicked()
 {
     dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
-    dlgSeleccionar->show();
-
     connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
+    window->show();
 }
 
 void dlgDetalles::on_btProvincia_clicked()
 {
     dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
-    dlgSeleccionar->show();
-
     connect(dlgSeleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
+    window->show();
 
 }
 
 void dlgDetalles::on_btCasa_clicked()
 {
     dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(CASA, this);
-    dlgSeleccionar->show();
-
     connect(dlgSeleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(recibirCasa(Casa)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
+    window->show();
 
 }
 

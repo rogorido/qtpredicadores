@@ -92,7 +92,8 @@ void MainWindow::cargarMenues(){
 void MainWindow::nuevoCapitulo(){
 
     dlgCapitulo = new dlgNuevoCapitulo(this);
-    dlgCapitulo->show();
+    QMdiSubWindow *window = mdiArea->addSubWindow(dlgCapitulo);
+    window->show();
 }
 
 void MainWindow::cargarModelos(){

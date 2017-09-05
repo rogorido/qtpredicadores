@@ -39,7 +39,7 @@ dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *par
     connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->twSeleccionar, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(aceptar()));
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
 
     cargarTipo();
     cargarModelo();
@@ -194,6 +194,8 @@ void dlgSeleccionarGeneral::aceptar(){
     default:
         break;
     }
+
+    cerrar();
 }
 
 void dlgSeleccionarGeneral::casa(){
@@ -234,7 +236,6 @@ void dlgSeleccionarGeneral::casa(){
     casa.setNombre(nombre);
 
     emit(casaEscogidaSignal(casa));
-    close();
 }
 
 void dlgSeleccionarGeneral::lugar(){
@@ -254,8 +255,6 @@ void dlgSeleccionarGeneral::lugar(){
     lugar.setLugar(lugarnombre);
 
     emit(lugarEscogidoSignal(lugar));
-    close();
-
 }
 
 void dlgSeleccionarGeneral::persona(){
@@ -282,7 +281,6 @@ void dlgSeleccionarGeneral::persona(){
     autor.setOrigen(origen);
 
     emit(personaEscogidaSignal(autor));
-    close();
 }
 
 void dlgSeleccionarGeneral::provincia(){
@@ -303,8 +301,6 @@ void dlgSeleccionarGeneral::provincia(){
     provincia.setNombre(nombre);
 
     emit(provinciaEscogidaSignal(provincia));
-    close();
-
 }
 
 void dlgSeleccionarGeneral::diocesis(){
@@ -325,8 +321,6 @@ void dlgSeleccionarGeneral::diocesis(){
     diocesis.setNombre(nombre);
 
     emit(diocesisEscogidaSignal(diocesis));
-    close();
-
 }
 
 void dlgSeleccionarGeneral::capitulo(){
@@ -350,8 +344,6 @@ void dlgSeleccionarGeneral::capitulo(){
     capitulo.setFechaInicio(fecha);
 
     emit(capituloEscogidoSignal(capitulo));
-    close();
-
 }
 
 void dlgSeleccionarGeneral::tema(){
@@ -372,9 +364,6 @@ void dlgSeleccionarGeneral::tema(){
     tema.setTema(nombretema);
 
     emit(temaEscogidoSignal(tema));
-
-    close();
-
 }
 
 void dlgSeleccionarGeneral::anadirObjeto(){
@@ -426,6 +415,11 @@ void dlgSeleccionarGeneral::anadirObjeto(){
 void dlgSeleccionarGeneral::actualizarObjeto(){
     m_objeto->select();
     ui->twSeleccionar->resizeRowsToContents();
+}
+
+void dlgSeleccionarGeneral::cerrar()
+{
+    parentWidget()->close();
 }
 
 void dlgSeleccionarGeneral::anadirTema(){

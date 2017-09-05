@@ -14,6 +14,8 @@ class QCompleter;
 class QSqlQueryModel;
 class QJsonModel;
 
+class MyQmdiArea;
+
 namespace Ui {
 class dlgNuevaObra;
 }
@@ -28,6 +30,8 @@ public:
 
 private:
     Ui::dlgNuevaObra *ui;
+
+    MyQmdiArea *mdiarea;
 
     QSqlQueryModel *m_lugaresoriginales;
     QSqlQueryModel *m_idiomas;
@@ -76,6 +80,7 @@ private slots:
     void on_btQuitarAutor_clicked();
     void on_btQuitarLugar_clicked();
     void on_btTemas_clicked();
+    void on_btDetalles_clicked();
     void on_btOK_clicked();
 
     void actualizarPersona(Persona autor);

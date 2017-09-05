@@ -44,6 +44,8 @@ private slots:
 
     void actualizarObjeto();
 
+    void cerrar();
+
 signals:
     void casaEscogidaSignal(Casa casa);
     void personaEscogidaSignal(Persona autor);

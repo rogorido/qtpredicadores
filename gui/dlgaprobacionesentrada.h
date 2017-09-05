@@ -11,6 +11,8 @@
 
 #include "models/aprobacionestablemodel.h"
 
+class MyQmdiArea;
+
 namespace Ui {
 class dlgAprobacionesEntrada;
 }
@@ -44,6 +46,9 @@ private slots:
 
 private:
     Ui::dlgAprobacionesEntrada *ui;
+
+    MyQmdiArea *mdiarea;
+
     AprobacionesTableModel *aprobaciones_model;
 
     /*

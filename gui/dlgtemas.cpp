@@ -3,16 +3,20 @@
 
 #include <QSqlRecord>
 #include <QSqlQuery>
+#include <QMdiSubWindow>
 #include <QTableWidget>
 #include <QDebug>
 
 #include "objs/tema.h"
+#include "widgets/myqmdiarea.h"
 
 dlgTemas::dlgTemas(QList<elementopareado> *temas_lista, QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgTemas), temas(temas_lista)
 {
     ui->setupUi(this);
+
+    mdiarea = MyQmdiArea::Instance(this);
 
     ui->twTemas->setAlternatingRowColors(true);
     ui->twTemas->resizeColumnsToContents();
@@ -36,9 +40,10 @@ dlgTemas::~dlgTemas()
 void dlgTemas::on_btAnadirTema_clicked(){
 
     dlgseleccionar = new dlgSeleccionarGeneral(TEMA, this);
-    dlgseleccionar->show();
-
     connect(dlgseleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirTema(Tema)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 
 }
 

@@ -13,6 +13,8 @@ class QJsonModel;
 
 class dlgSeleccionarGeneral;
 
+class MyQmdiArea;
+
 namespace Ui {
 class DlgResoluciones;
 }
@@ -41,6 +43,8 @@ private slots:
 
 private:
     Ui::DlgResoluciones *ui;
+
+    MyQmdiArea *mdiarea;
 
     dlgSeleccionarGeneral *dlgseleccionar;
 

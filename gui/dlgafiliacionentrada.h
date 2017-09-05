@@ -11,6 +11,8 @@
 
 #include "models/afiliacionestablemodel.h"
 
+class MyQmdiArea;
+
 namespace Ui {
 class dlgAfiliacionEntrada;
 }
@@ -47,6 +49,8 @@ private slots:
 
 private:
     Ui::dlgAfiliacionEntrada *ui;
+    MyQmdiArea *mdiarea;
+
     AfiliacionesTableModel *afiliaciones_model;
 
     /*

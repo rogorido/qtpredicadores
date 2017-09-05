@@ -10,6 +10,7 @@
 #include <QJsonValue>
 #include <QSqlError>
 #include <QStringListModel>
+#include <QMdiSubWindow>
 
 #include <QDebug>
 
@@ -20,6 +21,7 @@
 #include "objs/resolucion.h"
 #include "gui/dlgtemas.h"
 #include "gui/dlgseleccionargeneral.h"
+#include "widgets/myqmdiarea.h"
 
 dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
                                  QWidget *parent) :
@@ -28,11 +30,10 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
 {
     ui->setupUi(this);
 
+    mdiarea = MyQmdiArea::Instance(this);
+
     jsongestor = new QJsonModel(this);
     m_resoluciones = ResolucionesModel::InstanceModel();
-
-    // pasamos una referencia: ver notas en el header
-    dlgtemas = new dlgTemas(&temas_lista, this);
 
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
@@ -176,7 +177,11 @@ void dlgNuevaResolucion::on_btDetalles_clicked()
 
 void dlgNuevaResolucion::on_btTemas_clicked(){
 
-    dlgtemas->show();
+    // pasamos una referencia: ver notas en el header
+    dlgtemas = new dlgTemas(&temas_lista, this);
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgtemas);
+    window->show();
 
     //connect(dlgtemas, SIGNAL(temasSeleccionadosSignal(QList<elementopareado>)), this, SLOT(recibirTemas(QList<elementopareado>)));
 }
@@ -184,9 +189,10 @@ void dlgNuevaResolucion::on_btTemas_clicked(){
 void dlgNuevaResolucion::anadirProvincia(){
 
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
-
-    dlgseleccionar->show();
     connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 }
 
 void dlgNuevaResolucion::recibirProvincia(Provincia provincia){
@@ -219,9 +225,10 @@ void dlgNuevaResolucion::cerrar()
 void dlgNuevaResolucion::anadirCapitulo(){
 
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CAPITULO, this);
-
-    dlgseleccionar->show();
     connect(dlgseleccionar, SIGNAL(capituloEscogidoSignal(Capitulo)), this, SLOT(recibirCapitulo(Capitulo)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 
 }
 

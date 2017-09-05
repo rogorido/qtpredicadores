@@ -6,6 +6,7 @@
 #include <QJsonDocument>
 #include <QCompleter>
 #include <QMessageBox>
+#include <QMdiSubWindow>
 #include <QDebug>
 
 #include "objs/obispo.h"
@@ -13,11 +14,15 @@
 #include "dlgseleccionargeneral.h"
 #include "dlgfuenteentrada.h"
 
+#include "widgets/myqmdiarea.h"
+
 dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dlgNuevoObispo)
 {
     ui->setupUi(this);
+
+    mdiarea = MyQmdiArea::Instance(this);
 
     QDate fechainicial = QDate(1200, 1, 1);
     QDate fechafinal = QDate(1800, 1, 1);
@@ -32,20 +37,15 @@ dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
     fuentedatos = new QJsonObject();
 
     json_detalles = new QJsonModel(this);
-    /*
-     * FIXME: aquí el 2º paramétro lo dejo como OBRA pq
-     * sinceramente no sabría qué poner ahora...
-     */
-    dlgdetalles = new dlgDetalles(json_detalles, OBRA, false, this);
 
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarObispo()));
     connect(ui->btFuente, SIGNAL(clicked()), this, SLOT(anadirFuente()));
     connect(ui->txtPersona, SIGNAL(dobleclick()), this, SLOT(anadirPersona()));
     connect(ui->txtDiocesis, SIGNAL(dobleclick()), this, SLOT(anadirDiocesis()));
+    connect(ui->btDetalles, SIGNAL(clicked()), this, SLOT(anadirDetalles()));
     connect(ui->dtFechaInicio, SIGNAL(dateChanged(QDate)), this, SLOT(fechaInicioCambiada()));
     connect(ui->dtFechaFinal, SIGNAL(dateChanged(QDate)), this, SLOT(fechaFinalCambiada()));
-    connect(ui->btDetalles, SIGNAL(clicked(bool)), dlgdetalles, SLOT(show()));
 
     cargarModelos();
 }
@@ -145,25 +145,40 @@ void dlgNuevoObispo::aceptarObispo()
 void dlgNuevoObispo::anadirPersona()
 {
     dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(PERSONA, this);
-    seleccionar->show();
-
     connect(seleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirPersona(Persona)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);
+    window->show();
 }
 
 void dlgNuevoObispo::anadirDiocesis()
 {
     dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(DIOCESIS, this);
-    seleccionar->show();
-
     connect(seleccionar, SIGNAL(diocesisEscogidaSignal(Diocesis)), this, SLOT(recibirDiocesis(Diocesis)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);
+    window->show();
 }
 
 void dlgNuevoObispo::anadirFuente()
 {
     dlgFuenteEntrada *fuente = new dlgFuenteEntrada(this);
-    fuente->show();
-
     connect(fuente, SIGNAL(signalFuente(fuente)), this, SLOT(recibirFuente(fuente)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(fuente);
+    window->show();
+}
+
+void dlgNuevoObispo::anadirDetalles()
+{
+    /*
+     * FIXME: aquí el 2º paramétro lo dejo como OBRA pq
+     * sinceramente no sabría qué poner ahora...
+     */
+    dlgdetalles = new dlgDetalles(json_detalles, OBRA, false, this);
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgdetalles);
+    window->show();
 }
 
 void dlgNuevoObispo::fechaInicioCambiada()

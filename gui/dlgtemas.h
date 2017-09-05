@@ -1,16 +1,18 @@
 #ifndef DLGTEMAS_H
 #define DLGTEMAS_H
 
-#include <QDialog>
+#include <QWidget>
 
 #include "objs/tema.h"
 #include "gui/dlgseleccionargeneral.h"
+
+class MyQmdiArea;
 
 namespace Ui {
 class dlgTemas;
 }
 
-class dlgTemas : public QDialog
+class dlgTemas : public QWidget
 {
     Q_OBJECT
 
@@ -29,6 +31,7 @@ private slots:
 
 private:
     Ui::dlgTemas *ui;
+    MyQmdiArea *mdiarea;
 
     dlgSeleccionarGeneral *dlgseleccionar;
 

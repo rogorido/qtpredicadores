@@ -3,6 +3,7 @@
 
 #include <QSqlQueryModel>
 #include <QCompleter>
+#include <QMdiSubWindow>
 #include <QDebug>
 #include <QMessageBox>
 
@@ -11,21 +12,22 @@
 #include "objs/variados.h"
 #include "models/lugaresmodel.h"
 #include "models/qjsonmodel.h"
+#include "widgets/myqmdiarea.h"
 
 dlgNuevoLugar::dlgNuevoLugar(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgNuevoLugar)
 {
     ui->setupUi(this);
 
+    mdiarea = MyQmdiArea::Instance(this);
+
     m_lugares = LugaresModel::InstanceModel();
     otrosnombres = new QJsonModel(this);
 
-    dlgdetalles = new dlgDetalles(otrosnombres, OTROS, false, this);
-
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
-    connect(ui->btOtrosNombres, SIGNAL(clicked(bool)), dlgdetalles, SLOT(show()));
+    connect(ui->btOtrosNombres, SIGNAL(clicked(bool)), this, SLOT(anadirDetalles()));
 
     cargarModelos();
 }
@@ -33,6 +35,14 @@ dlgNuevoLugar::dlgNuevoLugar(QWidget *parent) :
 dlgNuevoLugar::~dlgNuevoLugar()
 {
     delete ui;
+}
+
+void dlgNuevoLugar::anadirDetalles()
+{
+    dlgdetalles = new dlgDetalles(otrosnombres, OTROS, false, this);
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgdetalles);
+    window->show();
 }
 
 void dlgNuevoLugar::aceptar(){
@@ -60,7 +70,7 @@ void dlgNuevoLugar::aceptar(){
 
     if (m_lugares->AnadirLugar(lugar)) {
         // borrarCampos(); realmente no tiene ahora mucho sentido...
-        close();
+        cerrar();
     }
     else {
         int ret = QMessageBox::warning(this, "Error al introducir el lugar",
@@ -68,6 +78,11 @@ void dlgNuevoLugar::aceptar(){
         return;
     }
 
+}
+
+void dlgNuevoLugar::cerrar()
+{
+    parentWidget()->close();
 }
 
 void dlgNuevoLugar::cargarModelos(){

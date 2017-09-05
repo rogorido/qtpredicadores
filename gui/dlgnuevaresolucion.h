@@ -16,6 +16,8 @@ class QSqlQueryModel;
 class QCompleter;
 class QStringListModel;
 
+class MyQmdiArea;
+
 namespace Ui {
 class dlgNuevaResolucion;
 }
@@ -35,6 +37,8 @@ signals:
 
 private:
     Ui::dlgNuevaResolucion *ui;
+
+    MyQmdiArea *mdiarea;
 
     QJsonModel *jsongestor;
     dlgDetalles *dlgdetalles;

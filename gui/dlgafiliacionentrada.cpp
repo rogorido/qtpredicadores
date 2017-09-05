@@ -2,14 +2,18 @@
 #include "ui_dlgafiliacionentrada.h"
 
 #include <QMessageBox>
+#include <QMdiSubWindow>
 
 #include "gui/dlgseleccionargeneral.h"
+#include "widgets/myqmdiarea.h"
 
 dlgAfiliacionEntrada::dlgAfiliacionEntrada(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgAfiliacionEntrada)
 {
     ui->setupUi(this);
+
+    mdiarea = MyQmdiArea::Instance(this);
 
     afiliacion_activa = new Afiliacion();
     afiliaciones_model = new AfiliacionesTableModel(this);
@@ -90,46 +94,47 @@ void dlgAfiliacionEntrada::aceptarAfiliaciones()
 void dlgAfiliacionEntrada::anadirPersona()
 {
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, this);
-    dlgseleccionar->show();
-
     connect(dlgseleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(actualizarPersona(Persona)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 }
 
 void dlgAfiliacionEntrada::anadirCasaOrigen()
 {
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, this);
-    dlgseleccionar->show();
-
     connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(actualizarCasaOrigen(Casa)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 }
 
 void dlgAfiliacionEntrada::anadirCasaDestino()
 {
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, this);
-    dlgseleccionar->show();
-
     connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(actualizarCasaDestino(Casa)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 }
 
 void dlgAfiliacionEntrada::anadirProvinciaOrigen()
 {
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
-    dlgseleccionar->show();
-
     connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(actualizarProvinciaOrigen(Provincia)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 
 }
 
 void dlgAfiliacionEntrada::anadirProvinciaDestino()
 {
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
-    dlgseleccionar->show();
-
     connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(actualizarProvinciaDestino(Provincia)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 }
 
 void dlgAfiliacionEntrada::actualizarPersona(Persona persona)

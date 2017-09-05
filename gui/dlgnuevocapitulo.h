@@ -1,7 +1,7 @@
 #ifndef DLGNUEVOCAPITULO_H
 #define DLGNUEVOCAPITULO_H
 
-#include <QDialog>
+#include <QWidget>
 
 #include "objs/persona.h"
 #include "objs/lugar.h"
@@ -12,11 +12,13 @@ class QSqlQueryModel;
 class LugaresModel;
 class CapitulosModel;
 
+class MyQmdiArea;
+
 namespace Ui {
 class dlgNuevoCapitulo;
 }
 
-class dlgNuevoCapitulo : public QDialog
+class dlgNuevoCapitulo : public QWidget
 {
     Q_OBJECT
 
@@ -36,8 +38,12 @@ private slots:
 
     void on_btQuitarMaestroGeneral_clicked();
 
+    void cerrar();
+
 private:
     Ui::dlgNuevoCapitulo *ui;
+
+    MyQmdiArea *mdiarea;
 
     QCompleter *lugar_completer;
 

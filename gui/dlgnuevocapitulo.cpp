@@ -4,6 +4,7 @@
 #include <QSqlQueryModel>
 #include <QCompleter>
 #include <QSqlQuery>
+#include <QMdiSubWindow>
 
 #include <QDebug>
 #include <QMessageBox>
@@ -14,14 +15,17 @@
 #include "gui/dlgnuevolugar.h"
 #include "gui/dlgseleccionargeneral.h"
 #include "objs/capitulo.h"
+#include "widgets/myqmdiarea.h"
 
 dlgNuevoCapitulo::dlgNuevoCapitulo(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgNuevoCapitulo)
 {
     ui->setupUi(this);
 
-    connect(ui->btCancel, SIGNAL(clicked()), this, SLOT(close()));
+    mdiarea = MyQmdiArea::Instance(this);
+
+    connect(ui->btCancel, SIGNAL(clicked()), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarCapitulo()));
     connect(ui->dtInicial, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaInicialCambiada()));
     connect(ui->dtFinal, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaFinalCambiada()));
@@ -163,10 +167,10 @@ void dlgNuevoCapitulo::fechaFinalCambiada(){
 void dlgNuevoCapitulo::anadirLugar(){
 
     dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
-    dlgSeleccionar->show();
-
     connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(actualizarLugar(Lugar)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
+    window->show();
 }
 
 void dlgNuevoCapitulo::actualizarLugar(Lugar lugar){
@@ -185,10 +189,10 @@ void dlgNuevoCapitulo::quitarLugar(){
 void dlgNuevoCapitulo::anadirMaestroGeneral(){
 
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, this);
-
-    dlgseleccionar->show();
-
     connect(dlgseleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirMaestroGeneral(Persona)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 }
 
 void dlgNuevoCapitulo::recibirMaestroGeneral(Persona persona){
@@ -204,6 +208,11 @@ void dlgNuevoCapitulo::on_btQuitarMaestroGeneral_clicked(){
 
     maestrogeneral_struct = elementopareado();
     ui->txtMaestroGeneral->setText("");
+}
+
+void dlgNuevoCapitulo::cerrar()
+{
+    parentWidget()->close();
 }
 
 void dlgNuevoCapitulo::borrarCampos(){

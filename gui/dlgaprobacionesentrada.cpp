@@ -2,8 +2,10 @@
 #include "ui_dlgaprobacionesentrada.h"
 
 #include <QMessageBox>
+#include <QMdiSubWindow>
 
 #include "gui/dlgseleccionargeneral.h"
+#include "widgets/myqmdiarea.h"
 
 /*
  * TODO: estrictamente en el caso de las casas no debería ser
@@ -18,6 +20,8 @@ dlgAprobacionesEntrada::dlgAprobacionesEntrada(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    mdiarea = MyQmdiArea::Instance(this);
+
     aprobacion_activa = new Aprobacion();
     aprobaciones_model = new AprobacionesTableModel(this);
 
@@ -31,7 +35,6 @@ dlgAprobacionesEntrada::dlgAprobacionesEntrada(QWidget *parent) :
     connect(ui->btPersona, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
     connect(ui->btProvincia, SIGNAL(clicked(bool)), this, SLOT(anadirProvincia()));
     connect(ui->btProvinciaInstitucion, SIGNAL(clicked(bool)), this, SLOT(anadirProvincia()));
-    connect(ui->btPersona, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
     connect(ui->btCasa, SIGNAL(clicked(bool)), this, SLOT(anadirCasa()));
     connect(ui->btAnadirAprobacion, SIGNAL(clicked(bool)), this, SLOT(anadirAprobacion()));
     connect(ui->btQuitarAprobacion, SIGNAL(clicked(bool)), this, SLOT(quitarAprobacion()));
@@ -122,29 +125,29 @@ void dlgAprobacionesEntrada::aceptarAprobaciones()
 void dlgAprobacionesEntrada::anadirPersona()
 {
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, this);
-    dlgseleccionar->show();
-
     connect(dlgseleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(actualizarPersona(Persona)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 }
 
 void dlgAprobacionesEntrada::anadirProvincia()
 {
 
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
-    dlgseleccionar->show();
-
     connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(actualizarProvincia(Provincia)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 }
 
 void dlgAprobacionesEntrada::anadirCasa()
 {
     dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, this);
-    dlgseleccionar->show();
-
     connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(actualizarCasa(Casa)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 }
 
 void dlgAprobacionesEntrada::actualizarPersona(Persona persona)

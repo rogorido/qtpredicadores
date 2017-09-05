@@ -1,7 +1,7 @@
 #ifndef DLGNUEVOLUGAR_H
 #define DLGNUEVOLUGAR_H
 
-#include <QDialog>
+#include <QWidget>
 
 class QJsonModel;
 class LugaresModel;
@@ -9,11 +9,13 @@ class QSqlQueryModel;
 class QCompleter;
 class dlgDetalles;
 
+class MyQmdiArea;
+
 namespace Ui {
 class dlgNuevoLugar;
 }
 
-class dlgNuevoLugar : public QDialog
+class dlgNuevoLugar : public QWidget
 {
     Q_OBJECT
 
@@ -23,10 +25,13 @@ public:
 
 private slots:
 
+    void anadirDetalles();
     void aceptar();
+    void cerrar();
 
 private:
     Ui::dlgNuevoLugar *ui;
+    MyQmdiArea *mdiarea;
 
     dlgDetalles *dlgdetalles;
 

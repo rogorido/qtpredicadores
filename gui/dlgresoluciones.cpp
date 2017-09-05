@@ -8,9 +8,12 @@
 #include <QDebug>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QMdiSubWindow>
 #include <QMessageBox>
 
 #include "models/qjsonmodel.h"
+
+#include "widgets/myqmdiarea.h"
 
 #include "gui/dlgseleccionargeneral.h"
 #include "gui/dlgdetalles.h"
@@ -25,6 +28,8 @@ DlgResoluciones::DlgResoluciones(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    mdiarea = MyQmdiArea::Instance(this);
+
     json_model = new QJsonModel(this);
     ui->twDetalles->setModel(json_model);
 
@@ -36,7 +41,6 @@ DlgResoluciones::DlgResoluciones(QWidget *parent) :
 
     connect(ui->twResoluciones->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
             this, SLOT(seleccionarResolucion(QModelIndex)));
-    connect(ui->btCerrar, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(aplicarFiltro()));
 
 }
@@ -171,9 +175,10 @@ void DlgResoluciones::aplicarFiltro()
 void DlgResoluciones::on_btAnadirTema_clicked()
 {
     dlgseleccionar = new dlgSeleccionarGeneral(TEMA, this);
-    dlgseleccionar->show();
-
     connect(dlgseleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirNuevoTema(Tema)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
 }
 
 void DlgResoluciones::on_btQuitarTema_clicked()
@@ -202,9 +207,10 @@ void DlgResoluciones::on_btQuitarTema_clicked()
 void DlgResoluciones::on_btAnadirDetalles_clicked()
 {
     dlgDetalles *dlgdetalles = new dlgDetalles(json_anadir_model, RESOLUCION, true, this);
-    dlgdetalles->show();
-
     connect(dlgdetalles, SIGNAL(accepted()), this, SLOT(recibirNuevoJsonDetalles()));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgdetalles);
+    window->show();
 }
 
 void DlgResoluciones::on_btBorrarDetalles_clicked()

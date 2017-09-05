@@ -6,6 +6,7 @@
 #include <QCompleter>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QMdiSubWindow>
 #include <QMessageBox>
 
 #include "models/lugaresmodel.h"
@@ -15,12 +16,15 @@
 #include "objs/variados.h"
 #include "gui/dlgseleccionargeneral.h"
 #include "gui/dlgfuenteentrada.h"
+#include "widgets/myqmdiarea.h"
 
 dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dlgNuevaCasa)
 {
     ui->setupUi(this);
+
+    mdiarea = MyQmdiArea::Instance(this);
 
     m_lugares = LugaresModel::InstanceModel();
     m_casas = CasasModel::InstanceModel();
@@ -109,9 +113,10 @@ void dlgNuevaCasa::aceptarCasa(){
 void dlgNuevaCasa::anadirLugar(){
 
     dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
-    dlgSeleccionar->show();
-
     connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
+    window->show();
 }
 
 void dlgNuevaCasa::recibirLugar(Lugar lugarescogido){
@@ -126,9 +131,10 @@ void dlgNuevaCasa::recibirLugar(Lugar lugarescogido){
 void dlgNuevaCasa::anadirFuente()
 {
     dlgFuenteEntrada *fuente = new dlgFuenteEntrada(this);
-    fuente->show();
-
     connect(fuente, SIGNAL(signalFuente(fuente)), this, SLOT(recibirFuente(fuente)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(fuente);
+    window->show();
 
 }
 
@@ -139,9 +145,10 @@ void dlgNuevaCasa::quitarLugar(){
 
 void dlgNuevaCasa::anadirProvincia(){
     dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
-    dlgSeleccionar->show();
-
     connect(dlgSeleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
+    window->show();
 }
 
 void dlgNuevaCasa::recibirProvincia(Provincia provincia){

@@ -13,6 +13,8 @@ class QSqlQueryModel;
 class QCompleter;
 class QJsonModel;
 
+class MyQmdiArea;
+
 namespace Ui {
 class dlgNuevoObispo;
 }
@@ -31,6 +33,7 @@ private slots:
     void anadirPersona();
     void anadirDiocesis();
     void anadirFuente();
+    void anadirDetalles();
 
     void fechaInicioCambiada();
     void fechaFinalCambiada();
@@ -43,6 +46,7 @@ private slots:
 
 private:
     Ui::dlgNuevoObispo *ui;
+    MyQmdiArea *mdiarea;
 
     QSqlQueryModel *m_papas;
     QCompleter *m_papas_completer;

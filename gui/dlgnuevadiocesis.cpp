@@ -3,16 +3,20 @@
 
 #include <QMessageBox>
 #include <QJsonObject>
+#include <QMdiSubWindow>
 #include <QDebug>
 
 #include "gui/dlgseleccionargeneral.h"
 #include "models/diocesismodel.h"
+#include "widgets/myqmdiarea.h"
 
 dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dlgNuevaDiocesis)
 {
     ui->setupUi(this);
+
+    mdiarea = MyQmdiArea::Instance(this);
 
     m_diocesis = DiocesisModel::InstanceModel();
 
@@ -103,10 +107,10 @@ void dlgNuevaDiocesis::borrarCampos()
 void dlgNuevaDiocesis::anadirLugar()
 {
     dlgSeleccionarGeneral *seleccionlugar = new dlgSeleccionarGeneral(LUGAR, this);
-    seleccionlugar->show();
-
     connect(seleccionlugar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(seleccionlugar);
+    window->show();
 }
 
 void dlgNuevaDiocesis::anadirArchiDiocesis()

@@ -9,10 +9,13 @@
 #include "objs/obra.h"
 #include "objs/variados.h"
 
+#include "widgets/myqmdiarea.h"
+
 #include <QSqlQueryModel>
 #include <QSqlQuery>
 #include <QCompleter>
 #include <QInputDialog>
+#include <QMdiSubWindow>
 #include <QDebug>
 #include <QMessageBox>
 
@@ -22,21 +25,17 @@ dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    mdiarea = MyQmdiArea::Instance(this);
+
     m_lugares = LugaresModel::InstanceModel();
     m_obras = ObrasModel::InstanceModel();
 
-    // lo pasamos como referencia. ver header.
-    dlgtemas = new dlgTemas(&temasescogidos, this);
-
     json_detalles = new QJsonModel(this);
-    dlgdetalles = new dlgDetalles(json_detalles, OBRA, false, this);
 
     connect(ui->btAnadirLugar, SIGNAL(clicked()), this, SLOT(on_btAnadirLugar_clicked()));
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(on_btIntroducirLugar_clicked()));
     connect(ui->txtAutor, SIGNAL(dobleclick()), this, SLOT(on_btSeleccionarAutor_clicked()));
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
-    // mostramos el form de dlgdetalles que ya está creado...
-    connect(ui->btDetalles, SIGNAL(clicked(bool)), dlgdetalles, SLOT(show()));
 
     cargarCompleters();
 }
@@ -77,17 +76,23 @@ void dlgNuevaObra::cargarCompleters(){
 void dlgNuevaObra::on_btAnadirLugar_clicked(){
 
     dlgNuevoLugar *dlglugar = new dlgNuevoLugar(this);
-    dlglugar->show();
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlglugar);
+    window->show();
+
+    /*
+     * TODO: esto realmetne funciona?
+     */
     cargarCompleters();
 }
 
 void dlgNuevaObra::on_btSeleccionarAutor_clicked()
 {
     dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PERSONA, this);
-    dlgSeleccionar->show();
-
     connect(dlgSeleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(actualizarPersona(Persona)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
+    window->show();
 }
 
 void dlgNuevaObra::actualizarPersona(Persona autor){
@@ -114,9 +119,10 @@ void dlgNuevaObra::on_btQuitarAutor_clicked(){
 void dlgNuevaObra::on_btIntroducirLugar_clicked()
 {
     dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
-    dlgSeleccionar->show();
-
     connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(actualizarLugar(Lugar)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
+    window->show();
 }
 
 void dlgNuevaObra::actualizarLugar(Lugar lugar){
@@ -140,8 +146,19 @@ void dlgNuevaObra::on_btQuitarLugar_clicked(){
 
 void dlgNuevaObra::on_btTemas_clicked(){
 
-    dlgtemas->show();
+    // lo pasamos como referencia. ver header.
+    dlgtemas = new dlgTemas(&temasescogidos, this);
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgtemas);
+    window->show();
+}
+
+void dlgNuevaObra::on_btDetalles_clicked()
+{
+    dlgdetalles = new dlgDetalles(json_detalles, OBRA, false, this);
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgdetalles);
+    window->show();
 }
 
 void dlgNuevaObra::on_btOK_clicked(){
