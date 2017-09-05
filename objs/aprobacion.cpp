@@ -2,7 +2,8 @@
 
 Aprobacion::Aprobacion() { }
 
-void Aprobacion::setTipo(QString t) { tipo = t; }
+void Aprobacion::setTipoAprobacion(Aprobacion::TipoAprobacion t) { tipo_aprobacion = t; }
+void Aprobacion::setCargo(QString c) { cargo = c; }
 void Aprobacion::setPersona(Persona p) { persona = p; }
 void Aprobacion::setProvincia(Provincia p) { provincia = p; }
 void Aprobacion::setExtraInfos(ExtraInfos e) { extras = e; }
@@ -13,8 +14,16 @@ QJsonObject Aprobacion::getAprobacionJson()
 
     json.insert("aprobación", "yes");
 
-    if (!tipo.isEmpty())
-        json.insert("aprobación_tipo", tipo);
+    if (tipo_aprobacion == Aprobacion::TipoAprobacion::PERSONA)
+        json.insert("aprobación_tipo", "persona");
+    else
+        json.insert("aprobación_tipo", "casa");
+
+    /*
+     * esto es el tipo de cargo, etc.
+     */
+    if (!cargo.isEmpty())
+        json.insert("aprobación_cargo", cargo);
 
     if (persona.estaLleno())
         json.insert("persona", persona.getId());

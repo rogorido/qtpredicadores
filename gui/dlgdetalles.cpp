@@ -38,10 +38,11 @@ dlgDetalles::dlgDetalles(QJsonModel *json, int t, bool anadir, QWidget *parent) 
     ui->setupUi(this);
 
     mdiarea = MyQmdiArea::Instance(this);
+    mdiarea->cascadeSubWindows();
 
     ui->twJsonGeneral->setModel(json_model);
 
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
 
     /*
      * si estamos añadiendo cerramos sin más; si no, lo ocultamos.
