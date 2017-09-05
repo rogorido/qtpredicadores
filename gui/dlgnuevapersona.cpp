@@ -37,7 +37,6 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
 
     jsongestor = new QJsonModel(this);
     otrosnombres_json = new QJsonModel(this);
-    //cargarJsonEstructuras();
     cargarCompleters();
 
 }
@@ -45,11 +44,6 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
 dlgNuevaPersona::~dlgNuevaPersona()
 {
     delete ui;
-}
-
-void dlgNuevaPersona::cargarJsonEstructuras(){
-
-
 }
 
 void dlgNuevaPersona::cargarCompleters(){
@@ -208,7 +202,8 @@ void dlgNuevaPersona::borrarCampos(){
      * diversos tipos de datos.
      * De todas formas: no sé si hay una forma mejor...
      */
-    cargarJsonEstructuras();
+    jsongestor = new QJsonModel(this);
+    otrosnombres_json = new QJsonModel(this);
 
     ui->txtNombre->setFocus();
 }

@@ -61,7 +61,6 @@ private:
 
     void cargarCompleters();
     void borrarCampos();
-    void cargarJsonEstructuras();
 
 };
 
