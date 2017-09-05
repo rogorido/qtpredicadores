@@ -7,6 +7,7 @@
 #include "objs/persona.h"
 #include "objs/provincia.h"
 #include "objs/variados.h"
+#include "objs/casa.h"
 
 #include "models/aprobacionestablemodel.h"
 
@@ -32,10 +33,13 @@ private slots:
     void aceptarAprobaciones();
     void anadirPersona();
     void anadirProvincia();
+    void anadirCasa();
 
     void actualizarPersona(Persona persona);
     void actualizarProvincia(Provincia provincia);
+    void actualizarCasa(Casa casa);
 
+    void tabCambiado(int t);
     void cerrar();
 
 private:
@@ -49,6 +53,21 @@ private:
      * me cambia internamente lo de AprobacionesTableModel
      */
     Aprobacion *aprobacion_activa;
+
+    /*
+     * esto realmente es un poco lío así... pero al tener dos
+     * funcionalidades (lo de casas y personas) en el mismo formulario
+     * lo voy a poner así. Luego en anadirAprobacion coge estos datos...
+     */
+    Persona persona_seleccionada;
+    Provincia provincia_seleccionada;
+    Casa casa_seleccionada;
+
+    /*
+     * guardamos aquí qué tab está seleccionado al cambiar
+     * para saber si añadimos personas o instituciones.
+     */
+    int tabSeleccionado;
 };
 
 #endif // DLGAPROBACIONESENTRADA_H

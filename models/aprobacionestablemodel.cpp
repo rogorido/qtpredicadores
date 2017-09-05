@@ -15,7 +15,7 @@ QVariant AprobacionesTableModel::headerData(int section, Qt::Orientation orienta
                 case 0:
                     return tr("Aprobación");
                 case 1:
-                return tr("Persona");
+                return tr("Persona/Casa");
 
                 case 2:
                     return tr("Provincia");
@@ -45,6 +45,9 @@ int AprobacionesTableModel::columnCount(const QModelIndex &parent) const
 
 QVariant AprobacionesTableModel::data(const QModelIndex &index, int role) const
 {
+    QString persona;
+    QString casa;
+
     if (!index.isValid())
         return QVariant();
 
@@ -53,12 +56,24 @@ QVariant AprobacionesTableModel::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole) {
             Aprobacion *aprobacion = lista_aprobaciones.at(index.row());
-            QString persona = aprobacion->getPersona().getNombre() + ' ' + aprobacion->getPersona().getApellidos();
+            if (aprobacion->getTipoAprobacion() == Aprobacion::TipoAprobacion::PERSONA)
+                persona = aprobacion->getPersona().getNombre() + ' ' + aprobacion->getPersona().getApellidos();
+            else
+                casa = aprobacion->getCasa().getNombre();
 
-            if (index.column() == 0)
-                return aprobacion->getTipo();
-            else if (index.column() == 1)
+            if (index.column() == 0){
+                if (aprobacion->getTipoAprobacion() == Aprobacion::TipoAprobacion::PERSONA)
+                    return aprobacion->getCargo();
+                else
+                    return aprobacion->getTipoInstitucion();
+            }
+            else if (index.column() == 1){
+                    if (aprobacion->getTipoAprobacion() == Aprobacion::TipoAprobacion::PERSONA)
+                        return persona;
+                    else
+                        return casa;
                 return persona;
+            }
             else if (index.column() == 2)
                 return aprobacion->getProvincia().getNombre();
         }
