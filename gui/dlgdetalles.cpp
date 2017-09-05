@@ -38,7 +38,6 @@ dlgDetalles::dlgDetalles(QJsonModel *json, int t, bool anadir, QWidget *parent) 
     ui->setupUi(this);
 
     mdiarea = MyQmdiArea::Instance(this);
-    mdiarea->cascadeSubWindows();
 
     ui->twJsonGeneral->setModel(json_model);
 

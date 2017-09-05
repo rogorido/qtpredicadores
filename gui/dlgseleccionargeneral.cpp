@@ -18,8 +18,11 @@
 #include "gui/dlgnuevocapitulo.h"
 #include "gui/dlgnuevadiocesis.h"
 
+#include "widgets/myqmdiarea.h"
+
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QMdiSubWindow>
 #include <QDebug>
 
 dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *parent) :
@@ -27,6 +30,8 @@ dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *par
     ui(new Ui::dlgSeleccionarGeneral), tipo_seleccionado(valor)
 {
     ui->setupUi(this);
+
+    mdiarea = MyQmdiArea::Instance(this);
 
     ui->txtFiltro->setClearButtonEnabled(true);
 
@@ -377,27 +382,33 @@ void dlgSeleccionarGeneral::anadirObjeto(){
     switch (tipo_seleccionado) {
     case CASA:{
         dlgNuevaCasa *dlgcasa = new dlgNuevaCasa(this);
-        dlgcasa->show();
+        QMdiSubWindow *window = mdiarea->addSubWindow(dlgcasa);
+        window->show();
         break;}
     case LUGAR:{
         dlgNuevoLugar *dlglugar = new dlgNuevoLugar(this);
-        dlglugar->show();
+        QMdiSubWindow *window = mdiarea->addSubWindow(dlglugar);
+        window->show();
         break;}
     case PROVINCIA:{
         dlgNuevaProvincia *dlgprovincia = new dlgNuevaProvincia(this);
-        dlgprovincia->show();
+        QMdiSubWindow *window = mdiarea->addSubWindow(dlgprovincia);
+        window->show();
         break;}
     case PERSONA:{
         dlgNuevaPersona *dlgpersona = new dlgNuevaPersona(this);
-        dlgpersona->show();
+        QMdiSubWindow *window = mdiarea->addSubWindow(dlgpersona);
+        window->show();
         break;}
     case CAPITULO:{
         dlgNuevoCapitulo *dlgcapitulo = new dlgNuevoCapitulo(this);
-        dlgcapitulo->show();
+        QMdiSubWindow *window = mdiarea->addSubWindow(dlgcapitulo);
+        window->show();
         break;}
     case DIOCESIS:{
         dlgNuevaDiocesis *dlgdiocesis = new dlgNuevaDiocesis(this);
-        dlgdiocesis->show();
+        QMdiSubWindow *window = mdiarea->addSubWindow(dlgdiocesis);
+        window->show();
         break;}
     case TEMA:{
         anadirTema();

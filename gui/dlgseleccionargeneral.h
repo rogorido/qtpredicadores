@@ -22,6 +22,8 @@ class DiocesisModel;
 class QSqlTableModel;
 class ProxyNombres;
 
+class MyQmdiArea;
+
 namespace Ui {
 class dlgSeleccionarGeneral;
 }
@@ -53,6 +55,8 @@ signals:
 
 private:
     Ui::dlgSeleccionarGeneral *ui;
+
+    MyQmdiArea *mdiarea;
 
     QSqlTableModel *m_objeto;
     ProxyNombres *m_objeto_proxy;
