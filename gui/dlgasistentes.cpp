@@ -26,7 +26,7 @@ dlgAsistentes::dlgAsistentes(int chapter, QWidget *parent) :
     ui->setupUi(this);
 
     // ponemos esto pq será lo frecuente.
-    ui->txtKey->setText("Asistentes");
+    ui->txtKey->setText("Asistente");
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));

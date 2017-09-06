@@ -8,10 +8,20 @@
 #include "objs/infraccion.h"
 #include "objs/declaracion.h"
 
+class QJsonModel;
+class MyQmdiArea;
+
 /*
  * Tengo el problema de que no sé cómo borrar una infracción o una pena
  * pq al ser un objeto no sé cómo borrarlo...
  * Tal vez habría que hacerlo en la clase con un reset o algo así...
+ */
+
+/*
+ * TODO: en este formulario habría quehacer un sistmea para borrar lo que
+ * ya he metido. Sospecho q tendría que hacer una QList o algo de ifnracciones
+ * y gestionarlas... Así como está ahora creo q no se puede, no?
+ * A no ser que reinicilice sin más el objeto infraccion_cometida...
  */
 
 namespace Ui {
@@ -44,8 +54,16 @@ signals:
 
 private:
     Ui::dlgDeclaracionEntrada *ui;
+    MyQmdiArea *mdiarea;
 
     Declaracion declaracion;
+
+
+    /*
+     * este es el model donde vamos metiendo QJsonObjects
+     * y que se comunica con la view.
+     */
+    QJsonModel *json_model_infracciones;
 
     Pena pena_estipulada;
     Infraccion infraccion_cometida;

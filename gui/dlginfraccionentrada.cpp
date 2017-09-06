@@ -17,7 +17,7 @@ const QString sql_infractores="SELECT DISTINCT jsonb_array_elements_text(details
                              "ORDER BY infractores;";
 
 dlgInfraccionEntrada::dlgInfraccionEntrada(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgInfraccionEntrada)
 {
     ui->setupUi(this);
@@ -53,7 +53,7 @@ void dlgInfraccionEntrada::aceptar()
 
     emit(aceptarInfraccion(infraccion));
 
-    close();
+    parentWidget()->close();
 }
 
 void dlgInfraccionEntrada::anadirInfractor()
@@ -101,10 +101,10 @@ bool dlgInfraccionEntrada::eventFilter(QObject *obj, QEvent *e)
         }
 
     /*
-     * atención aquí lo importante es poner QDialog!
+     * atención aquí lo importante es poner QWidget!
      * si pongo dlgPenaEntrada no funciona!!
      */
-    return QDialog::eventFilter(obj, e);
+    return QWidget::eventFilter(obj, e);
 }
 
 void dlgInfraccionEntrada::cargarModelos()

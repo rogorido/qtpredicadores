@@ -1,7 +1,7 @@
 #ifndef DLGINFRACCIONENTRADA_H
 #define DLGINFRACCIONENTRADA_H
 
-#include <QDialog>
+#include <QWidget>
 
 #include "objs/variados.h"
 #include "objs/infraccion.h"
@@ -13,7 +13,7 @@ namespace Ui {
 class dlgInfraccionEntrada;
 }
 
-class dlgInfraccionEntrada : public QDialog
+class dlgInfraccionEntrada : public QWidget
 {
     Q_OBJECT
 

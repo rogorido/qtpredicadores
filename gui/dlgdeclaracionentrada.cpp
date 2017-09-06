@@ -3,6 +3,11 @@
 
 #include "gui/dlgpenaentrada.h"
 #include "gui/dlginfraccionentrada.h"
+#include "widgets/myqmdiarea.h"
+
+#include <QMdiSubWindow>
+
+#include "models/qjsonmodel.h"
 
 // TODO: falta añadir lo de persona, pero no sé para qué lo puse...
 
@@ -11,6 +16,11 @@ dlgDeclaracionEntrada::dlgDeclaracionEntrada(QWidget *parent) :
     ui(new Ui::dlgDeclaracionEntrada)
 {
     ui->setupUi(this);
+
+    mdiarea = MyQmdiArea::Instance(this);
+
+    json_model_infracciones = new QJsonModel(this);
+    ui->twJsonInfraccion->setModel(json_model_infracciones);
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
@@ -45,23 +55,27 @@ void dlgDeclaracionEntrada::aceptar()
 void dlgDeclaracionEntrada::anadirInfraccion()
 {
     dlgInfraccionEntrada *dlginfraccion = new dlgInfraccionEntrada(this);
-    dlginfraccion->show();
-
     connect(dlginfraccion, SIGNAL(aceptarInfraccion(Infraccion)), this, SLOT(recibirInfraccion(Infraccion)));
 
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlginfraccion);
+    window->show();
 }
 
 void dlgDeclaracionEntrada::anadirPena()
 {
     dlgPenaEntrada *dlgpena = new dlgPenaEntrada(this);
-    dlgpena->show();
-
     connect(dlgpena, SIGNAL(aceptarPena(Pena)), this, SLOT(recibirPena(Pena)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgpena);
+    window->show();
 }
 
 void dlgDeclaracionEntrada::recibirInfraccion(Infraccion infraccion)
 {
     infraccion_cometida = infraccion;
+    QJsonObject infraccion_json = infraccion.getInfraccionJson();
+    json_model_infracciones->anadirJson(infraccion_json);
+    json_model_infracciones->resetearModelo();
 }
 
 void dlgDeclaracionEntrada::recibirPena(Pena pena)

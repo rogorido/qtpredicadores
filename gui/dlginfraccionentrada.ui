@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>dlgInfraccionEntrada</class>
- <widget class="QDialog" name="dlgInfraccionEntrada">
+ <widget class="QWidget" name="dlgInfraccionEntrada">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -65,59 +65,59 @@
       <attribute name="title">
        <string>Infractores</string>
       </attribute>
-      <widget class="QListWidget" name="lwInfractores">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>291</width>
-         <height>220</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btEliminar">
-       <property name="geometry">
-        <rect>
-         <x>330</x>
-         <y>10</y>
-         <width>80</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>&amp;Eliminar</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QListWidget" name="lwInfractores"/>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QPushButton" name="btEliminar">
+             <property name="text">
+              <string>&amp;Eliminar</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
        <string>Notas</string>
       </attribute>
-      <widget class="WidgetNotas" name="wdNotas" native="true">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>10</y>
-         <width>341</width>
-         <height>171</height>
-        </rect>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="WidgetNotas" name="wdNotas" native="true"/>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
        <string>Extra</string>
       </attribute>
-      <widget class="WidgetExtraInfos" name="wdExtras" native="true">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>20</y>
-         <width>341</width>
-         <height>151</height>
-        </rect>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
+       <item>
+        <widget class="WidgetExtraInfos" name="wdExtras" native="true"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
