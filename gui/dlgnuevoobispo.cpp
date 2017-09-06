@@ -162,11 +162,10 @@ void dlgNuevoObispo::anadirDiocesis()
 
 void dlgNuevoObispo::anadirFuente()
 {
-    dlgFuenteEntrada *fuente = new dlgFuenteEntrada(this);
-    connect(fuente, SIGNAL(signalFuente(fuente)), this, SLOT(recibirFuente(fuente)));
+    dlgFuenteEntrada *dlgfuente = new dlgFuenteEntrada(this);
+    connect(dlgfuente, SIGNAL(signalFuente(fuente)), this, SLOT(recibirFuente(fuente)));
 
-    QMdiSubWindow *window = mdiarea->addSubWindow(fuente);
-    window->show();
+    dlgfuente->show();
 }
 
 void dlgNuevoObispo::anadirDetalles()

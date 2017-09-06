@@ -23,4 +23,5 @@ void Persona::setOtrosnombres(QString o){ otrosnombres = o; }
 void Persona::setOtrosdatos(QString o){ otrosdatos = o; }
 void Persona::setVolverMirar(bool v) { volveramirar = v; }
 void Persona::setCantidadInfo(int c) { cantidadinfo = c; }
-void Persona::setNotas(QString n){ notas = n; }
+void Persona::setNotas(QString n) { notas = n; }
+void Persona::setFuente(fuente f) { fuente_origen = f; }

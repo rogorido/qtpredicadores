@@ -3,6 +3,8 @@
 
 #include <QString>
 
+#include "objs/variados.h"
+
 // no lo derivo de QObject, por lo que no tiene ni signals ni slots
 
 class Persona
@@ -29,6 +31,7 @@ public:
     void setVolverMirar(bool v);
     void setCantidadInfo(int c);
     void setNotas(QString n);
+    void setFuente(fuente f);
 
     //getters
     int getId() const {return id;}
@@ -49,6 +52,7 @@ public:
     bool getVolverMirar() const {return volveramirar;}
     int getCantidadInfo() const {return cantidadinfo;}
     QString getNotas() const {return notas;}
+    fuente getFuente() const {return fuente_origen;}
     bool estaLleno() const {return lleno;}
 
 private:
@@ -72,6 +76,7 @@ private:
     bool volveramirar;
     int cantidadinfo;
     QString notas;
+    fuente fuente_origen;
     bool lleno = false;
 
 };

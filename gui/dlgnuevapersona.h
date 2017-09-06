@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "objs/variados.h"
+
 class PersonasModel;
 class QJsonModel;
 class dlgDetalles;
@@ -28,7 +30,10 @@ private slots:
     void aceptarPersona();
 
     void on_btDetalles_clicked();
-    void on_btOtrosNombres_clicked();
+    void on_btOtrosNombres_clicked();    
+    void on_btFuente_clicked();
+
+    void recibirFuente(fuente f);
 
     void cerrar();
 
@@ -56,6 +61,8 @@ private:
     QJsonModel *otrosnombres_json;
     dlgDetalles *dlgdetalles;
     dlgDetalles *dlgotrosnombres;
+
+    fuente fuente_origen;
 
     void introducirJson(const int id);
 

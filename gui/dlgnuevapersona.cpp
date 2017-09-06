@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QJsonObject>
 #include <QCompleter>
 #include <QMdiSubWindow>
 #include <QMessageBox>
@@ -11,7 +12,7 @@
 #include "models/personasmodel.h"
 #include "models/qjsonmodel.h"
 #include "gui/dlgdetalles.h"
-#include "objs/variados.h"
+#include "gui/dlgfuenteentrada.h"
 #include "objs/persona.h"
 #include "widgets/myqmdiarea.h"
 
@@ -119,6 +120,7 @@ void dlgNuevaPersona::aceptarPersona(){
     persona->setCantidadInfo(cantidadinfo);
     persona->setOtrosnombres(otrosnombres);
     persona->setNotas(notas);
+    persona->setFuente(fuente_origen);
 
     if (m_personas->AnadirPersona(persona)){
         //QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
@@ -208,3 +210,25 @@ void dlgNuevaPersona::borrarCampos(){
     ui->txtNombre->setFocus();
 }
 
+void dlgNuevaPersona::on_btFuente_clicked()
+{
+    dlgFuenteEntrada *dlgfuente = new dlgFuenteEntrada(this);
+    connect(dlgfuente, SIGNAL(signalFuente(fuente)), this, SLOT(recibirFuente(fuente)));
+
+    dlgfuente->show();
+}
+
+void dlgNuevaPersona::recibirFuente(fuente f)
+{
+    // esto no lo complico un poco?
+    QJsonObject fuente_json;
+    QJsonObject fuente_final;
+
+    fuente_json.insert("source_id", QJsonValue(f.titulo));
+    fuente_json.insert("volume", f.tomo);
+    fuente_json.insert("pages", f.paginas);
+
+    fuente_final.insert("source", fuente_json);
+
+    jsongestor->anadirJson(fuente_final);
+}
