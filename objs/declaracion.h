@@ -8,6 +8,7 @@
 #include "objs/pena.h"
 #include "objs/notas.h"
 #include "objs/persona.h"
+#include "objs/retroreferencia.h"
 
 class Declaracion
 {
@@ -18,6 +19,10 @@ public:
     void setInfraccion(Infraccion i);
     void setPena(Pena p);
     void setPersona(Persona p);
+    void setCargos(QStringList c);
+    void setInstituciones(QStringList i);
+    void setProvincias(QList<int> p);
+    void setRetroReferencia(RetroReferencia r);
     void setNota(Notas n);
     void setExtraInfos(ExtraInfos e);
     void setExtraJson(QJsonObject e);
@@ -27,6 +32,10 @@ public:
     Infraccion getInfraccion() const {return infraccion;}
     Pena getPena() const {return pena;}
     Persona getPersona() const {return persona;}
+    QStringList getCargos() const {return cargos;}
+    QStringList getInstituciones() const {return instituciones;}
+    QList<int> getProvincias() const {return provincias;}
+    RetroReferencia getRetroReferencia() const {return retro;}
     Notas getNota() const {return nota;}
     ExtraInfos getExtras() const {return extras;}
     QJsonObject getExtrajson() const {return extrajson;}
@@ -64,6 +73,15 @@ private:
      */
     Persona persona; // tvz tendría que ser Qlist... o QList<int>
     Notas nota;
+
+    /*
+     *  estos son para cuando tengo una declaración de esas
+     * muy ambigua y general
+     */
+    QStringList cargos;
+    QStringList instituciones;
+    QList<int> provincias;
+    RetroReferencia retro;
 
     // por qué coño tengo estos dos?
     ExtraInfos extras;

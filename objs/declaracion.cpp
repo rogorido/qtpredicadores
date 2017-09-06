@@ -1,11 +1,17 @@
 #include "declaracion.h"
 
+#include <QJsonArray>
+
 Declaracion::Declaracion() { }
 
 void Declaracion::setTipo(QString t) { tipo = t; }
 void Declaracion::setInfraccion(Infraccion i) { infraccion = i; }
 void Declaracion::setPena(Pena p) { pena = p; }
 void Declaracion::setPersona(Persona p) { persona = p; }
+void Declaracion::setCargos(QStringList c) { cargos = c; }
+void Declaracion::setInstituciones(QStringList i) { instituciones = i; }
+void Declaracion::setProvincias(QList<int> p) { provincias = p; }
+void Declaracion::setRetroReferencia(RetroReferencia r) { retro = r; }
 void Declaracion::setNota(Notas n) { nota = n; }
 void Declaracion::setExtraInfos(ExtraInfos e) { extras = e; }
 void Declaracion::setExtraJson(QJsonObject e) { extrajson = e; }
@@ -28,6 +34,24 @@ QJsonObject Declaracion::getDeclaracionJson(){
     if (persona.estaLleno()){
         json.insert("declaracion_persona", persona.getId());
     }
+
+    if (!cargos.isEmpty())
+        json.insert("cargos", QJsonArray::fromStringList(cargos));
+
+    if (!instituciones.isEmpty())
+        json.insert("instituciones", QJsonArray::fromStringList(instituciones));
+
+    if (!provincias.isEmpty()){
+        QJsonArray array_provincias;
+        for (int i = 0; i < provincias.size(); ++i) {
+            array_provincias.append(QJsonValue(provincias.at(i)));
+        }
+
+        json.insert("provincias", array_provincias);
+    }
+
+    if (retro.estaLleno())
+        json.insert("retro", retro.getRetroJson());
 
     if (extras.size() > 0 ) {
         for (int i = 0; i < extras.size(); ++i) {
