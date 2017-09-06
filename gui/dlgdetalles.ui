@@ -36,6 +36,55 @@
              <property name="sizeConstraint">
               <enum>QLayout::SetDefaultConstraint</enum>
              </property>
+             <item row="0" column="0">
+              <widget class="QPushButton" name="btLicencias">
+               <property name="text">
+                <string>Licencias</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QPushButton" name="btComisiones">
+               <property name="text">
+                <string>Comisiones</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QPushButton" name="btDeclaraciones">
+               <property name="text">
+                <string>Declaraciones</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" colspan="2">
+              <widget class="QPushButton" name="btAprobaciones">
+               <property name="text">
+                <string>Aprobaciones</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="2">
+              <widget class="QPushButton" name="btAfiliaciones">
+               <property name="text">
+                <string>Afiliaciones</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QPushButton" name="btTraslado">
+               <property name="text">
+                <string>Traslado</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" colspan="2">
+              <widget class="QPushButton" name="btPenas">
+               <property name="text">
+                <string>Penas</string>
+               </property>
+              </widget>
+             </item>
              <item row="2" column="2">
               <widget class="QPushButton" name="btAdmoniciones">
                <property name="text">
@@ -50,20 +99,6 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="2">
-              <widget class="QPushButton" name="btComisiones">
-               <property name="text">
-                <string>Comisiones</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="2">
-              <widget class="QPushButton" name="btAfiliaciones">
-               <property name="text">
-                <string>Afiliaciones</string>
-               </property>
-              </widget>
-             </item>
              <item row="2" column="0">
               <widget class="QPushButton" name="btSufragios">
                <property name="text">
@@ -71,38 +106,10 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="0">
-              <widget class="QPushButton" name="btLicencias">
+             <item row="5" column="0">
+              <widget class="QPushButton" name="btDeclaracionGeneral">
                <property name="text">
-                <string>Licencias</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1" colspan="2">
-              <widget class="QPushButton" name="btPenas">
-               <property name="text">
-                <string>Penas</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0" colspan="2">
-              <widget class="QPushButton" name="btAprobaciones">
-               <property name="text">
-                <string>Aprobaciones</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QPushButton" name="btTraslado">
-               <property name="text">
-                <string>Traslado</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QPushButton" name="btDeclaraciones">
-               <property name="text">
-                <string>Declaraciones</string>
+                <string>Declaración (general)</string>
                </property>
               </widget>
              </item>

@@ -1,24 +1,21 @@
 #include "dlgdeclaraciongeneralentrada.h"
 #include "ui_dlgdeclaraciongeneralentrada.h"
 
-#include "gui/dlgpenaentrada.h"
-#include "gui/dlgtemas.h"
-
+#include "gui/dlgseleccionargeneral.h"
 #include "widgets/myqmdiarea.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>
-// entiendo que estos no son necesarios pero bueno...
 #include <QListWidgetItem>
 #include <QModelIndex>
 #include <QMdiSubWindow>
 
-const QString sql_instituciones="SELECT DISTINCT jsonb_array_elements_text(details->'destinatarios_pena') AS penados "
-                             "FROM resolutions_details WHERE details->>'destinatarios_pena' IS NOT NULL "
-                             "ORDER BY penados";
-const QString sql_cargos="SELECT DISTINCT jsonb_array_elements_text(details->'objetos') AS objetos "
-                             "FROM resolutions_details WHERE details->>'objetos' IS NOT NULL "
-                             "ORDER BY objetos";
+const QString sql_instituciones="SELECT DISTINCT jsonb_array_elements_text(details->'instituciones') AS instituciones "
+                             "FROM resolutions_details WHERE details->>'instituciones' IS NOT NULL "
+                             "ORDER BY instituciones";
+const QString sql_cargos="SELECT DISTINCT jsonb_array_elements_text(details->'cargos') AS cargos "
+                             "FROM resolutions_details WHERE details->>'cargos' IS NOT NULL "
+                             "ORDER BY cargos";
 
 dlgDeclaracionGeneralEntrada::dlgDeclaracionGeneralEntrada(QWidget *parent) :
     QWidget(parent),
@@ -33,9 +30,13 @@ dlgDeclaracionGeneralEntrada::dlgDeclaracionGeneralEntrada(QWidget *parent) :
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
+    connect(ui->txtProvincia, SIGNAL(dobleclick()), this, SLOT(anadirProvincia()));
     connect(ui->btEliminarCargos, SIGNAL(clicked(bool)), this, SLOT(quitarCargo()));
     connect(ui->btEliminarInstitucion, SIGNAL(clicked(bool)), this, SLOT(quitarInstitucion()));
+    connect(ui->btEliminarProvincias, SIGNAL(clicked(bool)), this, SLOT(quitarProvincia()));
     connect(ui->wdNotas, SIGNAL(textoIntroducido()), this, SLOT(notaIntroducida()));
+
+    cargarModelos();
 
 }
 
@@ -90,11 +91,9 @@ void dlgDeclaracionGeneralEntrada::cargarModelos()
 
 void dlgDeclaracionGeneralEntrada::aceptar() {
 
-    declaracion.setObjetos(lista_objetos);
-    declaracion.setReceptores(lista_receptores);
-    declaracion.setPena(pena_estipulada);
-    declaracion.setRestriccion(ui->txtRestriccion->text());
-    declaracion.setSeguridad(ui->spSeguridad->value());
+    declaracion.setCargos(lista_cargos);
+    declaracion.setInstituciones(lista_instituciones);
+    declaracion.setProvincias(lista_provincias);
 
     ExtraInfos e = ui->widget->getExtraInfos();
     declaracion.setExtraInfos(e);
@@ -109,20 +108,10 @@ void dlgDeclaracionGeneralEntrada::aceptar() {
         declaracion.setRetroReferencia(retro);
     }
 
-    if (temas_lista.size() > 0) {
-        QList<int> temas_id;
-
-        for (int i = 0; i < temas_lista.size(); ++i) {
-            temas_id.append(temas_lista.at(i).id);
-        }
-
-        declaracion.setTemas(temas_id);
-    }
-
     if (ui->wdNotas->haCambiado())
         declaracion.setNota(ui->wdNotas->getNotas());
 
-    emit(aceptardeclaracion(declaracion));
+    emit(aceptarDeclaracion(declaracion));
 
     close();
 
@@ -130,60 +119,88 @@ void dlgDeclaracionGeneralEntrada::aceptar() {
 
 void dlgDeclaracionGeneralEntrada::anadirCargo()
 {
-    if (!ui->txtObjeto->text().isEmpty()){
-        lista_objetos.append(ui->txtObjeto->text());
-        QListWidgetItem *item = new QListWidgetItem(ui->txtObjeto->text(), ui->lwObjetos);
-        ui->txtObjeto->setText("");
+    if (!ui->txtCargo->text().isEmpty()){
+        lista_cargos.append(ui->txtCargo->text());
+        QListWidgetItem *item = new QListWidgetItem(ui->txtCargo->text(), ui->lwCargos);
+        ui->txtCargo->setText("");
     }
 
 }
 
 void dlgDeclaracionGeneralEntrada::anadirInstitucion()
 {
-    if (!ui->txtReceptor->text().isEmpty()){
-        lista_receptores.append(ui->txtReceptor->text());
-        QListWidgetItem *item = new QListWidgetItem(ui->txtReceptor->text(), ui->lwReceptores);
-        ui->txtReceptor->setText("");
+    if (!ui->txtInstitucion->text().isEmpty()){
+        lista_instituciones.append(ui->txtInstitucion->text());
+        QListWidgetItem *item = new QListWidgetItem(ui->txtInstitucion->text(), ui->lwInstitucion);
+        ui->txtInstitucion->setText("");
     }
 
 }
 
+void dlgDeclaracionGeneralEntrada::anadirProvincia()
+{
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
+}
+
 void dlgDeclaracionGeneralEntrada::quitarCargo()
 {
-    QModelIndex idx = ui->lwObjetos->currentIndex();
+    QModelIndex idx = ui->lwCargos->currentIndex();
 
     if (!idx.isValid())
         return;
 
     QString objeto = idx.data().toString();
 
-    for (int i = 0; i < lista_objetos.size(); ++i) {
-        if (lista_objetos.value(i) == objeto) {
-            lista_objetos.removeAt(i);
+    for (int i = 0; i < lista_cargos.size(); ++i) {
+        if (lista_cargos.value(i) == objeto) {
+            lista_cargos.removeAt(i);
             break;
         }
     }
 
-    ui->lwObjetos->takeItem(ui->lwObjetos->currentRow());
+    ui->lwCargos->takeItem(ui->lwCargos->currentRow());
 }
 
 void dlgDeclaracionGeneralEntrada::quitarInstitucion()
 {
-    QModelIndex idx = ui->lwReceptores->currentIndex();
+    QModelIndex idx = ui->lwInstitucion->currentIndex();
 
     if (!idx.isValid())
         return;
 
-    QString receptor = idx.data().toString();
+    QString institucion = idx.data().toString();
 
-    for (int i = 0; i < lista_receptores.size(); ++i) {
-        if (lista_receptores.value(i) == receptor) {
-            lista_receptores.removeAt(i);
+    for (int i = 0; i < lista_instituciones.size(); ++i) {
+        if (lista_instituciones.value(i) == institucion) {
+            lista_instituciones.removeAt(i);
             break;
         }
     }
 
-    ui->lwReceptores->takeItem(ui->lwReceptores->currentRow());
+    ui->lwInstitucion->takeItem(ui->lwInstitucion->currentRow());
+}
+
+void dlgDeclaracionGeneralEntrada::quitarProvincia()
+{
+    QModelIndex idx = ui->lwProvincias->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    int row = ui->lwProvincias->currentRow();
+    lista_provincias.removeAt(row);
+    ui->lwProvincias->takeItem(ui->lwProvincias->currentRow());
+}
+
+void dlgDeclaracionGeneralEntrada::recibirProvincia(Provincia provincia)
+{
+    lista_provincias.append(provincia.getId());
+    QListWidgetItem *item = new QListWidgetItem(provincia.getNombre(), ui->lwProvincias);
+
 }
 
 void dlgDeclaracionGeneralEntrada::cerrar()

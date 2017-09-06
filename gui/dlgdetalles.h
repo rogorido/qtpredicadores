@@ -58,6 +58,7 @@ private slots:
     void on_btAfiliaciones_clicked();
     void on_btOrdenanzas_clicked();
     void on_btDeclaraciones_clicked();
+    void on_btDeclaracionGeneral_clicked();
     void on_btBorrarJsonLibre_clicked();
     void on_btAnadirJsonLibre_clicked();
     void on_btBorrarBloqueJson_clicked();

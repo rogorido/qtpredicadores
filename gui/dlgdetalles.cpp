@@ -9,6 +9,7 @@
 #include "dlgordenanzaentrada.h"
 #include "dlgsufragiosentrada.h"
 #include "dlgdeclaracionentrada.h"
+#include "dlgdeclaraciongeneralentrada.h"
 
 #include "models/qjsonmodel.h"
 
@@ -258,6 +259,15 @@ void dlgDetalles::on_btDeclaraciones_clicked()
     connect(dlgdeclaraciones, SIGNAL(aceptarDeclaracion(Declaracion)), this, SLOT(recibirDeclaracion(Declaracion)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgdeclaraciones);
+    window->show();
+}
+
+void dlgDetalles::on_btDeclaracionGeneral_clicked()
+{
+    dlgDeclaracionGeneralEntrada *dlgdeclaraciongeneral= new dlgDeclaracionGeneralEntrada(this);
+    connect(dlgdeclaraciongeneral, SIGNAL(aceptarDeclaracion(Declaracion)), this, SLOT(recibirDeclaracion(Declaracion)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgdeclaraciongeneral);
     window->show();
 }
 

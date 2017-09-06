@@ -53,7 +53,8 @@ private:
 
     QStringList lista_cargos;
     QStringList lista_instituciones;
-    QStringList lista_provincias;
+    // esto lo metemos como lista de ids de las provincias
+    QList<int> lista_provincias;
 
     QSqlQueryModel *cargos_model;
     QCompleter *cargos_completer;
