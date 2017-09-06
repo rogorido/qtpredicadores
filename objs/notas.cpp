@@ -18,12 +18,18 @@ void Notas::setNota(QString n) {
     lleno = true;
 }
 
+void Notas::setSeguridad(int s){
+    seguridad = s;
+    lleno = true;
+}
+
 QJsonObject Notas::getNotasJson()
 {
     QJsonObject json;
 
     json.insert("volver_a_mirar", QJsonValue(volveramirar));
     json.insert("interesante", QJsonValue(interesante));
+    json.insert("seguridad", QJsonValue(seguridad));
     json.insert("nota", nota);
 
     return json;
