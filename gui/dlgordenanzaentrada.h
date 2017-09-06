@@ -12,6 +12,8 @@ class QSqlQueryModel;
 class QCompleter;
 class dlgTemas;
 
+class MyQmdiArea;
+
 namespace Ui {
 class dlgOrdenanzaEntrada;
 }
@@ -36,6 +38,7 @@ private slots:
 
     void recibirPena(Pena pena);
 
+    void on_btTemas_clicked();
     void cerrar();
 
 signals:
@@ -47,6 +50,8 @@ protected:
 
 private:
     Ui::dlgOrdenanzaEntrada *ui;
+    MyQmdiArea *mdiarea;
+
     dlgTemas *dlgtemas;
 
     QStringList lista_receptores;

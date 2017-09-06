@@ -4,11 +4,14 @@
 #include "gui/dlgpenaentrada.h"
 #include "gui/dlgtemas.h"
 
+#include "widgets/myqmdiarea.h"
+
 #include <QSqlQueryModel>
 #include <QCompleter>
 // entiendo que estos no son necesarios pero bueno...
 #include <QListWidgetItem>
 #include <QModelIndex>
+#include <QMdiSubWindow>
 
 const QString sql_receptores="SELECT DISTINCT jsonb_array_elements_text(details->'destinatarios_pena') AS penados "
                              "FROM resolutions_details WHERE details->>'destinatarios_pena' IS NOT NULL "
@@ -23,10 +26,10 @@ dlgOrdenanzaEntrada::dlgOrdenanzaEntrada(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    mdiarea = MyQmdiArea::Instance(this);
+
     ui->txtObjeto->installEventFilter(this);
     ui->txtReceptor->installEventFilter(this);
-
-    dlgtemas = new dlgTemas(&temas_lista, this);
 
     ui->cbTipo->addItem("Prohibición", QVariant(1));
     ui->cbTipo->addItem("Mandato", QVariant(2));
@@ -38,7 +41,6 @@ dlgOrdenanzaEntrada::dlgOrdenanzaEntrada(QWidget *parent) :
     connect(ui->btEliminarObjetos, SIGNAL(clicked(bool)), this, SLOT(quitarObjeto()));
     connect(ui->btEliminarReceptores, SIGNAL(clicked(bool)), this, SLOT(quitarReceptor()));
     connect(ui->btPenas, SIGNAL(clicked(bool)), this, SLOT(anadirPena()));
-    connect(ui->btTemas, SIGNAL(clicked(bool)), dlgtemas, SLOT(show()));
     connect(ui->wdNotas, SIGNAL(textoIntroducido()), this, SLOT(notaIntroducida()));
 
 }
@@ -210,6 +212,14 @@ void dlgOrdenanzaEntrada::anadirPena()
 void dlgOrdenanzaEntrada::recibirPena(Pena pena)
 {
     pena_estipulada = pena;
+
+}
+
+void dlgOrdenanzaEntrada::on_btTemas_clicked()
+{
+    dlgtemas = new dlgTemas(&temas_lista, this);
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgtemas);
+    window->show();
 
 }
 
