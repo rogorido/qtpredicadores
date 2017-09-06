@@ -105,16 +105,21 @@
       <attribute name="title">
        <string>Infos extra</string>
       </attribute>
-      <widget class="WidgetExtraInfos" name="wdExtras" native="true">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>311</width>
-         <height>291</height>
-        </rect>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="WidgetExtraInfos" name="wdExtras" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>Notas</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="WidgetNotas" name="wdNotas" native="true"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
@@ -173,6 +178,12 @@
    <class>WidgetExtraInfos</class>
    <extends>QWidget</extends>
    <header>widgets/widgetextrainfos.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WidgetNotas</class>
+   <extends>QWidget</extends>
+   <header>widgets/widgetnotas.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

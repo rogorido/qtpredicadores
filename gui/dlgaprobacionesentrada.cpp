@@ -87,6 +87,9 @@ void dlgAprobacionesEntrada::anadirAprobacion()
     // la provincia vale realmente para los dos tipos...
     aprobacion_activa->setProvincia(provincia_seleccionada);
 
+    if (ui->wdNotas->haCambiado())
+        aprobacion_activa->setNotas(ui->wdNotas->getNotas());
+
     ExtraInfos e = ui->wdExtras->getExtraInfos();
     aprobacion_activa->setExtraInfos(e);
 

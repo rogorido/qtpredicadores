@@ -8,6 +8,7 @@
 #include "objs/persona.h"
 #include "objs/provincia.h"
 #include "objs/casa.h"
+#include "objs/notas.h"
 
 /*!
  * \brief Aprobaciones de cargos, casas, etc.
@@ -29,6 +30,7 @@ public:
     void setPersona(Persona p);
     void setCasa(Casa c);
     void setProvincia(Provincia p);
+    void setNotas(Notas n);
     void setExtraInfos(ExtraInfos e);
 
     //getters
@@ -38,6 +40,7 @@ public:
     Persona getPersona() const { return persona; }
     Casa getCasa() const { return casa; }
     Provincia getProvincia() const { return provincia; }
+    Notas getNotas() const { return nota; }
     ExtraInfos getExtraInfos() const { return extras; }
 
     QJsonObject getAprobacionJson();
@@ -49,6 +52,7 @@ private:
     Persona persona;
     Casa casa;
     Provincia provincia;
+    Notas nota;
     ExtraInfos extras;
 
 };

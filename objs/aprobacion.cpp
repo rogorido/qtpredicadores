@@ -9,6 +9,7 @@ void Aprobacion::setPersona(Persona p) { persona = p; }
 void Aprobacion::setCasa(Casa c) { casa = c;}
 void Aprobacion::setProvincia(Provincia p) { provincia = p; }
 void Aprobacion::setExtraInfos(ExtraInfos e) { extras = e; }
+void Aprobacion::setNotas(Notas n) { nota = n; }
 
 QJsonObject Aprobacion::getAprobacionJson()
 {
@@ -43,6 +44,10 @@ QJsonObject Aprobacion::getAprobacionJson()
 
             json.insert(valores.first, valores.second);
         }
+    }
+
+    if (nota.estaLleno()){
+        json.insert("meta_info", nota.getNotasJson());
     }
 
     return json;
