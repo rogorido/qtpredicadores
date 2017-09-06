@@ -3,6 +3,7 @@
 
 #include <QSqlQueryModel>
 #include <QCompleter>
+#include <QMessageBox>
 
 dlgFuenteEntrada::dlgFuenteEntrada(QWidget *parent) :
     QDialog(parent),
@@ -38,6 +39,11 @@ void dlgFuenteEntrada::accept()
     if (idx.isValid()){
         int row = idx.row();
         obra = m_obras_completer->completionModel()->index(row, 0).data().toInt();
+    }
+    else {
+        int ret = QMessageBox::warning(this, "Obra no reconocida",
+                                       "Introduzca por favor una obra conocida.");
+        return;
     }
 
 
