@@ -179,6 +179,27 @@ void dlgAprobacionesEntrada::actualizarCasa(Casa casa)
 void dlgAprobacionesEntrada::tabCambiado(int t)
 {
     tabSeleccionado = ui->tabWidget->currentIndex();
+
+    /*
+     * esto es una cutrada, pero el asunto es el siguiente:
+     * par meter los datos en el tableview lo decidimos dependiendo
+     * de qué tab esté seleccionado. Pero si está seleccionado el 3º
+     * el de datos extras, no puede saber si metemos instituciones o personas...
+     * y por tanto deshabilito el pushbutton
+     */
+    switch (tabSeleccionado) {
+    case 0:
+        ui->btOK->setEnabled(true);
+        break;
+    case 1:
+        ui->btOK->setEnabled(true);
+        break;
+    case 2: // esto es lo de ntoas...
+        ui->btOK->setEnabled(false);
+        break;
+    default:
+        break;
+    }
 }
 
 void dlgAprobacionesEntrada::cerrar()
