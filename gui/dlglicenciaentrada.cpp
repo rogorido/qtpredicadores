@@ -50,7 +50,6 @@ void dlgLicenciaEntrada::aceptar()
     licencia_activa.setOtorgantes(otorgantes);
     licencia_activa.setReceptores(receptores);
     licencia_activa.setAsunto(ui->txtAsunto->text());
-    licencia_activa.setSeguridad(ui->spSeguridad->value());
     licencia_activa.setExtraInfos(extras);
 
     if (ui->wdNotas->haCambiado())
