@@ -19,6 +19,8 @@
 class QSqlQueryModel;
 class QCompleter;
 class QJsonModel;
+class QMenu;
+class QAction;
 
 class MyQmdiArea;
 
@@ -83,6 +85,16 @@ protected:
 private:
     Ui::dlgDetalles *ui;
 
+    QMenu *menu_declaraciones;
+    QMenu *menu_ordenanzas;
+    QAction *action_declaracion_general;
+    QAction *action_declaraciones;
+
+    QAction *action_ordenanzas;
+    QAction *action_comisiones;
+    QAction *action_prohibiciones;
+    QAction *action_admoniciones;
+
     MyQmdiArea *mdiarea;
 
     /*
@@ -106,6 +118,7 @@ private:
     QCompleter *values_completer;
 
     void cargarModelos();
+    void cargarMenus();
 
     /*
      * el tipo sirve para escoger los valores del completer

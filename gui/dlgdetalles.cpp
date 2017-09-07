@@ -20,6 +20,7 @@
 #include <QJsonArray>
 #include <QTreeWidgetItem>
 #include <QJsonObject>
+#include <QMenu>
 #include <QMdiSubWindow>
 
 #include <QDebug>
@@ -62,6 +63,7 @@ dlgDetalles::dlgDetalles(QJsonModel *json, int t, bool anadir, QWidget *parent) 
     ui->spInteresante->installEventFilter(this);
 
     cargarModelos();
+    cargarMenus();
 }
 
 dlgDetalles::~dlgDetalles()
@@ -482,6 +484,38 @@ void dlgDetalles::cargarModelos(){
     values_completer->setCaseSensitivity(Qt::CaseInsensitive);
 
     ui->txtValue->setCompleter(values_completer);
+}
+
+void dlgDetalles::cargarMenus()
+{
+    menu_declaraciones = new QMenu(this);
+    menu_ordenanzas = new QMenu(this);
+
+    action_declaracion_general = new QAction("General");
+    action_declaraciones = new QAction("Declaraciones");
+
+    action_ordenanzas = new QAction("Ordenanzas");
+    action_comisiones = new QAction("Comisiones");
+    action_prohibiciones = new QAction("Prohibiciones");
+    action_admoniciones = new QAction("Admoniciones");
+
+    connect(action_declaracion_general, SIGNAL(triggered(bool)), this, SLOT(on_btDeclaracionGeneral_clicked()));
+    connect(action_declaraciones, SIGNAL(triggered(bool)), this, SLOT(on_btDeclaraciones_clicked()));
+    connect(action_ordenanzas, SIGNAL(triggered(bool)), this, SLOT(on_btOrdenanzas_clicked()));
+    connect(action_comisiones, SIGNAL(triggered(bool)), this, SLOT(on_btComisiones_clicked()));
+    connect(action_prohibiciones, SIGNAL(triggered(bool)), this, SLOT(on_btOrdenanzas_clicked()));
+    connect(action_admoniciones, SIGNAL(triggered(bool)), this, SLOT(on_btAdmoniciones_clicked()));
+
+    menu_declaraciones->addAction(action_declaracion_general);
+    menu_declaraciones->addAction(action_declaraciones);
+
+    menu_ordenanzas->addAction(action_ordenanzas);
+    menu_ordenanzas->addAction(action_comisiones);
+    menu_ordenanzas->addAction(action_prohibiciones);
+    menu_ordenanzas->addAction(action_admoniciones);
+
+    ui->btDeclaraciones->setMenu(menu_declaraciones);
+    ui->btOrdenanzas->setMenu(menu_ordenanzas);
 }
 
 void dlgDetalles::on_btAprobaciones_clicked(){
