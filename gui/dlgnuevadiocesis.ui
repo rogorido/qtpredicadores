@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>dlgNuevaDiocesis</class>
- <widget class="QDialog" name="dlgNuevaDiocesis">
+ <widget class="QWidget" name="dlgNuevaDiocesis">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -113,14 +113,14 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="ckBuscado">
-     <property name="text">
-      <string>Buscado</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <item>
+      <widget class="QCheckBox" name="ckBuscado">
+       <property name="text">
+        <string>Buscado</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QLabel" name="label_5">
        <property name="text">

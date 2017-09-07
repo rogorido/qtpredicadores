@@ -1,7 +1,7 @@
 #ifndef DLGNUEVADIOCESIS_H
 #define DLGNUEVADIOCESIS_H
 
-#include <QDialog>
+#include <QWidget>
 
 #include "objs/diocesis.h"
 #include "objs/lugar.h"
@@ -13,7 +13,7 @@ namespace Ui {
 class dlgNuevaDiocesis;
 }
 
-class dlgNuevaDiocesis : public QDialog
+class dlgNuevaDiocesis : public QWidget
 {
     Q_OBJECT
 
@@ -31,6 +31,8 @@ private slots:
 
     void recibirLugar(Lugar lugarrecibido);
     void recibirArchiDiocesis(Diocesis diocesis);
+
+    void cerrar();
 
 private:
     Ui::dlgNuevaDiocesis *ui;

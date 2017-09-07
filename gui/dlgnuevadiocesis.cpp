@@ -11,7 +11,7 @@
 #include "widgets/myqmdiarea.h"
 
 dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgNuevaDiocesis)
 {
     ui->setupUi(this);

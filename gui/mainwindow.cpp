@@ -126,10 +126,8 @@ void MainWindow::cargarModelos(){
 
 void MainWindow::nuevaResolucion(){
     dlgResolucion = new dlgNuevaResolucion(0, this);
-    QMdiSubWindow *window = mdiArea->addSubWindow(dlgResolucion);
-
     connect(dlgResolucion, SIGNAL(abrirDetalles(dlgDetalles*)), this, SLOT(abrirDetalles(dlgDetalles*)));
-
+    QMdiSubWindow *window = mdiArea->addSubWindow(dlgResolucion);
     window->show();
 }
 
@@ -150,7 +148,8 @@ void MainWindow::nuevaCasa(){
 
 void MainWindow::nuevaDiocesis(){
     dlgDiocesis = new dlgNuevaDiocesis(this);
-    dlgDiocesis->show();
+    QMdiSubWindow *window = mdiArea->addSubWindow(dlgDiocesis);
+    window->show();
 }
 
 void MainWindow::nuevoObispo()
@@ -169,7 +168,6 @@ void MainWindow::Resoluciones()
 {
     FormResoluciones = new DlgResoluciones(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(FormResoluciones);
-
     window->show();
 }
 
@@ -184,7 +182,6 @@ void MainWindow::Casas()
 {
     FormCasas = new dlgCasas(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(FormCasas);
-
     window->show();
 }
 
