@@ -168,7 +168,8 @@ void DlgResoluciones::cargarDetalles(int id)
 
 void DlgResoluciones::aplicarFiltro()
 {
-    resoluciones_model->setQuery(sql_general + QString(" WHERE details ?| array['mandato', 'prohibición'];"));
+    resoluciones_model->setQuery(sql_general + QString(" WHERE details ?| array['mandato', 'prohibición',"
+                                                       " 'comisión', 'admonición'];"));
 
 }
 
