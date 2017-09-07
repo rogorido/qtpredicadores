@@ -20,7 +20,7 @@ dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
 
     m_diocesis = DiocesisModel::InstanceModel();
 
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarDiocesis()));
     connect(ui->txtArchidiocesis, SIGNAL(dobleclick()), this, SLOT(anadirArchiDiocesis()));
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(anadirLugar()));
@@ -141,4 +141,9 @@ void dlgNuevaDiocesis::recibirArchiDiocesis(Diocesis diocesis)
 {
     sufraganea = diocesis.getId();
     ui->txtArchidiocesis->setText(diocesis.getNombre());
+}
+
+void dlgNuevaDiocesis::cerrar()
+{
+    parentWidget()->close();
 }

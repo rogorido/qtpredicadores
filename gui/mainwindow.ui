@@ -84,6 +84,7 @@
    <addaction name="actionNuevoObispo"/>
    <addaction name="actionNuevaCasa"/>
    <addaction name="actionNuevaObra"/>
+   <addaction name="actionNuevaDiocesis"/>
    <addaction name="separator"/>
    <addaction name="actionGeneralEstadisticas"/>
    <addaction name="separator"/>
@@ -215,8 +216,15 @@
    </property>
   </action>
   <action name="actionNuevaDiocesis">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/diocesis.png</normaloff>:/icons/icons/diocesis.png</iconset>
+   </property>
    <property name="text">
     <string>Nueva &amp;diocesis</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
    </property>
   </action>
   <action name="actionNuevoObispo">
