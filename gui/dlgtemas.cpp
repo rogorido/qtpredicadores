@@ -95,7 +95,12 @@ void dlgTemas::inicializarTemasWidget()
 
 void dlgTemas::on_btQuitarTema_clicked(){
 
-    QString valor = ui->twTemas->currentIndex().data().toString();
+    QModelIndex idx = ui->twTemas->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    QString valor = idx.data().toString();
 
     int row = ui->twTemas->currentRow();
     ui->twTemas->removeRow(row);

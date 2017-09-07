@@ -44,6 +44,8 @@ dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *par
     cargarTipo();
     cargarModelo();
     cargarTituloVentana();
+
+    ui->txtFiltro->setFocus();
 }
 
 dlgSeleccionarGeneral::~dlgSeleccionarGeneral()
