@@ -126,9 +126,10 @@ void dlgNuevaDiocesis::anadirArchiDiocesis()
         return;
     }
     dlgSeleccionarGeneral *seleccion = new dlgSeleccionarGeneral(DIOCESIS, this);
-    seleccion->show();
-
     connect(seleccion, SIGNAL(diocesisEscogidaSignal(Diocesis)), this, SLOT(recibirArchiDiocesis(Diocesis)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(seleccion);
+    window->show();
 }
 
 void dlgNuevaDiocesis::recibirLugar(Lugar lugarrecibido)
