@@ -25,7 +25,7 @@ dlgPenaEntrada::dlgPenaEntrada(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->btEliminarPenas, SIGNAL(clicked(bool)), this, SLOT(quitarPenasTipos()));
     connect(ui->btEliminarPenados, SIGNAL(clicked(bool)), this, SLOT(quitarPenados()));
@@ -47,21 +47,22 @@ void dlgPenaEntrada::aceptar()
     pena.setPenasTipos(penastipos);
     pena.setDuracion(ui->txtDuracion->text());
     pena.setPenados(penados);
-    pena.setSeguridad(ui->spSeguridad->value());
     pena.setMotivo(ui->txtMotivo->text());
     pena.setRestriccion(ui->txtRestriccion->text());
     pena.setExtraInfos(extras);
-    // TODO: falta penatexto!
+    pena.setPenaTexto(ui->txtPenaTexto->text());
+
+    if (ui->wdNotas->haCambiado())
+        pena.setNotas(ui->wdNotas->getNotas());
 
     emit(aceptarPena(pena));
 
-    close();
+    cerrar();
 }
 
 void dlgPenaEntrada::anadirPenasTipos()
 {
     if (!ui->txtTipos->text().isEmpty()){
-        qDebug() << "pulsado return...";
         penastipos.append(ui->txtTipos->text());
         QListWidgetItem *item = new QListWidgetItem(ui->txtTipos->text(), ui->lwTipos);
         ui->txtTipos->setText("");
@@ -116,6 +117,11 @@ void dlgPenaEntrada::quitarPenados()
     ui->lwPenados->takeItem(ui->lwPenados->currentRow());
 
 
+}
+
+void dlgPenaEntrada::cerrar()
+{
+    parentWidget()->close();
 }
 
 bool dlgPenaEntrada::eventFilter(QObject *obj, QEvent *e)

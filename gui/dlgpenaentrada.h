@@ -28,6 +28,8 @@ private slots:
     void anadirPenados();
     void quitarPenados();
 
+    void cerrar();
+
 signals:
 
     void aceptarPena(Pena pena);

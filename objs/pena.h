@@ -7,6 +7,7 @@
 #include <QJsonArray>
 
 #include "objs/variados.h"
+#include "objs/notas.h"
 
 class Pena
 {
@@ -21,8 +22,8 @@ public:
     void setAbsolucion(QString a);
     void setPenados(QStringList p);
     void setMotivo(QString m);
-    void setSeguridad(int s);
     void setExtraInfos(ExtraInfos e);
+    void setNotas(Notas n);
 
     // getters
     QStringList getPenasTipos() const { return penas_tipos; }
@@ -32,8 +33,8 @@ public:
     QString getAbsolucion() const { return absolucion; }
     QStringList getPenados() const { return penados; }
     QString getMotivo() const { return motivo; }
-    int getSeguridad() const {return seguridad; }
     ExtraInfos getExtraInfos() const { return extras; }
+    Notas getNotas() const { return nota; }
     bool estaLleno() const {return lleno;}
 
     QJsonObject getPenaJson();
@@ -47,8 +48,8 @@ private:
     QString absolucion; // quién puede absolver
     QStringList penados;
     QString motivo;
-    int seguridad;
     ExtraInfos extras;
+    Notas nota;
     bool lleno = false;
 
 };

@@ -18,8 +18,8 @@ void Pena::setPenados(QStringList p)
     lleno = true;
 }
 void Pena::setMotivo(QString m) { motivo = m; }
-void Pena::setSeguridad(int s) { seguridad = s; }
 void Pena::setExtraInfos(ExtraInfos e) { extras = e; }
+void Pena::setNotas(Notas n) { nota = n; }
 
 QJsonObject Pena::getPenaJson()
 {
@@ -45,8 +45,6 @@ QJsonObject Pena::getPenaJson()
     if (!pena_texto.isEmpty())
         json.insert("pena_texto", pena_texto);
 
-    json.insert("seguridad", QJsonValue(seguridad));
-
     if (extras.size() > 0 ) {
         for (int i = 0; i < extras.size(); ++i) {
             QPair<QString, QString> valores;
@@ -54,6 +52,10 @@ QJsonObject Pena::getPenaJson()
 
             json.insert(valores.first, valores.second);
         }
+    }
+
+    if (nota.estaLleno()){
+        json.insert("meta_info", nota.getNotasJson());
     }
 
     return json;
