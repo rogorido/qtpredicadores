@@ -69,7 +69,12 @@ void dlgNuevaCasa::aceptarCasa(){
     bool studiumgenerale = ui->ckStudium->checkState();
     QString otrosdatos; // aquí va el json de la fuente
 
-    // TODO: hay que comprobar que esté vacío?
+    /*
+     * hay que comprobar que esté vacío?
+     * entiendo q un struct no se puede comprobar... además de que
+     * vacío no puede estar pq lo inicializo. Comprobamos que no sea 0
+     * abajo al meterlo en la clase Casa.
+     */
     lugar = lugar_struct.id;
     provincia = provincia_struct.id;
 
@@ -87,8 +92,10 @@ void dlgNuevaCasa::aceptarCasa(){
     }
 
     casa->setNombre(nombre);
-    casa->setLugar(lugar);
-    casa->setProvincia(provincia);
+    if (lugar != 0)
+        casa->setLugar(lugar);
+    if (provincia != 0)
+        casa->setProvincia(provincia);
     casa->setBuscado(buscado);
     casa->setWiki(wiki);
     casa->setTipo(tipo);

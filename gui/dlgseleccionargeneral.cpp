@@ -403,11 +403,8 @@ void dlgSeleccionarGeneral::anadirObjeto(){
         break;}
     case TEMA:{
         anadirTema();
+        break;
     }
-        /*
-         * TODO: faltaría añadir diócesis! pero por ahora paso pq en principio
-         * no debería darse el caso de que meto la diócesis desde aquí...
-         */
     default:
         break;
     }

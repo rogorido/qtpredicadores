@@ -61,7 +61,7 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Nacimineto</string>
+        <string>Nacimiento</string>
        </property>
       </widget>
      </item>
@@ -103,55 +103,62 @@
       <attribute name="title">
        <string>General</string>
       </attribute>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>561</width>
-         <height>141</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
-         <widget class="QCheckBox" name="ckBuscado">
-          <property name="text">
-           <string>Buscado</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QCheckBox" name="ckWiki">
-          <property name="text">
-           <string>Wikipedia</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="txtWiki"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="QCheckBox" name="ckViaf">
-          <property name="text">
-           <string>Viaf</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="txtViaf"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>Wikidata</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLineEdit" name="txtWikidata"/>
-        </item>
-       </layout>
-      </widget>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="ckBuscado">
+           <property name="text">
+            <string>Buscado</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="ckWiki">
+           <property name="text">
+            <string>Wikipedia</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="txtWiki"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="ckViaf">
+           <property name="text">
+            <string>Viaf</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="txtViaf"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Wikidata</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="txtWikidata"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>189</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tabOtros">
       <attribute name="title">
@@ -209,11 +216,6 @@
         <widget class="QTextEdit" name="txtNotas"/>
        </item>
       </layout>
-     </widget>
-     <widget class="QWidget" name="tabReferencias">
-      <attribute name="title">
-       <string>Referencias</string>
-      </attribute>
      </widget>
     </widget>
    </item>
