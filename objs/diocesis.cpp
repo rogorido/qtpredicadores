@@ -10,4 +10,6 @@ void Diocesis::setArchidiosis(bool a) { archidiocesis = a; }
 void Diocesis::setSufraganea(int s) { sufraganeade = s; }
 void Diocesis::setLugar(int l) { lugar = l; }
 void Diocesis::setExistente(bool e) { existe_hoy = e; }
+void Diocesis::setInfidelibus(bool i) { infidelibus = i; }
+void Diocesis::setMotivoDesaparicion(QString m) { motivo_desaparicion = m; }
 void Diocesis::setOtrosDatos(QJsonObject o) { otros_datos = o; }

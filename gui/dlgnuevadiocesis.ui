@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>442</width>
-    <height>322</height>
+    <height>360</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -99,6 +99,27 @@
         <string>-</string>
        </property>
       </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_9">
+     <item>
+      <widget class="QCheckBox" name="ckInfidelibus">
+       <property name="text">
+        <string>Infidelibus</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Motivo de desaparición</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtMotivoDesaparicion"/>
      </item>
     </layout>
    </item>

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>584</width>
+    <width>675</width>
     <height>412</height>
    </rect>
   </property>
@@ -170,7 +170,7 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>Tab 1</string>
+       <string>Notas</string>
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout_7">
        <item>

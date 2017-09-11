@@ -8,6 +8,8 @@
 
 class DiocesisModel;
 class MyQmdiArea;
+class QStringList;
+class QCompleter;
 
 namespace Ui {
 class dlgNuevaDiocesis;
@@ -47,6 +49,13 @@ private:
 
     int sufraganea = 0;
     int lugar = 0;
+
+    /*
+     * para meter lo de los motivos de desaparición
+     */
+    QStringList *lista_motivos;
+    QCompleter *motivos_completer;
+
 };
 
 #endif // DLGNUEVADIOCESIS_H

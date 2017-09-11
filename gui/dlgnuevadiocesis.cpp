@@ -2,6 +2,8 @@
 #include "ui_dlgnuevadiocesis.h"
 
 #include <QMessageBox>
+#include <QStringList>
+#include <QCompleter>
 #include <QJsonObject>
 #include <QMdiSubWindow>
 #include <QDebug>
@@ -19,6 +21,17 @@ dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
     mdiarea = MyQmdiArea::Instance(this);
 
     m_diocesis = DiocesisModel::InstanceModel();
+
+    lista_motivos = new QStringList();
+    lista_motivos->append("Unida a otra");
+    lista_motivos->append("Eliminada");
+
+    /*
+     * NOTE: no sé por qué narices esto tengo que
+     * dereferenciarlo...
+     */
+    motivos_completer = new QCompleter(*lista_motivos, this);
+    ui->txtMotivoDesaparicion->setCompleter(motivos_completer);
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarDiocesis()));
