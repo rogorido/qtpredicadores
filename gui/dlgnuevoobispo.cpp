@@ -10,6 +10,7 @@
 #include <QDebug>
 
 #include "objs/obispo.h"
+#include "objs/notas.h"
 #include "models/qjsonmodel.h"
 #include "dlgseleccionargeneral.h"
 #include "dlgfuenteentrada.h"
@@ -132,6 +133,7 @@ void dlgNuevoObispo::aceptarObispo()
         int id = lastid.value(0).toInt();
 
         introducirJson(id);
+        introducirNotas(id);
         borrarCampos();
     }
     else {
@@ -244,6 +246,38 @@ void dlgNuevoObispo::introducirJson(const int id)
         query.bindValue(":bishopid", id);
         query.bindValue(":json", jsonfinal);
         query.exec();
+    }
+}
+
+void dlgNuevoObispo::introducirNotas(const int id)
+{
+    /*
+     * esto tiene que ser más fácil. Demasiado liado!
+     */
+    QSqlQuery query;
+    Notas notas;
+    QJsonObject notas_json;
+    QJsonObject notas_final;
+    QString jsonfinal;
+
+    if (!ui->wdNotas->haCambiado())
+        return;
+
+    notas = ui->wdNotas->getNotas();
+    notas_json = notas.getNotasJson();
+    notas_final.insert("meta_info", notas_json);
+
+    QJsonDocument notas_doc(notas_final);
+    jsonfinal = notas_doc.toJson(QJsonDocument::Compact);
+    query.prepare("INSERT INTO bishops_details(bishop_id, details) VALUES(:bishopid, :json)");
+    query.bindValue(":bishopid", id);
+    query.bindValue(":json", jsonfinal);
+
+    if (!query.exec()){
+        int ret = QMessageBox::warning(this, "Error",
+                                       "Ha habido un error al ejecutar la consulta de inserción.");
+        Q_UNUSED(ret)
+        return;
     }
 }
 

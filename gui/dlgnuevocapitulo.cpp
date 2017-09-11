@@ -63,6 +63,7 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
 
     if (ui->txtNombreGeneral->text().isEmpty()){
         int ret = QMessageBox::warning(this, "No hay título general", "Introduzca por favor un título general");
+        Q_UNUSED(ret)
         return;
     }
 
@@ -112,6 +113,7 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
     else {
         int ret = QMessageBox::warning(this, "Error al introducir la resolución",
                                        "Error al introducir la resolución en la BD");
+        Q_UNUSED(ret)
         return;
     }
 

@@ -71,7 +71,11 @@ private:
     QJsonModel *json_detalles;
     dlgDetalles *dlgdetalles;
 
+    /*
+     * esto realmente hay que hacerlo con un ObisposModel...
+     */
     void introducirJson(const int id);
+    void introducirNotas(const int id);
 
 
     /*
