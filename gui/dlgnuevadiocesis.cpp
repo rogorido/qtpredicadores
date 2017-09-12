@@ -90,6 +90,7 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     if (!m_diocesis->AnadirDiocesis(diocesis)){
         int ret = QMessageBox::warning(this, "Error al introducir la diócesis",
                                        "Error al introducir la diócesis en la BD");
+        Q_UNUSED(ret)
         return;
     }
     else
@@ -103,8 +104,12 @@ void dlgNuevaDiocesis::borrarCampos()
     ui->txtNombreLatin->setText("");
     ui->txtLugar->setText("");
     ui->txtArchidiocesis->setText("");
+    ui->txtMotivoDesaparicion->setText("");
     ui->ckArchidiocesis->setCheckState(Qt::Unchecked);
     ui->ckExiste->setCheckState(Qt::Unchecked);
+    ui->ckInfidelibus->setCheckState(Qt::Unchecked);
+    ui->spParroquias->setValue(0);
+    ui->spSuperficie->setValue(0);
 
     // lo de json de gcatholic
     ui->ckBuscado->setCheckState(Qt::Unchecked);
@@ -136,6 +141,7 @@ void dlgNuevaDiocesis::anadirArchiDiocesis()
         qDebug() << "cojones, hay: " << m_diocesis->rowCount();
         int ret = QMessageBox::warning(this, "Todavía no hay diócesis",
                                        "No hay diócesis. Introduzca alguna.");
+        Q_UNUSED(ret)
         return;
     }
     dlgSeleccionarGeneral *seleccion = new dlgSeleccionarGeneral(DIOCESIS, this);

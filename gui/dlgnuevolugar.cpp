@@ -30,6 +30,7 @@ dlgNuevoLugar::dlgNuevoLugar(QWidget *parent) :
     connect(ui->btOtrosNombres, SIGNAL(clicked(bool)), this, SLOT(anadirDetalles()));
 
     cargarModelos();
+    ui->txtLugar->setFocus();
 }
 
 dlgNuevoLugar::~dlgNuevoLugar()
@@ -75,6 +76,7 @@ void dlgNuevoLugar::aceptar(){
     else {
         int ret = QMessageBox::warning(this, "Error al introducir el lugar",
                                        "Error al introducir el lugar en la BD");
+        Q_UNUSED(ret)
         return;
     }
 
