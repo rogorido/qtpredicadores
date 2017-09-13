@@ -40,6 +40,8 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
     bool existe = diocesis->getExisteHoy();
     bool archidiocesis = diocesis->getArchidiocesis();
     int sufraganea = diocesis->getSufraganea();
+    bool infidelibus = diocesis->getInfidelibus();
+    QString motivo_desaparicion = diocesis->getMotivoDesaparicion();
     QJsonObject otros_datos = diocesis->getOtrosDatos();
     Notas nota = diocesis->getNota();
     QJsonObject nota_json = nota.getNotasJson();
@@ -58,10 +60,7 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
 
         otros_datos.insert("nota", nota_json);
         json = QJsonDocument(otros_datos);
-
         datos_json = json.toJson(QJsonDocument::Compact);
-
-        qDebug() << "el json:" << datos_json;
     }
     else if (otros_datos.empty() && nota.estaLleno()){
         QJsonObject json_temp;
@@ -69,23 +68,18 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
         json_temp.insert("nota", nota_json);
         json = QJsonDocument(json_temp);
         datos_json = json.toJson(QJsonDocument::Compact);
-
-        qDebug() << "el json:" << datos_json;
-
     }
     else if (!otros_datos.empty() && !nota.estaLleno()){
         json = QJsonDocument(otros_datos);
         datos_json = json.toJson(QJsonDocument::Compact);
-
-        qDebug() << "el json:" << datos_json;
-
     }
     else
         datos_json = "{}";
 
-    query.prepare("INSERT INTO general.dioceses(diocese_name, diocese_latin_name, archidiocese, sufragean_id, "
-                  "place_id, nowadays, other_data) "
-                  "VALUES(:nombre, :nombre_latin, :archidiocesis, :sufraganea, :lugar, :hoy, :otrosdatos)");
+    query.prepare("INSERT INTO general.dioceses(diocese_name, diocese_latin_name, archidiocese, sufragean_id,"
+                  "infidelibus, disappeared, place_id, nowadays, other_data) "
+                  "VALUES(:nombre, :nombre_latin, :archidiocesis, :sufraganea, "
+                  ":infidelibus, :desaparecida, :lugar, :hoy, :otrosdatos)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":nombre_latin", nombre_latin);
     query.bindValue(":archidiocesis", archidiocesis);
@@ -97,8 +91,13 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
         query.bindValue(":lugar", lugar);
     else
         query.bindValue(":lugar", QVariant(QVariant::Int));
+    query.bindValue(":infidelibus", infidelibus);
+    query.bindValue(":desaparecida", motivo_desaparicion);
     query.bindValue(":hoy", existe);
-    query.bindValue(":otrosdatos", datos_json);
+    if (datos_json != "{}")
+        query.bindValue(":otrosdatos", datos_json);
+    else
+        query.bindValue(":otrosdatos", QVariant(QVariant::String));
 
     if (!query.exec()){
         qDebug() << query.lastError();
