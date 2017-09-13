@@ -71,10 +71,12 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     /*
      * creamos un QJonObject con los datos de la página gcatholic
      * pero solo si hemos modficiado el txtURL o si hemos marcado
-     * el campo ckBuscado
+     * el campo ckBuscado, o lo de la fecha de fundación...
      */
 
-    if (!ui->txtURL->text().isEmpty() || ui->ckBuscado->checkState() == Qt::Checked) {
+    if (!ui->txtURL->text().isEmpty() ||
+            ui->ckBuscado->checkState() == Qt::Checked ||
+            ui->spFundacion->value() != 0) {
 
         datos_concretos.insert("buscado", QJsonValue(ui->ckBuscado->isChecked()));
         datos_concretos.insert("url", ui->txtURL->text());
@@ -82,6 +84,8 @@ void dlgNuevaDiocesis::aceptarDiocesis()
             datos_concretos.insert("parishes_number", QJsonValue(ui->spParroquias->value()));
         if (ui->spSuperficie != 0 )
             datos_concretos.insert("area", QJsonValue(ui->spSuperficie->value()));
+        if (ui->spFundacion != 0 )
+            datos_concretos.insert("foundation", QJsonValue(ui->spSuperficie->value()));
 
         otros_datos.insert("gcatholic", datos_concretos);
         diocesis->setOtrosDatos(otros_datos);
