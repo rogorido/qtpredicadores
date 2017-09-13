@@ -89,7 +89,7 @@ void dlgNuevaDiocesis::aceptarDiocesis()
         if (ui->spSuperficie != 0 )
             datos_concretos.insert("area", QJsonValue(ui->spSuperficie->value()));
         if (ui->spFundacion != 0 )
-            datos_concretos.insert("foundation", QJsonValue(ui->spSuperficie->value()));
+            datos_concretos.insert("foundation", QJsonValue(ui->spFundacion->value()));
 
         otros_datos.insert("gcatholic", datos_concretos);
         diocesis->setOtrosDatos(otros_datos);

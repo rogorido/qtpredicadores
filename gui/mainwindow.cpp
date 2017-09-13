@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     db = QSqlDatabase::addDatabase("QPSQL");
      db.setHostName("localhost");
-     db.setDatabaseName("domis");
+     db.setDatabaseName("dominicos");
      db.setUserName("igor");
 
      if (db.open())
