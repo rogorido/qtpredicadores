@@ -13,6 +13,14 @@ WidgetNotas::~WidgetNotas()
     delete ui;
 }
 
+void WidgetNotas::reiniciar()
+{
+    ui->txtNota->setText("");
+    ui->ckInteresante->setCheckState(Qt::Unchecked);
+    ui->ckVolverMirar->setCheckState(Qt::Unchecked);
+    ui->spSeguridad->setValue(100);
+}
+
 bool WidgetNotas::haCambiado()
 {
     if (ui->ckVolverMirar->checkState() == Qt::Checked ||

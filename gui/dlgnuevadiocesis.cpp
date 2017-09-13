@@ -96,8 +96,10 @@ void dlgNuevaDiocesis::aceptarDiocesis()
         Q_UNUSED(ret)
         return;
     }
-    else
+    else {
         borrarCampos();
+        ui->wdNotas->reiniciar();
+    }
 
 }
 

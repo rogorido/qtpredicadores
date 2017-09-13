@@ -17,6 +17,8 @@ public:
     explicit WidgetNotas(QWidget *parent = 0);
     ~WidgetNotas();
 
+    void reiniciar();
+
     bool haCambiado();
     Notas getNotas();
 
