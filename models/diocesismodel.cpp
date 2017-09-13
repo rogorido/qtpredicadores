@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 
 #include "objs/diocesis.h"
+#include "objs/notas.h"
 
 DiocesisModel *DiocesisModel::pInstance = 0;
 
@@ -31,7 +32,7 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
 {
     QSqlQuery query;
     QJsonDocument json;
-    QString otros_datos_string;
+    QString datos_json;
 
     QString nombre = diocesis->getNombre();
     QString nombre_latin = diocesis->getNombreLatin();
@@ -40,13 +41,47 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
     bool archidiocesis = diocesis->getArchidiocesis();
     int sufraganea = diocesis->getSufraganea();
     QJsonObject otros_datos = diocesis->getOtrosDatos();
+    Notas nota = diocesis->getNota();
+    QJsonObject nota_json = nota.getNotasJson();
 
-    if (!otros_datos.empty()){
+    /*
+     * NOTE: joder no sé unir dos QJsonObjects. Es que
+     * parece que no hay forma con los métodos existentes...
+     * Hago esta pequeña chapuza, porque además no sé cómo gestionar
+     * esto de si están llenos o no
+     */
+    if (!otros_datos.empty() && nota.estaLleno()){
+        /*
+         * si otros_datos no están vacios y nota está lleno
+         * añadimos nota a otros_datos...
+         */
+
+        otros_datos.insert("nota", nota_json);
         json = QJsonDocument(otros_datos);
-        otros_datos_string = json.toJson(QJsonDocument::Compact);
+
+        datos_json = json.toJson(QJsonDocument::Compact);
+
+        qDebug() << "el json:" << datos_json;
+    }
+    else if (otros_datos.empty() && nota.estaLleno()){
+        QJsonObject json_temp;
+
+        json_temp.insert("nota", nota_json);
+        json = QJsonDocument(json_temp);
+        datos_json = json.toJson(QJsonDocument::Compact);
+
+        qDebug() << "el json:" << datos_json;
+
+    }
+    else if (!otros_datos.empty() && !nota.estaLleno()){
+        json = QJsonDocument(otros_datos);
+        datos_json = json.toJson(QJsonDocument::Compact);
+
+        qDebug() << "el json:" << datos_json;
+
     }
     else
-        otros_datos_string = "{}";
+        datos_json = "{}";
 
     query.prepare("INSERT INTO general.dioceses(diocese_name, diocese_latin_name, archidiocese, sufragean_id, "
                   "place_id, nowadays, other_data) "
@@ -63,7 +98,7 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
     else
         query.bindValue(":lugar", QVariant(QVariant::Int));
     query.bindValue(":hoy", existe);
-    query.bindValue(":otrosdatos", otros_datos_string);
+    query.bindValue(":otrosdatos", datos_json);
 
     if (!query.exec()){
         qDebug() << query.lastError();
