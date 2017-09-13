@@ -23,10 +23,13 @@ void WidgetNotas::reiniciar()
 
 bool WidgetNotas::haCambiado()
 {
+    /*
+     * el valor básico de seguridad es 100
+     */
     if (ui->ckVolverMirar->checkState() == Qt::Checked ||
             ui->ckInteresante->checkState() == Qt::Checked ||
             ui->txtNota->toPlainText() != "" ||
-            ui->spSeguridad->value() != 0)
+            ui->spSeguridad->value() != 100)
         return true;
     else
         return false;

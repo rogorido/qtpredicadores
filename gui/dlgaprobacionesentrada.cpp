@@ -99,6 +99,7 @@ void dlgAprobacionesEntrada::anadirAprobacion()
     aprobacion_activa = new Aprobacion();
 
     ui->wdExtras->clear();
+    ui->wdNotas->reiniciar();
 
     ui->twAprobaciones->resizeColumnsToContents();
     ui->twAprobaciones->resizeRowsToContents();

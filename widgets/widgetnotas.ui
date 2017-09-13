@@ -58,6 +58,9 @@
        <property name="singleStep">
         <number>5</number>
        </property>
+       <property name="value">
+        <number>100</number>
+       </property>
       </widget>
      </item>
     </layout>
