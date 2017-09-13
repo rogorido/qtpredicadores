@@ -34,6 +34,7 @@ void dlgNuevaFuente::accept(){
     else {
         int ret = QMessageBox::warning(this, "Error",
                                        "Ha habido un error al ejecutar la consulta de inserción.");
+        Q_UNUSED(ret)
         return;
     }
 

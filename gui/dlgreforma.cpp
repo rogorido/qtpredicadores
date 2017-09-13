@@ -54,12 +54,14 @@ void dlgReforma::aceptar()
     if (ui->txtOrden->text().isEmpty()){
         int ret = QMessageBox::warning(this, "No hay tipo de orden ",
                                        "Introduzca algún tipo de orden religiosa");
+        Q_UNUSED(ret)
         return;
     }
 
     if (lugar_struct.id == 0 ){
         int ret = QMessageBox::warning(this, "No hay ningún lugar.",
                                        "Introduzca algún lugar.");
+        Q_UNUSED(ret)
         return;
     }
 
@@ -83,7 +85,7 @@ void dlgReforma::aceptar()
 
         int ret = QMessageBox::warning(this, "Error al introducir los datos.",
                                        "Error al introducir los datos.");
-
+        Q_UNUSED(ret)
     }
     else {
         borrarCampos();

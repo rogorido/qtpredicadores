@@ -113,6 +113,7 @@ void dlgNuevaCasa::aceptarCasa(){
     else {
         int ret = QMessageBox::warning(this, "Error al introducir la casa",
                                        "Error al introducir la casa en la BD");
+        Q_UNUSED(ret)
         return;
     }
 }

@@ -48,12 +48,14 @@ void dlgAsistentes::aceptar()
     if (ui->txtKey->text().isEmpty() || ui->txtValue->text().isEmpty()){
         int ret = QMessageBox::warning(this, "Imposible al introducir los datos",
                                        "Los campos key y value son obligatorios.");
+        Q_UNUSED(ret)
         return;
     }
 
     if (provinciasescogidas.size() == 0) {
         int ret = QMessageBox::warning(this, "No hay provincias escogidas",
                                        "No hay provincias escogidas.");
+        Q_UNUSED(ret)
         return;
     }
 

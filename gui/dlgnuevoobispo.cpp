@@ -17,6 +17,9 @@
 
 #include "widgets/myqmdiarea.h"
 
+QDate fechainicial = QDate(1200, 1, 1);
+QDate fechafinal = QDate(1800, 1, 1);
+
 dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dlgNuevoObispo)
@@ -24,9 +27,6 @@ dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
     ui->setupUi(this);
 
     mdiarea = MyQmdiArea::Instance(this);
-
-    QDate fechainicial = QDate(1200, 1, 1);
-    QDate fechafinal = QDate(1800, 1, 1);
 
     ui->dtFechaInicio->setMinimumDate(fechainicial);
     ui->dtFechaInicio->setMaximumDate(fechafinal);
@@ -70,6 +70,7 @@ void dlgNuevoObispo::aceptarObispo()
     if (persona_id == 0 || diocesis_id == 0){
         int ret = QMessageBox::warning(this, "Faltan datos",
                                        "Faltan datos: los campos persona, diócesis y papa son obligatorios.");
+        Q_UNUSED(ret)
         return;
     }
 
@@ -139,6 +140,7 @@ void dlgNuevoObispo::aceptarObispo()
     else {
         int ret = QMessageBox::warning(this, "Error",
                                        "Ha habido un error al ejecutar la consulta de inserción.");
+        Q_UNUSED(ret)
         return;
     }
 
@@ -311,6 +313,11 @@ void dlgNuevoObispo::borrarCampos()
     ui->ckFechaAprox->setCheckState(Qt::Unchecked);
     ui->ckFinPorMuerte->setCheckState(Qt::Unchecked);
     ui->ckVolverMirar->setCheckState(Qt::Unchecked);
+
+    ui->dtFechaInicio->setDate(fechainicial);
+    ui->dtFechaFinal->setDate(fechafinal);
+
+    ui->wdNotas->reiniciar();
 
     /*
      * no borramos el punto fuentedatos

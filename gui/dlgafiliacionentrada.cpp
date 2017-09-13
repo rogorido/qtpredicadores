@@ -45,6 +45,7 @@ void dlgAfiliacionEntrada::anadirAfiliacion()
     if (ui->txtPersona->text().isEmpty()){
         int ret = QMessageBox::warning(this, "No hay persona escogida",
                                        "Introduzca por favor una persona.");
+        Q_UNUSED(ret)
         return;
     }
 

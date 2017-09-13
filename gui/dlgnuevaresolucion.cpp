@@ -66,12 +66,14 @@ void dlgNuevaResolucion::aceptarResolucion(){
     if (resolucion_texto.isEmpty()){
         int ret = QMessageBox::warning(this, "No hay texto en la resolución general",
                                        "Introduzca por favor texto en la resolución");
+        Q_UNUSED(ret)
         return;
     }
 
     if (capitulo_id == 0){
         int ret = QMessageBox::warning(this, "El capítulo esta vacío",
                                        "El capítulo esta vacío. Introduzca por favor el capítulo de la resolución");
+        Q_UNUSED(ret)
         return;
     }
 
@@ -127,6 +129,7 @@ void dlgNuevaResolucion::aceptarResolucion(){
     else {
         int ret = QMessageBox::warning(this, "Error al introducir la resolución",
                                        "Error al introducir la resolución en la BD");
+        Q_UNUSED(ret)
         return;
     }
 

@@ -136,6 +136,7 @@ void dlgNuevaPersona::aceptarPersona(){
     else{
         int ret = QMessageBox::warning(this, "Error al introducir la resolución",
                                        "Error al introducir la resolución en la BD");
+        Q_UNUSED(ret)
         return;
     }
 
