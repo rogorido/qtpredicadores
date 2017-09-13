@@ -59,6 +59,7 @@ void dlgAprobacionesEntrada::anadirAprobacion()
         if (ui->txtCargo->text().isEmpty()){
             int ret = QMessageBox::warning(this, "No hay texto en el tipo de aprobación",
                                            "Introduzca por favor texto en el tipo de aprobación");
+            Q_UNUSED(ret)
             return;
         }
         aprobacion_activa->setTipoAprobacion(Aprobacion::TipoAprobacion::PERSONA);
@@ -73,6 +74,7 @@ void dlgAprobacionesEntrada::anadirAprobacion()
         if (ui->txtTipoInstitucion->text().isEmpty()){
             int ret = QMessageBox::warning(this, "No hay texto en el tipo de aprobación",
                                            "Introduzca por favor texto en el tipo de aprobación");
+            Q_UNUSED(ret)
             return;
         }
         aprobacion_activa->setTipoAprobacion(Aprobacion::TipoAprobacion::CASA);
@@ -182,6 +184,7 @@ void dlgAprobacionesEntrada::actualizarCasa(Casa casa)
 
 void dlgAprobacionesEntrada::tabCambiado(int t)
 {
+    Q_UNUSED(t)
     tabSeleccionado = ui->tabWidget->currentIndex();
 
     /*
