@@ -87,6 +87,9 @@ void dlgNuevaDiocesis::aceptarDiocesis()
         diocesis->setOtrosDatos(otros_datos);
     }
 
+    if (ui->wdNotas->haCambiado())
+        diocesis->setNota(ui->wdNotas->getNotas());
+
     if (!m_diocesis->AnadirDiocesis(diocesis)){
         int ret = QMessageBox::warning(this, "Error al introducir la diócesis",
                                        "Error al introducir la diócesis en la BD");

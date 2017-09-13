@@ -12,4 +12,5 @@ void Diocesis::setLugar(int l) { lugar = l; }
 void Diocesis::setExistente(bool e) { existe_hoy = e; }
 void Diocesis::setInfidelibus(bool i) { infidelibus = i; }
 void Diocesis::setMotivoDesaparicion(QString m) { motivo_desaparicion = m; }
+void Diocesis::setNota(Notas n) { nota = n; }
 void Diocesis::setOtrosDatos(QJsonObject o) { otros_datos = o; }

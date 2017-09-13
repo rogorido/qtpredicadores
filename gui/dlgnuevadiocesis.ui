@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>442</width>
-    <height>360</height>
+    <width>532</width>
+    <height>497</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -200,6 +200,23 @@
     </layout>
    </item>
    <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Tab 1</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="WidgetNotas" name="wdNotas" native="true"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
       <spacer name="horizontalSpacer">
@@ -237,6 +254,12 @@
    <class>myQLineEdit</class>
    <extends>QLineEdit</extends>
    <header location="global">widgets/myqlineedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>WidgetNotas</class>
+   <extends>QWidget</extends>
+   <header>widgets/widgetnotas.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

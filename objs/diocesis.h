@@ -4,6 +4,8 @@
 #include <QString>
 #include <QJsonObject>
 
+#include "objs/notas.h"
+
 class Diocesis
 {
 public:
@@ -19,6 +21,7 @@ public:
     void setExistente(bool e);
     void setInfidelibus(bool i);
     void setMotivoDesaparicion(QString m);
+    void setNota(Notas n);
     void setOtrosDatos(QJsonObject o);
 
     // getters
@@ -31,6 +34,7 @@ public:
     bool getExisteHoy() const { return existe_hoy; }
     bool getInfidelibus() const { return infidelibus; }
     QString getMotivoDesaparicion() const { return motivo_desaparicion; }
+    Notas getNota() const {return nota;}
     QJsonObject getOtrosDatos() const{ return otros_datos; }
 
 private:
@@ -44,6 +48,7 @@ private:
     bool existe_hoy;
     bool infidelibus;
     QString motivo_desaparicion;
+    Notas nota;
     QJsonObject otros_datos;
 
 };
