@@ -17,8 +17,8 @@
 
 #include "widgets/myqmdiarea.h"
 
-QDate fechainicial = QDate(1200, 1, 1);
-QDate fechafinal = QDate(1800, 1, 1);
+const QDate fechainicial = QDate(1200, 1, 1);
+const QDate fechafinal = QDate(1800, 1, 1);
 
 dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
     QWidget(parent),
@@ -62,9 +62,11 @@ void dlgNuevoObispo::aceptarObispo()
     QModelIndex idx;
 
     if (!ui->txtPapa->text().isEmpty()){
-        idx = m_papas_completer->model()->index(m_papas_completer->currentIndex().row(), 0);
-        if (idx.isValid())
-            papa_id = idx.data().toInt();
+        idx = ui->txtPapa->completer()->currentIndex();
+        if (idx.isValid()){
+            int row = idx.row();
+            papa_id = m_papas_completer->completionModel()->index(row, 0).data().toInt();
+        }
     }
 
     if (persona_id == 0 || diocesis_id == 0){
