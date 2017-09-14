@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>dlgOrdenanzaEntrada</class>
- <widget class="QDialog" name="dlgOrdenanzaEntrada">
+ <widget class="QWidget" name="dlgOrdenanzaEntrada">
   <property name="geometry">
    <rect>
     <x>0</x>

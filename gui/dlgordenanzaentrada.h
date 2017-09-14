@@ -1,7 +1,7 @@
 #ifndef DLGORDENANZAENTRADA_H
 #define DLGORDENANZAENTRADA_H
 
-#include <QDialog>
+#include <QWidget>
 
 #include "objs/ordenanza.h"
 #include "objs/variados.h"
@@ -18,7 +18,7 @@ namespace Ui {
 class dlgOrdenanzaEntrada;
 }
 
-class dlgOrdenanzaEntrada : public QDialog
+class dlgOrdenanzaEntrada : public QWidget
 {
     Q_OBJECT
 

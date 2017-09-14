@@ -21,7 +21,7 @@ const QString sql_objetos="SELECT DISTINCT jsonb_array_elements_text(details->'o
                              "ORDER BY objetos";
 
 dlgOrdenanzaEntrada::dlgOrdenanzaEntrada(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::dlgOrdenanzaEntrada)
 {
     ui->setupUi(this);
@@ -69,10 +69,10 @@ bool dlgOrdenanzaEntrada::eventFilter(QObject *obj, QEvent *e)
         }
 
     /*
-     * atención aquí lo importante es poner QDialog!
+     * atención aquí lo importante es poner QWidget!
      * si pongo dlgPenaEntrada no funciona!!
      */
-    return QDialog::eventFilter(obj, e);
+    return QWidget::eventFilter(obj, e);
 }
 
 void dlgOrdenanzaEntrada::cargarModelos()
@@ -139,7 +139,7 @@ void dlgOrdenanzaEntrada::aceptar() {
 
     emit(aceptarOrdenanza(ordenanza));
 
-    close();
+    cerrar();
 
 }
 
@@ -204,15 +204,15 @@ void dlgOrdenanzaEntrada::quitarReceptor()
 void dlgOrdenanzaEntrada::anadirPena()
 {
     dlgPenaEntrada *dlgpena = new dlgPenaEntrada(this);
-    dlgpena->show();
-
     connect(dlgpena, SIGNAL(aceptarPena(Pena)), this, SLOT(recibirPena(Pena)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgpena);
+    window->show();
 }
 
 void dlgOrdenanzaEntrada::recibirPena(Pena pena)
 {
     pena_estipulada = pena;
-
 }
 
 void dlgOrdenanzaEntrada::on_btTemas_clicked()
