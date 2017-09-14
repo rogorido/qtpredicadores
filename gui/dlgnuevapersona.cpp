@@ -40,6 +40,7 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
     otrosnombres_json = new QJsonModel(this);
     cargarCompleters();
 
+    ui->txtNombre->setFocus();
 }
 
 dlgNuevaPersona::~dlgNuevaPersona()

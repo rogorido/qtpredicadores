@@ -267,6 +267,8 @@ void dlgNuevaResolucion::borrarCampos(){
     ui->twVerbs->setModel(m_verbos);
     ui->twExpresiones->setModel(m_expresiones);
 
+    ui->tabResolucion->setFocus();
+
     temas_lista.clear();
     // pasamos una referencia: ver notas en el header
     dlgtemas = new dlgTemas(&temas_lista, this);
