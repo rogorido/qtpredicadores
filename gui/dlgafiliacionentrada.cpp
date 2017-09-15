@@ -42,15 +42,22 @@ dlgAfiliacionEntrada::~dlgAfiliacionEntrada()
 
 void dlgAfiliacionEntrada::anadirAfiliacion()
 {
-    if (ui->txtPersona->text().isEmpty()){
-        int ret = QMessageBox::warning(this, "No hay persona escogida",
-                                       "Introduzca por favor una persona.");
-        Q_UNUSED(ret)
-        return;
-    }
+    /*
+     * NOTE: quitamos por ahora esto de la persona pq me llevaría
+     * mucho tiempo meter todos los nombres...
+     */
+//    if (ui->txtPersona->text().isEmpty()){
+//        int ret = QMessageBox::warning(this, "No hay persona escogida",
+//                                       "Introduzca por favor una persona.");
+//        Q_UNUSED(ret)
+//        return;
+//    }
 
     ExtraInfos e = ui->wdExtraInfos->getExtraInfos();
     afiliacion_activa->setExtras(e);
+
+    if (ui->wdNotas->haCambiado())
+        afiliacion_activa->setNotas(ui->wdNotas->getNotas());
 
     afiliaciones_model->anadirAfiliacion(afiliacion_activa);
 
@@ -65,6 +72,7 @@ void dlgAfiliacionEntrada::anadirAfiliacion()
     ui->txtCasaDestino->setText("");
 
     ui->wdExtraInfos->clear();
+    ui->wdNotas->reiniciar();
 
     ui->twAfiliaciones->resizeColumnsToContents();
     ui->twAfiliaciones->resizeRowsToContents();
@@ -88,7 +96,7 @@ void dlgAfiliacionEntrada::aceptarAfiliaciones()
 
     emit(aceptarDatos(lista));
 
-    close();
+    cerrar();
 
 }
 

@@ -7,6 +7,7 @@
 #include "objs/persona.h"
 #include "objs/casa.h"
 #include "objs/provincia.h"
+#include "objs/notas.h"
 
 class Afiliacion
 {
@@ -19,6 +20,7 @@ public:
     void setCasaDestino(Casa c);
     void setProvinciaOrigen(Provincia p);
     void setProvinciaDestino(Provincia p);
+    void setNotas(Notas n);
     void setExtras(ExtraInfos e);
 
     // getters
@@ -27,6 +29,7 @@ public:
     Casa getCasaDestino() const { return casa_destino; }
     Provincia getProvinciaOrigen() const { return provincia_origen; }
     Provincia getProvinciaDestino() const { return provincia_destino; }
+    Notas getNota() const { return nota; }
     ExtraInfos getExtras() const { return extras; }
 
     QJsonObject getAfiliacionJson();
@@ -37,6 +40,7 @@ private:
     Casa casa_destino;
     Provincia provincia_origen;
     Provincia provincia_destino;
+    Notas nota;
     ExtraInfos extras;
 
 };

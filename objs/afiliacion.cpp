@@ -7,6 +7,7 @@ void Afiliacion::setCasaOrigen(Casa c) { casa_origen = c; }
 void Afiliacion::setCasaDestino(Casa c) { casa_destino = c; }
 void Afiliacion::setProvinciaOrigen(Provincia p) { provincia_origen = p; }
 void Afiliacion::setProvinciaDestino(Provincia p) { provincia_destino = p; }
+void Afiliacion::setNotas(Notas n) { nota = n; }
 void Afiliacion::setExtras(ExtraInfos e) { extras = e; }
 
 QJsonObject Afiliacion::getAfiliacionJson()
@@ -29,6 +30,10 @@ QJsonObject Afiliacion::getAfiliacionJson()
 
     if (provincia_destino.estaLleno())
         json.insert("provincia_destino", provincia_destino.getId());
+
+    if (nota.estaLleno()){
+        json.insert("meta_info", nota.getNotasJson());
+    }
 
     if (extras.size() > 0 ) {
         for (int i = 0; i < extras.size(); ++i) {

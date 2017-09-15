@@ -101,6 +101,16 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Notas</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="WidgetNotas" name="wdNotas" native="true"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
@@ -155,6 +165,12 @@
    <class>WidgetExtraInfos</class>
    <extends>QWidget</extends>
    <header>widgets/widgetextrainfos.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WidgetNotas</class>
+   <extends>QWidget</extends>
+   <header>widgets/widgetnotas.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
