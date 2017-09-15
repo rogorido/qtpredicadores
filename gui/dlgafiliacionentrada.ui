@@ -95,16 +95,11 @@
       <attribute name="title">
        <string>Infos extra</string>
       </attribute>
-      <widget class="WidgetExtraInfos" name="wdExtraInfos" native="true">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>10</y>
-         <width>271</width>
-         <height>301</height>
-        </rect>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="WidgetExtraInfos" name="wdExtraInfos" native="true"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>

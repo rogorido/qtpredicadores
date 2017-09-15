@@ -22,7 +22,7 @@ private:
        2. 1 es para los nombres de lugares
     */
     
-    int tipoproxy;
+    tiposeleccionar tipoproxy;
 };
 
 #endif // PROXYNOMBRES_H

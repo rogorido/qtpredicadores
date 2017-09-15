@@ -321,6 +321,8 @@ void dlgNuevoObispo::borrarCampos()
 
     ui->wdNotas->reiniciar();
 
+     json_detalles = new QJsonModel(this);
+
     /*
      * no borramos el punto fuentedatos
      * pque ahora no sé cómo borrar un pointer
