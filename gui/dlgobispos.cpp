@@ -2,6 +2,13 @@
 #include "ui_dlgobispos.h"
 
 #include <QSqlQueryModel>
+#include <QModelIndex>
+#include <QMenu>
+#include <QAction>
+#include <QDebug>
+#include <QPoint>
+
+#include "objs/obispo.h"
 
 const QString sqlgeneral = "SELECT * from vistas.obispos_general";
 const QString sqlvolvermirar = "SELECT bishop_id FROM bishops_details "
@@ -16,6 +23,11 @@ dlgObispos::dlgObispos(QWidget *parent) :
     obispos_model = new QSqlQueryModel(this);
     sqlactivo = sqlgeneral;
     cargarModelos();
+
+    connect(ui->twObispos, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(mostrarCustomMenu(QPoint)));
+    //connect(ui->twObispos->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(seleccionadoObispo(QModelIndex)));
+
+    cargarMenus();
 }
 
 dlgObispos::~dlgObispos()
@@ -46,6 +58,20 @@ void dlgObispos::cargarModelos()
     }
 }
 
+void dlgObispos::cargarMenus()
+{
+    menuContexto = new QMenu(this);
+
+    cambiarDiocesis = new QAction("Modificar diócesis");
+    cambiarPersona = new QAction("Modificar persona");
+
+    connect(cambiarPersona, SIGNAL(triggered(bool)), this, SLOT(modificarPersona()));
+    connect(cambiarDiocesis, SIGNAL(triggered(bool)), this, SLOT(modificarDiocesis()));
+
+    menuContexto->addAction(cambiarPersona);
+    menuContexto->addAction(cambiarDiocesis);
+}
+
 void dlgObispos::on_ckVolverAMirar_toggled(bool checked)
 {
     if (checked){
@@ -59,3 +85,38 @@ void dlgObispos::on_ckVolverAMirar_toggled(bool checked)
 
     obispos_model->setQuery(sqlactivo);
 }
+
+void dlgObispos::mostrarCustomMenu(QPoint pos)
+{
+    menuContexto->show();
+
+}
+
+void dlgObispos::seleccionadoObispo(const QModelIndex &idx)
+{
+    if (!idx.isValid())
+        return;
+
+    /*
+     * sacamos el índice de la columna 0 que es donde está
+     * la id de la resolución, para luego convertirla en int
+     * y usarla en el filtro del otro modelo.
+     */
+    QModelIndex indice = idx.model()->index(idx.row(), 0);
+    if (!indice.isValid())
+        return;
+
+    obispo_seleccionado = obispos_model->data(indice, Qt::DisplayRole).toInt();
+
+}
+
+void dlgObispos::modificarDiocesis()
+{
+    qDebug() << "modificando diócesis del obispo: " << obispo_seleccionado;
+}
+
+void dlgObispos::modificarPersona()
+{
+    qDebug() << "modificando diócesis del obispo: " << obispo_seleccionado;
+}
+
