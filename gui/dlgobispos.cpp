@@ -86,8 +86,8 @@ void dlgObispos::cargarMenus()
 {
     menuContexto = new QMenu(this);
 
-    cambiarDiocesis = new QAction("Modificar diócesis");
-    cambiarPersona = new QAction("Modificar persona");
+    cambiarDiocesis = new QAction("Modificar diócesis", this);
+    cambiarPersona = new QAction("Modificar persona", this);
 
     connect(cambiarPersona, SIGNAL(triggered(bool)), this, SLOT(modificarPersona()));
     connect(cambiarDiocesis, SIGNAL(triggered(bool)), this, SLOT(modificarDiocesis()));
