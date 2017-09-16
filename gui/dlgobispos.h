@@ -3,7 +3,10 @@
 
 #include <QWidget>
 
+class QMenu;
+class QAction;
 class QSqlQueryModel;
+class QModelIndex;
 
 namespace Ui {
 class dlgObispos;
@@ -18,17 +21,40 @@ public:
     ~dlgObispos();
 
 private slots:
+    void seleccionarObispo(const QModelIndex &idx);
+    void menuContextual(const QPoint &point);
+
+    void on_pbActivar_clicked();
+
+    void on_ckVolverAMirar_toggled(bool checked);
+
+    void modificarDiocesis();
+    void modificarPersona();
 
 private:
     Ui::dlgObispos *ui;
 
     QSqlQueryModel *obispos_model;
 
+    QMenu *menuContexto;
+
+    /*
+     * FIXME: esto es para el campo see_again
+     * que no es el de meta_info...
+     */
+    QAction *marcarNoMirar;
+    QAction *cambiarPersona;
+    QAction *cambiarDiocesis;
+
     /*
      * guardamos el SQL que está activo
      */
     QString sqlactivo;
 
+    // bishop_id
+    int obispo_seleccionado;
+
+    void cargarMenus();
     void cargarModelos();
 
 };
