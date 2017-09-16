@@ -50,6 +50,7 @@
     <addaction name="actionCiudades"/>
     <addaction name="actionCasas"/>
     <addaction name="actionCapituli"/>
+    <addaction name="actionObispos"/>
    </widget>
    <widget class="QMenu" name="menuEstad_sticas">
     <property name="title">
@@ -247,6 +248,11 @@
   <action name="actionIntroducirReformaConvento">
    <property name="text">
     <string>Introducir &amp;datos</string>
+   </property>
+  </action>
+  <action name="actionObispos">
+   <property name="text">
+    <string>Obispos</string>
    </property>
   </action>
  </widget>

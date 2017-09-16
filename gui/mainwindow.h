@@ -17,6 +17,7 @@ class dlgCiudades;
 class dlgCasas;
 class dlgEstadisticas;
 class dlgReforma;
+class dlgObispos;
 
 class dlgDetalles;
 
@@ -68,6 +69,8 @@ private slots:
 
     void Estadisticas();
 
+    void on_actionObispos_triggered();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
@@ -88,6 +91,7 @@ private:
     DlgResoluciones *FormResoluciones;
     dlgCiudades *FormCiudades;
     dlgCasas *FormCasas;
+    dlgObispos *FormObispos;
 
     // esto es para gestionarlos con lo de MDIarea
     dlgDetalles *dlgdetalles;

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dlgObispos</class>
+ <widget class="QDialog" name="dlgObispos">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>696</width>
+    <height>468</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QTableView" name="twObispos">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>671</width>
+     <height>291</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="txtFiltro">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>10</y>
+     <width>113</width>
+     <height>23</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>10</y>
+     <width>58</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Filtro</string>
+   </property>
+   <property name="buddy">
+    <cstring>txtFiltro</cstring>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

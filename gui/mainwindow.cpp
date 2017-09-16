@@ -22,6 +22,7 @@
 #include "dlgcapitulos.h"
 #include "dlgestadisticas.h"
 #include "dlgreforma.h"
+#include "dlgobispos.h"
 
 // para lo de MDIarea
 #include "dlgdetalles.h"
@@ -234,4 +235,12 @@ void MainWindow::nuevaReforma()
     dlgReforma *dlgReformaConvento = new dlgReforma(this);
 
     dlgReformaConvento->show();
+}
+
+void MainWindow::on_actionObispos_triggered()
+{
+    FormObispos = new dlgObispos(this);
+    QMdiSubWindow *window = mdiArea->addSubWindow(FormObispos);
+    window->show();
+
 }
