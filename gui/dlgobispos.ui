@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>dlgObispos</class>
- <widget class="QDialog" name="dlgObispos">
+ <widget class="QWidget" name="dlgObispos">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Gestionar obispos</string>
   </property>
   <widget class="QTableView" name="twObispos">
    <property name="geometry">
@@ -47,6 +47,19 @@
    </property>
    <property name="buddy">
     <cstring>txtFiltro</cstring>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="ckVolverAMirar">
+   <property name="geometry">
+    <rect>
+     <x>543</x>
+     <y>340</y>
+     <width>141</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Volver a mirar</string>
    </property>
   </widget>
  </widget>
