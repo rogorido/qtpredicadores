@@ -42,7 +42,6 @@ private:
      * FIXME: esto es para el campo see_again
      * que no es el de meta_info...
      */
-    QAction *marcarNoMirar;
     QAction *cambiarPersona;
     QAction *cambiarDiocesis;
 
