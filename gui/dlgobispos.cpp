@@ -12,6 +12,8 @@
 const QString sqlgeneral = "SELECT * from vistas.obispos_general";
 const QString sqlvolvermirar = "bishop_id IN (SELECT bishop_id FROM bishops_details "
                                "WHERE (details->'meta_info'->>'volver_a_mirar')::boolean = TRUE)";
+const QString sqlinteresante = "bishop_id IN (SELECT bishop_id FROM bishops_details "
+                               "WHERE (details->'meta_info'->>'interesante')::boolean = TRUE)";
 
 dlgObispos::dlgObispos(QWidget *parent) :
     QWidget(parent),
@@ -101,14 +103,17 @@ void dlgObispos::cargarMenus()
 {
     menuContexto = new QMenu(this);
 
-    cambiarDiocesis = new QAction("Modificar diócesis", this);
-    cambiarPersona = new QAction("Modificar persona", this);
+    a_verPersona = new QAction("Ver datos de persona", this);
+    a_cambiarDiocesis = new QAction("Modificar diócesis", this);
+    a_cambiarPersona = new QAction("Modificar persona", this);
 
-    connect(cambiarPersona, SIGNAL(triggered(bool)), this, SLOT(modificarPersona()));
-    connect(cambiarDiocesis, SIGNAL(triggered(bool)), this, SLOT(modificarDiocesis()));
+    connect(a_verPersona, SIGNAL(triggered(bool)), this, SLOT(verPersona()));
+    connect(a_cambiarPersona, SIGNAL(triggered(bool)), this, SLOT(modificarPersona()));
+    connect(a_cambiarDiocesis, SIGNAL(triggered(bool)), this, SLOT(modificarDiocesis()));
 
-    menuContexto->addAction(cambiarPersona);
-    menuContexto->addAction(cambiarDiocesis);
+    menuContexto->addAction(a_verPersona);
+    menuContexto->addAction(a_cambiarPersona);
+    menuContexto->addAction(a_cambiarDiocesis);
 }
 
 void dlgObispos::on_pbActivar_clicked()
@@ -132,6 +137,11 @@ void dlgObispos::modificarDiocesis()
 void dlgObispos::modificarPersona()
 {
     qDebug() << "modificando diócesis del obispo: " << obispo_seleccionado;
+}
+
+void dlgObispos::verPersona()
+{
+
 }
 
 void dlgObispos::actualizarSql(QString s)
@@ -159,4 +169,12 @@ void dlgObispos::on_cbDiocesis_currentIndexChanged(int index)
 
     sql_gestor->anadirFiltro("diocesis", sql);
 
+}
+
+void dlgObispos::on_ckInteresante_toggled(bool checked)
+{
+    if (checked)
+        sql_gestor->anadirFiltro("interesante", sqlinteresante);
+    else
+        sql_gestor->quitarFiltro("interesante");
 }

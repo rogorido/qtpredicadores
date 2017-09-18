@@ -31,9 +31,12 @@ private slots:
 
     void modificarDiocesis();
     void modificarPersona();
+    void verPersona();
     void actualizarSql(QString s);
 
     void on_cbDiocesis_currentIndexChanged(int index);
+
+    void on_ckInteresante_toggled(bool checked);
 
 private:
     Ui::dlgObispos *ui;
@@ -49,8 +52,9 @@ private:
      * FIXME: esto es para el campo see_again
      * que no es el de meta_info...
      */
-    QAction *cambiarPersona;
-    QAction *cambiarDiocesis;
+    QAction *a_verPersona;
+    QAction *a_cambiarPersona;
+    QAction *a_cambiarDiocesis;
 
     /*
      * guardamos el SQL que está activo
