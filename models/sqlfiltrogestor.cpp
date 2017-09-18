@@ -1,45 +1,59 @@
 #include "sqlfiltrogestor.h"
 
+#include <QDebug>
+
 SqlFiltroGestor::SqlFiltroGestor(QString sql, QObject *parent) : QObject(parent),
-    sqlgeneral(sql)
+    sql_basico(sql)
 {
 
 }
 
 void SqlFiltroGestor::setSqlGeneral(QString sql)
 {
-    sqlgeneral = sql;
+    sql_basico = sql;
 }
 
 void SqlFiltroGestor::setSqlOrder(QString sql)
 {
-    sqlorder = sql;
+    sql_order = sql;
 }
 
 void SqlFiltroGestor::anadirFiltro(QString nombre, QString sql)
 {
-    filtros.insert(nombre, sql);
+    filtros_map.insert(nombre, sql);
+    generarSql();
 }
 
 void SqlFiltroGestor::quitarFiltro(QString nombre)
 {
-    filtros.remove(nombre);
+    filtros_map.remove(nombre);
+    generarSql();
 }
 
 void SqlFiltroGestor::borrarFiltros()
 {
-    filtros.clear();
+    filtros_map.clear();
+
+    emit(actualizadoSqlFiltroGestor(sql_basico));
 }
 
 void SqlFiltroGestor::generarSql()
 {
     QString filtros_tmp;
-    QMap<QString, QString> map;
 
     // metemos primero lo básico...
-    sqlcreado = sqlgeneral;
+    sql_creado = sql_basico;
 
-    QMapIterator<QString, QString> i(map);
+    /*
+     * en algunos casos puede que sin borrarlos explícitamente
+     * al final no haya filtros, por eso lo comprobamos.
+     */
+    if (filtros_map.size() == 0){
+        emit(actualizadoSqlFiltroGestor(sql_creado));
+        return;
+    }
+
+    QMapIterator<QString, QString> i(filtros_map);
     while (i.hasNext()) {
         i.next();
         filtros_tmp += " AND ";
@@ -48,11 +62,12 @@ void SqlFiltroGestor::generarSql()
 
     // tenemos que quitar el primer AND...
     // esto deja el espacio
-    filtros_tmp = filtros_tmp.right(5);
+    filtros_tmp = filtros_tmp.remove(0,4);
     filtros_tmp = " WHERE " + filtros_tmp;
 
-    sqlcreado += filtros_tmp;
+    sql_creado += filtros_tmp;
 
-    emit(actualizadoSqlFiltroGestor(sqlcreado));
+    qDebug() << "el sql es: " << sql_creado;
+    emit(actualizadoSqlFiltroGestor(sql_creado));
 
 }

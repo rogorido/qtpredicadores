@@ -7,6 +7,7 @@ class QMenu;
 class QAction;
 class QSqlQueryModel;
 class QModelIndex;
+class SqlFiltroGestor;
 
 namespace Ui {
 class dlgObispos;
@@ -30,11 +31,17 @@ private slots:
 
     void modificarDiocesis();
     void modificarPersona();
+    void actualizarSql(QString s);
+
+    void on_cbDiocesis_currentIndexChanged(int index);
 
 private:
     Ui::dlgObispos *ui;
 
     QSqlQueryModel *obispos_model;
+    QSqlQueryModel *diocesis_model;
+
+    SqlFiltroGestor *sql_gestor;
 
     QMenu *menuContexto;
 

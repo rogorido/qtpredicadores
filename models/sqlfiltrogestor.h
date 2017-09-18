@@ -26,23 +26,23 @@ private:
      * guardamos los filtros con su nombre
      * y el código SQL
      */
-    QMap<QString, QString> filtros;
+    QMap<QString, QString> filtros_map;
 
     /*
      * Aquí está el SQL general que llega
      * del formulario.
      */
-    QString sqlgeneral;
+    QString sql_basico;
 
     /*
      * este es el SQL que creamos
      */
-    QString sqlcreado;
+    QString sql_creado;
 
     /*
      * Aquí está el SQL que sirve para ordenar
      */
-    QString sqlorder;
+    QString sql_order;
 
     void generarSql();
 

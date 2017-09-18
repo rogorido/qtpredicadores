@@ -7,9 +7,11 @@
 #include <QAction>
 #include <QDebug>
 
+#include "models/sqlfiltrogestor.h"
+
 const QString sqlgeneral = "SELECT * from vistas.obispos_general";
-const QString sqlvolvermirar = "SELECT bishop_id FROM bishops_details "
-                               "WHERE (details->'meta_info'->>'volver_a_mirar')::boolean = TRUE";
+const QString sqlvolvermirar = "bishop_id IN (SELECT bishop_id FROM bishops_details "
+                               "WHERE (details->'meta_info'->>'volver_a_mirar')::boolean = TRUE)";
 
 dlgObispos::dlgObispos(QWidget *parent) :
     QWidget(parent),
@@ -20,6 +22,11 @@ dlgObispos::dlgObispos(QWidget *parent) :
     obispos_model = new QSqlQueryModel(this);
     sqlactivo = sqlgeneral;
 
+    sql_gestor = new SqlFiltroGestor(sqlgeneral, this);
+    connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
+
+    diocesis_model = new QSqlQueryModel(this);
+
     cargarModelos();
     cargarMenus();
 
@@ -29,6 +36,7 @@ dlgObispos::dlgObispos(QWidget *parent) :
             this, SLOT(seleccionarObispo(QModelIndex)));
     connect(ui->twObispos, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(menuContextual(const QPoint &)));
+
 }
 
 dlgObispos::~dlgObispos()
@@ -49,7 +57,6 @@ void dlgObispos::seleccionarObispo(const QModelIndex &idx)
 
     obispo_seleccionado = obispos_model->data(indice, Qt::DisplayRole).toInt();
 
-    qDebug() << "el id es: " << obispo_seleccionado;
 }
 
 void dlgObispos::menuContextual(const QPoint &point)
@@ -80,6 +87,14 @@ void dlgObispos::cargarModelos()
     if (index.isValid()) {
         ui->twObispos->setCurrentIndex(index);
     }
+
+    // lo de las diócesis
+    diocesis_model->setQuery("SELECT diocese_id, diocese_name FROM dioceses ORDER BY diocese_name");
+
+    ui->cbDiocesis->setModel(diocesis_model);
+    ui->cbDiocesis->setModelColumn(1);
+    ui->cbDiocesis->setCurrentIndex(-1);
+
 }
 
 void dlgObispos::cargarMenus()
@@ -103,13 +118,10 @@ void dlgObispos::on_pbActivar_clicked()
 
 void dlgObispos::on_ckVolverAMirar_toggled(bool checked)
 {
-    if (checked){
-        sqlactivo = sqlgeneral + " WHERE bishop_id IN (" + sqlvolvermirar + ")";
-    }
+    if (checked)
+        sql_gestor->anadirFiltro("volveramirar", sqlvolvermirar);
     else
-        sqlactivo = sqlgeneral;
-
-    obispos_model->setQuery(sqlactivo);
+        sql_gestor->quitarFiltro("volveramirar");
 }
 
 void dlgObispos::modificarDiocesis()
@@ -122,3 +134,29 @@ void dlgObispos::modificarPersona()
     qDebug() << "modificando diócesis del obispo: " << obispo_seleccionado;
 }
 
+void dlgObispos::actualizarSql(QString s)
+{
+    sqlactivo = s;
+
+    obispos_model->setQuery(sqlactivo);
+}
+
+void dlgObispos::on_cbDiocesis_currentIndexChanged(int index)
+{
+    int escogido;
+    QString sql;
+
+    QModelIndex idx = ui->cbDiocesis->model()->index(index, 0);
+
+    if (!idx.isValid()){
+        sql_gestor->quitarFiltro("diocesis");
+        return;
+    }
+
+    escogido = ui->cbDiocesis->model()->data(idx).toInt();
+
+    sql = QString("diocese_id = %1").arg(escogido);
+
+    sql_gestor->anadirFiltro("diocesis", sql);
+
+}

@@ -75,6 +75,16 @@
     <string>PushButton</string>
    </property>
   </widget>
+  <widget class="QComboBox" name="cbDiocesis">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>390</y>
+     <width>181</width>
+     <height>23</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
