@@ -38,6 +38,7 @@ bool WidgetNotas::haCambiado()
 Notas WidgetNotas::getNotas()
 {
     nota.setVolverMirar(ui->ckVolverMirar->checkState());
+    nota.setInteresante(ui->ckInteresante->checkState());
     nota.setNota(ui->txtNota->toPlainText());
     nota.setSeguridad(ui->spSeguridad->value());
 
