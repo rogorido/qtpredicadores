@@ -8,6 +8,7 @@ class QAction;
 class QSqlQueryModel;
 class QModelIndex;
 class SqlFiltroGestor;
+class ProxyNombres;
 
 namespace Ui {
 class dlgObispos;
@@ -46,6 +47,8 @@ private slots:
 
     void on_ckInteresante_toggled(bool checked);
 
+    void actualizarFiltro(const QString filtro);
+
 signals:
 
     void infoBarraInferior(QString info);
@@ -57,6 +60,7 @@ private:
     QSqlQueryModel *diocesis_model;
 
     SqlFiltroGestor *sql_gestor;
+    ProxyNombres *proxy_obispos;
 
     QMenu *menuContexto;
 

@@ -9,6 +9,7 @@
 #include <QDebug>
 
 #include "models/sqlfiltrogestor.h"
+#include "objs/proxynombres.h"
 
 const QString sqlgeneral = "SELECT * from vistas.obispos_general";
 const QString sqlvolvermirar = "bishop_id IN (SELECT bishop_id FROM bishops_details "
@@ -51,6 +52,7 @@ dlgObispos::dlgObispos(QWidget *parent) :
             this, SLOT(seleccionarObispo(QModelIndex)));
     connect(ui->twObispos, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(menuContextual(const QPoint &)));
+    connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
 
 }
 
@@ -85,7 +87,10 @@ void dlgObispos::cargarModelos()
 {
     obispos_model->setQuery(sqlactivo);
 
-    ui->twObispos->setModel(obispos_model);
+    proxy_obispos = new ProxyNombres(OBISPO, this);
+    proxy_obispos->setSourceModel(obispos_model);
+
+    ui->twObispos->setModel(proxy_obispos);
 
     ui->twObispos->hideColumn(0);
     ui->twObispos->setAlternatingRowColors(true);
@@ -98,7 +103,7 @@ void dlgObispos::cargarModelos()
     ui->twObispos->setSelectionMode(QAbstractItemView::SingleSelection);
 
     // escogemos la primera línea del modelo...
-    QModelIndex index = obispos_model->index(0,0);
+    QModelIndex index = proxy_obispos->index(0,0);
     if (index.isValid()) {
         ui->twObispos->setCurrentIndex(index);
     }
@@ -181,7 +186,8 @@ void dlgObispos::actualizarSql(QString s)
 
 void dlgObispos::contarTotal()
 {
-    total_filtrado = obispos_model->rowCount();
+    //total_filtrado = obispos_model->rowCount();
+    total_filtrado = proxy_obispos->rowCount();
 
     emitirSenalTotalObispos();
 }
@@ -212,4 +218,19 @@ void dlgObispos::on_ckInteresante_toggled(bool checked)
         sql_gestor->anadirFiltro("interesante", sqlinteresante);
     else
         sql_gestor->quitarFiltro("interesante");
+}
+
+void dlgObispos::actualizarFiltro(const QString filtro)
+{
+    if (filtro.length() > 2) {
+        proxy_obispos->setFilterRegExp(QRegExp(filtro, Qt::CaseInsensitive, QRegExp::FixedString));
+        ui->twObispos->resizeRowsToContents();
+        contarTotal();
+    }
+    else
+    {
+        proxy_obispos->setFilterRegExp(QRegExp("", Qt::CaseInsensitive, QRegExp::FixedString));
+        ui->twObispos->resizeRowsToContents();
+        contarTotal();
+    }
 }

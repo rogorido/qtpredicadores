@@ -59,18 +59,33 @@ bool ProxyNombres::filterAcceptsRow(int sourceRow,
               || sourceModel()->data(index6).toString().contains(filterRegExp())
               || sourceModel()->data(index7).toString().contains(filterRegExp());
       break;
+
   case CAPITULO:
       return sourceModel()->data(index1).toString().contains(filterRegExp())
               || sourceModel()->data(index2).toString().contains(filterRegExp());
       break;
+
   case DIOCESIS:
       return sourceModel()->data(index1).toString().contains(filterRegExp())
               || sourceModel()->data(index2).toString().contains(filterRegExp())
               || sourceModel()->data(index3).toString().contains(filterRegExp());
       break;
+
   case TEMA:
       return sourceModel()->data(index1).toString().contains(filterRegExp());
       break;
+
+  case OBISPO:
+      /*
+       * index1 : obispo, index2: diócesis, index4: papa.
+       */
+      return sourceModel()->data(index1).toString().contains(filterRegExp())
+              || sourceModel()->data(index2).toString().contains(filterRegExp())
+              || sourceModel()->data(index4).toString().contains(filterRegExp());
+      break;
+
+  default: // NOTE: esto no sé si es correcto así...
+      return true;
 
   }
 
