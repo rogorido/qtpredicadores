@@ -20,6 +20,8 @@ public:
     void setReceptores(QStringList r);
     void setAsunto(QString a);
     void setSeguridad(int s);
+    void setProvincia(int p);
+    void setCasa(int c);
     void setExtraInfos(ExtraInfos e);
     void setNotas(Notas n);
 
@@ -29,6 +31,8 @@ public:
     QStringList getReceptores() const { return receptores; }
     QString getAsunto() const { return asunto; }
     int getSeguridad() const { return seguridad; }
+    int getProvincia() const { return provincia; }
+    int getCasa() const { return casa; }
     ExtraInfos getExtraInfos() const { return extras; }
     Notas getNotas() const { return nota; }
 
@@ -41,6 +45,8 @@ private:
     QStringList receptores;
     QString asunto;
     int seguridad; // de la interpretación
+    int provincia;
+    int casa;
     ExtraInfos extras;
     Notas nota;
 

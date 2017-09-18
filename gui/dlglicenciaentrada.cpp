@@ -5,8 +5,11 @@
 #include <QCompleter>
 #include <QListWidgetItem>
 #include <QModelIndex>
-
+#include <QMdiSubWindow>
 #include <QDebug>
+
+#include "dlgseleccionargeneral.h"
+#include "widgets/myqmdiarea.h"
 
 const QString sql_otorgantes="SELECT DISTINCT jsonb_array_elements_text(details->'otorgante') AS otorgante "
                              "FROM resolutions_details WHERE details->>'otorgante' IS NOT NULL "
@@ -24,12 +27,16 @@ dlgLicenciaEntrada::dlgLicenciaEntrada(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    mdiarea = MyQmdiArea::Instance(this);
+
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->btQuitarOtorgante, SIGNAL(clicked(bool)), this, SLOT(quitarOtorgante()));
     connect(ui->btQuitarReceptor, SIGNAL(clicked(bool)), this, SLOT(quitarReceptor()));
     connect(ui->txtOtorgante, SIGNAL(returnPressed()), this, SLOT(anadirOtorgante()));
     connect(ui->txtReceptor, SIGNAL(returnPressed()), this, SLOT(anadirReceptor()));
+    connect(ui->txtProvincia, SIGNAL(dobleclick()), this, SLOT(anadirProvincia()));
+    connect(ui->txtCasa, SIGNAL(dobleclick()), this, SLOT(anadirCasa()));
 
    cargarModelos();
 
@@ -54,6 +61,12 @@ void dlgLicenciaEntrada::aceptar()
 
     if (ui->wdNotas->haCambiado())
         licencia_activa.setNotas(ui->wdNotas->getNotas());
+
+    if (provincia_seleccionada != 0)
+        licencia_activa.setProvincia(provincia_seleccionada);
+
+    if (casa_seleccionada != 0)
+        licencia_activa.setCasa(casa_seleccionada);
 
     emit(aceptarLicencia(licencia_activa));
 
@@ -117,6 +130,40 @@ void dlgLicenciaEntrada::quitarOtorgante()
     }
 
     ui->lwOtorgantes->takeItem(ui->lwOtorgantes->currentRow());
+}
+
+void dlgLicenciaEntrada::anadirProvincia()
+{
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    connect(dlgSeleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
+    window->show();
+}
+
+void dlgLicenciaEntrada::anadirCasa()
+{
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(CASA, this);
+    connect(dlgSeleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(recibirCasa(Casa)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
+    window->show();
+}
+
+void dlgLicenciaEntrada::recibirCasa(Casa casa)
+{
+    casa_seleccionada = casa.getId();
+    QString valor = casa.getNombre();
+
+    ui->txtCasa->setText(valor);
+}
+
+void dlgLicenciaEntrada::recibirProvincia(Provincia provincia)
+{
+    provincia_seleccionada = provincia.getId();
+    QString valor = provincia.getNombre();
+
+    ui->txtProvincia->setText(valor);
 }
 
 void dlgLicenciaEntrada::cerrar()

@@ -3,9 +3,13 @@
 
 #include <QDialog>
 #include "objs/licencia.h"
+#include "objs/casa.h"
+#include "objs/provincia.h"
 
 class QSqlQueryModel;
 class QCompleter;
+
+class MyQmdiArea;
 
 namespace Ui {
 class dlgLicenciaEntrada;
@@ -26,6 +30,11 @@ private slots:
     void quitarReceptor();
     void anadirOtorgante();
     void quitarOtorgante();
+    void anadirProvincia();
+    void anadirCasa();
+
+    void recibirCasa(Casa casa);
+    void recibirProvincia(Provincia provincia);
 
     void cerrar();
 
@@ -38,6 +47,7 @@ protected:
 
 private:
     Ui::dlgLicenciaEntrada *ui;
+    MyQmdiArea *mdiarea;
 
     QStringList receptores;
     QStringList otorgantes;
@@ -50,6 +60,9 @@ private:
     QCompleter *receptores_completer;
 
     Licencia licencia_activa;
+
+    int provincia_seleccionada = 0;
+    int casa_seleccionada = 0;
 
     void cargarModelos();
 };

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>663</width>
-    <height>376</height>
+    <height>464</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_10">
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
@@ -29,6 +29,10 @@
      <item>
       <widget class="QLineEdit" name="txtTipo"/>
      </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
@@ -54,6 +58,53 @@
      </item>
      <item>
       <widget class="QLineEdit" name="txtReceptor"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <item>
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Provincia</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtProvincia</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="myQLineEdit" name="txtProvincia"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Casa</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtCasa</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="myQLineEdit" name="txtCasa"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Asunto</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtAsunto</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtAsunto"/>
      </item>
     </layout>
    </item>
@@ -187,20 +238,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="label_6">
-       <property name="text">
-        <string>Asunto</string>
-       </property>
-       <property name="buddy">
-        <cstring>txtAsunto</cstring>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="txtAsunto"/>
-     </item>
+    <layout class="QHBoxLayout" name="horizontalLayout_9">
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
@@ -244,6 +282,11 @@
    <extends>QWidget</extends>
    <header>widgets/widgetnotas.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>myQLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header location="global">widgets/myqlineedit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

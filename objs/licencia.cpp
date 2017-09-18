@@ -7,6 +7,8 @@ void Licencia::setOtorgantes(QStringList o) { otorgantes = o; }
 void Licencia::setReceptores(QStringList r) { receptores = r; }
 void Licencia::setAsunto(QString a) { asunto = a; }
 void Licencia::setSeguridad(int s) { seguridad = s; }
+void Licencia::setProvincia(int p) { provincia = p; }
+void Licencia::setCasa(int c) { casa = c; }
 void Licencia::setExtraInfos(ExtraInfos e) { extras = e; }
 void Licencia::setNotas(Notas n) { nota = n; }
 
@@ -29,6 +31,12 @@ QJsonObject Licencia::getLicenciaJson()
         json.insert("licencia_asunto", asunto);
 
     json.insert("seguridad", QJsonValue(seguridad));
+
+    if (provincia != 0)
+        json.insert("provincia", provincia);
+
+    if (casa != 0)
+        json.insert("casa", casa);
 
     if (extras.size() > 0 ) {
         for (int i = 0; i < extras.size(); ++i) {
