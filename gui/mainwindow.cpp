@@ -6,6 +6,7 @@
 #include <QInputDialog>
 #include <QSqlTableModel>
 #include <QMdiSubWindow>
+#include <QLabel>
 
 #include "dlgnuevocapitulo.h"
 #include "dlgnuevaresolucion.h"
@@ -52,6 +53,9 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(mdiArea);
     QMainWindow::showMaximized();
 
+    info_statusbar = new QLabel(this);
+    statusBar()->addPermanentWidget(info_statusbar);
+
     db = QSqlDatabase::addDatabase("QPSQL");
      db.setHostName("localhost");
      db.setDatabaseName("dominicos");
@@ -72,6 +76,9 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::cargarMenues(){
+
+    statusBar()->showMessage("Cargando los menúes", STATUSBAR_TIMEOUT);
+
     connect(ui->actionNuevoCapitulo, SIGNAL(triggered()), this, SLOT(nuevoCapitulo()));
     connect(ui->actionNuevaCasa, SIGNAL(triggered()), this, SLOT(nuevaCasa()));
     connect(ui->actionNuevaPersona, SIGNAL(triggered()), this, SLOT(nuevaPersona()));
@@ -89,6 +96,8 @@ void MainWindow::cargarMenues(){
     connect(ui->actionCapituli, SIGNAL(triggered(bool)), this, SLOT(Capitulos()));
     connect(ui->actionGeneralEstadisticas, SIGNAL(triggered(bool)), this, SLOT(Estadisticas()));
     connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
+
+    statusBar()->showMessage("Menúes cargados", STATUSBAR_TIMEOUT);
 }
 
 void MainWindow::nuevoCapitulo(){
@@ -99,6 +108,8 @@ void MainWindow::nuevoCapitulo(){
 }
 
 void MainWindow::cargarModelos(){
+
+    statusBar()->showMessage("Cargando los modelos", STATUSBAR_TIMEOUT);
 
     m_temas = TemasModel::InstanceModel();
     // esto no habría que ponerlo en el constructor de la clase?
@@ -123,6 +134,8 @@ void MainWindow::cargarModelos(){
 
     m_capitulos = CapitulosModel::InstanceModel();
     m_capitulos->select();
+
+    statusBar()->showMessage("Modelos cargados", STATUSBAR_TIMEOUT);
 
 }
 
@@ -243,4 +256,9 @@ void MainWindow::on_actionObispos_triggered()
     QMdiSubWindow *window = mdiArea->addSubWindow(FormObispos);
     window->show();
 
+}
+
+void MainWindow::updateStatusBarDerecha(QString mensaje)
+{
+    info_statusbar->setText(mensaje);
 }

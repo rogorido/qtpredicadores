@@ -30,6 +30,8 @@ class CapitulosModel;
 
 class MyQmdiArea;
 
+class QLabel;
+
 namespace Ui {
 class MainWindow;
 }
@@ -70,11 +72,13 @@ private slots:
     void Estadisticas();
 
     void on_actionObispos_triggered();
+    void updateStatusBarDerecha(QString mensaje);
 
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
     MyQmdiArea *mdiArea;
+    QLabel *info_statusbar;
 
     /* esto son formularios */
     dlgNuevoCapitulo *dlgCapitulo;
