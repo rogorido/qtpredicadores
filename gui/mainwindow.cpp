@@ -256,6 +256,9 @@ void MainWindow::on_actionObispos_triggered()
     QMdiSubWindow *window = mdiArea->addSubWindow(FormObispos);
     window->show();
 
+    connect(FormObispos, SIGNAL(infoBarraInferior(QString)), this, SLOT(updateStatusBarDerecha(QString)));
+
+    FormObispos->contarTotal();
 }
 
 void MainWindow::updateStatusBarDerecha(QString mensaje)

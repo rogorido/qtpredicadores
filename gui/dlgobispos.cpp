@@ -1,6 +1,7 @@
 #include "dlgobispos.h"
 #include "ui_dlgobispos.h"
 
+#include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QModelIndex>
 #include <QMenu>
@@ -14,6 +15,7 @@ const QString sqlvolvermirar = "bishop_id IN (SELECT bishop_id FROM bishops_deta
                                "WHERE (details->'meta_info'->>'volver_a_mirar')::boolean = TRUE)";
 const QString sqlinteresante = "bishop_id IN (SELECT bishop_id FROM bishops_details "
                                "WHERE (details->'meta_info'->>'interesante')::boolean = TRUE)";
+const QString sqlcontar = "SELECT count(*) FROM vistas.obispos_general";
 
 dlgObispos::dlgObispos(QWidget *parent) :
     QWidget(parent),
@@ -31,6 +33,17 @@ dlgObispos::dlgObispos(QWidget *parent) :
 
     cargarModelos();
     cargarMenus();
+
+    /*
+     * esto lo hacemos aquí aunque luego hay una función con
+     * este mismo código. Pero el asunto es que esto necesito
+     * hacerlo al cargar el formulario para que meta en esa variable
+     * el total. Aunque sospecho que esto es una cutrada.
+     */
+    QSqlQuery query(sqlcontar);
+    query.next();
+    total_obispos = query.value(0).toInt();
+    emitirSenalTotalObispos();
 
     ui->twObispos->setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -99,6 +112,19 @@ void dlgObispos::cargarModelos()
 
 }
 
+void dlgObispos::emitirSenalTotalObispos()
+{
+     QString final;
+
+    if (total_obispos == total_filtrado){
+        final = QString("Obispos: %1").arg(total_obispos);
+    }
+    else {
+        final = QString("Obispos: %1/%2").arg(QString::number(total_filtrado)).arg(total_obispos);
+    }
+    emit infoBarraInferior(final);
+}
+
 void dlgObispos::cargarMenus()
 {
     menuContexto = new QMenu(this);
@@ -149,6 +175,15 @@ void dlgObispos::actualizarSql(QString s)
     sqlactivo = s;
 
     obispos_model->setQuery(sqlactivo);
+
+    contarTotal();
+}
+
+void dlgObispos::contarTotal()
+{
+    total_filtrado = obispos_model->rowCount();
+
+    emitirSenalTotalObispos();
 }
 
 void dlgObispos::on_cbDiocesis_currentIndexChanged(int index)
