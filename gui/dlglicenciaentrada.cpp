@@ -11,13 +11,14 @@
 #include "dlgseleccionargeneral.h"
 #include "widgets/myqmdiarea.h"
 
-const QString sql_otorgantes="SELECT DISTINCT jsonb_array_elements_text(details->'otorgante') AS otorgante "
+const QString sql_otorgantes = "SELECT DISTINCT jsonb_array_elements_text(details->'otorgante') AS otorgante "
                              "FROM resolutions_details WHERE details->>'otorgante' IS NOT NULL "
                              "ORDER BY otorgante;";
-const QString sql_tipo="SELECT DISTINCT details->>'tipo' AS tipo "
+const QString sql_tipo = "SELECT DISTINCT details->>'licencia_tipo' AS tipo "
                        "FROM resolutions_details WHERE details ? 'licencia' ORDER BY tipo;";
-
-const QString sql_receptores="SELECT DISTINCT jsonb_array_elements_text(details->'receptor') AS receptor "
+const QString sql_asunto = "SELECT DISTINCT details->>'licencia_asunto' AS asunto "
+                           "FROM resolutions_details WHERE details ? 'licencia' ORDER BY asunto;";
+const QString sql_receptores = "SELECT DISTINCT jsonb_array_elements_text(details->'receptor') AS receptor "
                              "FROM resolutions_details WHERE details->>'receptor' IS NOT NULL "
                              "ORDER BY receptor";
 
@@ -228,4 +229,13 @@ void dlgLicenciaEntrada::cargarModelos()
     receptores_completer->setCompletionColumn(0);
     receptores_completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtReceptor->setCompleter(receptores_completer);
+
+    asuntos_model = new QSqlQueryModel(this);
+    asuntos_model->setQuery(sql_asunto);
+
+    asuntos_completer = new QCompleter(asuntos_model, this);
+    asuntos_completer->setCompletionColumn(0);
+    asuntos_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtAsunto->setCompleter(asuntos_completer);
+
 }

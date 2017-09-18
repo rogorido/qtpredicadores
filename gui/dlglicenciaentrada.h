@@ -58,6 +58,8 @@ private:
     QCompleter *otorgantes_completer;
     QSqlQueryModel *receptores_model;
     QCompleter *receptores_completer;
+    QSqlQueryModel *asuntos_model;
+    QCompleter *asuntos_completer;
 
     Licencia licencia_activa;
 
