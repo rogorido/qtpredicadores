@@ -26,6 +26,8 @@ dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
 
     mdiarea = MyQmdiArea::Instance(this);
 
+    fuentedatos = new QJsonObject();
+
     m_lugares = LugaresModel::InstanceModel();
     m_casas = CasasModel::InstanceModel();
 
