@@ -72,7 +72,6 @@ QVariant AprobacionesTableModel::data(const QModelIndex &index, int role) const
                         return persona;
                     else
                         return casa;
-                return persona;
             }
             else if (index.column() == 2)
                 return aprobacion->getProvincia().getNombre();

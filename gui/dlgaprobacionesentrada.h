@@ -12,6 +12,8 @@
 #include "models/aprobacionestablemodel.h"
 
 class MyQmdiArea;
+class QSqlQueryModel;
+class QCompleter;
 
 namespace Ui {
 class dlgAprobacionesEntrada;
@@ -69,10 +71,27 @@ private:
     Casa casa_seleccionada;
 
     /*
-     * guardamos aquí qué tab está seleccionado al cambiar
-     * para saber si añadimos personas o instituciones.
+     * los completers...
      */
-    int tabSeleccionado;
+    QSqlQueryModel *cargos_model;
+    QSqlQueryModel *instituciones_model;
+    QSqlQueryModel *librekeys_model;
+    QSqlQueryModel *librevalues_model;
+
+    QCompleter *cargos_completer;
+    QCompleter *instituciones_completer;
+    QCompleter *librekeys_completer;
+    QCompleter *librevalues_completer;
+
+    /*
+     * guardamos aquí qué tab está seleccionado al cambiar
+     * para saber si añadimos personas o instituciones. Al
+     * principio es 0 que es el primero. Si no lo ponemos aquí
+     * y no cambiamos de tab no se inicializaría con ningún valor.
+     */
+    int tabSeleccionado = 0;
+
+    void cargarModelos();
 };
 
 #endif // DLGAPROBACIONESENTRADA_H

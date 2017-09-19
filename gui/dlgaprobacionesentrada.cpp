@@ -1,11 +1,26 @@
 #include "dlgaprobacionesentrada.h"
 #include "ui_dlgaprobacionesentrada.h"
 
+#include <QSqlQueryModel>
+#include <QCompleter>
 #include <QMessageBox>
 #include <QMdiSubWindow>
 
 #include "gui/dlgseleccionargeneral.h"
 #include "widgets/myqmdiarea.h"
+
+const QString sql_cargos="SELECT DISTINCT details->>'aprobación_cargo' AS cargo "
+                         "FROM resolutions_details WHERE details ? 'aprobación' ORDER BY cargo";
+
+const QString sql_institucion="SELECT DISTINCT details->>'tipo_institucion' AS institucion "
+                         "FROM resolutions_details WHERE details ? 'aprobación' ORDER BY institucion";
+
+const QString sql_librekeys = "SELECT DISTINCT jsonb_object_keys(details) as keys "
+                              "FROM resolutions_details WHERE details ? 'aprobación' ORDER BY keys";
+
+// con esto evitamos que dé números que son muy frecuentes en los values del jsonb details.
+const QString sql_librevalues = "SELECT DISTINCT value FROM resolutions_details, jsonb_each_text(details) "
+                                "WHERE details ? 'aprobación' AND value !~ '[0-9]'";
 
 /*
  * TODO: estrictamente en el caso de las casas no debería ser
@@ -41,6 +56,8 @@ dlgAprobacionesEntrada::dlgAprobacionesEntrada(QWidget *parent) :
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarAprobaciones()));
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(tabCambiado(int)));
 
+    cargarModelos();
+
 }
 
 dlgAprobacionesEntrada::~dlgAprobacionesEntrada()
@@ -69,6 +86,8 @@ void dlgAprobacionesEntrada::anadirAprobacion()
         // borramos los campos
         ui->txtPersona->setText("");
         ui->txtProvincia->setText("");
+
+        persona_seleccionada = Persona();
     }
     else if (tabSeleccionado == 1) { // el de instituciones
         if (ui->txtTipoInstitucion->text().isEmpty()){
@@ -84,10 +103,16 @@ void dlgAprobacionesEntrada::anadirAprobacion()
         // borramos los campos
         ui->txtCasa->setText("");
         ui->txtProvinciaInstitucion->setText("");
+
+        casa_seleccionada = Casa();
+
     }
 
     // la provincia vale realmente para los dos tipos...
     aprobacion_activa->setProvincia(provincia_seleccionada);
+
+    // y reinicializamos la provincia...
+    provincia_seleccionada = Provincia();
 
     if (ui->wdNotas->haCambiado())
         aprobacion_activa->setNotas(ui->wdNotas->getNotas());
@@ -196,13 +221,13 @@ void dlgAprobacionesEntrada::tabCambiado(int t)
      */
     switch (tabSeleccionado) {
     case 0:
-        ui->btOK->setEnabled(true);
+        ui->btAnadirAprobacion->setEnabled(true);
         break;
     case 1:
-        ui->btOK->setEnabled(true);
+        ui->btAnadirAprobacion->setEnabled(true);
         break;
     case 2: // esto es lo de ntoas...
-        ui->btOK->setEnabled(false);
+        ui->btAnadirAprobacion->setEnabled(false);
         break;
     default:
         break;
@@ -212,4 +237,39 @@ void dlgAprobacionesEntrada::tabCambiado(int t)
 void dlgAprobacionesEntrada::cerrar()
 {
     parentWidget()->close();
+}
+
+void dlgAprobacionesEntrada::cargarModelos()
+{
+    cargos_model = new QSqlQueryModel(this);
+    cargos_model->setQuery(sql_cargos);
+
+    cargos_completer = new QCompleter(cargos_model, this);
+    cargos_completer->setCompletionColumn(0);
+    cargos_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtCargo->setCompleter(cargos_completer);
+
+    instituciones_model = new QSqlQueryModel(this);
+    instituciones_model->setQuery(sql_institucion);
+
+    instituciones_completer = new QCompleter(instituciones_model, this);
+    instituciones_completer->setCompletionColumn(0);
+    instituciones_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtTipoInstitucion->setCompleter(instituciones_completer);
+
+    librekeys_model = new QSqlQueryModel(this);
+    librekeys_model->setQuery(sql_librekeys);
+
+    librekeys_completer = new QCompleter(librekeys_model, this);
+    librekeys_completer->setCompletionColumn(0);
+    librekeys_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    //ui->txt->setCompleter(librekeys_completer);
+
+    librevalues_model = new QSqlQueryModel(this);
+    librevalues_model->setQuery(sql_librevalues);
+
+    librevalues_completer = new QCompleter(librevalues_model, this);
+    librevalues_completer->setCompletionColumn(0);
+    librevalues_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    //ui->txtCargo->setCompleter(librevalues_completer);
 }
