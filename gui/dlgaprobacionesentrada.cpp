@@ -257,19 +257,5 @@ void dlgAprobacionesEntrada::cargarModelos()
     instituciones_completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtTipoInstitucion->setCompleter(instituciones_completer);
 
-    librekeys_model = new QSqlQueryModel(this);
-    librekeys_model->setQuery(sql_librekeys);
-
-    librekeys_completer = new QCompleter(librekeys_model, this);
-    librekeys_completer->setCompletionColumn(0);
-    librekeys_completer->setCaseSensitivity(Qt::CaseInsensitive);
-    //ui->txt->setCompleter(librekeys_completer);
-
-    librevalues_model = new QSqlQueryModel(this);
-    librevalues_model->setQuery(sql_librevalues);
-
-    librevalues_completer = new QCompleter(librevalues_model, this);
-    librevalues_completer->setCompletionColumn(0);
-    librevalues_completer->setCaseSensitivity(Qt::CaseInsensitive);
-    //ui->txtCargo->setCompleter(librevalues_completer);
+    ui->wdExtras->recibirConsultasCompleter(sql_librekeys, sql_librevalues);
 }

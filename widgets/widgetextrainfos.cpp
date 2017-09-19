@@ -1,6 +1,9 @@
 #include "widgetextrainfos.h"
 #include "ui_widgetextrainfos.h"
 
+#include <QSqlQueryModel>
+#include <QCompleter>
+
 WidgetExtraInfos::WidgetExtraInfos(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::WidgetExtraInfos)
@@ -27,6 +30,26 @@ void WidgetExtraInfos::clear()
 {
     extras.clear();
     ui->lwExtraInfos->clear();
+}
+
+void WidgetExtraInfos::recibirConsultasCompleter(QString sql_claves, QString sql_valores)
+{
+    librekeys_model = new QSqlQueryModel(this);
+    librekeys_model->setQuery(sql_claves);
+
+    librekeys_completer = new QCompleter(librekeys_model, this);
+    librekeys_completer->setCompletionColumn(0);
+    librekeys_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtLlave->setCompleter(librekeys_completer);
+
+    librevalues_model = new QSqlQueryModel(this);
+    librevalues_model->setQuery(sql_valores);
+
+    librevalues_completer = new QCompleter(librevalues_model, this);
+    librevalues_completer->setCompletionColumn(0);
+    librevalues_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtValor->setCompleter(librevalues_completer);
+
 }
 
 void WidgetExtraInfos::anadirPar(){
