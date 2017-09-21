@@ -10,6 +10,7 @@
 
 #include "models/sqlfiltrogestor.h"
 #include "objs/proxynombres.h"
+#include "widgets/fechasdelegate.h"
 
 const QString sqlgeneral = "SELECT * from vistas.obispos_general";
 const QString sqlvolvermirar = "bishop_id IN (SELECT bishop_id FROM bishops_details "
@@ -47,6 +48,10 @@ dlgObispos::dlgObispos(QWidget *parent) :
     emitirSenalTotalObispos();
 
     ui->twObispos->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    // fechas y sus formatos...
+    ui->twObispos->setItemDelegateForColumn(5, new FechasDelegate(this));
+    ui->twObispos->setItemDelegateForColumn(6, new FechasDelegate(this));
 
     connect(ui->twObispos->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
             this, SLOT(seleccionarObispo(QModelIndex)));

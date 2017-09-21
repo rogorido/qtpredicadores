@@ -3,6 +3,7 @@
 
 #include "models/capitulosmodel.h"
 #include "gui/dlgasistentes.h"
+#include "widgets/fechasdelegate.h"
 
 #include <QDebug>
 
@@ -40,6 +41,8 @@ dlgCapitulos::dlgCapitulos(QWidget *parent) :
     ui->twCapitulos->horizontalHeader()->setStretchLastSection(true);
     ui->twCapitulos->setSortingEnabled(true);
     ui->twCapitulos->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    ui->twCapitulos->setItemDelegateForColumn(3, new FechasDelegate(this));
 
     connect(ui->twCapitulos, SIGNAL(clicked(QModelIndex)), this, SLOT(escogidoCapitulo(QModelIndex)));
     connect(ui->btCerrar, SIGNAL(clicked(bool)), this, SLOT(close()));
