@@ -20,6 +20,7 @@ enum tipodetalles {
     RESOLUCION,
     OBRA,
     PERSONADETALLES,
+    OBISPOS,
     OTROS
 };
 

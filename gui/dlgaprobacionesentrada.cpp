@@ -150,7 +150,7 @@ void dlgAprobacionesEntrada::aceptarAprobaciones()
 
     emit(aceptarDatos(lista));
 
-    close();
+    cerrar();
 }
 
 void dlgAprobacionesEntrada::anadirPersona()
@@ -227,6 +227,9 @@ void dlgAprobacionesEntrada::tabCambiado(int t)
         ui->btAnadirAprobacion->setEnabled(true);
         break;
     case 2: // esto es lo de ntoas...
+        ui->btAnadirAprobacion->setEnabled(false);
+        break;
+    case 3: // esto es lo de ntoas...
         ui->btAnadirAprobacion->setEnabled(false);
         break;
     default:

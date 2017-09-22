@@ -25,12 +25,14 @@
 
 #include <QDebug>
 
-const QString sqlresoluciones_valores="SELECT DISTINCT value from resolutions_details, jsonb_each_text(details) ORDER BY value;";
-const QString sqlresoluciones_keys="SELECT DISTINCT jsonb_object_keys(details) FROM resolutions_details ORDER BY jsonb_object_keys(details);";
-const QString sqlobras_valores="SELECT DISTINCT value from works_details, jsonb_each_text(details) ORDER BY value;";
-const QString sqlobras_keys="SELECT DISTINCT jsonb_object_keys(details) FROM works_details ORDER BY jsonb_object_keys(details);";
-const QString sqlpersonas_valores="SELECT DISTINCT value from persons_details, jsonb_each_text(details) ORDER BY value;";
-const QString sqlpersonas_keys="SELECT DISTINCT jsonb_object_keys(details) FROM persons_details ORDER BY jsonb_object_keys(details);";
+const QString sqlresoluciones_valores="SELECT DISTINCT value from resolutions_details, jsonb_each_text(details) ORDER BY value";
+const QString sqlresoluciones_keys="SELECT DISTINCT jsonb_object_keys(details) FROM resolutions_details ORDER BY jsonb_object_keys(details)";
+const QString sqlobras_valores="SELECT DISTINCT value from works_details, jsonb_each_text(details) ORDER BY value";
+const QString sqlobras_keys="SELECT DISTINCT jsonb_object_keys(details) FROM works_details ORDER BY jsonb_object_keys(details)";
+const QString sqlpersonas_valores="SELECT DISTINCT value from persons_details, jsonb_each_text(details) ORDER BY value";
+const QString sqlpersonas_keys="SELECT DISTINCT jsonb_object_keys(details) FROM persons_details ORDER BY jsonb_object_keys(details)";
+const QString sqlobispos_valores="SELECT DISTINCT value from bishops_details, jsonb_each_text(details) ORDER BY value";
+const QString sqlobispos_keys="SELECT DISTINCT jsonb_object_keys(details) FROM bishops_details ORDER BY jsonb_object_keys(details)";
 
 
 dlgDetalles::dlgDetalles(QJsonModel *json, int t, bool anadir, QWidget *parent) :
@@ -441,6 +443,9 @@ void dlgDetalles::cargarModelos(){
     case OBRA:
         m_keys->setQuery(sqlobras_keys);
         break;
+    case OBISPO:
+        m_keys->setQuery(sqlobispos_keys);
+        break;
     default:
         /*
          * en caso de 0 ponemos el de resoluciones, aunque en principio
@@ -468,6 +473,9 @@ void dlgDetalles::cargarModelos(){
         break;
     case OBRA:
         m_values->setQuery(sqlobras_valores);
+        break;
+    case OBISPO:
+        m_values->setQuery(sqlobispos_valores);
         break;
     default:
         /*

@@ -19,6 +19,7 @@
 #include "gui/dlgnuevadiocesis.h"
 
 #include "widgets/myqmdiarea.h"
+#include "widgets/fechasdelegate.h"
 
 #include <QInputDialog>
 #include <QMessageBox>
@@ -152,6 +153,9 @@ void dlgSeleccionarGeneral::cargarModelo(){
     // escogemos la primera línea...
     QModelIndex index = m_objeto_proxy->index(0,0);
     ui->twSeleccionar->setCurrentIndex(index);
+
+    if (tipo_seleccionado == CAPITULO)
+        ui->twSeleccionar->setItemDelegateForColumn(2, new FechasDelegate(this));
 }
 
 

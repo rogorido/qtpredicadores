@@ -119,6 +119,7 @@ void dlgSufragiosEntrada::cargarModelos()
     destinatarios_completer = new QCompleter(destinatarios_model, this);
     destinatarios_completer->setCompletionColumn(0);
     destinatarios_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    destinatarios_completer->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
     ui->txtDestinatarios->setCompleter(destinatarios_completer);
 
     motivos_model = new QSqlQueryModel(this);
@@ -127,6 +128,7 @@ void dlgSufragiosEntrada::cargarModelos()
     motivos_completer = new QCompleter(motivos_model, this);
     motivos_completer->setCompletionColumn(0);
     motivos_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    motivos_completer->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
     ui->txtMotivo->setCompleter(motivos_completer);
 
 }

@@ -3,6 +3,7 @@
 
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QSqlError>
 #include <QJsonDocument>
 #include <QCompleter>
 #include <QMessageBox>
@@ -143,6 +144,7 @@ void dlgNuevoObispo::aceptarObispo()
         int ret = QMessageBox::warning(this, "Error",
                                        "Ha habido un error al ejecutar la consulta de inserción.");
         Q_UNUSED(ret)
+        qDebug() << query.lastError();
         return;
     }
 
@@ -176,11 +178,7 @@ void dlgNuevoObispo::anadirFuente()
 
 void dlgNuevoObispo::anadirDetalles()
 {
-    /*
-     * FIXME: aquí el 2º paramétro lo dejo como OBRA pq
-     * sinceramente no sabría qué poner ahora...
-     */
-    dlgdetalles = new dlgDetalles(json_detalles, OBRA, false, this);
+    dlgdetalles = new dlgDetalles(json_detalles, OBISPO, false, this);
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgdetalles);
     window->show();
@@ -249,7 +247,12 @@ void dlgNuevoObispo::introducirJson(const int id)
         query.prepare("INSERT INTO bishops_details(bishop_id, details) VALUES(:bishopid, :json)");
         query.bindValue(":bishopid", id);
         query.bindValue(":json", jsonfinal);
-        query.exec();
+        if (!query.exec()){
+            int ret = QMessageBox::warning(this, "Error",
+                                           "Ha habido un error al ejecutar la consulta de inserción.");
+            Q_UNUSED(ret)
+            qDebug() << query.lastError();
+        }
     }
 }
 
@@ -281,6 +284,7 @@ void dlgNuevoObispo::introducirNotas(const int id)
         int ret = QMessageBox::warning(this, "Error",
                                        "Ha habido un error al ejecutar la consulta de inserción.");
         Q_UNUSED(ret)
+        qDebug() << query.lastError();
         return;
     }
 }

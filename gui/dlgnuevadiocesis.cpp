@@ -38,6 +38,8 @@ dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
     connect(ui->txtArchidiocesis, SIGNAL(dobleclick()), this, SLOT(anadirArchiDiocesis()));
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(anadirLugar()));
 
+    ui->txtNombre->setFocus();
+
 }
 
 dlgNuevaDiocesis::~dlgNuevaDiocesis()
@@ -122,6 +124,7 @@ void dlgNuevaDiocesis::borrarCampos()
     ui->ckInfidelibus->setCheckState(Qt::Unchecked);
     ui->spParroquias->setValue(0);
     ui->spSuperficie->setValue(0);
+    ui->spFundacion->setValue(0);
 
     // lo de json de gcatholic
     ui->ckBuscado->setCheckState(Qt::Unchecked);
