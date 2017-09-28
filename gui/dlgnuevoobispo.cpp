@@ -62,13 +62,10 @@ void dlgNuevoObispo::aceptarObispo()
     QSqlQuery query;
     QModelIndex idx;
 
-    if (!ui->txtPapa->text().isEmpty()){
-        idx = ui->txtPapa->completer()->currentIndex();
-        if (idx.isValid()){
-            int row = idx.row();
-            papa_id = m_papas_completer->completionModel()->index(row, 0).data().toInt();
-        }
-    }
+    QString papa_seleccionado = ui->txtPapa->text();
+
+    if (!papa_seleccionado.isEmpty())
+        papa_id = extraerPapa(papa_seleccionado);
 
     if (persona_id == 0 || diocesis_id == 0){
         int ret = QMessageBox::warning(this, "Faltan datos",
@@ -337,4 +334,23 @@ void dlgNuevoObispo::borrarCampos()
     fuente_recibida = false;
 
     ui->txtPersona->setFocus();
+}
+
+int dlgNuevoObispo::extraerPapa(QString papa)
+{
+
+    QSqlQuery query;
+    int papa_extraido;
+
+    query.prepare("SELECT pope_id FROM popes where name_pope = :nombre");
+    query.bindValue(":nombre", papa);
+    query.exec();
+    query.first();
+
+    if (query.size() == 0)
+        return 0;
+
+    papa_extraido = query.value(0).toInt();
+    return papa_extraido;
+
 }

@@ -57,16 +57,16 @@ MainWindow::MainWindow(QWidget *parent) :
     statusBar()->addPermanentWidget(info_statusbar);
 
     db = QSqlDatabase::addDatabase("QPSQL");
-     db.setHostName("localhost");
-     db.setDatabaseName("dominicos");
-     //db.setDatabaseName("domis");
-     db.setUserName("igor");
+    db.setHostName("localhost");
+    db.setDatabaseName("dominicos");
+    //db.setDatabaseName("domis");
+    db.setUserName("igor");
 
-     if (db.open())
-         qDebug() << "Abierta";
+    if (db.open())
+        qDebug() << "Abierta";
 
-     cargarModelos();
-     cargarMenues();
+    cargarModelos();
+    cargarMenues();
 
 }
 

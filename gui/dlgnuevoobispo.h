@@ -89,6 +89,13 @@ private:
 
     void cargarModelos();
     void borrarCampos();
+
+    /*
+     * NOTE: esto es increíble: no consigo sacar el index del modelo
+     * de papas subyacente al qcompleter y por tanto tengo que hacer
+     * esta chapuza...
+     */
+    int extraerPapa(QString papa);
 };
 
 #endif // DLGNUEVOOBISPO_H
