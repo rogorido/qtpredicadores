@@ -44,6 +44,7 @@ bool CasasModel::AnadirCasa(const Casa *casa){
     int provincia = casa->getProvincia();
     QString diocesis = casa->getDiocesis();
     QString fecha_fundacion = casa->getFechaFundacion();
+    QString fecha_eliminacion = casa->getFechaEliminacion();
     QString advocacion = casa->getAdvocacion();
     bool quetif = casa->getQuetif();
     // este  sería interesante hacerlo con QJson...
@@ -54,10 +55,10 @@ bool CasasModel::AnadirCasa(const Casa *casa){
 
     query.prepare("INSERT INTO general.houses(name, latin_name, place_id, original_place, men, "
                   "type_house, congregation, lookedup, wikipedia, province_id, diocese, date_foundation, "
-                  "quetif, advocation, studiumgenerale, notes, other_data) "
+                  "date_elimination, quetif, advocation, studiumgenerale, notes, other_data) "
                   "VALUES(:nombre, :nombre_latin, :lugar, :lugaroriginario, :masculino, "
                   ":tipo, :congregacion, :buscado, :wiki, :provincia_id, :diocesis, :fecha_fundacion, "
-                  ":quetif, :advocacion, :studiumgenerale, :notas, :otrosdatos)");
+                  ":fecha_eliminacion, :quetif, :advocacion, :studiumgenerale, :notas, :otrosdatos)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":nombre_latin", nombre_latin);
     if (!lugar == 0)
@@ -76,6 +77,7 @@ bool CasasModel::AnadirCasa(const Casa *casa){
         query.bindValue(":provincia_id", QVariant(QVariant::Int));
     query.bindValue(":diocesis", diocesis);
     query.bindValue(":fecha_fundacion", fecha_fundacion);
+    query.bindValue(":fecha_eliminacion", fecha_eliminacion);
     query.bindValue(":quetif", quetif);
     query.bindValue(":advocacion", advocacion);
     query.bindValue(":studiumgeneral", studiumgenerale);

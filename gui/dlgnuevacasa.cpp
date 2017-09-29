@@ -67,6 +67,7 @@ void dlgNuevaCasa::aceptarCasa(){
     //QString otrosnombres;
     bool quetif = ui->ckQuetif->checkState();
     QString fechafundacion = ui->txtFechaFundacion->text();
+    QString fechaeliminacion = ui->txtEliminada->text();
     QString notas = ui->txtNotas->toPlainText();
     bool studiumgenerale = ui->ckStudium->checkState();
     QString otrosdatos; // aquí va el json de la fuente
@@ -106,6 +107,7 @@ void dlgNuevaCasa::aceptarCasa(){
     casa->setQuetif(quetif);
     casa->setMasculino(masculino);
     casa->setFechaFundacion(fechafundacion);
+    casa->setFechaEliminacion(fechaeliminacion);
     casa->setNotas(notas);
     casa->setStudiumgenerale(studiumgenerale);
 
@@ -197,6 +199,7 @@ void dlgNuevaCasa::borrarCampos(){
     ui->txtAdvocacion->setText("");
     ui->txtDiocesis->setText("");
     ui->txtFechaFundacion->setText("");
+    ui->txtEliminada->setText("");
     ui->txtNotas->clear();
 
     ui->ckBuscado->setCheckState(Qt::Unchecked);

@@ -31,6 +31,7 @@ void Casa::setWiki(bool w) { wiki = w; }
 void Casa::setProvincia(int p) { provincia = p; }
 void Casa::setDiocesis(QString d) { diocesis = d; }
 void Casa::setFechaFundacion(QString f) { fecha_fundacion = f; }
+void Casa::setFechaEliminacion(QString f) { fecha_elimacion = f; }
 void Casa::setAdvocacion(QString a) { advocacion = a; }
 void Casa::setQuetif(bool q) { quetif = q; }
 void Casa::setOtrosnombres(QString o) { otrosnombres = o; }

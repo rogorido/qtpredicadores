@@ -126,6 +126,16 @@
       <widget class="QLineEdit" name="txtFechaFundacion"/>
      </item>
      <item>
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>Eliminada</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtEliminada"/>
+     </item>
+     <item>
       <widget class="QLabel" name="label_6">
        <property name="text">
         <string>Advocacion</string>

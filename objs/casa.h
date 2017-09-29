@@ -24,6 +24,7 @@ public:
     void setProvincia(int p);
     void setDiocesis(QString d);
     void setFechaFundacion(QString f);
+    void setFechaEliminacion(QString f);
     void setAdvocacion(QString a);
     void setQuetif(bool q);
     void setStudiumgenerale(bool w);
@@ -45,6 +46,7 @@ public:
     int getProvincia() const {return provincia;}
     QString getDiocesis() const {return diocesis;}
     QString getFechaFundacion() const {return fecha_fundacion;}
+    QString getFechaEliminacion() const {return fecha_elimacion;}
     QString getAdvocacion() const {return advocacion;}
     bool getQuetif() const {return quetif;}
     QString getOtrosNombres() const {return otrosnombres;}
@@ -68,6 +70,7 @@ private:
     int provincia;
     QString diocesis;
     QString fecha_fundacion;
+    QString fecha_elimacion;
     QString advocacion;
     bool quetif;
     // este  sería interesante hacerlo con QJson...
