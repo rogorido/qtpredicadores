@@ -16,6 +16,7 @@
 #include "dlgnuevaprovincia.h"
 #include "dlgnuevadiocesis.h"
 #include "dlgnuevoobispo.h"
+#include "dlgnuevamisionfilipinas.h"
 #include "dlgnuevafuente.h"
 #include "dlgresoluciones.h"
 #include "dlgciudades.h"
@@ -88,6 +89,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionNuevoTema, SIGNAL(triggered()), this, SLOT(nuevoTema()));
     connect(ui->actionNuevaResolucion, SIGNAL(triggered(bool)), this, SLOT(nuevaResolucion()));
     connect(ui->actionNuevoObispo, SIGNAL(triggered(bool)), this, SLOT(nuevoObispo()));
+    connect(ui->actionNuevaMision, SIGNAL(triggered(bool)), this, SLOT(nuevaMision()));
     connect(ui->actionNuevaFuente, SIGNAL(triggered(bool)), this, SLOT(nuevaFuente()));
     connect(ui->actionIntroducirReformaConvento, SIGNAL(triggered(bool)), this, SLOT(nuevaReforma()));
     connect(ui->actionResoluciones, SIGNAL(triggered(bool)), this, SLOT(Resoluciones()));
@@ -171,6 +173,13 @@ void MainWindow::nuevoObispo()
 {
     dlgObispo = new dlgNuevoObispo(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(dlgObispo);
+    window->show();
+}
+
+void MainWindow::nuevaMision()
+{
+    dlgNuevaMision = new dlgNuevaMisionFilipinas(this);
+    QMdiSubWindow *window = mdiArea->addSubWindow(dlgNuevaMision);
     window->show();
 }
 

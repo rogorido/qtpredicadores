@@ -38,6 +38,7 @@
     <addaction name="actionNuevaDiocesis"/>
     <addaction name="actionNuevoObispo"/>
     <addaction name="actionNuevaObra"/>
+    <addaction name="actionNuevaMision"/>
     <addaction name="actionNuevaFuente"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
@@ -253,6 +254,11 @@
   <action name="actionObispos">
    <property name="text">
     <string>Obispos</string>
+   </property>
+  </action>
+  <action name="actionNuevaMision">
+   <property name="text">
+    <string>Nueva misión</string>
    </property>
   </action>
  </widget>

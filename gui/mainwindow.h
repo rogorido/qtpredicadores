@@ -10,6 +10,7 @@ class dlgNuevaPersona;
 class dlgNuevaCasa;
 class dlgNuevaDiocesis;
 class dlgNuevoObispo;
+class dlgNuevaMisionFilipinas;
 class dlgNuevaFuente;
 class dlgCapitulos;
 class DlgResoluciones; // esto me he confundido y lo he puesto en mayúscula!
@@ -60,6 +61,7 @@ private slots:
     void nuevaProvincia();
     void nuevaDiocesis();
     void nuevoObispo();
+    void nuevaMision();
     void nuevoTema();
     void nuevaFuente();
     void nuevaReforma(); // nombre un poco absurdo...
@@ -88,6 +90,7 @@ private:
     dlgNuevaDiocesis *dlgDiocesis;
     dlgNuevoObispo *dlgObispo;
     dlgNuevaFuente *dlgFuente;
+    dlgNuevaMisionFilipinas *dlgNuevaMision;
     dlgReforma *dlgReformaConvento;
 
     // esto son los de gestión
