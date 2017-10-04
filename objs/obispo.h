@@ -20,6 +20,7 @@ public:
     void setDuracion(QString d);
     void setFinPorMuerte(bool f);
     void setVolverMirar(bool v);
+    void setInGcatholic(bool i);
     void setOtrosDatos(QJsonObject o);
 
     // getters
@@ -33,6 +34,7 @@ public:
     QString getDuracion() const { return duracion; }
     bool getFinPorMuerte() const { return finpormuerte; }
     bool getVolverMirar() const { return volveramirar; }
+    bool getInGcatholic() const { return en_gcatholic; }
     QJsonObject getOtrosDatos() const { return otros_datos; }
 
 private:
@@ -47,6 +49,7 @@ private:
     QString duracion;
     bool finpormuerte;
     bool volveramirar;
+    bool en_gcatholic;
     QJsonObject otros_datos;
 
 };

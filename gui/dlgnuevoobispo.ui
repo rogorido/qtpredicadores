@@ -155,6 +155,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QCheckBox" name="ckGcatholic">
+       <property name="text">
+        <string>Gcatholic</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QCheckBox" name="ckVolverMirar">
        <property name="text">
         <string>Volver a mirar</string>

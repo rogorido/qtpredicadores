@@ -78,6 +78,7 @@ void dlgNuevoObispo::aceptarObispo()
     bool circa_fecha = ui->ckFechaAprox->isChecked();
     bool volver_mirar = ui->ckVolverMirar->isChecked();
     bool fin_muerte = ui->ckFinPorMuerte->isChecked();
+    bool en_gcatholic = ui->ckGcatholic->isChecked();
     QDate fecha_inicio = ui->dtFechaInicio->date();
     QDate fecha_fin = ui->dtFechaFinal->date();
 
@@ -94,9 +95,11 @@ void dlgNuevoObispo::aceptarObispo()
      * está en la tabla bishops_details...
      */
     query.prepare("INSERT INTO bishops.bishops(bishop_person_id, diocese_id, pope_id, "
-                  "date_nomination, circa_date_nomination, date_end, duration, end_bydeath, see_again, other_data) "
+                  "date_nomination, circa_date_nomination, date_end, duration, end_bydeath, "
+                  "in_gcatholic, see_again, other_data) "
                   "VALUES(:persona, :diocesis, :papa, "
-                  ":fecha_inicio, :circa_fecha, :fecha_final, :duracion, :finpormuerte, :volveramirar, :otrosdatos)");
+                  ":fecha_inicio, :circa_fecha, :fecha_final, :duracion, :finpormuerte, "
+                  ":gcatholic, :volveramirar, :otrosdatos)");
     query.bindValue(":persona", persona_id);
     query.bindValue(":diocesis", diocesis_id);
 
@@ -120,6 +123,7 @@ void dlgNuevoObispo::aceptarObispo()
     query.bindValue(":circa_fecha", circa_fecha);
     query.bindValue(":duracion", duracion);
     query.bindValue(":finpormuerte", fin_muerte);
+    query.bindValue(":gcatholic", en_gcatholic);
     query.bindValue(":volveramirar", volver_mirar);
 
     if (fuente_recibida)
@@ -316,6 +320,7 @@ void dlgNuevoObispo::borrarCampos()
     ui->ckFechaAprox->setCheckState(Qt::Unchecked);
     ui->ckFinPorMuerte->setCheckState(Qt::Unchecked);
     ui->ckVolverMirar->setCheckState(Qt::Unchecked);
+    ui->ckGcatholic->setCheckState(Qt::Unchecked);
 
     ui->dtFechaInicio->setDate(fechainicial);
     ui->dtFechaFinal->setDate(fechafinal);

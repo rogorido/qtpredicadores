@@ -13,4 +13,5 @@ void Obispo::setCircaFecha(bool c) { circa_fecha = c; }
 void Obispo::setDuracion(QString d) { duracion = d; }
 void Obispo::setFinPorMuerte(bool f) { finpormuerte = f; }
 void Obispo::setVolverMirar(bool v) { volveramirar = v; }
+void Obispo::setInGcatholic(bool i) { en_gcatholic = i; }
 void Obispo::setOtrosDatos(QJsonObject o) { otros_datos = o; }
