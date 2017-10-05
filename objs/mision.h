@@ -23,7 +23,10 @@ public:
     int getLugarSalida() const { return lugar_salida; }
     QDate getFechaSalida() const { return fecha_salida; }
     QDate getFechaLlegada() const { return fecha_llegada; }
-    QJsonObject getEtapas() const { return etapas; }
+    QJsonObject getEtapasJson() const { return etapas; }
+
+    // construimos un qstring con el QjsonObject
+    QString getEtapasJsonToString() const;
 
 private:
 

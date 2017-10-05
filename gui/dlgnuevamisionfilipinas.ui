@@ -70,7 +70,24 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="dtFechaInicio"/>
+      <widget class="QDateEdit" name="dtFechaInicio">
+       <property name="displayFormat">
+        <string>d/M/yyyy</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
      <item>
       <widget class="QLabel" name="label_2">
@@ -83,7 +100,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="dtFechaFin"/>
+      <widget class="QDateEdit" name="dtFechaFin">
+       <property name="displayFormat">
+        <string>d/M/yyyy</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -94,13 +115,13 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>Tab 1</string>
+       <string>Etapas</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_10">
          <item>
-          <widget class="QTreeView" name="trEtapas"/>
+          <widget class="QTreeView" name="twEtapas"/>
          </item>
          <item>
           <spacer name="horizontalSpacer_3">
@@ -195,7 +216,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QDateEdit" name="dtFechaInicioEtapa"/>
+              <widget class="QDateEdit" name="dtFechaInicioEtapa">
+               <property name="displayFormat">
+                <string>d/M/yyyy</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -212,7 +237,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QDateEdit" name="dtFechaFinEtapa"/>
+              <widget class="QDateEdit" name="dtFechaFinEtapa">
+               <property name="displayFormat">
+                <string>d/M/yyyy</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -248,11 +277,11 @@
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
-       <string>Tab 2</string>
+       <string>Notas</string>
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
-        <widget class="QWidget" name="widget" native="true"/>
+        <widget class="WidgetNotas" name="widget" native="true"/>
        </item>
       </layout>
      </widget>
@@ -297,6 +326,12 @@
    <extends>QLineEdit</extends>
    <header location="global">widgets/myqlineedit.h</header>
   </customwidget>
+  <customwidget>
+   <class>WidgetNotas</class>
+   <extends>QWidget</extends>
+   <header>widgets/widgetnotas.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>spMisionNumero</tabstop>
@@ -314,7 +349,7 @@
   <tabstop>btAnadir</tabstop>
   <tabstop>btCancelar</tabstop>
   <tabstop>btOK</tabstop>
-  <tabstop>trEtapas</tabstop>
+  <tabstop>twEtapas</tabstop>
  </tabstops>
  <resources/>
  <connections/>
