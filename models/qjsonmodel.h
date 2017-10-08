@@ -30,6 +30,13 @@ public:
     QJsonObject getJsonObject(int i);
 
     QString getJsonString(int i);
+
+    /*
+     * esto crea un QString uniendo todos los QJsonObjects
+     * No entiendo cómo no existe un método para esto...
+     */
+    QString getJsonStringTotal();
+
     void borrarJson(int ordinal);
     void setIdDetails(QList<int> lista_ids);
 

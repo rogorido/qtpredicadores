@@ -126,6 +126,25 @@ QString QJsonModel::getJsonString(int i)
     return jsonfinal;
 }
 
+QString QJsonModel::getJsonStringTotal()
+{
+    QString final;
+
+    for (int i = 0; i < lista_jsons.size(); ++i) {
+        QString transformado = getJsonString(i);
+        transformado.remove(0,1); // quitamos el primer {
+        transformado.chop(1); // y el último
+        final = final + QString(", ") + transformado;
+    }
+
+    // quitamos el primer " ," que queda de crear la string
+    final.remove(0,2);
+    final = QString("{") + final + QString("}");
+
+    return final;
+
+}
+
 void QJsonModel::borrarJson(int ordinal)
 {
     lista_jsons.removeAt(ordinal);
