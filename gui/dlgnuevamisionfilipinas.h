@@ -69,7 +69,9 @@ private:
      */
     TipoLugar tipolugar_pulsado;
 
+    void borrarcamposMision();
     void borrarCamposEtapa();
+    void cargarModelEtapas();
 
 };
 

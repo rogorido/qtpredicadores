@@ -47,6 +47,8 @@ dlgNuevaMisionFilipinas::dlgNuevaMisionFilipinas(QWidget *parent) :
     connect(ui->txtSalidaEtapa, SIGNAL(dobleclick()), this, SLOT(anadirSalidaEtapa()));
     connect(ui->txtLlegadaEtapa, SIGNAL(dobleclick()), this, SLOT(anadirLlegadaEtapa()));
     connect(ui->btAnadir, SIGNAL(clicked(bool)), this, SLOT(anadirEtapa()));
+
+    ui->spMisionNumero->setFocus();
 }
 
 dlgNuevaMisionFilipinas::~dlgNuevaMisionFilipinas()
@@ -56,6 +58,20 @@ dlgNuevaMisionFilipinas::~dlgNuevaMisionFilipinas()
 
 void dlgNuevaMisionFilipinas::aceptarMision()
 {
+    Mision *mision = new Mision();
+
+    mision->setNumeroMision(ui->spMisionNumero->value());
+    mision->setLugarSalida(lugarsalida_mision_id);
+    mision->setFechaSalida(ui->dtFechaInicio->date());
+    mision->setFechaLlegada(ui->dtFechaFin->date());
+    mision->setEtapas(json_etapas->getJsonStringTotal());
+
+    m_misiones->AnadirMision(mision);
+    borrarcamposMision();
+    borrarCamposEtapa();
+
+    json_etapas->clear();
+
 
 }
 
@@ -105,8 +121,8 @@ void dlgNuevaMisionFilipinas::anadirEtapa()
     etapa_concreta.insert("numero", QJsonValue(numero_etapa));
     etapa_concreta.insert("lugar_salida", QJsonValue(lugarsalida_etapa_id));
     etapa_concreta.insert("lugar_llegada", QJsonValue(lugarllegada_etapa_id));
-    etapa_concreta.insert("fecha_salida", fecha_salida.toString());
-    etapa_concreta.insert("fecha_llegada", fecha_llegada.toString());
+    etapa_concreta.insert("fecha_salida", fecha_salida.toString("yyyy-MM-dd"));
+    etapa_concreta.insert("fecha_llegada", fecha_llegada.toString("yyyy-MM-dd"));
 
     nombre_etapa = "etapa" + QString::number(numero_etapa);
 
@@ -145,6 +161,18 @@ void dlgNuevaMisionFilipinas::cerrar()
     parentWidget()->close();
 }
 
+void dlgNuevaMisionFilipinas::borrarcamposMision()
+{
+    lugarsalida_mision_id = 0;
+    ui->txtLugarSalida->setText("");
+
+    ui->dtFechaInicio->setDate(fechainicial);
+    ui->dtFechaFin->setDate(fechafinal);
+
+    ui->spMisionNumero->setFocus();
+
+}
+
 void dlgNuevaMisionFilipinas::borrarCamposEtapa()
 {
     int etapa = ui->spNumeroEtapa->value() + 1;
@@ -156,4 +184,10 @@ void dlgNuevaMisionFilipinas::borrarCamposEtapa()
     ui->txtLlegadaEtapa->setText("");
     ui->dtFechaInicioEtapa->setDate(fechainicial);
     ui->dtFechaFinEtapa->setDate(fechafinal);
+}
+
+void dlgNuevaMisionFilipinas::cargarModelEtapas()
+{
+
+
 }

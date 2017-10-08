@@ -27,7 +27,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="spMisionNumero"/>
+      <widget class="QSpinBox" name="spMisionNumero">
+       <property name="maximum">
+        <number>200</number>
+       </property>
+       <property name="value">
+        <number>1</number>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="horizontalSpacer">
@@ -151,7 +158,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spNumeroEtapa"/>
+              <widget class="QSpinBox" name="spNumeroEtapa">
+               <property name="value">
+                <number>1</number>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
