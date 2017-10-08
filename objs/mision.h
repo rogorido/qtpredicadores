@@ -15,7 +15,7 @@ public:
     void setLugarSalida(int l);
     void setFechaSalida(QDate f);
     void setFechaLlegada(QDate f);
-    void setEtapas(QJsonObject e);
+    void setEtapas(QString e);
 
     // getters
     int getId() const { return id; }
@@ -23,10 +23,7 @@ public:
     int getLugarSalida() const { return lugar_salida; }
     QDate getFechaSalida() const { return fecha_salida; }
     QDate getFechaLlegada() const { return fecha_llegada; }
-    QJsonObject getEtapasJson() const { return etapas; }
-
-    // construimos un qstring con el QjsonObject
-    QString getEtapasJsonToString() const;
+    QString getEtapasJson() const { return etapas; }
 
 private:
 
@@ -35,7 +32,12 @@ private:
     int lugar_salida;
     QDate fecha_salida;
     QDate fecha_llegada;
-    QJsonObject etapas;
+    /*
+     * esto está metido como json pero
+     * lo operamos como un QString pq así es más fácil
+     * usando el QJsonModel
+     */
+    QString etapas;
 };
 
 #endif // MISION_H

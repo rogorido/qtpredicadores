@@ -35,7 +35,7 @@ bool MisionesModel::AnadirMision(const Mision *mision){
     int lugar_salida = mision->getLugarSalida();
     QDate fecha_salida = mision->getFechaSalida();
     QDate fecha_llegada = mision->getFechaLlegada();
-    QString etapas = mision->getEtapasJsonToString();
+    QString etapas = mision->getEtapasJson();
 
     query.prepare("INSERT INTO filipinas.missions(mission_number, begin_date, arrival_date, "
                   "place_departure, stages) "
