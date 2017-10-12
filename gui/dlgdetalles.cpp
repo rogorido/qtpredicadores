@@ -10,6 +10,7 @@
 #include "dlgsufragiosentrada.h"
 #include "dlgdeclaracionentrada.h"
 #include "dlgdeclaraciongeneralentrada.h"
+#include "dlgviajeentrada.h"
 
 #include "models/qjsonmodel.h"
 
@@ -165,6 +166,14 @@ void dlgDetalles::recibirDeclaracion(Declaracion declaracion)
     json_model->resetearModelo();
 }
 
+void dlgDetalles::recibirViaje(Viaje viaje)
+{
+    QJsonObject json = viaje.getViajeJson();
+    json_model->anadirJson(json);
+    json_model->resetearModelo();
+
+}
+
 void dlgDetalles::recibirCasa(Casa casa){
 
     json_libre.insert("casa", casa.getId());
@@ -272,6 +281,15 @@ void dlgDetalles::on_btDeclaracionGeneral_clicked()
     connect(dlgdeclaraciongeneral, SIGNAL(aceptarDeclaracion(Declaracion)), this, SLOT(recibirDeclaracion(Declaracion)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgdeclaraciongeneral);
+    window->show();
+}
+
+void dlgDetalles::on_btViaje_clicked()
+{
+    dlgViajeEntrada *dlgviaje= new dlgViajeEntrada(this);
+    connect(dlgviaje, SIGNAL(emitirViaje(Viaje)), this, SLOT(recibirViaje(Viaje)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgviaje);
     window->show();
 }
 

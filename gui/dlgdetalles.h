@@ -15,6 +15,7 @@
 #include "objs/sufragio.h"
 #include "objs/diocesis.h"
 #include "objs/declaracion.h"
+#include "objs/viaje.h"
 
 class QSqlQueryModel;
 class QCompleter;
@@ -49,6 +50,7 @@ private slots:
     void recibirSufragio(Sufragio sufragio);
     void recibirTraslado(Diocesis diocesis);
     void recibirDeclaracion(Declaracion declaracion);
+    void recibirViaje(Viaje viaje);
 
     void on_btPersona_clicked();
     void on_btLugar_clicked();
@@ -61,6 +63,7 @@ private slots:
     void on_btOrdenanzas_clicked();
     void on_btDeclaraciones_clicked();
     void on_btDeclaracionGeneral_clicked();
+    void on_btViaje_clicked();
     void on_btBorrarJsonLibre_clicked();
     void on_btAnadirJsonLibre_clicked();
     void on_btBorrarBloqueJson_clicked();
