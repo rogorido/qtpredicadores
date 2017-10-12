@@ -34,6 +34,7 @@ dlgNuevoObispo::dlgNuevoObispo(QWidget *parent) :
     ui->dtFechaFinal->setMinimumDate(fechainicial);
     ui->dtFechaFinal->setMaximumDate(fechafinal);
     ui->dtFechaInicio->setDate(fechainicial);
+    ui->dtFechaFinal->setDate(fechainicial);
 
     // hay que inicializar el pointer para que no dé error luego.
     fuentedatos = new QJsonObject();
@@ -323,7 +324,7 @@ void dlgNuevoObispo::borrarCampos()
     ui->ckGcatholic->setCheckState(Qt::Unchecked);
 
     ui->dtFechaInicio->setDate(fechainicial);
-    ui->dtFechaFinal->setDate(fechafinal);
+    ui->dtFechaFinal->setDate(fechainicial);
 
     ui->wdNotas->reiniciar();
 
