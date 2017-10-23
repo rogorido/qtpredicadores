@@ -21,6 +21,7 @@ public:
     void setFinPorMuerte(bool f);
     void setVolverMirar(bool v);
     void setInGcatholic(bool i);
+    void setSufraganeo(bool s);
     void setOtrosDatos(QJsonObject o);
 
     // getters
@@ -35,6 +36,7 @@ public:
     bool getFinPorMuerte() const { return finpormuerte; }
     bool getVolverMirar() const { return volveramirar; }
     bool getInGcatholic() const { return en_gcatholic; }
+    bool getSufraganeo() const { return sufraganeo; }
     QJsonObject getOtrosDatos() const { return otros_datos; }
 
 private:
@@ -50,6 +52,7 @@ private:
     bool finpormuerte;
     bool volveramirar;
     bool en_gcatholic;
+    bool sufraganeo;
     QJsonObject otros_datos;
 
 };

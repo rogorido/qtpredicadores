@@ -168,6 +168,13 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QCheckBox" name="ckSufraganeo">
+       <property name="text">
+        <string>Sufragáneo</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
@@ -247,6 +254,26 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>btQuitarPersona</tabstop>
+  <tabstop>txtDiocesis</tabstop>
+  <tabstop>txtPersona</tabstop>
+  <tabstop>btQuitarDiocesis</tabstop>
+  <tabstop>txtPapa</tabstop>
+  <tabstop>dtFechaInicio</tabstop>
+  <tabstop>dtFechaFinal</tabstop>
+  <tabstop>txtDuracion</tabstop>
+  <tabstop>ckFechaAprox</tabstop>
+  <tabstop>ckFinPorMuerte</tabstop>
+  <tabstop>ckGcatholic</tabstop>
+  <tabstop>ckVolverMirar</tabstop>
+  <tabstop>ckSufraganeo</tabstop>
+  <tabstop>btFuente</tabstop>
+  <tabstop>btDetalles</tabstop>
+  <tabstop>btCancelar</tabstop>
+  <tabstop>btOK</tabstop>
+  <tabstop>tabWidget</tabstop>
+ </tabstops>
  <resources>
   <include location="../icons.qrc"/>
  </resources>

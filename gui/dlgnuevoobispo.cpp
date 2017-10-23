@@ -80,6 +80,7 @@ void dlgNuevoObispo::aceptarObispo()
     bool volver_mirar = ui->ckVolverMirar->isChecked();
     bool fin_muerte = ui->ckFinPorMuerte->isChecked();
     bool en_gcatholic = ui->ckGcatholic->isChecked();
+    bool sufraganeo = ui->ckSufraganeo->isChecked();
     QDate fecha_inicio = ui->dtFechaInicio->date();
     QDate fecha_fin = ui->dtFechaFinal->date();
 
@@ -97,10 +98,10 @@ void dlgNuevoObispo::aceptarObispo()
      */
     query.prepare("INSERT INTO bishops.bishops(bishop_person_id, diocese_id, pope_id, "
                   "date_nomination, circa_date_nomination, date_end, duration, end_bydeath, "
-                  "in_gcatholic, see_again, other_data) "
+                  "in_gcatholic, suffragean, see_again, other_data) "
                   "VALUES(:persona, :diocesis, :papa, "
                   ":fecha_inicio, :circa_fecha, :fecha_final, :duracion, :finpormuerte, "
-                  ":gcatholic, :volveramirar, :otrosdatos)");
+                  ":gcatholic, :sufraganeo, :volveramirar, :otrosdatos)");
     query.bindValue(":persona", persona_id);
     query.bindValue(":diocesis", diocesis_id);
 
@@ -125,6 +126,7 @@ void dlgNuevoObispo::aceptarObispo()
     query.bindValue(":duracion", duracion);
     query.bindValue(":finpormuerte", fin_muerte);
     query.bindValue(":gcatholic", en_gcatholic);
+    query.bindValue(":sufraganeo", sufraganeo);
     query.bindValue(":volveramirar", volver_mirar);
 
     if (fuente_recibida)
@@ -322,6 +324,7 @@ void dlgNuevoObispo::borrarCampos()
     ui->ckFinPorMuerte->setCheckState(Qt::Unchecked);
     ui->ckVolverMirar->setCheckState(Qt::Unchecked);
     ui->ckGcatholic->setCheckState(Qt::Unchecked);
+    ui->ckSufraganeo->setCheckState(Qt::Unchecked);
 
     ui->dtFechaInicio->setDate(fechainicial);
     ui->dtFechaFinal->setDate(fechainicial);
