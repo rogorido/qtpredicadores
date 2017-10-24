@@ -41,6 +41,7 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
     bool archidiocesis = diocesis->getArchidiocesis();
     int sufraganea = diocesis->getSufraganea();
     bool infidelibus = diocesis->getInfidelibus();
+    bool titular_see = diocesis->getTitularSee();
     QString motivo_desaparicion = diocesis->getMotivoDesaparicion();
     QJsonObject otros_datos = diocesis->getOtrosDatos();
     Notas nota = diocesis->getNota();
@@ -77,9 +78,9 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
         datos_json = "{}";
 
     query.prepare("INSERT INTO general.dioceses(diocese_name, diocese_latin_name, archidiocese, sufragean_id,"
-                  "infidelibus, disappeared, place_id, nowadays, other_data) "
-                  "VALUES(:nombre, :nombre_latin, :archidiocesis, :sufraganea, "
-                  ":infidelibus, :desaparecida, :lugar, :hoy, :otrosdatos)");
+                  "infidelibus, titular_see, disappeared, place_id, nowadays, other_data) "
+                  "VALUES(:nombre, :nombre_latin, :archidiocesis, :sufraganea,  "
+                  ":infidelibus, :titular_see, :desaparecida, :lugar, :hoy, :otrosdatos)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":nombre_latin", nombre_latin);
     query.bindValue(":archidiocesis", archidiocesis);
@@ -92,6 +93,7 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
     else
         query.bindValue(":lugar", QVariant(QVariant::Int));
     query.bindValue(":infidelibus", infidelibus);
+    query.bindValue(":titular_see", titular_see);
     query.bindValue(":desaparecida", motivo_desaparicion);
     query.bindValue(":hoy", existe);
     if (datos_json != "{}")

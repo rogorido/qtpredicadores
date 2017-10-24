@@ -20,6 +20,7 @@ public:
     void setLugar(int l);
     void setExistente(bool e);
     void setInfidelibus(bool i);
+    void setTitularSee(bool t);
     void setMotivoDesaparicion(QString m);
     void setNota(Notas n);
     void setOtrosDatos(QJsonObject o);
@@ -33,6 +34,7 @@ public:
     int getLugar() const { return lugar; }
     bool getExisteHoy() const { return existe_hoy; }
     bool getInfidelibus() const { return infidelibus; }
+    bool getTitularSee() const { return titular_see; }
     QString getMotivoDesaparicion() const { return motivo_desaparicion; }
     Notas getNota() const {return nota;}
     QJsonObject getOtrosDatos() const{ return otros_datos; }
@@ -47,6 +49,7 @@ private:
     int lugar;
     bool existe_hoy;
     bool infidelibus;
+    bool titular_see;
     QString motivo_desaparicion;
     Notas nota;
     QJsonObject otros_datos;

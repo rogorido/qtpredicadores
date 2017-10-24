@@ -58,6 +58,13 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QCheckBox" name="ckTitularSee">
+       <property name="text">
+        <string>Titular See</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
@@ -263,6 +270,27 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>txtNombre</tabstop>
+  <tabstop>txtNombreLatin</tabstop>
+  <tabstop>ckArchidiocesis</tabstop>
+  <tabstop>ckExiste</tabstop>
+  <tabstop>ckTitularSee</tabstop>
+  <tabstop>txtArchidiocesis</tabstop>
+  <tabstop>btQuitarArchi</tabstop>
+  <tabstop>txtLugar</tabstop>
+  <tabstop>btQuitarLugar</tabstop>
+  <tabstop>ckInfidelibus</tabstop>
+  <tabstop>txtMotivoDesaparicion</tabstop>
+  <tabstop>ckBuscado</tabstop>
+  <tabstop>txtURL</tabstop>
+  <tabstop>spParroquias</tabstop>
+  <tabstop>spSuperficie</tabstop>
+  <tabstop>spFundacion</tabstop>
+  <tabstop>btCancelar</tabstop>
+  <tabstop>btOK</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

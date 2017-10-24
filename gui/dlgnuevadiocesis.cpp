@@ -63,6 +63,7 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     bool archidiocesis = ui->ckArchidiocesis->checkState();
     bool existe = ui->ckExiste->checkState();
     bool infidelibus = ui->ckInfidelibus->checkState();
+    bool titular_see = ui->ckTitularSee->checkState();
     QString motivo_desaparicion = ui->txtMotivoDesaparicion->text();
 
     diocesis->setNombre(nombre);
@@ -72,6 +73,7 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     diocesis->setSufraganea(sufraganea);
     diocesis->setLugar(lugar);
     diocesis->setInfidelibus(infidelibus);
+    diocesis->setTitularSee(titular_see);
     diocesis->setMotivoDesaparicion(motivo_desaparicion);
 
     /*
@@ -122,6 +124,7 @@ void dlgNuevaDiocesis::borrarCampos()
     ui->ckArchidiocesis->setCheckState(Qt::Unchecked);
     ui->ckExiste->setCheckState(Qt::Unchecked);
     ui->ckInfidelibus->setCheckState(Qt::Unchecked);
+    ui->ckTitularSee->setCheckState(Qt::Unchecked);
     ui->spParroquias->setValue(0);
     ui->spSuperficie->setValue(0);
     ui->spFundacion->setValue(0);
