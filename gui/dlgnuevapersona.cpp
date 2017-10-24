@@ -132,6 +132,7 @@ void dlgNuevaPersona::aceptarPersona(){
         introducirJson(id);
         borrarCampos();
         cargarCompleters();
+        emit personaIntroducida();
         return;
     }
     else{

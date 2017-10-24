@@ -37,6 +37,10 @@ private slots:
 
     void cerrar();
 
+signals:
+
+    void personaIntroducida();
+
 private:
     Ui::dlgNuevaPersona *ui;
     MyQmdiArea *mdiarea;
