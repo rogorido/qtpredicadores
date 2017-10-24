@@ -175,6 +175,13 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QCheckBox" name="ckFinalRelativo">
+       <property name="text">
+        <string>Final relativo</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
@@ -255,9 +262,9 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>txtPersona</tabstop>
   <tabstop>btQuitarPersona</tabstop>
   <tabstop>txtDiocesis</tabstop>
-  <tabstop>txtPersona</tabstop>
   <tabstop>btQuitarDiocesis</tabstop>
   <tabstop>txtPapa</tabstop>
   <tabstop>dtFechaInicio</tabstop>
@@ -268,6 +275,7 @@
   <tabstop>ckGcatholic</tabstop>
   <tabstop>ckVolverMirar</tabstop>
   <tabstop>ckSufraganeo</tabstop>
+  <tabstop>ckFinalRelativo</tabstop>
   <tabstop>btFuente</tabstop>
   <tabstop>btDetalles</tabstop>
   <tabstop>btCancelar</tabstop>

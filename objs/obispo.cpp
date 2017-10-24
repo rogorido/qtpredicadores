@@ -15,4 +15,5 @@ void Obispo::setFinPorMuerte(bool f) { finpormuerte = f; }
 void Obispo::setVolverMirar(bool v) { volveramirar = v; }
 void Obispo::setInGcatholic(bool i) { en_gcatholic = i; }
 void Obispo::setSufraganeo(bool s) { sufraganeo = s; }
+void Obispo::setFinalRelativo(bool f) { final_relativo = f; }
 void Obispo::setOtrosDatos(QJsonObject o) { otros_datos = o; }

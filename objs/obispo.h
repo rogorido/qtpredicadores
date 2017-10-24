@@ -22,6 +22,7 @@ public:
     void setVolverMirar(bool v);
     void setInGcatholic(bool i);
     void setSufraganeo(bool s);
+    void setFinalRelativo(bool f);
     void setOtrosDatos(QJsonObject o);
 
     // getters
@@ -37,6 +38,7 @@ public:
     bool getVolverMirar() const { return volveramirar; }
     bool getInGcatholic() const { return en_gcatholic; }
     bool getSufraganeo() const { return sufraganeo; }
+    bool getFinalRelativo() const { return final_relativo; }
     QJsonObject getOtrosDatos() const { return otros_datos; }
 
 private:
@@ -53,6 +55,7 @@ private:
     bool volveramirar;
     bool en_gcatholic;
     bool sufraganeo;
+    bool final_relativo;
     QJsonObject otros_datos;
 
 };
