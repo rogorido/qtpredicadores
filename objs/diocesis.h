@@ -36,7 +36,7 @@ public:
     bool getInfidelibus() const { return infidelibus; }
     bool getTitularSee() const { return titular_see; }
     QString getMotivoDesaparicion() const { return motivo_desaparicion; }
-    Notas getNota() const {return nota;}
+    Notas getNota() const { return nota; }
     QJsonObject getOtrosDatos() const{ return otros_datos; }
 
 private:

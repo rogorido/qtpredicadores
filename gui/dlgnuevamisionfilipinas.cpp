@@ -30,16 +30,18 @@ dlgNuevaMisionFilipinas::dlgNuevaMisionFilipinas(QWidget *parent) :
     ui->twEtapas->setModel(json_etapas);
 
     ui->dtFechaInicio->setMinimumDate(fechainicial);
-    ui->dtFechaInicio->setMaximumDate(fechafinal);
+    //ui->dtFechaInicio->setMaximumDate(fechafinal);
     ui->dtFechaFin->setMinimumDate(fechainicial);
-    ui->dtFechaFin->setMaximumDate(fechafinal);
+    //ui->dtFechaFin->setMaximumDate(fechafinal);
     ui->dtFechaInicio->setDate(fechainicial);
+    ui->dtFechaFin->setDate(fechainicial);
 
     ui->dtFechaInicioEtapa->setMinimumDate(fechainicial);
-    ui->dtFechaInicioEtapa->setMaximumDate(fechafinal);
+    //ui->dtFechaInicioEtapa->setMaximumDate(fechafinal);
     ui->dtFechaFinEtapa->setMinimumDate(fechainicial);
-    ui->dtFechaFinEtapa->setMaximumDate(fechafinal);
+    //ui->dtFechaFinEtapa->setMaximumDate(fechafinal);
     ui->dtFechaInicioEtapa->setDate(fechainicial);
+    ui->dtFechaFinEtapa->setDate(fechainicial);
 
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarMision()));
@@ -65,13 +67,13 @@ void dlgNuevaMisionFilipinas::aceptarMision()
     mision->setFechaSalida(ui->dtFechaInicio->date());
     mision->setFechaLlegada(ui->dtFechaFin->date());
     mision->setEtapas(json_etapas->getJsonStringTotal());
+    mision->setNota(ui->wdNotas->getNotas());
 
     m_misiones->AnadirMision(mision);
     borrarcamposMision();
     borrarCamposEtapa();
 
     json_etapas->clear();
-
 
 }
 
@@ -167,7 +169,9 @@ void dlgNuevaMisionFilipinas::borrarcamposMision()
     ui->txtLugarSalida->setText("");
 
     ui->dtFechaInicio->setDate(fechainicial);
-    ui->dtFechaFin->setDate(fechafinal);
+    ui->dtFechaFin->setDate(fechainicial);
+    ui->wdNotas->reiniciar();
+    ui->spNumeroEtapa->setValue(1);
 
     ui->spMisionNumero->setFocus();
 
@@ -183,7 +187,7 @@ void dlgNuevaMisionFilipinas::borrarCamposEtapa()
     ui->txtSalidaEtapa->setText("");
     ui->txtLlegadaEtapa->setText("");
     ui->dtFechaInicioEtapa->setDate(fechainicial);
-    ui->dtFechaFinEtapa->setDate(fechafinal);
+    ui->dtFechaFinEtapa->setDate(fechainicial);
 }
 
 void dlgNuevaMisionFilipinas::cargarModelEtapas()

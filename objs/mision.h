@@ -4,6 +4,8 @@
 #include <QDate>
 #include <QJsonObject>
 
+#include "objs/notas.h"
+
 class Mision
 {
 public:
@@ -16,6 +18,7 @@ public:
     void setFechaSalida(QDate f);
     void setFechaLlegada(QDate f);
     void setEtapas(QString e);
+    void setNota(Notas n);
 
     // getters
     int getId() const { return id; }
@@ -24,6 +27,7 @@ public:
     QDate getFechaSalida() const { return fecha_salida; }
     QDate getFechaLlegada() const { return fecha_llegada; }
     QString getEtapasJson() const { return etapas; }
+    Notas getNota() const { return nota; }
 
 private:
 
@@ -38,6 +42,7 @@ private:
      * usando el QJsonModel
      */
     QString etapas;
+    Notas nota;
 };
 
 #endif // MISION_H

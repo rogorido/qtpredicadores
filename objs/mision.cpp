@@ -10,3 +10,4 @@ void Mision::setLugarSalida(int l) { lugar_salida = l; }
 void Mision::setFechaSalida(QDate f){ fecha_salida = f; }
 void Mision::setFechaLlegada(QDate f) { fecha_llegada = f; }
 void Mision::setEtapas(QString e) { etapas = e; }
+void Mision::setNota(Notas n) { nota = n; }
