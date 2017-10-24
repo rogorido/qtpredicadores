@@ -22,6 +22,7 @@
 #include "dlgciudades.h"
 #include "dlgcasas.h"
 #include "dlgcapitulos.h"
+#include "dlgmisiones.h"
 #include "dlgestadisticas.h"
 #include "dlgreforma.h"
 #include "dlgobispos.h"
@@ -95,6 +96,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionResoluciones, SIGNAL(triggered(bool)), this, SLOT(Resoluciones()));
     connect(ui->actionCiudades, SIGNAL(triggered(bool)), this, SLOT(Ciudades()));
     connect(ui->actionCasas, SIGNAL(triggered(bool)), this, SLOT(Casas()));
+    connect(ui->actionMisiones, SIGNAL(triggered(bool)), this, SLOT(Misiones()));
     connect(ui->actionCapituli, SIGNAL(triggered(bool)), this, SLOT(Capitulos()));
     connect(ui->actionGeneralEstadisticas, SIGNAL(triggered(bool)), this, SLOT(Estadisticas()));
     connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -206,6 +208,13 @@ void MainWindow::Casas()
 {
     FormCasas = new dlgCasas(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(FormCasas);
+    window->show();
+}
+
+void MainWindow::Misiones()
+{
+    FormMisiones = new dlgMisiones(this);
+    QMdiSubWindow *window = mdiArea->addSubWindow(FormMisiones);
     window->show();
 }
 

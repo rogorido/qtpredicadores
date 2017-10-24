@@ -52,6 +52,7 @@
     <addaction name="actionCasas"/>
     <addaction name="actionCapituli"/>
     <addaction name="actionObispos"/>
+    <addaction name="actionMisiones"/>
    </widget>
    <widget class="QMenu" name="menuEstad_sticas">
     <property name="title">
@@ -259,6 +260,11 @@
   <action name="actionNuevaMision">
    <property name="text">
     <string>Nueva misión</string>
+   </property>
+  </action>
+  <action name="actionMisiones">
+   <property name="text">
+    <string>Misiones</string>
    </property>
   </action>
  </widget>
