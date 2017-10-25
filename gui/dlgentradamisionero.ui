@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Entrada de misioneros</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -60,12 +60,12 @@
         <string>Cantidad info</string>
        </property>
        <property name="buddy">
-        <cstring>spinBox</cstring>
+        <cstring>spCantidadInfo</cstring>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="spinBox">
+      <widget class="QSpinBox" name="spCantidadInfo">
        <property name="maximum">
         <number>100</number>
        </property>

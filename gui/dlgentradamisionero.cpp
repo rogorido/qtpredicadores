@@ -2,7 +2,11 @@
 #include "ui_dlgentradamisionero.h"
 
 #include <QMdiSubWindow>
+#include <QJsonDocument>
 #include <QSqlQuery>
+#include <QSqlError>
+#include <QMessageBox>
+#include <QDebug>
 
 #include "dlgseleccionargeneral.h"
 #include "dlgfuenteentrada.h"
@@ -14,6 +18,9 @@ dlgEntradaMisionero::dlgEntradaMisionero(int mision, QWidget *parent) :
 {
     ui->setupUi(this);
     mdiarea = MyQmdiArea::Instance(this);
+
+    // hay que inicializar el pointer para que no dé error luego.
+    fuentedatos = new QJsonObject();
 
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarMisionero()));
@@ -70,6 +77,56 @@ void dlgEntradaMisionero::cerrar()
 
 void dlgEntradaMisionero::aceptarMisionero()
 {
+    QSqlQuery query;
+
+    if ( persona_id == 0 ){
+        int ret = QMessageBox::warning(this, "Faltan datos",
+                                       "Falta la persona del misionero.");
+        Q_UNUSED(ret)
+        return;
+    }
+
+    bool llego = ui->ckLlego->isChecked();
+    bool volver_mirar = ui->ckVolverMirar->isChecked();
+    bool volvio = ui->ckRegreso->isChecked();
+    int cantidad_info = ui->spCantidadInfo->value();
+    QString notas = ui->txtNotas->toPlainText();
+
+    /*
+     * ATENCIÓn: aquí lo que hago es dereferenciar un pointer,
+     * porque QJsonDocument me pide una referencia y fuentedatos
+     * es un pointer...
+     */
+    QJsonDocument jsondoc(*fuentedatos);
+    QString fuente_final = jsondoc.toJson(QJsonDocument::Compact);
+
+    query.prepare("INSERT INTO filipinas.missions_persons(mission_id, person_id, "
+                  "arrived, returned, info, see_again, info_source, notes) "
+                  "VALUES(:mision, :persona, "
+                  ":llego, :volvio, :info, :volver_mirar, :fuente, :notas)");
+    query.bindValue(":mision", mision_id);
+    query.bindValue(":persona", persona_id);
+    query.bindValue(":llego", llego);
+    query.bindValue(":volvio", volvio);
+    query.bindValue(":info", cantidad_info);
+    query.bindValue(":volver_mirar", volver_mirar);
+    query.bindValue(":notas", notas);
+
+    if (fuente_recibida)
+        query.bindValue(":fuente", fuente_final);
+    else
+        query.bindValue(":fuente", QVariant(QVariant::String));
+
+    if (query.exec()){
+        borrarCampos();
+    }
+    else {
+        int ret = QMessageBox::warning(this, "Error",
+                                       "Ha habido un error al ejecutar la consulta de inserción.");
+        Q_UNUSED(ret)
+        qDebug() << query.lastError();
+        return;
+    }
 
 }
 

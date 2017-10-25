@@ -203,12 +203,7 @@ void dlgNuevoObispo::fechaFinalCambiada()
 void dlgNuevoObispo::recibirPersona(Persona persona)
 {
     persona_id = persona.getId();
-
-    QString persona_mostrar;
-    persona_mostrar = persona.getNombre() + QString(' ') + persona.getApellidos() + QString(' ') + persona.getOrigen();
-
-    ui->txtPersona->setText(persona_mostrar);
-
+    ui->txtPersona->setText(persona.getNombreCompleto());
 }
 
 void dlgNuevoObispo::recibirDiocesis(Diocesis diocesis)
