@@ -155,7 +155,7 @@ void dlgSeleccionarGeneral::cargarModelo(){
     ui->twSeleccionar->setCurrentIndex(index);
 
     if (tipo_seleccionado == CAPITULO)
-        ui->twSeleccionar->setItemDelegateForColumn(2, new FechasDelegate(this));
+        ui->twSeleccionar->setItemDelegateForColumn(2, new FechasDelegate(FechasDelegate::TipoFecha::ONLY_YEAR, this));
 }
 
 

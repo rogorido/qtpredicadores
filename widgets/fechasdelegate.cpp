@@ -2,19 +2,30 @@
 
 #include <QDate>
 
-FechasDelegate::FechasDelegate(QObject *parent):QStyledItemDelegate(parent)
+FechasDelegate::FechasDelegate(TipoFecha tipo, QObject *parent):QStyledItemDelegate(parent),
+    m_tipo(tipo)
 {
 
 }
 
 QString FechasDelegate::displayText(const QVariant &value, const QLocale &locale) const
 {
+    QString fechaformateada;
     Q_UNUSED(locale)
 
     QDate fechaoriginal = value.toDate();
-    // ponemos sólo el año...
-    //QString fechaformateada = fechaoriginal.toString("dd/MM/yyyy");
-    QString fechaformateada = fechaoriginal.toString("yyyy");
+
+    switch (m_tipo) {
+    case TipoFecha::ONLY_YEAR:
+        fechaformateada= fechaoriginal.toString("yyyy");
+        break;
+    case TipoFecha::FULL_DATE:
+        fechaformateada = fechaoriginal.toString("dd/MM/yyyy");
+        break;
+    default:
+        break;
+    }
+
     return fechaformateada;
 
 }

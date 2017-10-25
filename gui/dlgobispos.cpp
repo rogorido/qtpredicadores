@@ -50,8 +50,8 @@ dlgObispos::dlgObispos(QWidget *parent) :
     ui->twObispos->setContextMenuPolicy(Qt::CustomContextMenu);
 
     // fechas y sus formatos...
-    ui->twObispos->setItemDelegateForColumn(5, new FechasDelegate(this));
-    ui->twObispos->setItemDelegateForColumn(6, new FechasDelegate(this));
+    ui->twObispos->setItemDelegateForColumn(7, new FechasDelegate(FechasDelegate::TipoFecha::FULL_DATE, this));
+    ui->twObispos->setItemDelegateForColumn(8, new FechasDelegate(FechasDelegate::TipoFecha::FULL_DATE, this));
 
     connect(ui->twObispos->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
             this, SLOT(seleccionarObispo(QModelIndex)));

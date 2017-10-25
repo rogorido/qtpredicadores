@@ -42,7 +42,7 @@ dlgCapitulos::dlgCapitulos(QWidget *parent) :
     ui->twCapitulos->setSortingEnabled(true);
     ui->twCapitulos->setSelectionMode(QAbstractItemView::SingleSelection);
 
-    ui->twCapitulos->setItemDelegateForColumn(3, new FechasDelegate(this));
+    ui->twCapitulos->setItemDelegateForColumn(3, new FechasDelegate(FechasDelegate::TipoFecha::ONLY_YEAR, this));
 
     connect(ui->twCapitulos, SIGNAL(clicked(QModelIndex)), this, SLOT(escogidoCapitulo(QModelIndex)));
     connect(ui->btCerrar, SIGNAL(clicked(bool)), this, SLOT(close()));
