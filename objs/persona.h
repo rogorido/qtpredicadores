@@ -55,6 +55,9 @@ public:
     fuente getFuente() const {return fuente_origen;}
     bool estaLleno() const {return lleno;}
 
+    // esto es para facilitar el mostrar nombre apellidos, etc. en formularios
+    QString getNombreCompleto() const;
+
 private:
 
     int id;

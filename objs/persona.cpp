@@ -25,3 +25,10 @@ void Persona::setVolverMirar(bool v) { volveramirar = v; }
 void Persona::setCantidadInfo(int c) { cantidadinfo = c; }
 void Persona::setNotas(QString n) { notas = n; }
 void Persona::setFuente(fuente f) { fuente_origen = f; }
+
+QString Persona::getNombreCompleto() const
+{
+    QString nombre_completo = nombre + QString(' ') + apellidos + QString(' ') + origen;
+
+    return nombre_completo;
+}
