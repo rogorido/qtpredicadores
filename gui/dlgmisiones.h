@@ -4,7 +4,7 @@
 #include <QWidget>
 
 class QSqlTableModel;
-class dlgNuevaPersona;
+class dlgEntradaMisionero;
 class MyQmdiArea;
 
 namespace Ui {
@@ -21,13 +21,12 @@ public:
 
 private slots:
 
-    void recibirMisionero();
     void anadirMisionero();
 
 private:
     Ui::dlgMisiones *ui;
     MyQmdiArea *mdiArea;
-    dlgNuevaPersona *dlgPersona;
+    dlgEntradaMisionero *dlgMisionero;
 
     QSqlTableModel *m_misiones;
 

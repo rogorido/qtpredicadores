@@ -4,8 +4,9 @@
 #include <QModelIndex>
 #include <QMdiSubWindow>
 #include <QSqlTableModel>
+#include <QSqlQuery>
 
-#include "gui/dlgnuevapersona.h"
+#include "gui/dlgentradamisionero.h"
 #include "widgets/myqmdiarea.h"
 
 dlgMisiones::dlgMisiones(QWidget *parent) :
@@ -26,11 +27,6 @@ dlgMisiones::~dlgMisiones()
     delete ui;
 }
 
-void dlgMisiones::recibirMisionero()
-{
-
-}
-
 void dlgMisiones::anadirMisionero()
 {
     QModelIndex indice = m_misiones->index(ui->twMisiones->currentIndex().row(), 0);
@@ -40,10 +36,9 @@ void dlgMisiones::anadirMisionero()
 
     mision_escogida = m_misiones->data(indice, Qt::DisplayRole).toInt();
 
-    dlgPersona = new dlgNuevaPersona(this);
-    connect(dlgPersona, SIGNAL(personaIntroducida()), this, SLOT(recibirMisionero()));
+    dlgMisionero = new dlgEntradaMisionero(mision_escogida, this);
 
-    QMdiSubWindow *window = mdiArea->addSubWindow(dlgPersona);
+    QMdiSubWindow *window = mdiArea->addSubWindow(dlgMisionero);
     window->show();
 }
 
@@ -51,10 +46,10 @@ void dlgMisiones::cargarModelo()
 {
     m_misiones = new QSqlTableModel(this);
     m_misiones->setTable("filipinas.missions");
-    m_misiones->setHeaderData(1, Qt::Horizontal, "Nombre");
-    m_misiones->setHeaderData(2, Qt::Horizontal, "Latín");
-    m_misiones->setHeaderData(3, Qt::Horizontal, "Otros nombres");
-    m_misiones->setSort(1, Qt::AscendingOrder);
+    m_misiones->setHeaderData(1, Qt::Horizontal, "Número");
+    m_misiones->setHeaderData(2, Qt::Horizontal, "Fecha inicio");
+    m_misiones->setHeaderData(3, Qt::Horizontal, "Fecha final");
+    m_misiones->setSort(2, Qt::AscendingOrder);
     m_misiones->select();
 
     ui->twMisiones->setModel(m_misiones);
@@ -66,6 +61,11 @@ void dlgMisiones::cargarModelo()
     ui->twMisiones->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->twMisiones->horizontalHeader()->setStretchLastSection(true);
     ui->twMisiones->hideColumn(0);
+    ui->twMisiones->hideColumn(4);
+    ui->twMisiones->hideColumn(5);
+    ui->twMisiones->hideColumn(6);
+    ui->twMisiones->hideColumn(7);
+    ui->twMisiones->hideColumn(8);
 
     // escogemos la primera línea...
     QModelIndex index = m_misiones->index(0,0);
