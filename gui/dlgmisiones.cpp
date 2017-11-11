@@ -8,6 +8,7 @@
 
 #include "gui/dlgentradamisionero.h"
 #include "widgets/myqmdiarea.h"
+#include "widgets/fechasdelegate.h"
 
 dlgMisiones::dlgMisiones(QWidget *parent) :
     QWidget(parent),
@@ -17,9 +18,10 @@ dlgMisiones::dlgMisiones(QWidget *parent) :
     mdiArea = MyQmdiArea::Instance(this);
 
     connect(ui->pbAnadirMisioneros, SIGNAL(clicked()), this, SLOT(anadirMisionero()));
+    ui->twMisiones->setItemDelegateForColumn(2, new FechasDelegate(FechasDelegate::TipoFecha::ONLY_YEAR, this));
+    ui->twMisiones->setItemDelegateForColumn(3, new FechasDelegate(FechasDelegate::TipoFecha::ONLY_YEAR, this));
 
     cargarModelo();
-
 }
 
 dlgMisiones::~dlgMisiones()

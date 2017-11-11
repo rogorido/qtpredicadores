@@ -97,11 +97,18 @@ void dlgObispos::cargarModelos()
 
     ui->twObispos->setModel(proxy_obispos);
 
+    // ocultamos algunas columnas
     ui->twObispos->hideColumn(0);
+    ui->twObispos->hideColumn(5);
+    ui->twObispos->hideColumn(9);
+    ui->twObispos->hideColumn(10);
+    ui->twObispos->hideColumn(11);
+    ui->twObispos->hideColumn(12);
+
     ui->twObispos->setAlternatingRowColors(true);
     //ui->twResoluciones->setColumnWidth(1, 80);
-    //ui->twResoluciones->resizeColumnsToContents();
-    //ui->twResoluciones->resizeRowsToContents();
+    ui->twObispos->resizeColumnsToContents();
+    ui->twObispos->resizeRowsToContents();
     ui->twObispos->horizontalHeader()->setStretchLastSection(true);
     ui->twObispos->setSortingEnabled(true);
     ui->twObispos->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -230,12 +237,14 @@ void dlgObispos::actualizarFiltro(const QString filtro)
     if (filtro.length() > 2) {
         proxy_obispos->setFilterRegExp(QRegExp(filtro, Qt::CaseInsensitive, QRegExp::FixedString));
         ui->twObispos->resizeRowsToContents();
+        ui->twObispos->resizeColumnsToContents();
         contarTotal();
     }
     else
     {
         proxy_obispos->setFilterRegExp(QRegExp("", Qt::CaseInsensitive, QRegExp::FixedString));
         ui->twObispos->resizeRowsToContents();
+        ui->twObispos->resizeColumnsToContents();
         contarTotal();
     }
 }
