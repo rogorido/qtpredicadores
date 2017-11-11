@@ -50,6 +50,7 @@ private:
     QCompleter *nombres_compl;
     QCompleter *apellidos_compl;
     QCompleter *diocesis_compl;
+    QCompleter *tipopersona_compl;
 
     /* Esto sincermnete no se por que hay
      * que ponerlo asi aqui. Lo logico seria ponerlo

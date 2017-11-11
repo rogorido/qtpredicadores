@@ -10,9 +10,11 @@ void Persona::setNombre(QString n)
 }
 void Persona::setApellidos(QString a){ apellidos = a; }
 void Persona::setOrigen(QString o){ origen = o; }
+void Persona::setMasculino(bool m){ masculino = m; }
 void Persona::setBuscado(bool b){ buscado = b; }
 void Persona::setWiki(bool w){ wiki = w; }
 void Persona::setViaf(bool v){ viaf = v; }
+void Persona::setTipoPersona(QString t) { tipo_persona = t; }
 void Persona::setWikilink(QString wl){ wikilink = wl; }
 void Persona::setViaflink(QString vl){ viaflink = vl; }
 void Persona::setWikidata(QString w) { wikidata = w; }

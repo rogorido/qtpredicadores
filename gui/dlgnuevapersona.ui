@@ -106,42 +106,59 @@
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
+         <item row="2" column="0">
           <widget class="QCheckBox" name="ckBuscado">
            <property name="text">
             <string>Buscado</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
+         <item row="3" column="0">
           <widget class="QCheckBox" name="ckWiki">
            <property name="text">
             <string>Wikipedia</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
+         <item row="3" column="1">
           <widget class="QLineEdit" name="txtWiki"/>
          </item>
-         <item row="2" column="0">
+         <item row="4" column="0">
           <widget class="QCheckBox" name="ckViaf">
            <property name="text">
             <string>Viaf</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
+         <item row="4" column="1">
           <widget class="QLineEdit" name="txtViaf"/>
          </item>
-         <item row="3" column="0">
+         <item row="5" column="0">
           <widget class="QLabel" name="label_6">
            <property name="text">
             <string>Wikidata</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
+         <item row="5" column="1">
           <widget class="QLineEdit" name="txtWikidata"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="ckMasculino">
+           <property name="text">
+            <string>Masculino</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="txtTipoPersona"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Tipo</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -278,8 +295,11 @@
   <tabstop>txtApellidos</tabstop>
   <tabstop>txtNacimiento</tabstop>
   <tabstop>txtMuerte</tabstop>
-  <tabstop>tabWidget</tabstop>
+  <tabstop>txtDiocesis</tabstop>
+  <tabstop>ckMasculino</tabstop>
+  <tabstop>txtTipoPersona</tabstop>
   <tabstop>ckBuscado</tabstop>
+  <tabstop>tabWidget</tabstop>
   <tabstop>ckWiki</tabstop>
   <tabstop>txtWiki</tabstop>
   <tabstop>ckViaf</tabstop>
@@ -292,6 +312,8 @@
   <tabstop>btDetalles</tabstop>
   <tabstop>btCancelar</tabstop>
   <tabstop>btOK</tabstop>
+  <tabstop>txtOrigen</tabstop>
+  <tabstop>btFuente</tabstop>
  </tabstops>
  <resources>
   <include location="../icons.qrc"/>

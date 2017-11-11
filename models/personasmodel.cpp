@@ -36,9 +36,11 @@ bool PersonasModel::AnadirPersona(const Persona *persona){
     QString nombre = persona->getNombre();
     QString apellidos = persona->getApellidos();
     QString origen = persona->getOrigen();
+    bool masculino = persona->getMasculino();
     bool buscado = persona->getBuscado();
     bool wiki = persona->getWiki();
     bool viaf = persona->getViaf();
+    QString tipo_persona = persona->getTipoPersona();
     QString wikilink = persona->getWikilink();
     QString viaflink = persona->getViaflink();
     QString wikidata = persona->getWikidata();
@@ -58,22 +60,24 @@ bool PersonasModel::AnadirPersona(const Persona *persona){
     if (otrosnombres.isEmpty())
         otrosnombres = "{}";
 
-    query.prepare("INSERT INTO general.persons(name, family_name, origin_name, lookedup, wikipedia, viaf, "
-                  "other_names, wikipedia_link, viaf_link, wikidata_link, datebirth, "
+    query.prepare("INSERT INTO general.persons(name, family_name, origin_name, lookedup, male, wikipedia, viaf, "
+                  "other_names, wikipedia_link, viaf_link, wikidata_link, type_person, datebirth, "
                   "datedeath, birth_diocesis, look_again, quantity_info, notes) "
-                  "VALUES (:nombre, :apellidos, :origen, :buscado, :wikipedia, :viaf, "
-                  ":otrosnombres, :wikipedia_link, :viaf_link, :wikidata_link, :nacimiento, "
+                  "VALUES (:nombre, :apellidos, :origen, :buscado, :masculino, :wikipedia, :viaf, "
+                  ":otrosnombres, :wikipedia_link, :viaf_link, :tipo_persona, :wikidata_link, :tipo_persona, :nacimiento, "
                   ":muerte, :diocesis, :volveramirar, :cantidad_info, :notas)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":apellidos", apellidos);
     query.bindValue(":origen", origen);
     query.bindValue(":buscado", buscado);
+    query.bindValue(":masculino", masculino);
     query.bindValue(":wikipedia", wiki);
     query.bindValue(":viaf", viaf);
     query.bindValue(":otrosnombres", otrosnombres);
     query.bindValue(":wikipedia_link", wikilink);
     query.bindValue(":viaf_link", viaflink);
     query.bindValue(":wikidata_link", wikidata);
+    query.bindValue(":tipo_persona", tipo_persona);
     query.bindValue(":nacimiento", nacimiento);
     query.bindValue(":diocesis", diocesis);
     query.bindValue(":muerte", muerte);

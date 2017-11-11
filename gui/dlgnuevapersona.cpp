@@ -32,9 +32,14 @@ dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
     nombres_compl = new QCompleter(this);
     apellidos_compl = new QCompleter(this);
     diocesis_compl = new QCompleter(this);
+
     nombres_query = new QSqlQueryModel(this);
     apellidos_query = new QSqlQueryModel(this);
     diocesis_query = new QSqlQueryModel(this);
+
+    QStringList tipos_persona;
+    tipos_persona << "Fraile" << "Terciario" << "Lego";
+    tipopersona_compl = new QCompleter(tipos_persona, this);
 
     jsongestor = new QJsonModel(this);
     otrosnombres_json = new QJsonModel(this);
@@ -71,6 +76,9 @@ void dlgNuevaPersona::cargarCompleters(){
 
     ui->txtDiocesis->setCompleter(diocesis_compl);
 
+    tipopersona_compl->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->txtTipoPersona->setCompleter(tipopersona_compl);
+
 }
 
 void dlgNuevaPersona::aceptarPersona(){
@@ -80,9 +88,11 @@ void dlgNuevaPersona::aceptarPersona(){
     QString nombre = ui->txtNombre->text();
     QString apellidos = ui->txtApellidos->text();
     QString origen = ui->txtOrigen->text();
+    bool masculino = ui->ckMasculino->checkState();
     bool buscado = ui->ckBuscado->checkState();
     bool wiki = ui->ckWiki->checkState();
     bool viaf = ui->ckViaf->checkState();
+    QString tipo_persona = ui->txtTipoPersona->text();
     QString wikilink = ui->txtWiki->text();
     QString viaflink = ui->txtViaf->text();
     QString wikidata = ui->txtWikidata->text();
@@ -108,12 +118,14 @@ void dlgNuevaPersona::aceptarPersona(){
     persona->setNombre(nombre);
     persona->setApellidos(apellidos);
     persona->setOrigen(origen);
+    persona->setMasculino(masculino);
     persona->setBuscado(buscado);
     persona->setWiki(wiki);
     persona->setViaf(viaf);
     persona->setWikilink(wikilink);
     persona->setViaflink(viaflink);
     persona->setWikidata(wikidata);
+    persona->setTipoPersona(tipo_persona);
     persona->setNacimiento(nacimiento);
     persona->setMuerte(muerte);
     persona->setDiocesis(diocesis);
