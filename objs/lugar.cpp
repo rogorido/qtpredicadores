@@ -8,3 +8,5 @@ void Lugar::setLugarLatin(QString l) { lugar_latin = l; }
 void Lugar::setPais(QString p) { pais = p; }
 void Lugar::setOtrosNombres(QString o) { otros_nombres = o; }
 void Lugar::setWikidata(QString w) { wikidata = w; }
+void Lugar::setTipoLugar(QString t) { tipo_lugar = t; }
+

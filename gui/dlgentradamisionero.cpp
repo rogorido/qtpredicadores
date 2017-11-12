@@ -138,6 +138,7 @@ void dlgEntradaMisionero::borrarCampos()
     ui->ckLlego->setCheckState(Qt::Unchecked);
     ui->ckRegreso->setCheckState(Qt::Unchecked);
     ui->ckVolverMirar->setCheckState(Qt::Unchecked);
+    ui->spCantidadInfo->setValue(100);
 
     ui->txtNotas->setText("");
 

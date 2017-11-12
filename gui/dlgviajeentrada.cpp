@@ -68,6 +68,7 @@ void dlgViajeEntrada::aceptarViaje()
     viaje.setFechaInicio(ui->dtFechaInicio->date());
     viaje.setFechaFin(ui->dtFechaFin->date());
     viaje.setDuracion(ui->spDuracion->value());
+    viaje.setVuelta(ui->ckVuelta->checkState());
 
     if (ui->wdNotas->haCambiado())
         viaje.setNotas(ui->wdNotas->getNotas());

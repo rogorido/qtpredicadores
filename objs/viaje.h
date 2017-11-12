@@ -19,6 +19,7 @@ public:
     void setDestino(int d);
     void setMotivos(QStringList m);
     void setDuracion(int d);
+    void setVuelta(bool v);
     void setMuerto(bool m);
     void setMotivoMuerte(QString m);
     void setLugarMuerte(QString l);
@@ -32,6 +33,7 @@ public:
     int getDestino() const { return destino; }
     QStringList getMotivos() const { return motivos; }
     int getDuracion() const { return duracion; }
+    bool getVuelta() const { return vuelta; }
     bool getMuerto() const {return muerto; }
     QString getMotivoMuerte() const { return motivo_muerte; }
     QString getLugarMuerte() const { return lugar_muerte; }
@@ -48,6 +50,7 @@ private:
     int destino;
     QStringList motivos;
     int duracion;
+    bool vuelta;
     bool muerto;
     QString motivo_muerte;
     QString lugar_muerte;

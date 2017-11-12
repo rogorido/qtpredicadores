@@ -98,6 +98,11 @@ void dlgNuevoLugar::cargarModelos(){
     m_paises_completer->setCompletionColumn(0);
     ui->txtPais->setCompleter(m_paises_completer);
 
+    QStringList tipos_lugar;
+    tipos_lugar << "City" << "Province" << "Ruins";
+    m_tipos_completer = new QCompleter(tipos_lugar, this);
+    ui->txtTipoLugar->setCompleter(m_tipos_completer);
+
 }
 
 void dlgNuevoLugar::borrarCampos(){

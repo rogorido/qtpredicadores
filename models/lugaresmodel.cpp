@@ -69,13 +69,16 @@ bool LugaresModel::AnadirLugar(const Lugar *lugar){
     QString pais = lugar->getPais();
     QString wikidata = lugar->getWikidata();
     QString otrosnombres = lugar->getOtrosNombres();
+    QString tipo_lugar = lugar->getTipoLugar();
 
-    query.prepare("INSERT INTO general.places(place, place_latin, country, wikidata, other_names) VALUES(:lugar, :lugar_latin, :pais, :wikidata, :otrosnombres)");
+    query.prepare("INSERT INTO general.places(place, place_latin, country, wikidata, other_names, type_place) "
+                  "VALUES(:lugar, :lugar_latin, :pais, :wikidata, :otrosnombres, :tipo_lugar)");
     query.bindValue(":lugar", nombre_lugar);
     query.bindValue(":lugar_latin", latin_lugar);
     query.bindValue(":pais", pais);
     query.bindValue(":wikidata", wikidata);
     query.bindValue(":otrosnombres", otrosnombres);
+    query.bindValue(":tipo_lugar", tipo_lugar);
 
     if (!query.exec()) {
         qDebug() << query.lastError();

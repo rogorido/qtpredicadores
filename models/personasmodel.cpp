@@ -64,7 +64,7 @@ bool PersonasModel::AnadirPersona(const Persona *persona){
                   "other_names, wikipedia_link, viaf_link, wikidata_link, type_person, datebirth, "
                   "datedeath, birth_diocesis, look_again, quantity_info, notes) "
                   "VALUES (:nombre, :apellidos, :origen, :buscado, :masculino, :wikipedia, :viaf, "
-                  ":otrosnombres, :wikipedia_link, :viaf_link, :tipo_persona, :wikidata_link, :tipo_persona, :nacimiento, "
+                  ":otrosnombres, :wikipedia_link, :viaf_link, :wikidata_link, :tipo_persona, :nacimiento, "
                   ":muerte, :diocesis, :volveramirar, :cantidad_info, :notas)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":apellidos", apellidos);

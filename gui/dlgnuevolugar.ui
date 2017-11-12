@@ -56,6 +56,16 @@
      <item row="3" column="2" colspan="2">
       <widget class="QLineEdit" name="txtWikidata"/>
      </item>
+     <item row="4" column="3">
+      <widget class="QLineEdit" name="txtTipoLugar"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Tipo</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
@@ -103,6 +113,7 @@
   <tabstop>txtLugarLatin</tabstop>
   <tabstop>txtPais</tabstop>
   <tabstop>txtWikidata</tabstop>
+  <tabstop>txtTipoLugar</tabstop>
   <tabstop>btOtrosNombres</tabstop>
   <tabstop>btCancelar</tabstop>
   <tabstop>btOK</tabstop>

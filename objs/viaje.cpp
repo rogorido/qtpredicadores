@@ -10,6 +10,7 @@ void Viaje::setOrigen(int o) { origen = o; }
 void Viaje::setDestino(int d) { destino = d; }
 void Viaje::setMotivos(QStringList m) { motivos = m; }
 void Viaje::setDuracion(int d) { duracion = d; }
+void Viaje::setVuelta(bool v) { vuelta = v; }
 void Viaje::setMuerto(bool m) { muerto = m; }
 void Viaje::setMotivoMuerte(QString m) { motivo_muerte = m; }
 void Viaje::setLugarMuerte(QString l) { lugar_muerte = l; }
@@ -49,6 +50,8 @@ QJsonObject Viaje::getViajeJson()
 
     if (fecha_fin != QDate(1500, 1, 1))
         viaje.insert("fecha_fin", fecha_fin.toString("dd-MM-yyyy"));
+
+    viaje.insert("vuelta", QJsonValue(vuelta));
 
     if (nota.estaLleno())
         viaje.insert("meta_info", nota.getNotasJson());

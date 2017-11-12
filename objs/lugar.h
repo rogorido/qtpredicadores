@@ -17,14 +17,16 @@ public:
     void setPais(QString p);
     void setOtrosNombres(QString o);
     void setWikidata(QString w);
+    void setTipoLugar(QString t);
 
     //getters
-    int getId() const {return id;}
-    QString getLugar() const {return lugar;}
-    QString getLugarLatin() const {return lugar_latin;}
-    QString getPais() const {return pais;}
-    QString getOtrosNombres() const {return otros_nombres;}
-    QString getWikidata() const {return wikidata;}
+    int getId() const { return id; }
+    QString getLugar() const { return lugar; }
+    QString getLugarLatin() const { return lugar_latin; }
+    QString getPais() const { return pais; }
+    QString getOtrosNombres() const { return otros_nombres; }
+    QString getWikidata() const { return wikidata; }
+    QString getTipoLugar() const { return tipo_lugar; }
 
 private:
 
@@ -34,6 +36,7 @@ private:
     QString pais;
     QString otros_nombres;
     QString wikidata;
+    QString tipo_lugar;
 
 };
 

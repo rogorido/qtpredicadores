@@ -188,6 +188,13 @@
         </layout>
        </item>
        <item>
+        <widget class="QCheckBox" name="ckVuelta">
+         <property name="text">
+          <string>Vuelta</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
