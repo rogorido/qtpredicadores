@@ -54,12 +54,14 @@ void dlgNuevoLugar::aceptar(){
     QString lugar_latin = ui->txtLugarLatin->text();
     QString pais = ui->txtPais->text();
     QString wikidata = ui->txtWikidata->text();
+    QString tipo_lugar = ui->txtTipoLugar->text();
     QString nombres;
 
     lugar->setLugar(nombre);
     lugar->setLugarLatin(lugar_latin);
     lugar->setPais(pais);
     lugar->setWikidata(wikidata);
+    lugar->setTipoLugar(tipo_lugar);
 
     if (otrosnombres->getSize() > 0)
         // entiendo q solo puede haber un elemento en la Qlist...
