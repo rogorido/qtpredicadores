@@ -2,9 +2,10 @@
 #define DLGDIOCESIS_H
 
 #include <QWidget>
+#include <QModelIndex>
 
 class QMenu;
-class QAction;
+//class QAction;
 class QSqlQueryModel;
 class SqlFiltroGestor;
 class ProxyNombres;

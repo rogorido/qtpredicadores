@@ -3,9 +3,7 @@
 
 #include <QSqlQuery>
 #include <QSqlQueryModel>
-#include <QModelIndex>
 #include <QMenu>
-#include <QAction>
 #include <QDebug>
 #include <QDesktopServices>
 #include <QUrl>
@@ -25,16 +23,18 @@ dlgDiocesis::dlgDiocesis(QWidget *parent) :
     menuContexto = new QMenu(this);
 
     m_diocesis = new QSqlQueryModel(this);
-    sqlactivo = sqlgeneral;
+    proxy_diocesis = new ProxyNombres(DIOCESIS, this);
 
+    sqlactivo = sqlgeneral;
     sql_gestor = new SqlFiltroGestor(sqlgeneral, this);
     connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
 
     cargarModelos();
 
     connect(ui->pbCerrar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
-    connect(ui->twDiocesis->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
-            this, SLOT(seleccionarDiocesis(QModelIndex)));
+    //connect(ui->twDiocesis->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
+     //       this, SLOT(seleccionarDiocesis(QModelIndex)));
+    connect(ui->twDiocesis, SIGNAL(clicked(const QModelIndex &)), this, SLOT(seleccionarDiocesis(QModelIndex)));
     connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
     connect(ui->pbAbrirUrl, SIGNAL(clicked()), this, SLOT(abrirUrl()));
 
@@ -111,14 +111,13 @@ void dlgDiocesis::on_ckSinComprobar_toggled(bool checked)
 void dlgDiocesis::cargarModelos()
 {
     m_diocesis->setQuery(sqlactivo);
-    proxy_diocesis = new ProxyNombres(DIOCESIS, this);
     proxy_diocesis->setSourceModel(m_diocesis);
 
     ui->twDiocesis->setModel(proxy_diocesis);
 
     // ocultamos algunas columnas
     ui->twDiocesis->hideColumn(0);
-    ui->twDiocesis->hideColumn(3);
+    //ui->twDiocesis->hideColumn(3);
     ui->twDiocesis->hideColumn(4);
     ui->twDiocesis->hideColumn(5);
     ui->twDiocesis->hideColumn(6);
@@ -143,6 +142,7 @@ void dlgDiocesis::cargarModelos()
     QModelIndex index = proxy_diocesis->index(0,0);
     if (index.isValid()) {
         ui->twDiocesis->setCurrentIndex(index);
+        seleccionarDiocesis(index);
     }
 }
 
