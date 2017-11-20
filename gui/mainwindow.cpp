@@ -26,6 +26,7 @@
 #include "dlgestadisticas.h"
 #include "dlgreforma.h"
 #include "dlgobispos.h"
+#include "dlgdiocesis.h"
 
 // para lo de MDIarea
 #include "dlgdetalles.h"
@@ -97,6 +98,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionCiudades, SIGNAL(triggered(bool)), this, SLOT(Ciudades()));
     connect(ui->actionCasas, SIGNAL(triggered(bool)), this, SLOT(Casas()));
     connect(ui->actionMisiones, SIGNAL(triggered(bool)), this, SLOT(Misiones()));
+    connect(ui->actionDiocesis, SIGNAL(triggered(bool)), this, SLOT(Diocesis()));
     connect(ui->actionCapituli, SIGNAL(triggered(bool)), this, SLOT(Capitulos()));
     connect(ui->actionGeneralEstadisticas, SIGNAL(triggered(bool)), this, SLOT(Estadisticas()));
     connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -166,8 +168,8 @@ void MainWindow::nuevaCasa(){
 }
 
 void MainWindow::nuevaDiocesis(){
-    dlgDiocesis = new dlgNuevaDiocesis(this);
-    QMdiSubWindow *window = mdiArea->addSubWindow(dlgDiocesis);
+    dlgMeterNuevaDiocesis = new dlgNuevaDiocesis(this);
+    QMdiSubWindow *window = mdiArea->addSubWindow(dlgMeterNuevaDiocesis);
     window->show();
 }
 
@@ -215,6 +217,13 @@ void MainWindow::Misiones()
 {
     FormMisiones = new dlgMisiones(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(FormMisiones);
+    window->show();
+}
+
+void MainWindow::Diocesis()
+{
+    FormDiocesis = new dlgDiocesis(this);
+    QMdiSubWindow *window = mdiArea->addSubWindow(FormDiocesis);
     window->show();
 }
 

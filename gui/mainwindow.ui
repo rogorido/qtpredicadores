@@ -51,6 +51,7 @@
     <addaction name="actionCiudades"/>
     <addaction name="actionCasas"/>
     <addaction name="actionCapituli"/>
+    <addaction name="actionDiocesis"/>
     <addaction name="actionObispos"/>
     <addaction name="actionMisiones"/>
    </widget>
@@ -265,6 +266,11 @@
   <action name="actionMisiones">
    <property name="text">
     <string>Misiones</string>
+   </property>
+  </action>
+  <action name="actionDiocesis">
+   <property name="text">
+    <string>Diócesis</string>
    </property>
   </action>
  </widget>
