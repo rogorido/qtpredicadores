@@ -19,7 +19,8 @@ class CapitulosModel;
 class TemasModel;
 class DiocesisModel;
 
-class QSqlTableModel;
+//class QSqlTableModel;
+class QSqlQueryModel;
 class ProxyNombres;
 
 class MyQmdiArea;
@@ -60,7 +61,7 @@ private:
 
     MyQmdiArea *mdiarea;
 
-    QSqlTableModel *m_objeto;
+    QSqlQueryModel *m_objeto;
     ProxyNombres *m_objeto_proxy;
 
     CasasModel *m_casas;
@@ -70,6 +71,11 @@ private:
     CapitulosModel *m_capitulos;
     TemasModel *m_temas;
     DiocesisModel *m_diocesis;
+
+    /*
+     * aquí guardamos la query que usamos
+     */
+    QString sql_general;
 
     void cargarModelo();
     void cargarTipo();

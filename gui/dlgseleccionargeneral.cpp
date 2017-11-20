@@ -22,6 +22,7 @@
 #include "widgets/fechasdelegate.h"
 
 #include <QInputDialog>
+#include <QSqlQueryModel>
 #include <QMessageBox>
 #include <QMdiSubWindow>
 #include <QDebug>
@@ -60,44 +61,44 @@ void dlgSeleccionarGeneral::cargarTipo(){
     switch (tipo_seleccionado) {
     case CASA:{
         m_casas = CasasModel::InstanceModel();
-        m_objeto->setTable("vistas.houses_alternatives");
+        sql_general = "SELECT * FROM vistas.houses_alternatives";
         ui->btAnadir->setText("Aña&dir casa");
         connect(m_casas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case LUGAR:{
         m_lugares = LugaresModel::InstanceModel();
-        m_objeto->setTable("vistas.places_alternatives");
+        sql_general = "SELECT * FROM vistas.places_alternatives";
         ui->btAnadir->setText("Aña&dir lugar");
         connect(m_lugares, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case PROVINCIA:{
         m_provincias = ProvinciasModel::InstanceModel();
-        m_objeto->setTable("vistas.provinces_alternatives");
+        sql_general = "SELECT * FROM vistas.provinces_alternatives";
         ui->btAnadir->setText("Aña&dir provincia");
         connect(m_provincias, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case PERSONA:{
         m_personas = PersonasModel::InstanceModel();
-        m_objeto->setTable("vistas.persons_alternatives");
+        sql_general = "SELECT * FROM vistas.persons_alternatives";
         ui->btAnadir->setText("Aña&dir persona");
         connect(m_personas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case CAPITULO:{
         m_capitulos = CapitulosModel::InstanceModel();
-        m_objeto->setTable("vistas.chapters_alternatives");
+        sql_general = "SELECT * FROM vistas.chapters_alternatives";
         ui->btAnadir->setText("Aña&dir capítulo");
         connect(m_capitulos, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case DIOCESIS:{
         m_diocesis = DiocesisModel::InstanceModel();
-        m_objeto->setTable("vistas.dioceses_alternatives");
+        sql_general = "SELECT * FROM vistas.dioceses_alternatives";
         comprobarVacio();
         ui->btAnadir->setText("Aña&dir diócesis");
         connect(m_diocesis, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
     case TEMA:{
         m_temas = TemasModel::InstanceModel();
-        m_objeto->setTable("vistas.themes_alternatives");
+        sql_general = "SELECT * FROM vistas.themes_alternatives";
         ui->btAnadir->setText("Aña&dir tema");
         connect(m_temas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         break;}
@@ -105,7 +106,7 @@ void dlgSeleccionarGeneral::cargarTipo(){
         break;
     }
 
-    m_objeto->select();
+    m_objeto->setQuery(sql_general);
 }
 
 void dlgSeleccionarGeneral::cargarTituloVentana()
@@ -416,7 +417,8 @@ void dlgSeleccionarGeneral::anadirObjeto(){
 }
 
 void dlgSeleccionarGeneral::actualizarObjeto(){
-    m_objeto->select();
+
+    m_objeto->setQuery(sql_general);
     ui->twSeleccionar->resizeRowsToContents();
 }
 
