@@ -53,8 +53,7 @@ dlgObispos::dlgObispos(QWidget *parent) :
     ui->twObispos->setItemDelegateForColumn(7, new FechasDelegate(FechasDelegate::TipoFecha::FULL_DATE, this));
     ui->twObispos->setItemDelegateForColumn(8, new FechasDelegate(FechasDelegate::TipoFecha::FULL_DATE, this));
 
-    connect(ui->twObispos->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
-            this, SLOT(seleccionarObispo(QModelIndex)));
+    connect(ui->twObispos, SIGNAL(clicked(const QModelIndex &)), this, SLOT(seleccionarObispo(QModelIndex)));
     connect(ui->twObispos, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(menuContextual(const QPoint &)));
     connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
@@ -77,7 +76,9 @@ void dlgObispos::seleccionarObispo(const QModelIndex &idx)
     if (!indice.isValid())
         return;
 
-    obispo_seleccionado = obispos_model->data(indice, Qt::DisplayRole).toInt();
+    QModelIndex indice_verdadero = proxy_obispos->mapToSource(indice);
+
+    obispo_seleccionado = obispos_model->data(indice_verdadero, Qt::DisplayRole).toInt();
 
 }
 

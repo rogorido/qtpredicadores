@@ -56,7 +56,7 @@ dlgSeleccionarGeneral::~dlgSeleccionarGeneral()
 }
 
 void dlgSeleccionarGeneral::cargarTipo(){
-    m_objeto = new QSqlTableModel(this);
+    m_objeto = new QSqlQueryModel(this);
 
     switch (tipo_seleccionado) {
     case CASA:{
