@@ -32,6 +32,9 @@ private slots:
     void cerrar();
 
     void on_ckSinComprobar_toggled(bool checked);
+    void on_pbIntroducirObispos_clicked();
+
+    void on_pbMarcarComprobado_clicked();
 
 private:
     Ui::dlgDiocesis *ui;

@@ -17,6 +17,7 @@
 #include "gui/dlgnuevolugar.h"
 #include "gui/dlgnuevocapitulo.h"
 #include "gui/dlgnuevadiocesis.h"
+#include "gui/dlgobispos.h"
 
 #include "widgets/myqmdiarea.h"
 #include "widgets/fechasdelegate.h"
@@ -25,6 +26,9 @@
 #include <QSqlQueryModel>
 #include <QMessageBox>
 #include <QMdiSubWindow>
+#include <QModelIndex>
+#include <QMenu>
+#include <QAction>
 #include <QDebug>
 
 dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *parent) :
@@ -37,15 +41,21 @@ dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *par
 
     ui->txtFiltro->setClearButtonEnabled(true);
 
+    cargarTipo();
+    cargarModelo();
+    cargarTituloVentana();
+    cargarMenus();
+
+    ui->twSeleccionar->setContextMenuPolicy(Qt::CustomContextMenu);
+
     connect(ui->btAnadir, SIGNAL(clicked(bool)), this, SLOT(anadirObjeto()));
     connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
     connect(ui->twSeleccionar, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(aceptar()));
+    connect(ui->twSeleccionar, SIGNAL(clicked(const QModelIndex &)), this, SLOT(seleccionarObjeto(QModelIndex)));
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
-
-    cargarTipo();
-    cargarModelo();
-    cargarTituloVentana();
+    connect(ui->twSeleccionar, SIGNAL(customContextMenuRequested(const QPoint &)),
+            this, SLOT(menuContextual(const QPoint &)));
 
     ui->txtFiltro->setFocus();
 }
@@ -138,6 +148,17 @@ void dlgSeleccionarGeneral::cargarTituloVentana()
     }
 }
 
+void dlgSeleccionarGeneral::cargarMenus()
+{
+     menuContexto = new QMenu(this);
+
+     a_verDiocesisPersona = new QAction("Ver diócesis", this);
+     connect(a_verDiocesisPersona, SIGNAL(triggered(bool)), this, SLOT(verDiocesisPersona()));
+
+     menuContexto->addAction(a_verDiocesisPersona);
+
+}
+
 void dlgSeleccionarGeneral::cargarModelo(){
 
     m_objeto_proxy = new ProxyNombres(tipo_seleccionado, this);
@@ -171,6 +192,29 @@ void dlgSeleccionarGeneral::actualizarFiltro(const QString filtro){
         m_objeto_proxy->setFilterRegExp(QRegExp("", Qt::CaseInsensitive, QRegExp::FixedString));
         ui->twSeleccionar->resizeRowsToContents();
     }
+}
+
+void dlgSeleccionarGeneral::menuContextual(const QPoint &point)
+{
+    qDebug() << "estamos en el menú";
+
+    menuContexto->popup(ui->twSeleccionar->viewport()->mapToGlobal(point));
+}
+
+void dlgSeleccionarGeneral::seleccionarObjeto(const QModelIndex &idx)
+{
+    /*
+     * sacamos el índice de la columna 0 que es donde está
+     * la id de la resolución, para luego convertirla en int
+     * y usarla en el filtro del otro modelo.
+     */
+    QModelIndex indice = idx.model()->index(idx.row(), 0);
+    if (!indice.isValid())
+        return;
+
+    QModelIndex indice_verdadero = m_objeto_proxy->mapToSource(indice);
+
+    persona_id = m_objeto->data(indice_verdadero, Qt::DisplayRole).toInt();
 }
 
 void dlgSeleccionarGeneral::aceptar(){
@@ -420,6 +464,15 @@ void dlgSeleccionarGeneral::actualizarObjeto(){
 
     m_objeto->setQuery(sql_general);
     ui->twSeleccionar->resizeRowsToContents();
+}
+
+void dlgSeleccionarGeneral::verDiocesisPersona()
+{
+    dlgObispos *dlgobispos = new dlgObispos(this);
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgobispos);
+    dlgobispos->seleccionarPersona(persona_id);
+    window->show();
+
 }
 
 void dlgSeleccionarGeneral::cerrar()

@@ -24,6 +24,11 @@ public:
 
     void contarTotal();
 
+    /*
+     * esto lo abrimos desde el form dlgSeleccionar
+     */
+    void seleccionarPersona(int id);
+
 private slots:
     void seleccionarObispo(const QModelIndex &idx);
     void menuContextual(const QPoint &point);

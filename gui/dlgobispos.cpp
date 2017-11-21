@@ -205,6 +205,15 @@ void dlgObispos::contarTotal()
     emitirSenalTotalObispos();
 }
 
+void dlgObispos::seleccionarPersona(int id)
+{
+    QString sql;
+
+    sql = QString("person_id = %1").arg(id);
+
+    sql_gestor->anadirFiltro("persona", sql);
+}
+
 void dlgObispos::on_cbDiocesis_currentIndexChanged(int index)
 {
     int escogido;

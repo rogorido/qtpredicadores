@@ -3,8 +3,10 @@
 
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QSqlError>
 #include <QMenu>
 #include <QDebug>
+#include <QMessageBox>
 #include <QDesktopServices>
 #include <QUrl>
 
@@ -57,6 +59,9 @@ void dlgDiocesis::seleccionarDiocesis(const QModelIndex &idx)
         return;
 
     QModelIndex indice_verdadero = proxy_diocesis->mapToSource(indice);
+
+    if (!indice_verdadero.isValid())
+        return;
 
     diocesis_seleccionada = m_diocesis->data(indice_verdadero, Qt::DisplayRole).toInt();
 }
@@ -117,7 +122,7 @@ void dlgDiocesis::cargarModelos()
 
     // ocultamos algunas columnas
     ui->twDiocesis->hideColumn(0);
-    //ui->twDiocesis->hideColumn(3);
+    ui->twDiocesis->hideColumn(3);
     ui->twDiocesis->hideColumn(4);
     ui->twDiocesis->hideColumn(5);
     ui->twDiocesis->hideColumn(6);
@@ -159,5 +164,47 @@ QString dlgDiocesis::extraerUrl()
     url = query.value(0).toString();
 
     return url;
+
+}
+
+void dlgDiocesis::on_pbIntroducirObispos_clicked()
+{
+    QModelIndex indice= proxy_diocesis->index(ui->twDiocesis->currentIndex().row(), 0);
+    if (!indice.isValid())
+        return;
+
+    int id = m_diocesis->data(proxy_diocesis->mapToSource(indice), Qt::DisplayRole).toInt();
+    //qDebug() << "escogido: " << id;
+
+}
+
+void dlgDiocesis::on_pbMarcarComprobado_clicked()
+{
+    QModelIndex indice1 = proxy_diocesis->index(ui->twDiocesis->currentIndex().row(), 13);
+    QModelIndex indice2 = proxy_diocesis->index(ui->twDiocesis->currentIndex().row(), 0);
+    if (!indice1.isValid() || !indice2.isValid() )
+        return;
+    bool vistos_todos = m_diocesis->data(proxy_diocesis->mapToSource(indice1), Qt::DisplayRole).toBool();
+    int id = m_diocesis->data(proxy_diocesis->mapToSource(indice2), Qt::DisplayRole).toInt();
+
+    vistos_todos = !vistos_todos;
+
+    QSqlQuery query;
+    query.prepare("UPDATE dioceses SET check_allbishops = :valor WHERE diocese_id = :id");
+    query.bindValue(":valor", vistos_todos);
+    query.bindValue(":id", id);
+
+    if (!query.exec()){
+        int ret = QMessageBox::warning(this, "Error",
+                                       "Ha habido un error al ejecutar la consulta de inserción.");
+        Q_UNUSED(ret)
+        qDebug() << query.lastError();
+        return;
+    }
+    else
+    {
+        m_diocesis->setQuery(sqlactivo);
+    }
+
 
 }

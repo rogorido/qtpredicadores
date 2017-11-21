@@ -24,6 +24,9 @@ class QSqlQueryModel;
 class ProxyNombres;
 
 class MyQmdiArea;
+class QMenu;
+class QAction;
+class QModelIndex;
 
 namespace Ui {
 class dlgSeleccionarGeneral;
@@ -41,9 +44,13 @@ private slots:
 
     void anadirObjeto();
     void actualizarFiltro(const QString filtro);
+    void menuContextual(const QPoint &point);
+    void seleccionarObjeto(const QModelIndex &idx);
     void aceptar();
 
     void actualizarObjeto();
+
+    void verDiocesisPersona();
 
     void cerrar();
 
@@ -60,6 +67,10 @@ private:
     Ui::dlgSeleccionarGeneral *ui;
 
     MyQmdiArea *mdiarea;
+
+    QMenu *menuContexto;
+
+    QAction *a_verDiocesisPersona;
 
     QSqlQueryModel *m_objeto;
     ProxyNombres *m_objeto_proxy;
@@ -80,6 +91,7 @@ private:
     void cargarModelo();
     void cargarTipo();
     void cargarTituloVentana();
+    void cargarMenus();
 
     // esto es un poco absurdo, tiene que haber otra manera...
     // pq esto lo q hace es llamar a las signals...
@@ -108,6 +120,12 @@ private:
     void comprobarVacio();
 
     tiposeleccionar tipo_seleccionado;
+
+    /*
+     * estos son para los menúes contextuales
+     */
+
+    int persona_id;
 
 };
 
