@@ -174,7 +174,7 @@ void dlgDiocesis::on_pbIntroducirObispos_clicked()
         return;
 
     int id = m_diocesis->data(proxy_diocesis->mapToSource(indice), Qt::DisplayRole).toInt();
-    //qDebug() << "escogido: " << id;
+    qDebug() << "escogido: " << id;
 
 }
 

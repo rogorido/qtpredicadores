@@ -21,6 +21,7 @@ class dlgNuevaDiocesis : public QWidget
 
 public:
     explicit dlgNuevaDiocesis(QWidget *parent = 0);
+    explicit dlgNuevaDiocesis(int diocesis_id, QWidget *parent = 0);
     ~dlgNuevaDiocesis();
 
 private slots:
@@ -55,6 +56,16 @@ private:
      */
     QStringList *lista_motivos;
     QCompleter *motivos_completer;
+
+    /*
+     * variables para cuando abrimos el form
+     * para modificar una existente
+     */
+    bool modificando = false;
+    int diocesis_id;
+
+    void cargarDiocesis();
+
 
 };
 

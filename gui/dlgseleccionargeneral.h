@@ -125,7 +125,7 @@ private:
      * estos son para los menúes contextuales
      */
 
-    int persona_id;
+    int persona_id = 0;
 
 };
 

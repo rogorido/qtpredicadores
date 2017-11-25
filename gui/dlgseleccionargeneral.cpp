@@ -468,6 +468,9 @@ void dlgSeleccionarGeneral::actualizarObjeto(){
 
 void dlgSeleccionarGeneral::verDiocesisPersona()
 {
+    if (persona_id == 0)
+        return;
+
     dlgObispos *dlgobispos = new dlgObispos(this);
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgobispos);
     dlgobispos->seleccionarPersona(persona_id);
