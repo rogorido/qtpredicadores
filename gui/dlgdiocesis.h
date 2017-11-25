@@ -7,6 +7,7 @@
 class QMenu;
 //class QAction;
 class QSqlQueryModel;
+class QSortFilterProxyModel;
 class SqlFiltroGestor;
 class ProxyNombres;
 
@@ -45,6 +46,8 @@ private:
      * y por eso lo hago así...
      */
     QSqlQueryModel *m_diocesis;
+    QSqlQueryModel *m_obispos;
+    QSortFilterProxyModel *m_obispos_proxy;
 
     SqlFiltroGestor *sql_gestor;
     ProxyNombres *proxy_diocesis;
@@ -56,6 +59,7 @@ private:
 
     void cargarModelos();
     QString extraerUrl();
+    void mostrarObispos();
 
 };
 

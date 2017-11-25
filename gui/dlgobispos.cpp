@@ -12,7 +12,7 @@
 #include "objs/proxynombres.h"
 #include "widgets/fechasdelegate.h"
 
-const QString sqlgeneral = "SELECT * from vistas.obispos_general";
+const QString sql_general = "SELECT * from vistas.obispos_general";
 const QString sqlvolvermirar = "bishop_id IN (SELECT bishop_id FROM bishops_details "
                                "WHERE (details->'meta_info'->>'volver_a_mirar')::boolean = TRUE)";
 const QString sqlinteresante = "bishop_id IN (SELECT bishop_id FROM bishops_details "
@@ -26,9 +26,9 @@ dlgObispos::dlgObispos(QWidget *parent) :
     ui->setupUi(this);
 
     obispos_model = new QSqlQueryModel(this);
-    sqlactivo = sqlgeneral;
+    sqlactivo = sql_general;
 
-    sql_gestor = new SqlFiltroGestor(sqlgeneral, this);
+    sql_gestor = new SqlFiltroGestor(sql_general, this);
     connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
 
     diocesis_model = new QSqlQueryModel(this);

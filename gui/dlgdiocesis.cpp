@@ -3,6 +3,7 @@
 
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QSortFilterProxyModel>
 #include <QSqlError>
 #include <QMenu>
 #include <QDebug>
@@ -13,8 +14,9 @@
 #include "models/sqlfiltrogestor.h"
 #include "objs/proxynombres.h"
 
-const QString sqlgeneral = "SELECT * from general.dioceses";
-const QString sqlcomprobar = "check_allbishops = false";
+const QString sql_general = "SELECT * from general.dioceses";
+const QString sql_comprobar = "check_allbishops = false";
+const QString sql_obispos = "SELECT * from vistas.obispos_general";
 
 dlgDiocesis::dlgDiocesis(QWidget *parent) :
     QWidget(parent),
@@ -27,8 +29,13 @@ dlgDiocesis::dlgDiocesis(QWidget *parent) :
     m_diocesis = new QSqlQueryModel(this);
     proxy_diocesis = new ProxyNombres(DIOCESIS, this);
 
-    sqlactivo = sqlgeneral;
-    sql_gestor = new SqlFiltroGestor(sqlgeneral, this);
+    m_obispos = new QSqlQueryModel(this);
+    m_obispos->setQuery(sql_obispos);
+    m_obispos_proxy = new QSortFilterProxyModel(this);
+    m_obispos_proxy->setSourceModel(m_obispos);
+
+    sqlactivo = sql_general;
+    sql_gestor = new SqlFiltroGestor(sql_general, this);
     connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
 
     cargarModelos();
@@ -64,6 +71,8 @@ void dlgDiocesis::seleccionarDiocesis(const QModelIndex &idx)
         return;
 
     diocesis_seleccionada = m_diocesis->data(indice_verdadero, Qt::DisplayRole).toInt();
+
+    mostrarObispos();
 }
 
 void dlgDiocesis::actualizarSql(QString s)
@@ -108,7 +117,7 @@ void dlgDiocesis::cerrar()
 void dlgDiocesis::on_ckSinComprobar_toggled(bool checked)
 {
     if (checked)
-        sql_gestor->anadirFiltro("comprobar", sqlcomprobar);
+        sql_gestor->anadirFiltro("comprobar", sql_comprobar);
     else
         sql_gestor->quitarFiltro("comprobar");
 }
@@ -149,6 +158,22 @@ void dlgDiocesis::cargarModelos()
         ui->twDiocesis->setCurrentIndex(index);
         seleccionarDiocesis(index);
     }
+
+    ui->twObispos->setModel(m_obispos_proxy);
+    ui->twObispos->resizeColumnsToContents();
+    ui->twObispos->resizeRowsToContents();
+    ui->twObispos->horizontalHeader()->setStretchLastSection(true);
+    ui->twObispos->setSortingEnabled(true);
+    ui->twObispos->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twObispos->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    ui->twObispos->hideColumn(0);
+    ui->twObispos->hideColumn(1);
+    ui->twObispos->hideColumn(6);
+    ui->twObispos->hideColumn(10);
+    ui->twObispos->hideColumn(11);
+    ui->twObispos->hideColumn(12);
+    ui->twObispos->hideColumn(13);
 }
 
 QString dlgDiocesis::extraerUrl()
@@ -165,6 +190,16 @@ QString dlgDiocesis::extraerUrl()
 
     return url;
 
+}
+
+void dlgDiocesis::mostrarObispos()
+{
+    m_obispos_proxy->setFilterFixedString(QString::number(diocesis_seleccionada));
+    m_obispos_proxy->setFilterKeyColumn(6);
+
+    ui->twObispos->resizeColumnsToContents();
+    ui->twObispos->resizeRowsToContents();
+    ui->twObispos->horizontalHeader()->setStretchLastSection(true);
 }
 
 void dlgDiocesis::on_pbIntroducirObispos_clicked()
