@@ -6,13 +6,17 @@
 #include <QSortFilterProxyModel>
 #include <QSqlError>
 #include <QMenu>
+#include <QAction>
 #include <QDebug>
 #include <QMessageBox>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QMdiSubWindow>
 
 #include "models/sqlfiltrogestor.h"
 #include "objs/proxynombres.h"
+#include "gui/dlgnuevadiocesis.h"
+#include "widgets/myqmdiarea.h"
 
 const QString sql_general = "SELECT * from general.dioceses";
 const QString sql_comprobar = "check_allbishops = false";
@@ -23,8 +27,9 @@ dlgDiocesis::dlgDiocesis(QWidget *parent) :
     ui(new Ui::dlgDiocesis)
 {
     ui->setupUi(this);
+    mdiarea = MyQmdiArea::Instance(this);
 
-    menuContexto = new QMenu(this);
+    ui->twDiocesis->setContextMenuPolicy(Qt::CustomContextMenu);
 
     m_diocesis = new QSqlQueryModel(this);
     proxy_diocesis = new ProxyNombres(DIOCESIS, this);
@@ -39,6 +44,7 @@ dlgDiocesis::dlgDiocesis(QWidget *parent) :
     connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
 
     cargarModelos();
+    cargarMenus();
 
     connect(ui->pbCerrar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
     //connect(ui->twDiocesis->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
@@ -46,6 +52,8 @@ dlgDiocesis::dlgDiocesis(QWidget *parent) :
     connect(ui->twDiocesis, SIGNAL(clicked(const QModelIndex &)), this, SLOT(seleccionarDiocesis(QModelIndex)));
     connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
     connect(ui->pbAbrirUrl, SIGNAL(clicked()), this, SLOT(abrirUrl()));
+    connect(ui->twDiocesis, SIGNAL(customContextMenuRequested(const QPoint &)),
+            this, SLOT(menuContextualDiocesis(QPoint)));
 
 }
 
@@ -94,6 +102,22 @@ void dlgDiocesis::actualizarFiltro(const QString filtro)
         ui->twDiocesis->resizeRowsToContents();
         ui->twDiocesis->resizeColumnsToContents();
     }
+}
+
+void dlgDiocesis::menuContextualDiocesis(const QPoint &point)
+{
+    menuContextoDiocesis->popup(ui->twDiocesis->viewport()->mapToGlobal(point));
+}
+
+void dlgDiocesis::modificarDiocesis()
+{
+    if (diocesis_seleccionada = 0)
+        return;
+
+    dlgNuevaDiocesis *dlgnueva = new dlgNuevaDiocesis(diocesis_seleccionada, this);
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgnueva);
+    window->show();
+
 }
 
 void dlgDiocesis::abrirUrl()
@@ -200,6 +224,16 @@ void dlgDiocesis::mostrarObispos()
     ui->twObispos->resizeColumnsToContents();
     ui->twObispos->resizeRowsToContents();
     ui->twObispos->horizontalHeader()->setStretchLastSection(true);
+}
+
+void dlgDiocesis::cargarMenus()
+{
+    menuContextoDiocesis = new QMenu(this);
+
+    a_modificarDiocesis = new QAction("Modificar diócesis", this);
+    connect(a_modificarDiocesis, SIGNAL(triggered(bool)), this, SLOT(modificarDiocesis()));
+
+    menuContextoDiocesis->addAction(a_modificarDiocesis);
 }
 
 void dlgDiocesis::on_pbIntroducirObispos_clicked()

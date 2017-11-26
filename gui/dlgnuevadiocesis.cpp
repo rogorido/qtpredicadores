@@ -42,6 +42,16 @@ dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
 
 }
 
+dlgNuevaDiocesis::dlgNuevaDiocesis(int diocesis_id, QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::dlgNuevaDiocesis)
+{
+    ui->setupUi(this);
+
+    mdiarea = MyQmdiArea::Instance(this);
+
+}
+
 dlgNuevaDiocesis::~dlgNuevaDiocesis()
 {
     delete ui;

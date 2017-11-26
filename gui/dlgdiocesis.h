@@ -10,6 +10,10 @@ class QSqlQueryModel;
 class QSortFilterProxyModel;
 class SqlFiltroGestor;
 class ProxyNombres;
+class QMenu;
+class QAction;
+
+class MyQmdiArea;
 
 namespace Ui {
 class dlgDiocesis;
@@ -28,6 +32,8 @@ private slots:
     void seleccionarDiocesis(const QModelIndex &idx);
     void actualizarSql(QString s);
     void actualizarFiltro(const QString filtro);
+    void menuContextualDiocesis(const QPoint &point);
+    void modificarDiocesis();
     void abrirUrl();
 
     void cerrar();
@@ -39,6 +45,11 @@ private slots:
 
 private:
     Ui::dlgDiocesis *ui;
+    MyQmdiArea *mdiarea;
+
+    QMenu *menuContextoDiocesis;
+
+    QAction *a_modificarDiocesis;
 
     /*
      * NOTE: esto es un poco absurdo, pues este model ya exsite como
@@ -52,14 +63,13 @@ private:
     SqlFiltroGestor *sql_gestor;
     ProxyNombres *proxy_diocesis;
 
-    QMenu *menuContexto;
-
     QString sqlactivo;
-    int diocesis_seleccionada;
+    int diocesis_seleccionada = 0;
 
     void cargarModelos();
     QString extraerUrl();
     void mostrarObispos();
+    void cargarMenus();
 
 };
 

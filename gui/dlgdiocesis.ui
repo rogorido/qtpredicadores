@@ -72,16 +72,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbVerObispos">
-       <property name="text">
-        <string>Ver &amp;obispos</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="pbMarcarComprobado">
        <property name="text">
-        <string>Marcar como co&amp;mprobado</string>
+        <string>Co&amp;mprobado</string>
        </property>
       </widget>
      </item>
