@@ -17,39 +17,18 @@ dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
     ui(new Ui::dlgNuevaDiocesis)
 {
     ui->setupUi(this);
-
-    mdiarea = MyQmdiArea::Instance(this);
-
-    m_diocesis = DiocesisModel::InstanceModel();
-
-    lista_motivos = new QStringList();
-    lista_motivos->append("Unida a otra");
-    lista_motivos->append("Eliminada");
-
-    /*
-     * NOTE: no sé por qué narices esto tengo que
-     * dereferenciarlo...
-     */
-    motivos_completer = new QCompleter(*lista_motivos, this);
-    ui->txtMotivoDesaparicion->setCompleter(motivos_completer);
-
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
-    connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarDiocesis()));
-    connect(ui->txtArchidiocesis, SIGNAL(dobleclick()), this, SLOT(anadirArchiDiocesis()));
-    connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(anadirLugar()));
-
-    ui->txtNombre->setFocus();
-
+    cargarUI();
 }
 
-dlgNuevaDiocesis::dlgNuevaDiocesis(int diocesis_id, QWidget *parent) :
+dlgNuevaDiocesis::dlgNuevaDiocesis(int diocesis, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::dlgNuevaDiocesis)
+    ui(new Ui::dlgNuevaDiocesis),
+    diocesis_modificando(diocesis),
+    modificando(true)
 {
+    qDebug() << "diocesis es: " << diocesis_modificando;
     ui->setupUi(this);
-
-    mdiarea = MyQmdiArea::Instance(this);
-
+    cargarUI();
 }
 
 dlgNuevaDiocesis::~dlgNuevaDiocesis()
@@ -196,4 +175,31 @@ void dlgNuevaDiocesis::recibirArchiDiocesis(Diocesis diocesis)
 void dlgNuevaDiocesis::cerrar()
 {
     parentWidget()->close();
+}
+
+void dlgNuevaDiocesis::cargarUI()
+{
+
+    mdiarea = MyQmdiArea::Instance(this);
+
+    m_diocesis = DiocesisModel::InstanceModel();
+
+    lista_motivos = new QStringList();
+    lista_motivos->append("Unida a otra");
+    lista_motivos->append("Eliminada");
+
+    /*
+     * NOTE: no sé por qué narices esto tengo que
+     * dereferenciarlo...
+     */
+    motivos_completer = new QCompleter(*lista_motivos, this);
+    ui->txtMotivoDesaparicion->setCompleter(motivos_completer);
+
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
+    connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarDiocesis()));
+    connect(ui->txtArchidiocesis, SIGNAL(dobleclick()), this, SLOT(anadirArchiDiocesis()));
+    connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(anadirLugar()));
+
+    ui->txtNombre->setFocus();
+
 }

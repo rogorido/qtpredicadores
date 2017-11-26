@@ -111,7 +111,7 @@ void dlgDiocesis::menuContextualDiocesis(const QPoint &point)
 
 void dlgDiocesis::modificarDiocesis()
 {
-    if (diocesis_seleccionada = 0)
+    if (diocesis_seleccionada == 0)
         return;
 
     dlgNuevaDiocesis *dlgnueva = new dlgNuevaDiocesis(diocesis_seleccionada, this);

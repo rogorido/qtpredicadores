@@ -21,7 +21,7 @@ class dlgNuevaDiocesis : public QWidget
 
 public:
     explicit dlgNuevaDiocesis(QWidget *parent = 0);
-    explicit dlgNuevaDiocesis(int diocesis_id, QWidget *parent = 0);
+    explicit dlgNuevaDiocesis(int diocesis, QWidget *parent = 0);
     ~dlgNuevaDiocesis();
 
 private slots:
@@ -62,7 +62,13 @@ private:
      * para modificar una existente
      */
     bool modificando = false;
-    int diocesis_id;
+    int diocesis_modificando;
+
+    /*
+     * ponemos aquí todo lo de las signals, etc.
+     * que es común a los dos contructors que tenemos
+     */
+    void cargarUI();
 
     void cargarDiocesis();
 
