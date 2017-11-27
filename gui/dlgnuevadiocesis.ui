@@ -65,6 +65,20 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QCheckBox" name="ckSantaSede">
+       <property name="text">
+        <string>Santa sede</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="ckComprobado">
+       <property name="text">
+        <string>Comprobado</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
@@ -277,6 +291,8 @@
   <tabstop>ckArchidiocesis</tabstop>
   <tabstop>ckExiste</tabstop>
   <tabstop>ckTitularSee</tabstop>
+  <tabstop>ckSantaSede</tabstop>
+  <tabstop>ckComprobado</tabstop>
   <tabstop>txtArchidiocesis</tabstop>
   <tabstop>btQuitarArchi</tabstop>
   <tabstop>txtLugar</tabstop>

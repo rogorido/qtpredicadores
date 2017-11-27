@@ -25,6 +25,7 @@ public:
     void setNota(Notas n);
     void setOtrosDatos(QJsonObject o);
     void setBuscadosTodosObispos(bool b);
+    void setSantaSede(bool s);
 
     // getters
     int getId() const { return id; }
@@ -40,6 +41,7 @@ public:
     Notas getNota() const { return nota; }
     QJsonObject getOtrosDatos() const { return otros_datos; }
     bool getBuscadosTodosObispos() const { return buscadosTodosObispos; }
+    bool getSantaSede() const { return santa_sede; }
 
     bool estaLleno();
 
@@ -58,6 +60,7 @@ private:
     Notas nota;
     QJsonObject otros_datos;
     bool buscadosTodosObispos;
+    bool santa_sede;
 
 };
 

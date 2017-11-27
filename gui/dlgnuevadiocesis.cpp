@@ -55,6 +55,8 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     bool existe = ui->ckExiste->checkState();
     bool infidelibus = ui->ckInfidelibus->checkState();
     bool titular_see = ui->ckTitularSee->checkState();
+    bool santa_sede = ui->ckSantaSede->checkState();
+    bool comprobados = ui->ckComprobado->checkState();
     QString motivo_desaparicion = ui->txtMotivoDesaparicion->text();
 
     diocesis->setNombre(nombre);
@@ -66,6 +68,8 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     diocesis->setInfidelibus(infidelibus);
     diocesis->setTitularSee(titular_see);
     diocesis->setMotivoDesaparicion(motivo_desaparicion);
+    diocesis->setSantaSede(santa_sede);
+    diocesis->setBuscadosTodosObispos(comprobados);
 
     /*
      * creamos un QJonObject con los datos de la página gcatholic
@@ -116,6 +120,8 @@ void dlgNuevaDiocesis::borrarCampos()
     ui->ckExiste->setCheckState(Qt::Unchecked);
     ui->ckInfidelibus->setCheckState(Qt::Unchecked);
     ui->ckTitularSee->setCheckState(Qt::Unchecked);
+    ui->ckSantaSede->setCheckState(Qt::Unchecked);
+    ui->ckComprobado->setCheckState(Qt::Unchecked);
     ui->spParroquias->setValue(0);
     ui->spSuperficie->setValue(0);
     ui->spFundacion->setValue(0);
@@ -221,6 +227,8 @@ void dlgNuevaDiocesis::cargarDiocesis()
     ui->ckExiste->setChecked(diocesisModificada->getExisteHoy());
     ui->ckInfidelibus->setChecked(diocesisModificada->getInfidelibus());
     ui->ckTitularSee->setChecked(diocesisModificada->getTitularSee());
+    ui->ckSantaSede->setChecked(diocesisModificada->getSantaSede());
+    ui->ckComprobado->setChecked(diocesisModificada->getBuscadosTodosObispos());
 
     sufraganea = diocesisModificada->getSufraganea();
     lugar = diocesisModificada->getLugar();

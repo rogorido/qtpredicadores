@@ -16,6 +16,7 @@ void Diocesis::setMotivoDesaparicion(QString m) { motivo_desaparicion = m; }
 void Diocesis::setNota(Notas n) { nota = n; }
 void Diocesis::setOtrosDatos(QJsonObject o) { otros_datos = o; }
 void Diocesis::setBuscadosTodosObispos(bool b) { buscadosTodosObispos = b; }
+void Diocesis::setSantaSede(bool s) { santa_sede = s; }
 
 bool Diocesis::estaLleno()
 {

@@ -42,6 +42,8 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
     int sufraganea = diocesis->getSufraganea();
     bool infidelibus = diocesis->getInfidelibus();
     bool titular_see = diocesis->getTitularSee();
+    bool all_bishops = diocesis->getBuscadosTodosObispos();
+    bool santa_sede = diocesis->getSantaSede();
     QString motivo_desaparicion = diocesis->getMotivoDesaparicion();
     QJsonObject otros_datos = diocesis->getOtrosDatos();
     Notas nota = diocesis->getNota();
@@ -78,9 +80,11 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
         datos_json = "{}";
 
     query.prepare("INSERT INTO general.dioceses(diocese_name, diocese_latin_name, archidiocese, sufragean_id,"
-                  "infidelibus, titular_see, disappeared, place_id, nowadays, other_data) "
+                  "infidelibus, titular_see, disappeared, place_id, nowadays, other_data, "
+                  "check_allbishops, vatican) "
                   "VALUES(:nombre, :nombre_latin, :archidiocesis, :sufraganea,  "
-                  ":infidelibus, :titular_see, :desaparecida, :lugar, :hoy, :otrosdatos)");
+                  ":infidelibus, :titular_see, :desaparecida, :lugar, :hoy, :otrosdatos, "
+                  ":todos_obispos, :santasede)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":nombre_latin", nombre_latin);
     query.bindValue(":archidiocesis", archidiocesis);
@@ -100,6 +104,8 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
         query.bindValue(":otrosdatos", datos_json);
     else
         query.bindValue(":otrosdatos", QVariant(QVariant::String));
+    query.bindValue(":todos_obispos", all_bishops);
+    query.bindValue(":santasede", santa_sede);
 
     if (!query.exec()){
         qDebug() << query.lastError();
@@ -142,6 +148,8 @@ Diocesis *DiocesisModel::devolverDiocesis(int id)
     diocesis->setInfidelibus(query.value(10).toBool());
     diocesis->setMotivoDesaparicion(query.value(11).toString());
     diocesis->setTitularSee(query.value(12).toBool());
+    diocesis->setBuscadosTodosObispos(query.value(13).toBool());
+    diocesis->setSantaSede(query.value(14).toBool());
 
     /*
      * pasamos lo de other_data con un sistema un poco embarullado
