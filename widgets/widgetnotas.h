@@ -5,6 +5,8 @@
 
 #include "objs/notas.h"
 
+class QJsonObject;
+
 namespace Ui {
 class WidgetNotas;
 }
@@ -18,6 +20,8 @@ public:
     ~WidgetNotas();
 
     void reiniciar();
+
+    void importNota(const QJsonObject nota_json);
 
     bool haCambiado();
     Notas getNotas();
