@@ -114,6 +114,51 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
 
 }
 
+Diocesis *DiocesisModel::devolverDiocesis(int id)
+{
+    QSqlQuery query;
+    Diocesis *diocesis = new Diocesis();
+    QString json_otros;
+    QJsonDocument json_doc;
+
+    query.prepare("SELECT * FROM dioceses WHERE diocese_id = :id");
+    query.bindValue(":id", id);
+
+    if (!query.exec()) {
+        qDebug() << query.lastError();
+        qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
+        return diocesis;
+    }
+
+    query.first();
+
+    diocesis->setId(id);
+    diocesis->setNombre(query.value(1).toString());
+    diocesis->setNombreLatin(query.value(2).toString());
+    diocesis->setArchidiosis(query.value(3).toBool());
+    diocesis->setSufraganea(query.value(4).toInt());
+    diocesis->setExistente(query.value(5).toBool());
+    diocesis->setLugar(query.value(6).toInt());
+    diocesis->setInfidelibus(query.value(10).toBool());
+    diocesis->setMotivoDesaparicion(query.value(11).toString());
+    diocesis->setTitularSee(query.value(12).toBool());
+
+    /*
+     * pasamos lo de other_data con un sistema un poco embarullado
+     * realmente ahí tb está lo de las notas...
+     */
+    json_otros = query.value(7).toString();
+    json_doc = QJsonDocument::fromJson(json_otros.toUtf8());
+    diocesis->setOtrosDatos(json_doc.object());
+
+    return diocesis;
+}
+
+void DiocesisModel::actualizarDiocesis(int id)
+{
+
+}
+
 void DiocesisModel::DestroyMe(){
     if (pInstance != NULL) delete pInstance;
 }

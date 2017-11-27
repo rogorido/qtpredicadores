@@ -24,6 +24,7 @@ public:
     void setMotivoDesaparicion(QString m);
     void setNota(Notas n);
     void setOtrosDatos(QJsonObject o);
+    void setBuscadosTodosObispos(bool b);
 
     // getters
     int getId() const { return id; }
@@ -37,7 +38,10 @@ public:
     bool getTitularSee() const { return titular_see; }
     QString getMotivoDesaparicion() const { return motivo_desaparicion; }
     Notas getNota() const { return nota; }
-    QJsonObject getOtrosDatos() const{ return otros_datos; }
+    QJsonObject getOtrosDatos() const { return otros_datos; }
+    bool getBuscadosTodosObispos() const { return buscadosTodosObispos; }
+
+    bool estaLleno();
 
 private:
 
@@ -53,6 +57,7 @@ private:
     QString motivo_desaparicion;
     Notas nota;
     QJsonObject otros_datos;
+    bool buscadosTodosObispos;
 
 };
 

@@ -10,7 +10,9 @@
 
 #include "gui/dlgseleccionargeneral.h"
 #include "models/diocesismodel.h"
+#include "models/lugaresmodel.h"
 #include "widgets/myqmdiarea.h"
+#include "objs/notas.h"
 
 dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
     QWidget(parent),
@@ -23,12 +25,12 @@ dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
 dlgNuevaDiocesis::dlgNuevaDiocesis(int diocesis, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dlgNuevaDiocesis),
-    diocesis_modificando(diocesis),
-    modificando(true)
+    modificando(true),
+    diocesis_modificando(diocesis)
 {
-    qDebug() << "diocesis es: " << diocesis_modificando;
     ui->setupUi(this);
     cargarUI();
+    cargarDiocesis();
 }
 
 dlgNuevaDiocesis::~dlgNuevaDiocesis()
@@ -183,6 +185,7 @@ void dlgNuevaDiocesis::cargarUI()
     mdiarea = MyQmdiArea::Instance(this);
 
     m_diocesis = DiocesisModel::InstanceModel();
+    m_lugares = LugaresModel::InstanceModel();
 
     lista_motivos = new QStringList();
     lista_motivos->append("Unida a otra");
@@ -201,5 +204,55 @@ void dlgNuevaDiocesis::cargarUI()
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(anadirLugar()));
 
     ui->txtNombre->setFocus();
+
+}
+
+void dlgNuevaDiocesis::cargarDiocesis()
+{
+    QJsonObject otros_datos;
+    QJsonObject gcatholic;
+    QJsonObject json_notas;
+    Lugar place;
+
+    Diocesis *diocesisModificada = m_diocesis->devolverDiocesis(diocesis_modificando);
+
+    ui->txtNombre->setText(diocesisModificada->getNombre());
+    ui->ckArchidiocesis->setChecked(diocesisModificada->getArchidiocesis());
+    ui->ckExiste->setChecked(diocesisModificada->getExisteHoy());
+    ui->ckInfidelibus->setChecked(diocesisModificada->getInfidelibus());
+    ui->ckTitularSee->setChecked(diocesisModificada->getTitularSee());
+
+    sufraganea = diocesisModificada->getSufraganea();
+    lugar = diocesisModificada->getLugar();
+
+    ui->txtMotivoDesaparicion->setText(diocesisModificada->getMotivoDesaparicion());
+
+    otros_datos = diocesisModificada->getOtrosDatos();
+
+    // extramos lo de gcatholic
+    gcatholic = otros_datos["gcatholic"].toObject();
+    ui->ckBuscado->setChecked(gcatholic.value("buscado").toBool());
+    ui->txtURL->setText(gcatholic.value("url").toString());
+    ui->spFundacion->setValue(gcatholic.value("foundation").toInt());
+    ui->spParroquias->setValue(gcatholic.value("parishes_number").toInt());
+    ui->spSuperficie->setValue(gcatholic.value("area").toInt());
+
+    // extramos las notas
+    json_notas = otros_datos["nota"].toObject();
+    if (!json_notas.isEmpty())
+        ui->wdNotas->importNota(json_notas);
+
+    /*
+     * creamos la archidiócesis y la pasamos, entiendo que hay
+     * que dereferenciarla... Pq aquí creamos un pointer (por qué lo hago
+     * esto como pointer?), y en el método este necesitamos el objeto como tal
+     */
+    if (diocesisModificada->getSufraganea() != 0) {
+        Diocesis *archidiocesis = m_diocesis->devolverDiocesis(diocesisModificada->getSufraganea());
+        recibirArchiDiocesis(*archidiocesis);
+    }
+
+    place = m_lugares->devolverLugar(lugar);
+    recibirLugar(place);
 
 }

@@ -15,3 +15,9 @@ void Diocesis::setTitularSee(bool t) { titular_see = t; }
 void Diocesis::setMotivoDesaparicion(QString m) { motivo_desaparicion = m; }
 void Diocesis::setNota(Notas n) { nota = n; }
 void Diocesis::setOtrosDatos(QJsonObject o) { otros_datos = o; }
+void Diocesis::setBuscadosTodosObispos(bool b) { buscadosTodosObispos = b; }
+
+bool Diocesis::estaLleno()
+{
+    return nombre.isEmpty();
+}

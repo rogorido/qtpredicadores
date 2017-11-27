@@ -3,7 +3,7 @@
 
 #include <QSqlTableModel>
 
-class Diocesis;
+#include "objs/diocesis.h"
 
 class DiocesisModel : public QSqlTableModel
 {
@@ -13,6 +13,8 @@ public:
     static DiocesisModel *InstanceModel();
 
     bool AnadirDiocesis(const Diocesis *diocesis);
+    Diocesis *devolverDiocesis(int id);
+    void actualizarDiocesis(int id);
 
 signals:
 

@@ -7,6 +7,7 @@
 #include "objs/lugar.h"
 
 class DiocesisModel;
+class LugaresModel;
 class MyQmdiArea;
 class QStringList;
 class QCompleter;
@@ -42,6 +43,7 @@ private:
     MyQmdiArea *mdiarea;
 
     DiocesisModel *m_diocesis;
+    LugaresModel *m_lugares;
 
     /*
      * aquí metemos esos valores que vendrían del
@@ -71,7 +73,6 @@ private:
     void cargarUI();
 
     void cargarDiocesis();
-
 
 };
 
