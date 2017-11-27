@@ -92,3 +92,27 @@ bool LugaresModel::AnadirLugar(const Lugar *lugar){
 
 
 }
+
+Lugar LugaresModel::devolverLugar(int id)
+{
+    QSqlQuery query;
+    Lugar lugar;
+
+    query.prepare("SELECT * FROM places WHERE place_id = :id");
+    query.bindValue(":id", id);
+
+    if (!query.exec()) {
+        qDebug() << query.lastError();
+        qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
+        return lugar;
+    }
+
+    query.first();
+
+    // solo metemos esto que es lo que necesito ahora...
+    lugar.setId(id);
+    lugar.setLugar(query.value(1).toString());
+
+    return lugar;
+
+}
