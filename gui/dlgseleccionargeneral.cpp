@@ -47,6 +47,7 @@ dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *par
     cargarMenus();
 
     ui->twSeleccionar->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->twSeleccionar->setAutoScroll(false);
 
     connect(ui->btAnadir, SIGNAL(clicked(bool)), this, SLOT(anadirObjeto()));
     connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));

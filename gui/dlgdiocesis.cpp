@@ -30,6 +30,7 @@ dlgDiocesis::dlgDiocesis(QWidget *parent) :
     mdiarea = MyQmdiArea::Instance(this);
 
     ui->twDiocesis->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->twDiocesis->setAutoScroll(false);
 
     m_diocesis = new QSqlQueryModel(this);
     proxy_diocesis = new ProxyNombres(DIOCESIS, this);
