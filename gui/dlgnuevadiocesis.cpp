@@ -48,7 +48,10 @@ void dlgNuevaDiocesis::aceptarDiocesis()
      */
     QJsonObject otros_datos;
     QJsonObject datos_concretos;
+    int diocesis_id;
 
+    if (modificando)
+        diocesis_id = diocesis_modificando;
     QString nombre = ui->txtNombre->text();
     QString nombre_latin = ui->txtNombreLatin->text();
     bool archidiocesis = ui->ckArchidiocesis->checkState();
@@ -59,6 +62,8 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     bool comprobados = ui->ckComprobado->checkState();
     QString motivo_desaparicion = ui->txtMotivoDesaparicion->text();
 
+    if (modificando)
+        diocesis->setId(diocesis_id);
     diocesis->setNombre(nombre);
     diocesis->setNombreLatin(nombre_latin);
     diocesis->setArchidiosis(archidiocesis);
@@ -97,16 +102,28 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     if (ui->wdNotas->haCambiado())
         diocesis->setNota(ui->wdNotas->getNotas());
 
-    if (!m_diocesis->AnadirDiocesis(diocesis)){
-        int ret = QMessageBox::warning(this, "Error al introducir la diócesis",
+    if (!modificando) { // estamos añadiendo una diócesis
+        if (!m_diocesis->AnadirDiocesis(diocesis, true)){
+            int ret = QMessageBox::warning(this, "Error al introducir la diócesis",
                                        "Error al introducir la diócesis en la BD");
-        Q_UNUSED(ret)
-        return;
+            Q_UNUSED(ret)
+            return;
+        }
+        else {
+            borrarCampos();
+        }
     }
-    else {
-        borrarCampos();
+    else { // estamos modificando una diócesis
+        if (!m_diocesis->AnadirDiocesis(diocesis, false)){
+            int ret = QMessageBox::warning(this, "Error al actualizar la diócesis",
+                                       "Error al actualizar la diócesis en la BD");
+            Q_UNUSED(ret)
+            return;
+        }
+        else {
+            cerrar();
+        }
     }
-
 }
 
 void dlgNuevaDiocesis::borrarCampos()

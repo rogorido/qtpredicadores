@@ -18,7 +18,7 @@
 #include "gui/dlgnuevadiocesis.h"
 #include "widgets/myqmdiarea.h"
 
-const QString sql_general = "SELECT * from general.dioceses";
+const QString sql_general = "SELECT * from vistas.diocesis_general";
 const QString sql_comprobar = "check_allbishops = false";
 const QString sql_obispos = "SELECT * from vistas.obispos_general";
 
@@ -30,7 +30,6 @@ dlgDiocesis::dlgDiocesis(QWidget *parent) :
     mdiarea = MyQmdiArea::Instance(this);
 
     ui->twDiocesis->setContextMenuPolicy(Qt::CustomContextMenu);
-    ui->twDiocesis->setAutoScroll(false);
 
     m_diocesis = new QSqlQueryModel(this);
     proxy_diocesis = new ProxyNombres(DIOCESIS, this);
@@ -160,7 +159,7 @@ void dlgDiocesis::cargarModelos()
     ui->twDiocesis->hideColumn(4);
     ui->twDiocesis->hideColumn(5);
     ui->twDiocesis->hideColumn(6);
-    ui->twDiocesis->hideColumn(7);
+    //ui->twDiocesis->hideColumn(7); esto es la nota
     ui->twDiocesis->hideColumn(8);
     ui->twDiocesis->hideColumn(9);
     ui->twDiocesis->hideColumn(10);
@@ -176,6 +175,7 @@ void dlgDiocesis::cargarModelos()
     ui->twDiocesis->setSortingEnabled(true);
     ui->twDiocesis->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->twDiocesis->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->twDiocesis->setAutoScroll(false);
 
     // escogemos la primera línea del modelo...
     QModelIndex index = proxy_diocesis->index(0,0);

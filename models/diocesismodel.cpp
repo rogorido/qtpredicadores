@@ -28,12 +28,15 @@ DiocesisModel *DiocesisModel::InstanceModel(){
     return pInstance;
 }
 
-bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
+bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis, bool nuevadiocesis)
 {
     QSqlQuery query;
     QJsonDocument json;
     QString datos_json;
+    int diocesis_id;
 
+    if (!nuevadiocesis)
+        diocesis_id = diocesis->getId();
     QString nombre = diocesis->getNombre();
     QString nombre_latin = diocesis->getNombreLatin();
     int lugar = diocesis->getLugar();
@@ -79,12 +82,21 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
     else
         datos_json = "{}";
 
+    if (nuevadiocesis) {
     query.prepare("INSERT INTO general.dioceses(diocese_name, diocese_latin_name, archidiocese, sufragean_id,"
                   "infidelibus, titular_see, disappeared, place_id, nowadays, other_data, "
                   "check_allbishops, vatican) "
                   "VALUES(:nombre, :nombre_latin, :archidiocesis, :sufraganea,  "
                   ":infidelibus, :titular_see, :desaparecida, :lugar, :hoy, :otrosdatos, "
                   ":todos_obispos, :santasede)");
+    }
+    else {
+        query.prepare("UPDATE general.dioceses SET diocese_name = :nombre, diocese_latin_name = :nombre_latin, "
+                      "archidiocese = :archidiocesis, sufragean_id = :sufraganea, infidelibus = :infidelibus, "
+                      "titular_see = :titular_see, disappeared = :desaparecida, place_id = :lugar, "
+                      "nowadays = :hoy, other_data = :otrosdatos, check_allbishops = :todos_obispos, vatican = :santasede "
+                      "WHERE diocese_id = :id");
+    }
     query.bindValue(":nombre", nombre);
     query.bindValue(":nombre_latin", nombre_latin);
     query.bindValue(":archidiocesis", archidiocesis);
@@ -106,6 +118,7 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis)
         query.bindValue(":otrosdatos", QVariant(QVariant::String));
     query.bindValue(":todos_obispos", all_bishops);
     query.bindValue(":santasede", santa_sede);
+    query.bindValue(":id", diocesis_id);
 
     if (!query.exec()){
         qDebug() << query.lastError();

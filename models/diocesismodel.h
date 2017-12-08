@@ -12,7 +12,7 @@ class DiocesisModel : public QSqlTableModel
 public:
     static DiocesisModel *InstanceModel();
 
-    bool AnadirDiocesis(const Diocesis *diocesis);
+    bool AnadirDiocesis(const Diocesis *diocesis, bool nuevadiocesis);
     Diocesis *devolverDiocesis(int id);
     void actualizarDiocesis(int id);
 
