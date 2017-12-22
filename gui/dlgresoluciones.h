@@ -16,16 +16,16 @@ class dlgSeleccionarGeneral;
 class MyQmdiArea;
 
 namespace Ui {
-class DlgResoluciones;
+class dlgResoluciones;
 }
 
-class DlgResoluciones : public QWidget
+class dlgResoluciones : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit DlgResoluciones(QWidget *parent = 0);
-    ~DlgResoluciones();
+    explicit dlgResoluciones(QWidget *parent = 0);
+    ~dlgResoluciones();
 
 private slots:
 
@@ -42,7 +42,7 @@ private slots:
     void on_btBorrarDetalles_clicked();
 
 private:
-    Ui::DlgResoluciones *ui;
+    Ui::dlgResoluciones *ui;
 
     MyQmdiArea *mdiarea;
 

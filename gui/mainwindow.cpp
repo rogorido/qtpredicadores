@@ -194,7 +194,7 @@ void MainWindow::Capitulos(){
 
 void MainWindow::Resoluciones()
 {
-    FormResoluciones = new DlgResoluciones(this);
+    FormResoluciones = new dlgResoluciones(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(FormResoluciones);
     window->show();
 }

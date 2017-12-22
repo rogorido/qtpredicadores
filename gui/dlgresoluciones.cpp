@@ -22,9 +22,9 @@ const QString sql_general="SELECT DISTINCT ON (r.resolution_id) * FROM resolutio
                           "LEFT JOIN resolutions_details rd ON r.resolution_id = rd.resolution_id "
                           "LEFT JOIN chapters c ON r.chapter = c.chapter_id";
 
-DlgResoluciones::DlgResoluciones(QWidget *parent) :
+dlgResoluciones::dlgResoluciones(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::DlgResoluciones)
+    ui(new Ui::dlgResoluciones)
 {
     ui->setupUi(this);
 
@@ -45,12 +45,12 @@ DlgResoluciones::DlgResoluciones(QWidget *parent) :
 
 }
 
-DlgResoluciones::~DlgResoluciones()
+dlgResoluciones::~dlgResoluciones()
 {
     delete ui;
 }
 
-void DlgResoluciones::seleccionarResolucion(const QModelIndex &idx)
+void dlgResoluciones::seleccionarResolucion(const QModelIndex &idx)
 {
 
     /* entiendo q con esto consigo que los campos de abajo
@@ -73,7 +73,7 @@ void DlgResoluciones::seleccionarResolucion(const QModelIndex &idx)
     cargarDetalles(resolucion_id);
 }
 
-void DlgResoluciones::recibirNuevoTema(Tema t)
+void dlgResoluciones::recibirNuevoTema(Tema t)
 {
     int tema_id = t.getId();
 
@@ -87,7 +87,7 @@ void DlgResoluciones::recibirNuevoTema(Tema t)
     temas_model->setFilter(QString("resolution_id=%1").arg(resolucion_id));
 }
 
-void DlgResoluciones::recibirNuevoJsonDetalles()
+void dlgResoluciones::recibirNuevoJsonDetalles()
 {
 
     QSqlQuery query;
@@ -128,7 +128,7 @@ void DlgResoluciones::recibirNuevoJsonDetalles()
     cargarDetalles(resolucion_id);
 }
 
-void DlgResoluciones::cargarDetalles(int id)
+void dlgResoluciones::cargarDetalles(int id)
 {
     QSqlQuery query;
     QString sql;
@@ -166,14 +166,14 @@ void DlgResoluciones::cargarDetalles(int id)
 
 }
 
-void DlgResoluciones::aplicarFiltro()
+void dlgResoluciones::aplicarFiltro()
 {
     resoluciones_model->setQuery(sql_general + QString(" WHERE details ?| array['mandato', 'prohibición',"
                                                        " 'comisión', 'admonición'];"));
 
 }
 
-void DlgResoluciones::on_btAnadirTema_clicked()
+void dlgResoluciones::on_btAnadirTema_clicked()
 {
     dlgseleccionar = new dlgSeleccionarGeneral(TEMA, this);
     connect(dlgseleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirNuevoTema(Tema)));
@@ -182,7 +182,7 @@ void DlgResoluciones::on_btAnadirTema_clicked()
     window->show();
 }
 
-void DlgResoluciones::on_btQuitarTema_clicked()
+void dlgResoluciones::on_btQuitarTema_clicked()
 {
     /*
      * sigo sin entender cómo coño es tan difícil esto de
@@ -205,7 +205,7 @@ void DlgResoluciones::on_btQuitarTema_clicked()
     temas_model->setFilter(QString("resolution_id=%1").arg(resolucion_id));
 }
 
-void DlgResoluciones::on_btAnadirDetalles_clicked()
+void dlgResoluciones::on_btAnadirDetalles_clicked()
 {
     dlgDetalles *dlgdetalles = new dlgDetalles(json_anadir_model, RESOLUCION, true, this);
     connect(dlgdetalles, SIGNAL(accepted()), this, SLOT(recibirNuevoJsonDetalles()));
@@ -214,7 +214,7 @@ void DlgResoluciones::on_btAnadirDetalles_clicked()
     window->show();
 }
 
-void DlgResoluciones::on_btBorrarDetalles_clicked()
+void dlgResoluciones::on_btBorrarDetalles_clicked()
 {
     /*
      * la idea es la siguiente: cogemos el índice; si no es válido
@@ -259,7 +259,7 @@ void DlgResoluciones::on_btBorrarDetalles_clicked()
 
 }
 
-void DlgResoluciones::cargarModelos()
+void dlgResoluciones::cargarModelos()
 {
     resoluciones_model = new QSqlQueryModel(this);
     resoluciones_model->setQuery(sql_general);
@@ -300,7 +300,7 @@ void DlgResoluciones::cargarModelos()
 
 }
 
-void DlgResoluciones::cargarMapper()
+void dlgResoluciones::cargarMapper()
 {
     mapper_data = new QDataWidgetMapper(this);
     mapper_data->setModel(resoluciones_model);
@@ -309,7 +309,7 @@ void DlgResoluciones::cargarMapper()
 
 }
 
-void DlgResoluciones::cargarInfos()
+void dlgResoluciones::cargarInfos()
 {
     ui->lblTotalResoluciones->setText(QString("Resoluciones: %1").arg(resoluciones_model->rowCount()));
 }

@@ -13,7 +13,7 @@ class dlgNuevoObispo;
 class dlgNuevaMisionFilipinas;
 class dlgNuevaFuente;
 class dlgCapitulos;
-class DlgResoluciones; // esto me he confundido y lo he puesto en mayúscula!
+class dlgResoluciones;
 class dlgCiudades;
 class dlgCasas;
 class dlgEstadisticas;
@@ -99,7 +99,7 @@ private:
 
     // esto son los de gestión
     dlgCapitulos *FormCapitulos;
-    DlgResoluciones *FormResoluciones;
+    dlgResoluciones *FormResoluciones;
     dlgCiudades *FormCiudades;
     dlgCasas *FormCasas;
     dlgObispos *FormObispos;
