@@ -6,12 +6,15 @@
 #include "objs/tema.h"
 
 class QSqlQueryModel;
+class QSqlTableModel;
+class QSortFilterProxyModel;
 class QSqlRelationalTableModel;
 class QDataWidgetMapper;
 class QModelIndex;
 class QJsonModel;
 
 class dlgSeleccionarGeneral;
+class SqlFiltroGestor;
 
 class MyQmdiArea;
 
@@ -35,6 +38,7 @@ private slots:
     void recibirNuevoJsonDetalles();
     void cargarDetalles(int id);
     void aplicarFiltro();
+    void actualizarSql(QString s);
 
     void on_btAnadirTema_clicked();
     void on_btQuitarTema_clicked();
@@ -47,6 +51,7 @@ private:
     MyQmdiArea *mdiarea;
 
     dlgSeleccionarGeneral *dlgseleccionar;
+    SqlFiltroGestor *sql_gestor;
 
     /*
      * no pongo m_resoluciones pq "se confundiría
@@ -59,12 +64,21 @@ private:
     QJsonModel *json_model;
 
     /*
+     * esto lo usamos para la tabla temporal de epígrafes
+     * de las resoluciones
+     */
+    QSqlTableModel *m_epigrafes;
+    QSortFilterProxyModel *epigrafes_noseleccionados_proxy;
+    QSortFilterProxyModel *epigrafes_seleccionados_proxy;
+
+    /*
      * este lo usamos en el caso de que queramos
      * añadir nuevos Jsons a la resolución
      */
     QJsonModel *json_anadir_model;
 
     void cargarModelos();
+    void cargarTablasTemporales(); // para lo de los epígrafes
     void cargarMapper();
     void cargarInfos();
 

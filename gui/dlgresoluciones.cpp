@@ -3,6 +3,8 @@
 
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QSqlTableModel>
+#include <QSortFilterProxyModel>
 #include <QSqlRelationalTableModel>
 #include <QDataWidgetMapper>
 #include <QDebug>
@@ -12,6 +14,7 @@
 #include <QMessageBox>
 
 #include "models/qjsonmodel.h"
+#include "models/sqlfiltrogestor.h"
 
 #include "widgets/myqmdiarea.h"
 
@@ -35,7 +38,11 @@ dlgResoluciones::dlgResoluciones(QWidget *parent) :
 
     json_anadir_model = new QJsonModel(this);
 
+    sql_gestor = new SqlFiltroGestor(sql_general, this);
+    connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
+
     cargarModelos();
+    cargarTablasTemporales();
     cargarMapper();
     cargarInfos();
 
@@ -47,6 +54,10 @@ dlgResoluciones::dlgResoluciones(QWidget *parent) :
 
 dlgResoluciones::~dlgResoluciones()
 {
+    // borramos la tabla temporal
+    QSqlQuery query;
+    query.exec("DROP TABLE temp_epigrafes");
+
     delete ui;
 }
 
@@ -170,6 +181,11 @@ void dlgResoluciones::aplicarFiltro()
 {
     resoluciones_model->setQuery(sql_general + QString(" WHERE details ?| array['mandato', 'prohibición',"
                                                        " 'comisión', 'admonición'];"));
+
+}
+
+void dlgResoluciones::actualizarSql(QString s)
+{
 
 }
 
@@ -297,6 +313,38 @@ void dlgResoluciones::cargarModelos()
     ui->twTemas->resizeRowsToContents();
     ui->twTemas->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->twTemas->setSelectionMode(QAbstractItemView::SingleSelection);
+
+}
+
+void dlgResoluciones::cargarTablasTemporales()
+{
+    /*
+     * Esto realmente podría ir con lo de los modelos, pero lo pongo aquí.
+     * El asunto es que creo una tabla temporal con los epígrafes y
+     * lo uso para gestiones los epígrafes que se escogen, etc.
+     */
+
+    QSqlQuery query;
+
+    query.exec("CREATE TEMPORARY TABLE temp_epigrafes(epigrafe varchar(200), selected bool DEFAULT false)");
+    query.exec("INSERT INTO temp_epigrafes(epigrafe) SELECT DISTINCT small_title FROM resolutions ORDER BY small_title");
+
+    m_epigrafes = new QSqlTableModel(this);
+    m_epigrafes->setTable("temp_epigrafes");
+    m_epigrafes->select();
+
+    epigrafes_noseleccionados_proxy = new QSortFilterProxyModel(this);
+    epigrafes_noseleccionados_proxy->setSourceModel(m_epigrafes);
+    epigrafes_noseleccionados_proxy->setFilterFixedString("f");
+    epigrafes_noseleccionados_proxy->setFilterKeyColumn(1);
+
+    epigrafes_seleccionados_proxy = new QSortFilterProxyModel(this);
+    epigrafes_seleccionados_proxy->setSourceModel(m_epigrafes);
+    epigrafes_seleccionados_proxy->setFilterFixedString("t");
+    epigrafes_seleccionados_proxy->setFilterKeyColumn(1);
+
+    ui->twEpigrafesTodos->setModel(epigrafes_noseleccionados_proxy);
+    ui->twEpigrafesSeleccionados->setModel(epigrafes_seleccionados_proxy);
 
 }
 
