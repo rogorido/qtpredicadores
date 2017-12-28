@@ -44,6 +44,9 @@ private slots:
     void on_btQuitarTema_clicked();
     void on_btAnadirDetalles_clicked();
     void on_btBorrarDetalles_clicked();
+    void on_btSeleccionarEpigrafe_clicked();
+    void on_btDeSeleccionarEpigrafe_clicked();
+    void on_btDeseleccionarTodosEpigrafes_clicked();
 
 private:
     Ui::dlgResoluciones *ui;

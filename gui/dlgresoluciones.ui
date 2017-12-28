@@ -252,7 +252,7 @@
       <string>&gt;</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btDeseleccionarEpigrafes">
+    <widget class="QPushButton" name="btDeseleccionarTodosEpigrafes">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -263,6 +263,19 @@
      </property>
      <property name="text">
       <string>&lt;&lt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btDeSeleccionarEpigrafe">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>160</y>
+       <width>41</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;</string>
      </property>
     </widget>
    </widget>

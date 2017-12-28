@@ -50,6 +50,9 @@ dlgResoluciones::dlgResoluciones(QWidget *parent) :
             this, SLOT(seleccionarResolucion(QModelIndex)));
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(aplicarFiltro()));
 
+    // deshabilitamos este botón por un puto error que da (ver abajo)
+    ui->btDeSeleccionarEpigrafe->setEnabled(false);
+
 }
 
 dlgResoluciones::~dlgResoluciones()
@@ -275,6 +278,67 @@ void dlgResoluciones::on_btBorrarDetalles_clicked()
 
 }
 
+void dlgResoluciones::on_btSeleccionarEpigrafe_clicked()
+{
+    /*
+     * para esta cosa tan rara mirar esto:
+     * https://forum.qt.io/topic/6401/solved-check-if-a-line-is-selected-from-a-qtableview/13
+     */
+    if (!ui->twEpigrafesTodos->selectionModel()->isSelected(ui->twEpigrafesTodos->currentIndex()))
+        return;
+
+    bool valor;
+    QModelIndex idx = epigrafes_noseleccionados_proxy->index(ui->twEpigrafesTodos->currentIndex().row(), 1);
+
+    if (!idx.isValid())
+        return;
+
+    valor = m_epigrafes->data(epigrafes_noseleccionados_proxy->mapToSource(idx), Qt::DisplayRole).toBool();
+    qDebug() << "el valor es: " << valor;
+    valor = !valor;
+    m_epigrafes->setData(epigrafes_noseleccionados_proxy->mapToSource(idx), valor, Qt::EditRole);
+
+    ui->twEpigrafesSeleccionados->resizeColumnsToContents();
+    ui->twEpigrafesSeleccionados->resizeRowsToContents();
+
+}
+
+void dlgResoluciones::on_btDeSeleccionarEpigrafe_clicked()
+{
+    /*
+     * FIXME: por alguna misteriosa razón este código
+     * que es exactamente el mismo que el del método anterior
+     * provoca un crash. Creo que es un error de Qt...
+     */
+    if (!ui->twEpigrafesSeleccionados->selectionModel()->isSelected(ui->twEpigrafesSeleccionados->currentIndex()))
+        return;
+
+    bool valor;
+    QModelIndex idx = epigrafes_seleccionados_proxy->index(ui->twEpigrafesSeleccionados->currentIndex().row(), 1);
+
+    if (!idx.isValid())
+        return;
+
+    valor = m_epigrafes->data(epigrafes_seleccionados_proxy->mapToSource(idx), Qt::DisplayRole).toBool();
+    valor = !valor;
+    m_epigrafes->setData(epigrafes_seleccionados_proxy->mapToSource(idx), valor, Qt::EditRole);
+
+    ui->twEpigrafesSeleccionados->resizeColumnsToContents();
+    ui->twEpigrafesSeleccionados->resizeRowsToContents();
+
+}
+
+void dlgResoluciones::on_btDeseleccionarTodosEpigrafes_clicked()
+{
+    QSqlQuery query;
+
+    query.exec("UPDATE temp_epigrafes SET selected = false");
+    m_epigrafes->select();
+    ui->twEpigrafesTodos->resizeColumnsToContents();
+    ui->twEpigrafesTodos->resizeRowsToContents();
+}
+
+
 void dlgResoluciones::cargarModelos()
 {
     resoluciones_model = new QSqlQueryModel(this);
@@ -345,6 +409,26 @@ void dlgResoluciones::cargarTablasTemporales()
 
     ui->twEpigrafesTodos->setModel(epigrafes_noseleccionados_proxy);
     ui->twEpigrafesSeleccionados->setModel(epigrafes_seleccionados_proxy);
+
+    ui->twEpigrafesTodos->hideColumn(1);
+    ui->twEpigrafesTodos->setAlternatingRowColors(true);
+    //ui->twResoluciones->setColumnWidth(0, 80);
+    ui->twEpigrafesTodos->resizeColumnsToContents();
+    ui->twEpigrafesTodos->resizeRowsToContents();
+    ui->twEpigrafesTodos->horizontalHeader()->setStretchLastSection(true);
+    //ui->twEpigrafesTodos->setSortingEnabled(true);
+    ui->twEpigrafesTodos->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twEpigrafesTodos->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    ui->twEpigrafesSeleccionados->hideColumn(1);
+    ui->twEpigrafesSeleccionados->setAlternatingRowColors(true);
+    //ui->twResoluciones->setColumnWidth(0, 80);
+    ui->twEpigrafesSeleccionados->resizeColumnsToContents();
+    ui->twEpigrafesSeleccionados->resizeRowsToContents();
+    ui->twEpigrafesSeleccionados->horizontalHeader()->setStretchLastSection(true);
+    //ui->twEpigrafesSeleccionados->setSortingEnabled(true);
+    ui->twEpigrafesSeleccionados->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twEpigrafesSeleccionados->setSelectionMode(QAbstractItemView::SingleSelection);
 
 }
 
