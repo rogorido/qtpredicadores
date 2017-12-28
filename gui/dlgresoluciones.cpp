@@ -148,6 +148,8 @@ void dlgResoluciones::cargarDetalles(int id)
     QString sql;
     QJsonDocument json;
 
+    sqlactivo = sql_general;
+
     sql = QString("SELECT detail_id, details FROM resolutions_details WHERE resolution_id=%1").arg(id);
     query.exec(sql);
 
@@ -189,6 +191,9 @@ void dlgResoluciones::aplicarFiltro()
 
 void dlgResoluciones::actualizarSql(QString s)
 {
+    sqlactivo = s;
+
+    resoluciones_model->setQuery(sqlactivo);
 
 }
 
@@ -294,12 +299,13 @@ void dlgResoluciones::on_btSeleccionarEpigrafe_clicked()
         return;
 
     valor = m_epigrafes->data(epigrafes_noseleccionados_proxy->mapToSource(idx), Qt::DisplayRole).toBool();
-    qDebug() << "el valor es: " << valor;
     valor = !valor;
     m_epigrafes->setData(epigrafes_noseleccionados_proxy->mapToSource(idx), valor, Qt::EditRole);
 
     ui->twEpigrafesSeleccionados->resizeColumnsToContents();
     ui->twEpigrafesSeleccionados->resizeRowsToContents();
+
+    crearFiltroEpigrafes();
 
 }
 
@@ -320,6 +326,7 @@ void dlgResoluciones::on_btDeSeleccionarEpigrafe_clicked()
         return;
 
     valor = m_epigrafes->data(epigrafes_seleccionados_proxy->mapToSource(idx), Qt::DisplayRole).toBool();
+    qDebug() << "el valor es: " << valor;
     valor = !valor;
     m_epigrafes->setData(epigrafes_seleccionados_proxy->mapToSource(idx), valor, Qt::EditRole);
 
@@ -336,6 +343,8 @@ void dlgResoluciones::on_btDeseleccionarTodosEpigrafes_clicked()
     m_epigrafes->select();
     ui->twEpigrafesTodos->resizeColumnsToContents();
     ui->twEpigrafesTodos->resizeRowsToContents();
+
+    sql_gestor->quitarFiltro("epigrafes");
 }
 
 
@@ -444,4 +453,25 @@ void dlgResoluciones::cargarMapper()
 void dlgResoluciones::cargarInfos()
 {
     ui->lblTotalResoluciones->setText(QString("Resoluciones: %1").arg(resoluciones_model->rowCount()));
+}
+
+void dlgResoluciones::crearFiltroEpigrafes()
+{
+    QSqlQuery query;
+    QString sql_temp;
+    QString sql_final;
+
+    query.exec("SELECT * FROM temp_epigrafes WHERE selected = true");
+
+    while (query.next()) {
+        QString epigrafe = query.value(0).toString();
+        sql_temp += " OR small_title = '" + epigrafe + "'";
+    }
+
+    // borramos el primer OR
+    sql_temp = sql_temp.remove(0, 4);
+    sql_final = QString("(") + sql_temp + QString(")");
+
+    sql_gestor->anadirFiltro("epigrafes", sql_final);
+
 }

@@ -96,6 +96,17 @@ private:
      * detail_id  y permite manipular las entradas de esta tabla
      */
     QList<int> ids_resolutions_details;
+
+    /*
+     * guardamos el SQL que está activo
+     */
+    QString sqlactivo;
+
+    /*
+     * Métodos para la creación de filtros que luego se pasan
+     * a SqlFiltroGestor
+     */
+    void crearFiltroEpigrafes();
 };
 
 #endif // DLGRESOLUCIONES_H
