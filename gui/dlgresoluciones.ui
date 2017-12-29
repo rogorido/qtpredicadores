@@ -156,15 +156,15 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>241</width>
-      <height>354</height>
+      <width>98</width>
+      <height>28</height>
      </rect>
     </property>
     <attribute name="label">
@@ -194,9 +194,9 @@
      </rect>
     </property>
     <attribute name="label">
-     <string>Page 2</string>
+     <string>Temas</string>
     </attribute>
-    <widget class="WidgetTemas" name="widget" native="true">
+    <widget class="WidgetTemas" name="wdTemas" native="true">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -212,8 +212,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>241</width>
-      <height>354</height>
+      <width>98</width>
+      <height>28</height>
      </rect>
     </property>
     <attribute name="label">

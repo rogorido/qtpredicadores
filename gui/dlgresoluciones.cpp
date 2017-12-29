@@ -48,6 +48,7 @@ dlgResoluciones::dlgResoluciones(QWidget *parent) :
 
     connect(ui->twResoluciones->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
             this, SLOT(seleccionarResolucion(QModelIndex)));
+    connect(ui->wdTemas, SIGNAL(temasSeleccionadosCambio(QList<int>)), this, SLOT(temasSeleccionadosCambiados(QList<int>)));
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(aplicarFiltro()));
 
     // deshabilitamos este botón por un puto error que da (ver abajo)
@@ -194,6 +195,38 @@ void dlgResoluciones::actualizarSql(QString s)
     sqlactivo = s;
 
     resoluciones_model->setQuery(sqlactivo);
+
+}
+
+void dlgResoluciones::temasSeleccionadosCambiados(QList<int> lista_temas)
+{
+    QSqlQuery query;
+    QString sql_temas, sql_temp, sql_final;
+
+    if (lista_temas.size() == 0){
+        sql_gestor->quitarFiltro("temas");
+        return;
+    }
+
+    for (int var = 0; var < lista_temas.size(); ++var) {
+        sql_temas += QString::number(lista_temas.at(var)) + QString(",");
+    }
+
+    // quitamos la última coma y ponemos el resto
+    sql_temas.chop(1);
+    sql_temas = QString("SELECT DISTINCT resolution_id FROM resolutions_themes WHERE theme_id IN (") + sql_temas + QString(")");
+    query.exec(sql_temas);
+
+    while (query.next()) {
+        sql_temp += QString::number(query.value(0).toInt()) + QString(",");
+    }
+
+    // quitamos la última coma y ponemos el resto
+    sql_temp.chop(1);
+    // tenemos que poner lo de r.resolution por la abfrage subyacente que tiene un alias
+    sql_final = QString("r.resolution_id IN (") + sql_temp + QString(")");
+
+    sql_gestor->anadirFiltro("temas", sql_final);
 
 }
 

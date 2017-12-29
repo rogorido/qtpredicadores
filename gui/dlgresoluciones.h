@@ -39,6 +39,8 @@ private slots:
     void cargarDetalles(int id);
     void aplicarFiltro();
     void actualizarSql(QString s);
+    // esto recibe del widget temas la lista de temas cambiados
+    void temasSeleccionadosCambiados(QList<int> lista_temas);
 
     void on_btAnadirTema_clicked();
     void on_btQuitarTema_clicked();
