@@ -129,13 +129,13 @@ void WidgetTemas::cargarModelos()
 void WidgetTemas::crearSqlFiltro()
 {
     QSqlQuery query;
-    QString filtro;
+    QList<int> lista_temas;
 
     query.exec("SELECT theme_id FROM themes WHERE selected='t'");
 
-    if (query.size() == 0){
-        filtro = "";
-        emit(temasSeleccionadosCambio(filtro));
-        return;
+    while (query.next()) {
+        lista_temas << query.value(0).toInt();
     }
+
+    emit(temasSeleccionadosCambio(lista_temas));
 }
