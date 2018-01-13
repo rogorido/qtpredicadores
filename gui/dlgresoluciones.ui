@@ -163,8 +163,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>98</width>
-      <height>28</height>
+      <width>241</width>
+      <height>354</height>
      </rect>
     </property>
     <attribute name="label">
@@ -212,8 +212,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>98</width>
-      <height>28</height>
+      <width>241</width>
+      <height>354</height>
      </rect>
     </property>
     <attribute name="label">
@@ -304,6 +304,71 @@
    </property>
    <property name="text">
     <string>Filtro no activo</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="ckEntendida">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>10</y>
+     <width>84</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Entendida</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="ckComprobada">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>10</y>
+     <width>84</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Comprobada</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="ckVolverMirar">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>40</y>
+     <width>84</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Volver a mirar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btQuitarFiltros">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>70</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Quitar filtros</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="ckMandatos">
+   <property name="geometry">
+    <rect>
+     <x>840</x>
+     <y>40</y>
+     <width>84</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Mandatos</string>
    </property>
   </widget>
  </widget>
