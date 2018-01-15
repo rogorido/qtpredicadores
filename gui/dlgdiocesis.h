@@ -34,13 +34,13 @@ private slots:
     void actualizarFiltro(const QString filtro);
     void menuContextualDiocesis(const QPoint &point);
     void modificarDiocesis();
+    void anadirDetallesDiocesis();
     void abrirUrl();
 
     void cerrar();
 
     void on_ckSinComprobar_toggled(bool checked);
     void on_pbIntroducirObispos_clicked();
-
     void on_pbMarcarComprobado_clicked();
 
 private:

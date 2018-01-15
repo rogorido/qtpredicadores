@@ -79,6 +79,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="btAnadirDetalles">
+       <property name="text">
+        <string>Añadir &amp;detalles</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pbIntroducirObispos">
        <property name="text">
         <string>Introducir obispos</string>

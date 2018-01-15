@@ -16,6 +16,7 @@
 #include "models/sqlfiltrogestor.h"
 #include "objs/proxynombres.h"
 #include "gui/dlgnuevadiocesis.h"
+#include "gui/dlgdiocesisdetalles.h"
 #include "widgets/myqmdiarea.h"
 
 const QString sql_general = "SELECT * from vistas.diocesis_general";
@@ -54,6 +55,7 @@ dlgDiocesis::dlgDiocesis(QWidget *parent) :
     connect(ui->pbAbrirUrl, SIGNAL(clicked()), this, SLOT(abrirUrl()));
     connect(ui->twDiocesis, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(menuContextualDiocesis(QPoint)));
+    connect(ui->btAnadirDetalles, SIGNAL(clicked()), this, SLOT(anadirDetallesDiocesis()));
 
 }
 
@@ -115,6 +117,17 @@ void dlgDiocesis::modificarDiocesis()
         return;
 
     dlgNuevaDiocesis *dlgnueva = new dlgNuevaDiocesis(diocesis_seleccionada, this);
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgnueva);
+    window->show();
+
+}
+
+void dlgDiocesis::anadirDetallesDiocesis()
+{
+    if (diocesis_seleccionada == 0)
+        return;
+
+    dlgDiocesisDetalles *dlgnueva = new dlgDiocesisDetalles(diocesis_seleccionada, this);
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgnueva);
     window->show();
 
