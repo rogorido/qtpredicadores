@@ -55,6 +55,7 @@ void dlgDiocesisDetalles::aceptar()
 
     int tomo = ui->spTomo->value();
     int anoref = ui->spAnoRef->value();
+    int numero_obispos = ui->spNumeroObispos->value();
     int rentas = ui->spRenta->value();
     int tasa = ui->spTaxa->value();
     QString rentas_divisa = ui->txtRentasDivisa->text();
@@ -81,6 +82,7 @@ void dlgDiocesisDetalles::aceptar()
     if (tasa != 0) json.insert("taxa", QJsonValue(tasa));
     if (!rentas_divisa.isEmpty()) json.insert("mensa_currency", QJsonValue(rentas_divisa));
     if (!tasas_divisa.isEmpty()) json.insert("tax_currency", QJsonValue(tasas_divisa));
+    if (numero_obispos != 0) json.insert("number_bishops", QJsonValue(numero_obispos));
     if (!senor.isEmpty()) json.insert("temporal_lord", QJsonValue(senor));
     if (canonigos != 0) json.insert("canonicates", QJsonValue(canonigos));
     if (dignidades != 0) json.insert("dignities", QJsonValue(dignidades));
@@ -163,6 +165,7 @@ void dlgDiocesisDetalles::borrarCampos()
     ui->ckSinDatos->setCheckState(Qt::Unchecked);
     ui->spRenta->setValue(0);
     ui->spTaxa->setValue(0);
+    ui->spNumeroObispos->setValue(0);
     ui->spCanonicos->setValue(0);
     ui->spDignidades->setValue(0);
     ui->spBeneficiados->setValue(0);

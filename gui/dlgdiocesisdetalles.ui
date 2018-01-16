@@ -57,6 +57,19 @@
       </widget>
      </item>
      <item>
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>Número de obispos</string>
+       </property>
+       <property name="buddy">
+        <cstring>spNumeroObispos</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spNumeroObispos"/>
+     </item>
+     <item>
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -330,6 +343,7 @@
  <tabstops>
   <tabstop>spTomo</tabstop>
   <tabstop>spAnoRef</tabstop>
+  <tabstop>spNumeroObispos</tabstop>
   <tabstop>ckSinDatos</tabstop>
   <tabstop>spRenta</tabstop>
   <tabstop>txtRentasDivisa</tabstop>
