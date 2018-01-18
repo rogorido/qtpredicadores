@@ -22,6 +22,7 @@
 const QString sql_general = "SELECT * from vistas.diocesis_general";
 const QString sql_comprobar = "check_allbishops = false";
 const QString sql_obispos = "SELECT * from vistas.obispos_general";
+const QString sql_sinhierarchy = "url_hierarchy is NULL";
 
 dlgDiocesis::dlgDiocesis(QWidget *parent) :
     QWidget(parent),
@@ -157,6 +158,15 @@ void dlgDiocesis::on_ckSinComprobar_toggled(bool checked)
         sql_gestor->anadirFiltro("comprobar", sql_comprobar);
     else
         sql_gestor->quitarFiltro("comprobar");
+}
+
+void dlgDiocesis::on_ckSinUrlHierarchy_toggled(bool checked)
+{
+    if (checked)
+        sql_gestor->anadirFiltro("sinhierarchy", sql_sinhierarchy);
+    else
+        sql_gestor->quitarFiltro("sinhierarchy");
+
 }
 
 void dlgDiocesis::cargarModelos()

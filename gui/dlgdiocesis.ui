@@ -43,6 +43,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="ckSinUrlHierarchy">
+         <property name="text">
+          <string>Sin url (hierarchy)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>

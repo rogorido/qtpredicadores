@@ -60,6 +60,7 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     bool titular_see = ui->ckTitularSee->checkState();
     bool santa_sede = ui->ckSantaSede->checkState();
     bool comprobados = ui->ckComprobado->checkState();
+    QString url_hierarchy = ui->txtUrlHierarchy->text();
     QString motivo_desaparicion = ui->txtMotivoDesaparicion->text();
 
     if (modificando)
@@ -75,6 +76,7 @@ void dlgNuevaDiocesis::aceptarDiocesis()
     diocesis->setMotivoDesaparicion(motivo_desaparicion);
     diocesis->setSantaSede(santa_sede);
     diocesis->setBuscadosTodosObispos(comprobados);
+    diocesis->setUrlHierarchy(url_hierarchy);
 
     /*
      * creamos un QJonObject con los datos de la página gcatholic
@@ -246,6 +248,7 @@ void dlgNuevaDiocesis::cargarDiocesis()
     ui->ckTitularSee->setChecked(diocesisModificada->getTitularSee());
     ui->ckSantaSede->setChecked(diocesisModificada->getSantaSede());
     ui->ckComprobado->setChecked(diocesisModificada->getBuscadosTodosObispos());
+    ui->txtUrlHierarchy->setText(diocesisModificada->getUrlHierarchy());
 
     sufraganea = diocesisModificada->getSufraganea();
     lugar = diocesisModificada->getLugar();

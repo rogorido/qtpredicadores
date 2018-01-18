@@ -176,6 +176,20 @@
     </layout>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_11">
+     <item>
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>Url hierarchy</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtUrlHierarchy"/>
+     </item>
+    </layout>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_8">
      <item>
       <widget class="QLabel" name="label_6">
@@ -301,6 +315,7 @@
   <tabstop>txtMotivoDesaparicion</tabstop>
   <tabstop>ckBuscado</tabstop>
   <tabstop>txtURL</tabstop>
+  <tabstop>txtUrlHierarchy</tabstop>
   <tabstop>spParroquias</tabstop>
   <tabstop>spSuperficie</tabstop>
   <tabstop>spFundacion</tabstop>

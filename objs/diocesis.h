@@ -26,6 +26,7 @@ public:
     void setOtrosDatos(QJsonObject o);
     void setBuscadosTodosObispos(bool b);
     void setSantaSede(bool s);
+    void setUrlHierarchy(QString u);
 
     // getters
     int getId() const { return id; }
@@ -42,6 +43,7 @@ public:
     QJsonObject getOtrosDatos() const { return otros_datos; }
     bool getBuscadosTodosObispos() const { return buscadosTodosObispos; }
     bool getSantaSede() const { return santa_sede; }
+    QString getUrlHierarchy() const { return url_hierarchy; }
 
     bool estaLleno();
 
@@ -61,6 +63,7 @@ private:
     QJsonObject otros_datos;
     bool buscadosTodosObispos;
     bool santa_sede;
+    QString url_hierarchy;
 
 };
 
