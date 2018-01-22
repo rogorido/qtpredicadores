@@ -38,6 +38,11 @@ dlgDiocesisDetalles::dlgDiocesisDetalles(int diocesis_id, QWidget *parent) :
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptar()));
 
     cargarModelos();
+
+    // ponemos esto de fl. pq realmetne es lo más frecuente parece...
+    ui->txtRentasDivisa->setText("fl.");
+    ui->txtTasaDivisa->setText("fl.");
+
     ui->spTomo->setFocus();
 
 }
@@ -57,7 +62,7 @@ void dlgDiocesisDetalles::aceptar()
     int anoref = ui->spAnoRef->value();
     int numero_obispos = ui->spNumeroObispos->value();
     int rentas = ui->spRenta->value();
-    int tasa = ui->spTaxa->value();
+    double tasa = ui->spTasa->value();
     QString rentas_divisa = ui->txtRentasDivisa->text();
     QString tasas_divisa = ui->txtTasaDivisa->text();
     QString senor = ui->txtSenorTemporal->text();
@@ -164,14 +169,14 @@ void dlgDiocesisDetalles::borrarCampos()
     ui->ckInmediata->setCheckState(Qt::Unchecked);
     ui->ckSinDatos->setCheckState(Qt::Unchecked);
     ui->spRenta->setValue(0);
-    ui->spTaxa->setValue(0);
+    ui->spTasa->setValue(0);
     ui->spNumeroObispos->setValue(0);
     ui->spCanonicos->setValue(0);
     ui->spDignidades->setValue(0);
     ui->spBeneficiados->setValue(0);
     ui->txtSenorTemporal->setText("");
-    ui->txtRentasDivisa->setText("");
-    ui->txtTasaDivisa->setText("");
+    ui->txtRentasDivisa->setText("fl.");
+    ui->txtTasaDivisa->setText("fl.");
     ui->txtSufraganea->setText("");
 
     ui->wdExtras->clear();

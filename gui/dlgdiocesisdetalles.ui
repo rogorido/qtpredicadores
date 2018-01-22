@@ -141,17 +141,10 @@
        <property name="text">
         <string>Tasa</string>
        </property>
-       <property name="buddy">
-        <cstring>spTaxa</cstring>
-       </property>
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="spTaxa">
-       <property name="maximum">
-        <number>1000000</number>
-       </property>
-      </widget>
+      <widget class="QDoubleSpinBox" name="spTasa"/>
      </item>
      <item>
       <widget class="QLabel" name="label_11">
@@ -347,7 +340,6 @@
   <tabstop>ckSinDatos</tabstop>
   <tabstop>spRenta</tabstop>
   <tabstop>txtRentasDivisa</tabstop>
-  <tabstop>spTaxa</tabstop>
   <tabstop>txtTasaDivisa</tabstop>
   <tabstop>txtSenorTemporal</tabstop>
   <tabstop>spDignidades</tabstop>

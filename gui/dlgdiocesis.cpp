@@ -57,6 +57,7 @@ dlgDiocesis::dlgDiocesis(QWidget *parent) :
     connect(ui->twDiocesis, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(menuContextualDiocesis(QPoint)));
     connect(ui->btAnadirDetalles, SIGNAL(clicked()), this, SLOT(anadirDetallesDiocesis()));
+    connect(ui->btModificarDiocesis, SIGNAL(clicked()), this, SLOT(modificarDiocesis()));
 
 }
 
