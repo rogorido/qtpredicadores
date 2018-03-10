@@ -144,7 +144,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QDoubleSpinBox" name="spTasa"/>
+      <widget class="QDoubleSpinBox" name="spTasa">
+       <property name="maximum">
+        <double>100000.000000000000000</double>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_11">
@@ -340,7 +344,10 @@
   <tabstop>ckSinDatos</tabstop>
   <tabstop>spRenta</tabstop>
   <tabstop>txtRentasDivisa</tabstop>
+  <tabstop>spTasa</tabstop>
   <tabstop>txtTasaDivisa</tabstop>
+  <tabstop>txtSufraganea</tabstop>
+  <tabstop>ckInmediata</tabstop>
   <tabstop>txtSenorTemporal</tabstop>
   <tabstop>spDignidades</tabstop>
   <tabstop>spCanonicos</tabstop>
@@ -348,8 +355,6 @@
   <tabstop>tabWidget</tabstop>
   <tabstop>btCancelar</tabstop>
   <tabstop>btOK</tabstop>
-  <tabstop>txtSufraganea</tabstop>
-  <tabstop>ckInmediata</tabstop>
  </tabstops>
  <resources/>
  <connections/>
