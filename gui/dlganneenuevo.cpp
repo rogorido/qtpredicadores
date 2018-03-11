@@ -1,10 +1,14 @@
 #include "dlganneenuevo.h"
 #include "ui_dlganneenuevo.h"
 
+#include <QSqlQuery>
+#include <QSqlError>
 #include <QSqlQueryModel>
 #include <QCompleter>
 #include <QMdiSubWindow>
 #include <QTableWidget>
+#include <QMessageBox>
+#include <QDebug>
 
 #include "widgets/myqmdiarea.h"
 #include "dlgseleccionargeneral.h"
@@ -47,6 +51,45 @@ void dlgAnneeNuevo::cerrar()
 
 void dlgAnneeNuevo::aceptarAnnee()
 {
+    QSqlQuery query;
+    int dia = ui->spDia->value();
+    int mes = ui->spMes->value();
+    QString initial_text = ui->txtPensamiento->toPlainText();
+    QString author_initial_text = ui->txtAutorPensamiento->text();
+    QString entradilla = ui->txtEntradilla->toPlainText();
+    QString main_theme = ui->txtTemaPrincipal->text();
+    QString final_thoughts = ui->txtFinalThought->toPlainText();
+
+    query.prepare("INSERT INTO annee.annee_general(day, month, mainperson, initial_text, "
+                  "author_initial_text, main_theme, entradilla, final_thoughts) "
+                  "VALUES(:dia, :mes, :personaprincipal, :initial_text, "
+                  ":author_initial_text, :main_theme, :entradilla, :final_thoughts)");
+    query.bindValue(":dia", dia);
+    query.bindValue(":mes", mes);
+    query.bindValue(":personaprincipal", persona_id);
+    query.bindValue(":initial_text", initial_text);
+    query.bindValue(":author_initial_text", author_initial_text);
+    query.bindValue(":main_theme", main_theme);
+    query.bindValue(":entradilla", entradilla);
+    query.bindValue(":final_thoughts", final_thoughts);
+
+    if (query.exec()){
+        QSqlQuery lastid("select max(day_id) from annee.annee_general");
+
+        lastid.first();
+        int id = lastid.value(0).toInt();
+
+        meterMeditaciones(id);
+        meterPersonasAdicionales(id);
+        borrarCampos();
+    }
+    else {
+        int ret = QMessageBox::warning(this, "Error",
+                                       "Ha habido un error al ejecutar la consulta de inserción.");
+        Q_UNUSED(ret)
+        qDebug() << query.lastError();
+        return;
+    }
 
 }
 
@@ -103,7 +146,6 @@ void dlgAnneeNuevo::anadirMeditacion()
     while (i.hasNext()) {
         i.next();
         categorias_lista = categorias_lista + i.value()+ QString(", ");
-        //cout << i.key() << ": " << i.value() << endl;
     }
     QTableWidgetItem *item3 = new QTableWidgetItem(categorias_lista);
 
@@ -201,4 +243,88 @@ void dlgAnneeNuevo::cargarModelos()
     m_temasprincipales_completer->setCaseSensitivity(Qt::CaseInsensitive);
 
     ui->txtTemaPrincipal->setCompleter(m_temasprincipales_completer);
+}
+
+void dlgAnneeNuevo::borrarCampos()
+{
+
+}
+
+void dlgAnneeNuevo::meterMeditaciones(int id)
+{
+    QSqlQuery query;
+
+    for (int i = 0; i < meditaciones.size(); ++i) {
+        query.prepare("INSERT INTO annee.meditations(day_id, number_meditation, text_inserted) "
+                      "VALUES(:dia, :number_meditation, :text_inserted)");
+        query.bindValue(":dia", id);
+        query.bindValue(":number_meditation", meditaciones.at(i).numeracion);
+        query.bindValue(":text_inserted", meditaciones.at(i).pensamiento);
+
+        if (query.exec()){
+            QSqlQuery lastid("select max(meditation_id) from annee.meditations");
+
+            lastid.first();
+            int id = lastid.value(0).toInt();
+
+            meterMeditacionesReferencias(id, i);
+        }
+        else {
+            int ret = QMessageBox::warning(this, "Error",
+                                           "Ha habido un error al ejecutar la consulta de inserción.");
+            Q_UNUSED(ret)
+            qDebug() << query.lastError();
+            return;
+        }
+
+    }
+
+}
+
+void dlgAnneeNuevo::meterMeditacionesReferencias(int meditation_id, int lista_meditaciones_id)
+{
+    QSqlQuery query;
+    QHash<int, QString> categorias = meditaciones.at(lista_meditaciones_id).categorias;
+
+    // lo de las categorías es más complicado...
+    QHashIterator<int, QString> i(categorias);
+    while (i.hasNext()) {
+        i.next();
+        query.prepare("INSERT INTO annee.meditations_refs(meditation_id, category_id) "
+                      "VALUES(:meditation_id, :category_id)");
+        query.bindValue(":meditation_id", meditation_id);
+        query.bindValue(":category_id", i.key());
+
+        if (!query.exec()){
+            int ret = QMessageBox::warning(this, "Error",
+                                           "Ha habido un error al ejecutar la consulta de inserción. "
+                                           "(consulta: meterMeditacionesReferencias)");
+             Q_UNUSED(ret)
+             qDebug() << query.lastError();
+             return;
+            }
+    }
+
+
+}
+
+void dlgAnneeNuevo::meterPersonasAdicionales(int id)
+{
+    QSqlQuery query;
+
+    for (int i = 0; i < personas_adicionales.size(); ++i) {
+        query.prepare("INSERT INTO annee.persons_extra(day_id, person_id) "
+                      "VALUES(:dia, :person_id)");
+        query.bindValue(":dia", id);
+        query.bindValue(":person_id", personas_adicionales.at(i).id);
+
+        if (!query.exec()){
+            int ret = QMessageBox::warning(this, "Error",
+                                           "Ha habido un error al ejecutar la consulta de inserción.");
+            Q_UNUSED(ret)
+            qDebug() << query.lastError();
+            return;
+        }
+
+    }
 }

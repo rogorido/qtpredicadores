@@ -82,6 +82,17 @@ private:
     QList<otrapersona> personas_adicionales;
 
     void cargarModelos();
+    void borrarCampos();
+
+    // esto sirve para meter datos si ha funcionado con la tabla principal
+    void meterMeditaciones(int id);
+    /*
+     * esto son las categorías... hacen faltan dos int pq uno es para
+     * la meditation_id y el otro es para coger dentro del QList las categorías
+     * que están metidas...
+     */
+    void meterMeditacionesReferencias(int meditation_id, int lista_meditaciones_id);
+    void meterPersonasAdicionales(int id);
 };
 
 #endif // DLGANNEENUEVO_H
