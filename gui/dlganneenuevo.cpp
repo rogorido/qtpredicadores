@@ -51,6 +51,13 @@ void dlgAnneeNuevo::cerrar()
 
 void dlgAnneeNuevo::aceptarAnnee()
 {
+    if (persona_id == 0){
+        int ret = QMessageBox::warning(this, "Error",
+                                       "Hay que escoger una persona principal.");
+         Q_UNUSED(ret)
+         return;
+        }
+
     QSqlQuery query;
     int dia = ui->spDia->value();
     int mes = ui->spMes->value();
@@ -85,7 +92,7 @@ void dlgAnneeNuevo::aceptarAnnee()
     }
     else {
         int ret = QMessageBox::warning(this, "Error",
-                                       "Ha habido un error al ejecutar la consulta de inserción.");
+                                       "Ha habido un error en la tabla annee_general.");
         Q_UNUSED(ret)
         qDebug() << query.lastError();
         return;
@@ -247,6 +254,26 @@ void dlgAnneeNuevo::cargarModelos()
 
 void dlgAnneeNuevo::borrarCampos()
 {
+    ui->txtAutorPensamiento->setText("");
+    ui->txtEntradilla->setText("");
+    ui->txtFinalThought->setText("");
+    ui->txtMeditacion->setText("");
+    ui->txtPensamiento->setText("");
+    ui->txtTemaPrincipal->setText("");
+    ui->lblPersonaPrincipal->setText("");
+
+    persona_id = 0;
+
+    personas_adicionales.clear();
+    meditaciones.clear();
+    categorias_seleccionadas.clear();
+
+    ui->twMeditaciones->clear();
+    ui->twPersonasAdicionales->clear();
+
+    ui->tabWidget->setCurrentIndex(0);
+
+    ui->spDia->setFocus();
 
 }
 
@@ -271,9 +298,10 @@ void dlgAnneeNuevo::meterMeditaciones(int id)
         }
         else {
             int ret = QMessageBox::warning(this, "Error",
-                                           "Ha habido un error al ejecutar la consulta de inserción.");
+                                           "Ha habido un error en la tabla meditations.");
             Q_UNUSED(ret)
             qDebug() << query.lastError();
+            qDebug() << query.executedQuery();
             return;
         }
 
@@ -305,8 +333,12 @@ void dlgAnneeNuevo::meterMeditacionesReferencias(int meditation_id, int lista_me
             }
     }
 
-
 }
+
+/*
+ * TODO: realmente esta tabla tiene más campos que
+ * ahora aquí no estoy metiendo...
+ */
 
 void dlgAnneeNuevo::meterPersonasAdicionales(int id)
 {
@@ -320,7 +352,7 @@ void dlgAnneeNuevo::meterPersonasAdicionales(int id)
 
         if (!query.exec()){
             int ret = QMessageBox::warning(this, "Error",
-                                           "Ha habido un error al ejecutar la consulta de inserción.");
+                                           "Ha habido un error en la talba persons_extra.");
             Q_UNUSED(ret)
             qDebug() << query.lastError();
             return;
