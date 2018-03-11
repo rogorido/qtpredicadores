@@ -23,9 +23,11 @@ dlgAnneeNuevo::dlgAnneeNuevo(QWidget *parent) :
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarAnnee()));
     connect(ui->btAnadirPersonaPrincipal, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
     connect(ui->btAnadirMeditacion, SIGNAL(clicked(bool)), this, SLOT(anadirMeditacion()));
+    connect(ui->btQuitarMeditacion, SIGNAL(clicked(bool)), this, SLOT(quitarMeditacion()));
     connect(ui->btTemas, SIGNAL(clicked(bool)), this, SLOT(anadirCategoriasMeditacion()));
 
     ui->twMeditaciones->setColumnCount(3);
+    ui->lblPersonaPrincipal->setText("");
 
     cargarModelos();
 }
@@ -96,6 +98,20 @@ void dlgAnneeNuevo::anadirMeditacion()
 
 }
 
+void dlgAnneeNuevo::quitarMeditacion()
+{
+    QModelIndex idx = ui->twMeditaciones->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    int row = ui->twMeditaciones->currentRow();
+    ui->twMeditaciones->removeRow(row);
+
+    meditaciones.removeAt(row);
+
+}
+
 void dlgAnneeNuevo::anadirCategoriasMeditacion()
 {
     dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(TEMA, this);
@@ -108,6 +124,7 @@ void dlgAnneeNuevo::anadirCategoriasMeditacion()
 void dlgAnneeNuevo::recibirPersona(Persona persona)
 {
     persona_id = persona.getId();
+    ui->lblPersonaPrincipal->setText(persona.getNombreCompleto());
 }
 
 void dlgAnneeNuevo::recibirTema(Tema tema)

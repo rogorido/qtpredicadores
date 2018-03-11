@@ -19,7 +19,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>TextLabel</string>
+        <string>Día</string>
        </property>
        <property name="buddy">
         <cstring>spDia</cstring>
@@ -39,7 +39,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>TextLabel</string>
+        <string>Mes</string>
        </property>
        <property name="buddy">
         <cstring>spMes</cstring>
@@ -57,22 +57,16 @@
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
       <widget class="QPushButton" name="btAnadirPersonaPrincipal">
        <property name="text">
         <string>Persona principal</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblPersonaPrincipal">
+       <property name="text">
+        <string>TextLabel</string>
        </property>
       </widget>
      </item>
@@ -182,6 +176,13 @@
             <widget class="QPushButton" name="btAnadirMeditacion">
              <property name="text">
               <string>Añadir</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btQuitarMeditacion">
+             <property name="text">
+              <string>Quitar</string>
              </property>
             </widget>
            </item>

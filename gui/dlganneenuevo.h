@@ -30,6 +30,7 @@ private slots:
 
     void anadirPersona();
     void anadirMeditacion();
+    void quitarMeditacion();
     void anadirCategoriasMeditacion();
 
     void recibirPersona(Persona persona);

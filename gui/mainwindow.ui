@@ -40,9 +40,9 @@
     <addaction name="actionNuevaObra"/>
     <addaction name="actionNuevaMision"/>
     <addaction name="actionNuevaFuente"/>
+    <addaction name="actionNuevoAnnee"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
-    <addaction name="actionNuevoAnnee"/>
    </widget>
    <widget class="QMenu" name="menuGestion">
     <property name="title">
