@@ -22,11 +22,14 @@ dlgAnneeNuevo::dlgAnneeNuevo(QWidget *parent) :
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarAnnee()));
     connect(ui->btAnadirPersonaPrincipal, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
+    connect(ui->btAnadirPersonaAdicional, SIGNAL(clicked(bool)), this, SLOT(anadirPersonaAdicional()));
+    connect(ui->btQuitarPersonaAdicional, SIGNAL(clicked(bool)), this, SLOT(quitarPersonaAdicional()));
     connect(ui->btAnadirMeditacion, SIGNAL(clicked(bool)), this, SLOT(anadirMeditacion()));
     connect(ui->btQuitarMeditacion, SIGNAL(clicked(bool)), this, SLOT(quitarMeditacion()));
     connect(ui->btTemas, SIGNAL(clicked(bool)), this, SLOT(anadirCategoriasMeditacion()));
 
     ui->twMeditaciones->setColumnCount(3);
+    ui->twPersonasAdicionales->setColumnCount(1);
     ui->lblPersonaPrincipal->setText("");
 
     cargarModelos();
@@ -50,10 +53,34 @@ void dlgAnneeNuevo::aceptarAnnee()
 void dlgAnneeNuevo::anadirPersona()
 {
     dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(PERSONA, this);
-    connect(seleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirPersona(Persona)));
+    connect(seleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirPersonaPrincipal(Persona)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);
     window->show();
+}
+
+void dlgAnneeNuevo::anadirPersonaAdicional()
+{
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    connect(seleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirPersonaAdicional(Persona)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);
+    window->show();
+
+}
+
+void dlgAnneeNuevo::quitarPersonaAdicional()
+{
+    QModelIndex idx = ui->twPersonasAdicionales->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    int row = ui->twPersonasAdicionales->currentRow();
+    ui->twPersonasAdicionales->removeRow(row);
+
+    personas_adicionales.removeAt(row);
+
 }
 
 void dlgAnneeNuevo::anadirMeditacion()
@@ -121,10 +148,33 @@ void dlgAnneeNuevo::anadirCategoriasMeditacion()
     window->show();
 }
 
-void dlgAnneeNuevo::recibirPersona(Persona persona)
+void dlgAnneeNuevo::recibirPersonaPrincipal(Persona persona)
 {
     persona_id = persona.getId();
     ui->lblPersonaPrincipal->setText(persona.getNombreCompleto());
+}
+
+void dlgAnneeNuevo::recibirPersonaAdicional(Persona persona)
+{
+    otrapersona nueva_persona;
+
+    nueva_persona.id = persona.getId();
+    nueva_persona.nombre = persona.getNombreCompleto();
+
+    personas_adicionales.append(nueva_persona);
+
+    /* añadimos un elem a la tabla: este es el mejor método? */
+    QTableWidgetItem *item = new QTableWidgetItem(nueva_persona.nombre);
+    //this will give the present number of rows available.
+    int insertRow = ui->twPersonasAdicionales->rowCount();
+    //insert the row at the bottom of the table widget - using.
+    ui->twPersonasAdicionales->insertRow(insertRow);
+
+    ui->twPersonasAdicionales->setItem(insertRow, 0, item);
+
+    ui->twPersonasAdicionales->resizeColumnsToContents();
+    ui->twPersonasAdicionales->resizeRowsToContents();
+
 }
 
 void dlgAnneeNuevo::recibirTema(Tema tema)

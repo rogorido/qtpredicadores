@@ -29,11 +29,14 @@ private slots:
     void aceptarAnnee();
 
     void anadirPersona();
+    void anadirPersonaAdicional();
+    void quitarPersonaAdicional();
     void anadirMeditacion();
     void quitarMeditacion();
     void anadirCategoriasMeditacion();
 
-    void recibirPersona(Persona persona);
+    void recibirPersonaPrincipal(Persona persona);
+    void recibirPersonaAdicional(Persona persona);
     void recibirTema(Tema tema);
 
 private:
