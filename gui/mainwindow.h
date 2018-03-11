@@ -12,6 +12,7 @@ class dlgNuevaDiocesis;
 class dlgNuevoObispo;
 class dlgNuevaMisionFilipinas;
 class dlgNuevaFuente;
+class dlgAnneeNuevo; // mierda está al revés...
 class dlgCapitulos;
 class dlgResoluciones;
 class dlgCiudades;
@@ -67,6 +68,7 @@ private slots:
     void nuevoTema();
     void nuevaFuente();
     void nuevaReforma(); // nombre un poco absurdo...
+    void nuevoAnnee();
 
     void Capitulos();
     void Resoluciones();
@@ -95,6 +97,7 @@ private:
     dlgNuevoObispo *dlgObispo;
     dlgNuevaFuente *dlgFuente;
     dlgNuevaMisionFilipinas *dlgNuevaMision;
+    dlgAnneeNuevo *dlgAnnee;
     dlgReforma *dlgReformaConvento;
 
     // esto son los de gestión

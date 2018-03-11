@@ -18,6 +18,8 @@
 #include "dlgnuevoobispo.h"
 #include "dlgnuevamisionfilipinas.h"
 #include "dlgnuevafuente.h"
+#include "dlganneenuevo.h"
+
 #include "dlgresoluciones.h"
 #include "dlgciudades.h"
 #include "dlgcasas.h"
@@ -94,6 +96,8 @@ void MainWindow::cargarMenues(){
     connect(ui->actionNuevaMision, SIGNAL(triggered(bool)), this, SLOT(nuevaMision()));
     connect(ui->actionNuevaFuente, SIGNAL(triggered(bool)), this, SLOT(nuevaFuente()));
     connect(ui->actionIntroducirReformaConvento, SIGNAL(triggered(bool)), this, SLOT(nuevaReforma()));
+    connect(ui->actionNuevoAnnee, SIGNAL(triggered(bool)), this, SLOT(nuevoAnnee()));
+
     connect(ui->actionResoluciones, SIGNAL(triggered(bool)), this, SLOT(Resoluciones()));
     connect(ui->actionCiudades, SIGNAL(triggered(bool)), this, SLOT(Ciudades()));
     connect(ui->actionCasas, SIGNAL(triggered(bool)), this, SLOT(Casas()));
@@ -275,6 +279,13 @@ void MainWindow::nuevaReforma()
     dlgReforma *dlgReformaConvento = new dlgReforma(this);
 
     dlgReformaConvento->show();
+}
+
+void MainWindow::nuevoAnnee()
+{
+    dlgAnnee = new dlgAnneeNuevo(this);
+    QMdiSubWindow *window = mdiArea->addSubWindow(dlgAnnee);
+    window->show();
 }
 
 void MainWindow::on_actionObispos_triggered()

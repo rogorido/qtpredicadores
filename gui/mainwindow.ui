@@ -42,6 +42,7 @@
     <addaction name="actionNuevaFuente"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
+    <addaction name="actionNuevoAnnee"/>
    </widget>
    <widget class="QMenu" name="menuGestion">
     <property name="title">
@@ -271,6 +272,11 @@
   <action name="actionDiocesis">
    <property name="text">
     <string>Diócesis</string>
+   </property>
+  </action>
+  <action name="actionNuevoAnnee">
+   <property name="text">
+    <string>Nuevos datos de année</string>
    </property>
   </action>
  </widget>
