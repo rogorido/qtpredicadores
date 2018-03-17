@@ -23,6 +23,9 @@ public:
     explicit dlgAnneeNuevo(QWidget *parent = 0);
     ~dlgAnneeNuevo();
 
+protected:
+    bool eventFilter(QObject *obj, QEvent *e);
+
 private slots:
 
     void cerrar();
@@ -33,6 +36,8 @@ private slots:
     void quitarPersonaAdicional();
     void anadirMeditacion();
     void quitarMeditacion();
+    void anadirConceptoMeditacion();
+    void quitarConceptoMeditacion();
     void anadirCategoriasMeditacion();
 
     void recibirPersonaPrincipal(Persona persona);
@@ -43,10 +48,12 @@ private:
     Ui::dlgAnneeNuevo *ui;
     MyQmdiArea *mdiarea;
 
-    QSqlQueryModel *m_autores;
-    QCompleter *m_autores_completer;
-    QSqlQueryModel *m_temasprincipales;
-    QCompleter *m_temasprincipales_completer;
+    QSqlQueryModel *autores_model;
+    QCompleter *autores_completer;
+    QSqlQueryModel *temasprincipales_model;
+    QCompleter *temasprincipales_completer;
+    QSqlQueryModel *conceptos_model;
+    QCompleter *conceptos_completer;
 
     /*
      * aquí vienen las variables donde vamos a guardar los datos
@@ -58,9 +65,17 @@ private:
         int numeracion;
         QString pensamiento;
         QHash<int, QString> categorias;
+        QStringList conceptos;
     };
 
     QList<m_meditacion> meditaciones;
+
+    /*
+     * aquí metemos los conceptos que luego pasamos
+     * a m_meditacion
+     */
+    QStringList m_conceptos;
+
 
     /*
      * aquí metemos las categorías que vamos escogiendo

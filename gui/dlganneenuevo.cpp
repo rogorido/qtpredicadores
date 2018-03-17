@@ -15,6 +15,7 @@
 
 QString sql_autores = "SELECT DISTINCT author_initial_text FROM annee_general ORDER BY author_initial_text";
 QString sql_temas = "SELECT DISTINCT main_theme FROM annee_general ORDER BY main_theme";
+QString sql_conceptos = "SELECT DISTINCT unnest(concepts) AS conceptos FROM meditations ORDER BY conceptos";
 
 dlgAnneeNuevo::dlgAnneeNuevo(QWidget *parent) :
     QWidget(parent),
@@ -23,6 +24,8 @@ dlgAnneeNuevo::dlgAnneeNuevo(QWidget *parent) :
     ui->setupUi(this);
     mdiarea = MyQmdiArea::Instance(this);
 
+    ui->txtPalabraMeditacion->installEventFilter(this);
+
     connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
     connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarAnnee()));
     connect(ui->btAnadirPersonaPrincipal, SIGNAL(clicked(bool)), this, SLOT(anadirPersona()));
@@ -30,6 +33,8 @@ dlgAnneeNuevo::dlgAnneeNuevo(QWidget *parent) :
     connect(ui->btQuitarPersonaAdicional, SIGNAL(clicked(bool)), this, SLOT(quitarPersonaAdicional()));
     connect(ui->btAnadirMeditacion, SIGNAL(clicked(bool)), this, SLOT(anadirMeditacion()));
     connect(ui->btQuitarMeditacion, SIGNAL(clicked(bool)), this, SLOT(quitarMeditacion()));
+    connect(ui->btAnadirPalabraMeditacion, SIGNAL(clicked(bool)), this, SLOT(anadirConceptoMeditacion()));
+    connect(ui->btQuitarPalabraMeditacion, SIGNAL(clicked(bool)), this, SLOT(quitarConceptoMeditacion()));
     connect(ui->btTemas, SIGNAL(clicked(bool)), this, SLOT(anadirCategoriasMeditacion()));
 
     ui->twMeditaciones->setColumnCount(3);
@@ -42,6 +47,27 @@ dlgAnneeNuevo::dlgAnneeNuevo(QWidget *parent) :
 dlgAnneeNuevo::~dlgAnneeNuevo()
 {
     delete ui;
+}
+
+bool dlgAnneeNuevo::eventFilter(QObject *obj, QEvent *e)
+{
+    if (e->type()== QEvent::KeyPress) {
+            QKeyEvent *keyEvent = static_cast<QKeyEvent *>(e);
+            if (keyEvent->key() == Qt::Key_Return){
+
+                // y ahora dependiendo del QLineEdit...
+                if (obj == ui->txtPalabraMeditacion){
+                    anadirConceptoMeditacion();
+                    return true;
+                }
+            }
+        }
+
+    /*
+     * atención aquí lo importante es poner QWidget!
+     * si pongo dlgPenaEntrada no funciona!!
+     */
+    return QWidget::eventFilter(obj, e);
 }
 
 void dlgAnneeNuevo::cerrar()
@@ -141,6 +167,7 @@ void dlgAnneeNuevo::anadirMeditacion()
     meditacion.numeracion = ui->spNumeroMeditacion->value();
     meditacion.pensamiento = ui->txtMeditacion->text();
     meditacion.categorias = categorias_seleccionadas;
+    meditacion.conceptos = m_conceptos;
 
     meditaciones.append(meditacion);
 
@@ -171,6 +198,8 @@ void dlgAnneeNuevo::anadirMeditacion()
     // tenemos que borrar algunas cosas
     ui->txtMeditacion->setText("");
     categorias_seleccionadas.clear();
+    m_conceptos.clear();
+    ui->lwPalabrasMeditacion->clear();
 
 }
 
@@ -186,6 +215,33 @@ void dlgAnneeNuevo::quitarMeditacion()
 
     meditaciones.removeAt(row);
 
+}
+
+void dlgAnneeNuevo::anadirConceptoMeditacion()
+{
+    if (ui->txtPalabraMeditacion->text().isEmpty())
+        return;
+
+    QListWidgetItem *item = new QListWidgetItem(ui->txtPalabraMeditacion->text(), ui->lwPalabrasMeditacion);
+
+    m_conceptos.append(ui->txtPalabraMeditacion->text());
+    ui->txtPalabraMeditacion->setText("");
+    ui->txtPalabraMeditacion->setFocus();
+
+
+}
+
+void dlgAnneeNuevo::quitarConceptoMeditacion()
+{
+    QModelIndex idx = ui->lwPalabrasMeditacion->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    int row = ui->lwPalabrasMeditacion->currentRow();
+    ui->lwPalabrasMeditacion->takeItem(ui->lwPalabrasMeditacion->currentRow());
+
+    m_conceptos.removeAt(row);
 }
 
 void dlgAnneeNuevo::anadirCategoriasMeditacion()
@@ -233,23 +289,32 @@ void dlgAnneeNuevo::recibirTema(Tema tema)
 
 void dlgAnneeNuevo::cargarModelos()
 {
-    m_autores = new QSqlQueryModel(this);
-    m_autores->setQuery(sql_autores);
+    autores_model = new QSqlQueryModel(this);
+    autores_model->setQuery(sql_autores);
 
-    m_autores_completer = new QCompleter(this);
-    m_autores_completer->setModel(m_autores);
-    m_autores_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    autores_completer = new QCompleter(this);
+    autores_completer->setModel(autores_model);
+    autores_completer->setCaseSensitivity(Qt::CaseInsensitive);
 
-    ui->txtAutorPensamiento->setCompleter(m_autores_completer);
+    ui->txtAutorPensamiento->setCompleter(autores_completer);
 
-    m_temasprincipales = new QSqlQueryModel(this);
-    m_temasprincipales->setQuery(sql_temas);
+    temasprincipales_model = new QSqlQueryModel(this);
+    temasprincipales_model->setQuery(sql_temas);
 
-    m_temasprincipales_completer = new QCompleter(this);
-    m_temasprincipales_completer->setModel(m_temasprincipales);
-    m_temasprincipales_completer->setCaseSensitivity(Qt::CaseInsensitive);
+    temasprincipales_completer = new QCompleter(this);
+    temasprincipales_completer->setModel(temasprincipales_model);
+    temasprincipales_completer->setCaseSensitivity(Qt::CaseInsensitive);
 
-    ui->txtTemaPrincipal->setCompleter(m_temasprincipales_completer);
+    ui->txtTemaPrincipal->setCompleter(temasprincipales_completer);
+
+    conceptos_model = new QSqlQueryModel(this);
+    conceptos_model->setQuery(sql_conceptos);
+
+    conceptos_completer = new QCompleter(this);
+    conceptos_completer->setModel(conceptos_model);
+    conceptos_completer->setCaseSensitivity(Qt::CaseInsensitive);
+
+    ui->txtPalabraMeditacion->setCompleter(conceptos_completer);
 }
 
 void dlgAnneeNuevo::borrarCampos()
@@ -280,13 +345,23 @@ void dlgAnneeNuevo::borrarCampos()
 void dlgAnneeNuevo::meterMeditaciones(int id)
 {
     QSqlQuery query;
+    QString conceptos_final;
 
     for (int i = 0; i < meditaciones.size(); ++i) {
-        query.prepare("INSERT INTO annee.meditations(day_id, number_meditation, text_inserted) "
-                      "VALUES(:dia, :number_meditation, :text_inserted)");
+        query.prepare("INSERT INTO annee.meditations(day_id, number_meditation, text_inserted, concepts) "
+                      "VALUES(:dia, :number_meditation, :text_inserted, :concepts)");
         query.bindValue(":dia", id);
         query.bindValue(":number_meditation", meditaciones.at(i).numeracion);
         query.bindValue(":text_inserted", meditaciones.at(i).pensamiento);
+
+        if (!meditaciones.at(i).conceptos.isEmpty()) {
+            conceptos_final = '{' + meditaciones.at(i).conceptos.join(", ") + '}';
+        }
+
+        if (!conceptos_final.isEmpty())
+            query.bindValue(":concepts", conceptos_final);
+        else
+            query.bindValue(":concepts", QVariant(QVariant::String));
 
         if (query.exec()){
             QSqlQuery lastid("select max(meditation_id) from annee.meditations");
