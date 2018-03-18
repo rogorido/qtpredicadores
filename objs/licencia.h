@@ -15,15 +15,15 @@ public:
     Licencia();
 
     // setters
-    void setLicenciaTipo(QString l);
-    void setOtorgantes(QStringList o);
-    void setReceptores(QStringList r);
-    void setAsunto(QString a);
-    void setSeguridad(int s);
-    void setProvincia(int p);
-    void setCasa(int c);
-    void setExtraInfos(ExtraInfos e);
-    void setNotas(Notas n);
+    void setLicenciaTipo(const QString l);
+    void setOtorgantes(const QStringList o);
+    void setReceptores(const QStringList r);
+    void setAsunto(const QString a);
+    void setSeguridad(const int s);
+    void setProvincia(const int p);
+    void setCasa(const int c);
+    void setExtraInfos(const ExtraInfos e);
+    void setNotas(const Notas n);
 
     // getters
     QString getLicenciatipo() const { return licenciatipo; }

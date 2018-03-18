@@ -24,14 +24,14 @@ public:
     enum class TipoAprobacion { PERSONA, CASA };
 
     //setters
-    void setTipoAprobacion(TipoAprobacion t);
-    void setCargo(QString c);
-    void setTipoInstitucion(QString t);
-    void setPersona(Persona p);
-    void setCasa(Casa c);
-    void setProvincia(Provincia p);
-    void setNotas(Notas n);
-    void setExtraInfos(ExtraInfos e);
+    void setTipoAprobacion(const TipoAprobacion t);
+    void setCargo(const QString c);
+    void setTipoInstitucion(const QString t);
+    void setPersona(const Persona p);
+    void setCasa(const Casa c);
+    void setProvincia(const Provincia p);
+    void setNotas(const Notas n);
+    void setExtraInfos(const ExtraInfos e);
 
     //getters
     TipoAprobacion getTipoAprobacion() const { return tipo_aprobacion; }

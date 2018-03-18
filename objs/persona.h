@@ -13,27 +13,27 @@ public:
     Persona();
 
     // setters
-    void setId(int i);
-    void setNombre(QString n);
-    void setApellidos(QString a);
-    void setOrigen(QString o);
-    void setMasculino(bool m);
-    void setBuscado(bool b);
-    void setWiki(bool w);
-    void setViaf(bool v);
-    void setTipoPersona(QString t);
-    void setWikilink(QString wl);
-    void setViaflink(QString vl);
-    void setWikidata(QString w);
-    void setNacimiento(QString nac);
-    void setMuerte(QString m);
-    void setDiocesis(QString d);
-    void setOtrosnombres(QString o);
-    void setOtrosdatos(QString o);
-    void setVolverMirar(bool v);
-    void setCantidadInfo(int c);
-    void setNotas(QString n);
-    void setFuente(fuente f);
+    void setId(const int i);
+    void setNombre(const QString n);
+    void setApellidos(const QString a);
+    void setOrigen(const QString o);
+    void setMasculino(const bool m);
+    void setBuscado(const bool b);
+    void setWiki(const bool w);
+    void setViaf(const bool v);
+    void setTipoPersona(const QString t);
+    void setWikilink(const QString wl);
+    void setViaflink(const QString vl);
+    void setWikidata(const QString w);
+    void setNacimiento(const QString nac);
+    void setMuerte(const QString m);
+    void setDiocesis(const QString d);
+    void setOtrosnombres(const QString o);
+    void setOtrosdatos(const QString o);
+    void setVolverMirar(const bool v);
+    void setCantidadInfo(const int c);
+    void setNotas(const QString n);
+    void setFuente(const fuente f);
 
     //getters
     int getId() const { return id; }

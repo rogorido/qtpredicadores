@@ -2,24 +2,24 @@
 
 Pena::Pena() { lleno = false; }
 
-void Pena::setPenasTipos(QStringList p)
+void Pena::setPenasTipos(const QStringList p)
 {
     penas_tipos = p;
     lleno = true;
 }
 
-void Pena::setPenaTexto(QString p) { pena_texto = p; }
-void Pena::setDuracion(QString d) { duracion = d; }
-void Pena::setRestriccion(QString r) { restriccion = r; }
-void Pena::setAbsolucion(QString a) { absolucion = a; }
-void Pena::setPenados(QStringList p)
+void Pena::setPenaTexto(const QString p) { pena_texto = p; }
+void Pena::setDuracion(const QString d) { duracion = d; }
+void Pena::setRestriccion(const QString r) { restriccion = r; }
+void Pena::setAbsolucion(const QString a) { absolucion = a; }
+void Pena::setPenados(const QStringList p)
 {
     penados = p;
     lleno = true;
 }
-void Pena::setMotivo(QString m) { motivo = m; }
-void Pena::setExtraInfos(ExtraInfos e) { extras = e; }
-void Pena::setNotas(Notas n) { nota = n; }
+void Pena::setMotivo(const QString m) { motivo = m; }
+void Pena::setExtraInfos(const ExtraInfos e) { extras = e; }
+void Pena::setNotas(const Notas n) { nota = n; }
 
 QJsonObject Pena::getPenaJson()
 {

@@ -8,11 +8,11 @@ class Provincia
 public:
     Provincia();
 
-    void setId(int i);
-    void setNombre(QString n);
-    void setOtrosNombres(QString o);
-    void setErigida(QString e);
-    void setNotas(QString n);
+    void setId(const int i);
+    void setNombre(const QString n);
+    void setOtrosNombres(const QString o);
+    void setErigida(const QString e);
+    void setNotas(const QString n);
 
     //getters
     int getId() const {return id;}

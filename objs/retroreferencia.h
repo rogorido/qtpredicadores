@@ -12,9 +12,9 @@ public:
 
     // setters
 
-    void setTipo(QString t);
-    void setReferencia(QString r);
-    void setTextoReal(QString t);
+    void setTipo(const QString t);
+    void setReferencia(const QString r);
+    void setTextoReal(const QString t);
 
     // getters
     QString getTipo() const {return tipo;}

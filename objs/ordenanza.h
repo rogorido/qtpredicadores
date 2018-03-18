@@ -19,17 +19,17 @@ public:
     enum class TipoOrdenanza { MANDATO, PROHIBICION, ADMONICION, COMISION };
 
     // setters
-    void setTipo(TipoOrdenanza t);
-    void setReceptores(QStringList r);
-    void setObjetos(QStringList o);
-    void setPena(Pena p);
-    void setRestriccion(QString r);
-    void setFinalidades(QStringList f);
-    void setSeguridad(int s);
-    void setRetroReferencia(RetroReferencia r);
-    void setTemas(QList<int> t);
-    void setExtraInfos(ExtraInfos e);
-    void setNota(Notas n);
+    void setTipo(const TipoOrdenanza t);
+    void setReceptores(const QStringList r);
+    void setObjetos(const QStringList o);
+    void setPena(const Pena p);
+    void setRestriccion(const QString r);
+    void setFinalidades(const QStringList f);
+    void setSeguridad(const int s);
+    void setRetroReferencia(const RetroReferencia r);
+    void setTemas(const QList<int> t);
+    void setExtraInfos(const ExtraInfos e);
+    void setNota(const Notas n);
 
     // getters
     TipoOrdenanza getTipo() const {return tipo_ordenanza;}

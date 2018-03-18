@@ -10,20 +10,20 @@ public:
     Obispo();
 
     // setters
-    void setId(int i);
-    void setPersona(int p);
-    void setDiocesis(int d);
-    void setPapa(int p);
-    void setFechaNominacion(QDate f);
-    void setFechaFin(QDate f);
-    void setCircaFecha(bool c);
-    void setDuracion(QString d);
-    void setFinPorMuerte(bool f);
-    void setVolverMirar(bool v);
-    void setInGcatholic(bool i);
-    void setSufraganeo(bool s);
-    void setFinalRelativo(bool f);
-    void setOtrosDatos(QJsonObject o);
+    void setId(const int i);
+    void setPersona(const int p);
+    void setDiocesis(const int d);
+    void setPapa(const int p);
+    void setFechaNominacion(const QDate f);
+    void setFechaFin(const QDate f);
+    void setCircaFecha(const bool c);
+    void setDuracion(const QString d);
+    void setFinPorMuerte(const bool f);
+    void setVolverMirar(const bool v);
+    void setInGcatholic(const bool i);
+    void setSufraganeo(const bool s);
+    void setFinalRelativo(const bool f);
+    void setOtrosDatos(const QJsonObject o);
 
     // getters
     int getId() const { return id; }

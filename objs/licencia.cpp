@@ -2,15 +2,15 @@
 
 Licencia::Licencia() { }
 
-void Licencia::setLicenciaTipo(QString l) { licenciatipo = l; }
-void Licencia::setOtorgantes(QStringList o) { otorgantes = o; }
-void Licencia::setReceptores(QStringList r) { receptores = r; }
-void Licencia::setAsunto(QString a) { asunto = a; }
-void Licencia::setSeguridad(int s) { seguridad = s; }
-void Licencia::setProvincia(int p) { provincia = p; }
-void Licencia::setCasa(int c) { casa = c; }
-void Licencia::setExtraInfos(ExtraInfos e) { extras = e; }
-void Licencia::setNotas(Notas n) { nota = n; }
+void Licencia::setLicenciaTipo(const QString l) { licenciatipo = l; }
+void Licencia::setOtorgantes(const QStringList o) { otorgantes = o; }
+void Licencia::setReceptores(const QStringList r) { receptores = r; }
+void Licencia::setAsunto(const QString a) { asunto = a; }
+void Licencia::setSeguridad(const int s) { seguridad = s; }
+void Licencia::setProvincia(const int p) { provincia = p; }
+void Licencia::setCasa(const int c) { casa = c; }
+void Licencia::setExtraInfos(const ExtraInfos e) { extras = e; }
+void Licencia::setNotas(const Notas n) { nota = n; }
 
 QJsonObject Licencia::getLicenciaJson()
 {

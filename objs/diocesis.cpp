@@ -3,21 +3,21 @@
 Diocesis::Diocesis()
 { }
 
-void Diocesis::setId(int i) { id = i; }
-void Diocesis::setNombre(QString n) { nombre = n; }
-void Diocesis::setNombreLatin(QString n) { nombre_latin = n; }
-void Diocesis::setArchidiosis(bool a) { archidiocesis = a; }
-void Diocesis::setSufraganea(int s) { sufraganeade = s; }
-void Diocesis::setLugar(int l) { lugar = l; }
-void Diocesis::setExistente(bool e) { existe_hoy = e; }
-void Diocesis::setInfidelibus(bool i) { infidelibus = i; }
-void Diocesis::setTitularSee(bool t) { titular_see = t; }
-void Diocesis::setMotivoDesaparicion(QString m) { motivo_desaparicion = m; }
-void Diocesis::setNota(Notas n) { nota = n; }
-void Diocesis::setOtrosDatos(QJsonObject o) { otros_datos = o; }
-void Diocesis::setBuscadosTodosObispos(bool b) { buscadosTodosObispos = b; }
-void Diocesis::setSantaSede(bool s) { santa_sede = s; }
-void Diocesis::setUrlHierarchy(QString u) { url_hierarchy = u; }
+void Diocesis::setId(const int i) { id = i; }
+void Diocesis::setNombre(const QString n) { nombre = n; }
+void Diocesis::setNombreLatin(const QString n) { nombre_latin = n; }
+void Diocesis::setArchidiosis(const bool a) { archidiocesis = a; }
+void Diocesis::setSufraganea(const int s) { sufraganeade = s; }
+void Diocesis::setLugar(const int l) { lugar = l; }
+void Diocesis::setExistente(const bool e) { existe_hoy = e; }
+void Diocesis::setInfidelibus(const bool i) { infidelibus = i; }
+void Diocesis::setTitularSee(const bool t) { titular_see = t; }
+void Diocesis::setMotivoDesaparicion(const QString m) { motivo_desaparicion = m; }
+void Diocesis::setNota(const Notas n) { nota = n; }
+void Diocesis::setOtrosDatos(const QJsonObject o) { otros_datos = o; }
+void Diocesis::setBuscadosTodosObispos(const bool b) { buscadosTodosObispos = b; }
+void Diocesis::setSantaSede(const bool s) { santa_sede = s; }
+void Diocesis::setUrlHierarchy(const QString u) { url_hierarchy = u; }
 
 bool Diocesis::estaLleno()
 {

@@ -2,14 +2,14 @@
 
 Aprobacion::Aprobacion() { }
 
-void Aprobacion::setTipoAprobacion(Aprobacion::TipoAprobacion t) { tipo_aprobacion = t; }
-void Aprobacion::setCargo(QString c) { cargo = c; }
-void Aprobacion::setTipoInstitucion(QString t) { tipo_institucion = t; }
-void Aprobacion::setPersona(Persona p) { persona = p; }
-void Aprobacion::setCasa(Casa c) { casa = c;}
-void Aprobacion::setProvincia(Provincia p) { provincia = p; }
-void Aprobacion::setExtraInfos(ExtraInfos e) { extras = e; }
-void Aprobacion::setNotas(Notas n) { nota = n; }
+void Aprobacion::setTipoAprobacion(const Aprobacion::TipoAprobacion t) { tipo_aprobacion = t; }
+void Aprobacion::setCargo(const QString c) { cargo = c; }
+void Aprobacion::setTipoInstitucion(const QString t) { tipo_institucion = t; }
+void Aprobacion::setPersona(const Persona p) { persona = p; }
+void Aprobacion::setCasa(const Casa c) { casa = c;}
+void Aprobacion::setProvincia(const Provincia p) { provincia = p; }
+void Aprobacion::setExtraInfos(const ExtraInfos e) { extras = e; }
+void Aprobacion::setNotas(const Notas n) { nota = n; }
 
 QJsonObject Aprobacion::getAprobacionJson()
 {

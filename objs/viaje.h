@@ -14,18 +14,18 @@ public:
     Viaje();
 
     // setters
-    void setOriginal(bool o);
-    void setOrigen(int o);
-    void setDestino(int d);
-    void setMotivos(QStringList m);
-    void setDuracion(int d);
-    void setVuelta(bool v);
-    void setMuerto(bool m);
-    void setMotivoMuerte(QString m);
-    void setLugarMuerte(QString l);
-    void setFechaInicio(QDate f);
-    void setFechaFin(QDate f);
-    void setNotas(Notas n);
+    void setOriginal(const bool o);
+    void setOrigen(const int o);
+    void setDestino(const int d);
+    void setMotivos(const QStringList m);
+    void setDuracion(const int d);
+    void setVuelta(const bool v);
+    void setMuerto(const bool m);
+    void setMotivoMuerte(const QString m);
+    void setLugarMuerte(const QString l);
+    void setFechaInicio(const QDate f);
+    void setFechaFin(const QDate f);
+    void setNotas(const Notas n);
 
     // getters
     bool getOriginal() const { return original; }

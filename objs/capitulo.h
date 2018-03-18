@@ -12,18 +12,18 @@ public:
     Capitulo();
 
     // setters
-    void setId(int id);
-    void setNombre(QString nombre);
-    void setLugar(int lugar);
-    void setTipo(QString tipo);
-    void setAsistentes(QString asistentes);
-    void setVolumen(QString volumen);
-    void setPaginas(QString paginas);
-    void setNotas(QString notas);
-    void setMaestroGeneral(int maestrogeneral);
-    void setDefinitorio(bool d);
-    void setFechaInicio(QDate f_inicio);
-    void setFechaFin(QDate f_fin);
+    void setId(const int id);
+    void setNombre(const QString nombre);
+    void setLugar(const int lugar);
+    void setTipo(const QString tipo);
+    void setAsistentes(const QString asistentes);
+    void setVolumen(const QString volumen);
+    void setPaginas(const QString paginas);
+    void setNotas(const QString notas);
+    void setMaestroGeneral(const int maestrogeneral);
+    void setDefinitorio(const bool d);
+    void setFechaInicio(const QDate f_inicio);
+    void setFechaFin(const QDate f_fin);
 
     //getters
     int getId() const {return id;}

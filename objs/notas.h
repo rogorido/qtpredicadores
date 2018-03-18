@@ -10,10 +10,10 @@ public:
     Notas();
 
     // setters
-    void setVolverMirar(bool v);
-    void setInteresante(bool i);
-    void setSeguridad(int s);
-    void setNota(QString n);
+    void setVolverMirar(const bool v);
+    void setInteresante(const bool i);
+    void setSeguridad(const int s);
+    void setNota(const QString n);
 
     // getters
     bool getVolverMirar() const {return volveramirar;}

@@ -15,11 +15,11 @@ public:
     Infraccion();
 
     // setters
-    void setTipo(QString t);
-    void setInfraccion(QString i);
-    void setInfractores(QStringList i);
-    void setNota(Notas n);
-    void setExtras(ExtraInfos e);
+    void setTipo(const QString t);
+    void setInfraccion(const QString i);
+    void setInfractores(const QStringList i);
+    void setNota(const Notas n);
+    void setExtras(const ExtraInfos e);
 
     // getters
 

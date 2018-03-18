@@ -11,26 +11,26 @@ public:
     Casa();
 
     // setters
-    void setId(int i);
-    void setNombre(QString n);
-    void setNombreLatin(QString n);
-    void setLugar(int l);
-    void setLugarOriginario(QString n);
-    void setMasculino(bool m);
-    void setTipo(QString t);
-    void setCongregacion(QString c);
-    void setBuscado(bool b);
-    void setWiki(bool w);
-    void setProvincia(int p);
-    void setDiocesis(QString d);
-    void setFechaFundacion(QString f);
-    void setFechaEliminacion(QString f);
-    void setAdvocacion(QString a);
-    void setQuetif(bool q);
-    void setStudiumgenerale(bool w);
-    void setOtrosnombres(QString o);
-    void setNotas(QString n);
-    void setOtrosDatos(QString o);
+    void setId(const int i);
+    void setNombre(const QString n);
+    void setNombreLatin(const QString n);
+    void setLugar(const int l);
+    void setLugarOriginario(const QString n);
+    void setMasculino(const bool m);
+    void setTipo(const QString t);
+    void setCongregacion(const QString c);
+    void setBuscado(const bool b);
+    void setWiki(const bool w);
+    void setProvincia(const int p);
+    void setDiocesis(const QString d);
+    void setFechaFundacion(const QString f);
+    void setFechaEliminacion(const QString f);
+    void setAdvocacion(const QString a);
+    void setQuetif(const bool q);
+    void setStudiumgenerale(const bool w);
+    void setOtrosnombres(const QString o);
+    void setNotas(const QString n);
+    void setOtrosDatos(const QString o);
 
     //getters
     int getId() const {return id;}

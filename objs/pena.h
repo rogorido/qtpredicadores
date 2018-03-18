@@ -15,15 +15,15 @@ public:
     Pena();
 
     // setters
-    void setPenasTipos(QStringList p);
-    void setPenaTexto(QString p);
-    void setDuracion(QString d);
-    void setRestriccion(QString r);
-    void setAbsolucion(QString a);
-    void setPenados(QStringList p);
-    void setMotivo(QString m);
-    void setExtraInfos(ExtraInfos e);
-    void setNotas(Notas n);
+    void setPenasTipos(const QStringList p);
+    void setPenaTexto(const QString p);
+    void setDuracion(const QString d);
+    void setRestriccion(const QString r);
+    void setAbsolucion(const QString a);
+    void setPenados(const QStringList p);
+    void setMotivo(const QString m);
+    void setExtraInfos(const ExtraInfos e);
+    void setNotas(const Notas n);
 
     // getters
     QStringList getPenasTipos() const { return penas_tipos; }

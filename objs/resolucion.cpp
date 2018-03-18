@@ -3,20 +3,20 @@
 Resolucion::Resolucion()
 { }
 
-void Resolucion::setId(int i) { id = i; }
-void Resolucion::setTexto(QString t) { texto = t; }
-void Resolucion::setTextoTraducido(QString t) { texto_traducido = t; }
-void Resolucion::setTextoResumido(QString t) { texto_resumido = t; }
-void Resolucion::setCapitulo(int c) { capitulo = c; }
-void Resolucion::setEpigrafe(QString e) { epigrafe = e; }
-void Resolucion::setProvincia(int p) { provincia = p; }
-void Resolucion::setEntendido(bool e) { entendido = e; }
-void Resolucion::setVolverMirar(bool v) { volveramirar = v; }
-void Resolucion::setTraducido(bool t) { traducido = t; }
-void Resolucion::setRazonada(bool r) { razonada = r; }
-void Resolucion::setInteres(int i) { interes = i; }
-void Resolucion::setResolucionAnterior(int r) { resolucion_anterior = r; }
-void Resolucion::setVerbos(QStringList v) { verbos = v; }
-void Resolucion::setExpresiones(QStringList e) { expresiones = e; }
-void Resolucion::setPages(QString p) { pages = p; }
-void Resolucion::setNotas(QString n) { notas = n; }
+void Resolucion::setId(const int i) { id = i; }
+void Resolucion::setTexto(const QString t) { texto = t; }
+void Resolucion::setTextoTraducido(const QString t) { texto_traducido = t; }
+void Resolucion::setTextoResumido(const QString t) { texto_resumido = t; }
+void Resolucion::setCapitulo(const int c) { capitulo = c; }
+void Resolucion::setEpigrafe(const QString e) { epigrafe = e; }
+void Resolucion::setProvincia(const int p) { provincia = p; }
+void Resolucion::setEntendido(const bool e) { entendido = e; }
+void Resolucion::setVolverMirar(const bool v) { volveramirar = v; }
+void Resolucion::setTraducido(const bool t) { traducido = t; }
+void Resolucion::setRazonada(const bool r) { razonada = r; }
+void Resolucion::setInteres(const int i) { interes = i; }
+void Resolucion::setResolucionAnterior(const int r) { resolucion_anterior = r; }
+void Resolucion::setVerbos(const QStringList v) { verbos = v; }
+void Resolucion::setExpresiones(const QStringList e) { expresiones = e; }
+void Resolucion::setPages(const QString p) { pages = p; }
+void Resolucion::setNotas(const QString n) { notas = n; }

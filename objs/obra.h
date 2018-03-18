@@ -11,32 +11,32 @@ public:
     Obra();
 
     // setters
-    void setTitulo(QString t);
-    void setIdioma(QString i);
-    void setAutor(int a);
-    void setTipo(QString t);
-    void setFormato(QString f);
-    void setTomos(int t);
-    void setNumeroPags(QString np);
-    void setImpreso(bool i);
-    void setTalVezImpreso(bool i);
-    void setManuscrito(bool m);
-    void setLugarOriginal(QString l);
-    void setLugar(int l);
-    void setFecha(int f);
-    void setEditor(QString e);
-    void setReferencias(bool r);
-    void setTituloReducido(bool t);
-    void setContenido(bool c);
-    void setInteresante(int i);
-    void setDudoso(bool d);
-    void setExpurgable(bool e);
-    void setFiabilidad(int f);
-    void setVolverMirar(bool v);
-    void setInvestigar(bool i);
-    void setTraduccion(QString t);
-    void setPageQuetif(QString p);
-    void setNotas(QString n);
+    void setTitulo(const QString t);
+    void setIdioma(const QString i);
+    void setAutor(const int a);
+    void setTipo(const QString t);
+    void setFormato(const QString f);
+    void setTomos(const int t);
+    void setNumeroPags(const QString np);
+    void setImpreso(const bool i);
+    void setTalVezImpreso(const bool i);
+    void setManuscrito(const bool m);
+    void setLugarOriginal(const QString l);
+    void setLugar(const int l);
+    void setFecha(const int f);
+    void setEditor(const QString e);
+    void setReferencias(const bool r);
+    void setTituloReducido(const bool t);
+    void setContenido(const bool c);
+    void setInteresante(const int i);
+    void setDudoso(const bool d);
+    void setExpurgable(const bool e);
+    void setFiabilidad(const int f);
+    void setVolverMirar(const bool v);
+    void setInvestigar(const bool i);
+    void setTraduccion(const QString t);
+    void setPageQuetif(const QString p);
+    void setNotas(const QString n);
 
     //getters
     QString getTitulo() const {return titulo;}

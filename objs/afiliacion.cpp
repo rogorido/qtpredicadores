@@ -2,13 +2,13 @@
 
 Afiliacion::Afiliacion() { }
 
-void Afiliacion::setPersona(Persona p) { persona = p; }
-void Afiliacion::setCasaOrigen(Casa c) { casa_origen = c; }
-void Afiliacion::setCasaDestino(Casa c) { casa_destino = c; }
-void Afiliacion::setProvinciaOrigen(Provincia p) { provincia_origen = p; }
-void Afiliacion::setProvinciaDestino(Provincia p) { provincia_destino = p; }
-void Afiliacion::setNotas(Notas n) { nota = n; }
-void Afiliacion::setExtras(ExtraInfos e) { extras = e; }
+void Afiliacion::setPersona(const Persona p) { persona = p; }
+void Afiliacion::setCasaOrigen(const Casa c) { casa_origen = c; }
+void Afiliacion::setCasaDestino(const Casa c) { casa_destino = c; }
+void Afiliacion::setProvinciaOrigen(const Provincia p) { provincia_origen = p; }
+void Afiliacion::setProvinciaDestino(const Provincia p) { provincia_destino = p; }
+void Afiliacion::setNotas(const Notas n) { nota = n; }
+void Afiliacion::setExtras(const ExtraInfos e) { extras = e; }
 
 QJsonObject Afiliacion::getAfiliacionJson()
 {

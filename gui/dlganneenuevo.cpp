@@ -13,9 +13,9 @@
 #include "widgets/myqmdiarea.h"
 #include "dlgseleccionargeneral.h"
 
-QString sql_autores = "SELECT DISTINCT author_initial_text FROM annee_general ORDER BY author_initial_text";
-QString sql_temas = "SELECT DISTINCT main_theme FROM annee_general ORDER BY main_theme";
-QString sql_conceptos = "SELECT DISTINCT unnest(concepts) AS conceptos FROM meditations ORDER BY conceptos";
+const QString sql_autores = "SELECT DISTINCT author_initial_text FROM annee_general ORDER BY author_initial_text";
+const QString sql_temas = "SELECT DISTINCT main_theme FROM annee_general ORDER BY main_theme";
+const QString sql_conceptos = "SELECT DISTINCT unnest(concepts) AS conceptos FROM meditations ORDER BY conceptos";
 
 dlgAnneeNuevo::dlgAnneeNuevo(QWidget *parent) :
     QWidget(parent),
@@ -35,6 +35,8 @@ dlgAnneeNuevo::dlgAnneeNuevo(QWidget *parent) :
     connect(ui->btQuitarMeditacion, SIGNAL(clicked(bool)), this, SLOT(quitarMeditacion()));
     connect(ui->btAnadirPalabraMeditacion, SIGNAL(clicked(bool)), this, SLOT(anadirConceptoMeditacion()));
     connect(ui->btQuitarPalabraMeditacion, SIGNAL(clicked(bool)), this, SLOT(quitarConceptoMeditacion()));
+    connect(ui->btAnadirCategoriaGeneral, SIGNAL(clicked(bool)), this, SLOT(anadirCategoriasGeneral()));
+    connect(ui->btQuitarCategoriaGeneral, SIGNAL(clicked(bool)), this, SLOT(quitarCategoriasGeneral()));
     connect(ui->btTemas, SIGNAL(clicked(bool)), this, SLOT(anadirCategoriasMeditacion()));
 
     ui->twMeditaciones->setColumnCount(3);
@@ -114,6 +116,7 @@ void dlgAnneeNuevo::aceptarAnnee()
 
         meterMeditaciones(id);
         meterPersonasAdicionales(id);
+        meterCategoriasGenerales(id);
         borrarCampos();
     }
     else {
@@ -166,7 +169,7 @@ void dlgAnneeNuevo::anadirMeditacion()
 
     meditacion.numeracion = ui->spNumeroMeditacion->value();
     meditacion.pensamiento = ui->txtMeditacion->text();
-    meditacion.categorias = categorias_seleccionadas;
+    meditacion.categorias = categorias_seleccionadas_meditaciones;
     meditacion.conceptos = m_conceptos;
 
     meditaciones.append(meditacion);
@@ -176,7 +179,7 @@ void dlgAnneeNuevo::anadirMeditacion()
     QTableWidgetItem *item2 = new QTableWidgetItem(meditacion.pensamiento);
 
     // lo de las categorías es más complicado...
-    QHashIterator<int, QString> i(categorias_seleccionadas);
+    QHashIterator<int, QString> i(categorias_seleccionadas_meditaciones);
     while (i.hasNext()) {
         i.next();
         categorias_lista = categorias_lista + i.value()+ QString(", ");
@@ -197,7 +200,7 @@ void dlgAnneeNuevo::anadirMeditacion()
 
     // tenemos que borrar algunas cosas
     ui->txtMeditacion->setText("");
-    categorias_seleccionadas.clear();
+    categorias_seleccionadas_meditaciones.clear();
     m_conceptos.clear();
     ui->lwPalabrasMeditacion->clear();
 
@@ -247,19 +250,47 @@ void dlgAnneeNuevo::quitarConceptoMeditacion()
 void dlgAnneeNuevo::anadirCategoriasMeditacion()
 {
     dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(TEMA, this);
-    connect(seleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirTema(Tema)));
+    connect(seleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirTemaMeditacion(Tema)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);
     window->show();
 }
 
-void dlgAnneeNuevo::recibirPersonaPrincipal(Persona persona)
+void dlgAnneeNuevo::anadirCategoriasGeneral()
+{
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(TEMA, this);
+    connect(seleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirTemaGeneral(Tema)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);
+    window->show();
+}
+
+void dlgAnneeNuevo::quitarCategoriasGeneral()
+{
+    QModelIndex idx = ui->lwCategoriasGenerales->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    QString valor = ui->lwCategoriasGenerales->currentItem()->text();
+    ui->lwCategoriasGenerales->takeItem(ui->lwCategoriasGenerales->currentRow());
+    // lo de las categorías es más complicado...
+    QHashIterator<int, QString> i(categorias_seleccionadas_general);
+    while (i.hasNext()) {
+        i.next();
+        if (i.value() == valor)
+            categorias_seleccionadas_general.remove(i.key());
+    }
+
+}
+
+void dlgAnneeNuevo::recibirPersonaPrincipal(const Persona persona)
 {
     persona_id = persona.getId();
     ui->lblPersonaPrincipal->setText(persona.getNombreCompleto());
 }
 
-void dlgAnneeNuevo::recibirPersonaAdicional(Persona persona)
+void dlgAnneeNuevo::recibirPersonaAdicional(const Persona persona)
 {
     otrapersona nueva_persona;
 
@@ -282,9 +313,16 @@ void dlgAnneeNuevo::recibirPersonaAdicional(Persona persona)
 
 }
 
-void dlgAnneeNuevo::recibirTema(Tema tema)
+void dlgAnneeNuevo::recibirTemaMeditacion(const Tema tema)
 {
-    categorias_seleccionadas.insert(tema.getId(), tema.getTema());
+    categorias_seleccionadas_meditaciones.insert(tema.getId(), tema.getTema());
+}
+
+void dlgAnneeNuevo::recibirTemaGeneral(const Tema tema)
+{
+    categorias_seleccionadas_general.insert(tema.getId(), tema.getTema());
+
+    QListWidgetItem *item = new QListWidgetItem(tema.getTema(), ui->lwCategoriasGenerales);
 }
 
 void dlgAnneeNuevo::cargarModelos()
@@ -331,7 +369,7 @@ void dlgAnneeNuevo::borrarCampos()
 
     personas_adicionales.clear();
     meditaciones.clear();
-    categorias_seleccionadas.clear();
+    categorias_seleccionadas_meditaciones.clear();
 
     ui->twMeditaciones->clear();
     ui->twPersonasAdicionales->clear();
@@ -342,7 +380,7 @@ void dlgAnneeNuevo::borrarCampos()
 
 }
 
-void dlgAnneeNuevo::meterMeditaciones(int id)
+void dlgAnneeNuevo::meterMeditaciones(const int id)
 {
     QSqlQuery query;
     QString conceptos_final;
@@ -384,7 +422,7 @@ void dlgAnneeNuevo::meterMeditaciones(int id)
 
 }
 
-void dlgAnneeNuevo::meterMeditacionesReferencias(int meditation_id, int lista_meditaciones_id)
+void dlgAnneeNuevo::meterMeditacionesReferencias(const int meditation_id, const int lista_meditaciones_id)
 {
     QSqlQuery query;
     QHash<int, QString> categorias = meditaciones.at(lista_meditaciones_id).categorias;
@@ -415,7 +453,7 @@ void dlgAnneeNuevo::meterMeditacionesReferencias(int meditation_id, int lista_me
  * ahora aquí no estoy metiendo...
  */
 
-void dlgAnneeNuevo::meterPersonasAdicionales(int id)
+void dlgAnneeNuevo::meterPersonasAdicionales(const int id)
 {
     QSqlQuery query;
 
@@ -433,5 +471,28 @@ void dlgAnneeNuevo::meterPersonasAdicionales(int id)
             return;
         }
 
+    }
+}
+
+void dlgAnneeNuevo::meterCategoriasGenerales(const int id)
+{
+    QSqlQuery query;
+
+    QHashIterator<int, QString> i(categorias_seleccionadas_general);
+    while (i.hasNext()) {
+        i.next();
+
+        query.prepare("INSERT INTO annee.themes_refs(day_id, category_id) "
+                      "VALUES(:dia, :category_id)");
+        query.bindValue(":dia", id);
+        query.bindValue(":category_id", i.key());
+
+        if (!query.exec()){
+            int ret = QMessageBox::warning(this, "Error",
+                                           "Ha habido un error en la talba themes_refs.");
+            Q_UNUSED(ret)
+            qDebug() << query.lastError();
+            return;
+        }
     }
 }

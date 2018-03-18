@@ -11,13 +11,13 @@ public:
     Lugar();
 
     // setters
-    void setId(int i);
-    void setLugar(QString l);
-    void setLugarLatin(QString l);
-    void setPais(QString p);
-    void setOtrosNombres(QString o);
-    void setWikidata(QString w);
-    void setTipoLugar(QString t);
+    void setId(const int i);
+    void setLugar(const QString l);
+    void setLugarLatin(const QString l);
+    void setPais(const QString p);
+    void setOtrosNombres(const QString o);
+    void setWikidata(const QString w);
+    void setTipoLugar(const QString t);
 
     //getters
     int getId() const { return id; }

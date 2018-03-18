@@ -3,14 +3,14 @@
 RetroReferencia::RetroReferencia()
 { lleno = false; }
 
-void RetroReferencia::setTipo(QString t)
+void RetroReferencia::setTipo(const QString t)
 {
     tipo = t;
     lleno = true;
 }
 
-void RetroReferencia::setReferencia(QString r) { referencia = r; }
-void RetroReferencia::setTextoReal(QString t) { texto_real = t; }
+void RetroReferencia::setReferencia(const QString r) { referencia = r; }
+void RetroReferencia::setTextoReal(const QString t) { texto_real = t; }
 
 QJsonObject RetroReferencia::getRetroJson()
 {

@@ -12,21 +12,21 @@ public:
     Diocesis();
 
     // setters
-    void setId(int i);
-    void setNombre(QString n);
-    void setNombreLatin(QString n);
-    void setArchidiosis(bool a);
-    void setSufraganea(int s);
-    void setLugar(int l);
-    void setExistente(bool e);
-    void setInfidelibus(bool i);
-    void setTitularSee(bool t);
-    void setMotivoDesaparicion(QString m);
-    void setNota(Notas n);
-    void setOtrosDatos(QJsonObject o);
-    void setBuscadosTodosObispos(bool b);
-    void setSantaSede(bool s);
-    void setUrlHierarchy(QString u);
+    void setId(const int i);
+    void setNombre(const QString n);
+    void setNombreLatin(const QString n);
+    void setArchidiosis(const bool a);
+    void setSufraganea(const int s);
+    void setLugar(const int l);
+    void setExistente(const bool e);
+    void setInfidelibus(const bool i);
+    void setTitularSee(const bool t);
+    void setMotivoDesaparicion(const QString m);
+    void setNota(const Notas n);
+    void setOtrosDatos(const QJsonObject o);
+    void setBuscadosTodosObispos(const bool b);
+    void setSantaSede(const bool s);
+    void setUrlHierarchy(const QString u);
 
     // getters
     int getId() const { return id; }

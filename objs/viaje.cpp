@@ -5,18 +5,18 @@
 
 Viaje::Viaje() { }
 
-void Viaje::setOriginal(bool o) { original = o; }
-void Viaje::setOrigen(int o) { origen = o; }
-void Viaje::setDestino(int d) { destino = d; }
-void Viaje::setMotivos(QStringList m) { motivos = m; }
-void Viaje::setDuracion(int d) { duracion = d; }
-void Viaje::setVuelta(bool v) { vuelta = v; }
-void Viaje::setMuerto(bool m) { muerto = m; }
-void Viaje::setMotivoMuerte(QString m) { motivo_muerte = m; }
-void Viaje::setLugarMuerte(QString l) { lugar_muerte = l; }
-void Viaje::setFechaInicio(QDate f) { fecha_inicio = f; }
-void Viaje::setFechaFin(QDate f) { fecha_fin = f; }
-void Viaje::setNotas(Notas n) { nota = n; }
+void Viaje::setOriginal(const bool o) { original = o; }
+void Viaje::setOrigen(const int o) { origen = o; }
+void Viaje::setDestino(const int d) { destino = d; }
+void Viaje::setMotivos(const QStringList m) { motivos = m; }
+void Viaje::setDuracion(const int d) { duracion = d; }
+void Viaje::setVuelta(const bool v) { vuelta = v; }
+void Viaje::setMuerto(const bool m) { muerto = m; }
+void Viaje::setMotivoMuerte(const QString m) { motivo_muerte = m; }
+void Viaje::setLugarMuerte(const QString l) { lugar_muerte = l; }
+void Viaje::setFechaInicio(const QDate f) { fecha_inicio = f; }
+void Viaje::setFechaFin(const QDate f) { fecha_fin = f; }
+void Viaje::setNotas(const Notas n) { nota = n; }
 
 QJsonObject Viaje::getViajeJson()
 {

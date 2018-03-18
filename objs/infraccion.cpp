@@ -2,22 +2,22 @@
 
 Infraccion::Infraccion() { }
 
-void Infraccion::setTipo(QString t) {
+void Infraccion::setTipo(const QString t) {
     tipo = t;
     lleno = true;
 }
 
-void Infraccion::setInfraccion(QString i) {
+void Infraccion::setInfraccion(const QString i) {
     infraccion = i;
     lleno = true;
 }
 
-void Infraccion::setInfractores(QStringList i){
+void Infraccion::setInfractores(const QStringList i){
     infractores = i;
 }
 
-void Infraccion::setNota(Notas n) { nota = n; }
-void Infraccion::setExtras(ExtraInfos e) { extras = e; }
+void Infraccion::setNota(const Notas n) { nota = n; }
+void Infraccion::setExtras(const ExtraInfos e) { extras = e; }
 
 QJsonObject Infraccion::getInfraccionJson(){
     QJsonObject json;

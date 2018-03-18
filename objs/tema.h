@@ -11,9 +11,9 @@ public:
     Tema();
 
     // setters
-    void setId(int id);
-    void setTema(QString n);
-    void setSeleccionado(bool s);
+    void setId(const int id);
+    void setTema(const QString n);
+    void setSeleccionado(const bool s);
 
     //getters
     int getId() const {return id;}

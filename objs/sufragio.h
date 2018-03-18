@@ -15,12 +15,12 @@ public:
     Sufragio();
 
     // setters
-    void setTipo(QString t);
-    void setMisas(int m);
-    void setMotivo(QString m);
-    void setDestinatarios(QStringList d);
-    void setExtraInfos(ExtraInfos e);
-    void setNota(Notas n);
+    void setTipo(const QString t);
+    void setMisas(const int m);
+    void setMotivo(const QString m);
+    void setDestinatarios(const QStringList d);
+    void setExtraInfos(const ExtraInfos e);
+    void setNota(const Notas n);
 
     // getters
     QString getTipo() const {return tipo;}

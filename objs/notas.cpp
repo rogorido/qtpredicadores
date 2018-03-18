@@ -2,23 +2,23 @@
 
 Notas::Notas() { }
 
-void Notas::setVolverMirar(bool v) {
+void Notas::setVolverMirar(const bool v) {
     volveramirar = v;
     lleno = true;
 }
 
-void Notas::setInteresante(bool i)
+void Notas::setInteresante(const bool i)
 {
     interesante = i;
     lleno = true;
 }
 
-void Notas::setNota(QString n) {
+void Notas::setNota(const QString n) {
     nota = n;
     lleno = true;
 }
 
-void Notas::setSeguridad(int s){
+void Notas::setSeguridad(const int s){
     seguridad = s;
     lleno = true;
 }

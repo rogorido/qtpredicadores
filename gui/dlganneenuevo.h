@@ -39,10 +39,13 @@ private slots:
     void anadirConceptoMeditacion();
     void quitarConceptoMeditacion();
     void anadirCategoriasMeditacion();
+    void anadirCategoriasGeneral();
+    void quitarCategoriasGeneral();
 
-    void recibirPersonaPrincipal(Persona persona);
-    void recibirPersonaAdicional(Persona persona);
-    void recibirTema(Tema tema);
+    void recibirPersonaPrincipal(const Persona persona);
+    void recibirPersonaAdicional(const Persona persona);
+    void recibirTemaMeditacion(const Tema tema);
+    void recibirTemaGeneral(const Tema tema);
 
 private:
     Ui::dlgAnneeNuevo *ui;
@@ -83,7 +86,14 @@ private:
      * m_meditacion...
      */
 
-    QHash<int, QString> categorias_seleccionadas;
+    QHash<int, QString> categorias_seleccionadas_meditaciones;
+
+    /*
+     * aquí metemos las categorías generales que vamos escogiendo
+     * con dlgseleccionar y luego va a la table themes_refs
+     */
+
+    QHash<int, QString> categorias_seleccionadas_general;
 
     /*
      *  aquí metemos las personas, realmetne con los ids sería
@@ -100,14 +110,15 @@ private:
     void borrarCampos();
 
     // esto sirve para meter datos si ha funcionado con la tabla principal
-    void meterMeditaciones(int id);
+    void meterMeditaciones(const int id);
     /*
      * esto son las categorías... hacen faltan dos int pq uno es para
      * la meditation_id y el otro es para coger dentro del QList las categorías
      * que están metidas...
      */
-    void meterMeditacionesReferencias(int meditation_id, int lista_meditaciones_id);
-    void meterPersonasAdicionales(int id);
+    void meterMeditacionesReferencias(const int meditation_id, const int lista_meditaciones_id);
+    void meterPersonasAdicionales(const int id);
+    void meterCategoriasGenerales(const int id);
 };
 
 #endif // DLGANNEENUEVO_H

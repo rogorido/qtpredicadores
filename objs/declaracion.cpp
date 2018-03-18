@@ -4,17 +4,17 @@
 
 Declaracion::Declaracion() { }
 
-void Declaracion::setTipo(QString t) { tipo = t; }
-void Declaracion::setInfraccion(Infraccion i) { infraccion = i; }
-void Declaracion::setPena(Pena p) { pena = p; }
-void Declaracion::setPersona(Persona p) { persona = p; }
-void Declaracion::setCargos(QStringList c) { cargos = c; }
-void Declaracion::setInstituciones(QStringList i) { instituciones = i; }
-void Declaracion::setProvincias(QList<int> p) { provincias = p; }
-void Declaracion::setRetroReferencia(RetroReferencia r) { retro = r; }
-void Declaracion::setNota(Notas n) { nota = n; }
-void Declaracion::setExtraInfos(ExtraInfos e) { extras = e; }
-void Declaracion::setExtraJson(QJsonObject e) { extrajson = e; }
+void Declaracion::setTipo(const QString t) { tipo = t; }
+void Declaracion::setInfraccion(const Infraccion i) { infraccion = i; }
+void Declaracion::setPena(const Pena p) { pena = p; }
+void Declaracion::setPersona(const Persona p) { persona = p; }
+void Declaracion::setCargos(const QStringList c) { cargos = c; }
+void Declaracion::setInstituciones(const QStringList i) { instituciones = i; }
+void Declaracion::setProvincias(const QList<int> p) { provincias = p; }
+void Declaracion::setRetroReferencia(const RetroReferencia r) { retro = r; }
+void Declaracion::setNota(const Notas n) { nota = n; }
+void Declaracion::setExtraInfos(const ExtraInfos e) { extras = e; }
+void Declaracion::setExtraJson(const QJsonObject e) { extrajson = e; }
 
 QJsonObject Declaracion::getDeclaracionJson(){
 

@@ -12,13 +12,13 @@ public:
     Mision();
 
     // setters
-    void setId(int i);
-    void setNumeroMision(int n);
-    void setLugarSalida(int l);
-    void setFechaSalida(QDate f);
-    void setFechaLlegada(QDate f);
-    void setEtapas(QString e);
-    void setNota(Notas n);
+    void setId(const int i);
+    void setNumeroMision(const int n);
+    void setLugarSalida(const int l);
+    void setFechaSalida(const QDate f);
+    void setFechaLlegada(const QDate f);
+    void setEtapas(const QString e);
+    void setNota(const Notas n);
 
     // getters
     int getId() const { return id; }

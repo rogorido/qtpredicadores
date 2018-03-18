@@ -2,17 +2,17 @@
 
 Ordenanza::Ordenanza() { }
 
-void Ordenanza::setTipo(TipoOrdenanza t) { tipo_ordenanza = t; }
-void Ordenanza::setReceptores(QStringList r) { receptores = r; }
-void Ordenanza::setObjetos(QStringList o) { objetos = o; }
-void Ordenanza::setPena(Pena p) { pena = p; }
-void Ordenanza::setRestriccion(QString r) { restriccion = r; }
-void Ordenanza::setFinalidades(QStringList f) { finalidades = f; }
-void Ordenanza::setSeguridad(int s) { seguridad = s; }
-void Ordenanza::setRetroReferencia(RetroReferencia r) { retro = r; }
-void Ordenanza::setTemas(QList<int> t) { temas = t; }
-void Ordenanza::setExtraInfos(ExtraInfos e) { extras = e; }
-void Ordenanza::setNota(Notas n) { nota = n; }
+void Ordenanza::setTipo(const TipoOrdenanza t) { tipo_ordenanza = t; }
+void Ordenanza::setReceptores(const QStringList r) { receptores = r; }
+void Ordenanza::setObjetos(const QStringList o) { objetos = o; }
+void Ordenanza::setPena(const Pena p) { pena = p; }
+void Ordenanza::setRestriccion(const QString r) { restriccion = r; }
+void Ordenanza::setFinalidades(const QStringList f) { finalidades = f; }
+void Ordenanza::setSeguridad(const int s) { seguridad = s; }
+void Ordenanza::setRetroReferencia(const RetroReferencia r) { retro = r; }
+void Ordenanza::setTemas(const QList<int> t) { temas = t; }
+void Ordenanza::setExtraInfos(const ExtraInfos e) { extras = e; }
+void Ordenanza::setNota(const Notas n) { nota = n; }
 
 QJsonObject Ordenanza::getOrdenanzaJson()
 {

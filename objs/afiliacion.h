@@ -15,13 +15,13 @@ public:
     Afiliacion();
 
     // setters
-    void setPersona(Persona p);
-    void setCasaOrigen(Casa c);
-    void setCasaDestino(Casa c);
-    void setProvinciaOrigen(Provincia p);
-    void setProvinciaDestino(Provincia p);
-    void setNotas(Notas n);
-    void setExtras(ExtraInfos e);
+    void setPersona(const Persona p);
+    void setCasaOrigen(const Casa c);
+    void setCasaDestino(const Casa c);
+    void setProvinciaOrigen(const Provincia p);
+    void setProvinciaDestino(const Provincia p);
+    void setNotas(const Notas n);
+    void setExtras(const ExtraInfos e);
 
     // getters
     Persona getPersona() const { return persona; }

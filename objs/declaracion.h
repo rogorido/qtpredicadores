@@ -15,17 +15,17 @@ class Declaracion
 public:
     Declaracion();
 
-    void setTipo(QString t);
-    void setInfraccion(Infraccion i);
-    void setPena(Pena p);
-    void setPersona(Persona p);
-    void setCargos(QStringList c);
-    void setInstituciones(QStringList i);
-    void setProvincias(QList<int> p);
-    void setRetroReferencia(RetroReferencia r);
-    void setNota(Notas n);
-    void setExtraInfos(ExtraInfos e);
-    void setExtraJson(QJsonObject e);
+    void setTipo(const QString t);
+    void setInfraccion(const Infraccion i);
+    void setPena(const Pena p);
+    void setPersona(const Persona p);
+    void setCargos(const QStringList c);
+    void setInstituciones(const QStringList i);
+    void setProvincias(const QList<int> p);
+    void setRetroReferencia(const RetroReferencia r);
+    void setNota(const Notas n);
+    void setExtraInfos(const ExtraInfos e);
+    void setExtraJson(const QJsonObject e);
 
     // getters
     QString getTipo() const {return tipo;}

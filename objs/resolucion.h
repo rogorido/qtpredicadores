@@ -12,23 +12,23 @@ public:
     Resolucion();
 
     // setters
-    void setId(int i);
-    void setTexto(QString t);
-    void setTextoTraducido(QString t);
-    void setTextoResumido(QString t);
-    void setCapitulo(int c);
-    void setEpigrafe(QString e);
-    void setProvincia(int p);
-    void setEntendido(bool e);
-    void setVolverMirar(bool v); 
-    void setTraducido(bool t);
-    void setRazonada(bool r);
-    void setInteres(int i);
-    void setResolucionAnterior(int r);
-    void setVerbos(QStringList v);
-    void setExpresiones(QStringList e);
-    void setPages(QString p);
-    void setNotas(QString n);
+    void setId(const int i);
+    void setTexto(const QString t);
+    void setTextoTraducido(const QString t);
+    void setTextoResumido(const QString t);
+    void setCapitulo(const int c);
+    void setEpigrafe(const QString e);
+    void setProvincia(const int p);
+    void setEntendido(const bool e);
+    void setVolverMirar(const bool v);
+    void setTraducido(const bool t);
+    void setRazonada(const bool r);
+    void setInteres(const int i);
+    void setResolucionAnterior(const int r);
+    void setVerbos(const QStringList v);
+    void setExpresiones(const QStringList e);
+    void setPages(const QString p);
+    void setNotas(const QString n);
 
     //getters
     int getId() const {return id;}
