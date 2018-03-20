@@ -317,7 +317,7 @@ void dlgDetalles::on_btAnadirJsonLibre_clicked()
 
     json_model->resetearModelo();
 
-    ui->tabWidget->setCurrentIndex(0);
+    //ui->tabWidget->setCurrentIndex(0);
 }
 
 void dlgDetalles::on_btBorrarBloqueJson_clicked()
