@@ -10,6 +10,10 @@
 #include <QJsonDocument>
 
 #include <QDebug>
+#include <QMdiSubWindow>
+
+#include "gui/dlgseleccionargeneral.h"
+#include "widgets/myqmdiarea.h"
 
 /*
  * en teoría todo eso de seleccionar provincias, etc.
@@ -25,13 +29,18 @@ dlgAsistentes::dlgAsistentes(int chapter, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    mdiarea = MyQmdiArea::Instance(this);
+
     // ponemos esto pq será lo frecuente.
     ui->txtKey->setText("Asistente");
 
     connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptar()));
+    connect(ui->btAceptarCasas, SIGNAL(clicked(bool)), this, SLOT(aceptarCasas()));
     connect(ui->btAnadirProvincia, SIGNAL(clicked(bool)), this, SLOT(anadirProvincia()));
     connect(ui->btQuitarProvincia, SIGNAL(clicked(bool)), this, SLOT(quitarProvincia()));
+    connect(ui->btAnadirCasa, SIGNAL(clicked(bool)), this, SLOT(anadirCasa()));
+    connect(ui->btQuitarCasa, SIGNAL(clicked(bool)), this, SLOT(quitarCasa()));
     connect(ui->twProvinciasSinSeleccionar, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(anadirProvincia()));
 
     desmarcarTodasProvincias();
@@ -89,6 +98,38 @@ void dlgAsistentes::aceptar()
 
 }
 
+void dlgAsistentes::aceptarCasas()
+{
+    /*
+     * NOTE: ver nota en el header sobre esto...
+     */
+    /*
+     * la verdad es que hago un lío del carajo que no sé si
+     * es necesario, pues uso QJsonDocuments, etc. para todo
+     * esto cuando tal vez podría construir yo mismo el QString
+     * para el json de postgresql. En cualquier caso: lo de usar
+     * finalmente un QJsonDocument es pq permite pasarlo a un QString.
+     */
+    for (int i = 0; i < casasescogidas.size(); ++i) {
+        QJsonObject json;
+
+        json.insert("Casa", QJsonValue(casasescogidas.at(i).id));
+
+        QJsonDocument jsondoc(json);
+        QString jsonfinal = jsondoc.toJson(QJsonDocument::Compact);
+
+        QSqlQuery query;
+        query.prepare("INSERT INTO chapters.chapters_details(chapter_id, details) VALUES(:id, :detalles)");
+        query.bindValue(":id", chapterescogido);
+        query.bindValue(":detalles", jsonfinal);
+        query.exec();
+    }
+
+    close();
+
+
+}
+
 void dlgAsistentes::anadirProvincia()
 {
 
@@ -132,6 +173,35 @@ void dlgAsistentes::quitarProvincia()
     ui->twProvinciasSeleccionadas->takeItem(ui->twProvinciasSeleccionadas->currentRow());
     // no sé por qué no funciona esto de abjao...
     //ui->twProvinciasSeleccionadas->removeItemWidget(ui->twProvinciasSeleccionadas->currentItem());
+}
+
+void dlgAsistentes::anadirCasa()
+{
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, this);
+    connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(recibirCasa(Casa)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
+}
+
+void dlgAsistentes::quitarCasa()
+{
+    /*
+     * TODO: falta completar este código
+     */
+
+}
+
+void dlgAsistentes::recibirCasa(Casa casa)
+{
+    elementopareado nuevo;
+
+    nuevo.id = casa.getId();
+    nuevo.elemento = casa.getNombre();
+    casasescogidas.append(nuevo);
+
+    QListWidgetItem *item = new QListWidgetItem(casa.getNombre(), ui->lwCasas);
+
 }
 
 void dlgAsistentes::desmarcarTodasProvincias()

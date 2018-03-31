@@ -4,8 +4,10 @@
 #include <QDialog>
 
 #include "objs/variados.h"
+#include "objs/casa.h"
 
 class QSqlTableModel;
+class MyQmdiArea;
 
 namespace Ui {
 class dlgAsistentes;
@@ -25,14 +27,27 @@ public:
 
 private slots:
 
+    /*
+     * NOTE: esto es una chapuza, pues repito el código, pero ahora
+     * no quiero estar adaptándolo a que sea aceptar con provincias o con
+     * casas y por eso hago dos métodos.
+     */
     void aceptar();
+    void aceptarCasas();
+
     void anadirProvincia();
     void quitarProvincia();
+    void anadirCasa();
+    void quitarCasa();
+
+    void recibirCasa(Casa casa);
 
 private:
     Ui::dlgAsistentes *ui;
+    MyQmdiArea *mdiarea;
 
     QList<elementopareado> provinciasescogidas;
+    QList<elementopareado> casasescogidas;
 
     /*
      * no uso el que ya tengo pq aquí cojo solo las columnas
