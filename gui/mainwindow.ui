@@ -55,6 +55,7 @@
     <addaction name="actionDiocesis"/>
     <addaction name="actionObispos"/>
     <addaction name="actionMisiones"/>
+    <addaction name="actionObras"/>
    </widget>
    <widget class="QMenu" name="menuEstad_sticas">
     <property name="title">
@@ -277,6 +278,11 @@
   <action name="actionNuevoAnnee">
    <property name="text">
     <string>Nuevos datos de année</string>
+   </property>
+  </action>
+  <action name="actionObras">
+   <property name="text">
+    <string>Obras</string>
    </property>
   </action>
  </widget>

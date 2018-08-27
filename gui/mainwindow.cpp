@@ -29,6 +29,7 @@
 #include "dlgreforma.h"
 #include "dlgobispos.h"
 #include "dlgdiocesis.h"
+#include "dlggestionobras.h"
 
 // para lo de MDIarea
 #include "dlgdetalles.h"
@@ -104,6 +105,8 @@ void MainWindow::cargarMenues(){
     connect(ui->actionMisiones, SIGNAL(triggered(bool)), this, SLOT(Misiones()));
     connect(ui->actionDiocesis, SIGNAL(triggered(bool)), this, SLOT(Diocesis()));
     connect(ui->actionCapituli, SIGNAL(triggered(bool)), this, SLOT(Capitulos()));
+    connect(ui->actionObras, SIGNAL(triggered(bool)), this, SLOT(Obras()));
+
     connect(ui->actionGeneralEstadisticas, SIGNAL(triggered(bool)), this, SLOT(Estadisticas()));
     connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
 
@@ -228,6 +231,13 @@ void MainWindow::Diocesis()
 {
     FormDiocesis = new dlgDiocesis(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(FormDiocesis);
+    window->show();
+}
+
+void MainWindow::Obras()
+{
+    GestionObras = new dlgGestionObras(this);
+    QMdiSubWindow *window = mdiArea->addSubWindow(GestionObras);
     window->show();
 }
 

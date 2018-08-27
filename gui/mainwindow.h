@@ -22,6 +22,7 @@ class dlgReforma;
 class dlgObispos;
 class dlgMisiones;
 class dlgDiocesis;
+class dlgGestionObras;
 
 class dlgDetalles;
 
@@ -76,6 +77,7 @@ private slots:
     void Casas();
     void Misiones();
     void Diocesis();
+    void Obras();
 
     void Estadisticas();
 
@@ -108,6 +110,7 @@ private:
     dlgObispos *FormObispos;
     dlgMisiones *FormMisiones;
     dlgDiocesis *FormDiocesis;
+    dlgGestionObras *GestionObras;
 
     // esto es para gestionarlos con lo de MDIarea
     dlgDetalles *dlgdetalles;
