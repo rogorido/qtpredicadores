@@ -280,6 +280,8 @@ void dlgNuevaObra::borrarCampos(){
     ui->txtLugar->setText("");
     lugarescogido_struct = elementopareado();
 
+    json_detalles->clear();
+
     ui->txtTitulo->setFocus();
 }
 

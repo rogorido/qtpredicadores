@@ -180,7 +180,7 @@ Diocesis *DiocesisModel::devolverDiocesis(int id)
 
 void DiocesisModel::actualizarDiocesis(int id)
 {
-
+    //TODO: falta programar esto!
 }
 
 void DiocesisModel::DestroyMe(){
