@@ -1,5 +1,5 @@
-#ifndef DLGGESTIONOBRAS_H
-#define DLGGESTIONOBRAS_H
+#ifndef DLGGESTIONPERSONAS_H
+#define DLGGESTIONPERSONAS_H
 
 #include <QWidget>
 
@@ -8,83 +8,75 @@ class QAction;
 class QSqlQueryModel;
 class QModelIndex;
 
-class dlgNuevaObra;
+class dlgNuevaPersona;
 
 class MyQmdiArea;
 
 class SqlFiltroGestor;
 
+
 namespace Ui {
-class dlgGestionObras;
+class dlgGestionPersonas;
 }
 
-class dlgGestionObras : public QWidget
+class dlgGestionPersonas : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit dlgGestionObras(QWidget *parent = 0);
-    ~dlgGestionObras();
+    explicit dlgGestionPersonas(QWidget *parent = nullptr);
+    ~dlgGestionPersonas();
 
     // esto es público porque lo accedemos desde el mainwindow...
     void contarTotal();
 
 private slots:
 
-    // GUI
-    void on_rbManuscritos_clicked();
-    void on_rbImpresos_clicked();
-    void on_rbTodos_clicked();    
-    void on_ckSinMateria_stateChanged(int arg1);
     void menuContextual(const QPoint &point);
 
     void actualizarSql(QString s);
 
-    void modificarObra();
-    void verPersona();
     void modificarPersona();
 
     /*
      * esto realmetne recoge una señal de sqlFiltroGestor
      * y genera la señal para la mainwindow
      */
-    void emitirSenalTotalObras();
+    void emitirSenalTotalPersonas();
 
 signals:
 
     void infoBarraInferior(QString info);
 
 private:
-    Ui::dlgGestionObras *ui;
+    Ui::dlgGestionPersonas *ui;
     MyQmdiArea *mdiarea;
 
-    QSqlQueryModel *works_model;
+    QSqlQueryModel *m_persons;
 
     SqlFiltroGestor *sql_gestor;
 
     QMenu *menuContexto;
-    QAction *a_verPersona;
     QAction *a_cambiarPersona;
-    QAction *a_cambiarObra;
 
     /*
      * guardamos el SQL que está activo
      */
     QString sqlactivo;
 
-    // work_id
-    int work_id;
+    // person_id
+    int person_id;
 
     // lo usamos para la barra
-    int total_obras;
+    int total_personas;
     int total_filtrado;
 
     // esto para modificar obras,... por qué carajo lo hago como pointer?
-    dlgNuevaObra *dlgObraAModificar;
+    dlgNuevaPersona *dlgPersonaAModificar;
 
     void cargarMenus();
     void cargarModelos();
 
 };
 
-#endif // DLGGESTIONOBRAS_H
+#endif // DLGGESTIONPERSONAS_H

@@ -30,6 +30,7 @@
 #include "dlgobispos.h"
 #include "dlgdiocesis.h"
 #include "dlggestionobras.h"
+#include "dlggestionpersonas.h"
 
 // para lo de MDIarea
 #include "dlgdetalles.h"
@@ -106,6 +107,7 @@ void MainWindow::cargarMenues(){
     connect(ui->actionDiocesis, SIGNAL(triggered(bool)), this, SLOT(Diocesis()));
     connect(ui->actionCapituli, SIGNAL(triggered(bool)), this, SLOT(Capitulos()));
     connect(ui->actionObras, SIGNAL(triggered(bool)), this, SLOT(Obras()));
+    connect(ui->actionPersonas, SIGNAL(triggered(bool)), this, SLOT(Personas()));
 
     connect(ui->actionGeneralEstadisticas, SIGNAL(triggered(bool)), this, SLOT(Estadisticas()));
     connect(ui->actionSalir, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -241,6 +243,16 @@ void MainWindow::Obras()
     connect(GestionObras, SIGNAL(infoBarraInferior(QString)), this, SLOT(updateStatusBarDerecha(QString)));
 
     GestionObras->contarTotal();
+    window->show();
+}
+
+void MainWindow::Personas()
+{
+    GestionPersonas = new dlgGestionPersonas(this);
+    QMdiSubWindow *window = mdiArea->addSubWindow(GestionPersonas);
+    connect(GestionPersonas, SIGNAL(infoBarraInferior(QString)), this, SLOT(updateStatusBarDerecha(QString)));
+
+    GestionPersonas->contarTotal();
     window->show();
 }
 
