@@ -323,12 +323,19 @@ void dlgNuevaObra::cargarObra()
     QSqlQuery query;
     elementopareado temaparameter;
     Obra *obraModificada = new Obra();
+    /*
+     * realmente podría sacar el autor con el método
+     * devolverPersona de la clase PersonsModels, pero eso significaría
+     * tener que cargar esa clase. No creo que merezca la pena...
+     */
+
     obraModificada = m_obras->devolverObra(obra_modificando);
     QVector<int> temas = m_obras->materiasObra(obra_modificando);
 
+
     ui->txtTitulo->setText(obraModificada->getTitulo());
     ui->txtIdioma->setText(obraModificada->getIdioma());
-    // TODO: atención falta el autor!!
+    // aquí iría el autor: ver abajo
     ui->txtTipo->setText(obraModificada->getTipo());
     ui->txtFormato->setText(obraModificada->getFormato());
     ui->spTomos->setValue(obraModificada->getTomos());
@@ -353,7 +360,17 @@ void dlgNuevaObra::cargarObra()
     ui->txtPageQuetif->setText(obraModificada->getPageQuetif());
     ui->ckInvestigar->setChecked(obraModificada->getInvestigar());
 
-    qDebug() << "total de temas: " << temas.size();
+    // el autor
+    query.exec(QString("SELECT name || ' ' || family_name FROM persons WHERE person_id=%1").arg(obraModificada->getAutor()));
+
+    query.first();
+    // atención: es psoible que este campo esté vacío!
+    if (query.size() > 0) {
+        autorescogido_struct.id = obraModificada->getAutor();
+        autorescogido_struct.elemento = query.value(0).toString();
+        ui->txtAutor->setText(autorescogido_struct.elemento);
+    }
+
 
     for (int var = 0; var < temas.size(); ++var) {
         query.exec(QString("SELECT * FROM themes WHERE theme_id=%1").arg(temas.at(var)));
