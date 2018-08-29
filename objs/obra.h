@@ -10,6 +10,38 @@ class Obra
 public:
     Obra();
 
+    // NOTE: no entiendo por qué esto funciona como enum y no como enum class...
+    enum CamposObra {
+        ID = 0,
+        TITLE,
+        LANGUAGE_WORK,
+        AUTHOR_ID,
+        TYPE_WORK,
+        FORMAT,
+        VOLUMES,
+        NUMBER_PAGES,
+        PRINTED,
+        MAYBE_PRINTED,
+        MANUSCRIT,
+        PLACE_PRINT_ORIGINAL,
+        PLACE_PRINT_ID,
+        DATE_PRINT,
+        EDITOR,
+        TRADUCTION,
+        REFERENCES_WORK,
+        REDUCED_TITLE,
+        CONTENTS,
+        INTERESTING,
+        DUBIOUS,
+        LOOK_AGAIN,
+        EXPURGATABLE,
+        RELIABILITY,
+        NOTES,
+        DATE_INSERTION,
+        PAGE_QUETIF,
+        INVESTIGATE
+    };
+
     // setters
     void setTitulo(const QString t);
     void setIdioma(const QString i);

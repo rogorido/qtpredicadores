@@ -25,7 +25,7 @@ class dlgNuevaObra : public QWidget
     Q_OBJECT
 
 public:
-    explicit dlgNuevaObra(QWidget *parent = 0);
+    explicit dlgNuevaObra(QWidget *parent = 0, int obra = 0);
     ~dlgNuevaObra();
 
 private:
@@ -68,9 +68,15 @@ private:
     dlgTemas *dlgtemas;
     dlgDetalles *dlgdetalles;
 
+    bool modificando;
+    int obra_modificando;
+
     void cargarCompleters();
     void borrarCampos();
     void introducirJson(const int id);
+
+    // cuando abrimos el form para modificiar una obra:
+    void cargarObra();
 
 private slots:
 
@@ -88,6 +94,7 @@ private slots:
 
     void introducirTemas(int id);
 
+    void cargarUI();
     void cerrar();
 
 };

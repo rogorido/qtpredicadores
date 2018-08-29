@@ -13,6 +13,8 @@ public:
     static ObrasModel *InstanceModel();
 
     bool AnadirObra(const Obra *obra);
+    Obra *devolverObra(int id);
+    void actualizarObra(int id);
 
 protected:
     ObrasModel();

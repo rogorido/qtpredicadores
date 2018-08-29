@@ -19,24 +19,19 @@
 #include <QDebug>
 #include <QMessageBox>
 
-dlgNuevaObra::dlgNuevaObra(QWidget *parent) :
+dlgNuevaObra::dlgNuevaObra(QWidget *parent, int obra) :
     QWidget(parent),
     ui(new Ui::dlgNuevaObra)
 {
     ui->setupUi(this);
+    cargarUI();
 
-    mdiarea = MyQmdiArea::Instance(this);
+   if (obra != 0) {
+        modificando = true;
+        obra_modificando = obra;
+        cargarObra();
+    }
 
-    m_lugares = LugaresModel::InstanceModel();
-    m_obras = ObrasModel::InstanceModel();
-
-    json_detalles = new QJsonModel(this);
-
-    connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(on_btIntroducirLugar_clicked()));
-    connect(ui->txtAutor, SIGNAL(dobleclick()), this, SLOT(on_btSeleccionarAutor_clicked()));
-    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
-
-    cargarCompleters();
 }
 
 dlgNuevaObra::~dlgNuevaObra()
@@ -239,6 +234,22 @@ void dlgNuevaObra::introducirTemas(int id){
     }
 }
 
+void dlgNuevaObra::cargarUI()
+{
+    mdiarea = MyQmdiArea::Instance(this);
+
+    m_lugares = LugaresModel::InstanceModel();
+    m_obras = ObrasModel::InstanceModel();
+
+    json_detalles = new QJsonModel(this);
+
+    connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(on_btIntroducirLugar_clicked()));
+    connect(ui->txtAutor, SIGNAL(dobleclick()), this, SLOT(on_btSeleccionarAutor_clicked()));
+    connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
+
+    cargarCompleters();
+}
+
 void dlgNuevaObra::cerrar()
 {
     parentWidget()->close();
@@ -305,4 +316,40 @@ void dlgNuevaObra::introducirJson(const int id){
         query.bindValue(":json", jsonfinal);
         query.exec();
     }
+}
+
+void dlgNuevaObra::cargarObra()
+{
+    Obra *obraModificada = new Obra();
+    obraModificada = m_obras->devolverObra(obra_modificando);
+
+    ui->txtTitulo->setText(obraModificada->getTitulo());
+    ui->txtIdioma->setText(obraModificada->getIdioma());
+    // TODO: atención falta el autor!!
+    ui->txtTipo->setText(obraModificada->getTipo());
+    ui->txtFormato->setText(obraModificada->getFormato());
+    ui->spTomos->setValue(obraModificada->getTomos());
+    ui->txtNumeroPags->setText(obraModificada->getNumeroPags());
+    ui->ckImpreso->setChecked(obraModificada->getImpreso());
+    ui->ckTalVezImpreso->setChecked(obraModificada->getTalVezImpreso());
+    ui->ckManuscrito->setChecked(obraModificada->getManuscrito());
+    ui->txtLugarOriginalImpresion->setText(obraModificada->getLugarOriginal());
+    // TODO: falta el id del lugar
+    ui->spFechaImpresion->setValue(obraModificada->getFecha());
+    ui->txtEditor->setText(obraModificada->getEditor());
+    ui->txtTraduccion->setText(obraModificada->getTraduccion());
+    ui->ckReferencias->setChecked(obraModificada->getReferencias());
+    ui->ckTituloReducido->setChecked(obraModificada->getTituloReducido());
+    ui->ckContenido->setChecked(obraModificada->getContenido());
+    ui->spInteresante->setValue(obraModificada->getInteresante());
+    ui->ckDudoso->setChecked(obraModificada->getDudoso());
+    ui->ckVolverMirar->setChecked(obraModificada->getVolverMirar());
+    ui->ckExpurgable->setChecked(obraModificada->getExpurgable());
+    ui->spFiabilidad->setValue(obraModificada->getFiabilidad());
+    ui->txtNotas->setText(obraModificada->getNotas());
+    ui->txtPageQuetif->setText(obraModificada->getPageQuetif());
+    ui->ckInvestigar->setChecked(obraModificada->getInvestigar());
+
+
+
 }

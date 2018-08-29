@@ -96,3 +96,8 @@ bool PersonasModel::AnadirPersona(const Persona *persona){
     }
 
 }
+
+Persona *PersonasModel::devolverPersona(int id)
+{
+
+}

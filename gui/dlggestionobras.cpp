@@ -7,6 +7,10 @@
 #include <QMenu>
 #include <QAction>
 #include <QDebug>
+#include <QMdiSubWindow>
+
+#include "gui/dlgnuevaobra.h"
+#include "widgets/myqmdiarea.h"
 
 #include "models/sqlfiltrogestor.h"
 
@@ -20,6 +24,7 @@ dlgGestionObras::dlgGestionObras(QWidget *parent) :
     ui(new Ui::dlgGestionObras)
 {
     ui->setupUi(this);
+    mdiarea = MyQmdiArea::Instance(this);
 
     // no recuerdo por qué guardo esto en esta variable...
     sqlactivo = sql_general;
@@ -80,6 +85,22 @@ void dlgGestionObras::actualizarSql(QString s)
 
 void dlgGestionObras::modificarObra()
 {
+    QModelIndex idx = ui->tvObras->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    int row = ui->tvObras->currentIndex().row();
+    idx = works_model->index(row, 1);
+    if (!idx.isValid())
+        return;
+    work_id = works_model->data(idx, Qt::DisplayRole).toInt();
+
+    qDebug() << "la id es..." << work_id;
+
+    dlgObraAModificar = new dlgNuevaObra(this, work_id);
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgObraAModificar);
+    window->show();
 
 }
 
@@ -167,7 +188,6 @@ void dlgGestionObras::on_ckSinMateria_stateChanged(int arg1)
 
 void dlgGestionObras::menuContextual(const QPoint &point)
 {
-    qDebug() << "estamos en el menú";
 
     menuContexto->popup(ui->tvObras->viewport()->mapToGlobal(point));
 }

@@ -8,6 +8,10 @@ class QAction;
 class QSqlQueryModel;
 class QModelIndex;
 
+class dlgNuevaObra;
+
+class MyQmdiArea;
+
 class SqlFiltroGestor;
 
 namespace Ui {
@@ -19,7 +23,7 @@ class dlgGestionObras : public QWidget
     Q_OBJECT
 
 public:
-    explicit dlgGestionObras(QWidget *parent = nullptr);
+    explicit dlgGestionObras(QWidget *parent = 0);
     ~dlgGestionObras();
 
 
@@ -53,6 +57,7 @@ signals:
 
 private:
     Ui::dlgGestionObras *ui;
+    MyQmdiArea *mdiarea;
 
     QSqlQueryModel *works_model;
 
@@ -75,6 +80,9 @@ private:
     // lo usamos para la barra
     int total_obras;
     int total_filtrado;
+
+    // esto para modificar obras,... por qué carajo lo hago como pointer?
+    dlgNuevaObra *dlgObraAModificar;
 
     void cargarMenus();
     void cargarModelos();

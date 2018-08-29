@@ -3,6 +3,8 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
+#include <QJsonObject>
+#include <QJsonDocument>
 
 #include "objs/obra.h"
 
@@ -109,5 +111,54 @@ bool ObrasModel::AnadirObra(const Obra *obra){
         this->select();
         return true;
     }
+
+}
+
+Obra *ObrasModel::devolverObra(int id)
+{
+    QSqlQuery query;
+    Obra *obra = new Obra();
+    QString json_otros;
+    QJsonDocument json_doc;
+
+    query.prepare("SELECT * FROM works WHERE work_id = :id");
+    query.bindValue(":id", id);
+
+    if (!query.exec()) {
+        qDebug() << query.lastError();
+        qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
+        return obra;
+    }
+
+    query.first();
+
+    obra->setTitulo(query.value(Obra::CamposObra::TITLE).toString());
+    obra->setIdioma(query.value(Obra::CamposObra::LANGUAGE_WORK).toString());
+    obra->setAutor(query.value(Obra::CamposObra::AUTHOR_ID).toInt());
+    obra->setTipo(query.value(Obra::CamposObra::TYPE_WORK).toString());
+    obra->setFormato(query.value(Obra::CamposObra::FORMAT).toString());
+    obra->setTomos(query.value(Obra::CamposObra::VOLUMES).toInt());
+    obra->setNumeroPags(query.value(Obra::CamposObra::NUMBER_PAGES).toString());
+    obra->setImpreso(query.value(Obra::CamposObra::PRINTED).toBool());
+    obra->setTalVezImpreso(query.value(Obra::CamposObra::MAYBE_PRINTED).toBool());
+    obra->setManuscrito(query.value(Obra::CamposObra::MANUSCRIT).toBool());
+    obra->setLugarOriginal(query.value(Obra::CamposObra::PLACE_PRINT_ORIGINAL).toString());
+    obra->setLugar(query.value(Obra::CamposObra::PLACE_PRINT_ID).toInt());
+    obra->setFecha(query.value(Obra::CamposObra::DATE_PRINT).toInt());
+    obra->setEditor(query.value(Obra::CamposObra::EDITOR).toString());
+    obra->setTraduccion(query.value(Obra::CamposObra::TRADUCTION).toString());
+    obra->setReferencias(query.value(Obra::CamposObra::REFERENCES_WORK).toBool());
+    obra->setTituloReducido(query.value(Obra::CamposObra::REDUCED_TITLE).toBool());
+    obra->setContenido(query.value(Obra::CamposObra::CONTENTS).toBool());
+    obra->setInteresante(query.value(Obra::CamposObra::INTERESTING).toInt());
+    obra->setDudoso(query.value(Obra::CamposObra::DUBIOUS).toBool());
+    obra->setVolverMirar(query.value(Obra::CamposObra::LOOK_AGAIN).toBool());
+    obra->setExpurgable(query.value(Obra::CamposObra::EXPURGATABLE).toBool());
+    obra->setFiabilidad(query.value(Obra::CamposObra::RELIABILITY).toInt());
+    obra->setNotas(query.value(Obra::CamposObra::NOTES).toString());
+    obra->setPageQuetif(query.value(Obra::CamposObra::PAGE_QUETIF).toString());
+    obra->setInvestigar(query.value(Obra::CamposObra::INVESTIGATE).toBool());
+
+    return obra;
 
 }

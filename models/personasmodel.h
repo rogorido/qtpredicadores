@@ -13,6 +13,7 @@ public:
     static PersonasModel *InstanceModel();
 
     bool AnadirPersona(const Persona *persona);
+    Persona *devolverPersona(int id);
 
 signals:
 
