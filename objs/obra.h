@@ -43,6 +43,7 @@ public:
     };
 
     // setters
+    void setId(const int i);
     void setTitulo(const QString t);
     void setIdioma(const QString i);
     void setAutor(const int a);
@@ -71,6 +72,7 @@ public:
     void setNotas(const QString n);
 
     //getters
+    int getId() const {return id;}
     QString getTitulo() const {return titulo;}
     QString getIdioma() const {return idioma;}
     int getAutor() const {return autor;}
@@ -100,6 +102,7 @@ public:
 
 private:
 
+    int id;
     QString titulo;
     QString idioma;
     int autor;

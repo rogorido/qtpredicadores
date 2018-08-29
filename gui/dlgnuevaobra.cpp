@@ -320,8 +320,11 @@ void dlgNuevaObra::introducirJson(const int id){
 
 void dlgNuevaObra::cargarObra()
 {
+    QSqlQuery query;
+    elementopareado temaparameter;
     Obra *obraModificada = new Obra();
     obraModificada = m_obras->devolverObra(obra_modificando);
+    QVector<int> temas = m_obras->materiasObra(obra_modificando);
 
     ui->txtTitulo->setText(obraModificada->getTitulo());
     ui->txtIdioma->setText(obraModificada->getIdioma());
@@ -350,6 +353,14 @@ void dlgNuevaObra::cargarObra()
     ui->txtPageQuetif->setText(obraModificada->getPageQuetif());
     ui->ckInvestigar->setChecked(obraModificada->getInvestigar());
 
+    qDebug() << "total de temas: " << temas.size();
 
+    for (int var = 0; var < temas.size(); ++var) {
+        query.exec(QString("SELECT * FROM themes WHERE theme_id=%1").arg(temas.at(var)));
+        query.first();
+        temaparameter.id = temas.at(var);
+        temaparameter.elemento = query.value(1).toString();
+        temasescogidos.append(temaparameter);
+    }
 
 }

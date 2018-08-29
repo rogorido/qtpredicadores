@@ -15,6 +15,7 @@ public:
     bool AnadirObra(const Obra *obra);
     Obra *devolverObra(int id);
     void actualizarObra(int id);
+    QVector<int> materiasObra(int obra_id);
 
 protected:
     ObrasModel();

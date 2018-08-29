@@ -2,6 +2,7 @@
 
 Obra::Obra() { }
 
+void Obra::setId(const int i) {id = i;}
 void Obra::setTitulo(const QString t) {titulo = t;}
 void Obra::setIdioma(const QString i) {idioma = i;}
 void Obra::setAutor(const int a) {autor = a;}

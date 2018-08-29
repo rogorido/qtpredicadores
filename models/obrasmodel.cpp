@@ -132,6 +132,7 @@ Obra *ObrasModel::devolverObra(int id)
 
     query.first();
 
+    obra->setId(id);
     obra->setTitulo(query.value(Obra::CamposObra::TITLE).toString());
     obra->setIdioma(query.value(Obra::CamposObra::LANGUAGE_WORK).toString());
     obra->setAutor(query.value(Obra::CamposObra::AUTHOR_ID).toInt());
@@ -160,5 +161,26 @@ Obra *ObrasModel::devolverObra(int id)
     obra->setInvestigar(query.value(Obra::CamposObra::INVESTIGATE).toBool());
 
     return obra;
+
+}
+
+QVector<int> ObrasModel::materiasObra(int obra_id)
+{
+    QSqlQuery query;
+    QVector<int> temas;
+
+    QString sql = QString("SELECT * FROM works_themes WHERE work_id = %1").arg(obra_id);
+
+    if (!query.exec(sql)) {
+        qDebug() << query.lastError();
+        qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
+        return temas;
+    }
+
+    while (query.next()) {
+        temas.append(query.value(2).toInt());
+    }
+
+    return temas;
 
 }
