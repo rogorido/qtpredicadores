@@ -14,9 +14,8 @@ public:
     static ObrasModel *InstanceModel();
 
     /*
-     * Dos métodos: uno para añadir nuevo y otro para modificar...
-     * NOTE: Pero esto tiene que haber otra forma pq esto me obliga a
-     * repetir el código?
+     * Si se trata de una nueva obra no pasamos el parámetro obra_id
+     * y funciona.
      */
     bool AnadirObra(const Obra *obra, int obra_id = 0);
 

@@ -31,7 +31,7 @@ void PersonasModel::DestroyMe(){
     if (pInstance != NULL) delete pInstance;
 }
 
-bool PersonasModel::AnadirPersona(const Persona *persona){
+bool PersonasModel::AnadirPersona(const Persona *persona, int persona_id){
     QSqlQuery query;
 
     QString nombre = persona->getNombre();
@@ -61,12 +61,25 @@ bool PersonasModel::AnadirPersona(const Persona *persona){
     if (otrosnombres.isEmpty())
         otrosnombres = "{}";
 
-    query.prepare("INSERT INTO general.persons(name, family_name, origin_name, lookedup, male, wikipedia, viaf, "
-                  "other_names, wikipedia_link, viaf_link, wikidata_link, type_person, datebirth, "
-                  "datedeath, birth_diocesis, look_again, quantity_info, notes) "
-                  "VALUES (:nombre, :apellidos, :origen, :buscado, :masculino, :wikipedia, :viaf, "
-                  ":otrosnombres, :wikipedia_link, :viaf_link, :wikidata_link, :tipo_persona, :nacimiento, "
-                  ":muerte, :diocesis, :volveramirar, :cantidad_info, :notas)");
+    if (persona_id == 0) {
+        query.prepare("INSERT INTO general.persons(name, family_name, origin_name, lookedup, male, wikipedia, viaf, "
+                      "other_names, wikipedia_link, viaf_link, wikidata_link, type_person, datebirth, "
+                      "datedeath, birth_diocesis, look_again, quantity_info, notes) "
+                      "VALUES (:nombre, :apellidos, :origen, :buscado, :masculino, :wikipedia, :viaf, "
+                      ":otrosnombres, :wikipedia_link, :viaf_link, :wikidata_link, :tipo_persona, :nacimiento, "
+                      ":muerte, :diocesis, :volveramirar, :cantidad_info, :notas)");
+    }
+    else {
+        query.prepare("UPDATE general.persons SET (name, family_name, origin_name, lookedup, male, wikipedia, viaf, "
+                      "other_names, wikipedia_link, viaf_link, wikidata_link, type_person, datebirth, "
+                      "datedeath, birth_diocesis, look_again, quantity_info, notes) "
+                      "= (:nombre, :apellidos, :origen, :buscado, :masculino, :wikipedia, :viaf, "
+                      ":otrosnombres, :wikipedia_link, :viaf_link, :wikidata_link, :tipo_persona, :nacimiento, "
+                      ":muerte, :diocesis, :volveramirar, :cantidad_info, :notas) "
+                      "WHERE person_id = :person_id");
+    }
+
+    // rellenamos los campos
     query.bindValue(":nombre", nombre);
     query.bindValue(":apellidos", apellidos);
     query.bindValue(":origen", origen);
@@ -85,6 +98,9 @@ bool PersonasModel::AnadirPersona(const Persona *persona){
     query.bindValue(":volveramirar", volveramirar);
     query.bindValue(":cantidad_info", cantidadinfo);
     query.bindValue(":notas", notas);
+
+    if (persona_id != 0)
+        query.bindValue(":person_id", persona_id);
 
     if (!query.exec()){
         qDebug() << query.lastError();

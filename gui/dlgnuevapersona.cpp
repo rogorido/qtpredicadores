@@ -130,25 +130,13 @@ void dlgNuevaPersona::aceptarPersona(){
     persona->setNotas(notas);
     persona->setFuente(fuente_origen);
 
-    if (m_personas->AnadirPersona(persona)){
-        //QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
-        QSqlQuery lastid("select max(person_id) from persons");
+    if (!modificando)
+        introducirPersonaEnBD(persona);
+    else
+        introducirPersonaEnBD(persona, true);
 
-        lastid.first();
-        int id = lastid.value(0).toInt();
-        introducirJson(id);
-        borrarCampos();
-        cargarCompleters();
-        emit personaIntroducida();
-        return;
-    }
-    else{
-        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
-                                       "Error al introducir la resolución en la BD");
-        Q_UNUSED(ret)
-        return;
-    }
-
+    if (modificando)
+        cerrar();
 }
 
 void dlgNuevaPersona::on_btDetalles_clicked()
@@ -263,6 +251,57 @@ void dlgNuevaPersona::cargarPersona()
     ui->spCantidadInfo->setValue(personaCargada->getCantidadInfo());
     ui->txtNotas->setText(personaCargada->getNotas());
 
+}
+
+// esto es para el caso en el que la persona es nueva...
+void dlgNuevaPersona::introducirPersonaEnBD(Persona *persona)
+{
+    if (m_personas->AnadirPersona(persona)){
+        QSqlQuery lastid("select max(person_id) from persons");
+
+        lastid.first();
+        int id = lastid.value(0).toInt();
+        introducirJson(id);
+        borrarCampos();
+        cargarCompleters();
+        emit personaIntroducida();
+        return;
+    }
+    else{
+        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
+                                       "Error al introducir la resolución en la BD");
+        Q_UNUSED(ret)
+        return;
+    }
+
+}
+
+/*
+ * Para cuando la obra ya existe... Aquí la clave es que hacemos una cosa tosca:
+ * borramos todos los temas y todos los detalles y de las tablas correspondientes
+ * y volvemos a añadir los datso de esas tablas desde cero.
+ */
+void dlgNuevaPersona::introducirPersonaEnBD(Persona *persona, bool modificar)
+{
+    Q_UNUSED(modificar)
+
+    QSqlQuery query;
+
+    if (m_personas->AnadirPersona(persona, persona_modificando)) {
+
+        query.exec(QString("DELETE FROM persons_details WHERE person_id = %1").arg(persona_modificando));
+        introducirJson(persona_modificando);
+        borrarCampos();
+        cargarCompleters();
+        emit personaIntroducida();
+        return;
+    }
+    else {
+        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
+                                       "Error al introducir la resolución en la BD");
+        Q_UNUSED(ret)
+        return;
+    }
 }
 
 void dlgNuevaPersona::on_btFuente_clicked()

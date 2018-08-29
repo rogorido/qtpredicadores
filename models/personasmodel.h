@@ -13,7 +13,12 @@ class PersonasModel : public QSqlTableModel
 public:
     static PersonasModel *InstanceModel();
 
-    bool AnadirPersona(const Persona *persona);
+    /*
+     * Si se trata de una nueva obra no pasamos el parámetro persona_id
+     * y funciona.
+     */
+    bool AnadirPersona(const Persona *persona, int persona_id = 0);
+
     Persona *devolverPersona(int id);
     // esto devuelve los detalles de una persona
     QJsonModel *devolverDetalles(int id);

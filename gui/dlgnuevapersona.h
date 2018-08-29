@@ -5,6 +5,7 @@
 
 #include "objs/variados.h"
 
+class Persona;
 class PersonasModel;
 class QJsonModel;
 class dlgDetalles;
@@ -79,6 +80,15 @@ private:
     void borrarCampos();
 
     void cargarPersona();
+
+    /*
+     * hacemos dos métodos iguales para introducir
+     * la obra en la BD... Esto supone repetir el código
+     * en parte pero no se ocurre nada mejor
+     */
+    void introducirPersonaEnBD(Persona *persona); // nueva
+    void introducirPersonaEnBD(Persona *persona, bool modificar); // modificando una existente
+
 
 };
 
