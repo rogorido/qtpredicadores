@@ -4,6 +4,7 @@
 #include <QSqlTableModel>
 
 class Obra;
+class QJsonModel;
 
 class ObrasModel : public QSqlTableModel
 {
@@ -16,6 +17,8 @@ public:
     Obra *devolverObra(int id);
     void actualizarObra(int id);
     QVector<int> materiasObra(int obra_id);
+    // esto devuelve los detalles de una obra
+    QJsonModel *devolverDetalles(int id);
 
 protected:
     ObrasModel();

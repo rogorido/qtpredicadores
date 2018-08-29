@@ -327,11 +327,11 @@ void dlgNuevaObra::cargarObra()
      * realmente podría sacar el autor con el método
      * devolverPersona de la clase PersonsModels, pero eso significaría
      * tener que cargar esa clase. No creo que merezca la pena...
+     * Lo mismo para lugar
      */
 
     obraModificada = m_obras->devolverObra(obra_modificando);
     QVector<int> temas = m_obras->materiasObra(obra_modificando);
-
 
     ui->txtTitulo->setText(obraModificada->getTitulo());
     ui->txtIdioma->setText(obraModificada->getIdioma());
@@ -388,5 +388,8 @@ void dlgNuevaObra::cargarObra()
         temaparameter.elemento = query.value(1).toString();
         temasescogidos.append(temaparameter);
     }
+
+    // cargamos en el QJsonModel los detalles de la obra
+    json_detalles = m_obras->devolverDetalles(obra_modificando);
 
 }
