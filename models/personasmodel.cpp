@@ -99,5 +99,40 @@ bool PersonasModel::AnadirPersona(const Persona *persona){
 
 Persona *PersonasModel::devolverPersona(int id)
 {
+    QSqlQuery query;
+    Persona *persona = new Persona();
+
+    query.prepare("SELECT * FROM persons WHERE person_id = :id");
+    query.bindValue(":id", id);
+
+    if (!query.exec()) {
+        qDebug() << query.lastError();
+        qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
+        return persona;
+    }
+
+    persona->setId(id);
+    persona->setNombre(query.value(Persona::CamposPersona::NAME).toString());
+    persona->setApellidos(query.value(Persona::CamposPersona::FAMILY_NAME).toString());
+    // TODO: falta othernames pq es json!
+    persona->setBuscado(query.value(Persona::CamposPersona::LOOKEDUP).toBool());
+    persona->setWiki(query.value(Persona::CamposPersona::WIKIPEDIA).toBool());
+    persona->setViaf(query.value(Persona::CamposPersona::VIAF).toBool());
+    persona->setWikilink(query.value(Persona::CamposPersona::WIKIPEDIA_LINK).toString());
+    persona->setViaflink(query.value(Persona::CamposPersona::VIAF_LINK).toString());
+    persona->setWikidata(query.value(Persona::CamposPersona::WIKIDATA_LINK).toString());
+    persona->setNacimiento(query.value(Persona::CamposPersona::DATEBIRTH).toString());
+    persona->setMuerte(query.value(Persona::CamposPersona::DATEDEATH).toString());
+    persona->setCantidadInfo(query.value(Persona::CamposPersona::QUANTITY_INFO).toInt());
+    // TODO: Atención falta lo de interesting
+    persona->setVolverMirar(query.value(Persona::CamposPersona::LOOK_AGAIN).toBool());
+    persona->setNotas(query.value(Persona::CamposPersona::NOTES).toString());
+    // TODO: falta other-data pq es jsonb
+    persona->setOrigen(query.value(Persona::CamposPersona::ORIGIN_NAME).toString());
+    persona->setDiocesis(query.value(Persona::CamposPersona::BIRTH_DIOCESIS).toString());
+    persona->setMasculino(query.value(Persona::CamposPersona::MALE).toBool());
+    persona->setTipoPersona(query.value(Persona::CamposPersona::TYPE_PERSON).toString());
+
+    return persona;
 
 }

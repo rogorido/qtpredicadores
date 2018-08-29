@@ -12,6 +12,31 @@ class Persona
 public:
     Persona();
 
+    enum CamposPersona {
+        PERSON_ID = 0,
+        NAME,
+        FAMILY_NAME,
+        OTHER_NAMES,
+        LOOKEDUP,
+        WIKIPEDIA,
+        VIAF,
+        WIKIPEDIA_LINK,
+        VIAF_LINK,
+        WIKIDATA_LINK,
+        DATEBIRTH,
+        DATEDEATH,
+        QUANTITY_INFO,
+        INTERESTING,
+        LOOK_AGAIN,
+        NOTES,
+        OTHER_DATA,
+        DATE_INSERTION,
+        ORIGIN_NAME,
+        BIRTH_DIOCESIS,
+        MALE,
+        TYPE_PERSON
+    };
+
     // setters
     void setId(const int i);
     void setNombre(const QString n);
