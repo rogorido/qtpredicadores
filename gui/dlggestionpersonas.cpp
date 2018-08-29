@@ -87,7 +87,22 @@ void dlgGestionPersonas::actualizarSql(QString s)
 
 void dlgGestionPersonas::modificarPersona()
 {
+    QModelIndex idx = ui->tvPersonas->currentIndex();
 
+    if (!idx.isValid())
+        return;
+
+    int row = ui->tvPersonas->currentIndex().row();
+    idx = m_persons->index(row, 0);
+    if (!idx.isValid())
+        return;
+    person_id = m_persons->data(idx, Qt::DisplayRole).toInt();
+
+    qDebug() << "la id es..." << person_id;
+
+    dlgPersonaAModificar = new dlgNuevaPersona(this, person_id);
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgPersonaAModificar);
+    window->show();
 }
 
 void dlgGestionPersonas::emitirSenalTotalPersonas()

@@ -4,6 +4,7 @@
 #include <QSqlTableModel>
 
 class Persona;
+class QJsonModel;
 
 class PersonasModel : public QSqlTableModel
 {
@@ -14,6 +15,8 @@ public:
 
     bool AnadirPersona(const Persona *persona);
     Persona *devolverPersona(int id);
+    // esto devuelve los detalles de una persona
+    QJsonModel *devolverDetalles(int id);
 
 signals:
 

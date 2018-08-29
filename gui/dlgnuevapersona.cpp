@@ -16,34 +16,18 @@
 #include "objs/persona.h"
 #include "widgets/myqmdiarea.h"
 
-dlgNuevaPersona::dlgNuevaPersona(QWidget *parent) :
+dlgNuevaPersona::dlgNuevaPersona(QWidget *parent, int persona) :
     QWidget(parent),
     ui(new Ui::dlgNuevaPersona)
 {
     ui->setupUi(this);
+    cargarUI();
 
-    mdiarea = MyQmdiArea::Instance(this);
-
-    m_personas = PersonasModel::InstanceModel();
-
-    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
-    connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarPersona()));
-
-    nombres_compl = new QCompleter(this);
-    apellidos_compl = new QCompleter(this);
-    diocesis_compl = new QCompleter(this);
-
-    nombres_query = new QSqlQueryModel(this);
-    apellidos_query = new QSqlQueryModel(this);
-    diocesis_query = new QSqlQueryModel(this);
-
-    QStringList tipos_persona;
-    tipos_persona << "Fraile" << "Terciario" << "Lego";
-    tipopersona_compl = new QCompleter(tipos_persona, this);
-
-    jsongestor = new QJsonModel(this);
-    otrosnombres_json = new QJsonModel(this);
-    cargarCompleters();
+    if (persona != 0){
+        modificando = true;
+        persona_modificando = persona;
+        cargarPersona();
+    }
 
     ui->txtNombre->setFocus();
 }
@@ -54,6 +38,14 @@ dlgNuevaPersona::~dlgNuevaPersona()
 }
 
 void dlgNuevaPersona::cargarCompleters(){
+
+    nombres_compl = new QCompleter(this);
+    apellidos_compl = new QCompleter(this);
+    diocesis_compl = new QCompleter(this);
+
+    nombres_query = new QSqlQueryModel(this);
+    apellidos_query = new QSqlQueryModel(this);
+    diocesis_query = new QSqlQueryModel(this);
 
     nombres_query->setQuery("SELECT DISTINCT name FROM persons WHERE name IS NOT NULL ORDER BY name");
     nombres_compl->setModel(nombres_query);
@@ -76,6 +68,9 @@ void dlgNuevaPersona::cargarCompleters(){
 
     ui->txtDiocesis->setCompleter(diocesis_compl);
 
+    QStringList tipos_persona;
+    tipos_persona << "Fraile" << "Terciario" << "Lego" << "Monja" << "Profeso" << "Converso";
+    tipopersona_compl = new QCompleter(tipos_persona, this);
     tipopersona_compl->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtTipoPersona->setCompleter(tipopersona_compl);
 
@@ -184,6 +179,21 @@ void dlgNuevaPersona::introducirJson(const int id){
     }
 }
 
+void dlgNuevaPersona::cargarUI()
+{
+    mdiarea = MyQmdiArea::Instance(this);
+
+    m_personas = PersonasModel::InstanceModel();
+
+    connect(ui->btCancelar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
+    connect(ui->btOK, SIGNAL(clicked(bool)), this, SLOT(aceptarPersona()));
+
+    jsongestor = new QJsonModel(this);
+    otrosnombres_json = new QJsonModel(this);
+
+    cargarCompleters();
+}
+
 void dlgNuevaPersona::on_btOtrosNombres_clicked(){
 
     dlgotrosnombres = new dlgDetalles(otrosnombres_json, OTROS, false, this);
@@ -223,6 +233,36 @@ void dlgNuevaPersona::borrarCampos(){
     otrosnombres_json = new QJsonModel(this);
 
     ui->txtNombre->setFocus();
+}
+
+void dlgNuevaPersona::cargarPersona()
+{
+    QSqlQuery query;
+    Persona *personaCargada = new Persona();
+
+    personaCargada = m_personas->devolverPersona(persona_modificando);
+    jsongestor = m_personas->devolverDetalles(persona_modificando);
+
+    ui->txtNombre->setText(personaCargada->getNombre());
+    ui->txtApellidos->setText(personaCargada->getApellidos());
+    ui->txtOrigen->setText(personaCargada->getOrigen());
+    ui->txtNacimiento->setText(personaCargada->getNacimiento());
+    ui->txtMuerte->setText(personaCargada->getMuerte());
+    ui->txtDiocesis->setText(personaCargada->getDiocesis());
+
+    ui->ckMasculino->setChecked(personaCargada->getMasculino());
+    ui->txtTipoPersona->setText(personaCargada->getTipoPersona());
+    ui->ckBuscado->setChecked(personaCargada->getBuscado());
+    ui->ckWiki->setChecked(personaCargada->getWiki());
+    ui->txtWiki->setText(personaCargada->getWikilink());
+    ui->ckViaf->setChecked(personaCargada->getViaf());
+    ui->txtViaf->setText(personaCargada->getViaflink());
+    ui->txtWikidata->setText(personaCargada->getWikidata());
+
+    ui->ckVolverMirar->setChecked(personaCargada->getVolverMirar());
+    ui->spCantidadInfo->setValue(personaCargada->getCantidadInfo());
+    ui->txtNotas->setText(personaCargada->getNotas());
+
 }
 
 void dlgNuevaPersona::on_btFuente_clicked()

@@ -23,7 +23,7 @@ class dlgNuevaPersona : public QWidget
     Q_OBJECT
 
 public:
-    explicit dlgNuevaPersona(QWidget *parent = 0);
+    explicit dlgNuevaPersona(QWidget *parent = 0, int persona = 0);
     ~dlgNuevaPersona();
 
 private slots:
@@ -69,10 +69,16 @@ private:
 
     fuente fuente_origen;
 
+    bool modificando = false;
+    int persona_modificando = 0;
+
     void introducirJson(const int id);
 
+    void cargarUI();
     void cargarCompleters();
     void borrarCampos();
+
+    void cargarPersona();
 
 };
 

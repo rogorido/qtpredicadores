@@ -5,6 +5,7 @@
 #include <QSqlError>
 
 #include "objs/persona.h"
+#include "models/qjsonmodel.h"
 
 PersonasModel *PersonasModel::pInstance = 0;
 
@@ -111,6 +112,8 @@ Persona *PersonasModel::devolverPersona(int id)
         return persona;
     }
 
+    query.first();
+
     persona->setId(id);
     persona->setNombre(query.value(Persona::CamposPersona::NAME).toString());
     persona->setApellidos(query.value(Persona::CamposPersona::FAMILY_NAME).toString());
@@ -134,5 +137,37 @@ Persona *PersonasModel::devolverPersona(int id)
     persona->setTipoPersona(query.value(Persona::CamposPersona::TYPE_PERSON).toString());
 
     return persona;
+
+}
+
+QJsonModel *PersonasModel::devolverDetalles(int id)
+{
+    QSqlQuery query;
+    QString sql;
+    QJsonModel *json_model = new QJsonModel();
+    QJsonDocument json;
+
+    sql = QString("SELECT details FROM persons_details WHERE person_id=%1").arg(id);
+    query.exec(sql);
+
+    /*
+     * joder, que lío hay que hacer para construir un json...
+     * hay que usar eso de QByteArray pq con una QString normal
+     * no hay manera...
+     */
+    while (query.next()) {
+        QByteArray datos = query.value(0).toByteArray();
+        json = QJsonDocument::fromJson(datos);
+        /*
+         * tenemos que pasar json.object que construye un
+         * QjsonObject, que es al parecer tb un QJsonValue
+         * y es lo que pide anadirJson...
+         */
+        json_model->anadirJson(json.object());
+    }
+
+    json_model->resetearModelo();
+
+    return json_model;
 
 }
