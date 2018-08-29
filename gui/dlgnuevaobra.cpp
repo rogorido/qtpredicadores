@@ -344,7 +344,7 @@ void dlgNuevaObra::cargarObra()
     ui->ckTalVezImpreso->setChecked(obraModificada->getTalVezImpreso());
     ui->ckManuscrito->setChecked(obraModificada->getManuscrito());
     ui->txtLugarOriginalImpresion->setText(obraModificada->getLugarOriginal());
-    // TODO: falta el id del lugar
+    // aquí iría el lugar: ver abajo
     ui->spFechaImpresion->setValue(obraModificada->getFecha());
     ui->txtEditor->setText(obraModificada->getEditor());
     ui->txtTraduccion->setText(obraModificada->getTraduccion());
@@ -362,13 +362,22 @@ void dlgNuevaObra::cargarObra()
 
     // el autor
     query.exec(QString("SELECT name || ' ' || family_name FROM persons WHERE person_id=%1").arg(obraModificada->getAutor()));
-
     query.first();
     // atención: es psoible que este campo esté vacío!
     if (query.size() > 0) {
         autorescogido_struct.id = obraModificada->getAutor();
         autorescogido_struct.elemento = query.value(0).toString();
         ui->txtAutor->setText(autorescogido_struct.elemento);
+    }
+
+    // el lugar
+    query.exec(QString("SELECT place FROM places WHERE place_id=%1").arg(obraModificada->getLugar()));
+    query.first();
+    // atención: es psoible que este campo esté vacío!
+    if (query.size() > 0) {
+        lugarescogido_struct.id = obraModificada->getLugar();
+        lugarescogido_struct.elemento = query.value(0).toString();
+        ui->txtLugar->setText(lugarescogido_struct.elemento);
     }
 
 
