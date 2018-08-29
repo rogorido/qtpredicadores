@@ -33,8 +33,13 @@ private slots:
     void on_rbImpresos_clicked();
     void on_rbTodos_clicked();    
     void on_ckSinMateria_stateChanged(int arg1);
+    void menuContextual(const QPoint &point);
 
     void actualizarSql(QString s);
+
+    void modificarObra();
+    void verPersona();
+    void modificarPersona();
 
     /*
      * esto realmetne recoge una señal de sqlFiltroGestor
@@ -54,6 +59,10 @@ private:
     SqlFiltroGestor *sql_gestor;
 
     QMenu *menuContexto;
+    QAction *a_verPersona;
+    QAction *a_cambiarPersona;
+    QAction *a_cambiarObra;
+
 
     /*
      * guardamos el SQL que está activo

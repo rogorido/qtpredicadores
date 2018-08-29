@@ -3,6 +3,10 @@
 
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QModelIndex>
+#include <QMenu>
+#include <QAction>
+#include <QDebug>
 
 #include "models/sqlfiltrogestor.h"
 
@@ -26,6 +30,12 @@ dlgGestionObras::dlgGestionObras(QWidget *parent) :
     connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
 
     cargarModelos();
+    cargarMenus();
+
+    ui->tvObras->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    connect(ui->tvObras, SIGNAL(customContextMenuRequested(const QPoint &)),
+            this, SLOT(menuContextual(const QPoint &)));
 
     /*
      * esto lo hacemos aquí aunque luego hay una función con
@@ -68,6 +78,21 @@ void dlgGestionObras::actualizarSql(QString s)
     contarTotal();
 }
 
+void dlgGestionObras::modificarObra()
+{
+
+}
+
+void dlgGestionObras::verPersona()
+{
+
+}
+
+void dlgGestionObras::modificarPersona()
+{
+
+}
+
 void dlgGestionObras::emitirSenalTotalObras()
 {
     QString final;
@@ -83,7 +108,19 @@ void dlgGestionObras::emitirSenalTotalObras()
 
 void dlgGestionObras::cargarMenus()
 {
+    menuContexto = new QMenu(this);
 
+    a_verPersona = new QAction("Ver datos de persona", this);
+    a_cambiarObra = new QAction("Modificar obra", this);
+    a_cambiarPersona = new QAction("Modificar persona", this);
+
+    connect(a_verPersona, SIGNAL(triggered(bool)), this, SLOT(verPersona()));
+    connect(a_cambiarPersona, SIGNAL(triggered(bool)), this, SLOT(modificarPersona()));
+    connect(a_cambiarObra, SIGNAL(triggered(bool)), this, SLOT(modificarObra()));
+
+    menuContexto->addAction(a_verPersona);
+    menuContexto->addAction(a_cambiarPersona);
+    menuContexto->addAction(a_cambiarObra);
 }
 
 void dlgGestionObras::cargarModelos()
@@ -126,4 +163,11 @@ void dlgGestionObras::on_ckSinMateria_stateChanged(int arg1)
         sql_gestor->anadirFiltro("sinmaterias", "work_id NOT IN (SELECT DISTINCT work_id FROM works_themes)");
     else
         sql_gestor->quitarFiltro("sinmaterias");
+}
+
+void dlgGestionObras::menuContextual(const QPoint &point)
+{
+    qDebug() << "estamos en el menú";
+
+    menuContexto->popup(ui->tvObras->viewport()->mapToGlobal(point));
 }
