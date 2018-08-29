@@ -188,6 +188,5 @@ void dlgGestionObras::on_ckSinMateria_stateChanged(int arg1)
 
 void dlgGestionObras::menuContextual(const QPoint &point)
 {
-
     menuContexto->popup(ui->tvObras->viewport()->mapToGlobal(point));
 }

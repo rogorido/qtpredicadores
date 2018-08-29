@@ -87,6 +87,11 @@ void dlgGestionPersonas::actualizarSql(QString s)
 
 void dlgGestionPersonas::modificarPersona()
 {
+
+}
+
+void dlgGestionPersonas::emitirSenalTotalPersonas()
+{
     QString final;
 
    if (total_personas == total_filtrado){
@@ -96,11 +101,6 @@ void dlgGestionPersonas::modificarPersona()
        final = QString("Personas: %1/%2").arg(QString::number(total_filtrado)).arg(total_personas);
    }
    emit infoBarraInferior(final);
-}
-
-void dlgGestionPersonas::emitirSenalTotalPersonas()
-{
-
 }
 
 void dlgGestionPersonas::cargarMenus()
@@ -125,6 +125,7 @@ void dlgGestionPersonas::cargarModelos()
     ui->tvPersonas->setSortingEnabled(true);
     ui->tvPersonas->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tvPersonas->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tvPersonas->hideColumn(0);
 
     // escogemos la primera línea del modelo...
     QModelIndex index = m_persons->index(0,0);
