@@ -200,23 +200,13 @@ void dlgNuevaObra::on_btOK_clicked(){
     obra->setPageQuetif(pagequetif);
     obra->setNotas(notas);
 
-    if (m_obras->AnadirObra(obra)) {
-        QSqlQuery lastid("select max(work_id) from works");
+    if (!modificando)
+        introducirObraEnBD(obra);
+    else
+        introducirObraEnBD(obra, true);
 
-        lastid.first();
-        int id = lastid.value(0).toInt();
-
-        introducirTemas(id);
-        introducirJson(id);
-        borrarCampos();
-    }
-    else {
-        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
-                                       "Error al introducir la resolución en la BD");
-        Q_UNUSED(ret)
-        return;
-    }
-
+    if (modificando)
+        cerrar();
 }
 
 void dlgNuevaObra::introducirTemas(int id){
@@ -392,4 +382,54 @@ void dlgNuevaObra::cargarObra()
     // cargamos en el QJsonModel los detalles de la obra
     json_detalles = m_obras->devolverDetalles(obra_modificando);
 
+}
+
+// esto es para el caso en el que la obra es nueva...
+void dlgNuevaObra::introducirObraEnBD(Obra *obra)
+{
+    int id;
+
+    if (m_obras->AnadirObra(obra)) {
+        QSqlQuery lastid("select max(work_id) from works");
+
+        lastid.first();
+        id = lastid.value(0).toInt();
+
+        introducirTemas(id);
+        introducirJson(id);
+        borrarCampos();
+    }
+    else {
+        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
+                                       "Error al introducir la resolución en la BD");
+        Q_UNUSED(ret)
+        return;
+    }
+}
+
+/*
+ * Para cuando la obra ya existe... Aquí la clave es que hacemos una cosa tosca:
+ * borramos todos los temas y todos los detalles y de las tablas correspondientes
+ * y volvemos a añadir los datso de esas tablas desde cero.
+ */
+void dlgNuevaObra::introducirObraEnBD(Obra *obra, bool modificar)
+{
+    Q_UNUSED(modificar)
+
+    QSqlQuery query;
+
+    if (m_obras->AnadirObra(obra, obra_modificando)) {
+
+        query.exec(QString("DELETE FROM works_themes WHERE work_id = %1").arg(obra_modificando));
+        query.exec(QString("DELETE FROM works_details WHERE work_id = %1").arg(obra_modificando));
+        introducirTemas(obra_modificando);
+        introducirJson(obra_modificando);
+        borrarCampos();
+    }
+    else {
+        int ret = QMessageBox::warning(this, "Error al introducir la resolución",
+                                       "Error al introducir la resolución en la BD");
+        Q_UNUSED(ret)
+        return;
+    }
 }

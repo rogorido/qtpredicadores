@@ -13,7 +13,13 @@ class ObrasModel : public QSqlTableModel
 public:
     static ObrasModel *InstanceModel();
 
-    bool AnadirObra(const Obra *obra);
+    /*
+     * Dos métodos: uno para añadir nuevo y otro para modificar...
+     * NOTE: Pero esto tiene que haber otra forma pq esto me obliga a
+     * repetir el código?
+     */
+    bool AnadirObra(const Obra *obra, int obra_id = 0);
+
     Obra *devolverObra(int id);
     void actualizarObra(int id);
     QVector<int> materiasObra(int obra_id);

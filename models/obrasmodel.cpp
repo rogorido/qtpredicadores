@@ -31,7 +31,7 @@ void ObrasModel::DestroyMe(){
     if (pInstance != NULL) delete pInstance;
 }
 
-bool ObrasModel::AnadirObra(const Obra *obra){
+bool ObrasModel::AnadirObra(const Obra *obra, int obra_id){
     QSqlQuery query;
 
     QString titulo = obra->getTitulo();
@@ -61,16 +61,33 @@ bool ObrasModel::AnadirObra(const Obra *obra){
     QString pagequetif = obra->getPageQuetif();
     QString notas = obra->getNotas();
 
-    query.prepare("INSERT INTO works.works(title, language_work, author_id, type_work, format, "
-                  "volumes, number_pages, printed, maybe_printed, manuscrit, look_again, investigate, "
-                  "place_print_original, place_print_id, "
-                  "date_print, editor, references_work, reduced_title, traduction, "
-                  "contents, interesting, dubious, expurgatable, reliability, page_quetif, notes) "
-		  " VALUES (:titulo, :idioma, :autor_id, :tipo, :formato, "
-          ":tomos, :numero_pags, :impreso, :talvez_impreso, :manuscrito, :volveramirar, :investigar, "
-		  ":lugar_impresion_original, :lugar_impresion_id, "
-		  ":fecha_impresion, :editor, :referencias, :tituloreducido, :traduccion, "
-          ":contenido, :interesante, :dudoso, :expurgable, :fiabilidad, :pagequetif, :notas)");
+    if (obra_id == 0) {
+        query.prepare("INSERT INTO works.works(title, language_work, author_id, type_work, format, "
+                      "volumes, number_pages, printed, maybe_printed, manuscrit, look_again, investigate, "
+                      "place_print_original, place_print_id, "
+                      "date_print, editor, references_work, reduced_title, traduction, "
+                      "contents, interesting, dubious, expurgatable, reliability, page_quetif, notes) "
+                      " VALUES (:titulo, :idioma, :autor_id, :tipo, :formato, "
+                      ":tomos, :numero_pags, :impreso, :talvez_impreso, :manuscrito, :volveramirar, :investigar, "
+                      ":lugar_impresion_original, :lugar_impresion_id, "
+                      ":fecha_impresion, :editor, :referencias, :tituloreducido, :traduccion, "
+                      ":contenido, :interesante, :dudoso, :expurgable, :fiabilidad, :pagequetif, :notas)");
+    }
+    else {
+        query.prepare("UPDATE works.works SET(title, language_work, author_id, type_work, format, "
+                      "volumes, number_pages, printed, maybe_printed, manuscrit, look_again, investigate, "
+                      "place_print_original, place_print_id, "
+                      "date_print, editor, references_work, reduced_title, traduction, "
+                      "contents, interesting, dubious, expurgatable, reliability, page_quetif, notes) "
+                      " = (:titulo, :idioma, :autor_id, :tipo, :formato, "
+                      ":tomos, :numero_pags, :impreso, :talvez_impreso, :manuscrito, :volveramirar, :investigar, "
+                      ":lugar_impresion_original, :lugar_impresion_id, "
+                      ":fecha_impresion, :editor, :referencias, :tituloreducido, :traduccion, "
+                      ":contenido, :interesante, :dudoso, :expurgable, :fiabilidad, :pagequetif, :notas) "
+                      "WHERE work_id = :work_id");
+    }
+
+    // ahora ponemos los campos...
     query.bindValue(":titulo", titulo);
     query.bindValue(":idioma", idioma);
     if (!autor == 0)
@@ -103,6 +120,10 @@ bool ObrasModel::AnadirObra(const Obra *obra){
     query.bindValue(":fiabilidad", fiabilidad);
     query.bindValue(":pagequetif", pagequetif);
     query.bindValue(":notas", notas);
+
+    // el work_id para el caso de que sea un update...
+    if (obra_id != 0)
+        query.bindValue(":work_id", obra_id);
 
     if (!query.exec()){
         qDebug() << query.lastError();

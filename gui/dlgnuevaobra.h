@@ -13,6 +13,7 @@ class ObrasModel;
 class QCompleter;
 class QSqlQueryModel;
 class QJsonModel;
+class Obra;
 
 class MyQmdiArea;
 
@@ -68,8 +69,8 @@ private:
     dlgTemas *dlgtemas;
     dlgDetalles *dlgdetalles;
 
-    bool modificando;
-    int obra_modificando;
+    bool modificando = false;
+    int obra_modificando = 0;
 
     void cargarCompleters();
     void borrarCampos();
@@ -77,6 +78,14 @@ private:
 
     // cuando abrimos el form para modificiar una obra:
     void cargarObra();
+
+    /*
+     * hacemos dos métodos iguales para introducir
+     * la obra en la BD... Esto supone repetir el código
+     * en parte pero no se ocurre nada mejor
+     */
+    void introducirObraEnBD(Obra *obra); // nueva
+    void introducirObraEnBD(Obra *obra, bool modificar); // modificando una existente
 
 private slots:
 
