@@ -60,6 +60,14 @@ private:
      */
     QList<int> lista_iddetails;
 
+    /*
+     * No sé por qué esto hay que declararlo como const, sino me da un error del tipo
+     * passing xxx as 'this' argument of xxx discards qualifiers
+     */
+    QString sacarLugar(const int lugar_id) const;
+    QString sacarCasa(const int lugar_id) const;
+    QString sacarProvincia(const int lugar_id) const;
+
 };
 
 #endif // QJSONMODEL_H

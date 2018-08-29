@@ -1,6 +1,7 @@
 #include "qjsonmodel.h"
 
 #include <QDebug>
+#include <QSqlQuery>
 
 QJsonModel::QJsonModel(QObject *parent)
     : QAbstractItemModel(parent)
@@ -73,23 +74,39 @@ int QJsonModel::rowCount(const QModelIndex &parent) const
 
 int QJsonModel::columnCount(const QModelIndex &parent) const
 {
-
     return 2;
 }
 
 QVariant QJsonModel::data(const QModelIndex &index, int role) const
 {
+    QString valor;
+
     if (!index.isValid())
             return QVariant();
 
     QJsonTreeItem *item = static_cast<QJsonTreeItem*>(index.internalPointer());
 
     if (role == Qt::DisplayRole) {
-        if (index.column() == 0)
+        if (index.column() == 0)  {
             return QString("%1").arg(item->getKey());
+        }
 
-        if (index.column() == 1)
-            return QString("%1").arg(item->getValue());
+        if (index.column() == 1) {
+            if (item->getKey() == "lugar" or item->getKey() == "viaje_origen" or item->getKey() == "viaje_destino") {
+                valor = sacarLugar(item->getValue().toInt());
+                return valor;
+            }
+            else if (item->getKey() == "casa") {
+                valor = sacarCasa(item->getValue().toInt());
+                return valor;
+            }
+            else if (item->getKey() == "provincia") {
+                valor = sacarProvincia(item->getValue().toInt());
+                return valor;
+            }
+            else
+                return QString("%1").arg(item->getValue());
+        }
         }
 
     return QVariant();
@@ -108,6 +125,51 @@ QJsonObject QJsonModel::getJsonObject(int i)
 int QJsonModel::getSize()
 {
     return lista_jsons.size();
+}
+
+QString QJsonModel::sacarLugar(const int lugar_id) const
+{
+    QSqlQuery query;
+    QString sql;
+
+    sql = QString("SELECT * FROM places where place_id = %1").arg(lugar_id);
+
+    if (query.exec(sql)) {
+        query.first();
+        return query.value(1).toString();
+    }
+    else
+        return "";
+}
+
+QString QJsonModel::sacarCasa(const int lugar_id) const
+{
+    QSqlQuery query;
+    QString sql;
+
+    sql = QString("SELECT * FROM houses where house_id = %1").arg(lugar_id);
+
+    if (query.exec(sql)) {
+        query.first();
+        return query.value(1).toString();
+    }
+    else
+        return "";
+}
+
+QString QJsonModel::sacarProvincia(const int lugar_id) const
+{
+    QSqlQuery query;
+    QString sql;
+
+    sql = QString("SELECT * FROM provinces where province_id = %1").arg(lugar_id);
+
+    if (query.exec(sql)) {
+        query.first();
+        return query.value(1).toString();
+    }
+    else
+        return "";
 }
 
 void QJsonModel::clear()
