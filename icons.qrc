@@ -11,5 +11,6 @@
         <file>icons/small_monastery.png</file>
         <file>icons/book.png</file>
         <file>icons/diocesis.png</file>
+        <file>icons/biblioteca.png</file>
     </qresource>
 </RCC>

@@ -98,6 +98,7 @@
    <addaction name="actionCiudades"/>
    <addaction name="actionCasas"/>
    <addaction name="actionCapituli"/>
+   <addaction name="actionObras"/>
   </widget>
   <action name="actionNuevoCapitulo">
    <property name="text">
@@ -281,6 +282,10 @@
    </property>
   </action>
   <action name="actionObras">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/biblioteca.png</normaloff>:/icons/icons/biblioteca.png</iconset>
+   </property>
    <property name="text">
     <string>Obras</string>
    </property>
