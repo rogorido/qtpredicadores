@@ -571,3 +571,34 @@ void dlgDetalles::on_btPenas_clicked() {
     window->show();
 
 }
+
+void dlgDetalles::on_pbExpandAll_clicked()
+{
+    if (!expandido) {
+        ui->twJsonGeneral->expandAll();
+        expandido = true;
+        ui->pbExpandAll->setText("Contraer todo");
+    }
+    else {
+        ui->twJsonGeneral->collapseAll();
+        expandido = false;
+        ui->pbExpandAll->setText("Expandir todo");
+    }
+
+}
+
+void dlgDetalles::on_btNacimiento_clicked()
+{
+    json_libre.insert("nacimiento", "yes");
+    anadirChildItem("nacimiento", "yes");
+
+    on_btLugar_clicked();
+}
+
+void dlgDetalles::on_btProfesion_clicked()
+{
+    json_libre.insert("profesión", "yes");
+    anadirChildItem("profesión", "yes");
+
+    on_btCasa_clicked();
+}

@@ -70,7 +70,8 @@ private slots:
     void on_btSufragios_clicked();
     void on_btTraslado_clicked();
     void on_btAdmoniciones_clicked(); // realmente es el mismo form que ordenanzas
-    void on_btComisiones_clicked(); // realmente es el mismo form que ordenanzas
+    void on_btComisiones_clicked(); // realmente es el mismo form que ordenanzas    
+    void on_pbExpandAll_clicked();
 
     void anadirDatosLibres();
     void anadirInteresante();
@@ -81,6 +82,10 @@ private slots:
 
     void cerrar();
     void ocultar();
+
+    void on_btNacimiento_clicked();
+
+    void on_btProfesion_clicked();
 
 protected:
     bool eventFilter(QObject *obj, QEvent *e);
@@ -135,6 +140,11 @@ private:
      * de los forms de gestión.
      */
     bool anadiendo;
+
+    /*
+     * controlamos si el TreeVeiw está expandida
+     */
+    bool expandido = false;
 };
 
 #endif // DLGDETALLES_H
