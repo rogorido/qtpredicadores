@@ -22,6 +22,10 @@ public:
     explicit dlgGestionObras(QWidget *parent = nullptr);
     ~dlgGestionObras();
 
+
+    // esto es público porque lo accedemos desde el mainwindow...
+    void contarTotal();
+
 private slots:
 
     // GUI
@@ -31,6 +35,16 @@ private slots:
     void on_ckSinMateria_stateChanged(int arg1);
 
     void actualizarSql(QString s);
+
+    /*
+     * esto realmetne recoge una señal de sqlFiltroGestor
+     * y genera la señal para la mainwindow
+     */
+    void emitirSenalTotalObras();
+
+signals:
+
+    void infoBarraInferior(QString info);
 
 private:
     Ui::dlgGestionObras *ui;
@@ -48,6 +62,10 @@ private:
 
     // work_id
     int work_id;
+
+    // lo usamos para la barra
+    int total_obras;
+    int total_filtrado;
 
     void cargarMenus();
     void cargarModelos();

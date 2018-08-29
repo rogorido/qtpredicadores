@@ -22,6 +22,7 @@ public:
     explicit dlgObispos(QWidget *parent = 0);
     ~dlgObispos();
 
+    // esto es público porque lo accedemos desde el mainwindow...
     void contarTotal();
 
     /*

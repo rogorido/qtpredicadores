@@ -238,6 +238,9 @@ void MainWindow::Obras()
 {
     GestionObras = new dlgGestionObras(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(GestionObras);
+    connect(GestionObras, SIGNAL(infoBarraInferior(QString)), this, SLOT(updateStatusBarDerecha(QString)));
+
+    GestionObras->contarTotal();
     window->show();
 }
 
