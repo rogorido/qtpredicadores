@@ -14,7 +14,6 @@ class MyQmdiArea;
 
 class SqlFiltroGestor;
 
-
 namespace Ui {
 class dlgGestionPersonas;
 }
@@ -43,6 +42,12 @@ private slots:
      * y genera la señal para la mainwindow
      */
     void emitirSenalTotalPersonas();
+
+    /*
+     * Actualizar el modelo tras recibir la señal de dlgNuevaPersona
+     * de que se ha actualizado una persona
+     */
+    void actualizarModeloTrasPersonaActualizada();
 
 signals:
 

@@ -102,6 +102,7 @@ void dlgGestionPersonas::modificarPersona()
 
     dlgPersonaAModificar = new dlgNuevaPersona(this, person_id);
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgPersonaAModificar);
+    connect(dlgPersonaAModificar, SIGNAL(personaIntroducida()), this, SLOT(actualizarModeloTrasPersonaActualizada()));
     window->show();
 }
 
@@ -116,6 +117,13 @@ void dlgGestionPersonas::emitirSenalTotalPersonas()
        final = QString("Personas: %1/%2").arg(QString::number(total_filtrado)).arg(total_personas);
    }
    emit infoBarraInferior(final);
+}
+
+void dlgGestionPersonas::actualizarModeloTrasPersonaActualizada()
+{
+    m_persons->setQuery(sqlactivo);
+    contarTotal();
+
 }
 
 void dlgGestionPersonas::cargarMenus()
