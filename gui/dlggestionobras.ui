@@ -153,6 +153,55 @@
     <string>Con reediciones</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pbAnadirAutor">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>280</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Añadir autor</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbQuitarAutor">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>280</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Quitar autor</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbQuitarAutoresTodos">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>270</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Quitar todos</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="lwAutores">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>40</y>
+     <width>256</width>
+     <height>192</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

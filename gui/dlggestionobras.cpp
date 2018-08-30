@@ -152,6 +152,20 @@ void dlgGestionObras::recibirTema(Tema tema)
 
 }
 
+void dlgGestionObras::recibirAutor(Persona autor)
+{
+    elementopareado nuevoautor;
+
+    nuevoautor.id = autor.getId();
+    nuevoautor.elemento = autor.getNombreCompleto();
+
+    autores_escogidos.append(nuevoautor);
+    QListWidgetItem *item = new QListWidgetItem(nuevoautor.elemento, ui->lwAutores);
+
+    generarSQLAutores();
+
+}
+
 void dlgGestionObras::cargarMenus()
 {
     menuContexto = new QMenu(this);
@@ -213,6 +227,29 @@ void dlgGestionObras::generarSQLMaterias()
 
 }
 
+void dlgGestionObras::generarSQLAutores()
+{
+    QString sql;
+
+    if (autores_escogidos.size() == 0) {
+        sql_gestor->quitarFiltro("autores");
+        return;
+    }
+
+    // construimos la SQL
+    for (int var = 0; var < autores_escogidos.size(); ++var) {
+        sql += QString("author_id = ") + QString::number(autores_escogidos.at(var).id) + QString(" OR ");
+    }
+    // borramos el último OR
+    sql.chop(4);
+    sql = QString("work_id IN (SELECT DISTINCT work_id FROM works WHERE ") + sql + QString(")");
+
+    qDebug() << "el filtro es: " << sql;
+
+    sql_gestor->anadirFiltro("autores", sql);
+
+}
+
 void dlgGestionObras::on_rbImpresos_clicked()
 {
     sql_gestor->quitarFiltro("manuscrito");
@@ -262,7 +299,6 @@ void dlgGestionObras::on_pbQuitarTema_clicked()
     QString valor = idx.data().toString();
 
     ui->lwTemas->takeItem(ui->lwTemas->currentRow());
-    //ui->lwTemas->removeItemWidget(ui->lwTemas->currentItem());
 
     for (int i = 0; i < materias_escogidas.size(); ++i) {
       if(materias_escogidas.at(i).elemento == valor){
@@ -294,4 +330,42 @@ void dlgGestionObras::on_ckConReedicion_stateChanged(int arg1)
     else
         sql_gestor->quitarFiltro("reedicion");
 
+}
+
+void dlgGestionObras::on_pbAnadirAutor_clicked()
+{
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+
+    connect(dlgseleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirAutor(Persona)));
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
+
+}
+
+void dlgGestionObras::on_pbQuitarAutor_clicked()
+{
+    QModelIndex idx = ui->lwAutores->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    QString valor = idx.data().toString();
+
+    ui->lwAutores->takeItem(ui->lwTemas->currentRow());
+
+    for (int i = 0; i < autores_escogidos.size(); ++i) {
+      if(autores_escogidos.at(i).elemento == valor){
+        autores_escogidos.removeAt(i);
+        break;
+      }
+     }
+
+    generarSQLAutores();
+}
+
+void dlgGestionObras::on_pbQuitarAutoresTodos_clicked()
+{
+    ui->lwAutores->clear();
+    autores_escogidos.clear();
+    generarSQLAutores();
 }

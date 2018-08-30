@@ -5,6 +5,7 @@
 
 #include "objs/variados.h"
 #include "objs/tema.h"
+#include "objs/persona.h"
 
 class QMenu;
 class QAction;
@@ -65,6 +66,13 @@ private slots:
     void actualizarModeloTrasObraActualizada();
 
     void recibirTema(Tema tema);
+    void recibirAutor(Persona autor);
+
+    void on_pbAnadirAutor_clicked();
+
+    void on_pbQuitarAutor_clicked();
+
+    void on_pbQuitarAutoresTodos_clicked();
 
 signals:
 
@@ -100,11 +108,14 @@ private:
 
     // para filtrar por materias
     QList<elementopareado> materias_escogidas;
+    // para filtrar por autores
+    QList<elementopareado> autores_escogidos;
 
     void cargarMenus();
     void cargarModelos();
 
     void generarSQLMaterias();
+    void generarSQLAutores();
 
 };
 
