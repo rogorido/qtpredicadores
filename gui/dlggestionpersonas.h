@@ -13,6 +13,7 @@ class dlgNuevaPersona;
 class MyQmdiArea;
 
 class SqlFiltroGestor;
+class ProxyNombres;
 
 namespace Ui {
 class dlgGestionPersonas;
@@ -32,6 +33,7 @@ public:
 private slots:
 
     void menuContextual(const QPoint &point);
+    void actualizarFiltro(const QString filtro);
 
     void actualizarSql(QString s);
 
@@ -63,6 +65,8 @@ private:
 
     QMenu *menuContexto;
     QAction *a_cambiarPersona;
+
+    ProxyNombres *proxy_personas;
 
     /*
      * guardamos el SQL que está activo

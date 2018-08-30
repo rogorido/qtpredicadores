@@ -35,8 +35,9 @@ private slots:
     void menuContextual(const QPoint &point);
 
     void on_pbActivar_clicked();
-
     void on_ckVolverAMirar_toggled(bool checked);
+    void on_cbDiocesis_currentIndexChanged(int index);
+    void on_ckInteresante_toggled(bool checked);
 
     void modificarDiocesis();
     void modificarPersona();
@@ -48,9 +49,6 @@ private slots:
      * y genera la señal para la mainwindow
      */
     void emitirSenalTotalObispos();
-
-    void on_cbDiocesis_currentIndexChanged(int index);
-    void on_ckInteresante_toggled(bool checked);
 
     void actualizarFiltro(const QString filtro);
 

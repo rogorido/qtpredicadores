@@ -13,6 +13,7 @@
 #include "widgets/myqmdiarea.h"
 
 #include "models/sqlfiltrogestor.h"
+#include "objs/proxynombres.h"
 
 const QString sql_general = "SELECT * FROM vistas.p_persons_general";
 
@@ -42,6 +43,8 @@ dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
 
     connect(ui->tvPersonas, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(menuContextual(const QPoint &)));
+
+    connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
 
     /*
      * esto lo hacemos aquí aunque luego hay una función con
@@ -76,6 +79,23 @@ void dlgGestionPersonas::menuContextual(const QPoint &point)
 
 }
 
+void dlgGestionPersonas::actualizarFiltro(const QString filtro)
+{
+    if (filtro.length() > 2) {
+        proxy_personas->setFilterRegExp(QRegExp(filtro, Qt::CaseInsensitive, QRegExp::FixedString));
+        ui->tvPersonas->resizeRowsToContents();
+        ui->tvPersonas->resizeColumnsToContents();
+        contarTotal();
+    }
+    else
+    {
+        proxy_personas->setFilterRegExp(QRegExp("", Qt::CaseInsensitive, QRegExp::FixedString));
+        ui->tvPersonas->resizeRowsToContents();
+        ui->tvPersonas->resizeColumnsToContents();
+        contarTotal();
+    }
+}
+
 void dlgGestionPersonas::actualizarSql(QString s)
 {
     sqlactivo = s;
@@ -87,20 +107,14 @@ void dlgGestionPersonas::actualizarSql(QString s)
 
 void dlgGestionPersonas::modificarPersona()
 {
-    QModelIndex idx = ui->tvPersonas->currentIndex();
-
-    if (!idx.isValid())
+    QModelIndex indice= proxy_personas->index(ui->tvPersonas->currentIndex().row(), 0);
+    if (!indice.isValid())
         return;
 
-    int row = ui->tvPersonas->currentIndex().row();
-    idx = m_persons->index(row, 0);
-    if (!idx.isValid())
-        return;
-    person_id = m_persons->data(idx, Qt::DisplayRole).toInt();
+    int id = m_persons->data(proxy_personas->mapToSource(indice), Qt::DisplayRole).toInt();
+    qDebug() << "escogido: " << id;
 
-    qDebug() << "la id es..." << person_id;
-
-    dlgPersonaAModificar = new dlgNuevaPersona(this, person_id);
+    dlgPersonaAModificar = new dlgNuevaPersona(this, id);
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgPersonaAModificar);
     connect(dlgPersonaAModificar, SIGNAL(personaIntroducida()), this, SLOT(actualizarModeloTrasPersonaActualizada()));
     window->show();
@@ -138,7 +152,11 @@ void dlgGestionPersonas::cargarMenus()
 void dlgGestionPersonas::cargarModelos()
 {
     m_persons->setQuery(sqlactivo);
-    ui->tvPersonas->setModel(m_persons);
+
+    proxy_personas = new ProxyNombres(PERSONASGESTION, this);
+    proxy_personas->setSourceModel(m_persons);
+
+    ui->tvPersonas->setModel(proxy_personas);
 
     ui->tvPersonas->setAlternatingRowColors(true);
     //ui->twResoluciones->setColumnWidth(1, 80);
@@ -151,7 +169,7 @@ void dlgGestionPersonas::cargarModelos()
     ui->tvPersonas->hideColumn(0);
 
     // escogemos la primera línea del modelo...
-    QModelIndex index = m_persons->index(0,0);
+    QModelIndex index = proxy_personas->index(0,0);
     if (index.isValid()) {
         ui->tvPersonas->setCurrentIndex(index);
     }

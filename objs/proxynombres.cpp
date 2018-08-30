@@ -85,6 +85,10 @@ bool ProxyNombres::filterAcceptsRow(int sourceRow,
               || sourceModel()->data(index4).toString().contains(filterRegExp());
       break;
 
+  case PERSONASGESTION:
+    return sourceModel()->data(index1).toString().contains(filterRegExp());
+    break;
+
   default: // NOTE: esto no sé si es correcto así...
       return true;
 
