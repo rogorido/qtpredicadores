@@ -10,6 +10,8 @@
 #include <QMdiSubWindow>
 
 #include "gui/dlgnuevaobra.h"
+#include "gui/dlgseleccionargeneral.h"
+
 #include "widgets/myqmdiarea.h"
 
 #include "models/sqlfiltrogestor.h"
@@ -101,7 +103,6 @@ void dlgGestionObras::modificarObra()
     dlgObraAModificar = new dlgNuevaObra(this, work_id);
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgObraAModificar);
     window->show();
-
 }
 
 void dlgGestionObras::verPersona()
@@ -125,6 +126,20 @@ void dlgGestionObras::emitirSenalTotalObras()
        final = QString("Obras: %1/%2").arg(QString::number(total_filtrado)).arg(total_obras);
    }
    emit infoBarraInferior(final);
+}
+
+void dlgGestionObras::recibirTema(Tema tema)
+{
+    elementopareado nuevotema;
+
+    nuevotema.id = tema.getId();
+    nuevotema.elemento = tema.getTema();
+
+    materias_escogidas.append(nuevotema);
+    QListWidgetItem *item = new QListWidgetItem(nuevotema.elemento, ui->lwTemas);
+
+    generarSQLMaterias();
+
 }
 
 void dlgGestionObras::cargarMenus()
@@ -165,6 +180,29 @@ void dlgGestionObras::cargarModelos()
     }
 }
 
+void dlgGestionObras::generarSQLMaterias()
+{
+    QString sql;
+
+    if (materias_escogidas.size() == 0) {
+        sql_gestor->quitarFiltro("materias");
+        return;
+    }
+
+    // construimos la SQL
+    for (int var = 0; var < materias_escogidas.size(); ++var) {
+        sql += QString("theme_id = ") + QString::number(materias_escogidas.at(var).id) + QString(" OR ");
+    }
+    // borramos el último OR
+    sql.chop(4);
+    sql = QString("work_id IN (SELECT DISTINCT work_id FROM works_themes WHERE ") + sql + QString(")");
+
+    qDebug() << "el filtro es: " << sql;
+
+    sql_gestor->anadirFiltro("materias", sql);
+
+}
+
 void dlgGestionObras::on_rbImpresos_clicked()
 {
     sql_gestor->quitarFiltro("manuscrito");
@@ -180,6 +218,8 @@ void dlgGestionObras::on_rbTodos_clicked()
 
 void dlgGestionObras::on_ckSinMateria_stateChanged(int arg1)
 {
+    Q_UNUSED(arg1)
+
     if (ui->ckSinMateria->checkState() == Qt::Checked)
         sql_gestor->anadirFiltro("sinmaterias", "work_id NOT IN (SELECT DISTINCT work_id FROM works_themes)");
     else
@@ -189,4 +229,44 @@ void dlgGestionObras::on_ckSinMateria_stateChanged(int arg1)
 void dlgGestionObras::menuContextual(const QPoint &point)
 {
     menuContexto->popup(ui->tvObras->viewport()->mapToGlobal(point));
+}
+
+void dlgGestionObras::on_pbAnadirTema_clicked()
+{
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(TEMA, this);
+
+    connect(dlgseleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirTema(Tema)));
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
+
+}
+
+void dlgGestionObras::on_pbQuitarTema_clicked()
+{
+
+    QModelIndex idx = ui->lwTemas->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    QString valor = idx.data().toString();
+
+    ui->lwTemas->takeItem(ui->lwTemas->currentRow());
+    //ui->lwTemas->removeItemWidget(ui->lwTemas->currentItem());
+
+    for (int i = 0; i < materias_escogidas.size(); ++i) {
+      if(materias_escogidas.at(i).elemento == valor){
+        materias_escogidas.removeAt(i);
+        break;
+      }
+     }
+
+    generarSQLMaterias();
+}
+
+void dlgGestionObras::on_pbQuitarTemasTodos_clicked()
+{
+    ui->lwTemas->clear();
+    materias_escogidas.clear();
+    generarSQLMaterias();
 }

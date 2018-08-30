@@ -91,6 +91,55 @@
     <string>Sin materia</string>
    </property>
   </widget>
+  <widget class="QListWidget" name="lwTemas">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>50</y>
+     <width>256</width>
+     <height>192</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbAnadirTema">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>250</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Añadir tema</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbQuitarTema">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>260</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Quitar tema</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbQuitarTemasTodos">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>260</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Quitar todos</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -3,6 +3,9 @@
 
 #include <QWidget>
 
+#include "objs/variados.h"
+#include "objs/tema.h"
+
 class QMenu;
 class QAction;
 class QSqlQueryModel;
@@ -35,7 +38,11 @@ private slots:
     void on_rbManuscritos_clicked();
     void on_rbImpresos_clicked();
     void on_rbTodos_clicked();    
-    void on_ckSinMateria_stateChanged(int arg1);
+    void on_ckSinMateria_stateChanged(int arg1);    
+    void on_pbAnadirTema_clicked();
+    void on_pbQuitarTema_clicked();
+    void on_pbQuitarTemasTodos_clicked();
+
     void menuContextual(const QPoint &point);
 
     void actualizarSql(QString s);
@@ -49,6 +56,8 @@ private slots:
      * y genera la señal para la mainwindow
      */
     void emitirSenalTotalObras();
+
+    void recibirTema(Tema tema);
 
 signals:
 
@@ -82,8 +91,13 @@ private:
     // esto para modificar obras,... por qué carajo lo hago como pointer?
     dlgNuevaObra *dlgObraAModificar;
 
+    // para filtrar por materias
+    QList<elementopareado> materias_escogidas;
+
     void cargarMenus();
     void cargarModelos();
+
+    void generarSQLMaterias();
 
 };
 

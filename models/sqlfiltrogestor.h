@@ -24,7 +24,10 @@ private:
 
     /*
      * guardamos los filtros con su nombre
-     * y el código SQL
+     * y el código SQL. Como es un QMap entiendo que no es necesario
+     * borrar un filtro que tenga el mismo nombre. Es decir, que para actualizar
+     * un filtro no es necesario borrarlo, sino que al pasarle el mismo "key"
+     * lo reemplaza.
      */
     QMap<QString, QString> filtros_map;
 
