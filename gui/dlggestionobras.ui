@@ -140,6 +140,19 @@
     <string>Quitar todos</string>
    </property>
   </widget>
+  <widget class="QCheckBox" name="ckConReedicion">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>190</y>
+     <width>84</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Con reediciones</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

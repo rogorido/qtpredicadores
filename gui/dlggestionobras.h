@@ -42,6 +42,7 @@ private slots:
     void on_pbAnadirTema_clicked();
     void on_pbQuitarTema_clicked();
     void on_pbQuitarTemasTodos_clicked();
+    void on_ckConReedicion_stateChanged(int arg1);
 
     void menuContextual(const QPoint &point);
 

@@ -17,6 +17,7 @@
 #include "models/sqlfiltrogestor.h"
 
 const QString sql_general = "SELECT * FROM vistas.w_works_general";
+const QString sql_con_reedicion = "SELECT DISTINCT work_id FROM works_details WHERE details @> '{\"tipo\":\"reedición\"}'";
 
 // no me acuerdo por qué hago esto así en lugar de contar las rows del modelo...
 const QString sqlcontar = "SELECT count(*) FROM vistas.w_works_general";
@@ -278,4 +279,19 @@ void dlgGestionObras::on_pbQuitarTemasTodos_clicked()
     ui->lwTemas->clear();
     materias_escogidas.clear();
     generarSQLMaterias();
+}
+
+void dlgGestionObras::on_ckConReedicion_stateChanged(int arg1)
+{
+    Q_UNUSED(arg1)
+
+    QString filtro;
+
+    if (ui->ckConReedicion->checkState() == Qt::Checked) {
+        filtro = QString("work_id IN (") + sql_con_reedicion + QString(")");
+        sql_gestor->anadirFiltro("reedicion", filtro);
+    }
+    else
+        sql_gestor->quitarFiltro("reedicion");
+
 }
