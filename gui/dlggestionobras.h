@@ -57,6 +57,12 @@ private slots:
      */
     void emitirSenalTotalObras();
 
+    /*
+     * Actualizar el modelo tras recibir la señal de dlgNuevaObra
+     * de que se ha actualizado una obra
+     */
+    void actualizarModeloTrasObraActualizada();
+
     void recibirTema(Tema tema);
 
 signals:

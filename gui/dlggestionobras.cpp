@@ -102,6 +102,7 @@ void dlgGestionObras::modificarObra()
 
     dlgObraAModificar = new dlgNuevaObra(this, work_id);
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgObraAModificar);
+    connect(dlgObraAModificar, SIGNAL(introducidaObra()), this, SLOT(actualizarModeloTrasObraActualizada()));
     window->show();
 }
 
@@ -126,6 +127,14 @@ void dlgGestionObras::emitirSenalTotalObras()
        final = QString("Obras: %1/%2").arg(QString::number(total_filtrado)).arg(total_obras);
    }
    emit infoBarraInferior(final);
+}
+
+void dlgGestionObras::actualizarModeloTrasObraActualizada()
+{
+    // esto es un slot que se activa cuando actualizamos una obra
+    works_model->setQuery(sqlactivo);
+
+    contarTotal();
 }
 
 void dlgGestionObras::recibirTema(Tema tema)

@@ -205,8 +205,10 @@ void dlgNuevaObra::on_btOK_clicked(){
     else
         introducirObraEnBD(obra, true);
 
-    if (modificando)
+    if (modificando){
+        emit introducidaObra();
         cerrar();
+    }
 }
 
 void dlgNuevaObra::introducirTemas(int id){

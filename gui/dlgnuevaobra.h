@@ -29,6 +29,10 @@ public:
     explicit dlgNuevaObra(QWidget *parent = 0, int obra = 0);
     ~dlgNuevaObra();
 
+signals:
+
+    void introducidaObra();
+
 private:
     Ui::dlgNuevaObra *ui;
 
