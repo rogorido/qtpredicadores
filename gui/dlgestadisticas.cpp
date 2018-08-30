@@ -7,6 +7,7 @@ const QString est_temas_por_resolucion="SELECT * FROM analysis.categories_per_re
 const QString est_resoluciones_por_capitulo="SELECT * FROM analysis.resolutions_per_chapter";
 const QString est_casas_por_provincias="SELECT * FROM analysis.casas_por_provincias";
 const QString est_temas_libros="SELECT * FROM analysis.categories_per_work";
+const QString est_lugares_print="SELECT * FROM analysis.places_print_per_work";
 
 dlgEstadisticas::dlgEstadisticas(QWidget *parent) :
     QWidget(parent),
@@ -24,6 +25,7 @@ dlgEstadisticas::dlgEstadisticas(QWidget *parent) :
     ui->cbQuery->addItem("Resoluciones por capítulo");
     ui->cbQuery->addItem("Casas por provincias");
     ui->cbQuery->addItem("Temas por obra");
+    ui->cbQuery->addItem("Lugares de impresión");
 
 }
 
@@ -46,6 +48,9 @@ void dlgEstadisticas::cambiarModelo(int row)
         break;
     case 3:
         estadisticas->setQuery(est_temas_libros);
+        break;
+    case 4:
+        estadisticas->setQuery(est_lugares_print);
         break;
     default:
         break;
