@@ -13,29 +13,36 @@
   <property name="windowTitle">
    <string>Gestión de personas</string>
   </property>
-  <widget class="QTableView" name="tvPersonas">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>210</y>
-     <width>901</width>
-     <height>321</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="txtFiltro">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>170</y>
-     <width>861</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="clearButtonEnabled">
-    <bool>true</bool>
-   </property>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Filtro</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtFiltro">
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTableView" name="tvPersonas">
+     <property name="minimumSize">
+      <size>
+       <width>948</width>
+       <height>588</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
