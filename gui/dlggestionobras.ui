@@ -11,197 +11,156 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Gestión de obras</string>
   </property>
-  <widget class="QTableView" name="tvObras">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>320</y>
-     <width>951</width>
-     <height>361</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QGroupBox" name="groupBox">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>191</width>
-     <height>121</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>GroupBox</string>
-   </property>
-   <widget class="QRadioButton" name="rbTodos">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>40</y>
-      <width>99</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Todo</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="rbManuscritos">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>70</y>
-      <width>99</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Manuscritos</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="rbImpresos">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>100</y>
-      <width>99</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Impresos</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QCheckBox" name="ckSinMateria">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>160</y>
-     <width>84</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Sin materia</string>
-   </property>
-  </widget>
-  <widget class="QListWidget" name="lwTemas">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>50</y>
-     <width>256</width>
-     <height>192</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pbAnadirTema">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>250</y>
-     <width>80</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Añadir tema</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pbQuitarTema">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>260</y>
-     <width>80</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Quitar tema</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pbQuitarTemasTodos">
-   <property name="geometry">
-    <rect>
-     <x>470</x>
-     <y>260</y>
-     <width>80</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Quitar todos</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="ckConReedicion">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>190</y>
-     <width>84</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Con reediciones</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pbAnadirAutor">
-   <property name="geometry">
-    <rect>
-     <x>610</x>
-     <y>280</y>
-     <width>80</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Añadir autor</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pbQuitarAutor">
-   <property name="geometry">
-    <rect>
-     <x>700</x>
-     <y>280</y>
-     <width>80</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Quitar autor</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pbQuitarAutoresTodos">
-   <property name="geometry">
-    <rect>
-     <x>790</x>
-     <y>270</y>
-     <width>80</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Quitar todos</string>
-   </property>
-  </widget>
-  <widget class="QListWidget" name="lwAutores">
-   <property name="geometry">
-    <rect>
-     <x>610</x>
-     <y>40</y>
-     <width>256</width>
-     <height>192</height>
-    </rect>
-   </property>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout_6">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>GroupBox</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QRadioButton" name="rbTodos">
+              <property name="text">
+               <string>Todo</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="rbManuscritos">
+              <property name="text">
+               <string>Manuscritos</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="rbImpresos">
+              <property name="text">
+               <string>Impresos</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="ckSinMateria">
+         <property name="text">
+          <string>Sin materia</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="ckConReedicion">
+         <property name="text">
+          <string>Con reediciones</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pbResetearFiltros">
+         <property name="text">
+          <string>Resetear filtros</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QListWidget" name="lwTemas"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="pbAnadirTema">
+           <property name="text">
+            <string>Añadir tema</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbQuitarTema">
+           <property name="text">
+            <string>Quitar tema</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbQuitarTemasTodos">
+           <property name="text">
+            <string>Quitar todos</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QListWidget" name="lwAutores"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QPushButton" name="pbAnadirAutor">
+           <property name="text">
+            <string>Añadir autor</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbQuitarAutor">
+           <property name="text">
+            <string>Quitar autor</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbQuitarAutoresTodos">
+           <property name="text">
+            <string>Quitar todos</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTableView" name="tvObras"/>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

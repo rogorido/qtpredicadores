@@ -369,3 +369,23 @@ void dlgGestionObras::on_pbQuitarAutoresTodos_clicked()
     autores_escogidos.clear();
     generarSQLAutores();
 }
+
+void dlgGestionObras::on_pbResetearFiltros_clicked()
+{
+    /*
+     * realmente esto así es un poco tosco...
+     */
+
+    ui->lwAutores->clear();
+    autores_escogidos.clear();
+
+    ui->lwTemas->clear();
+    materias_escogidas.clear();
+
+    ui->ckConReedicion->setCheckState(Qt::Unchecked);
+    ui->ckSinMateria->setCheckState(Qt::Unchecked);
+
+    ui->rbTodos->setChecked(true);
+
+    sql_gestor->borrarFiltros();
+}

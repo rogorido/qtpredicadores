@@ -44,6 +44,10 @@ private slots:
     void on_pbQuitarTema_clicked();
     void on_pbQuitarTemasTodos_clicked();
     void on_ckConReedicion_stateChanged(int arg1);
+    void on_pbAnadirAutor_clicked();
+    void on_pbQuitarAutor_clicked();
+    void on_pbQuitarAutoresTodos_clicked();
+    void on_pbResetearFiltros_clicked();
 
     void menuContextual(const QPoint &point);
 
@@ -67,12 +71,6 @@ private slots:
 
     void recibirTema(Tema tema);
     void recibirAutor(Persona autor);
-
-    void on_pbAnadirAutor_clicked();
-
-    void on_pbQuitarAutor_clicked();
-
-    void on_pbQuitarAutoresTodos_clicked();
 
 signals:
 
