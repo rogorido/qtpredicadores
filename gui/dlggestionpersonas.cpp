@@ -43,6 +43,8 @@ dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
 
     connect(ui->tvPersonas, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(menuContextual(const QPoint &)));
+    connect(ui->tvPersonas->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
+            this, SLOT(seleccionarPersona(QModelIndex)));
 
     connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
 
@@ -61,6 +63,7 @@ dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
 
 dlgGestionPersonas::~dlgGestionPersonas()
 {
+    emit infoPersonaSeleccionadaBorrar();
     delete ui;
 }
 
@@ -137,6 +140,22 @@ void dlgGestionPersonas::actualizarModeloTrasPersonaActualizada()
 {
     m_persons->setQuery(sqlactivo);
     contarTotal();
+
+}
+
+void dlgGestionPersonas::seleccionarPersona(const QModelIndex &idx)
+{
+    Q_UNUSED(idx)
+    // NOTE: aquí no estoy usando lo de idx... he cogido este código de lo de modificar persona...
+    QModelIndex indice= proxy_personas->index(ui->tvPersonas->currentIndex().row(), 0);
+    if (!indice.isValid())
+        return;
+
+    int id = m_persons->data(proxy_personas->mapToSource(indice), Qt::DisplayRole).toInt();
+    qDebug() << "escogido: " << id;
+
+    QString mensaje = QString("Persona_id: ") + QString::number(id);
+    emit infoPersonaSeleccionada(mensaje);
 
 }
 

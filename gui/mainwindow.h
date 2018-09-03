@@ -85,12 +85,15 @@ private slots:
 
     void on_actionObispos_triggered();
     void updateStatusBarDerecha(QString mensaje);
+    void updateStatusBarIdSeleccionado(const QString mensaje);
+    void updateStatusBarIdSeleccionadoBorrar();
 
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
     MyQmdiArea *mdiArea;
     QLabel *info_statusbar;
+    QLabel *info_idbar; // indica el id del elemento seleccionado
 
     /* esto son formularios */
     dlgNuevoCapitulo *dlgCapitulo;

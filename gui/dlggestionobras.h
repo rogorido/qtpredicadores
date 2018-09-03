@@ -69,12 +69,19 @@ private slots:
      */
     void actualizarModeloTrasObraActualizada();
 
+
+    // para emitir la señal de que se ha seleccionado una obra
+    void seleccionarObra(const QModelIndex &idx);
+
     void recibirTema(Tema tema);
     void recibirAutor(Persona autor);
 
 signals:
 
     void infoBarraInferior(QString info);
+    void infoObraSeleccionada(QString info);
+    void infoObraSeleccionadaBorrar(); // al salir borramos la statusbar
+
 
 private:
     Ui::dlgGestionObras *ui;

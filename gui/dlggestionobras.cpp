@@ -35,10 +35,13 @@ dlgGestionObras::dlgGestionObras(QWidget *parent) :
     works_model = new QSqlQueryModel(this);
 
     sql_gestor = new SqlFiltroGestor(sql_general, this);
-    connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
 
     cargarModelos();
     cargarMenus();
+
+    connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
+    connect(ui->tvObras->selectionModel(), SIGNAL(currentRowChanged(QModelIndex, QModelIndex)),
+            this, SLOT(seleccionarObra(QModelIndex)));
 
     ui->tvObras->setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -60,6 +63,7 @@ dlgGestionObras::dlgGestionObras(QWidget *parent) :
 
 dlgGestionObras::~dlgGestionObras()
 {
+    emit infoObraSeleccionadaBorrar();
     delete ui;
 }
 
@@ -136,6 +140,23 @@ void dlgGestionObras::actualizarModeloTrasObraActualizada()
     works_model->setQuery(sqlactivo);
 
     contarTotal();
+}
+
+void dlgGestionObras::seleccionarObra(const QModelIndex &idx)
+{
+    if (!idx.isValid())
+        return;
+
+    int row;
+    QModelIndex indice;
+
+    row = ui->tvObras->currentIndex().row();
+    indice = works_model->index(row, 1);
+    int id = indice.data().toInt();
+
+    QString mensaje = QString("Obra_id: ") + QString::number(id);
+    emit infoObraSeleccionada(mensaje);
+
 }
 
 void dlgGestionObras::recibirTema(Tema tema)

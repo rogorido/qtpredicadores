@@ -51,9 +51,14 @@ private slots:
      */
     void actualizarModeloTrasPersonaActualizada();
 
+    // para emitir la señal de que se ha seleccionado una persona
+    void seleccionarPersona(const QModelIndex &idx);
+
 signals:
 
     void infoBarraInferior(QString info);
+    void infoPersonaSeleccionada(QString info);
+    void infoPersonaSeleccionadaBorrar(); // al salir borramos la statusbar
 
 private:
     Ui::dlgGestionPersonas *ui;

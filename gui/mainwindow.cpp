@@ -61,6 +61,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow::showMaximized();
 
     info_statusbar = new QLabel(this);
+    info_idbar = new QLabel(this);
+    statusBar()->addPermanentWidget(info_idbar);
     statusBar()->addPermanentWidget(info_statusbar);
 
     db = QSqlDatabase::addDatabase("QPSQL");
@@ -241,6 +243,8 @@ void MainWindow::Obras()
     GestionObras = new dlgGestionObras(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(GestionObras);
     connect(GestionObras, SIGNAL(infoBarraInferior(QString)), this, SLOT(updateStatusBarDerecha(QString)));
+    connect(GestionObras, SIGNAL(infoObraSeleccionada(QString)), this, SLOT(updateStatusBarIdSeleccionado(QString)));
+    connect(GestionObras, SIGNAL(infoObraSeleccionadaBorrar()), this, SLOT(updateStatusBarIdSeleccionadoBorrar()));
 
     GestionObras->contarTotal();
     window->show();
@@ -251,6 +255,8 @@ void MainWindow::Personas()
     GestionPersonas = new dlgGestionPersonas(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(GestionPersonas);
     connect(GestionPersonas, SIGNAL(infoBarraInferior(QString)), this, SLOT(updateStatusBarDerecha(QString)));
+    connect(GestionPersonas, SIGNAL(infoPersonaSeleccionada(QString)), this, SLOT(updateStatusBarIdSeleccionado(QString)));
+    connect(GestionPersonas, SIGNAL(infoPersonaSeleccionadaBorrar()), this, SLOT(updateStatusBarIdSeleccionadoBorrar()));
 
     GestionPersonas->contarTotal();
     window->show();
@@ -327,4 +333,14 @@ void MainWindow::on_actionObispos_triggered()
 void MainWindow::updateStatusBarDerecha(QString mensaje)
 {
     info_statusbar->setText(mensaje);
+}
+
+void MainWindow::updateStatusBarIdSeleccionado(const QString mensaje)
+{
+    info_idbar->setText(mensaje);
+}
+
+void MainWindow::updateStatusBarIdSeleccionadoBorrar()
+{
+    info_idbar->clear();
 }
