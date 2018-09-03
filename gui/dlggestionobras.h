@@ -51,7 +51,7 @@ private slots:
 
     void menuContextual(const QPoint &point);
 
-    void actualizarSql(QString s);
+    void actualizarSql(const QString s);
 
     void modificarObra();
     void verPersona();
@@ -73,8 +73,8 @@ private slots:
     // para emitir la señal de que se ha seleccionado una obra
     void seleccionarObra(const QModelIndex &idx);
 
-    void recibirTema(Tema tema);
-    void recibirAutor(Persona autor);
+    void recibirTema(const Tema tema);
+    void recibirAutor(const Persona autor);
 
 signals:
 

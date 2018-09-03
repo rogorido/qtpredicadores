@@ -35,7 +35,7 @@ private slots:
     void menuContextual(const QPoint &point);
     void actualizarFiltro(const QString filtro);
 
-    void actualizarSql(QString s);
+    void actualizarSql(const QString s);
 
     void modificarPersona();
 

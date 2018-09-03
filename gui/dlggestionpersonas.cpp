@@ -99,7 +99,7 @@ void dlgGestionPersonas::actualizarFiltro(const QString filtro)
     }
 }
 
-void dlgGestionPersonas::actualizarSql(QString s)
+void dlgGestionPersonas::actualizarSql(const QString s)
 {
     sqlactivo = s;
 

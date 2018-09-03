@@ -81,7 +81,7 @@ void dlgGestionObras::on_rbManuscritos_clicked()
     sql_gestor->anadirFiltro("manuscrito", "manuscrit = TRUE");
 }
 
-void dlgGestionObras::actualizarSql(QString s)
+void dlgGestionObras::actualizarSql(const QString s)
 {
     sqlactivo = s;
 
@@ -159,7 +159,7 @@ void dlgGestionObras::seleccionarObra(const QModelIndex &idx)
 
 }
 
-void dlgGestionObras::recibirTema(Tema tema)
+void dlgGestionObras::recibirTema(const Tema tema)
 {
     elementopareado nuevotema;
 
@@ -173,7 +173,7 @@ void dlgGestionObras::recibirTema(Tema tema)
 
 }
 
-void dlgGestionObras::recibirAutor(Persona autor)
+void dlgGestionObras::recibirAutor(const Persona autor)
 {
     elementopareado nuevoautor;
 
