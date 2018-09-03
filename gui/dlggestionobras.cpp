@@ -43,6 +43,7 @@ dlgGestionObras::dlgGestionObras(QWidget *parent) :
     connect(ui->tvObras->selectionModel(), SIGNAL(currentRowChanged(QModelIndex, QModelIndex)),
             this, SLOT(seleccionarObra(QModelIndex)));
 
+    ui->tvObras->verticalHeader()->hide();
     ui->tvObras->setContextMenuPolicy(Qt::CustomContextMenu);
 
     connect(ui->tvObras, SIGNAL(customContextMenuRequested(const QPoint &)),

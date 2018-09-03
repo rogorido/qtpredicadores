@@ -48,6 +48,7 @@ dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *par
 
     ui->twSeleccionar->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->twSeleccionar->setAutoScroll(false);
+    ui->twSeleccionar->verticalHeader()->hide();
 
     connect(ui->btAnadir, SIGNAL(clicked(bool)), this, SLOT(anadirObjeto()));
     connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));

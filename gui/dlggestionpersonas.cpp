@@ -40,6 +40,7 @@ dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
     cargarMenus();
 
     ui->tvPersonas->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->tvPersonas->verticalHeader()->hide();
 
     connect(ui->tvPersonas, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(menuContextual(const QPoint &)));
@@ -115,7 +116,7 @@ void dlgGestionPersonas::modificarPersona()
         return;
 
     int id = m_persons->data(proxy_personas->mapToSource(indice), Qt::DisplayRole).toInt();
-    qDebug() << "escogido: " << id;
+   // qDebug() << "escogido: " << id;
 
     dlgPersonaAModificar = new dlgNuevaPersona(this, id);
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgPersonaAModificar);
