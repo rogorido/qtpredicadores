@@ -76,30 +76,40 @@ void dlgSeleccionarGeneral::cargarTipo(){
         sql_general = "SELECT * FROM vistas.houses_alternatives";
         ui->btAnadir->setText("Aña&dir casa");
         connect(m_casas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
+        ui->btVerObjeto->hide();
         break;}
     case LUGAR:{
         m_lugares = LugaresModel::InstanceModel();
         sql_general = "SELECT * FROM vistas.places_alternatives";
         ui->btAnadir->setText("Aña&dir lugar");
         connect(m_lugares, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
+        ui->btVerObjeto->hide();
         break;}
     case PROVINCIA:{
         m_provincias = ProvinciasModel::InstanceModel();
         sql_general = "SELECT * FROM vistas.provinces_alternatives";
         ui->btAnadir->setText("Aña&dir provincia");
         connect(m_provincias, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
+        ui->btVerObjeto->hide();
         break;}
     case PERSONA:{
         m_personas = PersonasModel::InstanceModel();
         sql_general = "SELECT * FROM vistas.persons_alternatives";
         ui->btAnadir->setText("Aña&dir persona");
         connect(m_personas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
+
+        // lo de ver la persona
+        ui->btVerObjeto->show();
+        ui->btVerObjeto->setEnabled(true);
+        ui->btVerObjeto->setText("Ver persona");
+
         break;}
     case CAPITULO:{
         m_capitulos = CapitulosModel::InstanceModel();
         sql_general = "SELECT * FROM vistas.chapters_alternatives";
         ui->btAnadir->setText("Aña&dir capítulo");
         connect(m_capitulos, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
+        ui->btVerObjeto->hide();
         break;}
     case DIOCESIS:{
         m_diocesis = DiocesisModel::InstanceModel();
@@ -107,12 +117,14 @@ void dlgSeleccionarGeneral::cargarTipo(){
         comprobarVacio();
         ui->btAnadir->setText("Aña&dir diócesis");
         connect(m_diocesis, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
+        ui->btVerObjeto->hide();
         break;}
     case TEMA:{
         m_temas = TemasModel::InstanceModel();
         sql_general = "SELECT * FROM vistas.themes_alternatives";
         ui->btAnadir->setText("Aña&dir tema");
         connect(m_temas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
+        ui->btVerObjeto->hide();
         break;}
     default:
         break;
@@ -180,6 +192,16 @@ void dlgSeleccionarGeneral::cargarModelo(){
 
     if (tipo_seleccionado == CAPITULO)
         ui->twSeleccionar->setItemDelegateForColumn(2, new FechasDelegate(FechasDelegate::TipoFecha::ONLY_YEAR, this));
+
+    // esto es para modificar el objeto
+    switch (tipo_seleccionado) {
+    case PERSONA: {
+        connect(ui->btVerObjeto, SIGNAL(clicked()), this, SLOT(verObjeto()));
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 
@@ -466,6 +488,23 @@ void dlgSeleccionarGeneral::actualizarObjeto(){
 
     m_objeto->setQuery(sql_general);
     ui->twSeleccionar->resizeRowsToContents();
+}
+
+void dlgSeleccionarGeneral::verObjeto()
+{
+    /*
+     * TODO: esto por ahora solo vale para personas
+     */
+    QModelIndex indice = m_objeto_proxy->index(ui->twSeleccionar->currentIndex().row(), 0);
+    if (!indice.isValid())
+        return;
+
+    int id = m_objeto->data(m_objeto_proxy->mapToSource(indice), Qt::DisplayRole).toInt();
+    qDebug() << "escogido: " << id;
+
+    dlgNuevaPersona *dlgPersonaAModificar = new dlgNuevaPersona(this, id);
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgPersonaAModificar);
+    window->show();
 }
 
 void dlgSeleccionarGeneral::verDiocesisPersona()

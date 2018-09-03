@@ -49,6 +49,7 @@ private slots:
     void aceptar();
 
     void actualizarObjeto();
+    void verObjeto();
 
     void verDiocesisPersona();
 
