@@ -13,6 +13,7 @@
 #include "widgets/myqmdiarea.h"
 #include "models/personasmodel.h"
 #include "models/sqlfiltrogestor.h"
+#include "models/qjsonmodel.h"
 #include "objs/proxynombres.h"
 
 const QString sql_general = "SELECT * FROM vistas.persons_alternatives";
@@ -38,6 +39,8 @@ dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
 
     sql_gestor = new SqlFiltroGestor(sql_general, this);
     connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
+
+    json_detalles = new QJsonModel(this);
 
     cargarModelos();
     cargarMenus();
@@ -162,6 +165,14 @@ void dlgGestionPersonas::seleccionarPersona(const QModelIndex &idx)
     QString mensaje = QString("Persona_id: ") + QString::number(id);
     emit infoPersonaSeleccionada(mensaje);
 
+    json_detalles = m_persons->devolverDetalles(id);
+
+    /*
+     * me sorprende que haya que hacer un setModel() cada vez que cambia esto
+     * pero si lo pongo en el constructor del Form el asunto no funciona...
+     */
+    ui->twDetalles->setModel(json_detalles);
+    ui->twDetalles->expandAll();
 }
 
 void dlgGestionPersonas::cargarMenus()

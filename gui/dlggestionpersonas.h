@@ -14,6 +14,7 @@ class MyQmdiArea;
 class PersonasModel;
 class SqlFiltroGestor;
 class ProxyNombres;
+class QJsonModel;
 
 namespace Ui {
 class dlgGestionPersonas;
@@ -88,6 +89,9 @@ private:
     // lo usamos para la barra
     int total_personas;
     int total_filtrado;
+
+    // para ver los detalles abajo
+    QJsonModel *json_detalles;
 
     // esto para modificar obras,... por qué carajo lo hago como pointer?
     dlgNuevaPersona *dlgPersonaAModificar;
