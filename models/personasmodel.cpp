@@ -10,10 +10,9 @@
 PersonasModel *PersonasModel::pInstance = 0;
 
 PersonasModel::PersonasModel() :
-    QSqlTableModel()
+    QSqlQueryModel()
 {
-    this->setTable("persons");
-    this->select();
+    this->setQuery("SELECT * FROM vistas.persons_alternatives");
 
 }
 
@@ -25,6 +24,26 @@ PersonasModel *PersonasModel::InstanceModel(){
     }
 
     return pInstance;
+}
+
+QVariant PersonasModel::data(const QModelIndex &index, int role) const
+{
+    if (!index.isValid())
+        return QVariant();
+
+    QVariant value = QSqlQueryModel::data(index, role);
+
+    if (role == Qt::DecorationRole && index.column() == 1) {
+        QModelIndex i= index.model()->index(index.row(), 4);
+        bool masculino = QSqlQueryModel::data(i, Qt::DisplayRole).toBool();
+        if (masculino)
+            return icono_masculino;
+         else
+            return icono_femenino;
+    }
+
+    return value;
+
 }
 
 void PersonasModel::DestroyMe(){
@@ -107,7 +126,7 @@ bool PersonasModel::AnadirPersona(const Persona *persona, int persona_id){
         return false;
     }
     else{
-        this->select();
+        this->query().exec();
         emit(actualizado());
         return true;
     }

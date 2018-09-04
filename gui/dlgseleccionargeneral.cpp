@@ -94,7 +94,7 @@ void dlgSeleccionarGeneral::cargarTipo(){
         break;}
     case PERSONA:{
         m_personas = PersonasModel::InstanceModel();
-        sql_general = "SELECT * FROM vistas.persons_alternatives";
+        m_objeto = m_personas;
         ui->btAnadir->setText("Aña&dir persona");
         connect(m_personas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
 
@@ -180,6 +180,15 @@ void dlgSeleccionarGeneral::cargarModelo(){
 
     ui->twSeleccionar->setModel(m_objeto_proxy);
     ui->twSeleccionar->hideColumn(0);
+
+    switch (tipo_seleccionado) {
+    case PERSONA:
+        ui->twSeleccionar->hideColumn(4);
+        break;
+    default:
+        break;
+    }
+
     ui->twSeleccionar->setAlternatingRowColors(true);
     ui->twSeleccionar->resizeColumnsToContents();
     ui->twSeleccionar->setSelectionBehavior(QAbstractItemView::SelectRows);

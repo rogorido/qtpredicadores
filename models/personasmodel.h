@@ -1,17 +1,19 @@
 #ifndef PERSONASMODEL_H
 #define PERSONASMODEL_H
 
-#include <QSqlTableModel>
+#include <QSqlQueryModel>
+#include <QIcon>
 
 class Persona;
 class QJsonModel;
 
-class PersonasModel : public QSqlTableModel
+class PersonasModel : public QSqlQueryModel
 {
     Q_OBJECT
 
 public:
     static PersonasModel *InstanceModel();
+    QVariant data(const QModelIndex &index, int role) const override;
 
     /*
      * Si se trata de una nueva obra no pasamos el parámetro persona_id
@@ -35,6 +37,10 @@ protected:
 private:
     static PersonasModel *pInstance;
     static void DestroyMe();
+
+    QIcon icono_masculino;
+    QIcon icono_femenino;
+
 };
 
 #endif // PERSONASMODEL_H
