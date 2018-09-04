@@ -67,6 +67,7 @@ private:
     QString sacarLugar(const int lugar_id) const;
     QString sacarCasa(const int lugar_id) const;
     QString sacarProvincia(const int lugar_id) const;
+    QString sacarFuente(const int fuente) const;
 
 };
 

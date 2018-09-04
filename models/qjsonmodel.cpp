@@ -104,6 +104,10 @@ QVariant QJsonModel::data(const QModelIndex &index, int role) const
                 valor = sacarProvincia(item->getValue().toInt());
                 return valor;
             }
+            else if (item->getKey() == "source_id") {
+                valor = sacarFuente(item->getValue().toInt());
+                return valor;
+            }
             else
                 return QString("%1").arg(item->getValue());
         }
@@ -163,6 +167,21 @@ QString QJsonModel::sacarProvincia(const int lugar_id) const
     QString sql;
 
     sql = QString("SELECT * FROM provinces where province_id = %1").arg(lugar_id);
+
+    if (query.exec(sql)) {
+        query.first();
+        return query.value(1).toString();
+    }
+    else
+        return "";
+}
+
+QString QJsonModel::sacarFuente(const int fuente) const
+{
+    QSqlQuery query;
+    QString sql;
+
+    sql = QString("SELECT * FROM sources WHERE source_id = %1 ").arg(fuente);
 
     if (query.exec(sql)) {
         query.first();
