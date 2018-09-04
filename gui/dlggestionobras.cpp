@@ -234,6 +234,8 @@ void dlgGestionObras::cargarModelos()
     ui->tvObras->resizeRowsToContents();
     ui->tvObras->horizontalHeader()->setStretchLastSection(true);
     ui->tvObras->setAutoScroll(false);
+    //ui->tvObras->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    //ui->tvObras->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
 
     // escogemos la primera línea del modelo...
     QModelIndex index = works_model->index(0,0);
