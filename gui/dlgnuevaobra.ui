@@ -444,6 +444,43 @@
    <header location="global">widgets/myqlineedit.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>txtTitulo</tabstop>
+  <tabstop>txtAutor</tabstop>
+  <tabstop>btSeleccionarAutor</tabstop>
+  <tabstop>btQuitarAutor</tabstop>
+  <tabstop>txtIdioma</tabstop>
+  <tabstop>txtTipo</tabstop>
+  <tabstop>txtFormato</tabstop>
+  <tabstop>spTomos</tabstop>
+  <tabstop>txtNumeroPags</tabstop>
+  <tabstop>ckImpreso</tabstop>
+  <tabstop>ckTalVezImpreso</tabstop>
+  <tabstop>ckManuscrito</tabstop>
+  <tabstop>spFechaImpresion</tabstop>
+  <tabstop>txtLugarOriginalImpresion</tabstop>
+  <tabstop>txtEditor</tabstop>
+  <tabstop>txtLugar</tabstop>
+  <tabstop>btIntroducirLugar</tabstop>
+  <tabstop>btQuitarLugar</tabstop>
+  <tabstop>ckReferencias</tabstop>
+  <tabstop>ckVolverMirar</tabstop>
+  <tabstop>ckTituloReducido</tabstop>
+  <tabstop>ckContenido</tabstop>
+  <tabstop>ckInvestigar</tabstop>
+  <tabstop>ckDudoso</tabstop>
+  <tabstop>txtPageQuetif</tabstop>
+  <tabstop>ckExpurgable</tabstop>
+  <tabstop>txtTraduccion</tabstop>
+  <tabstop>spInteresante</tabstop>
+  <tabstop>spFiabilidad</tabstop>
+  <tabstop>btDetalles</tabstop>
+  <tabstop>btTemas</tabstop>
+  <tabstop>btCancelar</tabstop>
+  <tabstop>btOK</tabstop>
+  <tabstop>tbTemas</tabstop>
+  <tabstop>txtNotas</tabstop>
+ </tabstops>
  <resources>
   <include location="../icons.qrc"/>
  </resources>

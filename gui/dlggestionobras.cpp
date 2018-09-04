@@ -212,12 +212,15 @@ void dlgGestionObras::cargarModelos()
 
     ui->tvObras->setAlternatingRowColors(true);
     //ui->twResoluciones->setColumnWidth(1, 80);
+    ui->tvObras->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tvObras->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    ui->tvObras->setSortingEnabled(true);
+    //works_model->sort(1, Qt::AscendingOrder);
+
     ui->tvObras->resizeColumnsToContents();
     ui->tvObras->resizeRowsToContents();
     ui->tvObras->horizontalHeader()->setStretchLastSection(true);
-    ui->tvObras->setSortingEnabled(true);
-    ui->tvObras->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tvObras->setSelectionMode(QAbstractItemView::SingleSelection);
 
     // escogemos la primera línea del modelo...
     QModelIndex index = works_model->index(0,0);
