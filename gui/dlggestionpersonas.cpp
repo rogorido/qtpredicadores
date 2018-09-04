@@ -15,6 +15,7 @@
 #include "models/sqlfiltrogestor.h"
 #include "models/qjsonmodel.h"
 #include "objs/proxynombres.h"
+#include "widgets/fechasdelegate.h"
 
 const QString sql_general = "SELECT * FROM vistas.persons_alternatives";
 
@@ -45,6 +46,8 @@ dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
     ui->twObras->setModel(m_works);
     m_obispados = new QSqlQueryModel(this);
     ui->twObispos->setModel(m_obispados);
+    ui->twObispos->setItemDelegateForColumn(1, new FechasDelegate(FechasDelegate::TipoFecha::ONLY_YEAR, this));
+    ui->twObispos->setItemDelegateForColumn(2, new FechasDelegate(FechasDelegate::TipoFecha::ONLY_YEAR, this));
 
     cargarModelos();
     cargarMenus();
@@ -259,13 +262,12 @@ void dlgGestionPersonas::actualizarObispados(const int id)
 {
     QString sql;
 
-    sql = QString("select d.diocese_name, b.date_nomination, b.date_end "
-                  "from bishops.bishops b "
-                  "join dioceses d using(diocese_id) "
+    sql = QString("SELECT d.diocese_name, b.date_nomination, b.date_end "
+                  "FROM bishops.bishops b "
+                  "JOIN dioceses d USING(diocese_id) "
                   "WHERE bishop_person_id = %1").arg(id);
     m_obispados->setQuery(sql);
-    ui->twObispos->horizontalHeader()->setStretchLastSection(true);
-    ui->twObispos->setSortingEnabled(true);
+    //ui->twObispos->horizontalHeader()->setStretchLastSection(true);
     ui->twObispos->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->twObispos->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->twObispos->resizeColumnToContents(0);
