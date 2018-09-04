@@ -13,8 +13,8 @@ public:
     static DiocesisModel *InstanceModel();
 
     bool AnadirDiocesis(const Diocesis *diocesis, bool nuevadiocesis);
-    Diocesis *devolverDiocesis(int id);
-    void actualizarDiocesis(int id);
+    Diocesis *devolverDiocesis(const int id);
+    void actualizarDiocesis(const int id);
 
 signals:
 

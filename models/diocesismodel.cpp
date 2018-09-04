@@ -19,7 +19,8 @@ DiocesisModel::DiocesisModel() :
 
 }
 
-DiocesisModel *DiocesisModel::InstanceModel(){
+DiocesisModel *DiocesisModel::InstanceModel()
+{
     if (pInstance == 0){
         pInstance = new DiocesisModel();
         atexit(&DestroyMe);
@@ -135,7 +136,7 @@ bool DiocesisModel::AnadirDiocesis(const Diocesis *diocesis, bool nuevadiocesis)
 
 }
 
-Diocesis *DiocesisModel::devolverDiocesis(int id)
+Diocesis *DiocesisModel::devolverDiocesis(const int id)
 {
     QSqlQuery query;
     Diocesis *diocesis = new Diocesis();
@@ -178,12 +179,13 @@ Diocesis *DiocesisModel::devolverDiocesis(int id)
     return diocesis;
 }
 
-void DiocesisModel::actualizarDiocesis(int id)
+void DiocesisModel::actualizarDiocesis(const int id)
 {
     //TODO: falta programar esto!
 }
 
-void DiocesisModel::DestroyMe(){
+void DiocesisModel::DestroyMe()
+{
     if (pInstance != NULL) delete pInstance;
 }
 

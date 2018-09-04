@@ -96,7 +96,7 @@ void AprobacionesTableModel::anadirAprobacion(Aprobacion *aprobracion)
     //emitdataChanged(QModelIndex idx, QModelIndex idx2));
 }
 
-void AprobacionesTableModel::quitarAprobacion(int row)
+void AprobacionesTableModel::quitarAprobacion(const int row)
 {
     /*
      * esto así creo que es una chapuza

@@ -22,7 +22,7 @@ public:
     QList<Afiliacion *> getLista();
 
     void anadirAfiliacion(Afiliacion *afiliacion);
-    void quitarAfiliacion(int row);
+    void quitarAfiliacion(const int row);
 
 private:
 

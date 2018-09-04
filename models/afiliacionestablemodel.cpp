@@ -102,7 +102,7 @@ void AfiliacionesTableModel::anadirAfiliacion(Afiliacion *afiliacion)
     endResetModel();
 }
 
-void AfiliacionesTableModel::quitarAfiliacion(int row)
+void AfiliacionesTableModel::quitarAfiliacion(const int row)
 {
     /*
      * esto así creo que es una chapuza

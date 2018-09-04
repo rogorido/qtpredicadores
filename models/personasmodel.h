@@ -21,9 +21,9 @@ public:
      */
     bool AnadirPersona(const Persona *persona, int persona_id = 0);
 
-    Persona *devolverPersona(int id);
+    Persona *devolverPersona(const int id);
     // esto devuelve los detalles de una persona
-    QJsonModel *devolverDetalles(int id);
+    QJsonModel *devolverDetalles(const int id);
 
 signals:
 

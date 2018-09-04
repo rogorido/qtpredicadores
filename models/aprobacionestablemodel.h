@@ -22,7 +22,7 @@ public:
     QList<Aprobacion *> getLista();
 
     void anadirAprobacion(Aprobacion *aprobracion);
-    void quitarAprobacion(int row);
+    void quitarAprobacion(const int row);
 
 private:
 

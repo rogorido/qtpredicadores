@@ -93,7 +93,7 @@ bool LugaresModel::AnadirLugar(const Lugar *lugar){
 
 }
 
-Lugar LugaresModel::devolverLugar(int id)
+Lugar LugaresModel::devolverLugar(const int id)
 {
     QSqlQuery query;
     Lugar lugar;

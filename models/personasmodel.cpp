@@ -149,7 +149,7 @@ bool PersonasModel::AnadirPersona(const Persona *persona, int persona_id)
 
 }
 
-Persona *PersonasModel::devolverPersona(int id)
+Persona *PersonasModel::devolverPersona(const int id)
 {
     QSqlQuery query;
     Persona *persona = new Persona();
@@ -191,7 +191,7 @@ Persona *PersonasModel::devolverPersona(int id)
 
 }
 
-QJsonModel *PersonasModel::devolverDetalles(int id)
+QJsonModel *PersonasModel::devolverDetalles(const int id)
 {
     QSqlQuery query;
     QString sql;

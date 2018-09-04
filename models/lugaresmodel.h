@@ -21,7 +21,7 @@ public:
     void AnadirLugar(const QString &lugar, const QString &lugar_latin, const QString &pais, const QString &otrosnombres);
     bool AnadirLugar(const Lugar *lugar);
 
-    Lugar devolverLugar(int id);
+    Lugar devolverLugar(const int id);
 
 signals:
 

@@ -19,11 +19,10 @@ public:
      */
     bool AnadirObra(const Obra *obra, int obra_id = 0);
 
-    Obra *devolverObra(int id);
-    void actualizarObra(int id);
-    QVector<int> materiasObra(int obra_id);
+    Obra *devolverObra(const int id);
+    QVector<int> materiasObra(const int obra_id);
     // esto devuelve los detalles de una obra
-    QJsonModel *devolverDetalles(int id);
+    QJsonModel *devolverDetalles(const int id);
 
 protected:
     ObrasModel();

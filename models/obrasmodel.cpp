@@ -136,7 +136,7 @@ bool ObrasModel::AnadirObra(const Obra *obra, int obra_id){
 
 }
 
-Obra *ObrasModel::devolverObra(int id)
+Obra *ObrasModel::devolverObra(const int id)
 {
     QSqlQuery query;
     Obra *obra = new Obra();
@@ -186,7 +186,7 @@ Obra *ObrasModel::devolverObra(int id)
 
 }
 
-QVector<int> ObrasModel::materiasObra(int obra_id)
+QVector<int> ObrasModel::materiasObra(const int obra_id)
 {
     QSqlQuery query;
     QVector<int> temas;
@@ -207,7 +207,7 @@ QVector<int> ObrasModel::materiasObra(int obra_id)
 
 }
 
-QJsonModel *ObrasModel::devolverDetalles(int id)
+QJsonModel *ObrasModel::devolverDetalles(const int id)
 {
     QSqlQuery query;
     QString sql;
