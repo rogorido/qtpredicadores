@@ -14,5 +14,6 @@
         <file>icons/biblioteca.png</file>
         <file>icons/femenino.png</file>
         <file>icons/masculino.png</file>
+        <file>icons/manuscript.png</file>
     </qresource>
 </RCC>
