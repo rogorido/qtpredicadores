@@ -169,6 +169,7 @@ void dlgGestionObras::recibirTema(const Tema tema)
 
     materias_escogidas.append(nuevotema);
     QListWidgetItem *item = new QListWidgetItem(nuevotema.elemento, ui->lwTemas);
+    Q_UNUSED(item)
 
     generarSQLMaterias();
 
@@ -183,6 +184,7 @@ void dlgGestionObras::recibirAutor(const Persona autor)
 
     autores_escogidos.append(nuevoautor);
     QListWidgetItem *item = new QListWidgetItem(nuevoautor.elemento, ui->lwAutores);
+    Q_UNUSED(item)
 
     generarSQLAutores();
 
@@ -212,6 +214,7 @@ void dlgGestionObras::cargarModelos()
 
     ui->tvObras->setAlternatingRowColors(true);
     //ui->twResoluciones->setColumnWidth(1, 80);
+    ui->tvObras->hideColumn(1);
     ui->tvObras->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tvObras->setSelectionMode(QAbstractItemView::SingleSelection);
 
