@@ -177,6 +177,8 @@ void dlgGestionPersonas::seleccionarPersona(const QModelIndex &idx)
      */
     ui->twDetalles->setModel(json_detalles);
     ui->twDetalles->expandAll();
+    ui->twDetalles->resizeColumnToContents(0);
+    ui->twDetalles->resizeColumnToContents(1);
 
     actualizarObras(id);
     actualizarObispados(id);
