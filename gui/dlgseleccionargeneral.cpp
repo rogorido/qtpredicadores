@@ -185,6 +185,11 @@ void dlgSeleccionarGeneral::cargarModelo(){
     case PERSONA:
         ui->twSeleccionar->hideColumn(4);
         break;
+
+    case CASA:
+        ui->twSeleccionar->hideColumn(6);
+        break;
+
     default:
         break;
     }
