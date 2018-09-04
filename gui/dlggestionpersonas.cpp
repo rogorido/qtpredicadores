@@ -18,7 +18,10 @@
 const QString sql_general = "SELECT * FROM vistas.persons_alternatives";
 
 // no me acuerdo por qué hago esto así en lugar de contar las rows del modelo...
-const QString sqlcontar = "SELECT count(*) FROM vistas.persons_altenatives";
+const QString sqlcontar = "SELECT count(*) FROM vistas.persons_alternatives";
+
+const QString sql_obispos = "SELECT DISTINCT bishop_person_id FROM bishops.bishops";
+const QString sql_autores = "SELECT DISTINCT author_id FROM works.works";
 
 
 dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
@@ -40,7 +43,6 @@ dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
     cargarMenus();
 
     ui->tvPersonas->setContextMenuPolicy(Qt::CustomContextMenu);
-    ui->tvPersonas->verticalHeader()->hide();
 
     connect(ui->tvPersonas, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(menuContextual(const QPoint &)));
@@ -105,6 +107,8 @@ void dlgGestionPersonas::actualizarSql(const QString s)
     sqlactivo = s;
 
     m_persons->setQuery(sqlactivo);
+    ui->tvPersonas->resizeColumnsToContents();
+    ui->tvPersonas->resizeRowsToContents();
 
     contarTotal();
 }
@@ -176,23 +180,72 @@ void dlgGestionPersonas::cargarModelos()
     proxy_personas = new ProxyNombres(PERSONASGESTION, this);
     proxy_personas->setSourceModel(m_persons);
 
+    proxy_personas->setHeaderData(1, Qt::Horizontal, "Nombre");
+    proxy_personas->setHeaderData(2, Qt::Horizontal, "Apellidos");
+    proxy_personas->setHeaderData(3, Qt::Horizontal, "Origen");
+    proxy_personas->setHeaderData(5, Qt::Horizontal, "Nacimiento");
+    proxy_personas->setHeaderData(6, Qt::Horizontal, "Muerte");
+    proxy_personas->setHeaderData(7, Qt::Horizontal, "Tipo");
+
     ui->tvPersonas->setModel(proxy_personas);
 
     ui->tvPersonas->setAlternatingRowColors(true);
     //ui->twResoluciones->setColumnWidth(1, 80);
-    ui->tvPersonas->resizeColumnsToContents();
-    ui->tvPersonas->resizeRowsToContents();
+
+    ui->tvPersonas->hideColumn(0);
+    ui->tvPersonas->hideColumn(4); // esto es lo de male
+    // las de los idiomas
+    ui->tvPersonas->hideColumn(8);
+    ui->tvPersonas->hideColumn(9);
+    ui->tvPersonas->hideColumn(10);
+    ui->tvPersonas->hideColumn(11);
+    ui->tvPersonas->hideColumn(12);
+
     ui->tvPersonas->horizontalHeader()->setStretchLastSection(true);
     ui->tvPersonas->setSortingEnabled(true);
     ui->tvPersonas->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tvPersonas->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->tvPersonas->hideColumn(0);
-    ui->tvPersonas->hideColumn(4); // esto es lo de male
+    ui->tvPersonas->verticalHeader()->hide();
+
+    proxy_personas->sort(1, Qt::AscendingOrder);
+
+    ui->tvPersonas->resizeColumnsToContents();
+    ui->tvPersonas->resizeRowsToContents();
 
     // escogemos la primera línea del modelo...
     QModelIndex index = proxy_personas->index(0,0);
     if (index.isValid()) {
         ui->tvPersonas->setCurrentIndex(index);
     }
+
+}
+
+void dlgGestionPersonas::on_ckObispos_stateChanged(int arg1)
+{
+    Q_UNUSED(arg1)
+
+    QString filtro;
+
+    if (ui->ckObispos->checkState() == Qt::Checked) {
+        filtro = QString("person_id IN (") + sql_obispos + QString(")");
+        sql_gestor->anadirFiltro("obispos", filtro);
+    }
+    else
+        sql_gestor->quitarFiltro("obispos");
+
+}
+
+void dlgGestionPersonas::on_ckAutores_stateChanged(int arg1)
+{
+    Q_UNUSED(arg1)
+
+    QString filtro;
+
+    if (ui->ckAutores->checkState() == Qt::Checked) {
+        filtro = QString("person_id IN (") + sql_autores + QString(")");
+        sql_gestor->anadirFiltro("autores", filtro);
+    }
+    else
+        sql_gestor->quitarFiltro("autores");
 
 }

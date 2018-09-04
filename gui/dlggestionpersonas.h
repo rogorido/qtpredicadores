@@ -54,6 +54,10 @@ private slots:
     // para emitir la señal de que se ha seleccionado una persona
     void seleccionarPersona(const QModelIndex &idx);
 
+    void on_ckObispos_stateChanged(int arg1);
+
+    void on_ckAutores_stateChanged(int arg1);
+
 signals:
 
     void infoBarraInferior(QString info);
