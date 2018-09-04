@@ -179,7 +179,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QListView" name="lwMaterias"/>
+      <widget class="QListWidget" name="lwMaterias"/>
      </item>
     </layout>
    </item>
@@ -188,21 +188,21 @@
      <item>
       <widget class="QPushButton" name="btModificarObra">
        <property name="text">
-        <string>Modificar obra</string>
+        <string>&amp;Modificar obra</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pbResetearFiltros">
        <property name="text">
-        <string>Resetear filtros</string>
+        <string>&amp;Resetear filtros</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btVerPersona">
        <property name="text">
-        <string>Ver persona</string>
+        <string>Ver &amp;persona</string>
        </property>
       </widget>
      </item>

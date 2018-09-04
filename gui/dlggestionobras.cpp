@@ -164,11 +164,8 @@ void dlgGestionObras::seleccionarObra(const QModelIndex &idx)
     QString mensaje = QString("Obra_id: ") + QString::number(id);
     emit infoObraSeleccionada(mensaje);
 
-    json_detalles = obras_model->devolverDetalles(id);
-    ui->twDetalles->setModel(json_detalles);
-    ui->twDetalles->expandAll();
-    ui->twDetalles->resizeColumnToContents(0);
-    ui->twDetalles->resizeColumnToContents(1);
+    mostrarDetalles(id);
+    mostrarMaterias(id);
 
 }
 
@@ -236,6 +233,7 @@ void dlgGestionObras::cargarModelos()
     ui->tvObras->resizeColumnsToContents();
     ui->tvObras->resizeRowsToContents();
     ui->tvObras->horizontalHeader()->setStretchLastSection(true);
+    ui->tvObras->setAutoScroll(false);
 
     // escogemos la primera línea del modelo...
     QModelIndex index = works_model->index(0,0);
@@ -292,6 +290,30 @@ void dlgGestionObras::generarSQLAutores()
 
 void dlgGestionObras::mostrarDetalles(const int obra_id)
 {
+    json_detalles = obras_model->devolverDetalles(obra_id);
+    ui->twDetalles->setModel(json_detalles);
+    ui->twDetalles->expandAll();
+    ui->twDetalles->resizeColumnToContents(0);
+    ui->twDetalles->resizeColumnToContents(1);
+}
+
+void dlgGestionObras::mostrarMaterias(const int obra_id)
+{
+    QSqlQuery query;
+    QVector<int> temas;
+
+    temas = obras_model->materiasObra(obra_id);
+
+    // hay que borrar antes el widget porque sino lo añade todo...
+    ui->lwMaterias->clear();
+
+    for (int var = 0; var < temas.size(); ++var) {
+        query.exec(QString("SELECT * FROM themes WHERE theme_id=%1").arg(temas.at(var)));
+        query.first();
+        /* añadimos un elem a la tabla */
+        QListWidgetItem *item = new QListWidgetItem(query.value(1).toString(), ui->lwMaterias);
+
+    }
 
 }
 
