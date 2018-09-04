@@ -110,8 +110,7 @@ SOURCES += main.cpp\
     gui/dlgdiocesisdetalles.cpp \
     gui/dlganneenuevo.cpp \
     gui/dlggestionobras.cpp \
-    gui/dlggestionpersonas.cpp \
-    models/casasownmodel.cpp
+    gui/dlggestionpersonas.cpp
 
 HEADERS  += gui/mainwindow.h \
     gui/dlgnuevocapitulo.h \
@@ -198,8 +197,7 @@ HEADERS  += gui/mainwindow.h \
     gui/dlgdiocesisdetalles.h \
     gui/dlganneenuevo.h \
     gui/dlggestionobras.h \
-    gui/dlggestionpersonas.h \
-    models/casasownmodel.h
+    gui/dlggestionpersonas.h
 
 FORMS    += gui/mainwindow.ui \
     gui/dlgnuevocapitulo.ui \
