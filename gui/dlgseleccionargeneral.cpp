@@ -130,7 +130,24 @@ void dlgSeleccionarGeneral::cargarTipo(){
         break;
     }
 
-    //m_objeto->setQuery(sql_general);
+    /*
+     * cuando no es CASA o PERSONA tenemos que cargar la query
+     * en m_objeto. En los otros dos casos ya está cargado porque
+     * m_objeto es igual a m_casas o m_personas. Joder no consigo hacerlo con un if!
+     */
+    switch (tipo_seleccionado) {
+    case PROVINCIA:
+    case CAPITULO:
+    case DIOCESIS:
+    case TEMA:
+    case LUGAR:
+        m_objeto->setQuery(sql_general);
+        break;
+    default:
+        break;
+
+    }
+
 }
 
 void dlgSeleccionarGeneral::cargarTituloVentana()
