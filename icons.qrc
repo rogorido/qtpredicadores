@@ -12,5 +12,7 @@
         <file>icons/book.png</file>
         <file>icons/diocesis.png</file>
         <file>icons/biblioteca.png</file>
+        <file>icons/femenino.png</file>
+        <file>icons/masculino.png</file>
     </qresource>
 </RCC>

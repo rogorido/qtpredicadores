@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-class QSqlRelationalTableModel;
+class CasasOwnModel;
 
 namespace Ui {
 class dlgCasas;
@@ -24,7 +24,7 @@ private slots:
 private:
     Ui::dlgCasas *ui;
 
-    QSqlRelationalTableModel *casas_model;
+    CasasOwnModel *casas_model;
 
     void cargarModelos();
 };
