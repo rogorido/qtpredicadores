@@ -2,6 +2,8 @@
 #define PROXYNOMBRES_H
 
 #include <QSortFilterProxyModel>
+#include <QIcon>
+
 #include "objs/variados.h"
 
 class ProxyNombres : public QSortFilterProxyModel
@@ -10,6 +12,8 @@ class ProxyNombres : public QSortFilterProxyModel
 
 public:
     ProxyNombres(tiposeleccionar tipo, QObject *parent = 0);
+
+    QVariant data(const QModelIndex &index, int role) const override;
 
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
@@ -23,6 +27,9 @@ private:
     */
     
     tiposeleccionar tipoproxy;
+
+    QIcon icono_masculino;
+    QIcon icono_femenino;
 };
 
 #endif // PROXYNOMBRES_H
