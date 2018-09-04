@@ -11,9 +11,7 @@ CasasModel *CasasModel::pInstance = 0;
 CasasModel::CasasModel() :
     QSqlQueryModel()
 {
-    this->setQuery("SELECT * FROM vistas.houses_alternatives");
-    //this->select();
-
+    cargarQueryInicial();
     /*
      *  estos iconos los defino aquí porque si los carga en el método data()
      * los está cargando cada vez que consulta ese método y va muy lento
@@ -56,6 +54,11 @@ QVariant CasasModel::data(const QModelIndex &index, int role) const
 void CasasModel::DestroyMe()
 {
     if (pInstance != NULL) delete pInstance;
+}
+
+void CasasModel::cargarQueryInicial()
+{
+    this->setQuery("SELECT * FROM vistas.houses_alternatives");
 }
 
 bool CasasModel::AnadirCasa(const Casa *casa)
@@ -125,7 +128,7 @@ bool CasasModel::AnadirCasa(const Casa *casa)
         return false;
     }
     else {
-        this->query().exec();
+        cargarQueryInicial();
         emit(actualizado());
         return true;
     }

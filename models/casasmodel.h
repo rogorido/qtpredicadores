@@ -27,7 +27,9 @@ protected:
 
 private:
     static CasasModel *pInstance;
-    static void DestroyMe();    
+    static void DestroyMe();
+
+    void cargarQueryInicial();
 
     QIcon icono_masculino;
     QIcon icono_femenino;

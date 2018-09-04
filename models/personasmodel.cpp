@@ -12,11 +12,20 @@ PersonasModel *PersonasModel::pInstance = 0;
 PersonasModel::PersonasModel() :
     QSqlQueryModel()
 {
-    this->setQuery("SELECT * FROM vistas.persons_alternatives");
+    // cargamos la query...
+    cargarQueryInicial();
+
+    /*
+     *  estos iconos los defino aquí porque si los carga en el método data()
+     * los está cargando cada vez que consulta ese método y va muy lento
+     */
+    icono_masculino = QIcon(":/icons/icons/masculino.png");
+    icono_femenino = QIcon(":/icons/icons/femenino.png");
 
 }
 
-PersonasModel *PersonasModel::InstanceModel(){
+PersonasModel *PersonasModel::InstanceModel()
+{
 
     if (pInstance == 0){
         pInstance = new PersonasModel();
@@ -46,11 +55,18 @@ QVariant PersonasModel::data(const QModelIndex &index, int role) const
 
 }
 
-void PersonasModel::DestroyMe(){
+void PersonasModel::DestroyMe()
+{
     if (pInstance != NULL) delete pInstance;
 }
 
-bool PersonasModel::AnadirPersona(const Persona *persona, int persona_id){
+void PersonasModel::cargarQueryInicial()
+{
+    this->setQuery("SELECT * FROM vistas.persons_alternatives");
+}
+
+bool PersonasModel::AnadirPersona(const Persona *persona, int persona_id)
+{
     QSqlQuery query;
 
     QString nombre = persona->getNombre();
@@ -126,7 +142,7 @@ bool PersonasModel::AnadirPersona(const Persona *persona, int persona_id){
         return false;
     }
     else{
-        this->query().exec();
+        cargarQueryInicial();
         emit(actualizado());
         return true;
     }

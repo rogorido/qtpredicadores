@@ -515,9 +515,28 @@ void dlgSeleccionarGeneral::anadirObjeto(){
 
 }
 
-void dlgSeleccionarGeneral::actualizarObjeto(){
+void dlgSeleccionarGeneral::actualizarObjeto()
+{
 
-    m_objeto->setQuery(sql_general);
+    /*
+     * Dado que m_objeto es una copia de uno de los modelos
+     * de casa, persona, etc. creo que hay que volver a hacer la copia
+     * una vez que cambiamos los datos.
+     */
+    switch (tipo_seleccionado) {
+    case PERSONA:
+        m_objeto = m_personas;
+        break;
+
+    case CASA:
+        m_objeto = m_casas;
+        break;
+
+    default:
+        m_objeto->setQuery(sql_general);
+        break;
+    }
+
     ui->twSeleccionar->resizeRowsToContents();
 }
 

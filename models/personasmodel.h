@@ -38,6 +38,8 @@ private:
     static PersonasModel *pInstance;
     static void DestroyMe();
 
+    void cargarQueryInicial();
+
     QIcon icono_masculino;
     QIcon icono_femenino;
 
