@@ -1,7 +1,7 @@
 #include "dlgcasas.h"
 #include "ui_dlgcasas.h"
 
-#include "models/casasownmodel.h"
+#include "models/casasmodel.h"
 
 dlgCasas::dlgCasas(QWidget *parent) :
     QWidget(parent),
@@ -25,7 +25,7 @@ void dlgCasas::cerrar()
 
 void dlgCasas::cargarModelos(){
 
-    casas_model = new CasasOwnModel(this);
+    casas_model = CasasModel::InstanceModel();
     casas_model->setQuery("SELECT * from vistas.houses_alternatives");
 
     ui->twCasas->setModel(casas_model);

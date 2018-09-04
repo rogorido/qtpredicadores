@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-class CasasOwnModel;
+class CasasModel;
 
 namespace Ui {
 class dlgCasas;
@@ -24,7 +24,7 @@ private slots:
 private:
     Ui::dlgCasas *ui;
 
-    CasasOwnModel *casas_model;
+    CasasModel *casas_model;
 
     void cargarModelos();
 };

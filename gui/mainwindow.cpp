@@ -142,8 +142,8 @@ void MainWindow::cargarModelos(){
     m_personas->select();
 
     m_casas = CasasModel::InstanceModel();
-    m_casas->setSort(1, Qt::AscendingOrder);
-    m_casas->select();
+    //m_casas->setSort(1, Qt::AscendingOrder);
+    //m_casas->select();
 
     m_provincias = ProvinciasModel::InstanceModel();
     m_provincias->setSort(1, Qt::AscendingOrder);

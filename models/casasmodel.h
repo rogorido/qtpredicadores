@@ -1,16 +1,18 @@
 #ifndef CASASMODEL_H
 #define CASASMODEL_H
 
-#include <QSqlTableModel>
+#include <QSqlQueryModel>
+#include <QIcon>
 
 class Casa;
 
-class CasasModel : public QSqlTableModel
+class CasasModel : public QSqlQueryModel
 {
     Q_OBJECT
 
 public:
     static CasasModel *InstanceModel();
+    QVariant data(const QModelIndex &index, int role) const override;
 
     bool AnadirCasa(const Casa *casa);
 
@@ -25,7 +27,10 @@ protected:
 
 private:
     static CasasModel *pInstance;
-    static void DestroyMe();
+    static void DestroyMe();    
+
+    QIcon icono_masculino;
+    QIcon icono_femenino;
 
 };
 
