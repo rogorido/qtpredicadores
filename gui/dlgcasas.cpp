@@ -2,7 +2,6 @@
 #include "ui_dlgcasas.h"
 
 #include "models/casasownmodel.h"
-//#include <QSqlRelationalTableModel>
 
 dlgCasas::dlgCasas(QWidget *parent) :
     QWidget(parent),
@@ -27,21 +26,11 @@ void dlgCasas::cerrar()
 void dlgCasas::cargarModelos(){
 
     casas_model = new CasasOwnModel(this);
-    casas_model->setQuery("SELECT * from general.houses");
+    casas_model->setQuery("SELECT * from vistas.houses_alternatives");
 
     ui->twCasas->setModel(casas_model);
     ui->twCasas->hideColumn(0);
     ui->twCasas->hideColumn(2);
-    ui->twCasas->hideColumn(3);
-    ui->twCasas->hideColumn(5);
-    ui->twCasas->hideColumn(6);
-    ui->twCasas->hideColumn(7);
-    ui->twCasas->hideColumn(8);
-    ui->twCasas->hideColumn(9);
-    ui->twCasas->hideColumn(10);
-    ui->twCasas->hideColumn(11);
-    ui->twCasas->hideColumn(16);
-    ui->twCasas->hideColumn(17);
 
     ui->twCasas->setSortingEnabled(true);
     ui->twCasas->resizeColumnsToContents();
