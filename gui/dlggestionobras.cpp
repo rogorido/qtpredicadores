@@ -15,6 +15,8 @@
 #include "widgets/myqmdiarea.h"
 
 #include "models/sqlfiltrogestor.h"
+#include "models/qjsonmodel.h"
+#include "models/obrasmodel.h"
 
 const QString sql_general = "SELECT * FROM vistas.w_works_general";
 const QString sql_con_reedicion = "SELECT DISTINCT work_id FROM works_details WHERE details @> '{\"tipo\":\"reedición\"}'";
@@ -32,9 +34,13 @@ dlgGestionObras::dlgGestionObras(QWidget *parent) :
     // no recuerdo por qué guardo esto en esta variable...
     sqlactivo = sql_general;
 
+    // ver en header: esto debería ser uno!
+    obras_model = ObrasModel::InstanceModel();
     works_model = new QSqlQueryModel(this);
 
     sql_gestor = new SqlFiltroGestor(sql_general, this);
+
+    json_detalles = new QJsonModel(this);
 
     cargarModelos();
     cargarMenus();
@@ -158,6 +164,12 @@ void dlgGestionObras::seleccionarObra(const QModelIndex &idx)
     QString mensaje = QString("Obra_id: ") + QString::number(id);
     emit infoObraSeleccionada(mensaje);
 
+    json_detalles = obras_model->devolverDetalles(id);
+    ui->twDetalles->setModel(json_detalles);
+    ui->twDetalles->expandAll();
+    ui->twDetalles->resizeColumnToContents(0);
+    ui->twDetalles->resizeColumnToContents(1);
+
 }
 
 void dlgGestionObras::recibirTema(const Tema tema)
@@ -275,6 +287,11 @@ void dlgGestionObras::generarSQLAutores()
     qDebug() << "el filtro es: " << sql;
 
     sql_gestor->anadirFiltro("autores", sql);
+
+}
+
+void dlgGestionObras::mostrarDetalles(const int obra_id)
+{
 
 }
 
@@ -416,4 +433,9 @@ void dlgGestionObras::on_pbResetearFiltros_clicked()
     ui->rbTodos->setChecked(true);
 
     sql_gestor->borrarFiltros();
+}
+
+void dlgGestionObras::on_btModificarObra_clicked()
+{
+    modificarObra();
 }

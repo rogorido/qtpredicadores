@@ -16,7 +16,9 @@ class dlgNuevaObra;
 
 class MyQmdiArea;
 
+class ObrasModel;
 class SqlFiltroGestor;
+class QJsonModel;
 
 namespace Ui {
 class dlgGestionObras;
@@ -48,6 +50,7 @@ private slots:
     void on_pbQuitarAutor_clicked();
     void on_pbQuitarAutoresTodos_clicked();
     void on_pbResetearFiltros_clicked();
+    void on_btModificarObra_clicked();
 
     void menuContextual(const QPoint &point);
 
@@ -87,6 +90,12 @@ private:
     Ui::dlgGestionObras *ui;
     MyQmdiArea *mdiarea;
 
+    /*
+     * TODO: esto realmente debería ser uno solo. Es decir, hay que convertir
+     * ObrasModel en un QsqlQuerymodel que devuelva un data(), etc.
+     * como tengo ya con PersonasModel y CasaModel
+     */
+    ObrasModel *obras_model;
     QSqlQueryModel *works_model;
 
     SqlFiltroGestor *sql_gestor;
@@ -108,6 +117,8 @@ private:
     int total_obras;
     int total_filtrado;
 
+    QJsonModel *json_detalles;
+
     // esto para modificar obras,... por qué carajo lo hago como pointer?
     dlgNuevaObra *dlgObraAModificar;
 
@@ -121,6 +132,9 @@ private:
 
     void generarSQLMaterias();
     void generarSQLAutores();
+
+    void mostrarDetalles(const int obra_id);
+    void mostrarMaterias(const int obra_id);
 
 };
 

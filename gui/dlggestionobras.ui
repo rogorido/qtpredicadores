@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1031</width>
-    <height>732</height>
+    <height>886</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -81,13 +81,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pbResetearFiltros">
-         <property name="text">
-          <string>Resetear filtros</string>
-         </property>
-        </widget>
        </item>
       </layout>
      </item>
@@ -166,6 +159,67 @@
       </size>
      </property>
     </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QTreeView" name="twDetalles"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QListView" name="lwMaterias"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QPushButton" name="btModificarObra">
+       <property name="text">
+        <string>Modificar obra</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbResetearFiltros">
+       <property name="text">
+        <string>Resetear filtros</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btVerPersona">
+       <property name="text">
+        <string>Ver persona</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
