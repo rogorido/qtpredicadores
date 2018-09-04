@@ -98,7 +98,7 @@
    <addaction name="actionResoluciones"/>
    <addaction name="actionCiudades"/>
    <addaction name="actionCasas"/>
-   <addaction name="actionCapituli"/>
+   <addaction name="actionPersonas"/>
    <addaction name="actionObras"/>
   </widget>
   <action name="actionNuevoCapitulo">
@@ -203,10 +203,6 @@
    </property>
   </action>
   <action name="actionCapituli">
-   <property name="icon">
-    <iconset resource="../icons.qrc">
-     <normaloff>:/icons/icons/chapter.png</normaloff>:/icons/icons/chapter.png</iconset>
-   </property>
    <property name="text">
     <string>Ca&amp;pítulos</string>
    </property>
@@ -292,6 +288,10 @@
    </property>
   </action>
   <action name="actionPersonas">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/icons/chapter.png</normaloff>:/icons/icons/chapter.png</iconset>
+   </property>
    <property name="text">
     <string>Personas</string>
    </property>

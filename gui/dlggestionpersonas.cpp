@@ -160,7 +160,7 @@ void dlgGestionPersonas::seleccionarPersona(const QModelIndex &idx)
         return;
 
     int id = m_persons->data(proxy_personas->mapToSource(indice), Qt::DisplayRole).toInt();
-    qDebug() << "escogido: " << id;
+    //qDebug() << "escogido: " << id;
 
     QString mensaje = QString("Persona_id: ") + QString::number(id);
     emit infoPersonaSeleccionada(mensaje);
@@ -259,4 +259,18 @@ void dlgGestionPersonas::on_ckAutores_stateChanged(int arg1)
     else
         sql_gestor->quitarFiltro("autores");
 
+}
+
+void dlgGestionPersonas::on_btModificarPersona_clicked()
+{
+
+}
+
+void dlgGestionPersonas::on_btResetearFiltros_clicked()
+{
+
+    ui->ckAutores->setCheckState(Qt::Unchecked);
+    ui->ckObispos->setCheckState(Qt::Unchecked);
+
+    sql_gestor->borrarFiltros();
 }

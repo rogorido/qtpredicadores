@@ -33,6 +33,12 @@ public:
 
 private slots:
 
+    // GUI
+    void on_ckObispos_stateChanged(int arg1);
+    void on_ckAutores_stateChanged(int arg1);
+    void on_btModificarPersona_clicked();
+    void on_btResetearFiltros_clicked();
+
     void menuContextual(const QPoint &point);
     void actualizarFiltro(const QString filtro);
 
@@ -54,10 +60,6 @@ private slots:
 
     // para emitir la señal de que se ha seleccionado una persona
     void seleccionarPersona(const QModelIndex &idx);
-
-    void on_ckObispos_stateChanged(int arg1);
-
-    void on_ckAutores_stateChanged(int arg1);
 
 signals:
 
