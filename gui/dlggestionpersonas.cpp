@@ -11,14 +11,14 @@
 
 #include "gui/dlgnuevapersona.h"
 #include "widgets/myqmdiarea.h"
-
+#include "models/personasmodel.h"
 #include "models/sqlfiltrogestor.h"
 #include "objs/proxynombres.h"
 
-const QString sql_general = "SELECT * FROM vistas.p_persons_general";
+const QString sql_general = "SELECT * FROM vistas.persons_alternatives";
 
 // no me acuerdo por qué hago esto así en lugar de contar las rows del modelo...
-const QString sqlcontar = "SELECT count(*) FROM vistas.p_persons_general";
+const QString sqlcontar = "SELECT count(*) FROM vistas.persons_altenatives";
 
 
 dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
@@ -31,7 +31,7 @@ dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
     // no recuerdo por qué guardo esto en esta variable...
     sqlactivo = sql_general;
 
-    m_persons = new QSqlQueryModel(this);
+    m_persons = PersonasModel::InstanceModel();
 
     sql_gestor = new SqlFiltroGestor(sql_general, this);
     connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
@@ -187,6 +187,7 @@ void dlgGestionPersonas::cargarModelos()
     ui->tvPersonas->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tvPersonas->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tvPersonas->hideColumn(0);
+    ui->tvPersonas->hideColumn(4); // esto es lo de male
 
     // escogemos la primera línea del modelo...
     QModelIndex index = proxy_personas->index(0,0);

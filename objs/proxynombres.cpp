@@ -30,7 +30,8 @@ QVariant ProxyNombres::data(const QModelIndex &index, int role) const
                 return icono_femenino;
         }
 
-        case PERSONA: {
+        case PERSONA:
+        case PERSONASGESTION: {
             QModelIndex i= index.model()->index(index.row(), 4);
             bool masculino = QSortFilterProxyModel::data(i, Qt::DisplayRole).toBool();
             if (masculino)
@@ -134,8 +135,9 @@ bool ProxyNombres::filterAcceptsRow(int sourceRow,
       break;
 
   case PERSONASGESTION:
-    return sourceModel()->data(index1).toString().contains(filterRegExp());
-    break;
+      return sourceModel()->data(index1).toString().contains(filterRegExp())
+              || sourceModel()->data(index2).toString().contains(filterRegExp());
+      break;
 
   default: // NOTE: esto no sé si es correcto así...
       return true;

@@ -5,13 +5,13 @@
 
 class QMenu;
 class QAction;
-class QSqlQueryModel;
 class QModelIndex;
 
 class dlgNuevaPersona;
 
 class MyQmdiArea;
 
+class PersonasModel;
 class SqlFiltroGestor;
 class ProxyNombres;
 
@@ -64,7 +64,7 @@ private:
     Ui::dlgGestionPersonas *ui;
     MyQmdiArea *mdiarea;
 
-    QSqlQueryModel *m_persons;
+    PersonasModel *m_persons;
 
     SqlFiltroGestor *sql_gestor;
 
