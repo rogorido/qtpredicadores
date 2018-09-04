@@ -11,7 +11,7 @@ CasasModel *CasasModel::pInstance = 0;
 CasasModel::CasasModel() :
     QSqlQueryModel()
 {
-    //this->setQuery("select * from houses");
+    this->setQuery("SELECT * FROM vistas.houses_alternatives");
     //this->select();
 
     /*
@@ -23,7 +23,8 @@ CasasModel::CasasModel() :
 
 }
 
-CasasModel *CasasModel::InstanceModel(){
+CasasModel *CasasModel::InstanceModel()
+{
     if (pInstance == 0){
         pInstance = new CasasModel();
         atexit(&DestroyMe);
@@ -52,11 +53,13 @@ QVariant CasasModel::data(const QModelIndex &index, int role) const
 
 }
 
-void CasasModel::DestroyMe(){
+void CasasModel::DestroyMe()
+{
     if (pInstance != NULL) delete pInstance;
 }
 
-bool CasasModel::AnadirCasa(const Casa *casa){
+bool CasasModel::AnadirCasa(const Casa *casa)
+{
     QSqlQuery query;
 
     QString nombre = casa->getNombre();
@@ -88,7 +91,7 @@ bool CasasModel::AnadirCasa(const Casa *casa){
                   ":fecha_eliminacion, :quetif, :advocacion, :studiumgenerale, :notas, :otrosdatos)");
     query.bindValue(":nombre", nombre);
     query.bindValue(":nombre_latin", nombre_latin);
-    if (!lugar == 0)
+    if (lugar != 0)
         query.bindValue(":lugar", lugar);
     else
         query.bindValue(":lugar", QVariant(QVariant::Int));
@@ -98,7 +101,7 @@ bool CasasModel::AnadirCasa(const Casa *casa){
     query.bindValue(":congregacion", congregacion);
     query.bindValue(":buscado", buscado);
     query.bindValue(":wiki", wiki);
-    if (!provincia == 0)
+    if (provincia != 0)
         query.bindValue(":provincia_id", provincia);
     else
         query.bindValue(":provincia_id", QVariant(QVariant::Int));

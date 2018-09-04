@@ -73,7 +73,7 @@ void dlgSeleccionarGeneral::cargarTipo(){
     switch (tipo_seleccionado) {
     case CASA:{
         m_casas = CasasModel::InstanceModel();
-        sql_general = "SELECT * FROM vistas.houses_alternatives";
+        m_objeto = m_casas;
         ui->btAnadir->setText("Aña&dir casa");
         connect(m_casas, SIGNAL(actualizado()), this, SLOT(actualizarObjeto()));
         ui->btVerObjeto->hide();
@@ -130,7 +130,7 @@ void dlgSeleccionarGeneral::cargarTipo(){
         break;
     }
 
-    m_objeto->setQuery(sql_general);
+    //m_objeto->setQuery(sql_general);
 }
 
 void dlgSeleccionarGeneral::cargarTituloVentana()
