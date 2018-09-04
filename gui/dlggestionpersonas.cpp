@@ -307,7 +307,7 @@ void dlgGestionPersonas::on_ckAutores_stateChanged(int arg1)
 
 void dlgGestionPersonas::on_btModificarPersona_clicked()
 {
-
+    modificarPersona();
 }
 
 void dlgGestionPersonas::on_btResetearFiltros_clicked()
