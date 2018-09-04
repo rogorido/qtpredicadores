@@ -64,7 +64,14 @@
     </layout>
    </item>
    <item>
-    <widget class="QTableView" name="tvPersonas"/>
+    <widget class="QTableView" name="tvPersonas">
+     <property name="minimumSize">
+      <size>
+       <width>1162</width>
+       <height>364</height>
+      </size>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QTabWidget" name="tabWidget">
@@ -110,7 +117,7 @@
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
-       <string>Page</string>
+       <string>Obispados</string>
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>

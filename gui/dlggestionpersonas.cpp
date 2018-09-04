@@ -43,6 +43,8 @@ dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
     json_detalles = new QJsonModel(this);
     m_works = new QSqlQueryModel(this);
     ui->twObras->setModel(m_works);
+    m_obispados = new QSqlQueryModel(this);
+    ui->twObispos->setModel(m_obispados);
 
     cargarModelos();
     cargarMenus();
@@ -177,6 +179,7 @@ void dlgGestionPersonas::seleccionarPersona(const QModelIndex &idx)
     ui->twDetalles->expandAll();
 
     actualizarObras(id);
+    actualizarObispados(id);
 }
 
 void dlgGestionPersonas::cargarMenus()
@@ -247,6 +250,24 @@ void dlgGestionPersonas::actualizarObras(const int id)
     ui->twObras->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->twObras->resizeColumnToContents(0);
     ui->twObras->resizeRowsToContents();
+
+}
+
+void dlgGestionPersonas::actualizarObispados(const int id)
+{
+    QString sql;
+
+    sql = QString("select d.diocese_name, b.date_nomination, b.date_end "
+                  "from bishops.bishops b "
+                  "join dioceses d using(diocese_id) "
+                  "WHERE bishop_person_id = %1").arg(id);
+    m_obispados->setQuery(sql);
+    ui->twObispos->horizontalHeader()->setStretchLastSection(true);
+    ui->twObispos->setSortingEnabled(true);
+    ui->twObispos->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twObispos->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->twObispos->resizeColumnToContents(0);
+    ui->twObispos->resizeRowsToContents();
 
 }
 

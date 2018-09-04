@@ -104,12 +104,14 @@ private:
      * para usar ObrasModel, pero para eso hay que adaptar ObrasModel
      */
     QSqlQueryModel *m_works;
+    // idem
+    QSqlQueryModel *m_obispados;
 
     void cargarMenus();
     void cargarModelos();
 
     void actualizarObras(const int id);
-
+    void actualizarObispados(const int id);
 };
 
 #endif // DLGGESTIONPERSONAS_H
