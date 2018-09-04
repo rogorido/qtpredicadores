@@ -41,6 +41,8 @@ dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
     connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
 
     json_detalles = new QJsonModel(this);
+    m_works = new QSqlQueryModel(this);
+    ui->twObras->setModel(m_works);
 
     cargarModelos();
     cargarMenus();
@@ -173,6 +175,8 @@ void dlgGestionPersonas::seleccionarPersona(const QModelIndex &idx)
      */
     ui->twDetalles->setModel(json_detalles);
     ui->twDetalles->expandAll();
+
+    actualizarObras(id);
 }
 
 void dlgGestionPersonas::cargarMenus()
@@ -228,6 +232,21 @@ void dlgGestionPersonas::cargarModelos()
     if (index.isValid()) {
         ui->tvPersonas->setCurrentIndex(index);
     }
+
+}
+
+void dlgGestionPersonas::actualizarObras(const int id)
+{
+    QString sql;
+
+    sql = QString("SELECT title, language_work FROM works WHERE author_id = %1").arg(id);
+    m_works->setQuery(sql);
+    ui->twObras->horizontalHeader()->setStretchLastSection(true);
+    ui->twObras->setSortingEnabled(true);
+    ui->twObras->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->twObras->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->twObras->resizeColumnToContents(0);
+    ui->twObras->resizeRowsToContents();
 
 }
 

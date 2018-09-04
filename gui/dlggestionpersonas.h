@@ -6,6 +6,7 @@
 class QMenu;
 class QAction;
 class QModelIndex;
+class QSqlQueryModel;
 
 class dlgNuevaPersona;
 
@@ -98,8 +99,16 @@ private:
     // esto para modificar obras,... por qué carajo lo hago como pointer?
     dlgNuevaPersona *dlgPersonaAModificar;
 
+    /*
+     * TODO: para ver las obras. Realmente habría que cambiarlo
+     * para usar ObrasModel, pero para eso hay que adaptar ObrasModel
+     */
+    QSqlQueryModel *m_works;
+
     void cargarMenus();
     void cargarModelos();
+
+    void actualizarObras(const int id);
 
 };
 
