@@ -21,6 +21,13 @@
 const QString sql_general = "SELECT * FROM vistas.w_works_general";
 const QString sql_con_reedicion = "SELECT DISTINCT work_id FROM works_details WHERE details @> '{\"tipo\":\"reedición\"}'";
 
+const QString sql_estadisticas_reediciones = "SELECT work_id, title, autor, place_print_original, date_print, COUNT(*) AS total "
+        "FROM w_works_general "
+        "JOIN works_details wd USING(work_id) "
+        "WHERE wd.details @> '{\"tipo\":\"reedición\"}' "
+        "GROUP BY 1,2, 3, 4, 5 "
+        "ORDER BY total DESC";
+
 // no me acuerdo por qué hago esto así en lugar de contar las rows del modelo...
 const QString sqlcontar = "SELECT count(*) FROM vistas.w_works_general";
 
@@ -32,21 +39,27 @@ dlgGestionObras::dlgGestionObras(QWidget *parent) :
     mdiarea = MyQmdiArea::Instance(this);
 
     // no recuerdo por qué guardo esto en esta variable...
-    sqlactivo = sql_general;
+    sqlactivo_general = sql_general;
+    sqlactivo_estadisticas = sql_estadisticas_reediciones;
 
     // ver en header: esto debería ser uno!
     obras_model = ObrasModel::InstanceModel();
     works_model = new QSqlQueryModel(this);
+    works_statistics_model = new QSqlQueryModel(this);
 
-    sql_gestor = new SqlFiltroGestor(sql_general, this);
+    sql_gestor_general = new SqlFiltroGestor(sql_general, this);
+    sql_gestor_estadisticas = new SqlFiltroGestor(sql_estadisticas_reediciones, this);
 
     json_detalles = new QJsonModel(this);
 
     cargarModelos();
     cargarMenus();
 
-    connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
+    connect(sql_gestor_general, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSqlGeneral(QString)));
+    connect(sql_gestor_general, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSqlEstadisticas(QString)));
     connect(ui->tvObras->selectionModel(), SIGNAL(currentRowChanged(QModelIndex, QModelIndex)),
+            this, SLOT(seleccionarObra(QModelIndex)));
+    connect(ui->tvObrasReediciones->selectionModel(), SIGNAL(currentRowChanged(QModelIndex, QModelIndex)),
             this, SLOT(seleccionarObra(QModelIndex)));
 
     ui->tvObras->verticalHeader()->hide();
@@ -84,17 +97,24 @@ void dlgGestionObras::contarTotal()
 
 void dlgGestionObras::on_rbManuscritos_clicked()
 {
-    sql_gestor->quitarFiltro("publicado");
-    sql_gestor->anadirFiltro("manuscrito", "manuscrit = TRUE");
+    sql_gestor_general->quitarFiltro("publicado");
+    sql_gestor_general->anadirFiltro("manuscrito", "manuscrit = TRUE");
 }
 
-void dlgGestionObras::actualizarSql(const QString s)
+void dlgGestionObras::actualizarSqlGeneral(const QString s)
 {
-    sqlactivo = s;
+    sqlactivo_general = s;
 
-    works_model->setQuery(sqlactivo);
+    works_model->setQuery(sqlactivo_general);
 
     contarTotal();
+}
+
+void dlgGestionObras::actualizarSqlEstadisticas(const QString s)
+{
+    sqlactivo_estadisticas = s;
+    works_statistics_model->setQuery(sqlactivo_estadisticas);
+
 }
 
 void dlgGestionObras::modificarObra()
@@ -144,7 +164,7 @@ void dlgGestionObras::emitirSenalTotalObras()
 void dlgGestionObras::actualizarModeloTrasObraActualizada()
 {
     // esto es un slot que se activa cuando actualizamos una obra
-    works_model->setQuery(sqlactivo);
+    works_model->setQuery(sqlactivo_general);
 
     contarTotal();
 }
@@ -154,12 +174,23 @@ void dlgGestionObras::seleccionarObra(const QModelIndex &idx)
     if (!idx.isValid())
         return;
 
-    int row;
+    int row, id;
     QModelIndex indice;
 
-    row = ui->tvObras->currentIndex().row();
-    indice = works_model->index(row, 1);
-    int id = indice.data().toInt();
+    /*
+     * Ahora el asunto depende de cuál es el tab que está seleccionado.
+     */
+
+    if (ui->tabWidget->currentIndex() == 0 ) {
+        row = ui->tvObras->currentIndex().row();
+        indice = works_model->index(row, 1);
+        id = indice.data().toInt();
+    }
+    else {
+        row = ui->tvObrasReediciones->currentIndex().row();
+        indice = works_statistics_model->index(row, 0); // cuidado aquí work_id es 0
+        id = indice.data().toInt();
+    }
 
     QString mensaje = QString("Obra_id: ") + QString::number(id);
     emit infoObraSeleccionada(mensaje);
@@ -218,7 +249,7 @@ void dlgGestionObras::cargarMenus()
 
 void dlgGestionObras::cargarModelos()
 {
-    works_model->setQuery(sqlactivo);
+    works_model->setQuery(sqlactivo_general);
     ui->tvObras->setModel(works_model);
 
     ui->tvObras->setAlternatingRowColors(true);
@@ -242,6 +273,26 @@ void dlgGestionObras::cargarModelos()
     if (index.isValid()) {
         ui->tvObras->setCurrentIndex(index);
     }
+
+    works_statistics_model->setQuery(sql_estadisticas_reediciones);
+    ui->tvObrasReediciones->setModel(works_statistics_model);
+
+    ui->tvObrasReediciones->setAlternatingRowColors(true);
+    //ui->twResoluciones->setColumnWidth(1, 80);
+    ui->tvObrasReediciones->hideColumn(0);
+    ui->tvObrasReediciones->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tvObrasReediciones->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    ui->tvObrasReediciones->setSortingEnabled(true);
+    //works_model->sort(1, Qt::AscendingOrder);
+
+    ui->tvObrasReediciones->resizeColumnsToContents();
+    ui->tvObrasReediciones->resizeRowsToContents();
+    ui->tvObrasReediciones->horizontalHeader()->setStretchLastSection(true);
+    ui->tvObrasReediciones->setAutoScroll(false);
+    //ui->tvObras->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    //ui->tvObras->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+
 }
 
 void dlgGestionObras::generarSQLMaterias()
@@ -249,7 +300,7 @@ void dlgGestionObras::generarSQLMaterias()
     QString sql;
 
     if (materias_escogidas.size() == 0) {
-        sql_gestor->quitarFiltro("materias");
+        sql_gestor_general->quitarFiltro("materias");
         return;
     }
 
@@ -263,7 +314,7 @@ void dlgGestionObras::generarSQLMaterias()
 
     qDebug() << "el filtro es: " << sql;
 
-    sql_gestor->anadirFiltro("materias", sql);
+    sql_gestor_general->anadirFiltro("materias", sql);
 
 }
 
@@ -272,7 +323,7 @@ void dlgGestionObras::generarSQLAutores()
     QString sql;
 
     if (autores_escogidos.size() == 0) {
-        sql_gestor->quitarFiltro("autores");
+        sql_gestor_general->quitarFiltro("autores");
         return;
     }
 
@@ -286,7 +337,7 @@ void dlgGestionObras::generarSQLAutores()
 
     qDebug() << "el filtro es: " << sql;
 
-    sql_gestor->anadirFiltro("autores", sql);
+    sql_gestor_general->anadirFiltro("autores", sql);
 
 }
 
@@ -321,14 +372,14 @@ void dlgGestionObras::mostrarMaterias(const int obra_id)
 
 void dlgGestionObras::on_rbImpresos_clicked()
 {
-    sql_gestor->quitarFiltro("manuscrito");
-    sql_gestor->anadirFiltro("publicado", "printed = TRUE");
+    sql_gestor_general->quitarFiltro("manuscrito");
+    sql_gestor_general->anadirFiltro("publicado", "printed = TRUE");
 }
 
 void dlgGestionObras::on_rbTodos_clicked()
 {
-    sql_gestor->quitarFiltro("manuscrito");
-    sql_gestor->quitarFiltro("publicado");
+    sql_gestor_general->quitarFiltro("manuscrito");
+    sql_gestor_general->quitarFiltro("publicado");
 
 }
 
@@ -337,9 +388,9 @@ void dlgGestionObras::on_ckSinMateria_stateChanged(int arg1)
     Q_UNUSED(arg1)
 
     if (ui->ckSinMateria->checkState() == Qt::Checked)
-        sql_gestor->anadirFiltro("sinmaterias", "work_id NOT IN (SELECT DISTINCT work_id FROM works_themes)");
+        sql_gestor_general->anadirFiltro("sinmaterias", "work_id NOT IN (SELECT DISTINCT work_id FROM works_themes)");
     else
-        sql_gestor->quitarFiltro("sinmaterias");
+        sql_gestor_general->quitarFiltro("sinmaterias");
 }
 
 void dlgGestionObras::menuContextual(const QPoint &point)
@@ -394,10 +445,10 @@ void dlgGestionObras::on_ckConReedicion_stateChanged(int arg1)
 
     if (ui->ckConReedicion->checkState() == Qt::Checked) {
         filtro = QString("work_id IN (") + sql_con_reedicion + QString(")");
-        sql_gestor->anadirFiltro("reedicion", filtro);
+        sql_gestor_general->anadirFiltro("reedicion", filtro);
     }
     else
-        sql_gestor->quitarFiltro("reedicion");
+        sql_gestor_general->quitarFiltro("reedicion");
 
 }
 
@@ -456,7 +507,7 @@ void dlgGestionObras::on_pbResetearFiltros_clicked()
 
     ui->rbTodos->setChecked(true);
 
-    sql_gestor->borrarFiltros();
+    sql_gestor_general->borrarFiltros();
 }
 
 void dlgGestionObras::on_btModificarObra_clicked()

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1031</width>
+    <width>1136</width>
     <height>886</height>
    </rect>
   </property>
@@ -151,13 +151,44 @@
     </layout>
    </item>
    <item>
-    <widget class="QTableView" name="tvObras">
-     <property name="minimumSize">
-      <size>
-       <width>1013</width>
-       <height>354</height>
-      </size>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
      </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Lista general de obras</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QTableView" name="tvObras">
+         <property name="minimumSize">
+          <size>
+           <width>1013</width>
+           <height>354</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Lista con reediciones</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QTableView" name="tvObrasReediciones">
+         <property name="minimumSize">
+          <size>
+           <width>1013</width>
+           <height>354</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>

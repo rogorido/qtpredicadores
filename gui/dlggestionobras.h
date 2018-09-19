@@ -54,7 +54,8 @@ private slots:
 
     void menuContextual(const QPoint &point);
 
-    void actualizarSql(const QString s);
+    void actualizarSqlGeneral(const QString s);
+    void actualizarSqlEstadisticas(const QString s);
 
     void modificarObra();
     void verPersona();
@@ -97,8 +98,17 @@ private:
      */
     ObrasModel *obras_model;
     QSqlQueryModel *works_model;
+    /*
+     * Aquí cogemos una abfrage que nos muestra estadísticas del número de
+     * reediciones que vamos a poner en el segundo tab
+     */
+    QSqlQueryModel *works_statistics_model;
 
-    SqlFiltroGestor *sql_gestor;
+    /*
+     * tenemos un gestor para cada modelo
+     */
+    SqlFiltroGestor *sql_gestor_general;
+    SqlFiltroGestor *sql_gestor_estadisticas;
 
     QMenu *menuContexto;
     QAction *a_verPersona;
@@ -106,9 +116,10 @@ private:
     QAction *a_cambiarObra;
 
     /*
-     * guardamos el SQL que está activo
+     * guardamos los SQLs que están activos
      */
-    QString sqlactivo;
+    QString sqlactivo_general;
+    QString sqlactivo_estadisticas;
 
     // work_id
     int work_id;
