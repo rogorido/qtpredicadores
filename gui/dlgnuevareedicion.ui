@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dlgNuevaReedicion</class>
+ <widget class="QWidget" name="dlgNuevaReedicion">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>307</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Nueva reedición</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Lugar</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtLugar</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="myQLineEdit" name="txtLugar"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbQuitarLugar">
+       <property name="toolTip">
+        <string>Borrar lugar</string>
+       </property>
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Año</string>
+       </property>
+       <property name="buddy">
+        <cstring>spYear</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spYear">
+       <property name="minimum">
+        <number>1400</number>
+       </property>
+       <property name="maximum">
+        <number>2000</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Editor</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtEditor</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtEditor"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Formato</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtFormat</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtFormat"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="ckModificado">
+     <property name="text">
+      <string>Modificado</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="ckAutoresAnadidos">
+     <property name="text">
+      <string>Autores añadidos</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="ckTranslation">
+     <property name="text">
+      <string>Traducción</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Lengua</string>
+       </property>
+       <property name="buddy">
+        <cstring>txtLanguage</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtLanguage"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="ckOtherAuthor">
+     <property name="text">
+      <string>Otro autor</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbCancelar">
+       <property name="text">
+        <string>&amp;Cancelar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbOK">
+       <property name="text">
+        <string>&amp;Aceptar</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>myQLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header location="global">widgets/myqlineedit.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>txtLugar</tabstop>
+  <tabstop>pbQuitarLugar</tabstop>
+  <tabstop>spYear</tabstop>
+  <tabstop>txtEditor</tabstop>
+  <tabstop>txtFormat</tabstop>
+  <tabstop>ckModificado</tabstop>
+  <tabstop>ckAutoresAnadidos</tabstop>
+  <tabstop>ckTranslation</tabstop>
+  <tabstop>txtLanguage</tabstop>
+  <tabstop>ckOtherAuthor</tabstop>
+  <tabstop>pbCancelar</tabstop>
+  <tabstop>pbOK</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

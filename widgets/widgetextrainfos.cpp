@@ -61,7 +61,7 @@ void WidgetExtraInfos::anadirPar(){
 
         extras.append(nuevo);
 
-        QString nuevoitem = nuevo.first + ': ' + nuevo.second;
+        QString nuevoitem = nuevo.first + QString(": ") + nuevo.second;
         QListWidgetItem *item = new QListWidgetItem(nuevoitem, ui->lwExtraInfos);
 
         ui->txtLlave->setText("");

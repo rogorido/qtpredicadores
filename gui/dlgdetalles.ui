@@ -104,6 +104,13 @@
                </property>
               </widget>
              </item>
+             <item row="5" column="3">
+              <widget class="QPushButton" name="btReedicion">
+               <property name="text">
+                <string>Reedición</string>
+               </property>
+              </widget>
+             </item>
             </layout>
            </item>
            <item>

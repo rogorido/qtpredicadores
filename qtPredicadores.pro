@@ -110,7 +110,8 @@ SOURCES += main.cpp\
     gui/dlgdiocesisdetalles.cpp \
     gui/dlganneenuevo.cpp \
     gui/dlggestionobras.cpp \
-    gui/dlggestionpersonas.cpp
+    gui/dlggestionpersonas.cpp \
+    gui/dlgnuevareedicion.cpp
 
 HEADERS  += gui/mainwindow.h \
     gui/dlgnuevocapitulo.h \
@@ -197,7 +198,8 @@ HEADERS  += gui/mainwindow.h \
     gui/dlgdiocesisdetalles.h \
     gui/dlganneenuevo.h \
     gui/dlggestionobras.h \
-    gui/dlggestionpersonas.h
+    gui/dlggestionpersonas.h \
+    gui/dlgnuevareedicion.h
 
 FORMS    += gui/mainwindow.ui \
     gui/dlgnuevocapitulo.ui \
@@ -242,7 +244,8 @@ FORMS    += gui/mainwindow.ui \
     gui/dlgdiocesisdetalles.ui \
     gui/dlganneenuevo.ui \
     gui/dlggestionobras.ui \
-    gui/dlggestionpersonas.ui
+    gui/dlggestionpersonas.ui \
+    gui/dlgnuevareedicion.ui
 
 RESOURCES += \
     icons.qrc

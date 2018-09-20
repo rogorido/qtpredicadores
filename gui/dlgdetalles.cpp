@@ -11,6 +11,7 @@
 #include "dlgdeclaracionentrada.h"
 #include "dlgdeclaraciongeneralentrada.h"
 #include "dlgviajeentrada.h"
+#include "dlgnuevareedicion.h"
 
 #include "models/qjsonmodel.h"
 
@@ -172,6 +173,12 @@ void dlgDetalles::recibirViaje(Viaje viaje)
     json_model->anadirJson(json);
     json_model->resetearModelo();
 
+}
+
+void dlgDetalles::recibirReedicion(QJsonObject reedicion)
+{
+    json_model->anadirJson(reedicion);
+    json_model->resetearModelo();
 }
 
 void dlgDetalles::recibirCasa(Casa casa){
@@ -584,6 +591,16 @@ void dlgDetalles::on_pbExpandAll_clicked()
         expandido = false;
         ui->pbExpandAll->setText("Expandir todo");
     }
+
+}
+
+void dlgDetalles::on_btReedicion_clicked()
+{
+    dlgNuevaReedicion *dlgreedicion = new dlgNuevaReedicion(this);
+    connect(dlgreedicion, SIGNAL(aceptarReedicion(QJsonObject)), this, SLOT(recibirReedicion(QJsonObject)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgreedicion);
+    window->show();
 
 }
 

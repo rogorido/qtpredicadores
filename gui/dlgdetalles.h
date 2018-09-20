@@ -51,6 +51,7 @@ private slots:
     void recibirTraslado(Diocesis diocesis);
     void recibirDeclaracion(Declaracion declaracion);
     void recibirViaje(Viaje viaje);
+    void recibirReedicion(QJsonObject reedicion);
 
     void on_btPersona_clicked();
     void on_btLugar_clicked();
@@ -72,6 +73,7 @@ private slots:
     void on_btAdmoniciones_clicked(); // realmente es el mismo form que ordenanzas
     void on_btComisiones_clicked(); // realmente es el mismo form que ordenanzas    
     void on_pbExpandAll_clicked();
+    void on_btReedicion_clicked();
 
     void anadirDatosLibres();
     void anadirInteresante();
