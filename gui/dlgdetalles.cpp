@@ -68,6 +68,9 @@ dlgDetalles::dlgDetalles(QJsonModel *json, int t, bool anadir, QWidget *parent) 
 
     cargarModelos();
     cargarMenus();
+
+    // ponemos el foco en el campo key de libre porque es lo que más uso en parte...
+    ui->txtKey->setFocus();
 }
 
 dlgDetalles::~dlgDetalles()

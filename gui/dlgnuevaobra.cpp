@@ -251,14 +251,14 @@ void dlgNuevaObra::borrarCampos(){
 
     ui->txtTitulo->setText("");
     ui->txtFormato->setText("");
-    ui->txtIdioma->setText("");
+    //ui->txtIdioma->setText(""); // suele ser el mismo
     ui->txtLugarOriginalImpresion->setText("");
     ui->txtNumeroPags->setText("");
     ui->txtEditor->setText("");
     ui->txtTipo->setText("");
     ui->txtNotas->setText("");
     ui->txtTraduccion->setText("");
-    ui->txtPageQuetif->setText("");
+    //ui->txtPageQuetif->setText(""); // suele ser la misma!
 
     ui->ckContenido->setCheckState(Qt::Unchecked);
     ui->ckDudoso->setCheckState(Qt::Unchecked);
@@ -275,7 +275,7 @@ void dlgNuevaObra::borrarCampos(){
 
     /*
      * vaciamos lo de los temas y lo de lugar pero no lo del autor
-     * pq así podemos meter varios libros del mismo auto.
+     * pq así podemos meter varios libros del mismo autor.
      */
     temasescogidos.clear();
     dlgtemas = new dlgTemas(&temasescogidos, this);
