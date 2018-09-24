@@ -132,14 +132,14 @@
      <item>
       <widget class="QPushButton" name="btModificarPersona">
        <property name="text">
-        <string>Modificar persona</string>
+        <string>&amp;Modificar persona</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btResetearFiltros">
        <property name="text">
-        <string>Resetear filtros</string>
+        <string>&amp;Resetear filtros</string>
        </property>
       </widget>
      </item>

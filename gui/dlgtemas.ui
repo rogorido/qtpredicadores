@@ -27,7 +27,7 @@
      <item>
       <widget class="QPushButton" name="btAnadirTema">
        <property name="text">
-        <string>Añadir</string>
+        <string>Aña&amp;dir</string>
        </property>
       </widget>
      </item>

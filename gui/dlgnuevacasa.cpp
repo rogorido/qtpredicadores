@@ -43,6 +43,8 @@ dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
 
     cargarModelos();
 
+    ui->txtNombre->setFocus();
+
 }
 
 dlgNuevaCasa::~dlgNuevaCasa()
