@@ -621,3 +621,21 @@ void dlgDetalles::on_btProfesion_clicked()
 
     on_btCasa_clicked();
 }
+
+void dlgDetalles::on_btBeato_clicked()
+{
+    json_libre.insert("beate", "yes");
+    anadirChildItem("beate", "yes");
+}
+
+void dlgDetalles::on_btVenerable_clicked()
+{
+    json_libre.insert("venerable", "yes");
+    anadirChildItem("venerable", "yes");
+}
+
+void dlgDetalles::on_btPater_clicked()
+{
+    json_libre.insert("pater", "yes");
+    anadirChildItem("pater", "yes");
+}

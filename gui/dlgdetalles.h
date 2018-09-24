@@ -53,6 +53,7 @@ private slots:
     void recibirViaje(Viaje viaje);
     void recibirReedicion(QJsonObject reedicion);
 
+    // GUI
     void on_btPersona_clicked();
     void on_btLugar_clicked();
     void on_btProvincia_clicked();
@@ -74,6 +75,11 @@ private slots:
     void on_btComisiones_clicked(); // realmente es el mismo form que ordenanzas    
     void on_pbExpandAll_clicked();
     void on_btReedicion_clicked();
+    void on_btNacimiento_clicked();
+    void on_btProfesion_clicked();
+    void on_btBeato_clicked();
+    void on_btVenerable_clicked();
+    void on_btPater_clicked();
 
     void anadirDatosLibres();
     void anadirInteresante();
@@ -84,10 +90,6 @@ private slots:
 
     void cerrar();
     void ocultar();
-
-    void on_btNacimiento_clicked();
-
-    void on_btProfesion_clicked();
 
 protected:
     bool eventFilter(QObject *obj, QEvent *e);
