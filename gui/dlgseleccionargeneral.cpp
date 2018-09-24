@@ -31,9 +31,10 @@
 #include <QAction>
 #include <QDebug>
 
-dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *parent) :
+dlgSeleccionarGeneral::dlgSeleccionarGeneral(tiposeleccionar valor, bool cerrar, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::dlgSeleccionarGeneral), tipo_seleccionado(valor)
+    ui(new Ui::dlgSeleccionarGeneral), tipo_seleccionado(valor),
+    cerrar_terminar(cerrar)
 {
     ui->setupUi(this);
 
@@ -301,7 +302,10 @@ void dlgSeleccionarGeneral::aceptar(){
         break;
     }
 
-    cerrar();
+    if (cerrar_terminar)
+        cerrar();
+    else
+        ui->txtFiltro->setFocus();
 }
 
 void dlgSeleccionarGeneral::casa(){
@@ -585,6 +589,7 @@ void dlgSeleccionarGeneral::anadirTema(){
         if (!m_temas->AnadirTema(tema)){
             int ret = QMessageBox::warning(this, "Error al introducir la resolución",
                                            "Error al introducir la resolución en la BD");
+            Q_UNUSED(ret)
             return;
         }
     }

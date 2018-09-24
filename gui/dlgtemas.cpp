@@ -39,9 +39,10 @@ dlgTemas::~dlgTemas()
     delete ui;
 }
 
-void dlgTemas::on_btAnadirTema_clicked(){
-
-    dlgseleccionar = new dlgSeleccionarGeneral(TEMA, this);
+void dlgTemas::on_btAnadirTema_clicked()
+{
+    // no lo cerramos al terminar...
+    dlgseleccionar = new dlgSeleccionarGeneral(TEMA, false, this);
     connect(dlgseleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirTema(Tema)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);

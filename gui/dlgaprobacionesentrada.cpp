@@ -155,7 +155,7 @@ void dlgAprobacionesEntrada::aceptarAprobaciones()
 
 void dlgAprobacionesEntrada::anadirPersona()
 {
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, true, this);
     connect(dlgseleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(actualizarPersona(Persona)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
@@ -165,7 +165,7 @@ void dlgAprobacionesEntrada::anadirPersona()
 void dlgAprobacionesEntrada::anadirProvincia()
 {
 
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, true, this);
     connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(actualizarProvincia(Provincia)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
@@ -174,7 +174,7 @@ void dlgAprobacionesEntrada::anadirProvincia()
 
 void dlgAprobacionesEntrada::anadirCasa()
 {
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, true, this);
     connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(actualizarCasa(Casa)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);

@@ -177,7 +177,7 @@ void dlgAsistentes::quitarProvincia()
 
 void dlgAsistentes::anadirCasa()
 {
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, true, this);
     connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(recibirCasa(Casa)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);

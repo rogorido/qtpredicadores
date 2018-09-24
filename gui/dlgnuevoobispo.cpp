@@ -158,7 +158,7 @@ void dlgNuevoObispo::aceptarObispo()
 
 void dlgNuevoObispo::anadirPersona()
 {
-    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(PERSONA, true, this);
     connect(seleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirPersona(Persona)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);
@@ -167,7 +167,7 @@ void dlgNuevoObispo::anadirPersona()
 
 void dlgNuevoObispo::anadirDiocesis()
 {
-    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(DIOCESIS, this);
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(DIOCESIS, true, this);
     connect(seleccionar, SIGNAL(diocesisEscogidaSignal(Diocesis)), this, SLOT(recibirDiocesis(Diocesis)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);

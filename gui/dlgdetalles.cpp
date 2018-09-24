@@ -222,7 +222,7 @@ void dlgDetalles::ocultar()
 
 void dlgDetalles::on_btPersona_clicked()
 {
-    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PERSONA, true, this);
     connect(dlgSeleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirPersona(Persona)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
@@ -231,7 +231,7 @@ void dlgDetalles::on_btPersona_clicked()
 
 void dlgDetalles::on_btLugar_clicked()
 {
-    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, true, this);
     connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
@@ -240,17 +240,16 @@ void dlgDetalles::on_btLugar_clicked()
 
 void dlgDetalles::on_btProvincia_clicked()
 {
-    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PROVINCIA, true, this);
     connect(dlgSeleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
     window->show();
-
 }
 
 void dlgDetalles::on_btCasa_clicked()
 {
-    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(CASA, this);
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(CASA, true, this);
     connect(dlgSeleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(recibirCasa(Casa)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
@@ -371,7 +370,7 @@ void dlgDetalles::on_btSufragios_clicked()
 
 void dlgDetalles::on_btTraslado_clicked()
 {
-    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(DIOCESIS, this);
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(DIOCESIS, true, this);
     connect(seleccionar, SIGNAL(diocesisEscogidaSignal(Diocesis)), this, SLOT(recibirTraslado(Diocesis)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);

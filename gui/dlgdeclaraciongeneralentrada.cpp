@@ -139,7 +139,7 @@ void dlgDeclaracionGeneralEntrada::anadirInstitucion()
 
 void dlgDeclaracionGeneralEntrada::anadirProvincia()
 {
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, true, this);
     connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);

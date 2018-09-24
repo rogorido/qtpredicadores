@@ -80,7 +80,7 @@ void dlgViajeEntrada::aceptarViaje()
 
 void dlgViajeEntrada::anadirOrigen()
 {
-    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(LUGAR, true, this);
     connect(seleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);
@@ -89,7 +89,7 @@ void dlgViajeEntrada::anadirOrigen()
 
 void dlgViajeEntrada::anadirDestino()
 {
-    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(LUGAR, true, this);
     connect(seleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirDestino(Lugar)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);

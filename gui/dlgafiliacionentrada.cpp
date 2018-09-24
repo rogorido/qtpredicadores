@@ -102,7 +102,7 @@ void dlgAfiliacionEntrada::aceptarAfiliaciones()
 
 void dlgAfiliacionEntrada::anadirPersona()
 {
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, true, this);
     connect(dlgseleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(actualizarPersona(Persona)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
@@ -111,7 +111,7 @@ void dlgAfiliacionEntrada::anadirPersona()
 
 void dlgAfiliacionEntrada::anadirCasaOrigen()
 {
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, true, this);
     connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(actualizarCasaOrigen(Casa)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
@@ -120,7 +120,7 @@ void dlgAfiliacionEntrada::anadirCasaOrigen()
 
 void dlgAfiliacionEntrada::anadirCasaDestino()
 {
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CASA, true, this);
     connect(dlgseleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(actualizarCasaDestino(Casa)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
@@ -129,7 +129,7 @@ void dlgAfiliacionEntrada::anadirCasaDestino()
 
 void dlgAfiliacionEntrada::anadirProvinciaOrigen()
 {
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, true, this);
     connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(actualizarProvinciaOrigen(Provincia)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
@@ -139,7 +139,7 @@ void dlgAfiliacionEntrada::anadirProvinciaOrigen()
 
 void dlgAfiliacionEntrada::anadirProvinciaDestino()
 {
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, true, this);
     connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(actualizarProvinciaDestino(Provincia)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);

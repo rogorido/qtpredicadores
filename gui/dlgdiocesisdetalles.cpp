@@ -120,7 +120,7 @@ void dlgDiocesisDetalles::cancelar()
 
 void dlgDiocesisDetalles::AnadirArchiDiocesis()
 {
-    dlgSeleccionarGeneral *seleccion = new dlgSeleccionarGeneral(DIOCESIS, this);
+    dlgSeleccionarGeneral *seleccion = new dlgSeleccionarGeneral(DIOCESIS, true, this);
     connect(seleccion, SIGNAL(diocesisEscogidaSignal(Diocesis)), this, SLOT(recibirArchiDiocesis(Diocesis)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccion);

@@ -160,7 +160,7 @@ void dlgNuevaDiocesis::borrarCampos()
 
 void dlgNuevaDiocesis::anadirLugar()
 {
-    dlgSeleccionarGeneral *seleccionlugar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionarGeneral *seleccionlugar = new dlgSeleccionarGeneral(LUGAR, true, this);
     connect(seleccionlugar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionlugar);
@@ -180,7 +180,7 @@ void dlgNuevaDiocesis::anadirArchiDiocesis()
         Q_UNUSED(ret)
         return;
     }
-    dlgSeleccionarGeneral *seleccion = new dlgSeleccionarGeneral(DIOCESIS, this);
+    dlgSeleccionarGeneral *seleccion = new dlgSeleccionarGeneral(DIOCESIS, true, this);
     connect(seleccion, SIGNAL(diocesisEscogidaSignal(Diocesis)), this, SLOT(recibirArchiDiocesis(Diocesis)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccion);

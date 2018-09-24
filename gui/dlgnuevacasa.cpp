@@ -124,7 +124,7 @@ void dlgNuevaCasa::aceptarCasa(){
 
 void dlgNuevaCasa::anadirLugar(){
 
-    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, true, this);
     connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
@@ -154,7 +154,7 @@ void dlgNuevaCasa::quitarLugar(){
 }
 
 void dlgNuevaCasa::anadirProvincia(){
-    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PROVINCIA, true, this);
     connect(dlgSeleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);

@@ -232,7 +232,7 @@ void dlgResoluciones::temasSeleccionadosCambiados(QList<int> lista_temas)
 
 void dlgResoluciones::on_btAnadirTema_clicked()
 {
-    dlgseleccionar = new dlgSeleccionarGeneral(TEMA, this);
+    dlgseleccionar = new dlgSeleccionarGeneral(TEMA, true, this);
     connect(dlgseleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirNuevoTema(Tema)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);

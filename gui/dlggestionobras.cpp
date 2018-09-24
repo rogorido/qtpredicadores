@@ -400,7 +400,7 @@ void dlgGestionObras::menuContextual(const QPoint &point)
 
 void dlgGestionObras::on_pbAnadirTema_clicked()
 {
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(TEMA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(TEMA, true, this);
 
     connect(dlgseleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirTema(Tema)));
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
@@ -454,7 +454,7 @@ void dlgGestionObras::on_ckConReedicion_stateChanged(int arg1)
 
 void dlgGestionObras::on_pbAnadirAutor_clicked()
 {
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, true, this);
 
     connect(dlgseleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirAutor(Persona)));
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);

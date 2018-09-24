@@ -35,7 +35,7 @@ dlgEntradaMisionero::~dlgEntradaMisionero()
 
 void dlgEntradaMisionero::anadirPersona()
 {
-    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(PERSONA, true, this);
     connect(seleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirPersona(Persona)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);

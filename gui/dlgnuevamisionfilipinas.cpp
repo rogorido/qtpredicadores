@@ -79,7 +79,7 @@ void dlgNuevaMisionFilipinas::aceptarMision()
 
 void dlgNuevaMisionFilipinas::anadirLugarGeneral()
 {
-    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(LUGAR, true, this);
     connect(seleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugarSlot(Lugar)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);

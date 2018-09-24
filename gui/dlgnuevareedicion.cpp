@@ -70,7 +70,7 @@ void dlgNuevaReedicion::aceptadaReedicion()
 
 void dlgNuevaReedicion::anadirLugar()
 {
-    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(LUGAR, true, this);
     connect(seleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);

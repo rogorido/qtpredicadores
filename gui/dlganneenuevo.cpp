@@ -131,7 +131,7 @@ void dlgAnneeNuevo::aceptarAnnee()
 
 void dlgAnneeNuevo::anadirPersona()
 {
-    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(PERSONA, true, this);
     connect(seleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirPersonaPrincipal(Persona)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);
@@ -140,7 +140,7 @@ void dlgAnneeNuevo::anadirPersona()
 
 void dlgAnneeNuevo::anadirPersonaAdicional()
 {
-    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(PERSONA, true, this);
     connect(seleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirPersonaAdicional(Persona)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);
@@ -249,7 +249,7 @@ void dlgAnneeNuevo::quitarConceptoMeditacion()
 
 void dlgAnneeNuevo::anadirCategoriasMeditacion()
 {
-    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(TEMA, this);
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(TEMA, true, this);
     connect(seleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirTemaMeditacion(Tema)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);
@@ -258,7 +258,7 @@ void dlgAnneeNuevo::anadirCategoriasMeditacion()
 
 void dlgAnneeNuevo::anadirCategoriasGeneral()
 {
-    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(TEMA, this);
+    dlgSeleccionarGeneral *seleccionar = new dlgSeleccionarGeneral(TEMA, true, this);
     connect(seleccionar, SIGNAL(temaEscogidoSignal(Tema)), this, SLOT(recibirTemaGeneral(Tema)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(seleccionar);

@@ -32,7 +32,7 @@ dlgReforma::~dlgReforma()
 
 void dlgReforma::anadirLugar()
 {
-    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, true, this);
     dlgSeleccionar->show();
 
     connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(recibirLugar(Lugar)));

@@ -191,7 +191,7 @@ void dlgNuevaResolucion::on_btTemas_clicked(){
 
 void dlgNuevaResolucion::anadirProvincia(){
 
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, true, this);
     connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
@@ -227,7 +227,7 @@ void dlgNuevaResolucion::cerrar()
 
 void dlgNuevaResolucion::anadirCapitulo(){
 
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CAPITULO, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(CAPITULO, true, this);
     connect(dlgseleccionar, SIGNAL(capituloEscogidoSignal(Capitulo)), this, SLOT(recibirCapitulo(Capitulo)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);

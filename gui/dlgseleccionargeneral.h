@@ -37,7 +37,7 @@ class dlgSeleccionarGeneral : public QWidget
     Q_OBJECT
 
 public:
-    explicit dlgSeleccionarGeneral(tiposeleccionar valor, QWidget *parent = 0);
+    explicit dlgSeleccionarGeneral(tiposeleccionar valor, bool cerrar = true, QWidget *parent = 0);
     ~dlgSeleccionarGeneral();
 
 private slots:
@@ -121,6 +121,12 @@ private:
     void comprobarVacio();
 
     tiposeleccionar tipo_seleccionado;
+
+    /*
+     * En algunos casos no interesa cerrar el formulario después
+     * de escoger un valor (pej en el caso de temas de obras
+     */
+    bool cerrar_terminar;
 
     /*
      * estos son para los menúes contextuales

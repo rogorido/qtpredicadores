@@ -135,7 +135,7 @@ void dlgLicenciaEntrada::quitarOtorgante()
 
 void dlgLicenciaEntrada::anadirProvincia()
 {
-    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PROVINCIA, this);
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PROVINCIA, true, this);
     connect(dlgSeleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
@@ -144,7 +144,7 @@ void dlgLicenciaEntrada::anadirProvincia()
 
 void dlgLicenciaEntrada::anadirCasa()
 {
-    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(CASA, this);
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(CASA, true, this);
     connect(dlgSeleccionar, SIGNAL(casaEscogidaSignal(Casa)), this, SLOT(recibirCasa(Casa)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);

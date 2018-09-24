@@ -168,7 +168,7 @@ void dlgNuevoCapitulo::fechaFinalCambiada(){
 
 void dlgNuevoCapitulo::anadirLugar(){
 
-    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, true, this);
     connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(actualizarLugar(Lugar)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
@@ -190,7 +190,7 @@ void dlgNuevoCapitulo::quitarLugar(){
 
 void dlgNuevoCapitulo::anadirMaestroGeneral(){
 
-    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PERSONA, true, this);
     connect(dlgseleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(recibirMaestroGeneral(Persona)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);

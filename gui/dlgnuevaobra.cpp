@@ -69,7 +69,7 @@ void dlgNuevaObra::cargarCompleters(){
 
 void dlgNuevaObra::on_btSeleccionarAutor_clicked()
 {
-    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PERSONA, this);
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(PERSONA, true, this);
     connect(dlgSeleccionar, SIGNAL(personaEscogidaSignal(Persona)), this, SLOT(actualizarPersona(Persona)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
@@ -99,7 +99,7 @@ void dlgNuevaObra::on_btQuitarAutor_clicked(){
 
 void dlgNuevaObra::on_btIntroducirLugar_clicked()
 {
-    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, this);
+    dlgSeleccionarGeneral *dlgSeleccionar = new dlgSeleccionarGeneral(LUGAR, true, this);
     connect(dlgSeleccionar, SIGNAL(lugarEscogidoSignal(Lugar)), this, SLOT(actualizarLugar(Lugar)));
 
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgSeleccionar);
