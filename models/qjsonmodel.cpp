@@ -96,11 +96,11 @@ QVariant QJsonModel::data(const QModelIndex &index, int role) const
                 valor = sacarLugar(item->getValue().toInt());
                 return valor;
             }
-            else if (item->getKey() == "casa") {
+            else if (item->getKey() == "casa" || item->getKey() == "casa_origen" || item->getKey() == "casa_destino")  {
                 valor = sacarCasa(item->getValue().toInt());
                 return valor;
             }
-            else if (item->getKey() == "provincia") {
+            else if (item->getKey() == "provincia" || item->getKey() == "provincia_origen" || item->getKey() == "provincia_destino") {
                 valor = sacarProvincia(item->getValue().toInt());
                 return valor;
             }
