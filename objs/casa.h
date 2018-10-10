@@ -10,6 +10,31 @@ class Casa
 public:
     Casa();
 
+    enum CamposCasa {
+        ID = 0,
+        NOMBRE,
+        LATINNAME,
+        OTHERNAMES,
+        PLACEID,
+        ORIGINALPLACE,
+        MEN,
+        TYPEHOUSE,
+        CONGREGATION,
+        STUDIUMGENERALE,
+        WIKIPEDIA,
+        LOOKEDUP,
+        PROVINCEID,
+        DIOCESE,
+        DATEFOUNDATION,
+        ADVOCATION,
+        NOTES,
+        DATEINSERTION,
+        QUETIF,
+        OTHERDATA,
+        DATEELIMINATION
+    };
+
+
     // setters
     void setId(const int i);
     void setNombre(const QString n);

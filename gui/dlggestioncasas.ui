@@ -89,7 +89,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -103,6 +103,13 @@
      <widget class="QPushButton" name="btModificar">
       <property name="text">
        <string>&amp;Modificar casa</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btResetearFiltros">
+      <property name="text">
+       <string>Resetear filtros</string>
       </property>
      </widget>
     </item>
@@ -127,6 +134,55 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QListWidget" name="lwProvincias">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>10</y>
+     <width>351</width>
+     <height>192</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btAnadirProvincia">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>220</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Añadir</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btQuitarProvincia">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>220</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Quitar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btQuitarTodasProvincias">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>220</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Quitar todas</string>
+   </property>
   </widget>
  </widget>
  <resources>
