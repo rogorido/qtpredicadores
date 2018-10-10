@@ -16,7 +16,7 @@ class dlgAnneeNuevo; // mierda está al revés...
 class dlgCapitulos;
 class dlgResoluciones;
 class dlgCiudades;
-class dlgCasas;
+class dlgGestionCasas;
 class dlgEstadisticas;
 class dlgReforma;
 class dlgObispos;
@@ -111,7 +111,7 @@ private:
     dlgCapitulos *FormCapitulos;
     dlgResoluciones *FormResoluciones;
     dlgCiudades *FormCiudades;
-    dlgCasas *FormCasas;
+    dlgGestionCasas *FormCasas;
     dlgObispos *FormObispos;
     dlgMisiones *FormMisiones;
     dlgDiocesis *FormDiocesis;

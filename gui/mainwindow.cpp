@@ -22,7 +22,7 @@
 
 #include "dlgresoluciones.h"
 #include "dlgciudades.h"
-#include "dlgcasas.h"
+#include "dlggestioncasas.h"
 #include "dlgcapitulos.h"
 #include "dlgmisiones.h"
 #include "dlgestadisticas.h"
@@ -215,7 +215,7 @@ void MainWindow::Ciudades()
 
 void MainWindow::Casas()
 {
-    FormCasas = new dlgCasas(this);
+    FormCasas = new dlgGestionCasas(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(FormCasas);
     window->show();
 }

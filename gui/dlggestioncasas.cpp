@@ -3,7 +3,7 @@
 
 #include "models/casasmodel.h"
 
-dlgCasas::dlgGestionCasas(QWidget *parent) :
+dlgGestionCasas::dlgGestionCasas(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::dlgGestionCasas)
 {
@@ -13,17 +13,17 @@ dlgCasas::dlgGestionCasas(QWidget *parent) :
     cargarModelos();
 }
 
-dlgCasas::~dlgGestionCasas()
+dlgGestionCasas::~dlgGestionCasas()
 {
     delete ui;
 }
 
-void dlgCasas::cerrar()
+void dlgGestionCasas::cerrar()
 {
     parentWidget()->close();
 }
 
-void dlgCasas::cargarModelos(){
+void dlgGestionCasas::cargarModelos(){
 
     casas_model = CasasModel::InstanceModel();
     casas_model->setQuery("SELECT * from vistas.houses_alternatives");

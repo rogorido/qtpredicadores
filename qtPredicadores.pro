@@ -58,7 +58,7 @@ SOURCES += main.cpp\
     objs/tema.cpp \
     gui/dlgresoluciones.cpp \
     gui/dlgciudades.cpp \
-    gui/dlgcasas.cpp \
+    gui/dlggestioncasas.cpp \
     gui/dlgasistentes.cpp \
     objs/aprobacion.cpp \
     gui/dlgaprobacionesentrada.cpp \
@@ -146,7 +146,7 @@ HEADERS  += gui/mainwindow.h \
     objs/tema.h \
     gui/dlgresoluciones.h \
     gui/dlgciudades.h \
-    gui/dlgcasas.h \
+    gui/dlggestioncasas.h \
     gui/dlgasistentes.h \
     objs/aprobacion.h \
     gui/dlgaprobacionesentrada.h \
@@ -215,7 +215,7 @@ FORMS    += gui/mainwindow.ui \
     gui/dlgtemas.ui \
     gui/dlgresoluciones.ui \
     gui/dlgciudades.ui \
-    gui/dlgcasas.ui \
+    gui/dlggestioncasas.ui \
     gui/dlgasistentes.ui \
     gui/dlgaprobacionesentrada.ui \
     gui/dlglicenciaentrada.ui \
