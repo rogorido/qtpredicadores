@@ -14,7 +14,12 @@ public:
     static CasasModel *InstanceModel();
     QVariant data(const QModelIndex &index, int role) const override;
 
-    bool AnadirCasa(const Casa *casa);
+    /*
+     * Si se trata de una nueva casa no pasamos el parámetro obra_id
+     * y funciona.
+     */
+
+    bool AnadirCasa(const Casa *casa, int casa_id = 0);
     Casa *devolverCasa(const int id);
 
 signals:

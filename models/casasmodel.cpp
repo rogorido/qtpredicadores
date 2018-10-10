@@ -61,7 +61,7 @@ void CasasModel::cargarQueryInicial()
     this->setQuery("SELECT * FROM vistas.houses_alternatives");
 }
 
-bool CasasModel::AnadirCasa(const Casa *casa)
+bool CasasModel::AnadirCasa(const Casa *casa, int casa_id)
 {
     QSqlQuery query;
 
@@ -86,12 +86,23 @@ bool CasasModel::AnadirCasa(const Casa *casa)
     QString otrosdatos = casa->getOtrosDatos();
     bool studiumgenerale = casa->getStudiumgenerale();
 
-    query.prepare("INSERT INTO general.houses(name, latin_name, place_id, original_place, men, "
-                  "type_house, congregation, lookedup, wikipedia, province_id, diocese, date_foundation, "
-                  "date_elimination, quetif, advocation, studiumgenerale, notes, other_data) "
-                  "VALUES(:nombre, :nombre_latin, :lugar, :lugaroriginario, :masculino, "
-                  ":tipo, :congregacion, :buscado, :wiki, :provincia_id, :diocesis, :fecha_fundacion, "
-                  ":fecha_eliminacion, :quetif, :advocacion, :studiumgenerale, :notas, :otrosdatos)");
+    if (casa_id == 0) {
+          query.prepare("INSERT INTO general.houses(name, latin_name, place_id, original_place, men, "
+                      "type_house, congregation, lookedup, wikipedia, province_id, diocese, date_foundation, "
+                      "date_elimination, quetif, advocation, studiumgenerale, notes, other_data) "
+                      "VALUES(:nombre, :nombre_latin, :lugar, :lugaroriginario, :masculino, "
+                      ":tipo, :congregacion, :buscado, :wiki, :provincia_id, :diocesis, :fecha_fundacion, "
+                      ":fecha_eliminacion, :quetif, :advocacion, :studiumgenerale, :notas, :otrosdatos)");
+    }
+    else {
+        query.prepare("UPDATE general.houses SET(name, latin_name, place_id, original_place, men, "
+                    "type_house, congregation, lookedup, wikipedia, province_id, diocese, date_foundation, "
+                    "date_elimination, quetif, advocation, studiumgenerale, notes, other_data) "
+                    "= (:nombre, :nombre_latin, :lugar, :lugaroriginario, :masculino, "
+                    ":tipo, :congregacion, :buscado, :wiki, :provincia_id, :diocesis, :fecha_fundacion, "
+                    ":fecha_eliminacion, :quetif, :advocacion, :studiumgenerale, :notas, :otrosdatos) "
+                      "WHERE house_id = :house_id");
+    }
     query.bindValue(":nombre", nombre);
     query.bindValue(":nombre_latin", nombre_latin);
     if (lugar != 0)
@@ -121,6 +132,10 @@ bool CasasModel::AnadirCasa(const Casa *casa)
     else
         query.bindValue(":otrosdatos", QVariant(QVariant::String));
 
+    // el id en caso de que estemos actualizando...
+    if (casa_id != 0)
+        query.bindValue(":house_id", casa_id);
+
     if (!query.exec()){
         qDebug() << query.lastError();
         qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
@@ -134,13 +149,13 @@ bool CasasModel::AnadirCasa(const Casa *casa)
     }
 }
 
-Casa *CasasModel::devolverCasa(const int id)
+Casa *CasasModel::devolverCasa(const int casa_id)
 {
     QSqlQuery query;
     Casa *casa = new Casa();
 
     query.prepare("SELECT * FROM houses WHERE house_id = :id");
-    query.bindValue(":id", id);
+    query.bindValue(":id", casa_id);
 
     if (!query.exec()) {
         qDebug() << query.lastError();
@@ -150,7 +165,7 @@ Casa *CasasModel::devolverCasa(const int id)
 
     query.first();
 
-    casa->setId(id);
+    casa->setId(casa_id);
     casa->setNombre(query.value(Casa::CamposCasa::NOMBRE).toString());
     casa->setLugar(query.value(Casa::CamposCasa::PLACEID).toInt());
     casa->setLugarOriginario(query.value(Casa::CamposCasa::ORIGINALPLACE).toString());
