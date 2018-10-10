@@ -1,11 +1,11 @@
-#include "dlgcasas.h"
-#include "ui_dlgcasas.h"
+#include "dlggestioncasas.h"
+#include "ui_dlggestioncasas.h"
 
 #include "models/casasmodel.h"
 
-dlgCasas::dlgCasas(QWidget *parent) :
+dlgCasas::dlgGestionCasas(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::dlgCasas)
+    ui(new Ui::dlgGestionCasas)
 {
     ui->setupUi(this);
     connect(ui->btCerrar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
@@ -13,7 +13,7 @@ dlgCasas::dlgCasas(QWidget *parent) :
     cargarModelos();
 }
 
-dlgCasas::~dlgCasas()
+dlgCasas::~dlgGestionCasas()
 {
     delete ui;
 }
