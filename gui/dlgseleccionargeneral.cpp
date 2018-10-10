@@ -480,7 +480,7 @@ void dlgSeleccionarGeneral::anadirObjeto(){
 
     switch (tipo_seleccionado) {
     case CASA:{
-        dlgNuevaCasa *dlgcasa = new dlgNuevaCasa(this);
+        dlgNuevaCasa *dlgcasa = new dlgNuevaCasa(this, 0);
         QMdiSubWindow *window = mdiarea->addSubWindow(dlgcasa);
         window->show();
         break;}
