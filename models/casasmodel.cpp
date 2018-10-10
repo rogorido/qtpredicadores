@@ -133,3 +133,40 @@ bool CasasModel::AnadirCasa(const Casa *casa)
         return true;
     }
 }
+
+Casa *CasasModel::devolverCasa(const int id)
+{
+    QSqlQuery query;
+    Casa *casa = new Casa();
+
+    query.prepare("SELECT * FROM houses WHERE house_id = :id");
+    query.bindValue(":id", id);
+
+    if (!query.exec()) {
+        qDebug() << query.lastError();
+        qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
+        return casa;
+    }
+
+    query.first();
+
+    casa->setId(id);
+    casa->setNombre(query.value(Casa::CamposCasa::NOMBRE).toString());
+    casa->setLugar(query.value(Casa::CamposCasa::PLACEID).toInt());
+    casa->setLugarOriginario(query.value(Casa::CamposCasa::ORIGINALPLACE).toString());
+    casa->setMasculino(query.value(Casa::CamposCasa::MEN).toBool());
+    casa->setTipo(query.value(Casa::CamposCasa::TYPEHOUSE).toString());
+    casa->setCongregacion(query.value(Casa::CamposCasa::CONGREGATION).toString());
+    casa->setStudiumgenerale(query.value(Casa::CamposCasa::STUDIUMGENERALE).toBool());
+    casa->setWiki(query.value(Casa::CamposCasa::WIKIPEDIA).toBool());
+    casa->setBuscado(query.value(Casa::CamposCasa::LOOKEDUP).toBool());
+    casa->setProvincia(query.value(Casa::CamposCasa::PROVINCEID).toInt());
+    casa->setDiocesis(query.value(Casa::CamposCasa::DIOCESE).toString());
+    casa->setFechaFundacion(query.value(Casa::CamposCasa::DATEFOUNDATION).toString());
+    casa->setAdvocacion(query.value(Casa::CamposCasa::ADVOCATION).toString());
+    casa->setNotas(query.value(Casa::CamposCasa::NOTES).toString());
+    casa->setQuetif(query.value(Casa::CamposCasa::QUETIF).toBool());
+    casa->setFechaEliminacion(query.value(Casa::CamposCasa::DATEELIMINATION).toString());
+
+    return casa;
+}

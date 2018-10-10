@@ -15,6 +15,7 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
 
     bool AnadirCasa(const Casa *casa);
+    Casa *devolverCasa(const int id);
 
 signals:
 
