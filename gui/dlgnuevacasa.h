@@ -24,7 +24,7 @@ class dlgNuevaCasa : public QWidget
     Q_OBJECT
 
 public:
-    explicit dlgNuevaCasa(QWidget *parent = 0);
+    explicit dlgNuevaCasa(QWidget *parent = 0, int casa = 0);
     ~dlgNuevaCasa();
 
 private slots:
@@ -66,6 +66,12 @@ private:
     QCompleter *m_diocesis_completer;
 
     /*
+     * Aquí metemos los datos de si estamos modificando algo.
+     */
+    bool modificando = false;
+    int casa_modificando = 0;
+
+    /*
      * aquí metemos los datos que nos llegan de la source
      */
     QJsonObject *fuentedatos;
@@ -76,6 +82,9 @@ private:
 
     void borrarCampos();
     void cargarModelos();
+
+    // cuando modificamos una...
+    void cargarCasa();
 
 };
 

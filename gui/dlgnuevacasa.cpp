@@ -1,6 +1,7 @@
 #include "dlgnuevacasa.h"
 #include "ui_dlgnuevacasa.h"
 
+#include <QSqlQuery>
 #include <QSqlRecord>
 #include <QInputDialog>
 #include <QCompleter>
@@ -18,7 +19,7 @@
 #include "gui/dlgfuenteentrada.h"
 #include "widgets/myqmdiarea.h"
 
-dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
+dlgNuevaCasa::dlgNuevaCasa(QWidget *parent, int casa) :
     QWidget(parent),
     ui(new Ui::dlgNuevaCasa)
 {
@@ -42,6 +43,12 @@ dlgNuevaCasa::dlgNuevaCasa(QWidget *parent) :
     connect(ui->btFuente, SIGNAL(clicked(bool)), this, SLOT(anadirFuente()));
 
     cargarModelos();
+
+    if (casa != 0) {
+         modificando = true;
+         casa_modificando = casa;
+         cargarCasa();
+     }
 
     ui->txtNombre->setFocus();
 
@@ -243,4 +250,49 @@ void dlgNuevaCasa::cargarModelos(){
     m_diocesis_completer->setCompletionColumn(0);
     m_diocesis_completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->txtDiocesis->setCompleter(m_diocesis_completer);
+}
+
+void dlgNuevaCasa::cargarCasa()
+{
+    QSqlQuery query;
+    Casa *casaModificada = new Casa();
+
+    casaModificada = m_casas->devolverCasa(casa_modificando);
+
+    ui->txtNombre->setText(casaModificada->getNombre());
+    ui->txtLugar->setText("");
+    ui->txtLugarOriginario->setText(casaModificada->getLugarOriginario());
+    ui->txtProvincia->setText("");
+    ui->txtTipo->setText(casaModificada->getTipo());
+    ui->txtAdvocacion->setText(casaModificada->getAdvocacion());
+    ui->txtDiocesis->setText(casaModificada->getDiocesis());
+    ui->txtFechaFundacion->setText(casaModificada->getFechaFundacion());
+    ui->txtEliminada->setText(casaModificada->getFechaEliminacion());
+    ui->txtNotas->setText(casaModificada->getNotas());
+
+    ui->ckBuscado->setChecked(casaModificada->getBuscado());
+    ui->ckMasculino->setChecked(casaModificada->getMasculino());
+    ui->ckStudium->setChecked(casaModificada->getStudiumgenerale());
+    ui->ckWiki->setChecked(casaModificada->getWiki());
+
+    // el lugar
+    query.exec(QString("SELECT place_id, place FROM places WHERE place_id=%1").arg(casaModificada->getLugar()));
+    query.first();
+    // atención: es psoible que este campo esté vacío!
+    if (query.size() > 0) {
+        lugar_struct.id = casaModificada->getLugar();
+        lugar_struct.elemento = query.value(1).toString();
+        ui->txtLugar->setText(lugar_struct.elemento);
+    }
+
+    // la provincia
+    query.exec(QString("SELECT province_id, name FROM places WHERE province_id=%1").arg(casaModificada->getProvincia()));
+    query.first();
+    // atención: es psoible que este campo esté vacío!
+    if (query.size() > 0) {
+        provincia_struct.id = casaModificada->getProvincia();
+        provincia_struct.elemento = query.value(1).toString();
+        ui->txtProvincia->setText(provincia_struct.elemento);
+    }
+
 }
