@@ -30,12 +30,31 @@ dlgGestionCasas::dlgGestionCasas(QWidget *parent) :
 
     connect(ui->twCasas->selectionModel(), SIGNAL(currentRowChanged(QModelIndex, QModelIndex)),
             this, SLOT(seleccionarCasa(QModelIndex)));
+    connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
+
     connect(ui->btCerrar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
 }
 
 dlgGestionCasas::~dlgGestionCasas()
 {
     delete ui;
+}
+
+void dlgGestionCasas::actualizarFiltro(const QString filtro)
+{
+    if (filtro.length() > 2) {
+        proxy_casas->setFilterRegExp(QRegExp(filtro, Qt::CaseInsensitive, QRegExp::FixedString));
+        ui->twCasas->resizeRowsToContents();
+        ui->twCasas->resizeColumnsToContents();
+        //contarTotal();
+    }
+    else
+    {
+        proxy_casas->setFilterRegExp(QRegExp("", Qt::CaseInsensitive, QRegExp::FixedString));
+        ui->twCasas->resizeRowsToContents();
+        ui->twCasas->resizeColumnsToContents();
+        //contarTotal();
+    }
 }
 
 void dlgGestionCasas::seleccionarCasa(const QModelIndex &idx)

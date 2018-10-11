@@ -24,6 +24,8 @@ public:
 
 private slots:
 
+    void actualizarFiltro(const QString filtro);
+
     // para emitir la señal de que se ha seleccionado una persona
     void seleccionarCasa(const QModelIndex &idx);
 
