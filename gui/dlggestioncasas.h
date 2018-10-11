@@ -33,6 +33,9 @@ private slots:
     void cerrar();
 
     void on_btModificar_clicked();
+    void on_rbFemeninas_toggled(bool checked);
+    void on_rbMasculinas_toggled(bool checked);
+    void on_rbTodas_toggled(bool checked);
 
 private:
     Ui::dlgGestionCasas *ui;

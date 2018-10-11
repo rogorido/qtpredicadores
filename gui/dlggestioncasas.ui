@@ -49,7 +49,7 @@
    <property name="title">
     <string>Tipo</string>
    </property>
-   <widget class="QRadioButton" name="radioButton">
+   <widget class="QRadioButton" name="rbTodas">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -62,7 +62,7 @@
      <string>Todas</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_2">
+   <widget class="QRadioButton" name="rbMasculinas">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -75,7 +75,7 @@
      <string>Masculinas</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_3">
+   <widget class="QRadioButton" name="rbFemeninas">
     <property name="geometry">
      <rect>
       <x>20</x>

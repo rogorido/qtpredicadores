@@ -92,6 +92,7 @@ void dlgGestionCasas::cargarModelos(){
     ui->twCasas->resizeRowsToContents();
     ui->twCasas->setAlternatingRowColors(true);
     ui->twCasas->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->twCasas->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->twCasas->horizontalHeader()->setStretchLastSection(true);
 
     proxy_casas->sort(1, Qt::AscendingOrder);
@@ -121,4 +122,33 @@ void dlgGestionCasas::on_btModificar_clicked()
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgCasaAModificar);
     connect(dlgCasaAModificar, SIGNAL(casaIntroducida()), this, SLOT(actualizarModeloTrasCasaIntroducida));
     window->show();
+}
+
+void dlgGestionCasas::on_rbFemeninas_toggled(bool checked)
+{
+    if (checked) {
+        sql_gestor->anadirFiltro("femeninas", "men = FALSE");
+        sql_gestor->quitarFiltro("masculinas");
+    }
+    else
+        sql_gestor->quitarFiltro("femeninas");
+
+}
+
+void dlgGestionCasas::on_rbMasculinas_toggled(bool checked)
+{
+    if (checked) {
+        sql_gestor->anadirFiltro("masculinas", "men = TRUE");
+        sql_gestor->quitarFiltro("femeninas");
+    }
+    else
+        sql_gestor->quitarFiltro("masculinas");
+
+}
+
+void dlgGestionCasas::on_rbTodas_toggled(bool checked)
+{
+    sql_gestor->quitarFiltro("masculinas");
+    sql_gestor->quitarFiltro("femeninas");
+
 }

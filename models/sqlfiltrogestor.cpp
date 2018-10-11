@@ -27,6 +27,7 @@ void SqlFiltroGestor::anadirFiltro(QString nombre, QString sql)
 void SqlFiltroGestor::quitarFiltro(QString nombre)
 {
     filtros_map.remove(nombre);
+    qDebug() << "quitado el filtro: " << nombre;
     generarSql();
 }
 
