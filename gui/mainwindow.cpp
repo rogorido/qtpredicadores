@@ -120,7 +120,16 @@ void MainWindow::cargarMenues(){
 
 void MainWindow::inicializarBarraEstadisticas()
 {
+    /*
+     * Ponemos tanto los totales como los filtrados aquí al inicio
+     * pq así es más fácil al inicializar de crear la frasecita
+     */
     info_statusbar->setNumeroCasasTotal(m_casas->rowCount());
+    info_statusbar->setNumeroCiudadesTotal(m_lugares->rowCount());
+    info_statusbar->setNumeroPersonasTotal(m_personas->rowCount());
+    info_statusbar->setNumeroCasasFiltrados(m_casas->rowCount());
+    info_statusbar->setNumeroCiudadesFiltrados(m_lugares->rowCount());
+    info_statusbar->setNumeroPersonasFiltrados(m_personas->rowCount());
 
     info_statusbar->inicializar();
 }
