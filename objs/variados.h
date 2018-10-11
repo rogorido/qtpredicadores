@@ -14,7 +14,8 @@ enum tiposeleccionar {
     TEMA,
     DIOCESIS,
     OBISPO, // realmente no lo usamos en el form Seleccionar...
-    PERSONASGESTION // esto es para el form de gestión de personas
+    PERSONASGESTION, // esto es para el form de gestión de personas
+    CASASGESTION
 };
 
 enum tipodetalles {
