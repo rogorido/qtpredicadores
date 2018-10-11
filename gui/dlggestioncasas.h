@@ -29,33 +29,29 @@ public:
 
 private slots:
 
-    void actualizarFiltro(const QString filtro);
-
-    // para emitir la señal de que se ha seleccionado una persona
-    void seleccionarCasa(const QModelIndex &idx);
-
-    void actualizarModeloTrasCasaIntroducida();
-
-    void actualizarSql(QString s);
-    void cerrar();
-
+    // GUI
     void on_btModificar_clicked();
     void on_rbFemeninas_toggled(bool checked);
     void on_rbMasculinas_toggled(bool checked);
     void on_rbTodas_toggled(bool checked);
     void on_btAnadirProvincia_clicked();
+    void on_btResetearFiltros_clicked();
+    void on_btQuitarTodasProvincias_clicked();
+    void on_btAnadirTipo_clicked();
+    void on_btQuitarTipo_clicked();
+    void on_btQuitarTiposTodos_clicked();
+    void on_btQuitarProvincia_clicked();
+
+    void actualizarFiltro(const QString filtro);
+
+    // para emitir la señal de que se ha seleccionado una persona
+    void seleccionarCasa(const QModelIndex &idx);
+    void actualizarModeloTrasCasaIntroducida();
 
     void recibirProvincia(const Provincia provincia);
 
-    void on_btResetearFiltros_clicked();
-
-    void on_btQuitarTodasProvincias_clicked();
-
-    void on_btAnadirTipo_clicked();
-
-    void on_btQuitarTipo_clicked();
-
-    void on_btQuitarTiposTodos_clicked();
+    void actualizarSql(QString s);
+    void cerrar();
 
 private:
     Ui::dlgGestionCasas *ui;

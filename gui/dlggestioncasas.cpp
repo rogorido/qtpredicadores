@@ -260,6 +260,8 @@ void dlgGestionCasas::on_btResetearFiltros_clicked()
 {
     ui->lwProvincias->clear();
     provincias_escogidas.clear();
+    ui->lwTipos->clear();
+    tipos_escogidos.clear();
 
     ui->rbTodas->setChecked(true);
 
@@ -317,4 +319,25 @@ void dlgGestionCasas::on_btQuitarTiposTodos_clicked()
     tipos_escogidos.clear();
 
     sql_gestor->quitarFiltro("tipos");
+}
+
+void dlgGestionCasas::on_btQuitarProvincia_clicked()
+{
+    QModelIndex idx = ui->lwProvincias->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    QString valor = idx.data().toString();
+
+    ui->lwProvincias->takeItem(ui->lwProvincias->currentRow());
+
+    for (int i = 0; i < provincias_escogidas.size(); ++i) {
+      if(provincias_escogidas.at(i).elemento == valor){
+        provincias_escogidas.removeAt(i);
+        break;
+      }
+     }
+
+    generarSQLProvincias();
 }
