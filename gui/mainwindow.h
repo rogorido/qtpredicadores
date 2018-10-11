@@ -36,7 +36,7 @@ class CapitulosModel;
 
 class MyQmdiArea;
 
-class QLabel;
+class BarraLabel;
 
 namespace Ui {
 class MainWindow;
@@ -92,8 +92,8 @@ private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
     MyQmdiArea *mdiArea;
-    QLabel *info_statusbar;
-    QLabel *info_idbar; // indica el id del elemento seleccionado
+    BarraLabel *info_statusbar;
+    BarraLabel *info_idbar; // indica el id del elemento seleccionado
 
     /* esto son formularios */
     dlgNuevoCapitulo *dlgCapitulo;
@@ -132,6 +132,7 @@ private:
 
     void cargarModelos();
     void cargarMenues();
+    void inicializarBarraEstadisticas();
 };
 
 #endif // MAINWINDOW_H

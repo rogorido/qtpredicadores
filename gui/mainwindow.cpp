@@ -36,6 +36,7 @@
 #include "dlgdetalles.h"
 
 #include "widgets/myqmdiarea.h"
+#include "widgets/barralabel.h"
 
 #include "models/temasmodel.h"
 #include "models/lugaresmodel.h"
@@ -60,8 +61,8 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(mdiArea);
     QMainWindow::showMaximized();
 
-    info_statusbar = new QLabel(this);
-    info_idbar = new QLabel(this);
+    info_statusbar = new BarraLabel(this);
+    info_idbar = new BarraLabel(this);
     statusBar()->addPermanentWidget(info_idbar);
     statusBar()->addPermanentWidget(info_statusbar);
 
@@ -117,6 +118,13 @@ void MainWindow::cargarMenues(){
     statusBar()->showMessage("Menúes cargados", STATUSBAR_TIMEOUT);
 }
 
+void MainWindow::inicializarBarraEstadisticas()
+{
+    info_statusbar->setNumeroCasasTotal(m_casas->rowCount());
+
+    info_statusbar->inicializar();
+}
+
 void MainWindow::nuevoCapitulo(){
 
     dlgCapitulo = new dlgNuevoCapitulo(this);
@@ -149,6 +157,8 @@ void MainWindow::cargarModelos(){
     m_capitulos->select();
 
     statusBar()->showMessage("Modelos cargados", STATUSBAR_TIMEOUT);
+
+    inicializarBarraEstadisticas();
 
 }
 

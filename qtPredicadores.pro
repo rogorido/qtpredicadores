@@ -111,7 +111,8 @@ SOURCES += main.cpp\
     gui/dlganneenuevo.cpp \
     gui/dlggestionobras.cpp \
     gui/dlggestionpersonas.cpp \
-    gui/dlgnuevareedicion.cpp
+    gui/dlgnuevareedicion.cpp \
+    widgets/barralabel.cpp
 
 HEADERS  += gui/mainwindow.h \
     gui/dlgnuevocapitulo.h \
@@ -199,7 +200,8 @@ HEADERS  += gui/mainwindow.h \
     gui/dlganneenuevo.h \
     gui/dlggestionobras.h \
     gui/dlggestionpersonas.h \
-    gui/dlgnuevareedicion.h
+    gui/dlgnuevareedicion.h \
+    widgets/barralabel.h
 
 FORMS    += gui/mainwindow.ui \
     gui/dlgnuevocapitulo.ui \
