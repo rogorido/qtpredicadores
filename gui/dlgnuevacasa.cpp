@@ -121,6 +121,7 @@ void dlgNuevaCasa::aceptarCasa(){
     casa->setStudiumgenerale(studiumgenerale);
 
     if (m_casas->AnadirCasa(casa)) {
+        emit casaIntroducida();
         borrarCampos();
     }
     else {

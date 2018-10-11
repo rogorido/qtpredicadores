@@ -42,6 +42,10 @@ private slots:
 
     void cerrar();
 
+signals:
+
+    void casaIntroducida();
+
 private:
     Ui::dlgNuevaCasa *ui;
 

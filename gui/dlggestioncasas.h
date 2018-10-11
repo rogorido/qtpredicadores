@@ -4,6 +4,11 @@
 #include <QWidget>
 
 class CasasModel;
+class ProxyNombres;
+class SqlFiltroGestor;
+class dlgNuevaCasa;
+
+class MyQmdiArea;
 
 namespace Ui {
 class dlgGestionCasas;
@@ -19,12 +24,30 @@ public:
 
 private slots:
 
+    // para emitir la señal de que se ha seleccionado una persona
+    void seleccionarCasa(const QModelIndex &idx);
+
+    void actualizarModeloTrasCasaIntroducida();
+
+    void actualizarSql(QString s);
     void cerrar();
+
+    void on_btModificar_clicked();
 
 private:
     Ui::dlgGestionCasas *ui;
+    MyQmdiArea *mdiarea;
 
-    CasasModel *casas_model;
+    CasasModel *m_casas;
+    ProxyNombres *proxy_casas;
+
+    SqlFiltroGestor *sql_gestor;
+
+    QString sqlactivo;
+
+    // esto para modificar obras,... por qué carajo lo hago como pointer?
+    // realmente este form lo he ido copiando de otros anteriores...
+    dlgNuevaCasa *dlgCasaAModificar;
 
     void cargarModelos();
 };
