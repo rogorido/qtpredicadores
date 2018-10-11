@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QMdiSubWindow>
+#include <QSqlQueryModel>
 
 #include "models/casasmodel.h"
 
@@ -13,6 +14,7 @@
 #include "widgets/myqmdiarea.h"
 
 const QString sql_general = "SELECT * from vistas.houses_alternatives";
+const QString sql_tiposcasas = "SELECT DISTINCT type_house FROM houses WHERE type_house IS NOT NULL ORDER BY type_house";
 
 dlgGestionCasas::dlgGestionCasas(QWidget *parent) :
     QWidget(parent),
@@ -108,6 +110,7 @@ void dlgGestionCasas::cargarModelos(){
     ui->twCasas->setModel(proxy_casas);
     ui->twCasas->hideColumn(0);
     ui->twCasas->hideColumn(6);
+    ui->twCasas->hideColumn(12);
 
     ui->twCasas->setSortingEnabled(true);
     ui->twCasas->resizeColumnsToContents();
@@ -127,6 +130,12 @@ void dlgGestionCasas::cargarModelos(){
     if (index.isValid()) {
         ui->twCasas->setCurrentIndex(index);
     }
+
+    m_tiposcasas = new QSqlQueryModel(this);
+    m_tiposcasas->setQuery(sql_tiposcasas);
+
+    ui->cbTipos->setModel(m_tiposcasas);
+    ui->cbTipos->setCurrentIndex(-1);
 
 }
 
@@ -150,6 +159,29 @@ void dlgGestionCasas::generarSQLProvincias()
     qDebug() << "el filtro es: " << sql;
 
     sql_gestor->anadirFiltro("provincias", sql);
+
+}
+
+void dlgGestionCasas::generarSQLTipos()
+{
+    QString sql;
+
+    if (tipos_escogidos.size() == 0) {
+        sql_gestor->quitarFiltro("tipos");
+        return;
+    }
+
+    foreach (const QString &value, tipos_escogidos) {
+        qDebug() << value;
+        sql += QString("type_house = '") + value + QString("' OR ");
+    }
+    // borramos el último OR
+    sql.chop(4);
+    sql = QString("house_id IN (SELECT DISTINCT house_id FROM houses WHERE ") + sql + QString(")");
+
+    qDebug() << "el filtro es: " << sql;
+
+    sql_gestor->anadirFiltro("tipos", sql);
 
 }
 
@@ -222,4 +254,67 @@ void dlgGestionCasas::recibirProvincia(const Provincia provincia)
 
     generarSQLProvincias();
 
+}
+
+void dlgGestionCasas::on_btResetearFiltros_clicked()
+{
+    ui->lwProvincias->clear();
+    provincias_escogidas.clear();
+
+    ui->rbTodas->setChecked(true);
+
+    sql_gestor->borrarFiltros();
+
+}
+
+void dlgGestionCasas::on_btQuitarTodasProvincias_clicked()
+{
+    ui->lwProvincias->clear();
+    provincias_escogidas.clear();
+    sql_gestor->quitarFiltro("provincias");
+
+}
+
+void dlgGestionCasas::on_btAnadirTipo_clicked()
+{
+    QString tipo_escogido;
+
+    if (ui->cbTipos->currentIndex() != -1) {
+
+        tipo_escogido = ui->cbTipos->currentText();
+
+        if (!tipos_escogidos.contains(tipo_escogido)) {
+
+            QListWidgetItem *item = new QListWidgetItem(tipo_escogido, ui->lwTipos);
+            Q_UNUSED(item)
+
+            tipos_escogidos << tipo_escogido;
+
+            generarSQLTipos();
+        }
+    }
+}
+
+void dlgGestionCasas::on_btQuitarTipo_clicked()
+{
+    QModelIndex idx = ui->lwTipos->currentIndex();
+
+    if (!idx.isValid())
+        return;
+
+    QString valor = idx.data().toString();
+
+    ui->lwTipos->takeItem(ui->lwTipos->currentRow());
+    tipos_escogidos.remove(valor);
+
+    generarSQLTipos();
+
+}
+
+void dlgGestionCasas::on_btQuitarTiposTodos_clicked()
+{
+    ui->lwTipos->clear();
+    tipos_escogidos.clear();
+
+    sql_gestor->quitarFiltro("tipos");
 }

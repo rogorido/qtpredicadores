@@ -13,6 +13,8 @@ class dlgNuevaCasa;
 
 class MyQmdiArea;
 
+class QSqlQueryModel;
+
 namespace Ui {
 class dlgGestionCasas;
 }
@@ -45,6 +47,16 @@ private slots:
 
     void recibirProvincia(const Provincia provincia);
 
+    void on_btResetearFiltros_clicked();
+
+    void on_btQuitarTodasProvincias_clicked();
+
+    void on_btAnadirTipo_clicked();
+
+    void on_btQuitarTipo_clicked();
+
+    void on_btQuitarTiposTodos_clicked();
+
 private:
     Ui::dlgGestionCasas *ui;
     MyQmdiArea *mdiarea;
@@ -62,6 +74,9 @@ private:
 
     // para filtrar por provincias
     QList<elementopareado> provincias_escogidas;
+    QSet<QString> tipos_escogidos;
+
+    QSqlQueryModel *m_tiposcasas;
 
     void cargarModelos();
 
@@ -69,6 +84,11 @@ private:
      * Al añadir/quitar provincias, para que actualice el filtro
      */
     void generarSQLProvincias();
+    /*
+     * Al añadir/quitar provincias, para que actualice el filtro
+     */
+    void generarSQLTipos();
+
 };
 
 #endif // DLGESTIONCASAS_H
