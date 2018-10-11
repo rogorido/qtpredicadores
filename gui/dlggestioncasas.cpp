@@ -92,6 +92,8 @@ void dlgGestionCasas::actualizarSql(QString s)
     ui->twCasas->resizeColumnsToContents();
     ui->twCasas->resizeRowsToContents();
 
+    emit infoBarra(m_casas->rowCount());
+
 }
 
 void dlgGestionCasas::cerrar()

@@ -45,6 +45,7 @@
 #include "models/provinciasmodel.h"
 #include "models/capitulosmodel.h"
 #include "models/qjsonmodel.h"
+#include "models/obrasmodel.h"
 
 #include "objs/tema.h"
 
@@ -127,9 +128,11 @@ void MainWindow::inicializarBarraEstadisticas()
     info_statusbar->setNumeroCasasTotal(m_casas->rowCount());
     info_statusbar->setNumeroCiudadesTotal(m_lugares->rowCount());
     info_statusbar->setNumeroPersonasTotal(m_personas->rowCount());
+    info_statusbar->setNumeroObrasTotal(m_obras->rowCount());
     info_statusbar->setNumeroCasasFiltrados(m_casas->rowCount());
     info_statusbar->setNumeroCiudadesFiltrados(m_lugares->rowCount());
     info_statusbar->setNumeroPersonasFiltrados(m_personas->rowCount());
+    info_statusbar->setNumeroObrasFiltrados(m_obras->rowCount());
 
     info_statusbar->inicializar();
 }
@@ -164,6 +167,9 @@ void MainWindow::cargarModelos(){
 
     m_capitulos = CapitulosModel::InstanceModel();
     m_capitulos->select();
+
+    m_obras = ObrasModel::InstanceModel();
+    m_obras->select();
 
     statusBar()->showMessage("Modelos cargados", STATUSBAR_TIMEOUT);
 
@@ -235,6 +241,7 @@ void MainWindow::Ciudades()
 void MainWindow::Casas()
 {
     FormCasas = new dlgGestionCasas(this);
+    connect(FormCasas, SIGNAL(infoBarra(int)), info_statusbar, SLOT(setNumeroCasasFiltrados(int)));
     QMdiSubWindow *window = mdiArea->addSubWindow(FormCasas);
     window->show();
 }
@@ -257,11 +264,10 @@ void MainWindow::Obras()
 {
     GestionObras = new dlgGestionObras(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(GestionObras);
-    connect(GestionObras, SIGNAL(infoBarraInferior(QString)), this, SLOT(updateStatusBarDerecha(QString)));
+    connect(GestionObras, SIGNAL(infoBarra(int)), info_statusbar, SLOT(setNumeroObrasFiltrados(int)));
     connect(GestionObras, SIGNAL(infoObraSeleccionada(QString)), this, SLOT(updateStatusBarIdSeleccionado(QString)));
     connect(GestionObras, SIGNAL(infoObraSeleccionadaBorrar()), this, SLOT(updateStatusBarIdSeleccionadoBorrar()));
 
-    GestionObras->contarTotal();
     window->show();
 }
 
@@ -269,11 +275,11 @@ void MainWindow::Personas()
 {
     GestionPersonas = new dlgGestionPersonas(this);
     QMdiSubWindow *window = mdiArea->addSubWindow(GestionPersonas);
-    connect(GestionPersonas, SIGNAL(infoBarraInferior(QString)), this, SLOT(updateStatusBarDerecha(QString)));
+
+    connect(GestionPersonas, SIGNAL(infoBarra(int)), info_statusbar, SLOT(setNumeroPersonasFiltrados(int)));
     connect(GestionPersonas, SIGNAL(infoPersonaSeleccionada(QString)), this, SLOT(updateStatusBarIdSeleccionado(QString)));
     connect(GestionPersonas, SIGNAL(infoPersonaSeleccionadaBorrar()), this, SLOT(updateStatusBarIdSeleccionadoBorrar()));
 
-    GestionPersonas->contarTotal();
     window->show();
 }
 

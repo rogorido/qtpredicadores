@@ -48,12 +48,6 @@ private slots:
     void modificarPersona();
 
     /*
-     * esto realmetne recoge una señal de sqlFiltroGestor
-     * y genera la señal para la mainwindow
-     */
-    void emitirSenalTotalPersonas();
-
-    /*
      * Actualizar el modelo tras recibir la señal de dlgNuevaPersona
      * de que se ha actualizado una persona
      */
@@ -64,7 +58,7 @@ private slots:
 
 signals:
 
-    void infoBarraInferior(QString info);
+    void infoBarra(int filtrado);
     void infoPersonaSeleccionada(QString info);
     void infoPersonaSeleccionadaBorrar(); // al salir borramos la statusbar
 
@@ -90,7 +84,6 @@ private:
     int person_id;
 
     // lo usamos para la barra
-    int total_personas;
     int total_filtrado;
 
     // para ver los detalles abajo

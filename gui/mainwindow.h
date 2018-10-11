@@ -33,6 +33,7 @@ class PersonasModel;
 class CasasModel;
 class ProvinciasModel;
 class CapitulosModel;
+class ObrasModel;
 
 class MyQmdiArea;
 
@@ -129,6 +130,7 @@ private:
     CasasModel *m_casas;
     ProvinciasModel *m_provincias;
     CapitulosModel *m_capitulos;
+    ObrasModel *m_obras;
 
     void cargarModelos();
     void cargarMenues();

@@ -62,12 +62,6 @@ private slots:
     void modificarPersona();
 
     /*
-     * esto realmetne recoge una señal de sqlFiltroGestor
-     * y genera la señal para la mainwindow
-     */
-    void emitirSenalTotalObras();
-
-    /*
      * Actualizar el modelo tras recibir la señal de dlgNuevaObra
      * de que se ha actualizado una obra
      */
@@ -82,7 +76,7 @@ private slots:
 
 signals:
 
-    void infoBarraInferior(QString info);
+    void infoBarra(int filtrados);
     void infoObraSeleccionada(QString info);
     void infoObraSeleccionadaBorrar(); // al salir borramos la statusbar
 
@@ -125,7 +119,6 @@ private:
     int work_id;
 
     // lo usamos para la barra
-    int total_obras;
     int total_filtrado;
 
     QJsonModel *json_detalles;

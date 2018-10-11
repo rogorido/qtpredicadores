@@ -53,6 +53,10 @@ private slots:
     void actualizarSql(QString s);
     void cerrar();
 
+signals:
+
+    void infoBarra(int filtrado);
+
 private:
     Ui::dlgGestionCasas *ui;
     MyQmdiArea *mdiarea;

@@ -68,17 +68,6 @@ dlgGestionObras::dlgGestionObras(QWidget *parent) :
     connect(ui->tvObras, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(menuContextual(const QPoint &)));
 
-    /*
-     * esto lo hacemos aquí aunque luego hay una función con
-     * este mismo código. Pero el asunto es que esto necesito
-     * hacerlo al cargar el formulario para que meta en esa variable
-     * el total. Aunque sospecho que esto es una cutrada.
-     */
-    QSqlQuery query(sqlcontar);
-    query.next();
-    total_obras = query.value(0).toInt();
-    emitirSenalTotalObras();
-
 }
 
 dlgGestionObras::~dlgGestionObras()
@@ -92,7 +81,7 @@ void dlgGestionObras::contarTotal()
     //total_filtrado = obispos_model->rowCount();
     total_filtrado = works_model->rowCount();
 
-    emitirSenalTotalObras();
+    emit infoBarra(total_filtrado);
 }
 
 void dlgGestionObras::on_rbManuscritos_clicked()
@@ -146,19 +135,6 @@ void dlgGestionObras::verPersona()
 void dlgGestionObras::modificarPersona()
 {
 
-}
-
-void dlgGestionObras::emitirSenalTotalObras()
-{
-    QString final;
-
-   if (total_obras == total_filtrado){
-       final = QString("Obras: %1").arg(total_obras);
-   }
-   else {
-       final = QString("Obras: %1/%2").arg(QString::number(total_filtrado)).arg(total_obras);
-   }
-   emit infoBarraInferior(final);
 }
 
 void dlgGestionObras::actualizarModeloTrasObraActualizada()

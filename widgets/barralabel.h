@@ -22,11 +22,11 @@ signals:
 
 public slots:
 
-    void setNumeroObisposFiltrados(const int n) { f_obispos = n; }
-    void setNumeroObrasFiltrados(const int n) { f_obras = n; }
-    void setNumeroPersonasFiltrados(const int n) { f_personas = n; }
-    void setNumeroCasasFiltrados(const int n) { f_casas = n; }
-    void setNumeroCiudadesFiltrados(const int n) { f_ciudades = n; }
+    void setNumeroObisposFiltrados(const int n);
+    void setNumeroObrasFiltrados(const int n);
+    void setNumeroPersonasFiltrados(const int n);
+    void setNumeroCasasFiltrados(const int n);
+    void setNumeroCiudadesFiltrados(const int n);
 
 private:
 

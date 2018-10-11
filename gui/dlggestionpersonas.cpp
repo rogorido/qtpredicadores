@@ -61,17 +61,6 @@ dlgGestionPersonas::dlgGestionPersonas(QWidget *parent) :
 
     connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
 
-    /*
-     * esto lo hacemos aquí aunque luego hay una función con
-     * este mismo código. Pero el asunto es que esto necesito
-     * hacerlo al cargar el formulario para que meta en esa variable
-     * el total. Aunque sospecho que esto es una cutrada.
-     */
-    QSqlQuery query(sqlcontar);
-    query.next();
-    total_personas = query.value(0).toInt();
-    emitirSenalTotalPersonas();
-
 }
 
 dlgGestionPersonas::~dlgGestionPersonas()
@@ -85,7 +74,7 @@ void dlgGestionPersonas::contarTotal()
     //total_filtrado = obispos_model->rowCount();
     total_filtrado = m_persons->rowCount();
 
-    emitirSenalTotalPersonas();
+    emit infoBarra(total_filtrado);
 
 }
 
@@ -136,19 +125,6 @@ void dlgGestionPersonas::modificarPersona()
     QMdiSubWindow *window = mdiarea->addSubWindow(dlgPersonaAModificar);
     connect(dlgPersonaAModificar, SIGNAL(personaIntroducida()), this, SLOT(actualizarModeloTrasPersonaActualizada()));
     window->show();
-}
-
-void dlgGestionPersonas::emitirSenalTotalPersonas()
-{
-    QString final;
-
-   if (total_personas == total_filtrado){
-       final = QString("Personas: %1").arg(total_personas);
-   }
-   else {
-       final = QString("Personas: %1/%2").arg(QString::number(total_filtrado)).arg(total_personas);
-   }
-   emit infoBarraInferior(final);
 }
 
 void dlgGestionPersonas::actualizarModeloTrasPersonaActualizada()
