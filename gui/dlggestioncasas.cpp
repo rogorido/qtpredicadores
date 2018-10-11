@@ -9,6 +9,7 @@
 #include "models/sqlfiltrogestor.h"
 #include "objs/proxynombres.h"
 #include "gui/dlgnuevacasa.h"
+#include "gui/dlgseleccionargeneral.h"
 #include "widgets/myqmdiarea.h"
 
 const QString sql_general = "SELECT * from vistas.houses_alternatives";
@@ -33,6 +34,8 @@ dlgGestionCasas::dlgGestionCasas(QWidget *parent) :
     connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
 
     connect(ui->btCerrar, SIGNAL(clicked(bool)), this, SLOT(cerrar()));
+
+    ui->twCasas->verticalHeader()->hide();
 }
 
 dlgGestionCasas::~dlgGestionCasas()
@@ -104,7 +107,7 @@ void dlgGestionCasas::cargarModelos(){
 
     ui->twCasas->setModel(proxy_casas);
     ui->twCasas->hideColumn(0);
-    ui->twCasas->hideColumn(2);
+    ui->twCasas->hideColumn(6);
 
     ui->twCasas->setSortingEnabled(true);
     ui->twCasas->resizeColumnsToContents();
@@ -125,6 +128,28 @@ void dlgGestionCasas::cargarModelos(){
         ui->twCasas->setCurrentIndex(index);
     }
 
+}
+
+void dlgGestionCasas::generarSQLProvincias()
+{
+    QString sql;
+
+    if (provincias_escogidas.size() == 0) {
+        sql_gestor->quitarFiltro("provincias");
+        return;
+    }
+
+    // construimos la SQL
+    for (int var = 0; var < provincias_escogidas.size(); ++var) {
+        sql += QString("province_id = ") + QString::number(provincias_escogidas.at(var).id) + QString(" OR ");
+    }
+    // borramos el último OR
+    sql.chop(4);
+    sql = QString("house_id IN (SELECT DISTINCT house_id FROM houses WHERE ") + sql + QString(")");
+
+    qDebug() << "el filtro es: " << sql;
+
+    sql_gestor->anadirFiltro("provincias", sql);
 
 }
 
@@ -167,7 +192,34 @@ void dlgGestionCasas::on_rbMasculinas_toggled(bool checked)
 
 void dlgGestionCasas::on_rbTodas_toggled(bool checked)
 {
+    Q_UNUSED(checked)
+
     sql_gestor->quitarFiltro("masculinas");
     sql_gestor->quitarFiltro("femeninas");
+
+}
+
+void dlgGestionCasas::on_btAnadirProvincia_clicked()
+{
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, true, this);
+
+    connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
+
+}
+
+void dlgGestionCasas::recibirProvincia(const Provincia provincia)
+{
+    elementopareado nuevaprovincia;
+
+    nuevaprovincia.id = provincia.getId();
+    nuevaprovincia.elemento = provincia.getNombre();
+
+    provincias_escogidas.append(nuevaprovincia);
+    QListWidgetItem *item = new QListWidgetItem(nuevaprovincia.elemento, ui->lwProvincias);
+    Q_UNUSED(item)
+
+    generarSQLProvincias();
 
 }

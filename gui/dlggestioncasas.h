@@ -3,6 +3,9 @@
 
 #include <QWidget>
 
+#include "objs/provincia.h"
+#include "objs/variados.h"
+
 class CasasModel;
 class ProxyNombres;
 class SqlFiltroGestor;
@@ -38,6 +41,9 @@ private slots:
     void on_rbFemeninas_toggled(bool checked);
     void on_rbMasculinas_toggled(bool checked);
     void on_rbTodas_toggled(bool checked);
+    void on_btAnadirProvincia_clicked();
+
+    void recibirProvincia(const Provincia provincia);
 
 private:
     Ui::dlgGestionCasas *ui;
@@ -54,7 +60,15 @@ private:
     // realmente este form lo he ido copiando de otros anteriores...
     dlgNuevaCasa *dlgCasaAModificar;
 
+    // para filtrar por provincias
+    QList<elementopareado> provincias_escogidas;
+
     void cargarModelos();
+
+    /*
+     * Al añadir/quitar provincias, para que actualice el filtro
+     */
+    void generarSQLProvincias();
 };
 
 #endif // DLGESTIONCASAS_H
