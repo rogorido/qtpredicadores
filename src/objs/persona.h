@@ -3,7 +3,7 @@
 
 #include <QString>
 
-#include "objs/variados.h"
+#include "variados.h"
 
 // no lo derivo de QObject, por lo que no tiene ni signals ni slots
 

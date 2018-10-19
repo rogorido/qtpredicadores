@@ -3,11 +3,11 @@
 
 #include <QJsonObject>
 
-#include "objs/variados.h"
-#include "objs/persona.h"
-#include "objs/casa.h"
-#include "objs/provincia.h"
-#include "objs/notas.h"
+#include "variados.h"
+#include "persona.h"
+#include "casa.h"
+#include "provincia.h"
+#include "notas.h"
 
 class Afiliacion
 {

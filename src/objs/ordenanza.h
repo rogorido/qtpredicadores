@@ -6,10 +6,10 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-#include "objs/pena.h"
-#include "objs/variados.h"
-#include "objs/retroreferencia.h"
-#include "objs/notas.h"
+#include "pena.h"
+#include "variados.h"
+#include "retroreferencia.h"
+#include "notas.h"
 
 class Ordenanza
 {

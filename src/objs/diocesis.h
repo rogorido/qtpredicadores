@@ -4,7 +4,7 @@
 #include <QString>
 #include <QJsonObject>
 
-#include "objs/notas.h"
+#include "notas.h"
 
 class Diocesis
 {

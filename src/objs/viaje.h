@@ -4,7 +4,7 @@
 #include <QString>
 #include <QDate>
 
-#include "objs/notas.h"
+#include "notas.h"
 
 class QJsonObject;
 

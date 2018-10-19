@@ -4,7 +4,7 @@
 #include <QSortFilterProxyModel>
 #include <QIcon>
 
-#include "objs/variados.h"
+#include "variados.h"
 
 class ProxyNombres : public QSortFilterProxyModel
 {

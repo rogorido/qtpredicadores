@@ -6,8 +6,8 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-#include "objs/variados.h"
-#include "objs/notas.h"
+#include "variados.h"
+#include "notas.h"
 
 class Licencia
 {

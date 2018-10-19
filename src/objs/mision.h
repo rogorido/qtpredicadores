@@ -4,7 +4,7 @@
 #include <QDate>
 #include <QJsonObject>
 
-#include "objs/notas.h"
+#include "notas.h"
 
 class Mision
 {

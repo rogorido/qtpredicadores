@@ -4,11 +4,11 @@
 #include <QString>
 #include <QJsonObject>
 
-#include "objs/infraccion.h"
-#include "objs/pena.h"
-#include "objs/notas.h"
-#include "objs/persona.h"
-#include "objs/retroreferencia.h"
+#include "infraccion.h"
+#include "pena.h"
+#include "notas.h"
+#include "persona.h"
+#include "retroreferencia.h"
 
 class Declaracion
 {

@@ -3,7 +3,7 @@
 
 #include <QJsonObject>
 
-#include "objs/variados.h"
+#include "variados.h"
 
 class RetroReferencia
 {
