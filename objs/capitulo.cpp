@@ -15,3 +15,4 @@ void Capitulo::setMaestroGeneral(const int m) { maestrogeneral = m; }
 void Capitulo::setDefinitorio(const bool d) { definitorio = d; }
 void Capitulo::setFechaInicio(const QDate fi) { fecha_inicio = fi; }
 void Capitulo::setFechaFin(const QDate ff) { fecha_fin = ff; }
+void Capitulo::setProvincia(const int p) { provincia = p; }

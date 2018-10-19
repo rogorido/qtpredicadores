@@ -5,6 +5,7 @@
 
 #include "objs/persona.h"
 #include "objs/lugar.h"
+#include "objs/provincia.h"
 
 class QCompleter;
 class QSqlQueryModel;
@@ -35,6 +36,8 @@ private slots:
     void actualizarLugar(Lugar lugar);
     void anadirMaestroGeneral();
     void recibirMaestroGeneral(Persona persona);
+    void anadirProvincia();
+    void recibirProvincia(Provincia provincia);
 
     void on_btQuitarMaestroGeneral_clicked();
 
@@ -77,6 +80,7 @@ private:
 
     elementopareado maestrogeneral_struct;
     elementopareado lugarescogido_struct;
+    elementopareado provinciaescogida_struct;
 
     void cargarCompleters();
     void borrarCampos();

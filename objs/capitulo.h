@@ -24,20 +24,22 @@ public:
     void setDefinitorio(const bool d);
     void setFechaInicio(const QDate f_inicio);
     void setFechaFin(const QDate f_fin);
+    void setProvincia(const int p);
 
     //getters
-    int getId() const {return id;}
-    QString getNombre() const {return nombre;}
-    int getLugar() const {return lugar;}
-    QString getTipo() const {return tipo;}
-    QString getAsistentes() const {return asistentes;}
-    QString getVolumen() const {return volumen;}
-    QString getPaginas() const {return paginas;}
-    QString getNotas() const {return notas;}
-    int getMaestroGeneral() const {return maestrogeneral;}
-    bool getDefinitorio() const {return definitorio;}
-    QDate getFechaInicio() const {return fecha_inicio;}
-    QDate getFechaFin() const {return fecha_fin;}
+    int getId() const { return id; }
+    QString getNombre() const { return nombre; }
+    int getLugar() const { return lugar; }
+    QString getTipo() const { return tipo; }
+    QString getAsistentes() const { return asistentes; }
+    QString getVolumen() const { return volumen; }
+    QString getPaginas() const { return paginas; }
+    QString getNotas() const { return notas; }
+    int getMaestroGeneral() const { return maestrogeneral; }
+    bool getDefinitorio() const { return definitorio; }
+    QDate getFechaInicio() const { return fecha_inicio; }
+    QDate getFechaFin() const { return fecha_fin; }
+    int getProvincia() const { return provincia; }
     
 private:
 
@@ -53,6 +55,7 @@ private:
     QString volumen;
     QString paginas;
     QString notas;
+    int provincia;
     // realmente falta un campo varia json pero
     // que no tengo todavía en el formulario 
 

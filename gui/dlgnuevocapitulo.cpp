@@ -31,6 +31,7 @@ dlgNuevoCapitulo::dlgNuevoCapitulo(QWidget *parent) :
     connect(ui->dtFinal, SIGNAL(dateChanged(const QDate)), this, SLOT(fechaFinalCambiada()));
     connect(ui->btQuitarLugar, SIGNAL(clicked()), this, SLOT(quitarLugar()));
     connect(ui->txtMaestroGeneral, SIGNAL(dobleclick()), this, SLOT(anadirMaestroGeneral()));
+    connect(ui->txtProvincia, SIGNAL(dobleclick()), this, SLOT(anadirProvincia()));
     connect(ui->txtLugar, SIGNAL(dobleclick()), this, SLOT(anadirLugar()));
 
     ui->dtFinal->calendarPopup();
@@ -72,7 +73,8 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
     QString titulogeneral = ui->txtNombreGeneral->text();
 
     int lugar = lugarescogido_struct.id;
-    int maestrogeneral = maestrogeneral_struct.id;;
+    int maestrogeneral = maestrogeneral_struct.id;
+    int provincia = provinciaescogida_struct.id;
     QString tipo = ui->cboTipoCapitulo->currentText();
     QDate fechainicial;
     QDate fechafinal;
@@ -100,6 +102,7 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
     capitulo->setLugar(lugar);
     capitulo->setTipo(tipo);
     capitulo->setMaestroGeneral(maestrogeneral);
+    capitulo->setProvincia(provincia);
     capitulo->setVolumen(tomo);
     capitulo->setPaginas(paginas);
     capitulo->setAsistentes(asistentes);
@@ -203,6 +206,25 @@ void dlgNuevoCapitulo::recibirMaestroGeneral(Persona persona){
     maestrogeneral_struct.elemento = persona.getNombre() + ' ' + persona.getApellidos();
 
     ui->txtMaestroGeneral->setText(maestrogeneral_struct.elemento);
+}
+
+void dlgNuevoCapitulo::anadirProvincia()
+{
+    dlgSeleccionarGeneral *dlgseleccionar = new dlgSeleccionarGeneral(PROVINCIA, true, this);
+    connect(dlgseleccionar, SIGNAL(provinciaEscogidaSignal(Provincia)), this, SLOT(recibirProvincia(Provincia)));
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgseleccionar);
+    window->show();
+
+}
+
+void dlgNuevoCapitulo::recibirProvincia(Provincia provincia)
+{
+    provinciaescogida_struct.id = provincia.getId();
+    provinciaescogida_struct.elemento = provincia.getNombre();
+
+    ui->txtProvincia->setText(provinciaescogida_struct.elemento);
+
 }
 
 
