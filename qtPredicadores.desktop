@@ -5,7 +5,7 @@ Name=qtPredicadores
 Comment=A program for the Preachers database
 Comment[de]=Ein Programm für die Prediger-Datenbank 
 Comment[es]=Un programa para la bd de la Orden de Predicadores
-Exec=/home/igor/latexpruebas/compilado/build-qtPredicadores-Desktop-Release/qtPredicadores %U
+Exec=/home/igor/bin/qtPredicadores %U
 Terminal=false
 Categories=Office;Databases;
 
