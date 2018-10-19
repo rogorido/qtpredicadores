@@ -7,7 +7,7 @@
 #include <QPushButton>
 #include <QTableView>
 
-#include "models/temasmodel.h"
+#include "src/models/temasmodel.h"
 
 WidgetTemas::WidgetTemas(QWidget *parent) :
     QWidget(parent),

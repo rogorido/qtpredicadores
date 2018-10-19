@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "objs/notas.h"
+#include "src/objs/notas.h"
 
 class QJsonObject;
 
