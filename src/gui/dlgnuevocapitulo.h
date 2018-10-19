@@ -3,9 +3,9 @@
 
 #include <QWidget>
 
-#include "objs/persona.h"
-#include "objs/lugar.h"
-#include "objs/provincia.h"
+#include "src/objs/persona.h"
+#include "src/objs/lugar.h"
+#include "src/objs/provincia.h"
 
 class QCompleter;
 class QSqlQueryModel;

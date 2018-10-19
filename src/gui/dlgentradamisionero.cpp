@@ -10,7 +10,7 @@
 
 #include "dlgseleccionargeneral.h"
 #include "dlgfuenteentrada.h"
-#include "widgets/myqmdiarea.h"
+#include "src/widgets/myqmdiarea.h"
 
 dlgEntradaMisionero::dlgEntradaMisionero(int mision, QWidget *parent) :
     QWidget(parent),

@@ -1,9 +1,9 @@
 #include "dlgcapitulos.h"
 #include "ui_dlgcapitulos.h"
 
-#include "models/capitulosmodel.h"
-#include "gui/dlgasistentes.h"
-#include "widgets/fechasdelegate.h"
+#include "src/models/capitulosmodel.h"
+#include "dlgasistentes.h"
+#include "src/widgets/fechasdelegate.h"
 
 #include <QDebug>
 

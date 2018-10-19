@@ -3,8 +3,8 @@
 
 #include <QDialog>
 
-#include "objs/variados.h"
-#include "objs/casa.h"
+#include "src/objs/variados.h"
+#include "src/objs/casa.h"
 
 class QSqlTableModel;
 class MyQmdiArea;

@@ -14,14 +14,14 @@
 
 #include <QDebug>
 
-#include "models/temasmodel.h"
-#include "models/resolucionesmodel.h"
-#include "models/qjsonmodel.h"
+#include "src/models/temasmodel.h"
+#include "src/models/resolucionesmodel.h"
+#include "src/models/qjsonmodel.h"
 #include "dlgdetalles.h"
-#include "objs/resolucion.h"
-#include "gui/dlgtemas.h"
-#include "gui/dlgseleccionargeneral.h"
-#include "widgets/myqmdiarea.h"
+#include "src/objs/resolucion.h"
+#include "dlgtemas.h"
+#include "dlgseleccionargeneral.h"
+#include "src/widgets/myqmdiarea.h"
 
 dlgNuevaResolucion::dlgNuevaResolucion(int capitulo,
                                  QWidget *parent) :

@@ -8,11 +8,11 @@
 #include <QMessageBox>
 
 #include "dlgdetalles.h"
-#include "objs/lugar.h"
-#include "objs/variados.h"
-#include "models/lugaresmodel.h"
-#include "models/qjsonmodel.h"
-#include "widgets/myqmdiarea.h"
+#include "src/objs/lugar.h"
+#include "src/objs/variados.h"
+#include "src/models/lugaresmodel.h"
+#include "src/models/qjsonmodel.h"
+#include "src/widgets/myqmdiarea.h"
 
 dlgNuevoLugar::dlgNuevoLugar(QWidget *parent) :
     QWidget(parent),

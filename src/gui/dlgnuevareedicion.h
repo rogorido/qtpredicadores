@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QJsonObject>
 
-#include "objs/variados.h"
-#include "objs/lugar.h"
+#include "src/objs/variados.h"
+#include "src/objs/lugar.h"
 
 class MyQmdiArea;
 class QCompleter;

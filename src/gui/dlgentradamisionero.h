@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QJsonObject>
 
-#include "objs/persona.h"
-#include "objs/variados.h"
+#include "src/objs/persona.h"
+#include "src/objs/variados.h"
 
 class MyQmdiArea;
 

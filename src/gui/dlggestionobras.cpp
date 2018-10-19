@@ -9,14 +9,14 @@
 #include <QDebug>
 #include <QMdiSubWindow>
 
-#include "gui/dlgnuevaobra.h"
-#include "gui/dlgseleccionargeneral.h"
+#include "dlgnuevaobra.h"
+#include "dlgseleccionargeneral.h"
 
-#include "widgets/myqmdiarea.h"
+#include "src/widgets/myqmdiarea.h"
 
-#include "models/sqlfiltrogestor.h"
-#include "models/qjsonmodel.h"
-#include "models/obrasmodel.h"
+#include "src/models/sqlfiltrogestor.h"
+#include "src/models/qjsonmodel.h"
+#include "src/models/obrasmodel.h"
 
 const QString sql_general = "SELECT * FROM vistas.w_works_general";
 const QString sql_con_reedicion = "SELECT DISTINCT work_id FROM works_details WHERE details @> '{\"tipo\":\"reedición\"}'";

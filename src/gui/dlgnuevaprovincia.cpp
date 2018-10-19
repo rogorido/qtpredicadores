@@ -1,8 +1,8 @@
 #include "dlgnuevaprovincia.h"
 #include "ui_dlgnuevaprovincia.h"
 
-#include "models/provinciasmodel.h"
-#include "objs/provincia.h"
+#include "src/models/provinciasmodel.h"
+#include "src/objs/provincia.h"
 
 #include <QMessageBox>
 

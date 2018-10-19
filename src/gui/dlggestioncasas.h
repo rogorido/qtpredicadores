@@ -3,8 +3,8 @@
 
 #include <QWidget>
 
-#include "objs/provincia.h"
-#include "objs/variados.h"
+#include "src/objs/provincia.h"
+#include "src/objs/variados.h"
 
 class CasasModel;
 class ProxyNombres;

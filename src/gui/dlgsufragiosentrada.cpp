@@ -4,7 +4,7 @@
 #include <QSqlQueryModel>
 #include <QCompleter>
 
-#include "objs/variados.h"
+#include "src/objs/variados.h"
 
 const QString sql_destinatarios="SELECT DISTINCT jsonb_array_elements_text(details->'destinatarios') AS destinatarios "
                                 "FROM resolutions_details WHERE details ? 'sufragio' "

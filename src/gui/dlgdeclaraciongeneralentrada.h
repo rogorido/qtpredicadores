@@ -3,10 +3,10 @@
 
 #include <QWidget>
 
-#include "objs/declaracion.h"
-#include "objs/provincia.h"
-#include "objs/variados.h"
-#include "objs/retroreferencia.h"
+#include "src/objs/declaracion.h"
+#include "src/objs/provincia.h"
+#include "src/objs/variados.h"
+#include "src/objs/retroreferencia.h"
 
 class QSqlQueryModel;
 class QCompleter;

@@ -3,10 +3,10 @@
 
 #include <QWidget>
 
-#include "objs/persona.h"
-#include "objs/lugar.h"
-#include "gui/dlgtemas.h"
-#include "gui/dlgdetalles.h"
+#include "src/objs/persona.h"
+#include "src/objs/lugar.h"
+#include "dlgtemas.h"
+#include "dlgdetalles.h"
 
 class LugaresModel;
 class ObrasModel;

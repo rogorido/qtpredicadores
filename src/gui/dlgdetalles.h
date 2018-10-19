@@ -3,19 +3,19 @@
 
 #include <QWidget>
 
-#include "objs/persona.h"
-#include "objs/casa.h"
-#include "objs/lugar.h"
-#include "objs/provincia.h"
-#include "objs/aprobacion.h"
-#include "objs/licencia.h"
-#include "objs/pena.h"
-#include "objs/afiliacion.h"
-#include "objs/ordenanza.h"
-#include "objs/sufragio.h"
-#include "objs/diocesis.h"
-#include "objs/declaracion.h"
-#include "objs/viaje.h"
+#include "src/objs/persona.h"
+#include "src/objs/casa.h"
+#include "src/objs/lugar.h"
+#include "src/objs/provincia.h"
+#include "src/objs/aprobacion.h"
+#include "src/objs/licencia.h"
+#include "src/objs/pena.h"
+#include "src/objs/afiliacion.h"
+#include "src/objs/ordenanza.h"
+#include "src/objs/sufragio.h"
+#include "src/objs/diocesis.h"
+#include "src/objs/declaracion.h"
+#include "src/objs/viaje.h"
 
 class QSqlQueryModel;
 class QCompleter;

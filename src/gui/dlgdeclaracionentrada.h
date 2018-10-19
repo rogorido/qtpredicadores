@@ -3,10 +3,10 @@
 
 #include <QDialog>
 
-#include "objs/variados.h"
-#include "objs/pena.h"
-#include "objs/infraccion.h"
-#include "objs/declaracion.h"
+#include "src/objs/variados.h"
+#include "src/objs/pena.h"
+#include "src/objs/infraccion.h"
+#include "src/objs/declaracion.h"
 
 class QJsonModel;
 class MyQmdiArea;

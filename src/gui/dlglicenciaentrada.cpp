@@ -9,7 +9,7 @@
 #include <QDebug>
 
 #include "dlgseleccionargeneral.h"
-#include "widgets/myqmdiarea.h"
+#include "src/widgets/myqmdiarea.h"
 
 const QString sql_otorgantes = "SELECT DISTINCT jsonb_array_elements_text(details->'otorgante') AS otorgante "
                              "FROM resolutions_details WHERE details->>'otorgante' IS NOT NULL "

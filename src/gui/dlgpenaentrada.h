@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "objs/pena.h"
+#include "src/objs/pena.h"
 
 class QSqlQueryModel;
 class QCompleter;

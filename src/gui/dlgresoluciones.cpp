@@ -13,13 +13,13 @@
 #include <QMdiSubWindow>
 #include <QMessageBox>
 
-#include "models/qjsonmodel.h"
-#include "models/sqlfiltrogestor.h"
+#include "src/models/qjsonmodel.h"
+#include "src/models/sqlfiltrogestor.h"
 
-#include "widgets/myqmdiarea.h"
+#include "src/widgets/myqmdiarea.h"
 
-#include "gui/dlgseleccionargeneral.h"
-#include "gui/dlgdetalles.h"
+#include "dlgseleccionargeneral.h"
+#include "dlgdetalles.h"
 
 const QString sql_general="SELECT DISTINCT ON (r.resolution_id) * FROM resolutions r "
                           "LEFT JOIN resolutions_details rd ON r.resolution_id = rd.resolution_id "

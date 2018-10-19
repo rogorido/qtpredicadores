@@ -10,13 +10,13 @@
 #include <QMdiSubWindow>
 #include <QDebug>
 
-#include "objs/obispo.h"
-#include "objs/notas.h"
-#include "models/qjsonmodel.h"
+#include "src/objs/obispo.h"
+#include "src/objs/notas.h"
+#include "src/models/qjsonmodel.h"
 #include "dlgseleccionargeneral.h"
 #include "dlgfuenteentrada.h"
 
-#include "widgets/myqmdiarea.h"
+#include "src/widgets/myqmdiarea.h"
 
 const QDate fechainicial = QDate(1200, 1, 1);
 const QDate fechafinal = QDate(1800, 1, 1);

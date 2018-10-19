@@ -2,9 +2,9 @@
 #define DLGNUEVARESOLUCION_H
 
 #include <QWidget>
-#include "objs/provincia.h"
-#include "objs/capitulo.h"
-#include "objs/variados.h"
+#include "src/objs/provincia.h"
+#include "src/objs/capitulo.h"
+#include "src/objs/variados.h"
 
 class TemasModel;
 class ResolucionesModel;

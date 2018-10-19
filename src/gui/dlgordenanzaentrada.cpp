@@ -1,10 +1,10 @@
 #include "dlgordenanzaentrada.h"
 #include "ui_dlgordenanzaentrada.h"
 
-#include "gui/dlgpenaentrada.h"
-#include "gui/dlgtemas.h"
+#include "dlgpenaentrada.h"
+#include "dlgtemas.h"
 
-#include "widgets/myqmdiarea.h"
+#include "src/widgets/myqmdiarea.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>

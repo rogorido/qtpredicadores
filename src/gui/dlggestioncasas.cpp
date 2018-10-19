@@ -5,13 +5,13 @@
 #include <QMdiSubWindow>
 #include <QSqlQueryModel>
 
-#include "models/casasmodel.h"
+#include "src/models/casasmodel.h"
 
-#include "models/sqlfiltrogestor.h"
-#include "objs/proxynombres.h"
-#include "gui/dlgnuevacasa.h"
-#include "gui/dlgseleccionargeneral.h"
-#include "widgets/myqmdiarea.h"
+#include "src/models/sqlfiltrogestor.h"
+#include "src/objs/proxynombres.h"
+#include "dlgnuevacasa.h"
+#include "dlgseleccionargeneral.h"
+#include "src/widgets/myqmdiarea.h"
 
 const QString sql_general = "SELECT * from vistas.houses_alternatives";
 const QString sql_tiposcasas = "SELECT DISTINCT type_house FROM houses WHERE type_house IS NOT NULL ORDER BY type_house";

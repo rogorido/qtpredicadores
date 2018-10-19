@@ -1,26 +1,26 @@
 #include "dlgseleccionargeneral.h"
 #include "ui_dlgseleccionargeneral.h"
 
-#include "models/personasmodel.h"
-#include "models/casasmodel.h"
-#include "models/lugaresmodel.h"
-#include "models/provinciasmodel.h"
-#include "models/capitulosmodel.h"
-#include "models/temasmodel.h"
-#include "models/diocesismodel.h"
+#include "src/models/personasmodel.h"
+#include "src/models/casasmodel.h"
+#include "src/models/lugaresmodel.h"
+#include "src/models/provinciasmodel.h"
+#include "src/models/capitulosmodel.h"
+#include "src/models/temasmodel.h"
+#include "src/models/diocesismodel.h"
 
-#include "objs/proxynombres.h"
+#include "src/objs/proxynombres.h"
 
-#include "gui/dlgnuevacasa.h"
-#include "gui/dlgnuevapersona.h"
-#include "gui/dlgnuevaprovincia.h"
-#include "gui/dlgnuevolugar.h"
-#include "gui/dlgnuevocapitulo.h"
-#include "gui/dlgnuevadiocesis.h"
-#include "gui/dlgobispos.h"
+#include "dlgnuevacasa.h"
+#include "dlgnuevapersona.h"
+#include "dlgnuevaprovincia.h"
+#include "dlgnuevolugar.h"
+#include "dlgnuevocapitulo.h"
+#include "dlgnuevadiocesis.h"
+#include "dlgobispos.h"
 
-#include "widgets/myqmdiarea.h"
-#include "widgets/fechasdelegate.h"
+#include "src/widgets/myqmdiarea.h"
+#include "src/widgets/fechasdelegate.h"
 
 #include <QInputDialog>
 #include <QSqlQueryModel>

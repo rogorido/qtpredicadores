@@ -13,11 +13,11 @@
 #include <QUrl>
 #include <QMdiSubWindow>
 
-#include "models/sqlfiltrogestor.h"
-#include "objs/proxynombres.h"
-#include "gui/dlgnuevadiocesis.h"
-#include "gui/dlgdiocesisdetalles.h"
-#include "widgets/myqmdiarea.h"
+#include "src/models/sqlfiltrogestor.h"
+#include "src/objs/proxynombres.h"
+#include "dlgnuevadiocesis.h"
+#include "dlgdiocesisdetalles.h"
+#include "src/widgets/myqmdiarea.h"
 
 const QString sql_general = "SELECT * from vistas.diocesis_general";
 const QString sql_comprobar = "check_allbishops = false";

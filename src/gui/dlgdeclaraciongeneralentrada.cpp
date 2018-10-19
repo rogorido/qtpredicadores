@@ -1,8 +1,8 @@
 #include "dlgdeclaraciongeneralentrada.h"
 #include "ui_dlgdeclaraciongeneralentrada.h"
 
-#include "gui/dlgseleccionargeneral.h"
-#include "widgets/myqmdiarea.h"
+#include "dlgseleccionargeneral.h"
+#include "src/widgets/myqmdiarea.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>

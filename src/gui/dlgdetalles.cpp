@@ -13,9 +13,9 @@
 #include "dlgviajeentrada.h"
 #include "dlgnuevareedicion.h"
 
-#include "models/qjsonmodel.h"
+#include "src/models/qjsonmodel.h"
 
-#include "widgets/myqmdiarea.h"
+#include "src/widgets/myqmdiarea.h"
 
 #include <QSqlQueryModel>
 #include <QCompleter>

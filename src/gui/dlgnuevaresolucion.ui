@@ -443,7 +443,7 @@
   <customwidget>
    <class>myQLineEdit</class>
    <extends>QLineEdit</extends>
-   <header location="global">widgets/myqlineedit.h</header>
+   <header location="global">src/widgets/myqlineedit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

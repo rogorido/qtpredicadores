@@ -3,8 +3,8 @@
 
 #include <QWidget>
 
-#include "objs/tema.h"
-#include "gui/dlgseleccionargeneral.h"
+#include "src/objs/tema.h"
+#include "dlgseleccionargeneral.h"
 
 class MyQmdiArea;
 

@@ -5,8 +5,8 @@
 #include <QSqlQueryModel>
 #include <QCompleter>
 
-#include "gui/dlgseleccionargeneral.h"
-#include "widgets/myqmdiarea.h"
+#include "dlgseleccionargeneral.h"
+#include "src/widgets/myqmdiarea.h"
 
 const QString sql_editores = "SELECT DISTINCT details->>'editor' FROM works_details ORDER BY 1";
 const QString sql_lenguas = "SELECT DISTINCT details->>'language' FROM works_details ORDER BY 1";

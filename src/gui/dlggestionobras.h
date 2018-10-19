@@ -3,9 +3,9 @@
 
 #include <QWidget>
 
-#include "objs/variados.h"
-#include "objs/tema.h"
-#include "objs/persona.h"
+#include "src/objs/variados.h"
+#include "src/objs/tema.h"
+#include "src/objs/persona.h"
 
 class QMenu;
 class QAction;

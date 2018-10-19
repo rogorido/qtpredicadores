@@ -10,14 +10,14 @@
 #include <QMdiSubWindow>
 #include <QMessageBox>
 
-#include "models/lugaresmodel.h"
-#include "models/casasmodel.h"
-#include "models/provinciasmodel.h"
-#include "objs/casa.h"
-#include "objs/variados.h"
-#include "gui/dlgseleccionargeneral.h"
-#include "gui/dlgfuenteentrada.h"
-#include "widgets/myqmdiarea.h"
+#include "src/models/lugaresmodel.h"
+#include "src/models/casasmodel.h"
+#include "src/models/provinciasmodel.h"
+#include "src/objs/casa.h"
+#include "src/objs/variados.h"
+#include "dlgseleccionargeneral.h"
+#include "dlgfuenteentrada.h"
+#include "src/widgets/myqmdiarea.h"
 
 dlgNuevaCasa::dlgNuevaCasa(QWidget *parent, int casa) :
     QWidget(parent),

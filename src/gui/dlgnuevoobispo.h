@@ -4,10 +4,10 @@
 #include <QWidget>
 #include <QJsonObject>
 
-#include "objs/persona.h"
-#include "objs/diocesis.h"
-#include "objs/variados.h"
-#include "gui/dlgdetalles.h"
+#include "src/objs/persona.h"
+#include "src/objs/diocesis.h"
+#include "src/objs/variados.h"
+#include "dlgdetalles.h"
 
 class QSqlQueryModel;
 class QCompleter;

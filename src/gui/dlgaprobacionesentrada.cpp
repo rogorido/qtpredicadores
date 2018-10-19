@@ -6,8 +6,8 @@
 #include <QMessageBox>
 #include <QMdiSubWindow>
 
-#include "gui/dlgseleccionargeneral.h"
-#include "widgets/myqmdiarea.h"
+#include "dlgseleccionargeneral.h"
+#include "src/widgets/myqmdiarea.h"
 
 const QString sql_cargos="SELECT DISTINCT details->>'aprobación_cargo' AS cargo "
                          "FROM resolutions_details WHERE details ? 'aprobación' ORDER BY cargo";

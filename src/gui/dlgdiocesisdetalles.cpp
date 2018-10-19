@@ -11,9 +11,9 @@
 #include <QJsonDocument>
 #include <QDebug>
 
-#include "gui/dlgseleccionargeneral.h"
-#include "widgets/myqmdiarea.h"
-#include "objs/variados.h"
+#include "dlgseleccionargeneral.h"
+#include "src/widgets/myqmdiarea.h"
+#include "src/objs/variados.h"
 
 const QString sql_lord = "SELECT DISTINCT details->>'temporal_lord' AS lord FROM general.dioceses_details ORDER BY lord";
 const QString sql_keys = "SELECT DISTINCT jsonb_object_keys(details) AS keys FROM general.dioceses_details ORDER BY keys";

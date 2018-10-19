@@ -1,15 +1,15 @@
 #include "dlgnuevaobra.h"
 #include "ui_dlgnuevaobra.h"
 
-#include "models/lugaresmodel.h"
-#include "models/obrasmodel.h"
-#include "models/qjsonmodel.h"
+#include "src/models/lugaresmodel.h"
+#include "src/models/obrasmodel.h"
+#include "src/models/qjsonmodel.h"
 #include "dlgseleccionargeneral.h"
 #include "dlgnuevolugar.h"
-#include "objs/obra.h"
-#include "objs/variados.h"
+#include "src/objs/obra.h"
+#include "src/objs/variados.h"
 
-#include "widgets/myqmdiarea.h"
+#include "src/widgets/myqmdiarea.h"
 
 #include <QSqlQueryModel>
 #include <QSqlQuery>

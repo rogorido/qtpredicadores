@@ -376,7 +376,7 @@
   <customwidget>
    <class>WidgetTemas</class>
    <extends>QWidget</extends>
-   <header>widgets/widgettemas.h</header>
+   <header>src/widgets/widgettemas.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

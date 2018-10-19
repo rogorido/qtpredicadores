@@ -3,8 +3,8 @@
 
 #include <QWidget>
 
-#include "objs/variados.h"
-#include "objs/infraccion.h"
+#include "src/objs/variados.h"
+#include "src/objs/infraccion.h"
 
 class QSqlQueryModel;
 class QCompleter;

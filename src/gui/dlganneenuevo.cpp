@@ -10,7 +10,7 @@
 #include <QMessageBox>
 #include <QDebug>
 
-#include "widgets/myqmdiarea.h"
+#include "src/widgets/myqmdiarea.h"
 #include "dlgseleccionargeneral.h"
 
 const QString sql_autores = "SELECT DISTINCT author_initial_text FROM annee_general ORDER BY author_initial_text";

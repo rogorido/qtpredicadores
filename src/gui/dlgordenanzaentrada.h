@@ -3,10 +3,10 @@
 
 #include <QWidget>
 
-#include "objs/ordenanza.h"
-#include "objs/variados.h"
-#include "objs/pena.h"
-#include "objs/retroreferencia.h"
+#include "src/objs/ordenanza.h"
+#include "src/objs/variados.h"
+#include "src/objs/pena.h"
+#include "src/objs/retroreferencia.h"
 
 class QSqlQueryModel;
 class QCompleter;

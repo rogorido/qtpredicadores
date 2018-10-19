@@ -8,11 +8,11 @@
 #include <QMdiSubWindow>
 #include <QDebug>
 
-#include "gui/dlgseleccionargeneral.h"
-#include "models/diocesismodel.h"
-#include "models/lugaresmodel.h"
-#include "widgets/myqmdiarea.h"
-#include "objs/notas.h"
+#include "dlgseleccionargeneral.h"
+#include "src/models/diocesismodel.h"
+#include "src/models/lugaresmodel.h"
+#include "src/widgets/myqmdiarea.h"
+#include "src/objs/notas.h"
 
 dlgNuevaDiocesis::dlgNuevaDiocesis(QWidget *parent) :
     QWidget(parent),

@@ -3,13 +3,13 @@
 
 #include <QDialog>
 
-#include "objs/aprobacion.h"
-#include "objs/persona.h"
-#include "objs/provincia.h"
-#include "objs/variados.h"
-#include "objs/casa.h"
+#include "src/objs/aprobacion.h"
+#include "src/objs/persona.h"
+#include "src/objs/provincia.h"
+#include "src/objs/variados.h"
+#include "src/objs/casa.h"
 
-#include "models/aprobacionestablemodel.h"
+#include "src/models/aprobacionestablemodel.h"
 
 class MyQmdiArea;
 class QSqlQueryModel;

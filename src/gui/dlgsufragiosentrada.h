@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "objs/sufragio.h"
+#include "src/objs/sufragio.h"
 
 class QSqlQueryModel;
 class QCompleter;

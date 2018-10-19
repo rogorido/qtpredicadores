@@ -1,13 +1,13 @@
 #include "dlgdeclaracionentrada.h"
 #include "ui_dlgdeclaracionentrada.h"
 
-#include "gui/dlgpenaentrada.h"
-#include "gui/dlginfraccionentrada.h"
-#include "widgets/myqmdiarea.h"
+#include "dlgpenaentrada.h"
+#include "dlginfraccionentrada.h"
+#include "src/widgets/myqmdiarea.h"
 
 #include <QMdiSubWindow>
 
-#include "models/qjsonmodel.h"
+#include "src/models/qjsonmodel.h"
 
 // TODO: falta añadir lo de persona, pero no sé para qué lo puse...
 

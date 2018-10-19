@@ -9,13 +9,13 @@
 #include <QDebug>
 #include <QMdiSubWindow>
 
-#include "gui/dlgnuevapersona.h"
-#include "widgets/myqmdiarea.h"
-#include "models/personasmodel.h"
-#include "models/sqlfiltrogestor.h"
-#include "models/qjsonmodel.h"
-#include "objs/proxynombres.h"
-#include "widgets/fechasdelegate.h"
+#include "dlgnuevapersona.h"
+#include "src/widgets/myqmdiarea.h"
+#include "src/models/personasmodel.h"
+#include "src/models/sqlfiltrogestor.h"
+#include "src/models/qjsonmodel.h"
+#include "src/objs/proxynombres.h"
+#include "src/widgets/fechasdelegate.h"
 
 const QString sql_general = "SELECT * FROM vistas.persons_alternatives";
 

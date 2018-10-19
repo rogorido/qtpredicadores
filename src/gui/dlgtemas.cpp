@@ -7,8 +7,8 @@
 #include <QTableWidget>
 #include <QDebug>
 
-#include "objs/tema.h"
-#include "widgets/myqmdiarea.h"
+#include "src/objs/tema.h"
+#include "src/widgets/myqmdiarea.h"
 
 dlgTemas::dlgTemas(QList<elementopareado> *temas_lista, QWidget *parent) :
     QWidget(parent),

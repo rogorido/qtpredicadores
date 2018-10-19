@@ -4,8 +4,8 @@
 #include <QMessageBox>
 #include <QMdiSubWindow>
 
-#include "gui/dlgseleccionargeneral.h"
-#include "widgets/myqmdiarea.h"
+#include "dlgseleccionargeneral.h"
+#include "src/widgets/myqmdiarea.h"
 
 dlgAfiliacionEntrada::dlgAfiliacionEntrada(QWidget *parent) :
     QDialog(parent),

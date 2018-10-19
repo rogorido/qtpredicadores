@@ -8,7 +8,7 @@ class QSqlQueryModel;
 class QCompleter;
 class MyQmdiArea;
 
-#include "objs/diocesis.h"
+#include "src/objs/diocesis.h"
 
 namespace Ui {
 class dlgDiocesisDetalles;

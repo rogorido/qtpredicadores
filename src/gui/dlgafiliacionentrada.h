@@ -3,13 +3,13 @@
 
 #include <QDialog>
 
-#include <objs/afiliacion.h>
-#include "objs/persona.h"
-#include "objs/casa.h"
-#include "objs/provincia.h"
-#include "objs/variados.h"
+#include "src/objs/afiliacion.h"
+#include "src/objs/persona.h"
+#include "src/objs/casa.h"
+#include "src/objs/provincia.h"
+#include "src/objs/variados.h"
 
-#include "models/afiliacionestablemodel.h"
+#include "src/models/afiliacionestablemodel.h"
 
 class MyQmdiArea;
 

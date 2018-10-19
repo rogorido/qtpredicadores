@@ -10,7 +10,7 @@
 #include <QJsonObject>
 #include <QDebug>
 
-#include "gui/dlgseleccionargeneral.h"
+#include "dlgseleccionargeneral.h"
 
 dlgReforma::dlgReforma(QWidget *parent) :
     QDialog(parent),

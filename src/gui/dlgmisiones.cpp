@@ -6,9 +6,9 @@
 #include <QSqlTableModel>
 #include <QSqlQuery>
 
-#include "gui/dlgentradamisionero.h"
-#include "widgets/myqmdiarea.h"
-#include "widgets/fechasdelegate.h"
+#include "dlgentradamisionero.h"
+#include "src/widgets/myqmdiarea.h"
+#include "src/widgets/fechasdelegate.h"
 
 dlgMisiones::dlgMisiones(QWidget *parent) :
     QWidget(parent),

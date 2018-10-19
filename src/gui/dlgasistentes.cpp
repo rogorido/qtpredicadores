@@ -12,8 +12,8 @@
 #include <QDebug>
 #include <QMdiSubWindow>
 
-#include "gui/dlgseleccionargeneral.h"
-#include "widgets/myqmdiarea.h"
+#include "dlgseleccionargeneral.h"
+#include "src/widgets/myqmdiarea.h"
 
 /*
  * en teoría todo eso de seleccionar provincias, etc.

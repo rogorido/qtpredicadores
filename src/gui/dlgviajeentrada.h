@@ -3,9 +3,9 @@
 
 #include <QWidget>
 
-#include "objs/viaje.h"
-#include "objs/lugar.h"
-#include "objs/notas.h"
+#include "src/objs/viaje.h"
+#include "src/objs/lugar.h"
+#include "src/objs/notas.h"
 
 class QSqlQueryModel;
 class QCompleter;

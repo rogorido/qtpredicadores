@@ -2,14 +2,14 @@
 #define DLGSELECCIONARGENERAL_H
 
 #include <QWidget>
-#include "objs/variados.h"
-#include "objs/casa.h"
-#include "objs/persona.h"
-#include "objs/lugar.h"
-#include "objs/provincia.h"
-#include "objs/capitulo.h"
-#include "objs/tema.h"
-#include "objs/diocesis.h"
+#include "src/objs/variados.h"
+#include "src/objs/casa.h"
+#include "src/objs/persona.h"
+#include "src/objs/lugar.h"
+#include "src/objs/provincia.h"
+#include "src/objs/capitulo.h"
+#include "src/objs/tema.h"
+#include "src/objs/diocesis.h"
 
 class CasasModel;
 class PersonasModel;

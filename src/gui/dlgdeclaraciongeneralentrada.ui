@@ -320,19 +320,19 @@
   <customwidget>
    <class>WidgetExtraInfos</class>
    <extends>QWidget</extends>
-   <header>widgets/widgetextrainfos.h</header>
+   <header>src/widgets/widgetextrainfos.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>WidgetNotas</class>
    <extends>QWidget</extends>
-   <header>widgets/widgetnotas.h</header>
+   <header>src/widgets/widgetnotas.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>myQLineEdit</class>
    <extends>QLineEdit</extends>
-   <header location="global">widgets/myqlineedit.h</header>
+   <header location="global">src/widgets/myqlineedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

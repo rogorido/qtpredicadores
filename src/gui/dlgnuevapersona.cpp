@@ -9,12 +9,12 @@
 #include <QMdiSubWindow>
 #include <QMessageBox>
 
-#include "models/personasmodel.h"
-#include "models/qjsonmodel.h"
-#include "gui/dlgdetalles.h"
-#include "gui/dlgfuenteentrada.h"
-#include "objs/persona.h"
-#include "widgets/myqmdiarea.h"
+#include "src/models/personasmodel.h"
+#include "src/models/qjsonmodel.h"
+#include "dlgdetalles.h"
+#include "dlgfuenteentrada.h"
+#include "src/objs/persona.h"
+#include "src/widgets/myqmdiarea.h"
 
 dlgNuevaPersona::dlgNuevaPersona(QWidget *parent, int persona) :
     QWidget(parent),

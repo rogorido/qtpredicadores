@@ -2,9 +2,9 @@
 #define DLGLICENCIAENTRADA_H
 
 #include <QDialog>
-#include "objs/licencia.h"
-#include "objs/casa.h"
-#include "objs/provincia.h"
+#include "src/objs/licencia.h"
+#include "src/objs/casa.h"
+#include "src/objs/provincia.h"
 
 class QSqlQueryModel;
 class QCompleter;

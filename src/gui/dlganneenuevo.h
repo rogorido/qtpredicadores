@@ -3,8 +3,8 @@
 
 #include <QWidget>
 
-#include "objs/persona.h"
-#include "objs/tema.h"
+#include "src/objs/persona.h"
+#include "src/objs/tema.h"
 
 class QCompleter;
 class QSqlQueryModel;

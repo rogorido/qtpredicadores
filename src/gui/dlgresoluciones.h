@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "objs/tema.h"
+#include "src/objs/tema.h"
 
 class QSqlQueryModel;
 class QSqlTableModel;

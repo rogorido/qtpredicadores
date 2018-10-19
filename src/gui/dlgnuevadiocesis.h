@@ -3,8 +3,8 @@
 
 #include <QWidget>
 
-#include "objs/diocesis.h"
-#include "objs/lugar.h"
+#include "src/objs/diocesis.h"
+#include "src/objs/lugar.h"
 
 class DiocesisModel;
 class LugaresModel;

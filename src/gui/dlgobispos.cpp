@@ -8,9 +8,9 @@
 #include <QAction>
 #include <QDebug>
 
-#include "models/sqlfiltrogestor.h"
-#include "objs/proxynombres.h"
-#include "widgets/fechasdelegate.h"
+#include "src/models/sqlfiltrogestor.h"
+#include "src/objs/proxynombres.h"
+#include "src/widgets/fechasdelegate.h"
 
 const QString sql_general = "SELECT * from vistas.obispos_general";
 const QString sqlvolvermirar = "bishop_id IN (SELECT bishop_id FROM bishops_details "

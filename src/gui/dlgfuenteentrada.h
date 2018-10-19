@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "objs/variados.h"
+#include "src/objs/variados.h"
 
 class QSqlQueryModel;
 class QCompleter;

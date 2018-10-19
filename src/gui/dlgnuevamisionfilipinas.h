@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include <objs/lugar.h>
+#include <src/objs/lugar.h>
 
 class MisionesModel;
 class QJsonModel;

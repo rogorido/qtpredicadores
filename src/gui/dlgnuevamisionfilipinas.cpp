@@ -7,11 +7,11 @@
 #include <QSqlQuery>
 #include <QSqlError>
 
-#include "models/qjsonmodel.h"
-#include "models/misionesmodel.h"
-#include "widgets/myqmdiarea.h"
-#include "objs/notas.h"
-#include "objs/mision.h"
+#include "src/models/qjsonmodel.h"
+#include "src/models/misionesmodel.h"
+#include "src/widgets/myqmdiarea.h"
+#include "src/objs/notas.h"
+#include "src/objs/mision.h"
 #include "dlgseleccionargeneral.h"
 
 const QDate fechainicial = QDate(1200, 1, 1);

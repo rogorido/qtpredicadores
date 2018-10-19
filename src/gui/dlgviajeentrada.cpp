@@ -8,8 +8,8 @@
 #include <QSqlQueryModel>
 #include <QCompleter>
 
-#include "widgets/myqmdiarea.h"
-#include "gui/dlgseleccionargeneral.h"
+#include "src/widgets/myqmdiarea.h"
+#include "dlgseleccionargeneral.h"
 
 const QString sql_motivos="SELECT DISTINCT jsonb_array_elements_text(details->'viaje'->'motivos') AS motivos "
                              "FROM persons_details WHERE details->'viaje'->>'motivos' IS NOT NULL "

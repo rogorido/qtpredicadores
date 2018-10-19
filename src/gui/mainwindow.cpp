@@ -35,19 +35,19 @@
 // para lo de MDIarea
 #include "dlgdetalles.h"
 
-#include "widgets/myqmdiarea.h"
-#include "widgets/barralabel.h"
+#include "src/widgets/myqmdiarea.h"
+#include "src/widgets/barralabel.h"
 
-#include "models/temasmodel.h"
-#include "models/lugaresmodel.h"
-#include "models/personasmodel.h"
-#include "models/casasmodel.h"
-#include "models/provinciasmodel.h"
-#include "models/capitulosmodel.h"
-#include "models/qjsonmodel.h"
-#include "models/obrasmodel.h"
+#include "src/models/temasmodel.h"
+#include "src/models/lugaresmodel.h"
+#include "src/models/personasmodel.h"
+#include "src/models/casasmodel.h"
+#include "src/models/provinciasmodel.h"
+#include "src/models/capitulosmodel.h"
+#include "src/models/qjsonmodel.h"
+#include "src/models/obrasmodel.h"
 
-#include "objs/tema.h"
+#include "src/objs/tema.h"
 
 const int STATUSBAR_TIMEOUT = 1000;
 

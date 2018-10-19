@@ -10,12 +10,12 @@
 #include <QMessageBox>
 #include <QInputDialog>
 
-#include "models/lugaresmodel.h"
-#include "models/capitulosmodel.h"
-#include "gui/dlgnuevolugar.h"
-#include "gui/dlgseleccionargeneral.h"
-#include "objs/capitulo.h"
-#include "widgets/myqmdiarea.h"
+#include "src/models/lugaresmodel.h"
+#include "src/models/capitulosmodel.h"
+#include "dlgnuevolugar.h"
+#include "dlgseleccionargeneral.h"
+#include "src/objs/capitulo.h"
+#include "src/widgets/myqmdiarea.h"
 
 dlgNuevoCapitulo::dlgNuevoCapitulo(QWidget *parent) :
     QWidget(parent),
