@@ -6,8 +6,8 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 
-#include "objs/obra.h"
-#include "models/qjsonmodel.h"
+#include "src/objs/obra.h"
+#include "src/models/qjsonmodel.h"
 
 ObrasModel *ObrasModel::pInstance = 0;
 

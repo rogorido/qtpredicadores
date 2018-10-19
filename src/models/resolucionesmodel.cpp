@@ -4,7 +4,7 @@
 #include <QSqlError>
 #include <QDebug>
 
-#include "objs/resolucion.h"
+#include "src/objs/resolucion.h"
 
 ResolucionesModel *ResolucionesModel::pInstance = 0;
 

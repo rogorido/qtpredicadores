@@ -4,7 +4,7 @@
 #include <QSqlError>
 #include <QDebug>
 
-#include "objs/lugar.h"
+#include "src/objs/lugar.h"
 
 LugaresModel * LugaresModel::pInstance = 0;
 

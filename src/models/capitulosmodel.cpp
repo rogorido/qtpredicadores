@@ -4,7 +4,7 @@
 #include <QSqlError>
 #include <QDebug>
 
-#include "objs/capitulo.h"
+#include "src/objs/capitulo.h"
 
 CapitulosModel *CapitulosModel::pInstance = 0;
 

@@ -3,8 +3,8 @@
 
 #include <QAbstractTableModel>
 
-#include "objs/variados.h"
-#include "objs/afiliacion.h"
+#include "src/objs/variados.h"
+#include "src/objs/afiliacion.h"
 
 class AfiliacionesTableModel : public QAbstractTableModel
 {

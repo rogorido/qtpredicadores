@@ -4,8 +4,8 @@
 #include <QDebug>
 #include <QSqlError>
 
-#include "objs/persona.h"
-#include "models/qjsonmodel.h"
+#include "src/objs/persona.h"
+#include "src/models/qjsonmodel.h"
 
 PersonasModel *PersonasModel::pInstance = 0;
 

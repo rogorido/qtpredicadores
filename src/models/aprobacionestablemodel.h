@@ -3,7 +3,7 @@
 
 #include <QAbstractTableModel>
 
-#include <objs/aprobacion.h>
+#include <src/objs/aprobacion.h>
 
 class AprobacionesTableModel : public QAbstractTableModel
 {

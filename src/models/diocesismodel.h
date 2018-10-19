@@ -3,7 +3,7 @@
 
 #include <QSqlTableModel>
 
-#include "objs/diocesis.h"
+#include "src/objs/diocesis.h"
 
 class DiocesisModel : public QSqlTableModel
 {

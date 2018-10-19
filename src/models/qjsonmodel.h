@@ -5,7 +5,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
-#include "objs/qjsontreeitem.h"
+#include "src/objs/qjsontreeitem.h"
 
 class QJsonModel : public QAbstractItemModel
 {

@@ -6,8 +6,8 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 
-#include "objs/diocesis.h"
-#include "objs/notas.h"
+#include "src/objs/diocesis.h"
+#include "src/objs/notas.h"
 
 DiocesisModel *DiocesisModel::pInstance = 0;
 

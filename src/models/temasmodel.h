@@ -3,7 +3,7 @@
 
 #include <QSqlTableModel>
 
-#include <objs/tema.h>
+#include <src/objs/tema.h>
 
 class TemasModel : public QSqlTableModel
 {

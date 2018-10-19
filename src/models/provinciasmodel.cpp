@@ -4,7 +4,7 @@
 #include <QSqlError>
 #include <QDebug>
 
-#include "objs/provincia.h"
+#include "src/objs/provincia.h"
 
 ProvinciasModel *ProvinciasModel::pInstance = 0;
 

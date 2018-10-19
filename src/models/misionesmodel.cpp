@@ -5,7 +5,7 @@
 #include <QJsonDocument>
 #include <QDebug>
 
-#include "objs/mision.h"
+#include "src/objs/mision.h"
 
 MisionesModel *MisionesModel::pInstance = 0;
 

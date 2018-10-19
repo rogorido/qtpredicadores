@@ -4,7 +4,7 @@
 #include <QSqlError>
 #include <QDebug>
 
-#include "objs/casa.h"
+#include "src/objs/casa.h"
 
 CasasModel *CasasModel::pInstance = 0;
 
