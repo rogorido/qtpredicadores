@@ -1,6 +1,7 @@
 *.pro.user*
 *.autosave
 build/
+debug/
 BROWSE
 .ccls-cache/
 compile_commands.json
