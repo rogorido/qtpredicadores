@@ -76,6 +76,7 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
     int maestrogeneral = maestrogeneral_struct.id;
     int provincia = provinciaescogida_struct.id;
     QString tipo = ui->cboTipoCapitulo->currentText();
+    bool definitorio = ui->ckDefinitorio->isChecked();
     QDate fechainicial;
     QDate fechafinal;
     //QDate fechainicial;
@@ -84,6 +85,7 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
     QString paginas = ui->txtPaginas->text();
     QString notas = ui->txtNotas->toPlainText();
     QString asistentes = ui->txtAsistentes->toPlainText();
+    
 
     /*
      * si la fecha ha cambiado, meteremos la fecha
@@ -103,6 +105,7 @@ void dlgNuevoCapitulo::aceptarCapitulo(){
     capitulo->setTipo(tipo);
     capitulo->setMaestroGeneral(maestrogeneral);
     capitulo->setProvincia(provincia);
+    capitulo->setDefinitorio(definitorio);
     capitulo->setVolumen(tomo);
     capitulo->setPaginas(paginas);
     capitulo->setAsistentes(asistentes);
