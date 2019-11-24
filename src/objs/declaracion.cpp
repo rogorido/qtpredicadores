@@ -2,7 +2,7 @@
 
 #include <QJsonArray>
 
-Declaracion::Declaracion() { }
+Declaracion::Declaracion() {}
 
 void Declaracion::setTipo(const QString t) { tipo = t; }
 void Declaracion::setInfraccion(const Infraccion i) { infraccion = i; }
@@ -16,60 +16,55 @@ void Declaracion::setNota(const Notas n) { nota = n; }
 void Declaracion::setExtraInfos(const ExtraInfos e) { extras = e; }
 void Declaracion::setExtraJson(const QJsonObject e) { extrajson = e; }
 
-QJsonObject Declaracion::getDeclaracionJson(){
+QJsonObject Declaracion::getDeclaracionJson()
+{
+  QJsonObject json;
 
-    QJsonObject json;
+  json.insert("declaracion", "yes");
 
-    json.insert("declaracion", "yes");
+  if (!tipo.isEmpty()) json.insert("declaracion_tipo", tipo);
 
-    if (!tipo.isEmpty())
-        json.insert("declaracion_tipo", tipo);
+  if (pena.estaLleno()) json.insert("declaracion_pena", pena.getPenaJson());
 
-    if (pena.estaLleno())
-        json.insert("declaracion_pena", pena.getPenaJson());
+  if (infraccion.estaLleno())
+    json.insert("declaracion_infraccion", infraccion.getInfraccionJson());
 
-    if (infraccion.estaLleno())
-        json.insert("declaracion_infraccion", infraccion.getInfraccionJson());
+  if (persona.estaLleno()) {
+    json.insert("declaracion_persona", persona.getId());
+  }
 
-    if (persona.estaLleno()){
-        json.insert("declaracion_persona", persona.getId());
+  if (!cargos.isEmpty())
+    json.insert("cargos", QJsonArray::fromStringList(cargos));
+
+  if (!instituciones.isEmpty())
+    json.insert("instituciones", QJsonArray::fromStringList(instituciones));
+
+  if (!provincias.isEmpty()) {
+    QJsonArray array_provincias;
+    for (int i = 0; i < provincias.size(); ++i) {
+      array_provincias.append(QJsonValue(provincias.at(i)));
     }
 
-    if (!cargos.isEmpty())
-        json.insert("cargos", QJsonArray::fromStringList(cargos));
+    json.insert("provincias", array_provincias);
+  }
 
-    if (!instituciones.isEmpty())
-        json.insert("instituciones", QJsonArray::fromStringList(instituciones));
+  if (retro.estaLleno()) json.insert("retro", retro.getRetroJson());
 
-    if (!provincias.isEmpty()){
-        QJsonArray array_provincias;
-        for (int i = 0; i < provincias.size(); ++i) {
-            array_provincias.append(QJsonValue(provincias.at(i)));
-        }
+  if (extras.size() > 0) {
+    for (int i = 0; i < extras.size(); ++i) {
+      QPair<QString, QString> valores;
+      valores = extras.at(i);
 
-        json.insert("provincias", array_provincias);
+      json.insert(valores.first, valores.second);
     }
+  }
 
-    if (retro.estaLleno())
-        json.insert("retro", retro.getRetroJson());
+  if (nota.estaLleno()) {
+    json.insert("meta_info", nota.getNotasJson());
+  }
 
-    if (extras.size() > 0 ) {
-        for (int i = 0; i < extras.size(); ++i) {
-            QPair<QString, QString> valores;
-            valores = extras.at(i);
+  // y aqí rtt qué coño va...
+  // json.insert("declaracion_otros", extrajson);
 
-            json.insert(valores.first, valores.second);
-        }
-    }
-
-    if (nota.estaLleno()){
-        json.insert("meta_info", nota.getNotasJson());
-    }
-
-    // y aqí rtt qué coño va...
-    //json.insert("declaracion_otros", extrajson);
-
-    return json;
-
+  return json;
 }
-

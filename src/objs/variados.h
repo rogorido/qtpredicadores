@@ -6,37 +6,31 @@
 #include <QString>
 
 enum tiposeleccionar {
-    CASA,
-    PERSONA,
-    PROVINCIA,
-    LUGAR,
-    CAPITULO,
-    TEMA,
-    DIOCESIS,
-    OBISPO, // realmente no lo usamos en el form Seleccionar...
-    PERSONASGESTION, // esto es para el form de gestión de personas
-    CASASGESTION
+  CASA,
+  PERSONA,
+  PROVINCIA,
+  LUGAR,
+  CAPITULO,
+  TEMA,
+  DIOCESIS,
+  OBISPO,           // realmente no lo usamos en el form Seleccionar...
+  PERSONASGESTION,  // esto es para el form de gestión de personas
+  CASASGESTION
 };
 
-enum tipodetalles {
-    RESOLUCION,
-    OBRA,
-    PERSONADETALLES,
-    OBISPOS,
-    OTROS
-};
+enum tipodetalles { RESOLUCION, OBRA, PERSONADETALLES, OBISPOS, OTROS };
 
-struct elementopareado{
+struct elementopareado {
   int id = 0;
   QString elemento = "";
 };
 
 struct fuente {
-    int titulo;
-    QString tomo;
-    QString paginas;
+  int titulo;
+  QString tomo;
+  QString paginas;
 };
 
-typedef QList<QPair<QString,QString>> ExtraInfos;
+typedef QList<QPair<QString, QString>> ExtraInfos;
 
-#endif // VARIADOS_H
+#endif  // VARIADOS_H

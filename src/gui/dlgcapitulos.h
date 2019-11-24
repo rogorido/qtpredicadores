@@ -11,27 +11,23 @@ namespace Ui {
 class dlgCapitulos;
 }
 
-class dlgCapitulos : public QDialog
-{
-    Q_OBJECT
+class dlgCapitulos : public QDialog {
+  Q_OBJECT
 
-public:
-    explicit dlgCapitulos(QWidget *parent = 0);
-    ~dlgCapitulos();
+ public:
+  explicit dlgCapitulos(QWidget *parent = 0);
+  ~dlgCapitulos();
 
-private slots:
-    void escogidoCapitulo(const QModelIndex &idx);
-    void introducirAsistentes();
+ private slots:
+  void escogidoCapitulo(const QModelIndex &idx);
+  void introducirAsistentes();
 
-private:
-    Ui::dlgCapitulos *ui;
+ private:
+  Ui::dlgCapitulos *ui;
 
-    CapitulosModel *m_capitulos;
+  CapitulosModel *m_capitulos;
 
-    dlgAsistentes *dlgasistentes;
-
-
-
+  dlgAsistentes *dlgasistentes;
 };
 
-#endif // DLGCAPITULOS_H
+#endif  // DLGCAPITULOS_H

@@ -1,6 +1,6 @@
 #include "licencia.h"
 
-Licencia::Licencia() { }
+Licencia::Licencia() {}
 
 void Licencia::setLicenciaTipo(const QString l) { licenciatipo = l; }
 void Licencia::setOtorgantes(const QStringList o) { otorgantes = o; }
@@ -14,43 +14,38 @@ void Licencia::setNotas(const Notas n) { nota = n; }
 
 QJsonObject Licencia::getLicenciaJson()
 {
-    QJsonObject json;
+  QJsonObject json;
 
-    json.insert("licencia", "yes");
+  json.insert("licencia", "yes");
 
-    if (!licenciatipo.isEmpty())
-        json.insert("licencia_tipo", licenciatipo);
+  if (!licenciatipo.isEmpty()) json.insert("licencia_tipo", licenciatipo);
 
-    if (!otorgantes.isEmpty())
-        json.insert("licencia_otorgantes", QJsonArray::fromStringList(otorgantes));
+  if (!otorgantes.isEmpty())
+    json.insert("licencia_otorgantes", QJsonArray::fromStringList(otorgantes));
 
-    if (!receptores.isEmpty())
-        json.insert("licencia_receptores", QJsonArray::fromStringList(receptores));
+  if (!receptores.isEmpty())
+    json.insert("licencia_receptores", QJsonArray::fromStringList(receptores));
 
-    if (!asunto.isEmpty())
-        json.insert("licencia_asunto", asunto);
+  if (!asunto.isEmpty()) json.insert("licencia_asunto", asunto);
 
-    json.insert("seguridad", QJsonValue(seguridad));
+  json.insert("seguridad", QJsonValue(seguridad));
 
-    if (provincia != 0)
-        json.insert("provincia", provincia);
+  if (provincia != 0) json.insert("provincia", provincia);
 
-    if (casa != 0)
-        json.insert("casa", casa);
+  if (casa != 0) json.insert("casa", casa);
 
-    if (extras.size() > 0 ) {
-        for (int i = 0; i < extras.size(); ++i) {
-            QPair<QString, QString> valores;
-            valores = extras.at(i);
+  if (extras.size() > 0) {
+    for (int i = 0; i < extras.size(); ++i) {
+      QPair<QString, QString> valores;
+      valores = extras.at(i);
 
-            json.insert(valores.first, valores.second);
-        }
+      json.insert(valores.first, valores.second);
     }
+  }
 
-    if (nota.estaLleno()){
-        json.insert("meta_info", nota.getNotasJson());
-    }
+  if (nota.estaLleno()) {
+    json.insert("meta_info", nota.getNotasJson());
+  }
 
-    return json;
+  return json;
 }
-

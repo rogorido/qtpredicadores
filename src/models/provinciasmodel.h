@@ -5,28 +5,26 @@
 
 class Provincia;
 
-class ProvinciasModel : public QSqlTableModel
-{
-    Q_OBJECT
+class ProvinciasModel : public QSqlTableModel {
+  Q_OBJECT
 
-public:
-    static ProvinciasModel *InstanceModel();
+ public:
+  static ProvinciasModel *InstanceModel();
 
-    bool AnadirProvincia(const Provincia *prov);
+  bool AnadirProvincia(const Provincia *prov);
 
-signals:
+ signals:
 
-    void actualizado();
+  void actualizado();
 
-protected:
-    ProvinciasModel();
-    ProvinciasModel(const ProvinciasModel &);
-    ProvinciasModel &operator =(const ProvinciasModel &);
+ protected:
+  ProvinciasModel();
+  ProvinciasModel(const ProvinciasModel &);
+  ProvinciasModel &operator=(const ProvinciasModel &);
 
-private:
-    static ProvinciasModel *pInstance;
-    static void DestroyMe();
-
+ private:
+  static ProvinciasModel *pInstance;
+  static void DestroyMe();
 };
 
-#endif // PROVINCIASMODEL_H
+#endif  // PROVINCIASMODEL_H

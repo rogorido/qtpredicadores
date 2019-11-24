@@ -7,20 +7,18 @@ namespace Ui {
 class dlgNuevaFuente;
 }
 
-class dlgNuevaFuente : public QDialog
-{
-    Q_OBJECT
+class dlgNuevaFuente : public QDialog {
+  Q_OBJECT
 
-public:
-    explicit dlgNuevaFuente(QWidget *parent = 0);
-    ~dlgNuevaFuente();
+ public:
+  explicit dlgNuevaFuente(QWidget *parent = 0);
+  ~dlgNuevaFuente();
 
-protected:
+ protected:
+  void accept();
 
-    void accept();
-
-private:
-    Ui::dlgNuevaFuente *ui;
+ private:
+  Ui::dlgNuevaFuente *ui;
 };
 
-#endif // DLGNUEVAFUENTE_H
+#endif  // DLGNUEVAFUENTE_H

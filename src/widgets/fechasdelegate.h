@@ -3,20 +3,18 @@
 
 #include <QStyledItemDelegate>
 
-class FechasDelegate : public QStyledItemDelegate
-{
-    Q_OBJECT
+class FechasDelegate : public QStyledItemDelegate {
+  Q_OBJECT
 
-public:
+ public:
+  enum class TipoFecha { FULL_DATE, ONLY_YEAR };
 
-    enum class TipoFecha { FULL_DATE, ONLY_YEAR };
+  explicit FechasDelegate(TipoFecha tipo, QObject *parent = 0);
+  virtual QString displayText(const QVariant &value,
+                              const QLocale &locale) const;
 
-    explicit FechasDelegate(TipoFecha tipo, QObject *parent = 0);
-    virtual QString displayText(const QVariant &value, const QLocale &locale) const;
-
-private:
-
-    TipoFecha m_tipo;
+ private:
+  TipoFecha m_tipo;
 };
 
-#endif // FECHASDELEGATE_H
+#endif  // FECHASDELEGATE_H

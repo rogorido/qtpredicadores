@@ -5,28 +5,26 @@
 
 class Capitulo;
 
-class CapitulosModel : public QSqlTableModel
-{
-    Q_OBJECT
+class CapitulosModel : public QSqlTableModel {
+  Q_OBJECT
 
-public:
-    static CapitulosModel *InstanceModel();
+ public:
+  static CapitulosModel *InstanceModel();
 
-    bool AnadirCapitulo(const Capitulo *capitulo);
+  bool AnadirCapitulo(const Capitulo *capitulo);
 
-signals:
+ signals:
 
-    void actualizado();
+  void actualizado();
 
-protected:
-    CapitulosModel();
-    CapitulosModel(const CapitulosModel &);
-    CapitulosModel &operator =(const CapitulosModel &);
+ protected:
+  CapitulosModel();
+  CapitulosModel(const CapitulosModel &);
+  CapitulosModel &operator=(const CapitulosModel &);
 
-private:
-    static CapitulosModel *pInstance;
-    static void DestroyMe();
-
+ private:
+  static CapitulosModel *pInstance;
+  static void DestroyMe();
 };
 
-#endif // CAPITULOSMODEL_H
+#endif  // CAPITULOSMODEL_H

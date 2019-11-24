@@ -5,28 +5,26 @@
 
 class Resolucion;
 
-class ResolucionesModel : public QSqlTableModel
-{
-    Q_OBJECT
+class ResolucionesModel : public QSqlTableModel {
+  Q_OBJECT
 
-public:
-    static ResolucionesModel *InstanceModel();
+ public:
+  static ResolucionesModel *InstanceModel();
 
-    bool anadirResolucion(const Resolucion *resolucion);
+  bool anadirResolucion(const Resolucion *resolucion);
 
-signals:
+ signals:
 
-    void actualizado();
+  void actualizado();
 
-protected:
-    ResolucionesModel();
-    ResolucionesModel(const ResolucionesModel &);
-    ResolucionesModel &operator =(const ResolucionesModel &);
+ protected:
+  ResolucionesModel();
+  ResolucionesModel(const ResolucionesModel &);
+  ResolucionesModel &operator=(const ResolucionesModel &);
 
-private:
-    static ResolucionesModel *pInstance;
-    static void DestroyMe();
-
+ private:
+  static ResolucionesModel *pInstance;
+  static void DestroyMe();
 };
 
-#endif // RESOLUCIONESMODEL_H
+#endif  // RESOLUCIONESMODEL_H

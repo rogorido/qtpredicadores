@@ -1,13 +1,13 @@
 #ifndef DLGNUEVOOBISPO_H
 #define DLGNUEVOOBISPO_H
 
-#include <QWidget>
 #include <QJsonObject>
+#include <QWidget>
 
-#include "src/objs/persona.h"
-#include "src/objs/diocesis.h"
-#include "src/objs/variados.h"
 #include "dlgdetalles.h"
+#include "src/objs/diocesis.h"
+#include "src/objs/persona.h"
+#include "src/objs/variados.h"
 
 class QSqlQueryModel;
 class QCompleter;
@@ -19,83 +19,81 @@ namespace Ui {
 class dlgNuevoObispo;
 }
 
-class dlgNuevoObispo : public QWidget
-{
-    Q_OBJECT
+class dlgNuevoObispo : public QWidget {
+  Q_OBJECT
 
-public:
-    explicit dlgNuevoObispo(QWidget *parent = 0);
-    ~dlgNuevoObispo();
+ public:
+  explicit dlgNuevoObispo(QWidget *parent = 0);
+  ~dlgNuevoObispo();
 
-private slots:
+ private slots:
 
-    void aceptarObispo();
-    void anadirPersona();
-    void anadirDiocesis();
-    void anadirFuente();
-    void anadirDetalles();
+  void aceptarObispo();
+  void anadirPersona();
+  void anadirDiocesis();
+  void anadirFuente();
+  void anadirDetalles();
 
-    void fechaInicioCambiada();
-    void fechaFinalCambiada();
+  void fechaInicioCambiada();
+  void fechaFinalCambiada();
 
-    void recibirPersona(Persona persona);
-    void recibirDiocesis(Diocesis diocesis);
-    void recibirFuente(fuente datoobra);
+  void recibirPersona(Persona persona);
+  void recibirDiocesis(Diocesis diocesis);
+  void recibirFuente(fuente datoobra);
 
-    void cerrar();
+  void cerrar();
 
-private:
-    Ui::dlgNuevoObispo *ui;
-    MyQmdiArea *mdiarea;
+ private:
+  Ui::dlgNuevoObispo *ui;
+  MyQmdiArea *mdiarea;
 
-    QSqlQueryModel *m_papas;
-    QCompleter *m_papas_completer;
+  QSqlQueryModel *m_papas;
+  QCompleter *m_papas_completer;
 
-    /*
-     * esto son los que escogemos con los modelos, dialogs, etc.
-     * y los metemos aquí con su id. Lo ponemos como 0 por el lío
-     * ese de que luego lo quiero borrar, etc.
-     */
-    int persona_id = 0;
-    int diocesis_id = 0;
-    int papa_id = 0;
+  /*
+   * esto son los que escogemos con los modelos, dialogs, etc.
+   * y los metemos aquí con su id. Lo ponemos como 0 por el lío
+   * ese de que luego lo quiero borrar, etc.
+   */
+  int persona_id = 0;
+  int diocesis_id = 0;
+  int papa_id = 0;
 
-    /*
-     * aquí metemos los datos que nos llegan de la source
-     */
-    QJsonObject *fuentedatos;
+  /*
+   * aquí metemos los datos que nos llegan de la source
+   */
+  QJsonObject *fuentedatos;
 
-    /*
-     * métodos y variables para gestionar los detalles
-     */
-    QJsonModel *json_detalles;
-    dlgDetalles *dlgdetalles;
+  /*
+   * métodos y variables para gestionar los detalles
+   */
+  QJsonModel *json_detalles;
+  dlgDetalles *dlgdetalles;
 
-    /*
-     * esto realmente hay que hacerlo con un ObisposModel...
-     */
-    void introducirJson(const int id);
-    void introducirNotas(const int id);
+  /*
+   * esto realmente hay que hacerlo con un ObisposModel...
+   */
+  void introducirJson(const int id);
+  void introducirNotas(const int id);
 
+  /*
+   * joder: eto es para que no me meta pej 1800-01-01
+   * cuando no cambio la fecha final... pero tiene que haber otra forma
+   * de hacerlo!
+   */
+  bool fecha_inicio_cambiada = false;
+  bool fecha_final_cambiada = false;
+  bool fuente_recibida = false;
 
-    /*
-     * joder: eto es para que no me meta pej 1800-01-01
-     * cuando no cambio la fecha final... pero tiene que haber otra forma
-     * de hacerlo!
-     */
-    bool fecha_inicio_cambiada = false;
-    bool fecha_final_cambiada = false;
-    bool fuente_recibida = false;
+  void cargarModelos();
+  void borrarCampos();
 
-    void cargarModelos();
-    void borrarCampos();
-
-    /*
-     * NOTE: esto es increíble: no consigo sacar el index del modelo
-     * de papas subyacente al qcompleter y por tanto tengo que hacer
-     * esta chapuza...
-     */
-    int extraerPapa(QString papa);
+  /*
+   * NOTE: esto es increíble: no consigo sacar el index del modelo
+   * de papas subyacente al qcompleter y por tanto tengo que hacer
+   * esta chapuza...
+   */
+  int extraerPapa(QString papa);
 };
 
-#endif // DLGNUEVOOBISPO_H
+#endif  // DLGNUEVOOBISPO_H

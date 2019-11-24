@@ -3,8 +3,8 @@
 
 #include <QDialog>
 
-#include "src/objs/variados.h"
 #include "src/objs/lugar.h"
+#include "src/objs/variados.h"
 
 class QCompleter;
 class QSqlQueryModel;
@@ -13,33 +13,32 @@ namespace Ui {
 class dlgReforma;
 }
 
-class dlgReforma : public QDialog
-{
-    Q_OBJECT
+class dlgReforma : public QDialog {
+  Q_OBJECT
 
-public:
-    explicit dlgReforma(QWidget *parent = 0);
-    ~dlgReforma();
+ public:
+  explicit dlgReforma(QWidget *parent = 0);
+  ~dlgReforma();
 
-private slots:
+ private slots:
 
-    void anadirLugar();
-    void quitarLugar();
-    void aceptar();
+  void anadirLugar();
+  void quitarLugar();
+  void aceptar();
 
-    void recibirLugar(Lugar lugar);
+  void recibirLugar(Lugar lugar);
 
-private:
-    Ui::dlgReforma *ui;
+ private:
+  Ui::dlgReforma *ui;
 
-    elementopareado lugar_struct;
+  elementopareado lugar_struct;
 
-    QSqlQueryModel *m_ordenes;
-    QCompleter *m_ordenes_completer;
+  QSqlQueryModel *m_ordenes;
+  QCompleter *m_ordenes_completer;
 
-    void cargarModelos();
-    QString crearJsonDatos();
-    void borrarCampos();
+  void cargarModelos();
+  QString crearJsonDatos();
+  void borrarCampos();
 };
 
-#endif // DLGREFORMA_H
+#endif  // DLGREFORMA_H

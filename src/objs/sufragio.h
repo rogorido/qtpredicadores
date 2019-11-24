@@ -1,45 +1,43 @@
 #ifndef SUFRAGIO_H
 #define SUFRAGIO_H
 
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QString>
 #include <QStringList>
-#include <QJsonObject>
-#include <QJsonArray>
 
-#include "variados.h"
 #include "notas.h"
+#include "variados.h"
 
-class Sufragio
-{
-public:
-    Sufragio();
+class Sufragio {
+ public:
+  Sufragio();
 
-    // setters
-    void setTipo(const QString t);
-    void setMisas(const int m);
-    void setMotivo(const QString m);
-    void setDestinatarios(const QStringList d);
-    void setExtraInfos(const ExtraInfos e);
-    void setNota(const Notas n);
+  // setters
+  void setTipo(const QString t);
+  void setMisas(const int m);
+  void setMotivo(const QString m);
+  void setDestinatarios(const QStringList d);
+  void setExtraInfos(const ExtraInfos e);
+  void setNota(const Notas n);
 
-    // getters
-    QString getTipo() const {return tipo;}
-    int getMisas() const {return misas;}
-    QString getMotivo() const {return motivo;}
-    QStringList getDestinatarios() const {return destinatarios;}
-    ExtraInfos getExtraInfos() const {return extras;}
-    Notas getNotas() const {return nota;}
+  // getters
+  QString getTipo() const { return tipo; }
+  int getMisas() const { return misas; }
+  QString getMotivo() const { return motivo; }
+  QStringList getDestinatarios() const { return destinatarios; }
+  ExtraInfos getExtraInfos() const { return extras; }
+  Notas getNotas() const { return nota; }
 
-    QJsonObject getSufragioJson();
+  QJsonObject getSufragioJson();
 
-private:
-
-    QString tipo;
-    int misas;
-    QString motivo;
-    QStringList destinatarios;
-    ExtraInfos extras;
-    Notas nota;
+ private:
+  QString tipo;
+  int misas;
+  QString motivo;
+  QStringList destinatarios;
+  ExtraInfos extras;
+  Notas nota;
 };
 
-#endif // SUFRAGIO_H
+#endif  // SUFRAGIO_H

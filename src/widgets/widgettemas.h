@@ -10,39 +10,38 @@ namespace Ui {
 class WidgetTemas;
 }
 
-class WidgetTemas : public QWidget
-{
-    Q_OBJECT
+class WidgetTemas : public QWidget {
+  Q_OBJECT
 
-public:
-    explicit WidgetTemas(QWidget *parent = 0);
-    ~WidgetTemas();
+ public:
+  explicit WidgetTemas(QWidget *parent = 0);
+  ~WidgetTemas();
 
-signals:
+ signals:
 
-    /*
-     * devolvemos una Qlist<int> con los ids de los
-     * temas seleccionados para que luego el formulario que
-     * la recibe se las apañe... ¿O hacer aquí algo más elaborado?
-     */
-    void temasSeleccionadosCambio(QList<int> temas_seleccionados);
+  /*
+   * devolvemos una Qlist<int> con los ids de los
+   * temas seleccionados para que luego el formulario que
+   * la recibe se las apañe... ¿O hacer aquí algo más elaborado?
+   */
+  void temasSeleccionadosCambio(QList<int> temas_seleccionados);
 
-private slots:
-    void on_btAnadir_clicked();
+ private slots:
+  void on_btAnadir_clicked();
 
-    void on_btQuitar_clicked();
+  void on_btQuitar_clicked();
 
-    void on_btQuitarTodos_clicked();
+  void on_btQuitarTodos_clicked();
 
-private:
-    Ui::WidgetTemas *ui;
+ private:
+  Ui::WidgetTemas *ui;
 
-    QSqlTableModel *m_temas;
-    QSortFilterProxyModel *temas_noseleccionados_proxy;
-    QSortFilterProxyModel *temas_seleccionados_proxy;
+  QSqlTableModel *m_temas;
+  QSortFilterProxyModel *temas_noseleccionados_proxy;
+  QSortFilterProxyModel *temas_seleccionados_proxy;
 
-    void cargarModelos();
-    void crearSqlFiltro();
+  void cargarModelos();
+  void crearSqlFiltro();
 };
 
-#endif // WIDGETTEMAS_H
+#endif  // WIDGETTEMAS_H

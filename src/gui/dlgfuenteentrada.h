@@ -12,27 +12,25 @@ namespace Ui {
 class dlgFuenteEntrada;
 }
 
-class dlgFuenteEntrada : public QDialog
-{
-    Q_OBJECT
+class dlgFuenteEntrada : public QDialog {
+  Q_OBJECT
 
-public:
-    explicit dlgFuenteEntrada(QWidget *parent = 0);
-    ~dlgFuenteEntrada();
+ public:
+  explicit dlgFuenteEntrada(QWidget *parent = 0);
+  ~dlgFuenteEntrada();
 
-protected:
+ protected:
+  void accept();
 
-    void accept();
+ signals:
 
-signals:
+  void signalFuente(fuente f);
 
-    void signalFuente(fuente f);
+ private:
+  Ui::dlgFuenteEntrada *ui;
 
-private:
-    Ui::dlgFuenteEntrada *ui;
-
-    QSqlQueryModel *m_obras;
-    QCompleter *m_obras_completer;
+  QSqlQueryModel *m_obras;
+  QCompleter *m_obras_completer;
 };
 
-#endif // DLGFUENTEENTRADA_H
+#endif  // DLGFUENTEENTRADA_H

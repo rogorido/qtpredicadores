@@ -1,23 +1,22 @@
 #ifndef MYQLINEEDIT_H
 #define MYQLINEEDIT_H
 
+#include <QLineEdit>
 #include <QObject>
 #include <QWidget>
-#include <QLineEdit>
 
-class myQLineEdit : public QLineEdit
-{
-    Q_OBJECT
+class myQLineEdit : public QLineEdit {
+  Q_OBJECT
 
-public:
-    myQLineEdit(QWidget *parent = 0);
+ public:
+  myQLineEdit(QWidget *parent = 0);
 
-signals:
+ signals:
 
-    void dobleclick();
+  void dobleclick();
 
-protected:
-    void mouseReleaseEvent(QMouseEvent *e) override;
+ protected:
+  void mouseReleaseEvent(QMouseEvent *e) override;
 };
 
-#endif // MYQLINEEDIT_H
+#endif  // MYQLINEEDIT_H

@@ -3,10 +3,10 @@
 
 #include <QDialog>
 
-#include "src/objs/variados.h"
-#include "src/objs/pena.h"
-#include "src/objs/infraccion.h"
 #include "src/objs/declaracion.h"
+#include "src/objs/infraccion.h"
+#include "src/objs/pena.h"
+#include "src/objs/variados.h"
 
 class QJsonModel;
 class MyQmdiArea;
@@ -28,47 +28,45 @@ namespace Ui {
 class dlgDeclaracionEntrada;
 }
 
-class dlgDeclaracionEntrada : public QDialog
-{
-    Q_OBJECT
+class dlgDeclaracionEntrada : public QDialog {
+  Q_OBJECT
 
-public:
-    explicit dlgDeclaracionEntrada(QWidget *parent = 0);
-    ~dlgDeclaracionEntrada();
+ public:
+  explicit dlgDeclaracionEntrada(QWidget *parent = 0);
+  ~dlgDeclaracionEntrada();
 
-private slots:
+ private slots:
 
-    void aceptar();
+  void aceptar();
 
-    void anadirInfraccion();
-    void anadirPena();
+  void anadirInfraccion();
+  void anadirPena();
 
-    void recibirInfraccion(Infraccion infraccion);
-    void recibirPena(Pena pena);
+  void recibirInfraccion(Infraccion infraccion);
+  void recibirPena(Pena pena);
 
-    void cerrar();
+  void cerrar();
 
-signals:
+ signals:
 
-    void aceptarDeclaracion(Declaracion declaracion);
+  void aceptarDeclaracion(Declaracion declaracion);
 
-private:
-    Ui::dlgDeclaracionEntrada *ui;
-    MyQmdiArea *mdiarea;
+ private:
+  Ui::dlgDeclaracionEntrada *ui;
+  MyQmdiArea *mdiarea;
 
-    Declaracion declaracion;
+  Declaracion declaracion;
 
+  /*
+   * este es el model donde vamos metiendo QJsonObjects
+   * y que se comunica con la view.
+   */
+  QJsonModel *json_model_infracciones;
 
-    /*
-     * este es el model donde vamos metiendo QJsonObjects
-     * y que se comunica con la view.
-     */
-    QJsonModel *json_model_infracciones;
+  Pena pena_estipulada;
+  Infraccion infraccion_cometida;
 
-    Pena pena_estipulada;
-    Infraccion infraccion_cometida;
-
-    void cargarModelos();
+  void cargarModelos();
 };
 
-#endif // DLGDECLARACIONENTRADA_H
+#endif  // DLGDECLARACIONENTRADA_H

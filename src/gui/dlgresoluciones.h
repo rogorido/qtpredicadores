@@ -22,93 +22,92 @@ namespace Ui {
 class dlgResoluciones;
 }
 
-class dlgResoluciones : public QWidget
-{
-    Q_OBJECT
+class dlgResoluciones : public QWidget {
+  Q_OBJECT
 
-public:
-    explicit dlgResoluciones(QWidget *parent = 0);
-    ~dlgResoluciones();
+ public:
+  explicit dlgResoluciones(QWidget *parent = 0);
+  ~dlgResoluciones();
 
-private slots:
+ private slots:
 
-    void seleccionarResolucion(const QModelIndex &idx);
-    void recibirNuevoTema(Tema t);
-    // cuando añadimos detalles los recibimos en este slot
-    void recibirNuevoJsonDetalles();
-    void cargarDetalles(int id);
-    void aplicarFiltro();
-    void actualizarSql(QString s);
-    // esto recibe del widget temas la lista de temas cambiados
-    void temasSeleccionadosCambiados(QList<int> lista_temas);
+  void seleccionarResolucion(const QModelIndex &idx);
+  void recibirNuevoTema(Tema t);
+  // cuando añadimos detalles los recibimos en este slot
+  void recibirNuevoJsonDetalles();
+  void cargarDetalles(int id);
+  void aplicarFiltro();
+  void actualizarSql(QString s);
+  // esto recibe del widget temas la lista de temas cambiados
+  void temasSeleccionadosCambiados(QList<int> lista_temas);
 
-    void on_btAnadirTema_clicked();
-    void on_btQuitarTema_clicked();
-    void on_btAnadirDetalles_clicked();
-    void on_btBorrarDetalles_clicked();
-    void on_btSeleccionarEpigrafe_clicked();
-    void on_btDeSeleccionarEpigrafe_clicked();
-    void on_btDeseleccionarTodosEpigrafes_clicked();
+  void on_btAnadirTema_clicked();
+  void on_btQuitarTema_clicked();
+  void on_btAnadirDetalles_clicked();
+  void on_btBorrarDetalles_clicked();
+  void on_btSeleccionarEpigrafe_clicked();
+  void on_btDeSeleccionarEpigrafe_clicked();
+  void on_btDeseleccionarTodosEpigrafes_clicked();
 
-private:
-    Ui::dlgResoluciones *ui;
+ private:
+  Ui::dlgResoluciones *ui;
 
-    MyQmdiArea *mdiarea;
+  MyQmdiArea *mdiarea;
 
-    dlgSeleccionarGeneral *dlgseleccionar;
-    SqlFiltroGestor *sql_gestor;
+  dlgSeleccionarGeneral *dlgseleccionar;
+  SqlFiltroGestor *sql_gestor;
 
-    /*
-     * no pongo m_resoluciones pq "se confundiría
-     * con el que suelo usar que carga toda la tabla,
-     * y aquí solo cargamos una parte y además con datos de otras
-     */
-    QSqlQueryModel *resoluciones_model;
-    QDataWidgetMapper *mapper_data;
-    QSqlRelationalTableModel *temas_model;
-    QJsonModel *json_model;
+  /*
+   * no pongo m_resoluciones pq "se confundiría
+   * con el que suelo usar que carga toda la tabla,
+   * y aquí solo cargamos una parte y además con datos de otras
+   */
+  QSqlQueryModel *resoluciones_model;
+  QDataWidgetMapper *mapper_data;
+  QSqlRelationalTableModel *temas_model;
+  QJsonModel *json_model;
 
-    /*
-     * esto lo usamos para la tabla temporal de epígrafes
-     * de las resoluciones
-     */
-    QSqlTableModel *m_epigrafes;
-    QSortFilterProxyModel *epigrafes_noseleccionados_proxy;
-    QSortFilterProxyModel *epigrafes_seleccionados_proxy;
+  /*
+   * esto lo usamos para la tabla temporal de epígrafes
+   * de las resoluciones
+   */
+  QSqlTableModel *m_epigrafes;
+  QSortFilterProxyModel *epigrafes_noseleccionados_proxy;
+  QSortFilterProxyModel *epigrafes_seleccionados_proxy;
 
-    /*
-     * este lo usamos en el caso de que queramos
-     * añadir nuevos Jsons a la resolución
-     */
-    QJsonModel *json_anadir_model;
+  /*
+   * este lo usamos en el caso de que queramos
+   * añadir nuevos Jsons a la resolución
+   */
+  QJsonModel *json_anadir_model;
 
-    void cargarModelos();
-    void cargarTablasTemporales(); // para lo de los epígrafes
-    void cargarMapper();
-    void cargarInfos();
+  void cargarModelos();
+  void cargarTablasTemporales();  // para lo de los epígrafes
+  void cargarMapper();
+  void cargarInfos();
 
-    /*
-     * aquí guardamos la id de la resolución que está escogida.
-     */
-    int resolucion_id;
+  /*
+   * aquí guardamos la id de la resolución que está escogida.
+   */
+  int resolucion_id;
 
-    /*
-     * aquí se guarda una lista de las ids de la tabla
-     * resolutions_details, que se corresponde al campo
-     * detail_id  y permite manipular las entradas de esta tabla
-     */
-    QList<int> ids_resolutions_details;
+  /*
+   * aquí se guarda una lista de las ids de la tabla
+   * resolutions_details, que se corresponde al campo
+   * detail_id  y permite manipular las entradas de esta tabla
+   */
+  QList<int> ids_resolutions_details;
 
-    /*
-     * guardamos el SQL que está activo
-     */
-    QString sqlactivo;
+  /*
+   * guardamos el SQL que está activo
+   */
+  QString sqlactivo;
 
-    /*
-     * Métodos para la creación de filtros que luego se pasan
-     * a SqlFiltroGestor
-     */
-    void crearFiltroEpigrafes();
+  /*
+   * Métodos para la creación de filtros que luego se pasan
+   * a SqlFiltroGestor
+   */
+  void crearFiltroEpigrafes();
 };
 
-#endif // DLGRESOLUCIONES_H
+#endif  // DLGRESOLUCIONES_H

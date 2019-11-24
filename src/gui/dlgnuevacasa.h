@@ -19,77 +19,75 @@ namespace Ui {
 class dlgNuevaCasa;
 }
 
-class dlgNuevaCasa : public QWidget
-{
-    Q_OBJECT
+class dlgNuevaCasa : public QWidget {
+  Q_OBJECT
 
-public:
-    explicit dlgNuevaCasa(QWidget *parent = 0, int casa = 0);
-    ~dlgNuevaCasa();
+ public:
+  explicit dlgNuevaCasa(QWidget *parent = 0, int casa = 0);
+  ~dlgNuevaCasa();
 
-private slots:
+ private slots:
 
-    void aceptarCasa();
-    void anadirLugar();
-    void quitarLugar(); // tenemos que quitarlo pq está en el struct
-    void recibirLugar(Lugar lugar);
-    void anadirFuente();
+  void aceptarCasa();
+  void anadirLugar();
+  void quitarLugar();  // tenemos que quitarlo pq está en el struct
+  void recibirLugar(Lugar lugar);
+  void anadirFuente();
 
-    void anadirProvincia();
-    void quitarProvincia();
-    void recibirProvincia(Provincia provincia);
-    void recibirFuente(fuente f);
+  void anadirProvincia();
+  void quitarProvincia();
+  void recibirProvincia(Provincia provincia);
+  void recibirFuente(fuente f);
 
-    void cerrar();
+  void cerrar();
 
-signals:
+ signals:
 
-    void casaIntroducida();
+  void casaIntroducida();
 
-private:
-    Ui::dlgNuevaCasa *ui;
+ private:
+  Ui::dlgNuevaCasa *ui;
 
-    MyQmdiArea *mdiarea;
+  MyQmdiArea *mdiarea;
 
-    LugaresModel *m_lugares;
-    CasasModel *m_casas;
+  LugaresModel *m_lugares;
+  CasasModel *m_casas;
 
-    struct elementopareado{
-      int id = 0;
-      QString elemento = "";
-    };
+  struct elementopareado {
+    int id = 0;
+    QString elemento = "";
+  };
 
-    elementopareado lugar_struct;
-    elementopareado provincia_struct;
+  elementopareado lugar_struct;
+  elementopareado provincia_struct;
 
-    QSqlQueryModel *m_tipos;
-    QCompleter *m_tipos_completer;
-    QSqlQueryModel *m_advocaciones;
-    QCompleter *m_advocaciones_completer;
-    QSqlQueryModel *m_diocesis;
-    QCompleter *m_diocesis_completer;
+  QSqlQueryModel *m_tipos;
+  QCompleter *m_tipos_completer;
+  QSqlQueryModel *m_advocaciones;
+  QCompleter *m_advocaciones_completer;
+  QSqlQueryModel *m_diocesis;
+  QCompleter *m_diocesis_completer;
 
-    /*
-     * Aquí metemos los datos de si estamos modificando algo.
-     */
-    bool modificando = false;
-    int casa_modificando = 0;
+  /*
+   * Aquí metemos los datos de si estamos modificando algo.
+   */
+  bool modificando = false;
+  int casa_modificando = 0;
 
-    /*
-     * aquí metemos los datos que nos llegan de la source
-     */
-    QJsonObject *fuentedatos;
-    /*
-     * controlamos si hemos metido fuente
-     */
-    bool fuente_recibida = false;
+  /*
+   * aquí metemos los datos que nos llegan de la source
+   */
+  QJsonObject *fuentedatos;
+  /*
+   * controlamos si hemos metido fuente
+   */
+  bool fuente_recibida = false;
 
-    void borrarCampos();
-    void cargarModelos();
+  void borrarCampos();
+  void cargarModelos();
 
-    // cuando modificamos una...
-    void cargarCasa();
-
+  // cuando modificamos una...
+  void cargarCasa();
 };
 
-#endif // DLGNUEVACASA_H
+#endif  // DLGNUEVACASA_H

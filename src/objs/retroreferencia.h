@@ -5,34 +5,33 @@
 
 #include "variados.h"
 
-class RetroReferencia
-{
-public:
-    RetroReferencia();
+class RetroReferencia {
+ public:
+  RetroReferencia();
 
-    // setters
+  // setters
 
-    void setTipo(const QString t);
-    void setReferencia(const QString r);
-    void setTextoReal(const QString t);
+  void setTipo(const QString t);
+  void setReferencia(const QString r);
+  void setTextoReal(const QString t);
 
-    // getters
-    QString getTipo() const {return tipo;}
-    QString getReferencia() const {return referencia;} // es un valor/resumen que pongo yo
-    QString getTextoTeal() const {return texto_real;}
-    bool estaLleno() const {return lleno;}
+  // getters
+  QString getTipo() const { return tipo; }
+  QString getReferencia() const
+  {
+    return referencia;
+  }  // es un valor/resumen que pongo yo
+  QString getTextoTeal() const { return texto_real; }
+  bool estaLleno() const { return lleno; }
 
-    // devolver un QJsonObject
-    QJsonObject getRetroJson();
+  // devolver un QJsonObject
+  QJsonObject getRetroJson();
 
-private:
-
-    QString tipo;
-    QString referencia; // es un valor/resumen que pongo yo
-    QString texto_real;
-    bool lleno = false;
-
-
+ private:
+  QString tipo;
+  QString referencia;  // es un valor/resumen que pongo yo
+  QString texto_real;
+  bool lleno = false;
 };
 
-#endif // RETROREFERENCIA_H
+#endif  // RETROREFERENCIA_H

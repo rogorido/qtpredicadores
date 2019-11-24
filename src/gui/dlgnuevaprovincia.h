@@ -9,23 +9,22 @@ namespace Ui {
 class dlgNuevaProvincia;
 }
 
-class dlgNuevaProvincia : public QDialog
-{
-    Q_OBJECT
+class dlgNuevaProvincia : public QDialog {
+  Q_OBJECT
 
-public:
-    explicit dlgNuevaProvincia(QWidget *parent = 0);
-    ~dlgNuevaProvincia();
+ public:
+  explicit dlgNuevaProvincia(QWidget *parent = 0);
+  ~dlgNuevaProvincia();
 
-private slots:
+ private slots:
 
-    void aceptarProvincia();
-    void borrarCampos();
+  void aceptarProvincia();
+  void borrarCampos();
 
-private:
-    Ui::dlgNuevaProvincia *ui;
+ private:
+  Ui::dlgNuevaProvincia *ui;
 
-    ProvinciasModel *m_provincias;
+  ProvinciasModel *m_provincias;
 };
 
-#endif // DLGNUEVAPROVINCIA_H
+#endif  // DLGNUEVAPROVINCIA_H

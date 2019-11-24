@@ -9,22 +9,21 @@ namespace Ui {
 class dlgEstadisticas;
 }
 
-class dlgEstadisticas : public QWidget
-{
-    Q_OBJECT
+class dlgEstadisticas : public QWidget {
+  Q_OBJECT
 
-public:
-    explicit dlgEstadisticas(QWidget *parent = 0);
-    ~dlgEstadisticas();
+ public:
+  explicit dlgEstadisticas(QWidget *parent = 0);
+  ~dlgEstadisticas();
 
-private slots:
+ private slots:
 
-    void cambiarModelo(int row);
+  void cambiarModelo(int row);
 
-private:
-    Ui::dlgEstadisticas *ui;
+ private:
+  Ui::dlgEstadisticas *ui;
 
-    QSqlQueryModel *estadisticas;
+  QSqlQueryModel *estadisticas;
 };
 
-#endif // DLGESTADISTICAS_H
+#endif  // DLGESTADISTICAS_H

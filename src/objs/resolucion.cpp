@@ -1,7 +1,6 @@
 #include "resolucion.h"
 
-Resolucion::Resolucion()
-{ }
+Resolucion::Resolucion() {}
 
 void Resolucion::setId(const int i) { id = i; }
 void Resolucion::setTexto(const QString t) { texto = t; }

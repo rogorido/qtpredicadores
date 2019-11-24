@@ -4,13 +4,13 @@ Provincia::Provincia() { lleno = false; }
 
 void Provincia::setId(const int i)
 {
-    id = i;
-    lleno = true;
+  id = i;
+  lleno = true;
 }
 void Provincia::setNombre(const QString n)
 {
-    nombre = n;
-    lleno = true;
+  nombre = n;
+  lleno = true;
 }
 void Provincia::setOtrosNombres(const QString o) { otrosnombres = o; }
 void Provincia::setErigida(const QString e) { erigida = e; }

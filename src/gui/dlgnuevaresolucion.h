@@ -2,8 +2,9 @@
 #define DLGNUEVARESOLUCION_H
 
 #include <QWidget>
-#include "src/objs/provincia.h"
+
 #include "src/objs/capitulo.h"
+#include "src/objs/provincia.h"
 #include "src/objs/variados.h"
 
 class TemasModel;
@@ -22,92 +23,89 @@ namespace Ui {
 class dlgNuevaResolucion;
 }
 
-class dlgNuevaResolucion : public QWidget
-{
-    Q_OBJECT
+class dlgNuevaResolucion : public QWidget {
+  Q_OBJECT
 
-public:
-    explicit dlgNuevaResolucion(int capitulo,
-                             QWidget *parent = 0);
-    ~dlgNuevaResolucion();
+ public:
+  explicit dlgNuevaResolucion(int capitulo, QWidget *parent = 0);
+  ~dlgNuevaResolucion();
 
-signals:
+ signals:
 
-    void abrirDetalles(dlgDetalles *dlg);
+  void abrirDetalles(dlgDetalles *dlg);
 
-private:
-    Ui::dlgNuevaResolucion *ui;
+ private:
+  Ui::dlgNuevaResolucion *ui;
 
-    MyQmdiArea *mdiarea;
+  MyQmdiArea *mdiarea;
 
-    QJsonModel *jsongestor;
-    dlgDetalles *dlgdetalles;
-    dlgTemas *dlgtemas;
+  QJsonModel *jsongestor;
+  dlgDetalles *dlgdetalles;
+  dlgTemas *dlgtemas;
 
-    ResolucionesModel *m_resoluciones;
+  ResolucionesModel *m_resoluciones;
 
-    /*
-     * esto no se define como pointer, pq luego no sé cómo
-     * inicializarlo y es obligatorio antes de poder usarlo.
-     * Lo que hago luego es pasarle una referencia a dlgtemas
-     */
-    QList<elementopareado> temas_lista;
+  /*
+   * esto no se define como pointer, pq luego no sé cómo
+   * inicializarlo y es obligatorio antes de poder usarlo.
+   * Lo que hago luego es pasarle una referencia a dlgtemas
+   */
+  QList<elementopareado> temas_lista;
 
-    /*
-     * si escogemos provincia lo metemos aquí
-     * lo hacemos un pointer pq así luego se puede asignar
-     * el valor NULL
-     * Olvídalo!
-     */
-    int provincia_id = 0;
-    int capitulo_id;
-    QSqlQueryModel *m_epigrafe;
-    QSqlQueryModel *m_verbos_usados;
-    QSqlQueryModel *m_expresiones_usados;
-    QCompleter *m_epigrafe_completer;
-    QCompleter *m_verbos_completer;
-    QCompleter *m_expresiones_completer;
+  /*
+   * si escogemos provincia lo metemos aquí
+   * lo hacemos un pointer pq así luego se puede asignar
+   * el valor NULL
+   * Olvídalo!
+   */
+  int provincia_id = 0;
+  int capitulo_id;
+  QSqlQueryModel *m_epigrafe;
+  QSqlQueryModel *m_verbos_usados;
+  QSqlQueryModel *m_expresiones_usados;
+  QCompleter *m_epigrafe_completer;
+  QCompleter *m_verbos_completer;
+  QCompleter *m_expresiones_completer;
 
-    // para lo de los verbos y las expresiones
-    QStringListModel *m_verbos;
-    QStringListModel *m_expresiones;
+  // para lo de los verbos y las expresiones
+  QStringListModel *m_verbos;
+  QStringListModel *m_expresiones;
 
-    void cargarModelos();
-    void rellenarCombos();
-    void introducirJson(const int id);
-    void introducirTemas(const int id);
-    void borrarCampos();
+  void cargarModelos();
+  void rellenarCombos();
+  void introducirJson(const int id);
+  void introducirTemas(const int id);
+  void borrarCampos();
 
-    /*
-     * esto se usa cuando abrimos el formulario
-     * desde el formulario de capítulo
-     */
-    int capitulo_origen;
-    bool origen;
+  /*
+   * esto se usa cuando abrimos el formulario
+   * desde el formulario de capítulo
+   */
+  int capitulo_origen;
+  bool origen;
 
-private slots:
+ private slots:
 
-    void on_btDetalles_clicked();
-    void on_btTemas_clicked();
-    void on_btAnadirVerbo_clicked();
-    void on_btQuitarVerbo_clicked();
-    void on_btAnadirExpresion_clicked();
-    void on_btQuitarExpresion_clicked();
+  void on_btDetalles_clicked();
+  void on_btTemas_clicked();
+  void on_btAnadirVerbo_clicked();
+  void on_btQuitarVerbo_clicked();
+  void on_btAnadirExpresion_clicked();
+  void on_btQuitarExpresion_clicked();
 
-    void aceptarResolucion(); // btOK
+  void aceptarResolucion();  // btOK
 
-    void anadirProvincia();
-    void quitarProvincia();
+  void anadirProvincia();
+  void quitarProvincia();
 
-    void anadirCapitulo();
-    void quitarCapitulo();
+  void anadirCapitulo();
+  void quitarCapitulo();
 
-    // en teoría casi un qlist de ints sería suficiente...
-    void recibirProvincia(Provincia provincia);
-    void recibirCapitulo(Capitulo capitulo);
+  // en teoría casi un qlist de ints sería suficiente...
+  void recibirProvincia(Provincia provincia);
+  void recibirCapitulo(Capitulo capitulo);
 
-    void cerrar();
-
+  void cerrar();
 };
 
-#endif // DLGNUEVARESOLUCION_H
+#endif  // DLGNUEVARESOLUCION_H

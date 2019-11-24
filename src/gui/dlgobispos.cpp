@@ -1,260 +1,263 @@
 #include "dlgobispos.h"
-#include "ui_dlgobispos.h"
 
-#include <QSqlQuery>
-#include <QSqlQueryModel>
-#include <QModelIndex>
-#include <QMenu>
 #include <QAction>
 #include <QDebug>
+#include <QMenu>
+#include <QModelIndex>
+#include <QSqlQuery>
+#include <QSqlQueryModel>
 
 #include "src/models/sqlfiltrogestor.h"
 #include "src/objs/proxynombres.h"
 #include "src/widgets/fechasdelegate.h"
+#include "ui_dlgobispos.h"
 
 const QString sql_general = "SELECT * from vistas.obispos_general";
-const QString sqlvolvermirar = "bishop_id IN (SELECT bishop_id FROM bishops_details "
-                               "WHERE (details->'meta_info'->>'volver_a_mirar')::boolean = TRUE)";
-const QString sqlinteresante = "bishop_id IN (SELECT bishop_id FROM bishops_details "
-                               "WHERE (details->'meta_info'->>'interesante')::boolean = TRUE)";
+const QString sqlvolvermirar =
+    "bishop_id IN (SELECT bishop_id FROM bishops_details "
+    "WHERE (details->'meta_info'->>'volver_a_mirar')::boolean = TRUE)";
+const QString sqlinteresante =
+    "bishop_id IN (SELECT bishop_id FROM bishops_details "
+    "WHERE (details->'meta_info'->>'interesante')::boolean = TRUE)";
 const QString sqlcontar = "SELECT count(*) FROM vistas.obispos_general";
 
-dlgObispos::dlgObispos(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::dlgObispos)
+dlgObispos::dlgObispos(QWidget *parent)
+    : QWidget(parent), ui(new Ui::dlgObispos)
 {
-    ui->setupUi(this);
+  ui->setupUi(this);
 
-    obispos_model = new QSqlQueryModel(this);
-    sqlactivo = sql_general;
+  obispos_model = new QSqlQueryModel(this);
+  sqlactivo = sql_general;
 
-    sql_gestor = new SqlFiltroGestor(sql_general, this);
-    connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this, SLOT(actualizarSql(QString)));
+  sql_gestor = new SqlFiltroGestor(sql_general, this);
+  connect(sql_gestor, SIGNAL(actualizadoSqlFiltroGestor(QString)), this,
+          SLOT(actualizarSql(QString)));
 
-    diocesis_model = new QSqlQueryModel(this);
+  diocesis_model = new QSqlQueryModel(this);
 
-    cargarModelos();
-    cargarMenus();
+  cargarModelos();
+  cargarMenus();
 
-    /*
-     * esto lo hacemos aquí aunque luego hay una función con
-     * este mismo código. Pero el asunto es que esto necesito
-     * hacerlo al cargar el formulario para que meta en esa variable
-     * el total. Aunque sospecho que esto es una cutrada.
-     */
-    QSqlQuery query(sqlcontar);
-    query.next();
-    total_obispos = query.value(0).toInt();
-    emitirSenalTotalObispos();
+  /*
+   * esto lo hacemos aquí aunque luego hay una función con
+   * este mismo código. Pero el asunto es que esto necesito
+   * hacerlo al cargar el formulario para que meta en esa variable
+   * el total. Aunque sospecho que esto es una cutrada.
+   */
+  QSqlQuery query(sqlcontar);
+  query.next();
+  total_obispos = query.value(0).toInt();
+  emitirSenalTotalObispos();
 
-    ui->twObispos->setContextMenuPolicy(Qt::CustomContextMenu);
+  ui->twObispos->setContextMenuPolicy(Qt::CustomContextMenu);
 
-    // fechas y sus formatos...
-    ui->twObispos->setItemDelegateForColumn(7, new FechasDelegate(FechasDelegate::TipoFecha::FULL_DATE, this));
-    ui->twObispos->setItemDelegateForColumn(8, new FechasDelegate(FechasDelegate::TipoFecha::FULL_DATE, this));
+  // fechas y sus formatos...
+  ui->twObispos->setItemDelegateForColumn(
+      7, new FechasDelegate(FechasDelegate::TipoFecha::FULL_DATE, this));
+  ui->twObispos->setItemDelegateForColumn(
+      8, new FechasDelegate(FechasDelegate::TipoFecha::FULL_DATE, this));
 
-    connect(ui->twObispos, SIGNAL(clicked(const QModelIndex &)), this, SLOT(seleccionarObispo(QModelIndex)));
-    connect(ui->twObispos, SIGNAL(customContextMenuRequested(const QPoint &)),
-            this, SLOT(menuContextual(const QPoint &)));
-    connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this, SLOT(actualizarFiltro(QString)));
-
+  connect(ui->twObispos, SIGNAL(clicked(const QModelIndex &)), this,
+          SLOT(seleccionarObispo(QModelIndex)));
+  connect(ui->twObispos, SIGNAL(customContextMenuRequested(const QPoint &)),
+          this, SLOT(menuContextual(const QPoint &)));
+  connect(ui->txtFiltro, SIGNAL(textEdited(QString)), this,
+          SLOT(actualizarFiltro(QString)));
 }
 
-dlgObispos::~dlgObispos()
-{
-    delete ui;
-}
+dlgObispos::~dlgObispos() { delete ui; }
 
 void dlgObispos::seleccionarObispo(const QModelIndex &idx)
 {
-    /*
-     * sacamos el índice de la columna 0 que es donde está
-     * la id de la resolución, para luego convertirla en int
-     * y usarla en el filtro del otro modelo.
-     */
-    QModelIndex indice = idx.model()->index(idx.row(), 0);
-    if (!indice.isValid())
-        return;
+  /*
+   * sacamos el índice de la columna 0 que es donde está
+   * la id de la resolución, para luego convertirla en int
+   * y usarla en el filtro del otro modelo.
+   */
+  QModelIndex indice = idx.model()->index(idx.row(), 0);
+  if (!indice.isValid()) return;
 
-    QModelIndex indice_verdadero = proxy_obispos->mapToSource(indice);
+  QModelIndex indice_verdadero = proxy_obispos->mapToSource(indice);
 
-    obispo_seleccionado = obispos_model->data(indice_verdadero, Qt::DisplayRole).toInt();
-
+  obispo_seleccionado =
+      obispos_model->data(indice_verdadero, Qt::DisplayRole).toInt();
 }
 
 void dlgObispos::menuContextual(const QPoint &point)
 {
-    qDebug() << "estamos en el menú";
+  qDebug() << "estamos en el menú";
 
-    menuContexto->popup(ui->twObispos->viewport()->mapToGlobal(point));
+  menuContexto->popup(ui->twObispos->viewport()->mapToGlobal(point));
 }
 
 void dlgObispos::cargarModelos()
 {
-    obispos_model->setQuery(sqlactivo);
+  obispos_model->setQuery(sqlactivo);
 
-    proxy_obispos = new ProxyNombres(OBISPO, this);
-    proxy_obispos->setSourceModel(obispos_model);
+  proxy_obispos = new ProxyNombres(OBISPO, this);
+  proxy_obispos->setSourceModel(obispos_model);
 
-    ui->twObispos->setModel(proxy_obispos);
+  ui->twObispos->setModel(proxy_obispos);
 
-    // ocultamos algunas columnas
-    ui->twObispos->hideColumn(0);
-    ui->twObispos->hideColumn(5);
-    ui->twObispos->hideColumn(9);
-    ui->twObispos->hideColumn(10);
-    ui->twObispos->hideColumn(11);
-    ui->twObispos->hideColumn(12);
+  // ocultamos algunas columnas
+  ui->twObispos->hideColumn(0);
+  ui->twObispos->hideColumn(5);
+  ui->twObispos->hideColumn(9);
+  ui->twObispos->hideColumn(10);
+  ui->twObispos->hideColumn(11);
+  ui->twObispos->hideColumn(12);
 
-    ui->twObispos->setAlternatingRowColors(true);
-    //ui->twResoluciones->setColumnWidth(1, 80);
-    ui->twObispos->resizeColumnsToContents();
-    ui->twObispos->resizeRowsToContents();
-    ui->twObispos->horizontalHeader()->setStretchLastSection(true);
-    ui->twObispos->setSortingEnabled(true);
-    ui->twObispos->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->twObispos->setSelectionMode(QAbstractItemView::SingleSelection);
+  ui->twObispos->setAlternatingRowColors(true);
+  // ui->twResoluciones->setColumnWidth(1, 80);
+  ui->twObispos->resizeColumnsToContents();
+  ui->twObispos->resizeRowsToContents();
+  ui->twObispos->horizontalHeader()->setStretchLastSection(true);
+  ui->twObispos->setSortingEnabled(true);
+  ui->twObispos->setSelectionBehavior(QAbstractItemView::SelectRows);
+  ui->twObispos->setSelectionMode(QAbstractItemView::SingleSelection);
 
-    // escogemos la primera línea del modelo...
-    QModelIndex index = proxy_obispos->index(0,0);
-    if (index.isValid()) {
-        ui->twObispos->setCurrentIndex(index);
-    }
+  // escogemos la primera línea del modelo...
+  QModelIndex index = proxy_obispos->index(0, 0);
+  if (index.isValid()) {
+    ui->twObispos->setCurrentIndex(index);
+  }
 
-    // lo de las diócesis
-    diocesis_model->setQuery("SELECT diocese_id, diocese_name FROM dioceses ORDER BY diocese_name");
+  // lo de las diócesis
+  diocesis_model->setQuery(
+      "SELECT diocese_id, diocese_name FROM dioceses ORDER BY diocese_name");
 
-    ui->cbDiocesis->setModel(diocesis_model);
-    ui->cbDiocesis->setModelColumn(1);
-    ui->cbDiocesis->setCurrentIndex(-1);
-
+  ui->cbDiocesis->setModel(diocesis_model);
+  ui->cbDiocesis->setModelColumn(1);
+  ui->cbDiocesis->setCurrentIndex(-1);
 }
 
 void dlgObispos::emitirSenalTotalObispos()
 {
-     QString final;
+  QString final;
 
-    if (total_obispos == total_filtrado){
-        final = QString("Obispos: %1").arg(total_obispos);
-    }
-    else {
-        final = QString("Obispos: %1/%2").arg(QString::number(total_filtrado)).arg(total_obispos);
-    }
-    emit infoBarraInferior(final);
+  if (total_obispos == total_filtrado) {
+    final = QString("Obispos: %1").arg(total_obispos);
+  }
+  else {
+    final = QString("Obispos: %1/%2")
+                .arg(QString::number(total_filtrado))
+                .arg(total_obispos);
+  }
+  emit infoBarraInferior(final);
 }
 
 void dlgObispos::cargarMenus()
 {
-    menuContexto = new QMenu(this);
+  menuContexto = new QMenu(this);
 
-    a_verPersona = new QAction("Ver datos de persona", this);
-    a_cambiarDiocesis = new QAction("Modificar diócesis", this);
-    a_cambiarPersona = new QAction("Modificar persona", this);
+  a_verPersona = new QAction("Ver datos de persona", this);
+  a_cambiarDiocesis = new QAction("Modificar diócesis", this);
+  a_cambiarPersona = new QAction("Modificar persona", this);
 
-    connect(a_verPersona, SIGNAL(triggered(bool)), this, SLOT(verPersona()));
-    connect(a_cambiarPersona, SIGNAL(triggered(bool)), this, SLOT(modificarPersona()));
-    connect(a_cambiarDiocesis, SIGNAL(triggered(bool)), this, SLOT(modificarDiocesis()));
+  connect(a_verPersona, SIGNAL(triggered(bool)), this, SLOT(verPersona()));
+  connect(a_cambiarPersona, SIGNAL(triggered(bool)), this,
+          SLOT(modificarPersona()));
+  connect(a_cambiarDiocesis, SIGNAL(triggered(bool)), this,
+          SLOT(modificarDiocesis()));
 
-    menuContexto->addAction(a_verPersona);
-    menuContexto->addAction(a_cambiarPersona);
-    menuContexto->addAction(a_cambiarDiocesis);
+  menuContexto->addAction(a_verPersona);
+  menuContexto->addAction(a_cambiarPersona);
+  menuContexto->addAction(a_cambiarDiocesis);
 }
 
 void dlgObispos::on_pbActivar_clicked()
 {
-    obispos_model->setQuery("SELECT * from vistas.obispos_general WHERE date_end IS NULL");
+  obispos_model->setQuery(
+      "SELECT * from vistas.obispos_general WHERE date_end IS NULL");
 }
 
 void dlgObispos::on_ckVolverAMirar_toggled(bool checked)
 {
-    if (checked)
-        sql_gestor->anadirFiltro("volveramirar", sqlvolvermirar);
-    else
-        sql_gestor->quitarFiltro("volveramirar");
+  if (checked)
+    sql_gestor->anadirFiltro("volveramirar", sqlvolvermirar);
+  else
+    sql_gestor->quitarFiltro("volveramirar");
 }
 
 void dlgObispos::modificarDiocesis()
 {
-    qDebug() << "modificando diócesis del obispo: " << obispo_seleccionado;
+  qDebug() << "modificando diócesis del obispo: " << obispo_seleccionado;
 }
 
 void dlgObispos::modificarPersona()
 {
-    qDebug() << "modificando diócesis del obispo: " << obispo_seleccionado;
+  qDebug() << "modificando diócesis del obispo: " << obispo_seleccionado;
 }
 
-void dlgObispos::verPersona()
-{
-
-}
+void dlgObispos::verPersona() {}
 
 void dlgObispos::actualizarSql(QString s)
 {
-    sqlactivo = s;
+  sqlactivo = s;
 
-    obispos_model->setQuery(sqlactivo);
+  obispos_model->setQuery(sqlactivo);
 
-    contarTotal();
+  contarTotal();
 }
 
 void dlgObispos::contarTotal()
 {
-    //total_filtrado = obispos_model->rowCount();
-    total_filtrado = proxy_obispos->rowCount();
+  // total_filtrado = obispos_model->rowCount();
+  total_filtrado = proxy_obispos->rowCount();
 
-    emitirSenalTotalObispos();
+  emitirSenalTotalObispos();
 }
 
 void dlgObispos::seleccionarPersona(int id)
 {
-    QString sql;
+  QString sql;
 
-    sql = QString("person_id = %1").arg(id);
+  sql = QString("person_id = %1").arg(id);
 
-    sql_gestor->anadirFiltro("persona", sql);
+  sql_gestor->anadirFiltro("persona", sql);
 }
 
 void dlgObispos::on_cbDiocesis_currentIndexChanged(int index)
 {
-    int escogido;
-    QString sql;
+  int escogido;
+  QString sql;
 
-    QModelIndex idx = ui->cbDiocesis->model()->index(index, 0);
+  QModelIndex idx = ui->cbDiocesis->model()->index(index, 0);
 
-    if (!idx.isValid()){
-        sql_gestor->quitarFiltro("diocesis");
-        return;
-    }
+  if (!idx.isValid()) {
+    sql_gestor->quitarFiltro("diocesis");
+    return;
+  }
 
-    escogido = ui->cbDiocesis->model()->data(idx).toInt();
+  escogido = ui->cbDiocesis->model()->data(idx).toInt();
 
-    sql = QString("diocese_id = %1").arg(escogido);
+  sql = QString("diocese_id = %1").arg(escogido);
 
-    sql_gestor->anadirFiltro("diocesis", sql);
-
+  sql_gestor->anadirFiltro("diocesis", sql);
 }
 
 void dlgObispos::on_ckInteresante_toggled(bool checked)
 {
-    if (checked)
-        sql_gestor->anadirFiltro("interesante", sqlinteresante);
-    else
-        sql_gestor->quitarFiltro("interesante");
+  if (checked)
+    sql_gestor->anadirFiltro("interesante", sqlinteresante);
+  else
+    sql_gestor->quitarFiltro("interesante");
 }
 
 void dlgObispos::actualizarFiltro(const QString filtro)
 {
-    if (filtro.length() > 2) {
-        proxy_obispos->setFilterRegExp(QRegExp(filtro, Qt::CaseInsensitive, QRegExp::FixedString));
-        ui->twObispos->resizeRowsToContents();
-        ui->twObispos->resizeColumnsToContents();
-        contarTotal();
-    }
-    else
-    {
-        proxy_obispos->setFilterRegExp(QRegExp("", Qt::CaseInsensitive, QRegExp::FixedString));
-        ui->twObispos->resizeRowsToContents();
-        ui->twObispos->resizeColumnsToContents();
-        contarTotal();
-    }
+  if (filtro.length() > 2) {
+    proxy_obispos->setFilterRegExp(
+        QRegExp(filtro, Qt::CaseInsensitive, QRegExp::FixedString));
+    ui->twObispos->resizeRowsToContents();
+    ui->twObispos->resizeColumnsToContents();
+    contarTotal();
+  }
+  else {
+    proxy_obispos->setFilterRegExp(
+        QRegExp("", Qt::CaseInsensitive, QRegExp::FixedString));
+    ui->twObispos->resizeRowsToContents();
+    ui->twObispos->resizeColumnsToContents();
+    contarTotal();
+  }
 }

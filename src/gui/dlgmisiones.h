@@ -11,29 +11,28 @@ namespace Ui {
 class dlgMisiones;
 }
 
-class dlgMisiones : public QWidget
-{
-    Q_OBJECT
+class dlgMisiones : public QWidget {
+  Q_OBJECT
 
-public:
-    explicit dlgMisiones(QWidget *parent = 0);
-    ~dlgMisiones();
+ public:
+  explicit dlgMisiones(QWidget *parent = 0);
+  ~dlgMisiones();
 
-private slots:
+ private slots:
 
-    void anadirMisionero();
+  void anadirMisionero();
 
-private:
-    Ui::dlgMisiones *ui;
-    MyQmdiArea *mdiArea;
-    dlgEntradaMisionero *dlgMisionero;
+ private:
+  Ui::dlgMisiones *ui;
+  MyQmdiArea *mdiArea;
+  dlgEntradaMisionero *dlgMisionero;
 
-    QSqlTableModel *m_misiones;
+  QSqlTableModel *m_misiones;
 
-    // id de la misión escogida
-    int mision_escogida;
+  // id de la misión escogida
+  int mision_escogida;
 
-    void cargarModelo();
+  void cargarModelo();
 };
 
-#endif // DLGMISIONES_H
+#endif  // DLGMISIONES_H

@@ -1,7 +1,6 @@
 #include "capitulo.h"
 
-Capitulo::Capitulo()
-{ }
+Capitulo::Capitulo() {}
 
 void Capitulo::setId(const int i) { id = i; }
 void Capitulo::setNombre(const QString n) { nombre = n; }

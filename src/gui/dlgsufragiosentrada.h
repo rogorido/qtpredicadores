@@ -12,42 +12,41 @@ namespace Ui {
 class dlgSufragiosEntrada;
 }
 
-class dlgSufragiosEntrada : public QDialog
-{
-    Q_OBJECT
+class dlgSufragiosEntrada : public QDialog {
+  Q_OBJECT
 
-public:
-    explicit dlgSufragiosEntrada(QWidget *parent = 0);
-    ~dlgSufragiosEntrada();
+ public:
+  explicit dlgSufragiosEntrada(QWidget *parent = 0);
+  ~dlgSufragiosEntrada();
 
-protected:
-    bool eventFilter(QObject *obj, QEvent *e);
+ protected:
+  bool eventFilter(QObject *obj, QEvent *e);
 
-signals:
+ signals:
 
-    void emitirSufragio(Sufragio sufragio);
+  void emitirSufragio(Sufragio sufragio);
 
-private slots:
+ private slots:
 
-    void aceptarSufragio();
-    void anadirDestinatario();
-    void quitarDestinatario();
+  void aceptarSufragio();
+  void anadirDestinatario();
+  void quitarDestinatario();
 
-    void cerrar();
+  void cerrar();
 
-private:
-    Ui::dlgSufragiosEntrada *ui;
+ private:
+  Ui::dlgSufragiosEntrada *ui;
 
-    QSqlQueryModel *destinatarios_model;
-    QCompleter *destinatarios_completer;
-    QSqlQueryModel *motivos_model;
-    QCompleter *motivos_completer;
+  QSqlQueryModel *destinatarios_model;
+  QCompleter *destinatarios_completer;
+  QSqlQueryModel *motivos_model;
+  QCompleter *motivos_completer;
 
-    Sufragio sufragio;
+  Sufragio sufragio;
 
-    QStringList destinatarios;
+  QStringList destinatarios;
 
-    void cargarModelos();
+  void cargarModelos();
 };
 
-#endif // DLGSUFRAGIOSENTRADA_H
+#endif  // DLGSUFRAGIOSENTRADA_H

@@ -12,50 +12,49 @@ namespace Ui {
 class dlgPenaEntrada;
 }
 
-class dlgPenaEntrada : public QDialog
-{
-    Q_OBJECT
+class dlgPenaEntrada : public QDialog {
+  Q_OBJECT
 
-public:
-    explicit dlgPenaEntrada(QWidget *parent = 0);
-    ~dlgPenaEntrada();
+ public:
+  explicit dlgPenaEntrada(QWidget *parent = 0);
+  ~dlgPenaEntrada();
 
-private slots:
+ private slots:
 
-    void aceptar();
-    void anadirPenasTipos();
-    void quitarPenasTipos();
-    void anadirPenados();
-    void quitarPenados();
+  void aceptar();
+  void anadirPenasTipos();
+  void quitarPenasTipos();
+  void anadirPenados();
+  void quitarPenados();
 
-    void cerrar();
+  void cerrar();
 
-signals:
+ signals:
 
-    void aceptarPena(Pena pena);
+  void aceptarPena(Pena pena);
 
-protected:
-    bool eventFilter(QObject *obj, QEvent *e);
+ protected:
+  bool eventFilter(QObject *obj, QEvent *e);
 
-private:
-    Ui::dlgPenaEntrada *ui;
+ private:
+  Ui::dlgPenaEntrada *ui;
 
-    QStringList penastipos;
-    QStringList penados;
+  QStringList penastipos;
+  QStringList penados;
 
-    QSqlQueryModel *tipos_model;
-    QCompleter *tipos_completer;
-    QSqlQueryModel *penados_model;
-    QCompleter *penados_completer;
-    QSqlQueryModel *penatexto_model;
-    QCompleter *penatexto_completer;
-    QSqlQueryModel *motivo_model;
-    QCompleter *motivo_completer;
+  QSqlQueryModel *tipos_model;
+  QCompleter *tipos_completer;
+  QSqlQueryModel *penados_model;
+  QCompleter *penados_completer;
+  QSqlQueryModel *penatexto_model;
+  QCompleter *penatexto_completer;
+  QSqlQueryModel *motivo_model;
+  QCompleter *motivo_completer;
 
-    Pena pena;
+  Pena pena;
 
-    void cargarModelos();
-    void activarTeclaReturn();
+  void cargarModelos();
+  void activarTeclaReturn();
 };
 
-#endif // DLGPENAENTRADA_H
+#endif  // DLGPENAENTRADA_H

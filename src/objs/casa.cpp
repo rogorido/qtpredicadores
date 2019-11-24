@@ -1,23 +1,24 @@
 #include "casa.h"
 
-Casa::Casa()
-{  lleno = false; }
+Casa::Casa() { lleno = false; }
 
-void Casa::setId(const int i){
-    id = i;
+void Casa::setId(const int i)
+{
+  id = i;
+  lleno = true;
+}
+
+void Casa::setNombre(const QString n)
+{
+  if (!n.isEmpty()) {
+    nombre = n;
     lleno = true;
+  }
 }
 
-void Casa::setNombre(const QString n){
-    if (!n.isEmpty()){
-        nombre = n;
-        lleno = true;
-    }
-}
-
-void Casa::setNombreLatin(const QString n){
-    if (!n.isEmpty())
-        nombre_latin = n;
+void Casa::setNombreLatin(const QString n)
+{
+  if (!n.isEmpty()) nombre_latin = n;
 }
 
 void Casa::setLugar(const int l) { lugar = l; }

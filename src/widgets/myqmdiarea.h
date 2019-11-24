@@ -13,21 +13,19 @@
  * intenta borrarlo y como ha desaparecido da un error.
  */
 
-class MyQmdiArea : public QMdiArea
-{
-    Q_OBJECT
+class MyQmdiArea : public QMdiArea {
+  Q_OBJECT
 
-public:
-    static MyQmdiArea *Instance(QWidget *parent = 0);
+ public:
+  static MyQmdiArea *Instance(QWidget *parent = 0);
 
-protected:
-    MyQmdiArea(QWidget *parent = 0);
-    MyQmdiArea(const MyQmdiArea &);
-    MyQmdiArea &operator =(const MyQmdiArea &);
+ protected:
+  MyQmdiArea(QWidget *parent = 0);
+  MyQmdiArea(const MyQmdiArea &);
+  MyQmdiArea &operator=(const MyQmdiArea &);
 
-private:
-
-    static MyQmdiArea *pInstance;
+ private:
+  static MyQmdiArea *pInstance;
 };
 
-#endif // MYQMDIAREA_H
+#endif  // MYQMDIAREA_H

@@ -16,64 +16,62 @@ namespace Ui {
 class dlgNuevaDiocesis;
 }
 
-class dlgNuevaDiocesis : public QWidget
-{
-    Q_OBJECT
+class dlgNuevaDiocesis : public QWidget {
+  Q_OBJECT
 
-public:
-    explicit dlgNuevaDiocesis(QWidget *parent = 0);
-    explicit dlgNuevaDiocesis(int diocesis, QWidget *parent = 0);
-    ~dlgNuevaDiocesis();
+ public:
+  explicit dlgNuevaDiocesis(QWidget *parent = 0);
+  explicit dlgNuevaDiocesis(int diocesis, QWidget *parent = 0);
+  ~dlgNuevaDiocesis();
 
-private slots:
+ private slots:
 
-    void aceptarDiocesis();
-    void borrarCampos();
+  void aceptarDiocesis();
+  void borrarCampos();
 
-    void anadirLugar();
-    void anadirArchiDiocesis();
+  void anadirLugar();
+  void anadirArchiDiocesis();
 
-    void recibirLugar(Lugar lugarrecibido);
-    void recibirArchiDiocesis(Diocesis diocesis);
+  void recibirLugar(Lugar lugarrecibido);
+  void recibirArchiDiocesis(Diocesis diocesis);
 
-    void cerrar();
+  void cerrar();
 
-private:
-    Ui::dlgNuevaDiocesis *ui;
-    MyQmdiArea *mdiarea;
+ private:
+  Ui::dlgNuevaDiocesis *ui;
+  MyQmdiArea *mdiarea;
 
-    DiocesisModel *m_diocesis;
-    LugaresModel *m_lugares;
+  DiocesisModel *m_diocesis;
+  LugaresModel *m_lugares;
 
-    /*
-     * aquí metemos esos valores que vendrían del
-     * formulario seleccionar.
-     */
+  /*
+   * aquí metemos esos valores que vendrían del
+   * formulario seleccionar.
+   */
 
-    int sufraganea = 0;
-    int lugar = 0;
+  int sufraganea = 0;
+  int lugar = 0;
 
-    /*
-     * para meter lo de los motivos de desaparición
-     */
-    QStringList *lista_motivos;
-    QCompleter *motivos_completer;
+  /*
+   * para meter lo de los motivos de desaparición
+   */
+  QStringList *lista_motivos;
+  QCompleter *motivos_completer;
 
-    /*
-     * variables para cuando abrimos el form
-     * para modificar una existente
-     */
-    bool modificando = false;
-    int diocesis_modificando;
+  /*
+   * variables para cuando abrimos el form
+   * para modificar una existente
+   */
+  bool modificando = false;
+  int diocesis_modificando;
 
-    /*
-     * ponemos aquí todo lo de las signals, etc.
-     * que es común a los dos contructors que tenemos
-     */
-    void cargarUI();
+  /*
+   * ponemos aquí todo lo de las signals, etc.
+   * que es común a los dos contructors que tenemos
+   */
+  void cargarUI();
 
-    void cargarDiocesis();
-
+  void cargarDiocesis();
 };
 
-#endif // DLGNUEVADIOCESIS_H
+#endif  // DLGNUEVADIOCESIS_H

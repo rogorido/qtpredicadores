@@ -1,31 +1,30 @@
 #ifndef TEMASMODEL_H
 #define TEMASMODEL_H
 
-#include <QSqlTableModel>
-
 #include <src/objs/tema.h>
 
-class TemasModel : public QSqlTableModel
-{
-    Q_OBJECT
+#include <QSqlTableModel>
 
-public:
-    static TemasModel *InstanceModel();
+class TemasModel : public QSqlTableModel {
+  Q_OBJECT
 
-    bool AnadirTema(const Tema *tema);
+ public:
+  static TemasModel *InstanceModel();
 
-signals:
+  bool AnadirTema(const Tema *tema);
 
-    void actualizado();
+ signals:
 
-protected:
-    TemasModel();
-    TemasModel(const TemasModel &);
-    TemasModel &operator =(const TemasModel &);
+  void actualizado();
 
-private:
-    static TemasModel *pInstance;
-    static void DestroyMe();
+ protected:
+  TemasModel();
+  TemasModel(const TemasModel &);
+  TemasModel &operator=(const TemasModel &);
+
+ private:
+  static TemasModel *pInstance;
+  static void DestroyMe();
 };
 
-#endif // TEMASMODEL_H
+#endif  // TEMASMODEL_H
