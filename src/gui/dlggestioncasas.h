@@ -1,6 +1,7 @@
 #ifndef DLGGESTIONCASAS_H
 #define DLGESTIONCASAS_H
 
+#include <QSet>
 #include <QWidget>
 
 #include "src/objs/provincia.h"

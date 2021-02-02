@@ -2,6 +2,7 @@
 
 #include <QCompleter>
 #include <QDebug>
+#include <QKeyEvent>
 #include <QListWidgetItem>
 #include <QMdiSubWindow>
 #include <QModelIndex>

@@ -1,6 +1,7 @@
 #include "dlgdeclaraciongeneralentrada.h"
 
 #include <QCompleter>
+#include <QKeyEvent>
 #include <QListWidgetItem>
 #include <QMdiSubWindow>
 #include <QModelIndex>

@@ -1,6 +1,7 @@
 #include "dlgsufragiosentrada.h"
 
 #include <QCompleter>
+#include <QKeyEvent>
 #include <QSqlQueryModel>
 
 #include "src/objs/variados.h"

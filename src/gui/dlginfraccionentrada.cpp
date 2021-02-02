@@ -1,6 +1,7 @@
 #include "dlginfraccionentrada.h"
 
 #include <QCompleter>
+#include <QKeyEvent>
 #include <QListWidgetItem>
 #include <QModelIndex>
 #include <QSqlQueryModel>

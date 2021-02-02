@@ -1,16 +1,17 @@
 #include "dlgordenanzaentrada.h"
 
 #include <QCompleter>
+#include <QKeyEvent>
 #include <QSqlQueryModel>
+// entiendo que estos no son necesarios pero bueno...
+#include <QListWidgetItem>
+#include <QMdiSubWindow>
+#include <QModelIndex>
 
 #include "dlgpenaentrada.h"
 #include "dlgtemas.h"
 #include "src/widgets/myqmdiarea.h"
 #include "ui_dlgordenanzaentrada.h"
-// entiendo que estos no son necesarios pero bueno...
-#include <QListWidgetItem>
-#include <QMdiSubWindow>
-#include <QModelIndex>
 
 const QString sql_receptores =
     "SELECT DISTINCT jsonb_array_elements_text(details->'destinatarios_pena') "

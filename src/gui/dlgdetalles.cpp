@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QKeyEvent>
 #include <QMdiSubWindow>
 #include <QMenu>
 #include <QSqlQueryModel>
