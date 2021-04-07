@@ -55,7 +55,7 @@ QJsonObject Ordenanza::getOrdenanzaJson()
     json.insert("pena", pena.getPenaJson());
   }
 
-  if (retro.estaLleno()) json.insert("retro", retro.getRetroJson());
+  if (retro.estaLleno()) json.insert("retro_info", retro.getRetroJson());
 
   if (nota.estaLleno()) json.insert("meta_info", nota.getNotasJson());
 

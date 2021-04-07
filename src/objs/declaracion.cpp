@@ -48,7 +48,7 @@ QJsonObject Declaracion::getDeclaracionJson()
     json.insert("provincias", array_provincias);
   }
 
-  if (retro.estaLleno()) json.insert("retro", retro.getRetroJson());
+  if (retro.estaLleno()) json.insert("retro_info", retro.getRetroJson());
 
   if (extras.size() > 0) {
     for (int i = 0; i < extras.size(); ++i) {
