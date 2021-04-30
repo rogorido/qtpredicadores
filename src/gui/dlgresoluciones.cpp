@@ -13,6 +13,7 @@
 #include <QSqlTableModel>
 
 #include "dlgdetalles.h"
+#include "dlgnuevaresolucion.h"
 #include "dlgseleccionargeneral.h"
 #include "src/models/qjsonmodel.h"
 #include "src/models/sqlfiltrogestor.h"
@@ -525,4 +526,12 @@ void dlgResoluciones::crearFiltroEpigrafes()
   sql_final = QString("(") + sql_temp + QString(")");
 
   sql_gestor->anadirFiltro("epigrafes", sql_final);
+}
+
+void dlgResoluciones::on_btActualizarResolucion_clicked()
+{
+  dlgresolucion = new dlgNuevaResolucion(resolucion_id, 0, this);
+
+  QMdiSubWindow *window = mdiarea->addSubWindow(dlgresolucion);
+  window->show();
 }

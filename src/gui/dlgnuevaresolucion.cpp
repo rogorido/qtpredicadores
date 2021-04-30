@@ -50,6 +50,7 @@ dlgNuevaResolucion::dlgNuevaResolucion(int resolucionid, int capitulo,
   jsongestor = new QJsonModel(this);
   m_resoluciones = ResolucionesModel::InstanceModel();
 
+  cargarResolucion();
   cargarModelos();
 
   /*
@@ -77,18 +78,25 @@ void dlgNuevaResolucion::cargarResolucion()
 
   // faltaría lo de verbos y expresiones pero paso porque no lo uso
   capitulo_id = resolucion->getCapitulo();
+  provincia_id = resolucion->getProvincia();
 
   query.prepare(
       "SELECT general_name FROM chapters WHERE chapter_id = :chapter_id");
   query.bindValue(":chapter_id", capitulo_id);
   query.exec();
+  query.first();
   ui->txtCapitulo->setText(query.value(0).toString());
 
-  provincia_id = resolucion->getProvincia();
-  query.prepare("SELECT name FROM provinces WHERE province_id = :province_id");
-  query.bindValue(":province_id", provincia_id);
-  query.exec();
-  ui->txtProvincia->setText(query.value(0).toString());
+  if (provincia_id != 0) {
+    query.prepare(
+        "SELECT name FROM provinces WHERE province_id = :province_id");
+    query.bindValue(":province_id", provincia_id);
+    query.exec();
+    query.first();
+    ui->txtProvincia->setText(query.value(0).toString());
+  }
+
+  cargarTemas();
 }
 
 void dlgNuevaResolucion::cargarTemas()

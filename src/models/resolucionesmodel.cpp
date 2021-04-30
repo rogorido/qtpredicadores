@@ -125,7 +125,7 @@ Resolucion *ResolucionesModel::cargarResolucion(const int resolucionid)
 
   query.prepare(
       "SELECT * from resolutions WHERE resolution_id = :resolution_id");
-  query.bindValue(":resolucion_id", resolucionid);
+  query.bindValue(":resolution_id", resolucionid);
 
   if (!query.exec()) {
     qDebug() << query.lastError();
@@ -134,20 +134,21 @@ Resolucion *ResolucionesModel::cargarResolucion(const int resolucionid)
     return resolucion;
   }
   else {
-    resolucion->setTexto(query.value("resolution_text").toString());
-    resolucion->setTextoResumido(query.value("resolution_summary").toString());
-    resolucion->setTextoTraducido(
-        query.value("resolution_traduction").toString());
-    resolucion->setCapitulo(query.value("chapter").toInt());
-    resolucion->setEpigrafe(query.value("small_title").toString());
-    resolucion->setProvincia(query.value("province_id").toInt());
-    resolucion->setEntendido(query.value("understood").toBool());
-    resolucion->setVolverMirar(query.value("look_again").toBool());
-    resolucion->setTraducido(query.value("translated").toBool());
-    resolucion->setRazonada(query.value("motivated").toBool());
-    resolucion->setInteres(query.value("interesting").toInt());
-    resolucion->setPages(query.value("pages").toString());
-    resolucion->setNotas(query.value("notes").toString());
+    query.first();
+
+    resolucion->setTexto(query.value(1).toString());
+    resolucion->setTextoResumido(query.value(3).toString());
+    resolucion->setTextoTraducido(query.value(2).toString());
+    resolucion->setCapitulo(query.value(4).toInt());
+    resolucion->setEpigrafe(query.value(5).toString());
+    resolucion->setProvincia(query.value(6).toInt());
+    resolucion->setEntendido(query.value(7).toBool());
+    resolucion->setVolverMirar(query.value(8).toBool());
+    resolucion->setTraducido(query.value(9).toBool());
+    resolucion->setRazonada(query.value(14).toBool());
+    resolucion->setInteres(query.value(10).toInt());
+    resolucion->setPages(query.value(17).toString());
+    resolucion->setNotas(query.value(12).toString());
 
     return resolucion;
   }

@@ -14,6 +14,7 @@ class QModelIndex;
 class QJsonModel;
 
 class dlgSeleccionarGeneral;
+class dlgNuevaResolucion;
 class SqlFiltroGestor;
 
 class MyQmdiArea;
@@ -21,6 +22,11 @@ class MyQmdiArea;
 namespace Ui {
 class dlgResoluciones;
 }
+
+/*
+ * Realmente estoy idiota: he duplicado un poco el código para actualizar.
+ * De hecho se puede hacer también desde aquí aunque creo que falta lo de json!
+ */
 
 class dlgResoluciones : public QWidget {
   Q_OBJECT
@@ -48,6 +54,7 @@ class dlgResoluciones : public QWidget {
   void on_btSeleccionarEpigrafe_clicked();
   void on_btDeSeleccionarEpigrafe_clicked();
   void on_btDeseleccionarTodosEpigrafes_clicked();
+  void on_btActualizarResolucion_clicked();
 
  private:
   Ui::dlgResoluciones *ui;
@@ -55,6 +62,7 @@ class dlgResoluciones : public QWidget {
   MyQmdiArea *mdiarea;
 
   dlgSeleccionarGeneral *dlgseleccionar;
+  dlgNuevaResolucion *dlgresolucion;
   SqlFiltroGestor *sql_gestor;
 
   /*
