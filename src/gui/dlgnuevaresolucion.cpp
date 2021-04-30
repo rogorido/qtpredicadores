@@ -242,7 +242,7 @@ void dlgNuevaResolucion::quitarCapitulo()
 
 void dlgNuevaResolucion::borrarCampos()
 {
-  ui->txtEpigrafe->setText("");
+  // ui->txtEpigrafe->setText("");
   ui->txtProvincia->setText("");
   // ui->txtCapitulo->setText(""); ver abajo
   ui->txtResolucion->clear();

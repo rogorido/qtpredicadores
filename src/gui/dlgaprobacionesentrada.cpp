@@ -92,7 +92,7 @@ void dlgAprobacionesEntrada::anadirAprobacion()
 
     // borramos los campos
     ui->txtPersona->setText("");
-    ui->txtProvincia->setText("");
+    // ui->txtProvincia->setText("");
 
     persona_seleccionada = Persona();
   }
@@ -119,7 +119,7 @@ void dlgAprobacionesEntrada::anadirAprobacion()
   aprobacion_activa->setProvincia(provincia_seleccionada);
 
   // y reinicializamos la provincia...
-  provincia_seleccionada = Provincia();
+  // provincia_seleccionada = Provincia();
 
   if (ui->wdNotas->haCambiado())
     aprobacion_activa->setNotas(ui->wdNotas->getNotas());
