@@ -58,6 +58,59 @@ dlgNuevaResolucion::dlgNuevaResolucion(int resolucionid, int capitulo,
   if (capitulo > 0) origen = true;
 }
 
+void dlgNuevaResolucion::cargarResolucion()
+{
+  QSqlQuery query;
+  Resolucion *resolucion = m_resoluciones->cargarResolucion(resolucionid);
+
+  ui->txtResolucion->setText(resolucion->getTexto());
+  ui->txtResolucionResumen->setText(resolucion->getTextoResumido());
+  ui->txtResolucionTraduccion->setText(resolucion->getTextoTraducido());
+  ui->txtEpigrafe->setText(resolucion->getEpigrafe());
+  ui->txtResolucionNotas->setText(resolucion->getNotas());
+  ui->spInteresante->setValue(resolucion->getInteres());
+  ui->chEntendida->setChecked(resolucion->getEntendido());
+  ui->chVolverMirar->setChecked(resolucion->getVolverMirar());
+  ui->chTradudida->setChecked(resolucion->getTraducido());
+  ui->chRazonada->setChecked(resolucion->getRazonada());
+  ui->txtPaginas->setText(resolucion->getPages());
+
+  // faltaría lo de verbos y expresiones pero paso porque no lo uso
+  capitulo_id = resolucion->getCapitulo();
+
+  query.prepare(
+      "SELECT general_name FROM chapters WHERE chapter_id = :chapter_id");
+  query.bindValue(":chapter_id", capitulo_id);
+  query.exec();
+  ui->txtCapitulo->setText(query.value(0).toString());
+
+  provincia_id = resolucion->getProvincia();
+  query.prepare("SELECT name FROM provinces WHERE province_id = :province_id");
+  query.bindValue(":province_id", provincia_id);
+  query.exec();
+  ui->txtProvincia->setText(query.value(0).toString());
+}
+
+void dlgNuevaResolucion::cargarTemas()
+{
+  QSqlQuery query;
+  elementopareado elemento;
+
+  query.prepare(
+      "SELECT theme_id, theme FROM resolutions_themes JOIN themes USING "
+      "(theme_id) WHERE resolution_id = "
+      ":resolution_id");
+  query.bindValue(":resolution_id", resolucionid);
+  query.exec();
+
+  while (query.next()) {
+    elemento.id = query.value(0).toInt();
+    elemento.elemento = query.value(1).toString();
+
+    temas_lista.append(elemento);
+  }
+}
+
 void dlgNuevaResolucion::cargarUI()
 {
   ui->setupUi(this);

@@ -80,6 +80,11 @@ class dlgNuevaResolucion : public QWidget {
   void introducirTemas(const int id);
   void borrarCampos();
 
+  // cosas para cargar una resolución para actualizarla
+  void cargarResolucion();
+  void cargarTemas();
+  void cargarJson();
+
   /*
    * esto se usa cuando abrimos el formulario
    * desde el formulario de capítulo
