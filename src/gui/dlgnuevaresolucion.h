@@ -28,6 +28,8 @@ class dlgNuevaResolucion : public QWidget {
 
  public:
   explicit dlgNuevaResolucion(int capitulo, QWidget *parent = 0);
+  explicit dlgNuevaResolucion(int resolucionid, int capitulo,
+                              QWidget *parent = 0);
   ~dlgNuevaResolucion();
 
  signals:
@@ -72,6 +74,7 @@ class dlgNuevaResolucion : public QWidget {
   QStringListModel *m_expresiones;
 
   void cargarModelos();
+  void cargarUI();
   void rellenarCombos();
   void introducirJson(const int id);
   void introducirTemas(const int id);
@@ -83,6 +86,10 @@ class dlgNuevaResolucion : public QWidget {
    */
   int capitulo_origen;
   bool origen;
+
+  // para actualizar resolucion
+  int resolucionid;
+  bool actualizando = false;
 
  private slots:
 

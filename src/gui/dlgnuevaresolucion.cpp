@@ -25,12 +25,44 @@
 dlgNuevaResolucion::dlgNuevaResolucion(int capitulo, QWidget *parent)
     : QWidget(parent), ui(new Ui::dlgNuevaResolucion), capitulo_origen(capitulo)
 {
+  cargarUI();
+  jsongestor = new QJsonModel(this);
+  m_resoluciones = ResolucionesModel::InstanceModel();
+
+  cargarModelos();
+
+  /*
+   * si capitulo !=0 entonces es que venimos del form Capitulos
+   */
+  if (capitulo > 0) origen = true;
+}
+
+// constructor para actualizaciones
+dlgNuevaResolucion::dlgNuevaResolucion(int resolucionid, int capitulo,
+                                       QWidget *parent)
+    : QWidget(parent),
+      ui(new Ui::dlgNuevaResolucion),
+      capitulo_origen(capitulo),
+      resolucionid(resolucionid),
+      actualizando(true)
+{
+  cargarUI();
+  jsongestor = new QJsonModel(this);
+  m_resoluciones = ResolucionesModel::InstanceModel();
+
+  cargarModelos();
+
+  /*
+   * si capitulo !=0 entonces es que venimos del form Capitulos
+   */
+  if (capitulo > 0) origen = true;
+}
+
+void dlgNuevaResolucion::cargarUI()
+{
   ui->setupUi(this);
 
   mdiarea = MyQmdiArea::Instance(this);
-
-  jsongestor = new QJsonModel(this);
-  m_resoluciones = ResolucionesModel::InstanceModel();
 
   connect(ui->btOK, SIGNAL(clicked()), this, SLOT(aceptarResolucion()));
   connect(ui->btCancelar, SIGNAL(clicked()), this, SLOT(cerrar()));
@@ -41,13 +73,6 @@ dlgNuevaResolucion::dlgNuevaResolucion(int capitulo, QWidget *parent)
   connect(ui->txtCapitulo, SIGNAL(dobleclick()), this, SLOT(anadirCapitulo()));
   connect(ui->btQuitarCapitulo, SIGNAL(clicked()), this,
           SLOT(quitarCapitulo()));
-
-  cargarModelos();
-
-  /*
-   * si capitulo !=0 entonces es que venimos del form Capitulos
-   */
-  if (capitulo > 0) origen = true;
 }
 
 dlgNuevaResolucion::~dlgNuevaResolucion() { delete ui; }
