@@ -117,3 +117,38 @@ bool ResolucionesModel::anadirResolucion(const Resolucion *resolucion)
     return true;
   }
 }
+
+Resolucion *ResolucionesModel::cargarResolucion(const int resolucionid)
+{
+  QSqlQuery query;
+  Resolucion *resolucion = new Resolucion();
+
+  query.prepare(
+      "SELECT * from resolutions WHERE resolution_id = :resolution_id");
+  query.bindValue(":resolucion_id", resolucionid);
+
+  if (!query.exec()) {
+    qDebug() << query.lastError();
+    qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
+
+    return resolucion;
+  }
+  else {
+    resolucion->setTexto(query.value("resolution_text").toString());
+    resolucion->setTextoResumido(query.value("resolution_summary").toString());
+    resolucion->setTextoTraducido(
+        query.value("resolution_traduction").toString());
+    resolucion->setCapitulo(query.value("chapter").toInt());
+    resolucion->setEpigrafe(query.value("small_title").toString());
+    resolucion->setProvincia(query.value("province_id").toInt());
+    resolucion->setEntendido(query.value("understood").toBool());
+    resolucion->setVolverMirar(query.value("look_again").toBool());
+    resolucion->setTraducido(query.value("translated").toBool());
+    resolucion->setRazonada(query.value("motivated").toBool());
+    resolucion->setInteres(query.value("interesting").toInt());
+    resolucion->setPages(query.value("pages").toString());
+    resolucion->setNotas(query.value("notes").toString());
+
+    return resolucion;
+  }
+}

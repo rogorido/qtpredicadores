@@ -12,6 +12,7 @@ class ResolucionesModel : public QSqlTableModel {
   static ResolucionesModel *InstanceModel();
 
   bool anadirResolucion(const Resolucion *resolucion);
+  Resolucion *cargarResolucion(const int resolucionid);
 
  signals:
 
