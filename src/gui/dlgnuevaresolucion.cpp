@@ -50,8 +50,9 @@ dlgNuevaResolucion::dlgNuevaResolucion(int resolucionid, int capitulo,
   jsongestor = new QJsonModel(this);
   m_resoluciones = ResolucionesModel::InstanceModel();
 
-  cargarResolucion();
   cargarModelos();
+
+  cargarResolucion();
 
   /*
    * si capitulo !=0 entonces es que venimos del form Capitulos
@@ -97,6 +98,7 @@ void dlgNuevaResolucion::cargarResolucion()
   }
 
   cargarTemas();
+  cargarJson();
 }
 
 void dlgNuevaResolucion::cargarTemas()
@@ -117,6 +119,37 @@ void dlgNuevaResolucion::cargarTemas()
 
     temas_lista.append(elemento);
   }
+}
+
+void dlgNuevaResolucion::cargarJson()
+{
+  QSqlQuery query;
+  QJsonObject json;
+
+  query.prepare(
+      "SELECT details FROM resolutions_details WHERE resolution_id = "
+      ":resolution_id");
+  query.bindValue(":resolution_id", resolucionid);
+  query.exec();
+  // query.first();
+
+  // esto es un lío para crear un json que lo tengo de aquí
+  // https://stackoverflow.com/questions/26804660/how-to-initialize-qjsonobject-from-qstring/26804761
+  while (query.next()) {
+    QJsonDocument jdoc =
+        QJsonDocument::fromJson(query.value(0).toString().toUtf8());
+
+    if (!jdoc.isNull()) {
+      if (jdoc.isObject()) {
+        json = jdoc.object();
+        jsongestor->anadirJson(json);
+      }
+    }
+  }
+
+  // hay que poner esto porque si no no sé por qué no me salen los datos
+  // en el treeveiw del formulario dlgDetalles.
+  jsongestor->resetearModelo();
 }
 
 void dlgNuevaResolucion::cargarUI()
@@ -257,7 +290,10 @@ void dlgNuevaResolucion::introducirTemas(const int id)
 void dlgNuevaResolucion::on_btDetalles_clicked()
 {
   dlgdetalles = new dlgDetalles(jsongestor, RESOLUCION, false, this);
-  emit(abrirDetalles(dlgdetalles));
+
+  QMdiSubWindow *window = mdiarea->addSubWindow(dlgdetalles);
+  window->show();
+  // emit(abrirDetalles(dlgdetalles));
 }
 
 void dlgNuevaResolucion::on_btTemas_clicked()
