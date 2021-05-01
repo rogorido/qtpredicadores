@@ -253,13 +253,10 @@ void dlgNuevaResolucion::aceptarResolucion()
   }
   else {
     if (m_resoluciones->actualizarResolucion(resolucion, resolucionid)) {
-      // QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
-
-      // introducirJson(id);
-      // introducirTemas(id);
+      actualizarJson();
+      actualizarTemas();
 
       cerrar();
-
       return;
     }
     else {
@@ -511,4 +508,40 @@ void dlgNuevaResolucion::on_btAnadirExpresion_clicked()
 void dlgNuevaResolucion::on_btQuitarExpresion_clicked()
 {
   m_expresiones->removeRows(ui->twExpresiones->currentIndex().row(), 1);
+}
+
+void dlgNuevaResolucion::actualizarTemas()
+{
+  QSqlQuery query;
+
+  query.prepare(
+      "DELETE FROM resolutions_themes WHERE resolution_id = :resolution_id");
+  query.bindValue(":resolution_id", resolucionid);
+
+  if (!query.exec()) {
+    qDebug() << query.lastError();
+    qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
+    return;
+  }
+  else {
+    introducirTemas(resolucionid);
+  }
+}
+
+void dlgNuevaResolucion::actualizarJson()
+{
+  QSqlQuery query;
+
+  query.prepare(
+      "DELETE FROM resolutions_details WHERE resolution_id = :resolution_id");
+  query.bindValue(":resolution_id", resolucionid);
+
+  if (!query.exec()) {
+    qDebug() << query.lastError();
+    qDebug() << "esta es la query: " << query.executedQuery().toUtf8();
+    return;
+  }
+  else {
+    introducirJson(resolucionid);
+  }
 }

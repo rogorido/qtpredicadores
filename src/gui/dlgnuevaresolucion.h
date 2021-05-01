@@ -84,6 +84,8 @@ class dlgNuevaResolucion : public QWidget {
   void cargarResolucion();
   void cargarTemas();
   void cargarJson();
+  void actualizarJson();
+  void actualizarTemas();
 
   /*
    * esto se usa cuando abrimos el formulario
