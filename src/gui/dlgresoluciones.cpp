@@ -2,6 +2,7 @@
 
 #include <QDataWidgetMapper>
 #include <QDebug>
+#include <QInputDialog>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QMdiSubWindow>
@@ -51,7 +52,7 @@ dlgResoluciones::dlgResoluciones(QWidget *parent)
           SLOT(seleccionarResolucion(QModelIndex)));
   connect(ui->wdTemas, SIGNAL(temasSeleccionadosCambio(QList<int>)), this,
           SLOT(temasSeleccionadosCambiados(QList<int>)));
-  connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(aplicarFiltro()));
+  // connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(aplicarFiltro()));
 
   // deshabilitamos este botón por un puto error que da (ver abajo)
   ui->btDeSeleccionarEpigrafe->setEnabled(false);
@@ -534,4 +535,16 @@ void dlgResoluciones::on_btActualizarResolucion_clicked()
 
   QMdiSubWindow *window = mdiarea->addSubWindow(dlgresolucion);
   window->show();
+}
+
+void dlgResoluciones::on_btActualizarID_clicked()
+{
+  int resid = QInputDialog::getInt(this, "Id de la resolución", "Resolución: ");
+
+  if (resid) {
+    dlgresolucion = new dlgNuevaResolucion(resid, 0, this);
+
+    QMdiSubWindow *window = mdiarea->addSubWindow(dlgresolucion);
+    window->show();
+  }
 }

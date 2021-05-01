@@ -55,6 +55,7 @@ class dlgResoluciones : public QWidget {
   void on_btDeSeleccionarEpigrafe_clicked();
   void on_btDeseleccionarTodosEpigrafes_clicked();
   void on_btActualizarResolucion_clicked();
+  void on_btActualizarID_clicked();
 
  private:
   Ui::dlgResoluciones *ui;
