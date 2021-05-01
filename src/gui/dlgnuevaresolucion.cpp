@@ -230,24 +230,45 @@ void dlgNuevaResolucion::aceptarResolucion()
   resolucion->setPages(paginas);
   resolucion->setNotas(notas);
 
-  if (m_resoluciones->anadirResolucion(resolucion)) {
-    // QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
-    QSqlQuery lastid("select max(resolution_id) from resolutions");
-    lastid.first();
-    int id = lastid.value(0).toInt();
-    introducirJson(id);
-    introducirTemas(id);
+  if (!actualizando) {
+    if (m_resoluciones->anadirResolucion(resolucion)) {
+      // QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
+      QSqlQuery lastid("select max(resolution_id) from resolutions");
+      lastid.first();
+      int id = lastid.value(0).toInt();
+      introducirJson(id);
+      introducirTemas(id);
 
-    borrarCampos();
+      borrarCampos();
 
-    return;
+      return;
+    }
+    else {
+      int ret =
+          QMessageBox::warning(this, "Error al introducir la resolución",
+                               "Error al introducir la resolución en la BD");
+      Q_UNUSED(ret)
+      return;
+    }
   }
   else {
-    int ret =
-        QMessageBox::warning(this, "Error al introducir la resolución",
-                             "Error al introducir la resolución en la BD");
-    Q_UNUSED(ret)
-    return;
+    if (m_resoluciones->actualizarResolucion(resolucion, resolucionid)) {
+      // QSqlQuery lastid("select currval('capitulos_capitulo_id_seq')");
+
+      // introducirJson(id);
+      // introducirTemas(id);
+
+      cerrar();
+
+      return;
+    }
+    else {
+      int ret =
+          QMessageBox::warning(this, "Error al actualizar la resolución",
+                               "Error al actualizar la resolución en la BD");
+      Q_UNUSED(ret)
+      return;
+    }
   }
 }
 
