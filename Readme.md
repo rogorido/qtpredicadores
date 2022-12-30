@@ -2,6 +2,8 @@ This is a program written in C++ for entering data into a Postgresql
 database created for the analysis of the Dominican Order in the early
 modern period. 
 
+![Prueba](docs/images/menu.png)
+
 The database is then used by an
 [API](https://github.com/rogorido/apidominicans) and the results can be
 analyzed in my webpage on [early modern
